@@ -1,0 +1,1755 @@
+﻿# ------------------------------------------------------------
+# Zweck   : mkgmap-Regeln für Punkte (POI, Points Of Interest)
+# Version : 0.1 - 23.09.2011
+# Version : 0.2 - 14.10.2011: Adresssuche
+# Version : 0.3 - 09.12.2011: Verbesserung der Adresssuchregeln
+# Version : 0.4 - 08.02.2012: eigene Symbole für Parkplätze; place=islet; place = isolated_dwelling
+#                             zusätzliche POI-Referenzliste; "natural=col" + "natural=saddle" ergänzt
+#                             Logik für "alpine_hut, wilderness_hut, basic_hut, lean_to" geändert
+# Version : 0.5 - 08.03.2012: Bäume werden nur noch in Verbindung mit Landmarken ausgewiesen,
+#                             Anzeigelogik für Inseln geändert, einige Tore ergänzt
+# Version : 0.6 - 20.04.2012: Darstellung von Spielplätzen, Bunkern und Ruinen mit eigenen POIs
+#                             eigene Symbole für Tor, Schlagbaum und Umlaufsperre
+# Version : 0.7 - 16.06.2012: Unterstützung für "man_made=survey_point"
+# Version : 0.8 - 06.09.2012: Kommentar zu "man_made=survey_point" geändert
+#                             Berücksichtigung von Hotel-Restaurants
+#                             Darstellung von Gebirgspässen, (Seilbahn-)Pylonen, (Barriere-)Blöcken
+# Version : 0.9 - 12.10.2012: Darstellung von Ruhestätten (bedeutender Personen)
+# Version : 0.10- 28.10.2012: Darstellung von Trinkwasserstellen
+# Version : 0.11- 07.12.2012: Darstellung von Radrennbahnen korrigiert
+# Version : 0.12 -04.09.2013: Adding Logic and symbol for 'smaller' mobile communication tower
+# Version : 0.13 -07.01.2014: Adapted stuff for tourism=information: 
+#                             - Added special sign for tourist office
+#                             - lightened normal info sign
+# Version : 0.14 -14.03.2014: Adapting things regarding power = * (station / plant / substation / sub_station)
+#                             Adding amenity=toilets
+# Version : 0.15 -05.05.2014: Adapting finalize section to support new mkgmap version 2096 and newer
+# Version : 0.16 -02.09.2014: Fixing problem with ammenity=parking & (access=yes | access=public)
+#           0.17 -14.09.2014: Fixing a new bug introduced regarding restricted parking
+# Version : 0.18 -02.05.2015: Changes regarding amenity = place_of_worship and buildings
+# Version : 0.19 -19.06.2015: Proper handling place_of_worship without names (to show name and symbol too)
+# Version : 0.20 -16.03.2016: Remapped Camping from 0x2B03 to 0x2B05 due to categorization problems with GPSMap 64s
+#
+# Copyright (C) 2011, 2012 Klaus Tockloth <freizeitkarte@googlemail.com>
+#
+# Hinweis auf weitere Unterlagen:
+# - http://wiki.openstreetmap.org/wiki/DE:Map_Features
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/How_to_create_a_map
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+#
+# Standard types - points (laut cGPSmapper):
+# ------------------------------------------
+# 0x0100-0x0500   City name(Point, fat, big)            0x4000-0x403F   Golf
+# 0x0600-0x0A00   City name(Point, big)                 0x4100-0x413F   Fish
+# 0x0B00          City name (Point, small)              0x4200-0x423F   Wreck
+# 0x0C00          City name (Point, small)              0x4300-0x433F   Marina
+# 0x0D00          City name (Point, small)              0x4400-0x443F   Gas
+# 0x0E00-0x1100   City name(Point, big)                 0x4500-0x453F   Restaurant
+# 0x1200          Marine info                           0x4600-0x463F   Bar
+# 0x1400-0x153F   Region name (no Point, big)           0x4700-0x473F   Boat Ramp
+# 0x1E00-0x1E3F   Region name (no Point, middle)        0x4800-0x483F   Camping
+# 0x210F          Exit(Service)                         0x4900-0x493F   Park
+# 0x2000-0x203F   Exit                                  0x4A00-0x4A3F   Picnic Area
+# 0x2100-0x213F   Exit(with facilities)                 0x4B00-0x4B3F   Hospital
+# 0x2200-0x223F   Exit(Restroom)                        0x4C00-0x4C3F   Information
+# 0x2300-0x233F   Exit(Convenience Store)               0x4D00-0x4D3F   Parking
+# 0x2400-0x243F   Exit(Weight Station)                  0x4E00-0x4E3F   Restroom
+# 0x2500-0x253F   Exit(Tollbooth Booth)                 0x4F00-0x4F3F   Shower
+# 0x2600-0x263F   Exit(Information)                     0x5000-0x503F   Drinking Water
+# 0x2700-0x273F   Exit                                  0x5100-0x513F   Telephone
+# 0x2800-0x283F   Region name (no Point, small)         0x5200-0x523F   Scenic Area
+# 0x2A00          Dining (Other)                        0x5300-0x533F   Skiing
+# 0x2A01          Dining (American)                     0x5400-0x543F   Swimming
+# 0x2A02          Dining (Asian)                        0x5500-0x553F   Dam
+# 0x2A03          Dining (Barbecue)                     0x5700-0x573F   Danger Area
+# 0x2A04          Dining (Chinese)                      0x5800-0x583F   restricted Area
+# 0x2A05          Dining (Deli/Bakery)                  0x5900          Generic Airport
+# 0x2A06          Dining (International)                0x5901          Large Airport
+# 0x2A07          Fast Food                             0x5902          Medium Airport
+# 0x2A08          Dining (Italian)                      0x5903          Small Airport
+# 0x2A09          Dining (Mexican)                      0x5904          Heliport
+# 0x2A0A          Dining (Pizza)                        0x5905-0x593F   Airport
+# 0x2A0B          Dining (Sea Food)                     0x5D00-0x5D3F   Daymark, Green Square
+# 0x2A0C          Dining (Steak/Grill)                  0x5E00-0x5E3F   Daymark, Red Triangle
+# 0x2A0D          Dining (Bagel/Donut)                  0x6200          Depth with point in feet one decimal place
+# 0x2A0E          Dining (Cafe/Diner)                   0x6300          Height without point in feet no decimal place
+# 0x2A0F          Dining (French)                       0x6400          Manmade Feature
+# 0x2A10          Dining (German)                       0x6401          Bridge
+# 0x2A11          Dining (British Isles)                0x6402          Building
+# 0x2B00          Hotel (Other)                         0x6403          Cemetery
+# 0x2B01          Hotel/Motel                           0x6404          Church
+# 0x2B02          Bed & Breakfast inn                   0x6405          Civil
+# 0x2B03          Camping/RV-Park                       0x6406          Crossing
+# 0x2B04          Resort                                0x6407          Dam (Damm, Staudamm)
+# 0x2C01          Amusement Park                        0x6408          Hospital
+# 0x2C02          Museum/History                        0x6409          Levee (Damm, Deich)
+# 0x2C03          Libraries                             0x640A          Locale (Örtlichkeit)
+# 0x2C04          Land Mark                             0x640B          Military
+# 0x2C05          School                                0x640C          Mine
+# 0x2C06          Park                                  0x640D          Oil Field
+# 0x2C07          Zoo                                   0x640E          Park
+# 0x2C08          Sportpark, Stadium, (point)           0x640F          Post
+# 0x2C09          Fair, Conference (point)              0x6410          School
+# 0x2C0A          Vine restaurant (point)               0x6411          Tower
+# 0x2C0B          Place of Worship                      0x6412          Trail
+# 0x2C0C          Hot Spring                            0x6413          Tunnel
+# 0x2D01          Theater                               0x6414          Drink water
+# 0x2D02          Bar                                   0x6415          Ghost Town
+# 0x2D03          Cinema                                0x6416          Subdivision (Trabantenstadt)
+# 0x2D04          Casino                                0x6500          Water Feature
+# 0x2D05          Golf                                  0x6501          Arroyo (Arroyo, saisonal trockene Schlucht)
+# 0x2D06          Skiing Center                         0x6502          Sand Bar (Sandbank)
+# 0x2D07          Bowling                               0x6503          Bay
+# 0x2D08          Ice/Sporting                          0x6504          Bend (Biegung)
+# 0x2D09          Swimming                              0x6505          Canal
+# 0x2D0A          Sports (point)                        0x6506          Channel
+# 0x2D0B          Sailing Airport                       0x6507          Cove (Bucht)
+# 0x2E01          Department Store                      0x6508          Falls (großer Wasserfall)
+# 0x2E02          Grocery                               0x6509          Geyser
+# 0x2E03          General Merchandiser                  0x650A          Glacier
+# 0x2E04          Shopping Center                       0x650B          Harbour
+# 0x2E05          Pharmacy                              0x650C          Island
+# 0x2E06          Convenience                           0x6500          Lake
+# 0x2E07          Apparel                               0x650E          Rapids (Stromschnellen)
+# 0x2E08          House and Garden                      0x650F          Reservoir
+# 0x2E09          Home Furnishing                       0x6510          Sea
+# 0x2E0a          Special Retail                        0x6511          Spring
+# 0x2E0b          Computer/Software                     0x6512          Stream
+# 0x2F00          generic service                       0x6513          Swamp
+# 0x2F01          Fuel/Gas                              0x6600          Land Feature
+# 0x2F02          Car Rental                            0x6601          Arch (Bogen)
+# 0x2F03          Car Repair                            0x6602          Area
+# 0x2F04          Airport                               0x6603          Basin
+# 0x2F05          Post Office                           0x6600          Beach
+# 0x2F06          Bank                                  0x6605          Bench
+# 0x2F07          Car Dealer (point)                    0x6606          Cape (Kap)
+# 0x2F08          Bus Station                           0x6607          Cliff
+# 0x2F09          Marina                                0x6608          Crater
+# 0x2F0A          Wrecker Service                       0x6609          Flat (Ebene)
+# 0x2F0B          Parking                               0x660A          Forest
+# 0x2F0C          Restroom                              0x660B          Gap
+# 0x2F0D          Automobile Club                       0x660C          Gut (Meerenge)
+# 0x2F0E          Car Wash                              0x660D          Isthmus (Isthmus, Landenge)
+# 0x2F0F          Garmin Dealer                         0x660E          Lava
+# 0x2F10          Personal Service                      0x660F          Pillar (Säule?)
+# 0x2F11          Business Service                      0x6610          Plain (Ebene)
+# 0x2F12          Communication                         0x6611          Range (Gebiergskette)
+# 0x2F13          Repair Service                        0x6612          Reserve (Schutzgebiet)
+# 0x2F14          Social Service                        0x6613          Ridge (Bergzug, Kamm, Grat)
+# 0x2F15          Utility                               0x6614          Rock
+# 0x2F16          Truck Stop                            0x6615          Slope (Abhang)
+# 0x3000          generic emergency/government          0x6616          Summit
+# 0x3001          Police Station                        0x6617          Valley
+# 0x3002          Hospital                              0x6618          Woods
+# 0x3003          Public Office
+# 0x3004          Justice
+# 0x3005          Concert hall (point)
+# 0x3006          Border Station (point)
+#
+# Standard types - points (laut Thorsten Kukuk, Stand: 01/2012):
+# --------------------------------------------------------------
+# Attraktionen:
+# - Arena/Rennbahn:                      0x2c08
+# - Museum/Historisches:                 0x2c02, 0x2c11
+# - Park/Garten:                         0x2c00, 0x2c06, 0x491a-0x491f, 0x4a16-0x4a1f, 0x640e
+# - Saal/Auditorium:                     0x2c09
+# - Sehenswürdigkeit:                    0x2c04, 0x2c07 (Zoo), 0x5200-0x521f
+# - Weingut:                             0x2c0a
+#
+# Autoservices
+# - Automobilclub:                       0x2f0d
+# - Autoreparatur:                       0x2f03
+# - Autovermietung:                      0x2f02
+# - Autowaschanlage:                     0x2f0e
+# - Abschleppdienst:                     0x2f0a
+# - Händler/Autoteile:                   0x2f07, 0x3100-0x311f
+# - Parkplatz:                           0x2f0b, 0x4d00-0x4d1f
+# - Rastplatz (Toiletten):               0x2f0c, 0x4e00-0x4e1f
+# - Besucherinformation (Rastpl.):       0x4c00-0x4c1f
+# - Truckstop:                           0x2f16
+#
+# Bank/Geldautomat:                      0x2f06, 0x2f1d, 0x2f1e
+#
+# Beförderungsmittel/Verkehrsmittel:
+# - Autovermietung:                      0x2f02
+# - Bahnhof (Landverkehr):               0x2f08, 0x2f1f
+# - Flughafen (Luftverkehr):             0x2f04, 0x5900-0x591f (0x5904 Helipad)
+# - Transitservice:                      0x2f17
+#
+# Einkaufsmöglichkeiten:
+# - Apotheke/Drogerie:                   0x2e05
+# - Bedarfsartikel:                      0x2e06
+# - Bekleidung:                          0x2e07
+# - Computer/Software:                   0x2e0b
+# - Einkaufszentrum:                     0x2e04, 0x2e0d (Garmin)
+# - Einrichtungsgegenstände:             0x2e09
+# - Gemischtwaren:                       0x2e00, 0x2e03
+# - Haus und Garten:                     0x2e08
+# - Kaufhaus:                            0x2e01
+# - Lebensmittel:                        0x2e02
+# - Spezialitäteneinzelhandel:           0x2e0a
+#
+# Essen & Trinken:
+# - Amerikanisch:                        0x2a01, 0x2a1b
+# - Cafe:                                0x2a0e
+# - Asiatisch:                           0x2a02
+# - Chinesisch:                          0x2a04
+# - Deutsch:                             0x2a10
+# - Englisch:                            0x2a11
+# - Feinkostladen:                       0x2a0d
+# - Deli/Bäckerei:                       0x2a05
+# - Französisch:                         0x2a0f
+# - Grill/Barbecue-Restaurant:           0x2a03
+# - International:                       0x2a06, 0x2a13-0x2a1f
+# - Italienisch:                         0x2a08
+# - Pizza:                               0x2a0a
+# - Meeresfrüchte:                       0x2a0b
+# - Mexikanisch:                         0x2a09
+# - Schnellimbiss:                       0x2a07
+# - Sonstige:                            0x2a00, 0x4500-0x451f
+# - Spezialitäten:                       0x2a12
+# - Steak/Grill:                         0x2a0c
+#
+# Freizeit:
+# - Arena/Rennbahn:                      0x2c08
+# - Golfplatz:                           0x2d05, 0x4000-0x401f, 0x2d12 (Garmin), 0x4010-0x401f (Mapsource)
+# - Sportflugplatz:                      0x2d0b
+# - Park/Garten:                         0x2c06, 0x491a-0x491f, 0x4a16-0x4a1f, 0x640e
+# - Skizentrum/Skiort:                   0x2d06, 0x5300-0x531f
+# - Bowling-Center:                      0x2d07
+# - Eisbahn:                             0x2d08
+# - Schwimmbad:                          0x2d09, 0x5400-0x541f
+# - Sport/Fitnesscenter:                 0x2d0a, 0x5c00-0x5c1f, 0x2d13 (Garmin)
+# - Vergnügungspark/Themenpark:          0x2c01
+#
+# Gemeinde:
+# - Andachtsort:                         0x2c0b, 0x6404
+# - Bibliothek:                          0x2c03
+# - Feuerwehr:                           0x3008
+# - Gemeindezentrum:                     0x3005, 0x300a (Garmin)
+# - Gericht:                             0x3004
+# - Grenzübergang:                       0x3006
+# - Polizeistation:                      0x3001
+# - Postamt:                             0x2f05, 0x640f
+# - Rathaus:                             0x3003
+# - Regierungsstelle:                    0x3000, 0x3007
+# - Schule:                              0x2c05, 0x6410
+# - Versorgungsbetrieb:                  0x2f15
+#
+# Kraftstoff:
+# - Autokraftstoff:                      0x2f01, 0x4400-0x441f
+# - Bedarfsartikel:                      0x2e06
+# - Truckstop:                           0x2f16
+#
+# Krankenhaus:                           0x3002, 0x4b00-0x4b1f, 0x6408
+#
+# Sonstige:
+# - Dienstleistungen für Einzelpersonen: 0x2f10
+# - Dienstleistungen für Unternehmen:    0x2f11
+# - GARMIN-Händler:                      0x2f0f
+# - Kommunikation:                       0x2f12
+# - Reparaturservice:                    0x2f13
+# - Sonstige:                            0x2f00
+# - Sozialeinrichtungen:                 0x2f14
+# - Yachthafen/Reparatur & Lager:        0x2f09, 0x4300-0x431f
+#
+# Unterhaltung:
+# - Bar/Nachtclub:                       0x2d02, 0x2d0d, 0x2d0e, 0x4600-0x461f
+# - Casino:                              0x2d04
+# - Kino:                                0x2d03, 0x2d10
+# - Saal/Auditorium:                     0x2c09
+# - Theater:                             0x2d00, 0x2d01, 0x2d11
+#
+# Unterkunft:
+# - Campingplatz/Wohnmobil-Park:         0x2b03, 0x2b05, 0x2b06, 0x2b07, 0x4800-0x481f
+# - Hotel/Motel:                         0x2b00, 0x2b01, 0x2b02, 0x2b04
+#
+# Conflict:                              0x2d12, 0x2d13
+#
+# Garmin BaseCamp (OS X) Suchmöglichkeiten (Filtermöglichkeiten unter Windows):
+# -----------------------------------------------------------------------------
+# - Städte                                              - Geografische Punkte
+# - Alle POIs                                             - Alle Unterkategorien
+# - Attraktionen                                          - Künstlich
+#   - Alle Unterkategorien                                - Land
+#   - Arena / Rennbahn                                    - Wasser
+#   - Museum / Historische Sehenswürdigkeiten           - Kraftstoff
+#   - Park / Garten                                       - Alle Unterkategorien
+#   - Saal / Auditorium                                   - Autokraftstoff
+#   - Sehenswürdigkeiten                                  - Bedarfsartikel
+#   - Vergnügungspark / Themenpark                        - Truckstop
+#   - Weingut                                           - Krankenhaus
+# - Autoservices                                        - Marine
+#   - Alle Unterkategorien                                - Alle Unterkategorien
+#   - Automobilclub                                       - Fischen
+#   - Autoreparatur                                       - Fotopunkt
+#   - Autovermietung                                      - Gezeitenstation
+#   - Autowaschanlage                                     - Hindernis / Gefahr
+#   - Bergungsdienst                                      - Kartenpunkt
+#   - Händler / Autoteile                                 - Marineservices
+#   - Parkmöglichkeiten                                   - Seezeichen
+#   - Rastplatz / Besucherinformation                     - Sonstige
+#   - Truckstop                                           - Strömungsvorhersagestation
+# - Bank / Geldautomat                                    - Tiefe
+# - Beförderungsmittel                                  - Restaurants
+#   - Alle Unterkategorien                                - Alle Unterkategorien
+#   - Autovermietung                                      - Amerikanisch
+#   - Landverkehr                                         - Asiatisch
+#   - Luftverkehr                                         - Bäckerei
+#   - Transitservice                                      - Cafe / Bar
+# - Einkaufsmöglichkeiten                                 - Chinesisch
+#   - Alle Unterkategorien                                - Deutsch
+#   - Apotheke / Drogerie                                 - Englisch
+#   - Bedarfsartikel                                      - Feinkostladen / Bäckerei
+#   - Bekleidung                                          - Französisch
+#   - Computer / Software                                 - Grillen
+#   - Einkaufszentrum                                     - International
+#   - Einrichtungsgegenstände                             - Italienisch
+#   - Gemischtwaren                                       - Meeresfrüchte
+#   - Haus und Garten                                     - Mexikanisch
+#   - Kaufhaus                                            - Pizzeria
+#   - Lebensmittel                                        - Schnellimbiss
+#   - Spezialitäteneinzelhandel                           - Sonstige
+# - Freizeit                                              - Spezialitäten
+#   - Arena / Rennbahn                                    - Steak / Grill
+#   - Bowling-Center                                    - Sonstige
+#   - Golfplatz                                           - Alle Unterkategorien
+#   - Öffentlicher Sportflugplatz                         - Dienstleistungen für Einzelpersonen
+#   - Park / Garten                                       - Dienstleistungen für Unternehmen
+#   - Skizentrum / Skiort                                 - Garmin-Händler
+#   - Sportcenter / Fitness-Center                        - Jachthafen / Reparatur & Lager
+#   - Vergnügungspark / Themenpark                        - Kommunikation
+# - Gemeinde                                              - Reparaturservice
+#   - Alle Unterkategorien                                - Sonstige
+#   - Andachtsort                                         - Sozialeinrichtungen
+#   - Bibliothek                                        - Unterhaltung
+#   - Feuerwehr                                           - Alle Unterkategorien
+#   - Gemeindezentrum                                     - Bar / Nachtclub
+#   - Gericht                                             - Casino
+#   - Grenzübergang                                       - Kino
+#   - Polizeistation                                      - Saal / Auditorium
+#   - Postamt                                             - Theater
+#   - Rathaus                                           - Unterkunft
+#   - Regierungsstelle                                    - Alle Unterkategorien
+#   - Schule                                              - Bed & Breakfast
+#   - Versorgungsbetrieb                                  - Campingplatz / Wohnmobil-Park
+#                                                         - Hotel / Motel
+#                                                         - Park
+#                                                         - Trainingscamp
+# Anmerkungen:
+# - Die Suchfunktion basiert auf den (durch Garmin) definierten POI-Nummern.
+# - D.h. eigene POI-Feature sind "passenden" Garmin-POI-Nummern zuzuordnen.
+# - Unterschiedliche POI (für das gleiche Objekt) in verschiedenen Leveln sind nicht möglich.
+# - Link auf Mapnik-Symbole: http://svn.openstreetmap.org/applications/rendering/mapnik/symbols/
+# - Es sollten nur POIs mit den Subtypen 01-1F verwendet werden (z.B. 0x0001-0x001F oder 0x2400-241F).
+# - POIs mit den Subtypen 20-FF (z.B. 0x0020-0x00FF) werden auf vielen Garmin-Geräten nicht angezeigt.
+#
+# Besonderheiten:
+# - Soll ein Tag mehrfach verändert werden, so ist hierfür "set" zu verwenden.
+# - Beispiel:
+# tourism = hotel & name = * { set name = '${stars}* ${name} (Hotel)' | '${name} (Hotel)' } [0x2b01 resolution 24 continue with_actions]
+# amenity = restaurant & cuisine = regional & name = * {set name = '${name} (${cuisine}, Restaurant)'} [0x2a10 resolution 24]
+#
+# ppp supports the following standard preprocessor features:
+# #define %var% [value]
+# #define %pseudo_fn%([arg-list])
+# #undef %var%
+# #include "path"
+# #ifdef %var% .. #else .. #endif
+# #ifndef %var% .. #else .. #endif
+# #if <expr> .. #else .. #endif
+# Macro variable expansion
+#
+# Link: www.synesys.com/Downloads/ppp.html
+#
+# Optionale Features:
+# - TRIGMARK: Darstellung von Trigonometrischen Markierungen
+# - DRINKINGWATER: Darstellung von Trinkwasserstellen
+# ------------------------------------------------------------
+
+# -------------------------------------------------
+# Include language file containing all translations
+# -------------------------------------------------
+#define PP_VARS_ACTIVE_IN_STRINGS
+#include "style-translations"
+#undef PP_VARS_ACTIVE_IN_STRINGS
+
+# -------------------------------------------------
+# Adress- / Indexsuche: 
+# -------------------------------------------------
+# (handled at the end of the file with mkgmap style include)
+# #include "indexsearch"
+
+
+
+# ------------------------------------------------------------
+# Tourismus / tourism:
+# - viele Berghütten sind zusätzlich als Restaurant getaggt
+# - weitere Hüttentypen (basic_hut, ...) sind zusätzlich als "shelter" getaggt
+# - deshalb erfolgt hier die Verarbeitung vor "amenity"
+# ------------------------------------------------------------
+
+# Schutzhütte, Berghütte. [point, closedway]
+# siehe auch "amenity = shelter"
+# Bewirtschaftete Berghütten
+tourism = alpine_hut & name = * & ele = * & amenity = restaurant {name "${name} (${ele})"}   [0x4803 resolution 23]
+tourism = alpine_hut & name = * & amenity = restaurant           {name "${name}"}            [0x4803 resolution 23]
+tourism = alpine_hut & ele = * & amenity = restaurant            {name "$__ALPINEHUT__ (${ele})"} [0x4803 resolution 23]
+tourism = alpine_hut & amenity = restaurant                      {name "$__ALPINEHUT__"}          [0x4803 resolution 23]
+
+# Selbstversorger Berghütten
+tourism = alpine_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4804 resolution 23]
+tourism = alpine_hut & name = *           {name "${name}"}            [0x4804 resolution 23]
+tourism = alpine_hut & ele = *            {name "$__ALPINEHUT__ (${ele})"} [0x4804 resolution 23]
+tourism = alpine_hut                      {name "$__ALPINEHUT__"}          [0x4804 resolution 23]
+
+# Aquarium.
+tourism = aquarium & name = * {name "${name} ($__AQUARIUM__)"} [0x2c07 resolution 24]
+
+# Sehenswürdigkeit. [point, closedway]
+# (Excluding worship places here, that tag should be stronger than attraction)
+tourism = attraction & name = * & amenity != place_of_worship {name "${name} ($__ATTRACTION__)"} [0x6600 resolution 24]
+
+# Kunstwerk, Kunstobjekt. [point, closedway]
+tourism = artwork & name = * {name "${name} ($__ARTWORK__)"} [0x6600 resolution 24]
+
+# Basic hut (Schutzhütte, Berghütte). [point, closedway]
+# A basic hut is a building located in the mountains or into the wild intended
+# to provide basic shelter, sleeping, to hikers and climbers.
+tourism = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 23]
+tourism = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 23]
+tourism = basic_hut & ele = *            {name "$__BASICHUT__ (${ele})"} [0x4805 resolution 23]
+tourism = basic_hut                      {name "$__BASICHUT__"}          [0x4805 resolution 23]
+# Basic hut (new tagging) [point, closedway]
+amenity = shelter & shelter_type = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 23]
+amenity = shelter & shelter_type = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 23]
+amenity = shelter & shelter_type = basic_hut & ele = *            {name "$__BASICHUT__ (${ele})"} [0x4805 resolution 23]
+amenity = shelter & shelter_type = basic_hut                      {name "$__BASICHUT__"}          [0x4805 resolution 23]
+
+# Bed & Breakfast. [point, closedway]
+tourism = bed_and_breakfast & name = * { name "${name} ($__BEDANDBREAKFAST__)" } [0x2b02 resolution 24]
+
+# Campingplatz. [point, closedway]
+tourism = camp_site & name = * {name "${name} ($__CAMPSITE__)"} [0x2b05 resolution 24]
+
+# Stellplatz für Wohnmobile (Reisemobile). [point, closedway]
+tourism = caravan_site & name = * {name "${name} ($__CARAVANSITE__)"} [0x2b05 resolution 24]
+
+# Ferienwohnung, Ferienhaus, Sennhütte. [point, closedway]
+tourism = chalet & name = * { name "${name} ($__CHALET__)" } [0x2b02 resolution 24]
+
+# Pension, Gasthaus. [point, closedway]
+tourism = guest_house & name = * { name "${name} ($__GUESTHOUSE__)" } [0x2b02 resolution 24]
+
+# Jugendherberge, Herberge, Naturfreundehaus usw. [point, closedway]
+tourism = hostel & name = * { name "${name} ($__HOSTEL__)" } [0x2b02 resolution 24]
+
+# Hotel. [point, closedway]
+# continue: Für Hotel-Restaurants (tourism=hotel + amenity=restaurant) wird zusätzlich ein Restaurant-POI angelegt.
+# Das Restaurant enthält dann auch den Namenszusatz (Hotel) (Beispiel: 3* Gasthof Stern (Hotel)).
+tourism = hotel & name = * { set name = "${stars}* ${name} ($__HOTEL__)" | "${name} ($__HOTEL__)" } [0x2b01 resolution 24 continue with_actions]
+
+# Touristeninformation. [point, closedway]
+#tourism = information [0x661a resolution 24]
+
+# Tourist Offices/Terminals (inhouse, presumably)
+tourism = information & ( information = office | information = terminal ) [0x6514 resolution 24]
+# Other types
+#tourism = information & ( information = board | information = map ) [0x661a resolution 24]
+tourism = information & information = map  [0x661a resolution 24]
+
+# Lean-to (Schutzhütte, Berghütte). [point, closedway]
+# A lean-to is a building located in the mountains or into the wild intended to provide shelter against rain.
+tourism = lean_to & name = * & ele = * {name "${name} (${ele})"} [0x4807 resolution 23]
+tourism = lean_to & name = *           {name "${name}"}          [0x4807 resolution 23]
+tourism = lean_to & ele = *            {name "$__LEANTO__ (${ele})"} [0x4807 resolution 23]
+tourism = lean_to                      {name "$__LEANTO__"}          [0x4807 resolution 23]
+# Lean-to (Schutzhütte, Berghütte), new Tagging version [point, closedway
+amenity = shelter & shelter_type = lean_to & name = * & ele = * {name "${name} (${ele})"} [0x4807 resolution 23]
+amenity = shelter & shelter_type = lean_to & name = *           {name "${name}"}          [0x4807 resolution 23]
+amenity = shelter & shelter_type = lean_to & ele = *            {name "$__LEANTO__ (${ele})"} [0x4807 resolution 23]
+amenity = shelter & shelter_type = lean_to                      {name "$__LEANTO__"}          [0x4807 resolution 23]
+
+# Motel. [point, closedway]
+tourism = motel & name = * { name "${stars}* ${name} ($__MOTEL__)" | "${name} ($__MOTEL__)" } [0x2b01 resolution 24]
+
+# Museum.
+tourism = museum & name = * {name "${name} ($__MUSEUM__)"} [0x2c02 resolution 24]
+
+# Rastplatz (Picknick). [point, closedway]
+tourism = picnic_site {name "${name} ($__PICNICSITE__)" | "$__PICNICSITE__"} [0x4a00 resolution 24]
+
+# Freizeitpark, Themenpark. [point, closedway]
+tourism = theme_park & name = * {name "${name} ($__THEMEPARK__)"} [0x2C01 resolution 24]
+
+# Aussichtspunkt. [point]
+tourism = viewpoint [0x5200 resolution 24]
+
+# Wilderness hut (Schutzhütte, Berghütte). [point, closedway]
+# A wilderness hut is a building located in the mountains or into the wild intended
+# to provide shelter, heating to hikers and climbers.
+tourism = wilderness_hut & name = * & ele = * {name "${name} (${ele})"}        [0x4806 resolution 23]
+tourism = wilderness_hut & name = *           {name "${name}"}                 [0x4806 resolution 23]
+tourism = wilderness_hut & ele = *            {name "$__WILDERNESSHUT__ (${ele})"} [0x4806 resolution 23]
+tourism = wilderness_hut                      {name "$__WILDERNESSHUT__"}          [0x4806 resolution 23]
+
+# Zoologischer Garten (Zoo), Tierpark. [point, closedway]
+tourism = zoo & name = * {name "${name} ($__ZOO__)"} [0x2C07 resolution 24]
+
+
+# ------------------------------------------------------------
+# Natur / natural:
+# - vor Ortsangaben (place) verarbeiten
+# ------------------------------------------------------------
+
+# Meeresbucht. [point, closedway]
+natural = bay & name = * {name "${name} ($__BAY__)"} [0x6503 resolution 24]
+
+# Strand. [point, closedway]
+natural = beach & name = * {name "${name} ($__BEACH__)"} [0x6604 resolution 24]
+
+# Eingang zu einer Höhle. [point, closedway]
+natural = cave_entrance {name "${name} ($__CAVEENTRANCE__)"} [0x6601 resolution 24]
+
+# Klippe. [point, way, closedway]
+natural = cliff & name = * {name "${name} ($__CLIFF__)"} [0x6607 resolution 23]
+
+# Pass: Markiert die hoechste Stelle eines Gebirgspasses. [point] (s.a. natural=peak, natural=col)
+(mountain_pass = yes) & name = * & ele = * {name "${name} (${ele})"} [0x6617 resolution 23]
+(mountain_pass = yes) & name = *           {name "${name}"}          [0x6617 resolution 23]
+(mountain_pass = yes) & ele = *            {name "N.N. (${ele})"}    [0x6617 resolution 23]
+(mountain_pass = yes)                      {name "N.N."}             [0x6617 resolution 23]
+
+# Joch, Sattel. [point] (s.a. natural = peak)
+# col -    A high, narrow, sharp-edged pass or saddle through a divide or between two adjacent peaks in a mountain
+#          range; especially a deep pass formed by the headward erosion and intersection of two cirques.
+# saddle - A low point on a ridge or interfluve, generally a divide (pass, col) between the heads of streams
+#          flowing in opposite directions.
+(natural = col | natural = saddle) & name = * & ele = * {name "${name} (${ele})"} [0x661b resolution 23]
+(natural = col | natural = saddle) & name = *           {name "${name}"}          [0x661b resolution 23]
+(natural = col | natural = saddle) & ele = *            {name "N.N. (${ele})"}    [0x661b resolution 23]
+(natural = col | natural = saddle)                      {name "N.N."}             [0x661b resolution 23]
+
+# Alm, Matten: Bereich oberhalb der Baumgrenze. [point, closedway]
+natural = fell & name = * {name "${name} ($__FELL__)"} [0x6600 resolution 24]
+
+# Gebiet (auch Bergspitze), das ganzjährig mit Eis bedeckt ist. [point, closedway]
+natural = glacier & name = * {name "${name} ($__GLACIER__)"} [0x650a resolution 24]
+
+# Heide. [point, closedway]
+natural = heath & name = * {name "${name} ($__HEATH__)"} [0x6600 resolution 24]
+
+# Marsch (Feuchtgebiet, Sumpf, Moor, etc.) veraltet, siehe natural=wetland). [point, closedway]
+natural = marsh & name = * {name "${name} ($__MARSH__)"} [0x6513 resolution 24]
+
+# Schlick / Moor. [point, closedway]
+natural = mud & name = * {name "${name} ($__MUD__)"} [0x6500 resolution 24]
+
+# Bergspitze. [point]
+natural = peak & name = * & ele = * {name "${name} (${ele})"} [0x6616 resolution 23]
+natural = peak & name = *           {name "${name}"}          [0x6616 resolution 23]
+natural = peak & ele = *            {name "N.N. (${ele})"}    [0x6616 resolution 23]
+natural = peak                      {name "N.N."}             [0x6616 resolution 23]
+
+# Boden mit Sand bedeckt, kein oder nur spärlicher Bewuchs. [point, closedway]
+natural = sand & name = * {name "${name} ($__SAND__)"} [0x6600 resolution 24]
+
+# (Loses) Geröll. [point, closedway]
+natural = scree & name = * {name "${name} ($__SCREE__)"} [0x6600 resolution 24]
+
+# Unkultiviertes Land: Unterholz / Busch. [point, closedway]
+natural = scrub & name = * {name "${name} ($__SCRUB__)"} [0x6600 resolution 24]
+
+# Quelle. [point]
+natural = spring {name "${name} ($__SPRING__)" | "$__SPRING__"} [0x6511 resolution 24]
+
+# Großer Stein, Findling. [point]
+natural = stone {name "${name} ($__STONE__)" | "$__STONE__"} [0x6614 resolution 24]
+
+# Einzelner oder signifikanter Baum. [point]
+# Der Baum muss als Landmarke ausgewiesen sein.
+natural = tree & denotation = landmark {name "${name} ($__TREE__)" | "$__TREE__"} [0x6619 resolution 24]
+
+# Vulkan, entweder ruhend, erloschen oder aktiv. [point]
+natural = volcano {name "${name} ($__VOLCANO__)" | "$__VOLCANO__"} [0x2c0c resolution 24]
+
+# Wasser, Seen, Teiche usw. [point, closedway]
+natural = water & name = * {name "${name} ($__WATER__)"} [0x650D resolution 24]
+
+# Wasserfall. [point]
+natural = waterfall {name "${name} ($__WATERFALL__)" | "$__WATERFALL__"} [0x6508 resolution 24]
+
+# Feuchtgebiet wie Sumpf, Moor, Ried, Marsch, Aue, Röhricht, Watt, Salzwiese oder Mangrove.
+# Naturbelassene Flächen, die Überflutungen ausgesetzt sind oder staunasse Böden aufweisen. [point, closedway]
+natural = wetland & name = * {name "${name} ($__WETLAND__)"} [0x6513 resolution 24]
+
+# Naturwald oder vollkommen unbewirtschaftete Wälder. [point, closedway]
+natural = wood & name = * {name "${name} ($__WOOD__)"} [0x660A resolution 24]
+
+
+# ------------------------------------------------------------
+# Ortsangaben / place:
+# ------------------------------------------------------------
+
+# Kontinent. [point, closedway]
+# place = continent (wird derzeit nicht unterstützt)
+
+# Staat. [point]
+# place = country (wird derzeit nicht unterstützt)
+
+# Bundesland, Kanton. [point, closedway]
+# place = state (wird derzeit nicht unterstützt)
+
+# Region, Regierungsbezirk. [point, closedway]
+# place = region (wird derzeit nicht unterstützt)
+
+# Landkreis, Grafschaft, Bezirk. [point, closedway]
+# place = county (wird derzeit nicht unterstützt)
+
+# Megastadt (>1.000.000 Einwohner) oder Landeshauptstadt. [point, closedway]
+#place = city & (population > 1000000 | capital = true) [0x0100 resolution 17]
+# starting at 12 for overviewmap
+place = city & (population > 1000000 | capital = true) [0x0100 resolution 12]
+
+# Großstadt (wie von der zuständigen Behörde definiert, häufig > 100.000 Einwohner),
+# Landeshauptstadt, Provinzhauptstadt. [point, closedway]
+#place = city [0x0200 resolution 17]
+# starting at 14 for overviewmap
+place = city [0x0200 resolution 14]
+
+# Weiler, Bauernschaft, Einöde (Ansammlung einiger Häuser). [point, closedway]
+place = hamlet [0x0d00 resolution 24]
+
+# Special treatment for Russia where place=allotments is heavily used... 
+# Same treatment like above place=hamlet
+place = allotments [0x0d00 resolution 24]
+
+# "Bedeutende" Inseln werden auch in niedrigen Zoomstufen ausgewiesen.
+
+# Insel (Nordsee, Helgoland). [point, closedway]
+place = island & (name = Helgoland) [0x0600 resolution 18]
+
+# Insel (Nordsee, Nordfriesische Inseln). [point, closedway]
+place = island & (name = Amrum | name = Föhr | name = Pellworm | name = Sylt) [0x0600 resolution 18]
+
+# Insel (Nordsee, Ostfriesische Inseln). [point, closedway]
+place = island & (name = Baltrum | name = Borkum | name = Juist | name = Langeoog | name = Mellum | name = Norderney | name = Spiekeroog | name = Wangerooge) [0x0600 resolution 18]
+
+# Insel (Ostsee). [point, closedway]
+place = island & (name = Fehmarn | name = Hiddensee | name = Poel | name = Rügen | name = Ummanz | name = Usedom) [0x0600 resolution 18]
+
+# Insel (Binnenland). [point, closedway]
+place = island & (name = Harriersand) [0x0600 resolution 18]
+
+# Insel (allgemein). [point, closedway] (Signatur analog 'hamlet')
+place = island & name = * [0x0d00 resolution 23]
+
+# An islet is any small, possibly hamlet sized piece of land that is completely surrounded by water
+# and isolated from other significant landmasses. [point, closedway]
+place = islet & name = * {name "${name} ($__ISLET__)"} [0x6600 resolution 24]
+
+# Isolated_dwelling: Smallest rural settlement, smaller than a hamlet, usually just one house. [point, closedway]
+place = isolated_dwelling & name = * {name "${name} ($__ISOLATEDDWELLING__)"} [0x6600 resolution 24]
+
+# Ortsbezeichnung ohne Bezug auf Bevölkerung (z.B. "Wiesengrund", "Deutsches Eck"). [point, closedway]
+#-# place = locality & name = * {name "${name} (Ortsbezeichnung)"} [0x6600 resolution 24]
+place = locality & name = * & ele = * {name "${name} (${ele}) ($__LOCALITY__)"} [0x6600 resolution 23]
+place = locality & name = *           {name "${name} ($__LOCALITY__)"}          [0x6600 resolution 23]
+place = locality & ele = *            {name "N.N. (${ele}) ($__LOCALITY__)"}    [0x6600 resolution 23]
+place = locality                      {name "N.N. ($__LOCALITY__)"}             [0x6600 resolution 23]
+
+# Stadtteil, Stadtviertel. [point, closedway]
+place = suburb [0x0b00 resolution 21]
+
+# Stadt, Markt, selbständige Gemeinde (wie von der zuständigen Behörde definiert),
+# in ländlichen Regionen > 2.000 Einwohner; in Ballungsräumen > 10.000 Einwohner. [point, closedway]
+place = town [0x0600 resolution 18]
+
+# Dorf (< 2.000 Einwohner), ehemals selbständige Gemeinde. [point, closedway]
+place = village [0x0c00 resolution 21]
+
+
+# ------------------------------------------
+# Energieversorgung / power:
+# ------------------------------------------
+
+# Strommast: Mast für Hochspannungsüberlandleitungen. [point]
+power = tower {name "${name} ($__POWERTOWER__)" | "$__POWERTOWER__"} [0x6417 resolution 24]
+
+# Strommast für Nieder- und Mittelspannungsleitungen, oft aus Holz oder Beton. [point]
+# power = pole (wird derzeit nicht unterstützt)
+
+# Umspannwerk: bezeichnet eine Umspannanlage, die ein Höchst- oder Hochspannungs- mit einem weiteren
+# Hochspannungs- oder einem Mittelspannungsnetz verbindet. [point, closedway]
+power = station & name = * {name "${name} ($__POWERSTATION__)"} [0x6600 resolution 24]
+power = plant & name = * {name "${name} ($__POWERSTATION__)"} [0x6600 resolution 24]
+
+# Umspannstation, kleiner als station, verbindet ein Mittel- mit einem Niederspannungsnetz,
+# z.B. Mini-Umspannwerk, Trafohäuschen oder großer Trafokasten. [point, closedway]
+# Actually disabled... unclear (2013.02.014)
+#power = sub_station & name = * {name "${name} ($__POWERSUBSTATION__)"} [0x6600 resolution 24]
+
+# Windenergieanlage. [point, closedway]
+power = generator & power_source = wind {name "${name} ($__WINDGENERATOR__)" | "$__WINDGENERATOR__"} [0x6419 resolution 24]
+power = generator & generator:source = wind {name "${name} ($__WINDGENERATOR__)" | "$__WINDGENERATOR__"} [0x6419 resolution 24]
+
+# Kraftwerk: dient der Erzeugung von Strom oder Wärme. [point, closedway]
+power = generator & name = * {name "${name} ($__POWERGENERATOR__)"} [0x6600 resolution 24]
+
+# Kabelverteilerschrank: in diesen Schränken werden die 400V-Stromkreise zu den Hausanschlüssen,
+# Anschluss- und Übergabepunkten der regionalen Energieversorger verzweigt. Weitere Einsatzgebiete
+# sind Verteilungen der kommunalen Straßenbeleuchtung oder Anschluss- und Übergabepunkte
+# für Schausteller usw. [point]
+# power = cable_distribution_cabinet (wird derzeit nicht unterstützt)
+
+
+# ------------------------------------------------------------
+# Flughäfen / aeroway:
+# ------------------------------------------------------------
+
+# Flughafen. [point, closedway]
+aeroway = aerodrome | aeroway = airport {name "${name} ($__AIRPORT__)" | "$__AIRPORT__"} [0x5905 resolution 24]
+
+# Hubschrauberlandeplatz. [point, closedway]
+aeroway = helipad {name "${name} ($__HELIPAD__)" | "$__HELIPAD__"} [0x5904 resolution 24]
+
+# Gate: Dient der Markierung der einzelnen Gates auf einem Vorfeld. [point]
+# aeroway = gate (wird derzeit nicht unterstützt)
+
+# Flughafengebäude. [point, closedway]
+aeroway = terminal & name = * {name "${name} ($__TERMINAL__)"} [0x6600 resolution 24]
+
+# Windsock: Standort eines Windsacks. [point]
+# aeroway = windsock (wird derzeit nicht unterstützt)
+
+
+# ------------------------------------------------------------
+# Nutzung / Einrichtung / amenity:
+# ------------------------------------------------------------
+
+# Kategorie "Verpflegung, Einkehr"
+# --------------------------------
+
+# Bar, Nachtlokal. Es werden hauptsächlich alkoholische Getränke serviert. [point, closedway]
+amenity = bar & name = * {name "${name} ($__BAR__)"}  [0x2d02 resolution 24]
+
+# Biergarten. [point, closedway]
+amenity = biergarten & name = * {name "${name} ($__BIERGARTEN__)"} [0x2d02 resolution 24]
+
+# Café, Bistro. [point, closedway]
+amenity = cafe & name = * {name "${name} ($__CAFE__)"} [0x2a0e resolution 24]
+
+# Schnell-Restaurant, Imbiss. Die Art kann mit cuisine=* angegeben werden, als Wert z.B. =burger
+# für ein Burgerrestaurant oder =kebab für einen Dönerimbiss. [point, closedway]
+amenity = fast_food & cuisine = grill & name = * {name "${name} (${cuisine}, $__FASTFOOD__)"} [0x2a03 resolution 24]
+amenity = fast_food & cuisine = pizza & name = * {name "${name} (${cuisine}, $__FASTFOOD__)"} [0x2a0a resolution 24]
+amenity = fast_food & cuisine = *     & name = * {name "${name} (${cuisine}, $__FASTFOOD__)"} [0x2a07 resolution 24]
+amenity = fast_food                   & name = * {name "${name} ($__FASTFOOD__)"}             [0x2a07 resolution 24]
+
+# Eiscafé, Eisdiele. [point, closedway]
+amenity = ice_cream & name = * {name "${name} ($__ICECREAM__)"} [0x2a0e resolution 24]
+
+# Kneipe. [point, closedway]
+amenity = pub & name = * {name "${name} ($__PUB__)"}  [0x2d02 resolution 24]
+
+# Restaurant (ohne Fast-Food). Die Art der Küche kann mit "cuisine=*" angegeben werden,
+# als Wert z.B. "italian" für italienische oder "greek" für griechische Küche. [point, closedway]
+
+# Amerikanisch.
+amenity = restaurant & cuisine = american & name = * {set name = "${name} ($__AMERICAN__)"} [0x2a01 resolution 24]
+amenity = restaurant & cuisine = burger   & name = * {set name = "${name} ($__AMERICAN__)"} [0x2a01 resolution 24]
+
+# Asiatisch.
+amenity = restaurant & cuisine = thai       & name = * {set name = "${name} ($__THAI__)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = asian      & name = * {set name = "${name} ($__ASIAN__)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = japanese   & name = * {set name = "${name} ($__JAPANESE__)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = korean     & name = * {set name = "${name} ($__KOREAN__)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = vietnamese & name = * {set name = "${name} ($__VIETNAMESE__)"} [0x2a02 resolution 24]
+
+# Grillen.
+amenity = restaurant & cuisine = grill    & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a03 resolution 24]
+amenity = restaurant & cuisine = barbecue & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a03 resolution 24]
+
+# Chinesisch.
+amenity = restaurant & cuisine = chinese & name = * {set name = "${name} ($__CHINESE__)"} [0x2a04 resolution 24]
+
+# International.
+amenity = restaurant & cuisine = international & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a06 resolution 24]
+
+# Fastfood.
+amenity = restaurant & cuisine = sandwich       & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = kebab          & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = 'kebab;pizza'  & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = chicken        & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = kebab          & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = fish_and_chips & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = friture        & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = sausage        & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a07 resolution 24]
+
+# Italienisch.
+amenity = restaurant & cuisine = italian       & name = * {set name = "${name} ($__ITALIAN__)"} [0x2a08 resolution 24]
+amenity = restaurant & cuisine = mediterranean & name = * {set name = "${name} ($__MEDITERRANEAN__)"} [0x2a08 resolution 24]
+
+# Mexikanisch.
+amenity = restaurant & cuisine = mexican & name = * {set name = "${name} ($__MEXICAN__)"} [0x2a09 resolution 24]
+
+# Spanisch.
+amenity = restaurant & cuisine = spanish & name = * {set name = "${name} ($__SPANISH__)"} [0x2a09 resolution 24]
+
+# Pizzeria.
+amenity = restaurant & cuisine = pizza & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a0a resolution 24]
+
+# Meeresfrüchte.
+amenity = restaurant & cuisine = seafood & name = * {set name = "${name} ($__SEAFOOD__)"} [0x2a0b resolution 24]
+amenity = restaurant & cuisine = fish    & name = * {set name = "${name} ($__FISH__)"} [0x2a0b resolution 24]
+amenity = restaurant & cuisine = sushi   & name = * {set name = "${name} ($__SUSHI__)"} [0x2a0b resolution 24]
+
+# Steak / Grill.
+amenity = restaurant & cuisine = steak_house & name = * {set name = "${name} ($__STEAKHOUSE__)"} [0x2a0c resolution 24]
+
+# Bagel / Donut.
+amenity = restaurant & cuisine = bagel & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a0d resolution 24]
+amenity = restaurant & cuisine = cake  & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a0d resolution 24]
+
+# Cafe / Bar.
+amenity = restaurant & cuisine = coffee_shop & name = * {set name = "${name} ($__COFFEESHOP__)"} [0x2a0e resolution 24]
+
+# Französisch.
+amenity = restaurant & cuisine = french & name = * {set name = "${name} ($__FRENCH__)"} [0x2a0f resolution 24]
+
+# Deutsch.
+amenity = restaurant & cuisine = german            & name = * {set name = "${name} ($__GERMAN__)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = bavarian          & name = * {set name = "${name} ($__BAVARIAN__)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = swabian           & name = * {set name = "${name} ($__SWABIAN__)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = regional          & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = 'german;regional' & name = * {set name = "${name} ($__GERMAN__)"} [0x2a10 resolution 24]
+
+# Britisch.
+# Gibt es in Deutschland nicht (Stand 10/2011).
+amenity = restaurant & cuisine = british & name = * {set name = "${name} ($__BRITISH__)"} [0x2a11 resolution 24]
+
+# Spezialitäten.
+amenity = restaurant & cuisine = speciality  & name = * {set name = "${name} ($__SPECIALITY__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = greek       & name = * {set name = "${name} ($__GREEK__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = turkish     & name = * {set name = "${name} ($__TURKISH__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = indian      & name = * {set name = "${name} ($__INDIAN__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = arab        & name = * {set name = "${name} ($__ARAB__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = portuguese  & name = * {set name = "${name} ($__PORTUGUESE__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = vegetarian  & name = * {set name = "${name} ($__VEGETARIAN__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = austrian    & name = * {set name = "${name} ($__AUSTRIAN__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = balkan      & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = persian     & name = * {set name = "${name} ($__PERSIAN__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = lebanese    & name = * {set name = "${name} ($__LEBANESE__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = african     & name = * {set name = "${name} ($__AFRICAN__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = russian     & name = * {set name = "${name} ($__RUSSIAN__)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = yugoslavian & name = * {set name = "${name} ($__YUGOSLAVIAN__)"} [0x2a12 resolution 24]
+
+# Eiscafé, Eisdiele.
+amenity = restaurant & cuisine = ice_cream & name = * {set name = "${name} ($__ICECREAMRESTAURANT__)"} [0x2a0e resolution 24]
+
+# Alle verbleibenden Restaurants mit bekannter Küche.
+amenity = restaurant & cuisine = * & name = * {set name = "${name} (${cuisine}, $__RESTAURANT__)"} [0x2a13 resolution 24]
+
+# Alle verbleidenden Restaurants.
+amenity = restaurant & name = * {set name = "${name} ($__RESTAURANT__)"} [0x2a00 resolution 24]
+
+# Kategorie "Bildung"
+# -------------------
+
+# Kindergarten. [point, closedway]
+amenity = kindergarten & name = * {name "${name} ($__KINDERGARTEN__)"} [0x2c05 resolution 24]
+
+# Schule. [point, closedway]
+amenity = school & name = * {name "${name} ($__SCHOOL__)"} [0x2c05 resolution 24]
+
+# Hochschule. [point, closedway]
+amenity = college & name = * {name "${name} $__COLLEGE__)"} [0x2c05 resolution 24]
+
+# Bibliothek, Bücherei. [point, closedway]
+amenity = library & name = * {name "${name} ($__LIBRARY__)"} [0x2c03 resolution 24]
+
+# Universität (Campus oder Gebäude). [point, closedway]
+amenity = university & name = * {name "${name} ($__UNIVERSITY__)"} [0x2c05 resolution 24]
+
+# Kategorie "Transport, Verkehr"
+# ------------------------------
+
+# Fahrradverleih. [point, closedway] (s.a. shop)
+amenity = bicycle_rental {name "${name} ($__BICYCLERENTAL__)" | "$__BICYCLERENTAL__"} [0x2f13 resolution 24]
+
+# Busbahnhof (große Haltestelle). [point, closedway] (s.a. highway = bus_stop)
+amenity = bus_station                         {name "${name} ($__BUSSTATION__)" | "$__BUSSTATION__"} [0x2f08 resolution 24]
+public_transport = stop_position & bus = yes  {name "${name} ($__BUSSTOP__)" | "$__BUSSTOP__"} [0x2f08 resolution 24]
+
+# Automobil-Club. [point, closedway]
+amenity = car_club & name = * {name "${name} ($__CARCLUB__)"} [0x2f0d resolution 24]
+
+# Autoverleih. [point, closedway]
+amenity = car_rental & name = * {name "${name} ($__CARRENTAL__)"} [0x2f02 resolution 24]
+
+# Carsharing-Station. [point, closedway]
+amenity = car_sharing & name = * {name "${name} ($__CARSHARING__)"} [0x2f02 resolution 24]
+
+# Autowaschanlage. [point, closedway]
+amenity = car_wash & name = * {name "${name} ($__CARWASH__)"} [0x2f0e resolution 24]
+
+# Fährterminal. [point, closedway]
+amenity = ferry_terminal {name "${name} ($__FERRYTERMINAL__)" | "$__FERRYTERMINAL__"} [0x6500 resolution 24]
+
+# Tankstelle. [point, closedway]
+amenity = fuel { name "${brand}" | "${operator}" | "${name}" | "$__FUELSTATION__" } [0x2f01 resolution 24]
+
+# Parkplatz. [point, closedway]
+# amenity = parking & access = * {name "${name} (Parken eingeschränkt)" | "Parken (eingeschränkt)"} [0x2F0B resolution 24]
+# amenity = parking              {name "${name} (Parken)" | "Parken"}                               [0x4D00 resolution 24]
+#amenity = parking & access = *                                    & (capacity != * | capacity >= 10) {name "${name} ($__PARKING__ $__RESTRICTED__)" | "$__PARKING__ ($__RESTRICTED__)"} [0x2F0B resolution 24]
+amenity = parking &  access = * & access != public & access != yes & (capacity != * | capacity >= 10) {name "${name} ($__PARKING__ $__RESTRICTED__)" | "$__PARKING__ ($__RESTRICTED__)"} [0x2F0B resolution 24]
+amenity = parking & (capacity != * | capacity >= 10)              {name "${name} ($__PARKING__)" | "$__PARKING__"}                               [0x4D00 resolution 24]
+
+# Kategorie "Finanzen"
+# --------------------
+
+# Geldautomat. [point]
+amenity = atm {name "${name} ($__ATM__)" | "${operator} ($__ATM__)" | "$__ATM__"} [0x2f06 resolution 24]
+
+# Bank mit Geldautomat. [point, closedway]
+amenity = bank & atm = yes {name "${name} ($__ATM__)" | "${operator} ($__ATM__)" | "$__ATM__"} [0x2f06 resolution 24]
+
+# Bank. [point, closedway]
+amenity = bank {name "${name} ($__BANK__)" | "$__BANK__"} [0x2f06 resolution 24]
+
+# Kategorie "Gesundheitswesen"
+# ----------------------------
+
+# Apotheke. [point, closedway]
+amenity = pharmacy & name = * {name "${name} ($__PHARMACY__)"} [0x2e05 resolution 24]
+
+# Krankenhaus. [point, closedway]
+amenity = hospital & name = * {name "${name} ($__HOSPITAL__)"} [0x3002 resolution 24]
+
+# Kategorie "Unterhaltung, Kunst, Kultur"
+# ---------------------------------------
+
+# Kunstzentrum. [point, closedway]
+amenity = arts_centre & name = * {name "${name} ($__ARTSCENTRE__)"} [0x2c04 resolution 24]
+
+# Casino. [point, closedway]
+amenity = casino & name = * {name "${name} ($__CASINO__)"} [0x2d04 resolution 24]
+
+# Kino. [point, closedway]
+amenity = cinema & name = * {name "${name} ($__CINEMA__)"} [0x2d03 resolution 24]
+
+# Lokale Veranstaltungshalle. [point, closedway]
+amenity = community_centre & name = * {name "${name} ($__COMMUNITYCENTRE__)"} [0x3005 resolution 24]
+amenity = community_hall   & name = * {name "${name} ($__COMMUNITYCENTRE__)"} [0x3005 resolution 24]
+
+# Konzerthalle. [point, closedway]
+amenity = concert_hall & name = * {name "${name} ($__CONCERTHALL__)"} [0x2c09 resolution 24]
+
+# Messe, Konferenzcenter. [point, closedway]
+amenity = conference_centre & name = * {name "${name} ($__CONFERENCECENTRE__)"} [0x2c09 resolution 24]
+
+# Nachtclub, Disco. [point, closedway]
+amenity = nightclub & name = * {name "${name} ($__NIGHTCLUB__)"} [0x2d02 resolution 24]
+
+# A place for free and not-for-profit activities.
+amenity = social_centre   & name = * {name "${name} ($__SOCIALCENTRE__)"} [0x2f14 resolution 24]
+amenity = social_facility & name = * {name "${name} ($__SOCIALFACILITY__)"} [0x2f14 resolution 24]
+
+# Theater, Oper, Schauspielhaus. [point, closedway]
+amenity = theatre & name = * {name "${name} ($__THEATRE__)"} [0x2d01 resolution 24]
+
+# Kategorie "Andere"
+# ------------------
+
+# Gericht. [point, closedway]
+amenity = courthouse & name = * {name "${name} ($__COURTHOUSE__)"} [0x3004 resolution 24]
+
+# Trinkwasserstelle: Eine öffentlich zugängliche Trinkwasserstelle.
+#ifdef DRINKINGWATER
+  amenity = drinking_water {name "${name} ($__DRINKINGWATER__)" | "$__DRINKINGWATER__"} [0x6414 resolution 24]
+#endif
+
+# Botschaft, Botschaftsgebäude. [point, closedway]
+amenity = embassy & name = * {name "${name} ($__EMBASSY__)"} [0x3003 resolution 24]
+
+# Feuerwache. [point, closedway]
+amenity = fire_station & name = * {name "${name} ($__FIRESTATION__)"} [0x3008 resolution 24]
+
+# Anbetungsort (Kirche, Moschee, Synagoge). [point, closedway]
+amenity = place_of_worship & religion = christian & name = * {name "${name} ($__CHRISTIAN__, $__PLACEOFWORSHIP__)"} [0x2c0b resolution 24]
+amenity = place_of_worship & religion = christian            {name "$__CHRISTIAN__, $__PLACEOFWORSHIP__"}           [0x2c0b resolution 24]
+amenity = place_of_worship & religion = muslim    & name = * {name "${name} ($__MUSLIM__, $__PLACEOFWORSHIP__)"}    [0x2c0d resolution 24]
+amenity = place_of_worship & religion = muslim               {name "$__MUSLIM__, $__PLACEOFWORSHIP__"}              [0x2c0d resolution 24]
+amenity = place_of_worship & religion = jewish    & name = * {name "${name} ($__JEWISH__, $__PLACEOFWORSHIP__)"}    [0x2c0e resolution 24]
+amenity = place_of_worship & religion = jewish               {name "$__JEWISH__, $__PLACEOFWORSHIP__"}              [0x2c0e resolution 24]
+
+# Anbetungsort (allgemein). [point, closedway]
+amenity = place_of_worship & name = * {name "${name} ($__PLACEOFWORSHIP__)"} [0x6405 resolution 24]
+amenity = place_of_worship            {name "$__PLACEOFWORSHIP__"}           [0x6405 resolution 24]
+
+# Polizeistation. [point, closedway]
+amenity = police {name "${name} ($__POLICE__)" | "$__POLICE__"} [0x3001 resolution 24]
+
+# Postamt. [point, closedway]
+amenity = post_office {name "${name} ($__POSTOFFICE__)" | "$__POSTOFFICE__"} [0x2f05 resolution 24]
+
+# Öffentliches Gebäude.
+amenity = public_building & name = * {name "${name} ($__PUBLICBUILDING__)"} [0x3007 resolution 24]
+
+# Ein Unterstand ist ein überdachter offener Platz als Schutz vor der Witterung. [point, closedway]
+amenity = shelter {name "${name} ($__SHELTER__)" | "$__SHELTER__"} [0x2b06 resolution 23]
+
+# Öffentliche Toilette / public toilet (z.T. mit Gebühr). [point, closedway]
+amenity = toilets [0x2f0c resolution 24]
+
+# Rathaus. [point, closedway]
+amenity = townhall {name "${name} ($__TOWNHALL__)" | "$__TOWNHALL__"} [0x3003 resolution 24]
+
+
+# ------------------------------------------------------------
+# Zivilisations- / Kunstbauten / man_made:
+# ------------------------------------------------------------
+
+# Stollen, Zugang zu einer Mine, horizontal oder fast horizontal. [point, closedway]
+man_made = adit & name = * {name "${name} ($__ADIT__)"} [0x6600 resolution 24]
+
+# Blinklicht / Bake / Leuchtfeuer. [point]
+man_made = beacon & name = * {name "${name} ($__BEACON__)"} [0x6500 resolution 24]
+
+# Ein stationärer Kran. (z.B. in Hafenanlagen oder Werften). [point, closedway]
+# man_made = crane (wird derzeit nicht unterstützt)
+
+# Flaggenmast. [point]
+# man_made = flagpole (wird derzeit nicht unterstützt)
+
+# Leuchtturm. [point]
+man_made = lighthouse {name "${name} ($__LIGHTHOUSE__)" | "$__LIGHTHOUSE__"} [0x1206 resolution 24]
+
+# Mast (z.B. Telekommunkations- / Funkmast)
+#man_made = mast {name "${name} ($__MAST__)" | "$__MAST__"} [0x2f12 resolution 24]
+man_made = mast {name "${name} ($__MAST__)" | "$__MAST__"} [0x2f11 resolution 24]
+
+# Schacht. [point, closedway]
+man_made = mineshaft & name = * {name "${name} ($__MINESHAFT__)"} [0x6600 resolution 24]
+
+# Messstation. [point, closedway]
+# man_made = monitoring_station (wird derzeit nicht unterstützt)
+
+# Ölfördereinrichtung. [point]
+man_made = petroleum_well & name = * {name "${name} ($__PETROLEUMWELL__)"} [0x6600 resolution 24]
+
+# Überdecktes Speicherbasin. [point, closedway]
+man_made = reservoir_covered & name = * {name "${name} ($__RESERVOIRCOVERED__)"} [0x6500 resolution 24]
+
+# Videoüberwachung Zum Kennzeichnen von Gebäuden oder Plätzen, die durch eine Kamera überwacht werden. [point, closedway]
+# man_made = surveillance (wird derzeit nicht unterstützt)
+
+#ifdef TRIGMARK
+  # Trigonometrischer Punkt (Tageszeichen). [point]
+  # mit Höhenangabe
+  man_made = survey_point & ele = * {name "$__SURVEYPOINT__ (${ele})"} [0x6609 resolution 24]
+  # ohne Höhenangabe (wird derzeit nicht unterstützt)
+  # man_made = survey_point {name "TrigMark"} [0x6608 resolution 24]
+#endif
+
+# Turm. [point, closedway]
+# Beobachtungsturm
+man_made = tower & tower:type = observation {name "${name} ($__OBSERVATIONTOWER__)" | "$__OBSERVATIONTOWER__"} [0x661f resolution 24]
+
+# Funkturm (s.a. "mast")
+#man_made = tower & tower:type = communication {name "${name} ($__COMMUNICATIONTOWER__)" | "$__COMMUNICATIONTOWER__"} [0x2f12 resolution 24]
+man_made = tower & tower:type = communication & ( communication:radio!=no | communication:television!=no ) {name "${name} ($__COMMUNICATIONTOWER__)" | "$__COMMUNICATIONTOWER__"} [0x2f12 resolution 24]
+man_made = tower & tower:type = communication & ( communication:mobile!=no ) {name "${name} ($__COMMUNICATIONTOWER__)" | "$__COMMUNICATIONTOWER__"} [0x2f11 resolution 24]
+man_made =  communications_tower  {name "${name} ($__COMMUNICATIONTOWER__)" | "$__COMMUNICATIONTOWER__"} [0x2f12 resolution 24]
+
+# allgemeiner Turm (z.B. auch Kirchturm)
+man_made = tower & name = * {name "${name} ($__TOWER__)"} [0x6500 resolution 24]
+
+# Kläranlage. [point, closedway]
+man_made = wastewater_plant & name = * {name "${name} ($__WASTEWATERPLANT__)"} [0x6500 resolution 24]
+
+# Wassermühle. [point, closedway]
+man_made = watermill & name = * {name "${name} ($__WATERMILL__)"} [0x6500 resolution 24]
+
+# Wasserturm. [point, closedway]
+man_made = water_tower & name = * {name "${name} ($__WATERTOWER__)"} [0x6500 resolution 24]
+
+# Wasserwerk. [point, closedway]
+man_made = water_works & name = * {name "${name} ($__WATERWORKS__)"} [0x6500 resolution 24]
+
+# (Tief-)Brunnen, (Wikipedia) ein Bauwerk zur Wassergewinnung aus einem Grundwasserleiter (Aquifer). [point, closedway]
+man_made = water_well & name = * {name "${name} ($__WATERWELL__)"} [0x6500 resolution 24]
+
+# Historische Windmühle. [point, closedway]
+man_made = windmill & name = * {name "${name} ($__WINDMILL__)"} [0x6600 resolution 24]
+
+# Industriebauten (Anlage, Werk). [point, closedway]
+man_made = works & name = * {name "${name} ($__INDUSTRIALPLANT__)"} [0x6605 resolution 24]
+
+
+# ------------------------------------
+# Eisenbahn / railway:
+# ------------------------------------
+
+# Prellbock / Gleisabschluss: verhindert, dass Eisenbahnfahrzeuge über das Schienenende hinausrollen. [point]
+# railway = buffer_stop (wird derzeit nicht unterstützt)
+
+# Fußweg kreuzt mit Bahnschienen. [point]
+# railway = crossing (wird derzeit nicht unterstützt)
+
+# Haltepunkt (kein Bahnhof, z. T. ohne Bahnsteig, nur bei Bedarf). [point]
+# Ggf. eigenes Symbol - hier zunächst wie Bahnhof.
+railway = halt                                  {name "${name} ($__RAILWAYHALT__)" | "$__RAILWAYHALT__"} [0x2f17 resolution 24]
+public_transport = stop_position & train = yes  {name "${name} ($__RAILWAYHALT__)" | "$__RAILWAYHALT__"} [0x2f17 resolution 24]
+
+# Bahnübergang – Straße kreuzt mit Bahnschiene. [point]
+# railway = level_crossing (wird derzeit nicht unterstützt)
+
+# Der Bahnsteig verläuft parallel zu den Gleisen. [point, way, closedway]
+# public_transport = platform (wird derzeit nicht unterstützt)
+
+# Bahnhof (mit mindestens einer Weiche). [point, closedway]
+railway = station {name "${name} ($__RAILWAYSTATION__)" | "$__RAILWAYSTATION__"} [0x2f17 resolution 23]
+
+# U-Bahn Eingang. [point]
+railway = subway_entrance {name "${name} ($__SUBWAYENTRANCE__)" | "$__SUBWAYENTRANCE__"} [0x2f1f resolution 24]
+
+# Straßenbahnhaltestelle: Ein Ort an dem Pasagiere in Straßenbahnen ein- oder aussteigen können. [point]
+railway = tram_stop                            {name "${name} ($__TRAMSTOP__)" | "$__TRAMSTOP__"} [0x2f08 resolution 24]
+public_transport = stop_position & tram = yes  {name "${name} ($__TRAMSTOP__)" | "$__TRAMSTOP__"} [0x2f08 resolution 24]
+
+# Eine Drehscheibe zum Wenden von Schienenfahrzeugen; findet sich häufig in älteren Bahnbetriebswerken. [point]
+# railway = turntable (wird derzeit nicht unterstützt)
+
+
+# ------------------------------------------------------------
+# Geschäfte / shop:
+# ------------------------------------------------------------
+
+# Korrekturen:
+shop = carpenter            {set shop=carpet; delete carpenter}
+shop = carpentry            {set shop=carpet; delete carpentry}
+shop = carpeting            {set shop=carpet; delete carpeting}
+shop = curtains             {set shop=curtain; delete curtains}
+shop = musical_instruments  {set shop=musical_instrument; delete musical_instruments}
+shop = winery               {set shop=wine; delete winery}
+
+# Bäckerei. [point, closedway]
+shop = bakery & name = * {name "${name} ($__BAKERY__)"} [0x2a0d resolution 24]
+
+# Schönheitssalon, Kosmetiksalon, Damensalon, Nagelstudio, Parfümerie, Wellness-Center. [point, closedway]
+shop = beauty    & name = * {name "${name} ($__COSMETICS__)"} [0x2f10 resolution 24]
+shop = cosmetics & name = * {name "${name} ($__COSMETICS__)"} [0x2f10 resolution 24]
+
+# Fahrradgeschäft, Fahrradwerkstatt, Fahrradverleih, Fahrradservice. [point, closedway]
+shop = bicycle & name = * {name "${name} ($__BICYCLESHOP__)"} [0x2f13 resolution 24]
+
+# Metzgerei, Fleischerei, Schlachterei. [point, closedway]
+shop = butcher & name = * {name "${name} ($__BUTCHER__)"} [0x2e02 resolution 24]
+
+# Autohaus. [point, closedway]
+shop = car & name = * {name "${name} ($__CARSHOP__)"} [0x2f07 resolution 24]
+
+# Autowerkstatt, Autoreparatur. [point, closedway]
+shop = car_repair & name = * {name "${name} ($__CARREPAIR__)"} [0x2f03 resolution 24]
+
+# Drogerie. [point, closedway]
+shop = chemist & name = * {name "${name} ($__CHEMIST__)"} [0x2e05 resolution 24]
+
+# Bekleidungsgeschäfte. [point, closedway]
+shop = boutique & name = * {name "${name} ($__BOUTIQUE__)"} [0x2e0a resolution 24]
+shop = clothes  & name = * {name "${name} ($__CLOTHES__)"} [0x2e07 resolution 24]
+shop = fashion  & name = * {name "${name} ($__FASION__)"} [0x2e07 resolution 24]
+
+# Computer-Fachhandel. [point, closedway]
+shop = computer & name = * {name "${name} ($__COMPUTER__)"} [0x2e0b resolution 24]
+
+# Süßwarenhändler, Confiserie, Konditorei. [point, closedway]
+shop = confectionery & name = * {name "${name} ($__CONFECTIONERY__)"} [0x2a0d resolution 24]
+
+# Nachbarschaftsladen, Lebensmittelgeschäft, Tante-Emma-Laden. [point, closedway]
+shop = convenience & name = * {name "${name} ($__CONVENIENCE__)"} [0x2e02 resolution 24]
+
+# Feinkostladen. [point, closedway]
+shop = deli & name = * {name "${name} ($__DELICACY__)"} [0x2a05 resolution 24]
+
+# Warenhaus, in der Regel mehrstöckiges Kaufhaus mit breitem Sortiment. [point, closedway]
+shop = department_store & name = * {name "${name} ($__DEPARTMENTSTORE__)"} [0x2e01 resolution 24]
+
+# Baumarkt, Heimwerkergeschäft (Verkauf von Werkzeug und Baumaterial). [point, closedway]
+shop = doityourself & name = * {name "${name} ($__DOITYOURSELF__)"} [0x2e08 resolution 24]
+
+# Möbelhaus, Einrichtungshaus. [point, closedway]
+shop = furniture  & name = * {name "${name} ($__FURNITURE__)"} [0x2e09 resolution 24]
+
+# Garten-Center. [point, closedway]
+shop = garden_centre & name = * {name "${name} ($__GARDENCENTRE__)"} [0x2e08 resolution 24]
+
+# Gemischtwarenhandlung, Dorfladen, mit breitem Warensortiment des täglichen Bedarfs. [point, closedway]
+shop = general & name = * {name "${name} ($__GENERALSHOP__)"} [0x2e03 resolution 24]
+
+# Friseur. [point, closedway]
+shop = hairdresser & name = * {name "${name} ($__HAIRDRESSER__)"} [0x2f10 resolution 24]
+
+# Eisenwaren. [point, closedway]
+shop = hardware & name = * {name "${name} ($__HARDWARE__)"} [0x2e0a resolution 24]
+
+# Eis, Eisdiele, Eiscaffee. [point, closedway] (s.a. amenity)
+shop = ice_cream & name = * {name "${name} ($__ICECREAMSHOP__)"} [0x2a0e resolution 24]
+
+# Einkaufszentrum. [point, closedway]
+shop = mall & name = * {name "${name} ($__MALL__)"} [0x2e04 resolution 24]
+
+# Bio-Laden, Reformhaus. [point, closedway]
+shop = organic & name = * {name "${name} ($__ORGANICSHOP__)"} [0x2e02 resolution 24]
+
+# Schuhfachgeschäft. [point, closedway]
+shop = shoes & name = * {name "${name} ($__SHOES__)"} [0x2e07 resolution 24]
+
+# Supermarkt (großes Lebensmittelgeschäft). [point, closedway]
+shop = supermarket & name = * {name "${name} ($__SUPERMARKET__)"} [0x2e02 resolution 24]
+
+# Baustoffhandel, Baumaterial: Steine,Holz, Zement ,etc. [point, closedway]
+shop = trade & name = * {name "${name} ($__TRADESHOP__)"} [0x2e08 resolution 24]
+
+# Reifenhandel. [point, closedway]
+shop = tyres & name = * {name "${name} ($__TYRES__)"} [0x2f07 resolution 24]
+
+# Spezialitäteneinzelhandel. [point, closedway]
+shop = alcohol             & name = * {name "${name} ($__ALCOHOL__)"} [0x2e0a resolution 24]
+shop = art                 & name = * {name "${name} ($__ARTSHOP__)"} [0x2e0a resolution 24]
+shop = bed                 & name = * {name "${name} ($__BEDSHOP__)"} [0x2e0a resolution 24]
+shop = beverages           & name = * {name "${name} ($__BEVERAGES__)"} [0x2e0a resolution 24]
+shop = books               & name = * {name "${name} ($__BOOKS__)"} [0x2e0a resolution 24]
+shop = copyshop            & name = * {name "${name} ($__COPYSHOOP__)"} [0x2e0a resolution 24]
+shop = carpet              & name = * {name "${name} ($__CARPET__)"} [0x2e0a resolution 24]
+shop = coffee              & name = * {name "${name} ($__COFFEESHOP__)"} [0x2e0a resolution 24]
+shop = dry_cleaning        & name = * {name "${name} ($__DRYCLEANING__)"} [0x2e0a resolution 24]
+shop = electronics         & name = * {name "${name} ($__ELECTRONICS__)"} [0x2e0a resolution 24]
+shop = erotic              & name = * {name "${name} ($__EROTIC__)"} [0x2e0a resolution 24]
+shop = fabric              & name = * {name "${name} ($__FABRIC__)"} [0x2e0a resolution 24]
+shop = farm                & name = * {name "${name} ($__FARMSHOP__)"} [0x2e0a resolution 24]
+shop = fish                & name = * {name "${name} ($__FISHMONGER__)"} [0x2e0a resolution 24]
+shop = fishmonger          & name = * {name "${name} ($__FISHMONGER__)"} [0x2e0a resolution 24]
+shop = florist             & name = * {name "${name} ($__FLORIST__)"} [0x2e0a resolution 24]
+shop = funeral_directors   & name = * {name "${name} ($__FUNERALDIRECTORS__)"} [0x2e0a resolution 24]
+shop = gift                & name = * {name "${name} ($__GIFTSHOP__)"} [0x2e0a resolution 24]
+shop = greengrocer         & name = * {name "${name} ($__GREENGROCER__)"} [0x2e0a resolution 24]
+shop = hearing_aids        & name = * {name "${name} ($__HEARINGAIDS__)"} [0x2e0a resolution 24]
+shop = hifi                & name = * {name "${name} ($__HIFI__)"} [0x2e0a resolution 24]
+shop = insurance           & name = * {name "${name} ($__INSURANCE__)"} [0x2e0a resolution 24]
+shop = interior_decoration & name = * {name "${name} ($__INTERIORDECORATION__)"} [0x2e0a resolution 24]
+shop = jewelry             & name = * {name "${name} ($__JEWELRY__)"} [0x2e0a resolution 24]
+shop = kitchen             & name = * {name "${name} ($__KITCHEN__)"} [0x2e0a resolution 24]
+shop = kiosk               & name = * {name "${name} ($__KIOSK__)"} [0x2e0a resolution 24]
+shop = laundry             & name = * {name "${name} ($__LOUNDRY__)"} [0x2e0a resolution 24]
+shop = massage             & name = * {name "${name} ($__MASSAGE__)"} [0x2e0a resolution 24]
+shop = mobile_phone        & name = * {name "${name} ($__MOBILEPHONE__)"} [0x2e0a resolution 24]
+shop = motorcycle          & name = * {name "${name} ($__MOTORCYCLE__)"} [0x2e0a resolution 24]
+shop = music               & name = * {name "${name} ($__MUSICSHOP__)"} [0x2e0a resolution 24]
+shop = musical_instrument  & name = * {name "${name} ($__MUSICALINSTRUMENT__)"} [0x2e0a resolution 24]
+shop = newsagent           & name = * {name "${name} ($__NEWSAGENT__)"} [0x2e0a resolution 24]
+shop = optician            & name = * {name "${name} ($__OPTICIAN__)"} [0x2e0a resolution 24]
+shop = outdoor             & name = * {name "${name} ($__OUTDOOR__)"} [0x2e0a resolution 24]
+shop = paint               & name = * {name "${name} ($__PAINT__)"} [0x2e0a resolution 24]
+shop = pet                 & name = * {name "${name} ($__PETSHOP__)"} [0x2e0a resolution 24]
+shop = photo               & name = * {name "${name} ($__PHOTO__)"} [0x2e0a resolution 24]
+shop = seafood             & name = * {name "${name} ($__SEAFOODSHOP__)"} [0x2e0a resolution 24]
+shop = second_hand         & name = * {name "${name} ($__SECONDHAND__)"} [0x2e0a resolution 24]
+shop = solarium            & name = * {name "${name} ($__SOLARIUM__)"} [0x2e0a resolution 24]
+shop = sports              & name = * {name "${name} ($__SPORTSSHOP__)"} [0x2e0a resolution 24]
+shop = stationery          & name = * {name "${name} ($__STATIONERY__)"} [0x2e0a resolution 24]
+shop = tanning             & name = * {name "${name} ($__SOLARIUM__)"} [0x2e0a resolution 24]
+shop = tattoo              & name = * {name "${name} ($__TATTOO__)"} [0x2e0a resolution 24]
+shop = tailor              & name = * {name "${name} ($__TAILOR__)"} [0x2e0a resolution 24]
+shop = tea                 & name = * {name "${name} ($__TEASHOP__)"} [0x2e0a resolution 24]
+shop = tobacco             & name = * {name "${name} ($__TOBACCO__)"} [0x2e0a resolution 24]
+shop = toys                & name = * {name "${name} ($__TOYS__)"} [0x2e0a resolution 24]
+shop = travel_agency       & name = * {name "${name} ($__TRAVELAGENCY__)"} [0x2e0a resolution 24]
+shop = vacant              & name = * {name "${name} ($__VACANT__)"} [0x2e0a resolution 24]
+shop = variety_store       & name = * {name "${name} ($__VARIETYSTORE__)"} [0x2e0a resolution 24]
+shop = video               & name = * {name "${name} ($__VIDEO__)"} [0x2e0a resolution 24]
+shop = wine                & name = * {name "${name} ($__WINESHOP__)"} [0x2e0a resolution 24]
+
+# Alle anderen Geschäfte (Spezialitäteneinzelhandel). [point, closedway]
+shop = * & name = * {name "${name} (${shop})"} [0x2e0a resolution 24]
+
+
+# --------------------------------------------
+# Straßen und Wege / highway:
+# --------------------------------------------
+
+# Bushaltestelle. [point] (s.a. amenity = bus_station)
+highway = bus_stop {name "${name} ($__BUSSTOP__)" | "$__BUSSTOP__"} [0x2f08 resolution 24]
+
+# Fußgängerüberweg (Zebrastreifen, Fußgängerfurt). [point]
+# highway = crossing (wird derzeit nicht unterstützt)
+
+# Rettungspunkt (auch Notfallpunkt oder Forstrettungspunkt): Ermöglicht bei einem Notruf die genaue Angabe der eigenen Position. [point]
+# highway = emergency_access_point (wird derzeit nicht unterstützt)
+
+# Furt: Eine Untiefe in einem Bach- oder Flusslauf, an der das Gewässer zu Fuß oder mit Fahrzeugen durchquert werden kann. [point, way]
+# highway = ford (wird derzeit nicht unterstützt)
+
+# Vorfahrt Achten - anderen Vorfahrt gewähren ohne Pflicht zum Anhalten. [point]
+# highway = give_way (wird derzeit nicht unterstützt)
+
+# Mini-Kreisverkehr. [point]
+# highway = mini_roundabout (wird derzeit nicht unterstützt)
+
+# Autobahnausfahrt. ref sollte die Nummer oder andere ID der Ausfahrt enthalten.
+# Kann auch für nicht-Autobahnen verwendet werden. Beispiel: name=Ascheberg, ref=79
+highway = motorway_junction {name "${name} (${ref}) ($__MOTORWAYJUNCTION__)" | "${name} ($__MOTORWAYJUNCTION__)" | "${ref} ($__MOTORWAYJUNCTION__)"} [0x2900 resolution 23]
+
+# Place where drivers can leave the road to rest, but not refuel. [point, closedway]
+highway = rest_area {name "${name} ($__HIGHWAYRESTAREA__)" | "$__HIGHWAYRESTAREA__"} [0x2901 resolution 24]
+
+# Raststätte, auch Autobahnraststätte. [point, closedway]
+highway = services {name "${name} ($__HIGHWAYSERVICEAREA__)" | "$__HIGHWAYSERVICEAREA__"} [0x2901 resolution 24]
+
+# Fest installierte Geschwindigkeitsmessanlage ("Blitzer"). [point]
+# highway = speed_camera (wird derzeit nicht unterstützt)
+
+# Stopp-Schild: Anderen Vorfahrt gewähren mit der Pflicht zum Anhalten. [point]
+# highway = stop (wird derzeit nicht unterstützt)
+
+# Straßenlaterne oder Lichtmast. [point]
+# highway = street_lamp (wird derzeit nicht unterstützt)
+
+# Ampel. [point]
+# highway = traffic_signals (wird derzeit nicht unterstützt)
+
+# Eine Wendestelle oder ein breiter Bereich in der Straße, um Autos wenden zu können. [point]
+# highway = turning_circle (wird derzeit nicht unterstützt)
+
+
+# --------------------------------------------
+# Verkehrsberuhigung / traffic calming:
+# --------------------------------------------
+
+# Feature wird zunächst nicht unterstützt.
+
+
+# --------------------------------------------
+# Freizeit / leisure:
+# --------------------------------------------
+
+# Öffentliche Grünfläche (UK) (siehe auch "leisure=garden"). [point, closedway]
+leisure = common & name = * {name "${name} ($__COMMON__)"} [0x2c06 resolution 24]
+
+# Tanzen: Eine Örtlichkeit, speziell zum regelmäßigen Tanzen. [point, closedway]
+leisure = dance & name = * {name "${name} ($__DANCE__)"} [0x6600 resolution 24]
+
+# Ein Hundepark ist ein Gebiet, mit oder ohne Umzäunung, wo Hunde ohne Leine laufen dürfen. [point, closedway]
+leisure = dog_park & name = * {name "${name} ($__DOGPARK__)"} [0x6600 resolution 24]
+
+# Ein Garten ist ein Gelände, in dem Blumen und andere Pflanzen in dekorativer und strukturierter Form
+# wachsen oder zu Forschungszwecken gezogen werden, zum Beispiel ein Botanischer Garten. [point, closedway]
+# leisure = garden {name "${name} (Garten)" | "Garten"} [0x2c06 resolution 24]
+leisure = garden & name = * {name "${name} ($__GARDEN__)"} [0x2c06 resolution 24]
+
+# Golfanlage. [point, closedway]
+leisure = golf_course & name = * {name "${name} ($__GOLFCOURSE__)"} [0x2D05 resolution 24]
+
+# Angelstelle. [point, closedway]
+# leisure = fishing (wird derzeit nicht unterstützt)
+
+# Eislaufplatz, Eislaufbahn (in Deutschland typischerweise ein Gebäude). [point, closedway]
+leisure = ice_rink & name = * {name "${name} ($__ICERINK__)"} [0x2d08 resolution 24]
+
+# Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
+leisure = marina & name = * {name "${name} ($__MARINA__)"} [0x2F09 resolution 24]
+
+# Minigolf (siehe auch Golfanlage). [point, closedway]
+leisure = miniature_golf & name = * {name "${name} ($__MINIATUREGOLF__)"} [0x6600 resolution 24]
+
+# Naturschutzgebiet (NSG), dieser Tag ist ausschließlich für Naturschutzgebiete zu nutzen.
+# Andere Gebiete – wie z. B. Nationalpark, Biosphärenreservat, Landschaftsschutzgebiet, etc.
+# sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
+leisure = nature_reserve & name = * {name "${name} ($__NATURERESERVE__)"} [0x6612 resolution 24]
+
+# Park, Grünanlage. [point, closedway]
+# leisure = park {name "${name} (Park)" | "Park"} [0x2c06 resolution 24]
+leisure = park & name = * {name "${name} ($__PARK__)"} [0x2c06 resolution 24]
+
+# Spielfeld z.B. Fußball, Tennis, Handball, Hockey. [point, closedway]
+leisure = pitch & name = * {name "${name} ($__PITCH__)"} [0x6600 resolution 24]
+
+# Spielplatz für Kinder. [point, closedway]
+# leisure = playground {name "${name} (Spielplatz)" | "Spielplatz"} [0x2c06 resolution 24]
+leisure = playground {name "${name} ($__PLAYGROUND__)" | "$__PLAYGROUND__"} [0x640e resolution 24]
+
+# Gibt es nur in den Commenwealth-Staaten - hier eher identisch mit landuse=village_green.
+leisure = recreation_ground & name = * {name "${name} ($__RECREATIONGROUND__)"} [0x2c08 resolution 24]
+
+# Sportzentrum, auch kommerzielle Freizeitsportanbieter, Fitnesscenter u.ä. [point, closedway]
+leisure = sports_centre & name = * {name "${name} ($__SPORTSCENTRE__)"} [0x2D0A resolution 24]
+leisure = sports_center & name = * {name "${name} ($__SPORTSCENTRE__)"} [0x2D0A resolution 24]
+
+# Stadion: Eine größere Sportanlage mit permanenten, gestaffelten Sitzreihen. [point, closedway]
+leisure = stadium & name = * {name "${name} ($__STADIUM__)"} [0x2c08 resolution 24]
+
+# Laufbahn oder Rennbahn zum Beispiel für Wett-, Rad-, Hunde- oder Pferderennen. [point, way, closedway]
+leisure = track & name = * {name "${name} ($__TRACK__)"} [0x2c08 resolution 24]
+
+# Schwimmbecken. [point, closedway]
+leisure = swimming_pool & name = * {name "${name} ($__SWIMMINGPOOL__)"} [0x2D09 resolution 24]
+
+# Wasserpark: Vergnügnungsstätte mit Wasserrutschen, Schwimmbecken und Umkleiden. [point, closedway]
+leisure = water_park & name = * {name "${name} ($__WATERPARK__)"} [0x2D09 resolution 24]
+
+
+# --------------------------------------------
+# Historisch / historic:
+# --------------------------------------------
+
+# Ausgrabungsstätte, oberirdisch sichtbare Bodendenkmal. [point, closedway]
+# Ausgrabungsstätte, oberirdisch sichtbare Bodendenkmal. [point, closedway]
+historic = archaelogical_site & name = * {name "${name} ($__ARCHAELOGICALSITE__)"} [0x6600 resolution 24]
+
+# Schlachtfeld. [point, closedway]
+historic = battlefield & name = * {name "${name} ($__BATTLEFIELD__)"} [0x6600 resolution 24]
+
+# Historischer Grenzstein. [point]
+historic = boundary_stone & name = * {name "${name} ($__BOUNDARYSTONE__)"} [0x6600 resolution 24]
+
+# Burg oder Schloss. [point, closedway]
+historic = castle & name = * {name "${name} ($__CASTLE__)"} [0x6600 resolution 24]
+
+# Militärisches Fort (ist gegenüber einer Burg moderner). [point, closedway]
+historic = fort & name = * {name "${name} ($__FORT__)"} [0x6600 resolution 24]
+
+# Gedenkstätte: Ähnlich wie historic=monument, aber üblicherweise kleiner. [point, closedway]
+historic = memorial & name = * & memorial:type!=stolperstein & memorial:type!=plate & memorial:type!=plaque  {name "${name} ($__MEMORIAL__)"} [0x6405 resolution 24]
+
+# Denkmal, Standbild [point, closedway]
+historic = monument & name = * {name "${name} ($__MONUMENT__)"} [0x6405 resolution 24]
+
+# Ruine. [point, closedway]
+historic = ruins & military = bunker & name = * {name "${name} ($__RUINS__, $__BUNKER__)"} [0x661e resolution 24]
+historic = ruins & name = *                     {name "${name} ($__RUINS__)"}         [0x661e resolution 24]
+
+# Runestone (typically a raised stone with a runic inscription). [point]
+historic=rune_stone  & name = * {name "${name} ($__RUNESTONE__)"} [0x6600 resolution 24]
+
+# Historisches (üblicherweise christliches) Wegkreuz. [point, closedway]
+historic = wayside_cross & name = * {name "${name} ($__WAYSIDECROSS__)"} [0x6600 resolution 24]
+
+# Ein historischer Schrein, oftmals mit religiöser Darstellung. [point, closedway]
+historic = wayside_shrine  & name = * {name "${name} ($__WAYSIDESHRINE__)"} [0x6405 resolution 24]
+
+# Wrack (gesunkenes Schiff). [point, closedway]
+historic = wreck & name = * {name "${name} ($__WRECK__)"} [0x1C01 resolution 24]
+
+
+# --------------------------------------------
+# Landnutzung / landuse:
+# --------------------------------------------
+
+# Kleingarten (Schrebergarten, Grabeland). [point, closedway]
+landuse = allotments & name = * {name "${name} ($__ALLOTMENTS__)"} [0x6600 resolution 24]
+
+# Bassin, Wasserbecken (zusammen mit basin=* für Hoch-/Regenwassersicker-/-rückhaltebecken). [point, closedway]
+landuse = basin & name = * {name "${name} ($__BASIN__)"} [0x6603 resolution 24]
+
+# Vorher bebautes Land (für Wiederbebauung vorgesehen), Industrie- und Gewerbebrache, Sanierungsgebiet, Altlast. [point, closedway]
+landuse = brownfield & name = * {name "${name} ($__BROWNFIELD__)"} [0x6600 resolution 24]
+
+# Friedhof. [closedway]
+landuse = cemetery & name = * {name "${name} ($__CEMETERY__)"} [0x6403 resolution 24]
+
+# Überwiegend Büros, Business Parks. [point, closedway]
+landuse = commercial & name = * {name "${name} ($__COMMERCIAL__)"} [0x6600 resolution 24]
+
+# Conservation land is land protected from development. [?]
+landuse = conservation & name = * {name "${name} ($__CONSERVATION__)"} [0x6600 resolution 24]
+
+# Baugebiet. [point, closedway]
+landuse = construction & name = * {name "${name} ($__CONSTRUCTION__)"} [0x6600 resolution 24]
+
+# Landwirtschaftlich genutzte Flächen mit Gebäuden wie Häuser, Unterkünften, Ställen, Fahrzeughallen, Futterspeichern usw.
+# Ebenso die Flächen zwischen den Gebäuden, sowie nahe Bäume, Hecken und Grünflächen. [closedway]
+landuse = farmyard & name = * {name "${name} ($__FARMYARD__)"} [0x6600 resolution 24]
+
+# Forst, landwirtschaftlich genutzter Wald (siehe auch natural=wood). [point, closedway]
+landuse = forest & name = * {name "${name} ($__FOREST__)"} [0x660A resolution 24]
+
+# Rasenfläche (vorzugsweise innerorts). [point, closedway]
+landuse = grass & name = * {name "${name} ($__GRASSAREA__)"} [0x6600 resolution 24]
+
+# Bauerwartungsland, unerschlossenes, für Bebauung vorgesehenes Land (keine vorherige Bebauung). [point, closedway]
+landuse = greenfield & name = * {name "${name} ($__GREENFIELD__)"} [0x6600 resolution 24]
+
+# Großes Hafengebiet / -areal: The harbour site (land area, not area of water), mostly fenced or
+# outlined by hedge, barrier or access restriction is tagged on land using "landuse=harbour". [?]
+landuse = harbour & name = * {name "${name} ($__HARBOUR__)"} [0x650B resolution 24]
+
+# Gewerbe-/Industriegebiet (überwiegend Werkstätten, Fabriken oder Lagerhallen). [point, closedway]
+landuse = industrial & name = * {name "${name} ($__INDUSTRIALAREA__)"} [0x6600 resolution 24]
+
+# Deponie, Aufschüttung, Müllhalde. [point, closedway]
+landuse = landfill & name = * {name "${name} ($__LANDFILL__)"} [0x6600 resolution 24]
+
+# Wiese (meist außerorts; nicht für öffentliche Zwecke). [point, closedway]
+landuse = meadow & name = * {name "${name} ($__MEADOW__)"} [0x6600 resolution 24]
+
+# Militärisch genutztes Gebiet (Kasernen, Truppenübungsplätze, use.). [point, closedway]
+landuse = military & name = * {name "${name} ($__MILITARY__)"} [0x640B resolution 24]
+
+# Obstplantage, Obstgarten, Gemüseanbau, Anpflanzung von Bäumen oder Sträuchern zur Lebensmittelproduktion. [point, closedway]
+landuse = orchard & name = * {name "${name} ($__ORCHARD__)"} [0x6600 resolution 24]
+
+# Steinbruch, Grube (Kies, Ton, ...), oberflächlicher Abbau von Rohstoffen (Tagebau). [point, closedway]
+landuse = quarry & name = * {name "${name} ($__QUARRY__)"} [0x6600 resolution 24]
+
+# Erholungsgebiet. [point, closedway]
+landuse = recreation_ground & name = * {name "${name} ($__RECREATIONGROUND__)"} [0x6600 resolution 24]
+
+# Speicherbecken (auch Talsperren; siehe auch landuse=basin). [point, closedway]
+landuse = reservoir & name = * {name "${name} ($__RESERVOIR__)"} [0x6500 resolution 24]
+
+# Wohngebiet. [point, closedway]
+landuse = residential & name = * {name "${name} ($__RESIDENTIAL__)"} [0x6600 resolution 24]
+
+# Einkaufszentrum oder überwiegend Einzelhandelsgeschäfte. [point, closedway]
+landuse = retail & name = * {name "${name} ($__RETAIL__)"} [0x2E04 resolution 24]
+
+# Meerwassersaline, angelegter oder natürlicher Salzgarten, der das Salz durch Verdunstung von Meerwasser freigibt. [closedway]
+landuse = salt_pond & name = * {name "${name} ($__SALTPOND__)"} [0x6500 resolution 24]
+
+# Dorfanger/-wiese (innerorts). [point, closedway]
+landuse = village_green & name = * {name "${name} ($__VILLAGEGREEN__)"} [0x6600 resolution 24]
+
+# Weinberg, Wengert. [point, closedway]
+landuse = vineyard & name = * {name "${name} ($__VINEYARD__)"} [0x6600 resolution 24]
+
+
+# --------------------------------------------
+# Militär / military:
+# --------------------------------------------
+
+# Militärflugplatz: Ein Ort, an dem militärische Luftfahrzeuge starten und landen können. [point, closedway]
+military = airfield & name = * {name "${name} ($__AIRFIELD__)"} [0x640B resolution 24]
+
+# Gebäude: Kaserne, Unterkünfte und Arbeitsgebäude für Soldaten. [point, closedway]
+military = barracks & name = * {name "${name} ($__BARRACKS__)"} [0x640B resolution 24]
+
+# Gebäude: Bunker, Gebäude mit sehr dicken Mauern, die auch schweren Beschuss stand halten. [point, closedway]
+military = bunker & ruins = yes & name = * {name "${name} ($__RUINS__, $__BUNKER__)"} [0x661e resolution 24]
+military = bunker & name = *               {name "${name} ($__MILITARYBUNKER__)"}   [0x661d resolution 24]
+
+# Gefahrenzone, in der man sich nicht aufhalten sollte. [point, closedway]
+military = danger_area & name = * {name "${name} ($__MILITARYDANGERAREA__)"} [0x640B resolution 24]
+
+# Waffenübungsplatz (z.B. ein Schießstand, aber auch größere Truppenübungsplätze). [point, closedway]
+military = range & name = * {name "${name} ($__MILITARYRANGE__)"} [0x640B resolution 24]
+
+# Marinestützpunkt. [point, closedway]
+military = naval_base & name = * {name "${name} ($__NAVALBASE__)"} [0x640B resolution 24]
+
+
+# --------------------------------------------
+# Geologie / geological:
+# --------------------------------------------
+
+# Fossillagerstaette. Sedimentgesteine die eine außergewöhnlich hohe Anzahl von Fossilien und
+# Fossilienvielfalt und/oder durch eine besonders vollständige Fossilerhaltung auszeichnen. [point, closedway]
+geological = palaeontological_site & name = * {name "${name} ($__PALEONTOLOGICALSITE__)"} [0x6600 resolution 24]
+
+# A outcrop site is a place where is absent in the coverage of alteration due to exogenous agents
+# or vegetation, and where, therefore, the rock macroscopic surfaces by being directly accessible
+# to analysis. [point, closedway]
+geological = outcrop & name = * {name "${name} ($__OUTCROP__)"} [0x6600 resolution 24]
+
+
+# --------------------------------------------
+# Sport / sport:
+# --------------------------------------------
+
+# Kegelbahn. [point, closedway]
+sport = 9pin & name = * {name "${name} ($__SPORT9PIN__)"} [0x2d07 resolution 24]
+
+# Bowlingbahn. [point, closedway]
+sport = 10pin & name = * {name "${name} ($__SPORT10PIN__)"} [0x2d07 resolution 24]
+
+# Radrennbahn, Radsporthalle. [point, closedway]
+sport = cycling & name = * {name "${name} ($__CYCLING__)"} [0x2c08 resolution 24]
+
+# Hunderennbahn. [point, closedway]
+sport = dog_racing & name = * {name "${name} ($__DOGRACING__)"} [0x2c08 resolution 24]
+
+# Reitsporthalle, Reitplatz. [point, closedway]
+sport = equestrian & name = * {name "${name} ($__EQUESTRIAN__)"} [0x6600 resolution 24]
+
+# Golfplatz. [point, closedway]
+sport = golf & name = * {name "${name} ($__SPORTGOLF__)"} [0x2D05 resolution 24]
+
+# Pferderennbahn. [point, closedway]
+sport = horse_racing & name = * {name "${name} ($__HORSERACING__)"} [0x2c08 resolution 24]
+
+# Mehrzweckhalle, Mehrzweckanlage.
+sport = multi & name = * {name "${name} ($__SPORTMULTI__)"} [0x2d0a resolution 24]
+
+# Eislaufplatz, Eishalle. [point, closedway]
+sport = skating & name = * {name "${name} ($__SPORTSKATING__)"} [0x2d08 resolution 24]
+
+# Skipiste, Skihalle. [point, closedway]
+sport = skiing & name = * {name "${name} ($__SKIING__)"} [0x2d06 resolution 24]
+
+# Schwimmbad. [point, closedway]
+sport = swimming & name = * {name "${name} ($__SPORTSWIMMING__)"} [0x2d09 resolution 24]
+
+
+# --------------------------------------------
+# Handwerk / craft:
+# --------------------------------------------
+
+# Feature wird zunächst nicht unterstützt.
+
+
+# --------------------------------------------
+# Notfall / emergency:
+# --------------------------------------------
+
+# Feature wird zunächst nicht unterstützt.
+
+
+# --------------------------------------------
+# Wasserläufe / waterway:
+# --------------------------------------------
+
+# Werft / Trockendock: Anlage zum Bau oder der Reparatur von Schiffen außerhalb des Wassers. [point]
+# waterway = boatyard (wird derzeit nicht unterstützt)
+
+# Dock: Vorrichtung, in der Schiffe gebaut oder repariert werden (Trockendock, Schwimmdock). [point, closedway]
+# waterway = dock (wird derzeit nicht unterstützt)
+
+# Schleusentor
+# waterway = lock_gate (wird derzeit nicht unterstützt)
+
+# Wendepunkt: Stelle in einem Wasserweg, an der Schiffe wenden können,
+# auch wenn sie länger sind als der Wasserweg breit ist. [point]
+# waterway = turning_point (wird derzeit nicht unterstützt)
+
+# Wasserfall.
+waterway = waterfall & name = * {name "${name} ($__WATERFALL__)"} [0x6508 resolution 24]
+
+# Wehr. [point, way]
+waterway = weir {name "${name} ($__WEIR__)" | "$__WEIR__"} [0x6500 resolution 24]
+
+
+# --------------------------------------------
+# Seilbahnen / aerialway:
+# --------------------------------------------
+
+# Eine Station, an der Passagiere ein- oder aussteigen können. [point, closedway]
+aerialway = station & name = * & ele = * {name "${name} (${ele}) ($__AERIALWAYSTATION__)"} [0x661c resolution 23]
+aerialway = station & name = *           {name "${name} ($__AERIALWAYSTATION__)"}          [0x661c resolution 23]
+aerialway = station & ele = *            {name "$__AERIALWAYSTATION__ (${ele})"}           [0x661c resolution 23]
+aerialway = station                      {name "$__AERIALWAYSTATION__"}                    [0x661c resolution 23]
+
+# Mast einer Liftanlage. [point]
+aerialway = pylon {name "${name} ($__PYLON__)" | "$__PYLON__"} [0x6417 resolution 24]
+
+
+# --------------------------------------------
+# Amt, Büro, Dienststelle, Geschäftsstelle / office:
+# --------------------------------------------
+
+# Local authorities, administrative and supervising institutions that are not related to state government. [point, closedway]
+office = administrative & name = * {name "${name} ($__ADMINISTRATIVE__)"} [0x3007 resolution 24]
+
+# Job-Center / Arbeitsvermittlung. [point, closedway]
+office = employment_agency & name = * {name "${name} ($__EMPLOYMENTAGENCY__)"} [0x3007 resolution 24]
+
+# Büro einer Regierung / Behörde / Regierungseinrichtung. [point, closedway]
+office = government & name = * {name "${name} ($__GOVERNMENT__)"} [0x3007 resolution 24]
+
+# Büro einer Nichtregierungsorganisation. [point, closedway]
+office = ngo & name = * {name "${name} ($__NGO__)"} [0x3007 resolution 24]
+
+# Büro oder Sitz einer halbstaatlichen Organisation. [point, closedway]
+office = quango & name = * {name "${name} ($__QUANGO__)"} [0x3007 resolution 24]
+
+
+# ------------------------------------------------------------
+# Barrieren / barrier:
+# ------------------------------------------------------------
+
+# Großer, stabiler Block, der nur mit schwerem Gerät oder großer Anstrengung versetzt werden kann. [point]
+barrier = block {add access = no; add bicycle = yes; add foot = yes} [0x1211 resolution 24]
+
+# Ein Poller, Pfosten oder eine Bake auf einem Weg oder einer Straße, der die Durchfahrt verhindert. [point, way]
+barrier = bollard {add access = no; add bicycle = yes; add foot = yes} [0x1208 resolution 24]
+
+# Weiderost, "Bovi-Stop" (überfahrbarer Gitterrost, für Huftiere unüberwindbar). [point]
+# barrier = cattle_grip (wird derzeit nicht unterstützt)
+
+# Absperrkette. [point]
+# barrier = chain (wird derzeit nicht unterstützt)
+
+# Beschränkung der Fahrraddurchfahrt. Gängige Bezeichnungen sind Drängelgitter oder Umlaufsperre.
+# Typischerweise zwei in den Weg hineinreichende versetzte Metallbügel, die das Durchfahren mit
+# Fahrrädern oder Motorrädern unmöglich machen oder zumindest verzögern, die Passage von Fußgängern
+# erlauben. In Deutschland oft am Ende von Radwegen um Radfahrer nicht direkt auf die vorfahrtsberechtigte
+# Straße fahren zu lassen oder das Befahren des Radweges mit motorisierten Fahrzeugen zu verhindern.
+# Sehr häufig finden sich solche Umlaufsperren auch an Fußgängerüberwegen über Bahnstrecken. [point]
+barrier = cycle_barrier {add access = no; add foot = yes} [0x1209 resolution 24]
+
+# Entrance: Standard Tag zur Beschreibung, dass an dieser Stelle ein Durchlass durch die Barriere ist. [point]
+# barrier = entrance (wird derzeit nicht unterstützt)
+
+# Tor, Schranke oder sonstige Absperrung, die geöffnet werden kann. [point, way]
+barrier = gate [0x1207 resolution 24]
+
+# Horse_stile: Ein Zaunübertritt für Pferde ermöglicht es Fußgängern und Pferden eine Lücke im Zaun
+# zu überqueren, aber verhindert es nahezu, dass Motorräder und Vieh diese überqueren. [point]
+# barrier = horse_stile (wird derzeit nicht unterstützt)
+
+# Schlagbaum. [point]
+barrier = lift_gate [0x1210 resolution 24]
+
+# Ausfalltor, Durchgangsschleuse - Ein Durchgang mit einem inneren und einem äußeren Tor. [point]
+# barrier = sally_port (wird derzeit nicht unterstützt)
+
+# Stile: Tritt über Zaun. [point]
+# barrier = stile (wird derzeit nicht unterstützt)
+
+# Drehkreuz: läßt Personen einzeln ein- oder austreten. Häufig als Ausgang von Parks oder Freibädern. [point]
+# barrier = turnstile (wird derzeit nicht unterstützt)
+
+
+# ------------------------------------------------------------
+# Besonderheiten:
+# ------------------------------------------------------------
+
+# Grabstellen bedeutender Persönlichkeiten (d.h. Personen mit Wikipedia-Eintrag)
+# cemetery = grave & name = * & (wikipedia:de = * | wikipedia = * | website ~ 'wikipedia') {name "${name} (Ruhestaette)"} [0x6405 resolution 24]
+cemetery = grave & name = * & (wikipedia:de = * | wikipedia = * | website = *) {name "${name} ($__GRAVE__)"} [0x6405 resolution 24]
+
+
+# ------------------------------------------------
+# Needed Include Lines for making 
+# old mkgmap styles (pre r2906)
+# fully compatible with mkgmap r2906 and higher
+# ------------------------------------------------
+# add the following lines to your lines file
+ <finalize>
+# deactivated #include 'compat_points';
+name=* { name '${name}' }
+mkgmap:default_name=* { name '${mkgmap:default_name}' }
+mkgmap:display_name=* { addlabel '${mkgmap:display_name|subst:;=>/}' }
+
+mkgmap:label:1!=* & ref=* { addlabel '${ref|part:;:1}' }
+mkgmap:label:1!=* & int_ref=* { addlabel '${int_ref|part:;:1}' }
+mkgmap:label:1!=* & nat_ref=* { addlabel '${nat_ref|part:;:1}' }
+mkgmap:label:1!=* & reg_ref=* { addlabel '${reg_ref|part:;:1}' }
+
+ref=*     { addlabel '${ref|part:;:1}';     addlabel '${ref|part:;:2}';     addlabel '${ref|part:;:3}'     }
+int_ref=* { addlabel '${int_ref|part:;:1}'; addlabel '${int_ref|part:;:2}'; addlabel '${int_ref|part:;:3}' }
+nat_ref=* { addlabel '${nat_ref|part:;:1}'; addlabel '${nat_ref|part:;:2}'; addlabel '${nat_ref|part:;:3}' }
+reg_ref=* { addlabel '${reg_ref|part:;:1}'; addlabel '${reg_ref|part:;:2}'; addlabel '${reg_ref|part:;:3}' }
+
+include "indexsearch";

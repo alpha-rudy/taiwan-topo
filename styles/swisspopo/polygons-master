@@ -1,0 +1,952 @@
+﻿# ------------------------------------------------------------
+# Zweck   : mkgmap-Regeln für Polygone (Flächen)
+# Version : 0.1 - 23.09.2011
+# Version : 0.2 - 02.10.2011: Adresssuche
+# Version : 0.3 - 09.12.2011: Verbesserung der Adresssuchregeln
+# Version : 0.4 - 13.12.2011: Kommentare aktualisiert
+# Version : 0.5 - 08.02.2012: "waterway=canal" ergänzt, "natural=rock" + "natural=bedrock" + "natural=bare_rock" ergänzt
+#                             "natural=land" für Kartenhintergrund aktiviert, "zoo=enclosure" ergänzt
+# Version : 0.6 - 11.03.2012: "waterway=canal" und "waterway=ditch" als Polygone entfernt
+#                              Anzeige von Naturschutzgebieten begrenzt
+# Version : 0.7 - 06.04.2012: Polygone für Laub-, Nadel- und Mischwald
+# Version : 0.8 - 09.06.2012: Anleger (Pier) auch als Flaeche moeglich; PPP-Schalter fuer Kulturland eingeführt
+#                             Darstellung von Häfen die als Dock getaggt sind
+# Version : 0.9 - 21.07.2012: Änderung bei Naturschutzgebieten
+# Version : 0.10- 02.04.2013: Resolution bei waterway=riverbank von 19 auf 17 geändert
+#                             Darstellung von Bussteigen (highway=platform) wie Bahnsteige.
+# Version : 0.11- 10.05.2013: Disable display of gardens with garden:type=residential
+# Version : 0.12- 12.09.2013: Correction regarding Grassland (Heinz Guba): show grassland same like meadow
+# Version : 0.13- 18.11.2013  "continue" for "landuse=meadow" to show wetland
+# Version : 0.14- 07.01.2014  fixed above feature 'wetland'
+#                             Show 'MudFlat'
+#                             Change handling of Marina from filled polygone to outline only
+# Version : 0.15 -14.03.2014: Adapting things regarding power = * (station / plant / substation / sub_station)
+# Version : 0.16 -05.05.2014: Adapting finalize section to support new mkgmap version 2096 and newer
+# Version : 0.17 -31.10.2014: Fixing issues with different includes: clarify what is done by PPP and what is done by mkgmap
+# Version : 0.18 -13.02.2015: Handling natural=shingle same as natural=scree
+# Version : 0.19 -02.05.2015: Spliting up caravan and picnic site: for moving camping_site to drawOrder 4
+#                             Changes regarding amenity = place_of_worship and buildings
+#                             Changes regarding new tagging of forests: tag leaf_type implemented
+
+#
+# Copyright (C) 2011, 2013 Projekt Freizeitkarte <freizeitkarte@googlemail.com>
+#
+# Hinweis auf weitere Unterlagen:
+# - http://wiki.openstreetmap.org/wiki/DE:Map_Features
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/How_to_create_a_map
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+#
+# Wichtig: mkgmap processes the style files in order. Thus if an element is defined both in the
+# linesStyleFile and the polygonsStyleFile then it won't get processed twice unless you are using
+# the continue directive in your style file rule. The order of processing is:
+# 1. version
+# 2. info
+# 3. options
+# 4. relations
+# 5. points
+# 6. lines
+# 7. polygons
+# 8. overlays
+# As mentioned above, process order matters when you have OSM objects defined in multiple style files.
+# For instance, if you have a polygon in the OSM data that has both: barrier=fence and landuse=industrial
+# only the barrier=fence bit will be processed by mkgmap (because it matches a rule in the linesStyleFile)
+# and no polygon will appear. You can overcome this limitation by using the continue directive in your rule.
+# This has the effect of telling mkgmap to continue looking for further rules that match a given OSM object.
+# The continue directive thus allows you to take an OSM way which has the tags barrier=fence and
+# landuse=industrial and create both a fence line and an industrial land polygon in the resulting map.
+#
+# Grundsätzliche Überlegungen zu Style und TYP:
+# - Resolution 24: Großer Maßstab, großer Zoom, es werden viele Details angezeigt.
+# - Resolution 17: Kleiner Maßstab, kleiner Zoom, es werden wenige Details angezeigt.
+# - Die Reihenfolge wie die Polygone gezeichnet werden, wird im TYP-File über die Draworder festgelegt:
+#   "Draworder 1": Das Polygon wird zuallererst gezeichnet.
+#   "Draworder n": Das Polygon wird erst nachdem die Polygone "n-1" dargestellt sind, gezeichnet.
+#   D.h. das Polygon mit "Draworder n" überlagert alle Polygone mit geringerer Draworder.
+#   Dies ist z.B. wichtig, wenn eine Schraffur über ein existierende Polygone gezeichnet werden soll.
+# - Einen Sonderfall stellt das Polygon "0x4b" (Background) dar. Hierüber ist es möglich, den allgemeinen
+#   Hintergrund (der keine Elemente / Objekte enthält) farblich festzulegen. Hierzu muß das Polygon die
+#   "Draworder 1" haben und es dürfen keine weiteren Objekte mit "Draworder 1" existieren.
+#
+# Grundsätzliche Überlegungen zur Draworder:
+# Reihenfolge      : Beschreibung
+# Hintergrund      : Polygon zum Zeichnen des Kartenhintergrunds (muß alleinig "Draworder 1" haben)
+# Meer             : Polygon zum Zeichnen des Meeres
+# Land             : Polygon zum Zeichnen des Landes
+# Primäre Fläche   : Basisfläche (z.B. Wohngebiet, Gewerbegebiet, Golfplatz)
+# Sekundäre Fläche : Basisfläche oder Fläche innerhalb einer Primärfläche (z.B. Waldstück in Golfplatz)
+# Tertiäre Fläche  : Fläche die typischerweise nicht mehr überlagert wird (z.B. Spielplatz, Fluß)
+# Schraffur / Text : überlagert alle anderen Flächen (z.B. Text "NR" für Naturreservat)
+# Gebäude          : kann nicht mehr überlagert werden
+#
+# Anmerkungen:
+# - Befindet sich eine "primäre Fläche" innerhalb einer "primären Fläche", wird nur eine von beiden Flächen dargestellt.
+# - D.h. die "Draworder" für alle Objekte (Flächen) ist mit sehr viel Bedacht zu wählen.
+# - Ein nachträgliche Änderung der "Draworder" kann sehr weitreichende (ggf. unerwünschte) Auswirkungen haben.
+# - Die Wahl der "Draworder" kann nicht "problemfrei" erfolgen (z.B. Wiese (DO=2) in Steinbruch (DO=2)).
+# - Kompromiss: Es ist eine Draworder mit dem erwarteten besten Ergebnis festzulegen.
+# - Die Draworder ist nicht relevant, wenn es keine "primäre Flächen" innerhalb einer "primäre Fläche" gibt.
+#   Z.B. "Wiese mit Löchern" für kleinere Areale mit Buschwerk- oder Waldflächen.
+#
+# Überlegungen zum Thema "Levels" (Quelle: www.cferrero.net):
+# - resolution:
+#   The GPSr itself has 24 degrees of resolution. 24 is the most zoomed in and the number decreases
+#   as you zoom out. Although the minimum zoom level would be 1 in theory, in practice 12 is about as
+#   far out as most Garmins can go. mkgmap is currently hard-coded to use a resolution of 14 for the
+#   overview map.
+# - levels:
+#   An img file doesn't hold information on how to draw things at each degree of resolution. Instead
+#   it contains at most about 10 levels. The level is a number between 0 and 16 with 0 being the highest
+#   level of detail. A map consists of a number of levels starting (usually) with 0. For example 0, 1, 2,
+#   3 with a different amount of detail corresponding to each level. The map also contains a table to link
+#   the level to the resolution. For example, this would state that level 0 corresponds to resolution 24.
+#   In mkgmap, the mapping between level and resolution is defined by the options file, for instance:
+#   levels = 0:24, 1:22, 2:20, 3:18, 4:16 (which is the default)
+#   As there is no one-to-one mapping between levels and resolutions, the map doesn't contain information
+#   on every zoom level and so the GPSr will scale up/down from either the 22 or 24 zoom level (not sure which).
+#   NB the GPSr itself lets you set the amount of detail on the map and this will affect what is visible at any
+#   given resolution. This makes it very hard to have complete control on what appears at a certain resolution.
+# - When using Mkgmap the most levels I have got it to handle is 8 using the following line:
+#   levels = 0:23, 1:22, 2:21, 3:20, 4:19, 5:18, 6:16, 7:12
+#
+# - Abhängig von der Polygongröße und dem Zoomlevel wird durch die Anwendungssoft entschieden, ob ein Polygon
+#   dargestellt wird. Aus diesem Grund werden alle Polygone mit einem sehr hohen Level compiliert. Anders bei
+#   den Polygonnamen. Diese werden erst auf einem sehr niedrigen Level für die standardmäßige Darstellung compiliert.
+#   Ohne diese Maßnahme ist eine Übersichtskarte sehr schnell mit Bezeichnungen "überfrachtet". Die weisten
+#   Flächennamen werden "invisible" dargestellt. D.h. der Name erscheint nur dann, wenn sich der Mauszeiger / die Nadel
+#   direkt auf der Fläche befindet.
+#
+# - Alle (Bitmap-)Polygone sollte sich im Wertebereich 0x01-0x53 befinden.
+#
+# Verwendeten Polygone (Bezeichnung gemäß TYP-File):
+# --------------------------------------------------
+# ####  Bezeichnung (Draworder)        Garmin-Default
+# 0x01  -                              City (grau) [Schrift GROSS]
+# 0x02  Wohngebiet (4)                 City (grau) [Schrift GROSS]
+# 0x03  -                              City (grau) [Schrift GROSS]
+# 0x04  Militär (8)                    Military (weiss) [Schrift klein]
+# 0x05  Parkplatz (7)                  Car Park (Parking Lot) (weiss) [Schrift klein]
+# 0x06  -                              Parking Garage (weiss) [Schrift klein]
+# 0x07  -                              Airport (weiss) [Schrift klein]
+# 0x08  Handel (4)                     Shopping Center (weiss) [Schrift klein]
+# 0x09  Yachthafen (8)                 Marina (weiss) [Schrift klein]
+# 0x0a  Schule (4)                     University (weiss) [Schrift klein]
+# 0x0b  Krankenhaus (4)                Hospital (weiss) [Schrift klein]
+# 0x0c  Industrie (4)                  Industrial (weiss) [Schrift klein]
+# 0x0d  Naturreservat (8)              Reservation (beige) [Schrift klein]
+# 0x0e  -                              Airport Runway (anthrazit) [Schrift klein]
+# 0x0f  Spielplatz (7)                 -
+# 0x10  Camping (4)                    -
+# 0x11  Attraktion (8)                 -
+# 0x12  Steinbruch (4)                 -
+# 0x13  Gebäude (9)                    Man made area (weiss) [Schrift klein]
+# 0x14  Picnic (7)                     National park (grün) [Schrift klein]
+# 0x15  Laubwald (5)                   National park (grün) [Schrift klein]
+# 0x16  Fels (6)                       National park (grün) [Schrift klein]
+# 0x17  Wiese (6)                      City Park (grün) [Schrift klein]
+# 0x18  Golfplatz (4)                  Golf (grün) [Schrift klein]
+# 0x19  Sportanlage (6)                Sport (grün) [Schrift klein]
+# 0x1a  Friedhof (7)                   Cemetery (grün) [Schrift klein]
+# 0x1b  Weinberg (3)                   -
+# 0x1c  Kasernen (7)                   -
+# 0x1e  Park (5)                       State Park (grün) [Schrift klein]
+# 0x1f  -                              State Park (grün) [Schrift klein]
+# 0x20  -                              sichtbar in BaseCamp wie 0x1f (KTO, 20.05.2011)
+# 0x21  Gefahrenzone (8)               -
+# 0x22  Zoo (6)                        -
+# 0x23  Schrebergärten (4)             -
+# 0x24  Kulturland (4)                 -
+# 0x25  Kraftwerk (6)                  -
+# 0x26  Verwaltung (4)                 -
+# 0x27  Baugebiet (6)                  -
+# 0x28  -                              Ocean (blau) [Schrift GROSS]
+# 0x2a  Deponie (5)                    -
+# 0x2b  Heide (5)                      -
+# 0x2c  Vorfeld (7)                    -
+# 0x2d  Flugplatz (6)                  -
+# 0x2e  Strand (6)                     -
+# 0x2f  Schlick (3)                    -
+# 0x30  Verkehrsberuhiger Bereich (6)  -
+# 0x31  Platz (6)                      -
+# 0x32  Meer (2)                       Sea (blau) [Schrift GROSS]
+# 0x33  Fußgängerzone (6)              -
+# 0x35  Supermarkt (9)                 -
+# 0x36  Andachtsstätte (7)             -
+# 0x37  Spielfeld / Laufbahn (7)       -
+# 0x38  Terminal (7)                   -
+# 0x39  Anlegestelle (8)               -
+# 0x3a  Land (3)                       -
+# 0x3b  -                              Blue-Unknown (nicht sichtbar in BaseCamp) (KTO, 20.05.2011)
+# 0x3c  Wasser (7)                     Lake (blau) [Schrift klein]
+# 0x3d  Staumdamm / -mauer (9)         Lake (blau) [Schrift klein]
+# 0x3e  Bahnsteig (7)                  Lake (blau) [Schrift klein]
+# 0x3f  Wasser (7)                     Lake (blau) [Schrift klein]
+# 0x40  Alm / Bergwiese (4)            Lake (blau) [Schrift klein]
+# 0x41  Spielfeld (7)                  Lake (blau) [Schrift klein]
+# 0x42  Station (6)                    Lake (blau) [Schrift klein]
+# 0x43  Geröll (5)                     Lake (blau) [Schrift klein]
+# 0x44  Raststätte (5)                 Lake (blau) [Schrift klein]
+# 0x45  -                              Blue-Unknown (nicht sichtbar in BaseCamp) (KTO, 20.05.2011)
+# 0x46  Flussufer (7)                  River (blau) [Schrift klein]
+# 0x47  Sand (6)                       River (blau) [Schrift klein]
+# 0x48  -                              River (blau) [Schrift klein]
+# 0x49  Gehöft (5)                     River (blau) [Schrift klein]
+# 0x4b  Hintergrund (1)                Background (muss alleinig Draworder 1 haben) (KTO, 12.06.2011)
+# 0x4c  Dock (8)                       Intermittent River/Lake (kariert, blau) [Schrift klein]
+# 0x4d  Gletscher (6)                  Glaciers (senkrechte Linien, blau) [Schrift GROSS]
+# 0x4e  Plantage (6)                   Orchard or plantation (senkrechte Linien, grün) [Schrift GROSS]
+# 0x4f  Gebüsch (6)                    Scrub (senkrechte Linien, orange) [Schrift GROSS]
+# 0x50  Nadelwald (5)                  Woods (waagerechte Linien, oliv/braun) [Schrift GROSS]
+# 0x51  Sumpfgebiet (8)                Wetland (waagerechte Linien, blau) [Schrift GROSS]
+# 0x52  Mischwald (5)                  Tundra (diagonale Linien, links mach rechts, hell violett / grau) [Schrift GROSS]
+# 0x53  Schwarzes Loch (9)             Flats (diagonale Linien, rechts nach links, oliv/braun) [Schrift GROSS]
+#
+# Level / Resolution / Maßstab:
+# -----------------------------
+# BaseCamp              Dakota-20
+# ----------------      -----------------
+# 0 = 24 =  0.7 km         200  m
+# 1 = 23 =  1.5 km         300  m
+# 2 = 22 =  3.0 km         500  m (800 m)
+# 3 = 21 =  5.0 km       1.2   km (2 km)
+# 4 = 20 = 10.0 km       3     km
+# 5 = 19 = 20.0 km       5     km (8 km)
+# 6 = 18 = 50.0 km      12     km
+# 7 = 17 = 70.0 km      20     km
+#
+# ppp supports the following standard preprocessor features:
+# #define %var% [value]
+# #define %pseudo_fn%([arg-list])
+# #undef %var%
+# #include "path"
+# #ifdef %var% .. #else .. #endif
+# #ifndef %var% .. #else .. #endif
+# #if <expr> .. #else .. #endif
+# Macro variable expansion
+#
+# Link: www.synesys.com/Downloads/ppp.html
+#
+# Optionale Features:
+# - KULTURLAND: Darstellung von Ackerflächen
+# ------------------------------------------------------------
+
+# -------------------------------------------------
+# Include language file containing all translations
+# -------------------------------------------------
+#define PP_VARS_ACTIVE_IN_STRINGS
+#include "style-translations"
+#undef PP_VARS_ACTIVE_IN_STRINGS
+
+
+# ************************************************************
+# Korrekturen:
+# - Überkreuznutzung von "natural" anstatt "landuse"
+# - "Inkorrektes Tag" {"Korrektes Tag"}
+# ************************************************************
+
+natural = allotments {set landuse=allotments; delete natural}
+natural = basin {set landuse=basin; delete natural}
+natural = brownfield {set landuse=brownfield; delete natural}
+natural = cemetery {set landuse=cemetery; delete natural}
+natural = commercial {set landuse=commercial; delete natural}
+natural = construction {set landuse=construction; delete natural}
+natural = farm {set landuse=farm; delete natural}
+natural = farmland {set landuse=farmland; delete natural}
+natural = farmyard {set landuse=farmyard; delete natural}
+natural = forest {set landuse=forest; delete natural}
+natural = garages {set landuse=garages; delete natural}
+natural = grass {set landuse=grass; delete natural}
+natural = grassland {set landuse=meadow; delete natural}
+natural = greenfield {set landuse=greenfield; delete natural}
+natural = greenhouse_horticulture {set landuse=greenhouse_horticulture; delete natural}
+natural = industrial {set landuse=industrial; delete natural}
+natural = landfill {set landuse=landfill; delete natural}
+natural = meadow {set landuse=meadow; delete natural}
+natural = military {set landuse=military; delete natural}
+natural = orchard {set landuse=orchard; delete natural}
+natural = plant_nursery {set landuse=plant_nursery; delete natural}
+natural = quarry {set landuse=quarry; delete natural}
+natural = railway {set landuse=railway; delete natural}
+natural = recreation_ground {set landuse=recreation_ground; delete natural}
+natural = reservoir {set landuse=reservoir; delete natural}
+natural = residential {set landuse=residential; delete natural}
+natural = retail {set landuse=retail; delete natural}
+natural = salt_pond {set landuse=salt_pond; delete natural}
+natural = village_green {set landuse=village_green; delete natural}
+natural = vineyard {set landuse=vineyard; delete natural}
+
+
+# ************************************************************
+# Korrekturen:
+# - Überkreuznutzung von "landuse" anstatt "natural"
+# - "Inkorrektes Tag" {"Korrektes Tag"}
+# ************************************************************
+
+landuse = bay {set natural=bay; delete landuse}
+landuse = beach {set natural=beach; delete landuse}
+landuse = cave_entrance {set natural=cave_entrance; delete landuse}
+landuse = cliff {set natural=cliff; delete landuse}
+landuse = fell {set natural=fell; delete landuse}
+landuse = glacier {set natural=glacier; delete landuse}
+landuse = heath {set natural=heath; delete landuse}
+landuse = land {set natural=land; delete landuse}
+landuse = marsh {set natural=marsh; delete landuse}
+landuse = mud {set natural=mud; delete landuse}
+landuse = sand {set natural=sand; delete landuse}
+landuse = scree {set natural=scree; delete landuse}
+landuse = scrub {set natural=scrub; delete landuse}
+landuse = water {set natural=water; delete landuse}
+landuse = wetland {set natural=wetland; delete landuse}
+landuse = wood {set natural=wood; delete landuse}
+
+
+# ************************************************************
+# Korrekturen:
+# - weitere Korrekturen im Zusammenhang mit "landuse"
+# - "Inkorrektes Tag" {"Korrektes Tag"}
+# ************************************************************
+
+# Vermutlich "inkorrekte" Definition einer zusammenhängenden Nutzung
+landuse = area {delete landuse}
+
+# Vermutlich gemeint: Flugplatz
+landuse = airport {set aeroway=aerodrome; delete landuse}
+
+# Vermutlich gemeint: Schulgelände
+landuse = education {set amenity=school; delete landuse}
+
+# Vermutlich Schreib-/Tippfehler
+landuse = forrest {set landuse=forest}
+
+# Vermutlich gemeint: (Parkartiger) Garten
+landuse = garden {set leisure=garden; delete landuse}
+
+# Vermutlich gemeint: Kiesgrube (sollte als "quarry" getagt werden)
+landuse = gravel_pit {set landuse=quarry}
+
+# Vermutlich gemeint: Heide
+landuse = heath {set natural=heath; delete landuse}
+
+# Vermutlich gemeint: Gebiet mit gemischter Nutzung (Gewerbe / Wohngebiet)
+landuse = mixed {set landuse=industrial}
+
+# Vermutlich gemeint: Naturschutzgebiet / Naturreservat
+landuse = nature_reserve {set leisure=nature_reserve; delete landuse}
+
+# Vermutlich gemeint: Park / Grünanlage
+landuse = park {set leisure=park; delete landuse}
+
+# Vermutlich gemeint: Spielfeld / Sportplatz
+landuse = pitch {set leisure=pitch; delete landuse}
+
+# Vermutlich gemeint: Erholungsgebiet
+landuse = recreation_green {set landuse=recreation_ground}
+
+# Vermutlich gemeint: Baumschule
+landuse = tree_nursery {set landuse=plant_nursery}
+
+# Vermutlich gemeint: Flugplatz
+areoway = runway {set aeroway=aerodrome}
+
+
+# -------------------------------------------------
+# Adress- / Indexsuche:
+# -------------------------------------------------
+include "indexsearch";
+
+
+# ------------------------------------------------------------
+# Gebäude / building:
+# - die meisten Gebäude werden einheitlich dargestellt
+# - wenige Gebäude werden abweichend dargestellt
+# ------------------------------------------------------------
+
+# Bahnhof.
+# TODO: Bahnhof nicht getennt ausweisen; Polygon 0x24 ist inkorrekt
+# building = station [0x24 resolution 20]
+building = station [0x24 resolution 24]
+
+# Supermarkt.
+# TODO: Supermark nicht getennt ausweisen; Polygon 0x35 kann dann anderweitig verwendet werden
+# building = supermarket [0x35 resolution 20]
+building = supermarket [0x35 resolution 24]
+
+# TODO - Flughafen-Terminal nacharbeiten.
+
+# Special handling of worship places
+building = * & building != no & amenity = place_of_worship [0x36 resolution 24]
+
+# Gebäude oder Bauwerk allgemein.
+# building = * [0x13 resolution 20]
+building = * [0x13 resolution 24]
+
+
+# ------------------------------------------------------------
+# Freizeit / leisure:
+# Naturschutzgebiete werden zunächst verarbeitet (mit continue).
+# Grund / Beispiel: "leisure = nature_reserve" + "natural = wetland"
+# ------------------------------------------------------------
+
+# Naturschutzgebiet (NSG), dieser Tag ist ausschließlich für Naturschutzgebiete zu nutzen.
+# Andere Gebiete – wie z. B. Nationalpark, Biosphärenreservat, Landschaftsschutzgebiet, etc.
+# sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
+# Aus Gruenden der besseren Uebersichtlichkeit, wird die Ausweisung der NSGs begrenzt.
+# continue wg. weiterer identischer Flächen
+leisure = nature_reserve [0x0d resolution 20-23 continue]
+
+
+# ------------------------------------------------------------
+# Landnutzung / landuse:
+# ------------------------------------------------------------
+
+# Kleingarten (Schrebergarten, Grabeland). [point, closedway]
+landuse = allotments [0x23 resolution 20]
+
+# Bassin, Wasserbecken (zusammen mit basin=* für Hoch-/Regenwassersicker-/-rückhaltebecken). [point, closedway]
+landuse = basin [0x3f resolution 20]
+
+# Vorher bebautes Land (für Wiederbebauung vorgesehen), Industrie- und Gewerbebrache, Sanierungsgebiet, Altlast. [point, closedway]
+landuse = brownfield [0x27 resolution 20]
+
+# Friedhof. [closedway]
+landuse = cemetery [0x1a resolution 20]
+
+# Überwiegend Büros, Business Parks. [point, closedway]
+landuse = commercial [0x26 resolution 20]
+
+# Conservation land is land protected from development. [?]
+# Inkorrekt: Wird zunächst wie "0x50 = Wald" dargestellt.
+landuse = conservation [0x50 resolution 20]
+
+# Baugebiet. [point, closedway]
+landuse = construction [0x27 resolution 20]
+
+#ifdef KULTURLAND
+  # Synonym für farmland. [closedway]
+  # Wird unterdrückt (wg. besserer Lesbarkeit) = entspricht Kartenhintergrund.
+  landuse = farm [0x24 resolution 17]
+
+  # Landwirtschaftlich genutze Flächen wie Äcker für Getreide und Gemüse, Baumschulen und Weiden für Nutztiere. [closedway]
+  # Wird unterdrückt (wg. besserer Lesbarkeit) = entspricht Kartenhintergrund.
+  landuse = farmland [0x24 resolution 17]
+
+  # Entspricht "landuse=farm".
+  # Wird unterdrückt (wg. besserer Lesbarkeit) = entspricht Kartenhintergrund.
+  landuse = field [0x24 resolution 17]
+#endif
+
+# Landwirtschaftlich genutzte Flächen mit Gebäuden wie Häuser, Unterkünften, Ställen, Fahrzeughallen, Futterspeichern usw.
+# Ebenso die Flächen zwischen den Gebäuden, sowie nahe Bäume, Hecken und Grünflächen. [closedway]
+landuse = farmyard [0x49 resolution 20]
+
+# Forst, landwirtschaftlich genutzter Wald (siehe auch natural=wood). [point, closedway]
+# Zur Unterscheidung der Baumarten kann zusätzlich das tag wood=coniferous/deciduous/mixed
+# für Nadel-, Laub- oder Mischwald gesetzt werden.
+# Laubwald
+landuse = forest & ( wood = deciduous | leaf_type = broadleaved ) [0x15 resolution 17]
+natural = wood  & ( wood = deciduous | leaf_type = broadleaved ) [0x15 resolution 17]
+# Nadelwald
+landuse = forest & ( wood = coniferous | leaf_type = needleleaved ) [0x50 resolution 17]
+natural = wood & ( wood = coniferous | leaf_type = needleleaved ) [0x50 resolution 17]
+# Mischwald
+landuse = forest & ( wood = mixed | leaf_type = mixed) [0x52 resolution 17]
+natural = wood & ( wood = mixed | leaf_type = mixed) [0x52 resolution 17]
+# keine Angabe = Mischwald
+landuse = forest | natural = wood [0x52 resolution 17]
+
+# Garagen auf größerer Fläche, Garagenhof (nicht für Einzelgarage) (s.a. amenity=parking). [closedway]
+landuse = garages [0x05 resolution 20]
+
+# Rasenfläche (vorzugsweise innerorts). [point, closedway]
+landuse = grass [0x17 resolution 20]
+
+# Bauerwartungsland, unerschlossenes, für Bebauung vorgesehenes Land (keine vorherige Bebauung). [point, closedway]
+landuse = greenfield [0x27 resolution 20]
+
+# Gewächshausfläche. [closedway]
+landuse = greenhouse_horticulture [0x4e resolution 20]
+
+# Großes Hafengebiet / -areal: The harbour site (land area, not area of water), mostly fenced or
+# outlined by hedge, barrier or access restriction is tagged on land using "landuse=harbour". [?]
+landuse = harbour [0x0c resolution 20]
+
+# Gewerbe-/Industriegebiet (überwiegend Werkstätten, Fabriken oder Lagerhallen). [point, closedway]
+landuse = industrial [0x0c resolution 17]
+
+# Deponie, Aufschüttung, Müllhalde. [point, closedway]
+landuse = landfill [0x2a resolution 20]
+
+# Wiese (meist außerorts; nicht für öffentliche Zwecke). [point, closedway]
+landuse = meadow [0x17 resolution 20 continue]
+
+# Militärisch genutztes Gebiet (Kasernen, Truppenübungsplätze, use.). [point, closedway]
+landuse = military [0x04 resolution 17]
+
+# Obstplantage, Obstgarten, Gemüseanbau, Anpflanzung von Bäumen oder Sträuchern zur Lebensmittelproduktion. [point, closedway]
+landuse = orchard [0x4e resolution 20]
+
+# Plfanzen- / Baumschule. [closedway]
+landuse = plant_nursery [0x4e resolution 20]
+
+# Steinbruch, Grube (Kies, Ton, ...), oberflächlicher Abbau von Rohstoffen (Tagebau). [point, closedway]
+landuse = quarry [0x12 resolution 20]
+
+# Gebiet für Eisenbahnnutzung (meist für die Öffentlichkeit gesperrt). [closedway]
+landuse = railway [0x0c resolution 20]
+
+# Erholungsgebiet. [point, closedway]
+landuse = recreation_ground [0x17 resolution 20]
+
+# Speicherbecken (auch Talsperren; siehe auch landuse=basin). [point, closedway]
+landuse = reservoir [0x3f resolution 17]
+
+# Wohngebiet. [point, closedway]
+landuse = residential [0x02 resolution 17]
+
+# Einkaufszentrum oder überwiegend Einzelhandelsgeschäfte. [point, closedway]
+landuse = retail [0x08 resolution 20]
+
+# Meerwassersaline, angelegter oder natürlicher Salzgarten, der das Salz durch Verdunstung von Meerwasser freigibt. [closedway]
+# Wird hier zunächst wie "0x3f = Wasser" gezeichnet; ggf. ist eine eigene Darstellung mit geringem Drawlevel sinnvoll.
+landuse = salt_pond [0x3f resolution 20]
+
+# Dorfanger/-wiese (innerorts). [point, closedway]
+landuse = village_green [0x17 resolution 20]
+
+# Weinberg, Wengert. [point, closedway]
+landuse = vineyard [0x1b resolution 20]
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# landuse = * {name '${name} - landuse'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Natur / natural:
+# ------------------------------------------------------------
+
+# Meeresbucht. [point, closedway]
+# natural = bay (wird derzeit nicht unterstützt)
+
+# Strand. [point, closedway]
+natural = beach [0x2e resolution 20]
+
+# Eingang zu einer Höhle. [point, closedway]
+# natural = cave_entrance (wird derzeit nicht unterstützt)
+
+# Klippe. [point, way, closedway]
+# natural = cliff (wird derzeit nicht unterstützt)
+
+# Alm, Matte, Bergwiese, Sommerweide: Bereich oberhalb der Baumgrenze. [point, closedway]
+natural = fell [0x40 resolution 17]
+
+# Gebiet (auch Bergspitze), das ganzjährig mit Eis bedeckt ist. [point, closedway]
+natural = glacier [0x4d resolution 17]
+
+# Heide. [point, closedway]
+natural = heath [0x2b resolution 17]
+
+# Marsch (Feuchtgebiet, Sumpf, Moor, etc.) veraltet, siehe natural=wetland). [point, closedway]
+natural = marsh [0x51 resolution 17]
+
+# Schlick / Moor. [point, closedway]
+natural = mud [0x2f resolution 17]
+
+# Fels (on land solid rocks areas). [closedway]
+# bedrock - A general term for the solid rock that underlies the soil and other
+#           unconsolidated material or that is exposed at the surface.
+natural = rock | natural = bedrock | natural = bare_rock [0x16 resolution 17]
+
+# Boden mit Sand bedeckt, kein oder spärlicher Bewuchs. [point, closedway]
+natural = sand [0x47 resolution 20]
+
+# Geröll. [point, closedway]
+natural = scree | natural = shingle [0x43 resolution 20]
+
+# Unkultiviertes Land (Unterholz / Busch). [point, closedway]
+natural = scrub [0x4f resolution 20]
+
+# Wasser - Seen, Teiche usw. [point, closedway]
+#natural = water [0x3c resolution 17]
+# Starting at 16 for overviewmap
+natural = water [0x3c resolution 16]
+
+# Watt, Priele
+natural = wetland & wetland = tidalflat {set name = ''} [0x56 resolution 20]
+
+# Feuchtgebiet (Sumpf, Moor, Ried, Marsch, Aue, Röhricht, Watt, Salzwiese, Magrove, naturbelassene Flächen,
+#  die Überflutungen ausgesetzt sind oder staunasse Böden aufweisen. [point, closedway]
+natural = wetland {set name = ''} [0x51 resolution 20]
+
+# Naturwald oder vollkommen unbewirtschaftete Wälder. [point, closedway]
+# Wird als Mischwald behandelt.
+# (see landuse = forest)
+#natural = wood [0x52 resolution 17]
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# natural = * {name '${name} - natural'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Wasserläufe / waterway:
+# ------------------------------------------------------------
+
+# Flussufer: Wird für große (breite) Flüsse verwendet, um die Fläche zwischen den Ufern zu definieren. [point, closedway]
+waterway = riverbank [0x46 resolution 17]
+
+# Kanal - wasserführendes offenes Bauwerk, das verschiedene Zwecke erfüllen kann, z.B. Transport oder Wasserkraft.
+# Kommt in seltenen Fällen auch als Polygon vor (führt aber potenziell zu "Überflutungen").
+# waterway = canal [0x46 resolution 23]
+
+# Wassergraben. [way, aber auch closedway] (z.B. Schlossgräben)
+# Kommt in seltenen Fällen auch als Polygon vor (führt aber potenziell zu "Überflutungen").
+# waterway = ditch [0x46 resolution 23]
+
+# Der Begriff "Dock" [point, closedway] hat mehrere Bedeutungen: Hafen / Trockendock, Schwimmdock
+# Als "Hafen" - wird analog zu "natural=water" behandelt.
+waterway = dock [0x3c resolution 17]
+# Als "Trockendock, Schwimmdock" - wird derzeit nicht unterstützt.
+# waterway = dock [0x4c resolution 20]
+
+# Staudamm oder Staumauer, für Speichersee und ähnliches. [way, closedway]
+waterway = dam [0x3d resolution 20]
+
+# Wehr. [point, way, aber auch closedway]
+waterway = weir [0x3d resolution 20]
+
+# "Schwarzer Fleck"  (für Qualitätssicherung).
+# Nur zusammen mit waterway-Objekten in "lines" aktivieren.
+# waterway = * {name '${name} - waterway'} [0x53 resolution 20 continue]
+
+
+# ------------------------------------------------------------
+# Flughäfen / aeroway:
+# ------------------------------------------------------------
+
+# Flughafengelände / Flugplatz. [point, closedway]
+aeroway = aerodrome [0x2d resolution 20]
+
+# Vorfeld (Abfertigungs-, Rangier-, Abstell- und Wartungsfläche). [closedway]
+aeroway = apron [0x2c resolution 20]
+
+# Gebäude: Hangar (große Halle für Flugzeuge aller Art sowie Hubschrauber, Luftschiffe und Space Shuttles). [?]
+aeroway = hangar {set name = ''} [0x38 resolution 20 continue]
+aeroway = hangar [0x38 resolution 24]
+
+# Gebäude: Terminal (Flughafengebäude). [point, closedway]
+aeroway = terminal [0x38 resolution 20]
+
+# Hubschrauberlandeplatz. [point, closedway]
+aeroway = helipad [0x2d resolution 20]
+
+# Gebäude: Tower (Kontrollturm). [?]
+aeroway = tower [0x38 resolution 20]
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# aeroway = * {name '${name} - aeroway'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Militär / military:
+# ------------------------------------------------------------
+
+# Militärflugplatz: Ein Ort, an dem militärische Luftfahrzeuge starten und landen können. [point, closedway]
+military = airfield [0x2d resolution 20]
+
+# Gebäude: Kaserne, Unterkünfte und Arbeitsgebäude für Soldaten. [point, closedway]
+military = barracks [0x1c resolution 20]
+
+# Gebäude: Bunker, Gebäude mit sehr dicken Mauern, die auch schweren Beschuss stand halten. [point, closedway]
+military = bunker [0x1c resolution 20]
+
+# Gefahrenzone, in der man sich nicht aufhalten sollte. [point, closedway]
+military = danger_area [0x21 resolution 20]
+
+# Waffenübungsplatz (z.B. ein Schießstand, aber auch größere Truppenübungsplätze). [point, closedway]
+military = range [0x21 resolution 20]
+
+# Marinestützpunkt. [point, closedway]
+# TODO: 0x38 nur für Test
+military = naval_base [0x38 resolution 20]
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# military = * {name '${name} - military'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Energieversorgung / power:
+# ------------------------------------------------------------
+
+# Kraftwerk - dient der Erzeugung von Strom oder Wärme. [point, closedway]
+power = generator & building != yes & length() > 150 [0x25 resolution 22 continue]
+power = generator & building != yes & length() <= 150 [0x25 resolution 24 continue]
+
+# Umspannwerk - bezeichnet eine Umspannanlage, die ein Höchst- oder Hochspannungs-
+# mit einem weiteren Hochspannungs- oder Mittelspannungsnetz verbindet. [point, closedway]
+( power = station | power = plant ) & building != yes & length() > 150 [0x25 resolution 22 continue]
+( power = station | power = plant ) & building != yes & length() <= 150 [0x25 resolution 24 continue]
+
+# Umspannstation, kleiner als 'station', verbindet ein Mittel- mit einem Niederspannungsnetz,
+# z.B. Mini-Umspannwerk, Trafohäuschen oder großer Trafokasten. [point, closedway]
+( power = sub_station | power = substation ) & building != yes & length() > 150 [0x25 resolution 22 continue]
+( power = sub_station | power = substation ) & building != yes & length() <= 150 [0x25 resolution 24 continue]
+
+# "Schwarzer Fleck"  (für Qualitätssicherung).
+# Nur zusammen mit power-Objekten in "lines" aktivieren.
+# power = * {name '${name} - power'} [0x53 resolution 23]
+
+
+# ------------------------------------------------------------
+# Eisenbahn / railway:
+# ------------------------------------------------------------
+
+# Bahnhof (mit mindestens einer Weiche). [point, closedway]
+railway = station [0x24 resolution 20]
+
+# Eine Drehscheibe zum Wenden von Schienenfahrzeugen. [point, closedway]
+# railway = turntable (wird derzeit nicht unterstützt)
+
+# Bahnsteig: Der Bahnsteig verläuft parallel zu den Gleisen. [point, way, closedway]
+(railway = platform | public_transport = platform) & area = yes [0x3e resolution 20]
+
+# "Schwarzer Fleck"  (für Qualitätssicherung).
+# Nur zusammen mit railway-Objekten in "lines" aktivieren.
+# railway = * {name '${name} - railway'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Freizeit / leisure:
+# ------------------------------------------------------------
+
+# Öffentliche Grünfläche (UK) (siehe auch "leisure=garden"). [point, closedway]
+leisure = common [0x17 resolution 20]
+
+# Tanzen: Eine Örtlichkeit, speziell zum regelmäßigen Tanzen. [point, closedway]
+# leisure = dance  (wird derzeit nicht unterstützt)
+
+# Ein Hundepark ist ein Gebiet, mit oder ohne Umzäunung, wo Hunde ohne Leine laufen dürfen. [point, closedway]
+leisure = dog_park [0x1e resolution 20]
+
+# Ein Garten ist ein Gelände, in dem Blumen und andere Pflanzen in dekorativer und strukturierter Form
+# wachsen oder zu Forschungszwecken gezogen werden, zum Beispiel ein Botanischer Garten. [point, closedway]
+#leisure = garden [0x17 resolution 20]
+leisure = garden & garden:type!=residential [0x17 resolution 20]
+
+# Golfanlage. [point, closedway]
+leisure = golf_course [0x18 resolution 20]
+
+# Angelstelle. [point, closedway]
+# leisure = fishing  (wird derzeit nicht unterstützt)
+
+# Eislaufplatz, Eislaufbahn (in Deutschland typischerweise ein Gebäude). [point, closedway]
+# leisure = ice_rink (wird derzeit nicht unterstützt)
+
+# Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
+# (New tagging includes land area also... therefore display of it needs to change: will be moved to 'lines')
+#leisure = marina [0x09 resolution 23]
+
+# Minigolf (siehe auch Golfanlage). [point, closedway]
+leisure = miniature_golf [0x18 resolution 20]
+
+# Park, Grünanlage. [point, closedway]
+leisure = park [0x1e resolution 20]
+
+# Spielfeld z.B. Fußball, Tennis, Handball, Hockey. [point, closedway]
+leisure = pitch [0x41 resolution 20]
+
+# Spielplatz für Kinder. [point, closedway]
+leisure = playground [0x0f resolution 20]
+
+# Gibt es nur in den Commenwealth-Staaten - hier eher identisch mit landuse=village_green.
+leisure = recreation_ground [0x1e resolution 20]
+
+# Sportzentrum, auch kommerzielle Freizeitsportanbieter, Fitnesscenter u.ä. [point, closedway]
+leisure = sports_centre [0x19 resolution 20]
+
+# Stadion: Eine größere Sportanlage mit permanenten, gestaffelten Sitzreihen. [point, closedway]
+leisure = stadium [0x42 resolution 20]
+
+# Laufbahn oder Rennbahn zum Beispiel für Wett-, Rad-, Hunde- oder Pferderennen. [point, way, closedway]
+leisure = track [0x37 resolution 20]
+
+# Schwimmbecken. [point, closedway]
+leisure = swimming_pool [0x3c resolution 20]
+
+# Wasserpark: Vergnügnungsstätte mit Wasserrutschen, Schwimmbecken und Umkleiden. [point, closedway]
+# leisure = water_park (wird derzeit nicht unterstützt)
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# leisure = * {name '${name} - leisure'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Nutzung/Einrichtung / amenity:
+# - es werden nur (wenige) "ausgewählte" Features berücksichtigt
+# - Kriterium: das Tag repräsentiert typischerweise eine "größere" Fläche
+# - die weistaus meisten Tags repräsentieren Points-Of-Interest
+# ------------------------------------------------------------
+
+# Hochschule (siehe auch amenity=university für Universität). [point, closedway]
+amenity = college [0x0a resolution 20]
+
+# Kleiner Friedhof (wenige Gräber z. B. direkt neben einer Kirche, Gräberfeld, Leihhof)
+# für größere Friedhöfe möglichst landuse=cemetery verwenden. [point, closedway]
+amenity = grave_yard [0x1a resolution 20 continue]
+
+# Krankenhaus. [point, closedway]
+amenity = hospital [0x0b resolution 20]
+
+# Kindergarten. [point, closedway]
+amenity = kindergarten [0x0a resolution 20]
+
+# Markt, Wochenmarkt. [way, closedway]
+# amenity = marketplace
+
+# Parkplatz. [point, closedway]
+amenity = parking [0x05 resolution 20]
+
+# Anbetungsort (Kirche, Synagoge, Moschee, …). [point, closedway]
+amenity = place_of_worship [0x36 resolution 20]
+
+# Schule. [point, closedway]
+amenity = school [0x0a resolution 20]
+
+# Universität (Campus oder Gebäude). [point, closedway]
+amenity = university [0x0a resolution 20]
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# amenity = * {name '${name} - amenity'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Tourismus / tourism:
+# - es werden nur (wenige) "ausgewählte" Features berücksichtigt
+# - Kriterium: das Tag repräsentiert typischerweise eine "größere" Fläche
+# - die weistaus meisten Tags repräsentieren Points-Of-Interest
+# ------------------------------------------------------------
+
+# Sehenswürdigkeit. [point, closedway]
+# Diese Feature wird als nicht sinnvoll angesehen.
+# tourism = attraction [0x11 resolution 20]
+
+# Campingplatz. [point, closedway]
+tourism = camp_site [0x10 resolution 20]
+
+# Stellplatz für Wohnmobile (Reisemobile). [point, closedway]
+tourism = caravan_site [0x10 resolution 20]
+
+# Museum. [point, closedway]
+# Basisfläche für Freilichtmuseen
+# tourism = museum (wird derzeit nicht unterstützt)
+
+# Rastplatz (Picknick). [point, closedway]
+tourism = picnic_site [0x14 resolution 20]
+
+# Freizeitpark, Themenpark. [point, closedway]
+# Diese Feature wird als nicht sinnvoll angesehen.
+# tourism = theme_park [0x11 resolution 20]
+
+# Zoologischer Garten (Zoo), Tierpark. [point, closedway]
+tourism = zoo [0x22 resolution 20]
+
+# "Schwarzer Fleck" (für Qualitätssicherung).
+# tourism = * {name '${name} - tourism'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Plätze / highway:
+# ------------------------------------------------------------
+
+# Raststätte, auch Autobahnraststätte.
+# highway = services (wird derzeit nicht unterstützt)
+
+# Weg, Platz oder Straße auf der nur Fußgänger erlaubt sind (z.B. Fußgängerzone). Typisch für Einkaufspassagen.
+highway = pedestrian & area = yes [0x33 resolution 20]
+# Wird in "lines" derzeit nicht unterstützt.
+# highway = footway & area = yes [0x33 resolution 20]
+
+# Verkehrsberuhigter Bereich: Eine Strasse in der auf spielende Kinder aufgepaßt werden muß,
+# Fußgänger bevorzugt behandelt werden und nur Schrittgeschwindigkeit erlaubt ist.
+highway = living_street & area = yes [0x30 resolution 20]
+
+# Breitere Straßen die als Flächen getaggt sind.
+highway = residential  & area = yes [0x31 resolution 20]
+highway = unclassified & area = yes [0x31 resolution 20]
+highway = service      & area = yes [0x31 resolution 20]
+
+# Bussteig: Wird wie Bahnsteig dargestellt.
+highway = platform & area = yes [0x3e resolution 20]
+
+# "Schwarzer Fleck" (für Qualitätssicherung)
+# highway = * {name '${name} - highway'} [0x53 resolution 20]
+
+
+# ------------------------------------------------------------
+# Zivilisations- / Kunstbauten / man_made:
+# - es werden nur (wenige) "ausgewählte" Features berücksichtigt
+# - Kriterium: das Tag repräsentiert typischerweise eine "größere" Fläche
+# - die weistaus meisten Tags repräsentieren Points-Of-Interest
+# ------------------------------------------------------------
+
+# Buhne: Bauwerk zum Küstenschutz oder Flussausbau. [way, closedway]
+# man_made = groyne & area = yes (wird derzeit nicht unterstützt)
+
+# Anleger / Pier. [way, closedway]
+man_made = pier [0x39 resolution 20]
+
+# Überdecktes Speicherbecken. [point, closedway]
+# man_made = reservoir_covered (wird derzeit nicht unterstützt)
+
+# Kläranlage. [point, closedway]
+# man_made = wastewater_plant & area = yes (wird derzeit nicht unterstützt)
+
+# Industriebauten (Anlage, Werk). [point, closedway]
+# man_made = works & area = yes (wird derzeit nicht unterstützt)
+
+# "Schwarzer Fleck" (für Qualitätssicherung)
+# man_made = * {name '${name} - man_made'} [0x53 resolution 20]
+
+
+# ------------------------------------------------
+# Technische Tags
+# - zur Erzeugung von Meer und Land
+# - entspricht dem Kartenhintergrund
+# ------------------------------------------------
+
+# Meer
+#natural = sea [0x32 resolution 17]
+# Starting at 16 for overviewmap
+natural = sea [0x32 resolution 11]
+
+# Land
+natural = land [0x3a resolution 17]
+
+
+# ------------------------------------------------
+# Sonstige Tags
+# ------------------------------------------------
+
+# Gehege (im Zoo). [point, closedway]
+zoo = enclosure {name "${name} ($__COMPOUND__)" | "$__COMPOUND__"} [0x41 resolution 20]
+
+
+# ------------------------------------------------
+# Needed Include Lines for making 
+# old mkgmap styles (pre r2906)
+# fully compatible with mkgmap r2906 and higher
+# ------------------------------------------------
+# add the following lines to your lines file
+<finalize>
+# deactivated include 'compat_polygons'; 
+name=* { name '${name}' }
+mkgmap:default_name=* { name '${mkgmap:default_name}' }
+mkgmap:display_name=* { addlabel '${mkgmap:display_name|subst:;=>/}' }
+
+mkgmap:label:1!=* & ref=* { addlabel '${ref|part:;:1}' }
+mkgmap:label:1!=* & int_ref=* { addlabel '${int_ref|part:;:1}' }
+mkgmap:label:1!=* & nat_ref=* { addlabel '${nat_ref|part:;:1}' }
+mkgmap:label:1!=* & reg_ref=* { addlabel '${reg_ref|part:;:1}' }
+
+ref=*     { addlabel '${ref|part:;:1}';     addlabel '${ref|part:;:2}';     addlabel '${ref|part:;:3}'     }
+int_ref=* { addlabel '${int_ref|part:;:1}'; addlabel '${int_ref|part:;:2}'; addlabel '${int_ref|part:;:3}' }
+nat_ref=* { addlabel '${nat_ref|part:;:1}'; addlabel '${nat_ref|part:;:2}'; addlabel '${nat_ref|part:;:3}' }
+reg_ref=* { addlabel '${reg_ref|part:;:1}'; addlabel '${reg_ref|part:;:2}'; addlabel '${reg_ref|part:;:3}' }
