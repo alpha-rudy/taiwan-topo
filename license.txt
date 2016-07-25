@@ -1,0 +1,4 @@
+Map: Rudy (free for private use)
+Style/TYP: Freizeitkarte
+Map data: OpenStreetMap contributors
+Contour data: U.S. Geological Survey or J. de Ferranti
