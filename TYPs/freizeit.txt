@@ -194,7 +194,7 @@ Type=0x056,9
 
 [_polygon]
 Type=0x02
-String1=0x00,Residential Area
+String1=0x00,住宅區
 String2=0x02,Wohngebiet
 String3=0x03,Woonwijk
 String4=0x04,Residential Area
@@ -208,7 +208,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x04
-String1=0x00,Military Area
+String1=0x00,軍事區
 String2=0x02,Militärgebiet
 String3=0x03,Militair gebied
 String4=0x04,Military Area
@@ -256,7 +256,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x05
-String1=0x00,Parking Place
+String1=0x00,停車場
 String2=0x02,Parkplatz
 String3=0x03,Parkeerplaats
 String4=0x04,Parking Place
@@ -270,7 +270,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x08
-String1=0x00,Retail Area
+String1=0x00,賣場
 String2=0x02,Handel
 String3=0x03,Winkelgebied
 String4=0x04,Retail Area
@@ -318,7 +318,7 @@ Xpm="32 32 2 1"
 
 ;[_polygon]
 ;Type=0x09
-;String1=0x00,Yachthafen
+;String1=0x00,碼頭
 ;String2=0x01,Yachthafen
 ;String3=0x02,Yachthafen
 ;String4=0x04,Marina
@@ -332,7 +332,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x0a
-String1=0x00,School
+String1=0x00,學校
 String2=0x02,Schule
 String3=0x03,School
 String4=0x04,School
@@ -380,7 +380,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x0b
-String1=0x00,Hospital
+String1=0x00,醫院
 String2=0x02,Krankenhaus
 String3=0x03,Ziekenhuis
 String4=0x04,Hospital
@@ -428,7 +428,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x0c
-String1=0x00,Industrial Area
+String1=0x00,工業區
 String2=0x02,Industrie
 String3=0x03,Industriegebied
 String4=0x04,Industrial Area
@@ -476,7 +476,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x0d
-String1=0x00,Nature Reserve
+String1=0x00,自然保護區
 String2=0x02,Naturreservat
 String3=0x03,Natuurgebied
 String4=0x04,Nature Reserve
@@ -524,7 +524,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x0f
-String1=0x00,Playground
+String1=0x00,操場
 String2=0x02,Spielplatz
 String3=0x03,Speelplaats
 String4=0x04,Playground
@@ -572,7 +572,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x10
-String1=0x00,Camping
+String1=0x00,露營區
 String2=0x02,Campingplatz
 String3=0x03,Camping
 String4=0x04,Camping
@@ -620,7 +620,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x11
-String1=0x00,Attraction
+String1=0x00,風景區
 String2=0x02,Attraktion
 String3=0x03,Attractie
 String4=0x04,Attraction
@@ -668,7 +668,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x12
-String1=0x00,Quarry
+String1=0x00,採礦場
 String2=0x02,Rohstoffabbau
 String3=0x03,Groeve
 String4=0x04,Quarry
@@ -716,7 +716,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x13
-String1=0x00,Building
+String1=0x00,建築物
 String2=0x02,Gebäude
 String3=0x03,Gebouw
 String4=0x04,Building
@@ -730,7 +730,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x14
-String1=0x00,Picnic Area
+String1=0x00,野餐區
 String2=0x02,Rastplatz (Picknick)
 String3=0x03,Picknickplaats
 String4=0x04,Picnic Area
@@ -778,7 +778,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x15
-String1=0x00,Deciduous Forest
+String1=0x00,落葉林
 String2=0x02,Laubwald
 String3=0x03,Loofbos
 String4=0x04,Deciduous Forest
@@ -826,7 +826,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x16
-String1=0x00,Cliff
+String1=0x00,懸崖
 String2=0x02,Fels
 String3=0x03,Klip
 String4=0x04,Cliff
@@ -840,7 +840,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x17
-String1=0x00,Meadow
+String1=0x00,草地
 String2=0x02,Wiese
 String3=0x03,Weide
 String4=0x04,Meadow
@@ -854,7 +854,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x18
-String1=0x00,Golf Course
+String1=0x00,高爾夫球場
 String2=0x02,Golfplatz
 String3=0x03,Golfterrein
 String4=0x04,Golf Course
@@ -868,7 +868,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x19
-String1=0x00,Sports Centre
+String1=0x00,運動中心
 String2=0x02,Sportanlage
 String3=0x03,Sportcentrum
 String4=0x04,Sports Centre
@@ -882,7 +882,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x1a
-String1=0x00,Cemetery
+String1=0x00,墓園
 String2=0x02,Friedhof
 String3=0x03,Begraafplaats
 String4=0x04,Cemetery
@@ -930,7 +930,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x1b
-String1=0x00,Vineyard
+String1=0x00,葡萄園
 String2=0x02,Weinberg
 String3=0x03,Wijngaard
 String4=0x04,Vineyard
@@ -978,7 +978,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x1c
-String1=0x00,Barracks
+String1=0x00,營區
 String2=0x02,Kasernen
 String3=0x03,Kazerne
 String4=0x04,Barracks
@@ -992,7 +992,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x1e
-String1=0x00,Park
+String1=0x00,公園
 String2=0x02,Park
 String3=0x03,Park
 String4=0x04,Park
@@ -1006,7 +1006,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x21
-String1=0x00,Danger Area
+String1=0x00,危險區域
 String2=0x02,Gefahrenzone
 String3=0x03,Gevaarlijk gebied
 String4=0x04,Danger Area
@@ -1054,7 +1054,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x22
-String1=0x00,Zoo
+String1=0x00,動物園
 String2=0x02,Zoo
 String3=0x03,Dierentuin
 String4=0x04,Zoo
@@ -1102,7 +1102,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x23
-String1=0x00,Allotments
+String1=0x00,菜園
 String2=0x02,Kleingärten
 String3=0x03,Volktuinen
 String4=0x04,Allotments
@@ -1150,7 +1150,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x24
-String1=0x00,Farmland
+String1=0x00,農田
 String2=0x02,Acker
 String3=0x03,Landbouwgrond
 String4=0x04,Farmland
@@ -1164,7 +1164,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x25
-String1=0x00,Power Station
+String1=0x00,電廠
 String2=0x02,Kraftwerk
 String3=0x03,Krachtcentrale
 String4=0x04,Power Station
@@ -1212,7 +1212,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x26
-String1=0x00,Administration
+String1=0x00,行政區
 String2=0x02,Verwaltung
 String3=0x03,Beheerkantoor
 String4=0x04,Administration
@@ -1260,7 +1260,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x27
-String1=0x00,Construction / Brownfield Site
+String1=0x00,建地/廢地
 String2=0x02,Baugebiet / Brache
 String3=0x03,Herbestemmingsgebied / Voormalig industriegebied
 String4=0x04,Construction / Brownfield Site
@@ -1308,7 +1308,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x2a
-String1=0x00,Landfill Site
+String1=0x00,垃圾掩埋場
 String2=0x02,Deponie
 String3=0x03,Vuilstort
 String4=0x04,Landfill Site
@@ -1356,7 +1356,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x2b
-String1=0x00,Heath
+String1=0x00,荒原
 String2=0x02,Heide
 String3=0x03,Heide
 String4=0x04,Heath
@@ -1370,7 +1370,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x2c
-String1=0x00,Airfield Apron
+String1=0x00,停機坪
 String2=0x02,Vorfeld
 String3=0x03,Vliegveld
 String4=0x04,Airfield Apron
@@ -1384,7 +1384,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x2d
-String1=0x00,Aerodrome/Airfield
+String1=0x00,機場
 String2=0x02,Flugplatz
 String3=0x03,Vliegveld
 String4=0x04,Aerodrome/Airfield
@@ -1398,7 +1398,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x2e
-String1=0x00,Beach
+String1=0x00,海灘
 String2=0x02,Strand
 String3=0x03,Strand
 String4=0x04,Beach
@@ -1446,7 +1446,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x2f
-String1=0x00,Mud
+String1=0x00,泥地
 String2=0x02,Schlick
 String3=0x03,Slik
 String4=0x04,Mud
@@ -1494,7 +1494,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x30
-String1=0x00,Living Street
+String1=0x00,住宅街道
 String2=0x02,Mischgebiet
 String3=0x03,Woonwijk
 String4=0x04,Living Street
@@ -1508,7 +1508,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x31
-String1=0x00,Square
+String1=0x00,廣場
 String2=0x02,Platz
 String3=0x03,Plein
 String4=0x04,Square
@@ -1522,7 +1522,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x32
-String1=0x00,Sea
+String1=0x00,海
 String2=0x02,Meer
 String3=0x03,Zee
 String4=0x04,Sea
@@ -1536,7 +1536,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x33
-String1=0x00,Pedestrian Area
+String1=0x00,徒步區
 String2=0x02,Fußgängerzone
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrian Area
@@ -1584,7 +1584,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x35
-String1=0x00,Supermarket
+String1=0x00,超市
 String2=0x02,Supermarkt
 String3=0x03,Supermarkt
 String4=0x04,Supermarket
@@ -1598,7 +1598,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x36
-String1=0x00,Place of Worship
+String1=0x00,寺廟
 String2=0x02,Andachtsstätte
 String3=0x03,Gebedshuis
 String4=0x04,Place of Worship
@@ -1612,7 +1612,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x37
-String1=0x00,Playing Field / Track
+String1=0x00,運動場
 String2=0x02,Spielfeld / Laufbahn
 String3=0x03,Sportveld -baan
 String4=0x04,Playing Field / Track
@@ -1626,7 +1626,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x38
-String1=0x00,Terminal
+String1=0x00,航站
 String2=0x02,Terminal
 String3=0x03,Terminal
 String4=0x04,Terminal
@@ -1640,7 +1640,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x39
-String1=0x00,Moorings
+String1=0x00,港灣
 String2=0x02,Anlegestelle
 String3=0x03,Aanlegplaats
 String4=0x04,Moorings
@@ -1654,7 +1654,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x3a
-String1=0x00,Land
+String1=0x00,陸地
 String2=0x02,Land
 String3=0x03,Land
 String4=0x04,Land
@@ -1668,7 +1668,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x3c
-String1=0x00,Water
+String1=0x00,水池
 String2=0x02,Wasser
 String3=0x03,Water
 String4=0x04,Water
@@ -1682,7 +1682,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x3d
-String1=0x00,Dam
+String1=0x00,壩
 String2=0x02,Staudamm / -mauer
 String3=0x03,Stuwdam
 String4=0x04,Dam
@@ -1696,7 +1696,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x3e
-String1=0x00,Railway Platform
+String1=0x00,月台
 String2=0x02,Bahnsteig
 String3=0x03,Spoorwegperron
 String4=0x04,Railway Platform
@@ -1710,7 +1710,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x3f
-String1=0x00,Water
+String1=0x00,水池
 String2=0x02,Wasser
 String3=0x03,Water
 String4=0x04,Water
@@ -1724,7 +1724,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x40
-String1=0x00,Fell
+String1=0x00,墜落
 String2=0x02,Alm / Bergwiese
 String3=0x03,Bergweide
 String4=0x04,Fell
@@ -1772,7 +1772,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x41
-String1=0x00,Playing Field
+String1=0x00,操場
 String2=0x02,Spielfeld
 String3=0x03,Speelveld
 String4=0x04,Playing Field
@@ -1786,7 +1786,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x42
-String1=0x00,Stadium
+String1=0x00,體育場
 String2=0x02,Stadion
 String3=0x03,Stadion
 String4=0x04,Stadium
@@ -1800,7 +1800,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x43
-String1=0x00,Scree
+String1=0x00,碎石地
 String2=0x02,Geröll
 String3=0x03,Steenslag
 String4=0x04,Scree
@@ -1848,7 +1848,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x44
-String1=0x00,Service Area
+String1=0x00,服務區
 String2=0x02,Raststätte
 String3=0x03,Verzorgingsplaats
 String4=0x04,Service Area
@@ -1862,7 +1862,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x46
-String1=0x00,Riverbank
+String1=0x00,河岸
 String2=0x02,Flussufer
 String3=0x03,Rivieroever
 String4=0x04,Riverbank
@@ -1876,7 +1876,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x47
-String1=0x00,Sand
+String1=0x00,沙地
 String2=0x02,Sand
 String3=0x03,Zand
 String4=0x04,Sand
@@ -1890,7 +1890,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x49
-String1=0x00,Farm
+String1=0x00,農場
 String2=0x02,Bauernhof
 String3=0x03,Boerderij
 String4=0x04,Farm
@@ -1904,7 +1904,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x4b
-String1=0x00,Background
+String1=0x00,背景
 String2=0x02,Hintergrund
 String3=0x03,Achtergrond
 String4=0x04,Background
@@ -1918,7 +1918,7 @@ Xpm="0 0 1 0"
 
 [_polygon]
 Type=0x4c
-String1=0x00,Dock
+String1=0x00,碼頭
 String2=0x02,Dock
 String3=0x03,Dok
 String4=0x04,Dock
@@ -1966,7 +1966,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x4d
-String1=0x00,Glacier
+String1=0x00,冰川
 String2=0x02,Gletscher
 String3=0x03,Gletscher
 String4=0x04,Glacier
@@ -2014,7 +2014,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x4e
-String1=0x00,Plantation
+String1=0x00,種植園
 String2=0x02,Plantage
 String3=0x03,Plantage
 String4=0x04,Plantation
@@ -2062,7 +2062,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x4f
-String1=0x00,Brush/Scrub
+String1=0x00,灌木區
 String2=0x02,Unterholz, Gebüsch
 String3=0x03,Struikgewas
 String4=0x04,Brush/Scrub
@@ -2110,7 +2110,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x50
-String1=0x00,Coniferous forest
+String1=0x00,針葉林
 String2=0x02,Nadelwald
 String3=0x03,Naaldbomen
 String4=0x04,Coniferous forest
@@ -2158,7 +2158,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x51
-String1=0x00,Marsh/Wetland
+String1=0x00,濕地
 String2=0x02,Feuchtgebiet
 String3=0x03,Moeras
 String4=0x04,Marsh/Wetland
@@ -2206,7 +2206,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x52
-String1=0x00,Mixed forest
+String1=0x00,雜木林
 String2=0x02,Mischwald
 String3=0x03,Gemengd bos
 String4=0x04,Mixed forest
@@ -2254,7 +2254,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x53
-String1=0x00,Black Hole
+String1=0x00,黑洞
 String2=0x02,Schwarzes Loch
 String3=0x03,Zwart gat
 String4=0x04,Black Hole
@@ -2301,7 +2301,7 @@ Xpm="32 32 2 1"
 
 [_polygon]
 Type=0x56
-String1=0x00,Mudflat
+String1=0x00,泥地
 String2=0x02,Watt
 String3=0x03,Slik / modderplaat
 String4=0x04,Mud Flat
@@ -2358,7 +2358,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Motorway]
+String1=0x00,[公路]
 String2=0x02,[Autobahn]
 String3=0x03,[Autosnelweg]
 String4=0x04,[Motorway]
@@ -2375,7 +2375,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Highway]
+String1=0x00,[快速道路]
 String2=0x02,[Bundesstraße]
 String3=0x03,[Snelweg]
 String4=0x04,[Highway]
@@ -2392,7 +2392,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Highway]
+String1=0x00,[快速道路]
 String2=0x02,[Bundesstraße]
 String3=0x03,[Snelweg]
 String4=0x04,[Highway]
@@ -2409,7 +2409,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Secondary Road]
+String1=0x00,[替代道路]
 String2=0x02,[Landesstraße]
 String3=0x03,[Provinciale weg]**
 String4=0x04,[Secondary Road]
@@ -2426,7 +2426,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Country Road]
+String1=0x00,[鄉間小路]
 String2=0x02,[Kreisstraße]
 String3=0x03,[Doorgaande weg]
 String4=0x04,[Country Road]
@@ -2443,7 +2443,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Residential street]
+String1=0x00,[巷弄]
 String2=0x02,[Wohngebietsstraße]
 String3=0x03,[Woonwijk]
 String4=0x04,[Residential street]
@@ -2460,7 +2460,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Unclassified Road]
+String1=0x00,[未分類路面]
 String2=0x02,[Nebenstraße]
 String3=0x03,[Unclassified Road]
 String4=0x04,[Unclassified Road]
@@ -2477,7 +2477,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Service Road]
+String1=0x00,[特殊用途路面]
 String2=0x02,[Erschließungsstraße]
 String3=0x03,[Ventweg]
 String4=0x04,[Service Road]
@@ -2494,7 +2494,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Living Street]
+String1=0x00,[社區巷弄]
 String2=0x02,[Spielstraße]
 String3=0x03,[Woonwijk]
 String4=0x04,[Living Street]
@@ -2511,7 +2511,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Cycleway]
+String1=0x00,[自行車道]
 String2=0x02,[Radweg]
 String3=0x03,[Fietspad]
 String4=0x04,[Cycleway]
@@ -2528,7 +2528,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Bridleway]
+String1=0x00,[林道]
 String2=0x02,[Radweg]
 String3=0x03,[Ruiterpad]
 String4=0x04,[Bridleway]
@@ -2547,7 +2547,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Roundabout]
+String1=0x00,[圓環]
 String2=0x02,[Kreisverkehr]
 String3=0x03,[Rotonde]
 String4=0x04,[Roundabout]
@@ -2564,7 +2564,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Pedestrian Only]
+String1=0x00,[行人徒步區]
 String2=0x02,[Fußgängerstraße]
 String3=0x03,[Voetpad]
 String4=0x04,[Pedestrian Only]
@@ -2581,7 +2581,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[One Way Street]
+String1=0x00,[單行道]
 String2=0x02,[Fahrrad-Gegen-Einbahn]
 String3=0x03,[Eenrichtingsverkeer]
 String4=0x04,[One Way Street]
@@ -2600,7 +2600,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[Cable Car]
+String1=0x00,[纜車]
 String2=0x02,[Seilbahn]
 String3=0x03,[Kabelbaan]
 String4=0x04,[Cable Car]
@@ -2619,7 +2619,7 @@ Xpm="32 2 2  1"
 "                                "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,[indexsearch]
+String1=0x00,[索引]
 String2=0x02,[Indexsuche]
 String3=0x03,[indexsearch]
 String4=0x04,[indexsearch]
@@ -3022,7 +3022,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #FEFEFE"
-String1=0x00,Living Street (restricted) narrow
+String1=0x00,私人窄弄
 String2=0x02,Spielstraße (Eingeschränkt)
 String3=0x03,Woonerf
 String4=0x04,Living Street (restricted) narrow
@@ -3041,7 +3041,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road 4/5
+String1=0x00,碎石路 4/5
 String2=0x02,Feld-/Waldweg 4/5
 String3=0x03,Onverharde weg 4/5
 String4=0x04,Track/Dirt Road 4/5
@@ -3057,7 +3057,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #99CCCC"
-String1=0x00,Ditch
+String1=0x00,溝渠
 String2=0x02,Wassergraben
 String3=0x03,Greppel
 String4=0x04,Ditch
@@ -3073,7 +3073,7 @@ CustomColor=No
 ;LineWidth=2
 ;Xpm="0 0 1 0"
 ;"1 c #99CCCC"
-;String1=0x00,Abwassergraben
+;String1=0x00,排水溝
 ;String2=0x01,Abwassergraben
 ;String3=0x02,Abwassergraben
 ;String4=0x04,Drainage Ditch/Drain
@@ -3089,7 +3089,7 @@ CustomColor=No
 ;LineWidth=2
 ;Xpm="0 0 1 0"
 ;"1 c #BABABA"
-;String1=0x00,Staudamm / -mauer
+;String1=0x00,霸堤
 ;String2=0x01,Staudamm / -mauer
 ;String3=0x02,Staudamm / -mauer
 ;String4=0x04,Dam
@@ -3107,7 +3107,7 @@ CustomColor=No
 ;Xpm="0 0 2 0"
 ;"1 c #FDD6A4"
 ;"2 c #D4B388"
-;String1=0x00,Landstraße breit
+;String1=0x00,替代道路
 ;String2=0x01,Landstraße breit
 ;String3=0x02,Landstraße
 ;String4=0x04,Secondary Road
@@ -3367,7 +3367,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road 4/5
+String1=0x00,碎石路 4/5
 String2=0x02,Feld-/Waldweg 4/5
 String3=0x03,Onverharde weg 4/5
 String4=0x04,Track/Dirt Road 4/5
@@ -3392,7 +3392,7 @@ Xpm="32 8 2  1"
 "                                "
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
-String1=0x00,Bridge
+String1=0x00,橋樑
 String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
@@ -3417,7 +3417,7 @@ Xpm="32 8 2  1"
 "                                "
 "    !!!!    !!!!    !!!!    !!!!"
 ;12345678901234567890123456789012
-String1=0x00,Tunnel
+String1=0x00,隧道
 String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
@@ -3440,7 +3440,7 @@ Xpm="32 6 2  1"
 "                                "
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
-String1=0x00,Bridge
+String1=0x00,橋樑
 String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
@@ -3463,7 +3463,7 @@ Xpm="32 6 2  1"
 "                                "
 "    !!!!    !!!!    !!!!    !!!!"
 ;12345678901234567890123456789012
-String1=0x00,Tunnel
+String1=0x00,隧道
 String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
@@ -3492,7 +3492,7 @@ Xpm="32 12 2  1"
 "                                "
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
-String1=0x00,Bridge
+String1=0x00,橋樑
 String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
@@ -3521,7 +3521,7 @@ Xpm="32 12 2  1"
 "                                "
 "    !!!!    !!!!    !!!!    !!!!"
 ;12345678901234567890123456789012
-String1=0x00,Tunnel
+String1=0x00,隧道
 String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
@@ -3548,7 +3548,7 @@ Xpm="32 10 2  1"
 "                                "
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
-String1=0x00,Bridge
+String1=0x00,橋樑
 String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
@@ -3575,7 +3575,7 @@ Xpm="32 10 2  1"
 "                                "
 "    !!!!    !!!!    !!!!    !!!!"
 ;12345678901234567890123456789012
-String1=0x00,Tunnel
+String1=0x00,隧道
 String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
@@ -3741,7 +3741,7 @@ UseOrientation=Y
 LineWidth=3
 Xpm="0 0 1 0"
 "1 c #BBBBCC"
-String1=0x00,Taxiway
+String1=0x00,跑道
 String2=0x02,Rollweg
 String3=0x03,Taxibaan
 String4=0x04,Taxiway
@@ -3759,7 +3759,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #DDDDDD"
 "2 c #BABABA"
-String1=0x00,Unknown Street
+String1=0x00,不明道路
 String2=0x02,Straße unbekannter Art
 String3=0x03,Onbekende straat
 String4=0x04,Unknown Street
@@ -3777,7 +3777,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Unknown Street (restricted)
+String1=0x00,不明道路 (限)
 String2=0x02,Straße unbekannter Art (Eingeschränkt)
 String3=0x03,Onbekende straat (afgesloten)
 String4=0x04,Unknown Street (restricted)
@@ -3796,7 +3796,7 @@ Xpm="32 2 2  1"
 "  !!!!    !!!!    !!!!    !!!!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,bridle path
+String1=0x00,家用道路
 String2=0x02,Reitweg
 String3=0x03,Ruiterpad
 String4=0x04,bridle path
@@ -3815,7 +3815,7 @@ Xpm="32 2 2  1"
 "!!!!####!!!!####!!!!####!!!!####"
 "!!!!####!!!!####!!!!####!!!!####"
 ;12345678901234567890123456789012
-String1=0x00,Road (under construction)
+String1=0x00,路面 (未完成)
 String2=0x02,Straßenbaustelle
 String3=0x03,Wegaanleg
 String4=0x04,Road (under construction)
@@ -3831,7 +3831,7 @@ UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
 "1 c #FF656A"
-String1=0x00,Footpath
+String1=0x00,步道
 String2=0x02,Fußweg
 String3=0x03,Voetpad
 String4=0x04,Footpath
@@ -3850,7 +3850,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Path
+String1=0x00,道路
 String2=0x02,Schmaler Weg / Pfad
 String3=0x03,Pad
 String4=0x04,Path
@@ -3866,7 +3866,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #BD9500"
-String1=0x00,Track/Dirt Road 1
+String1=0x00,碎石路 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
 String4=0x04,Track/Dirt Road 1
@@ -3885,7 +3885,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road n.a/2/3
+String1=0x00,碎石路 2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde bosweg n.a/2/3
 String4=0x04,Track/Dirt Road n.a/2/3
@@ -3901,7 +3901,7 @@ UseOrientation=Y
 LineWidth=3
 Xpm="0 0 1 0"
 "1 c #BD9500"
-String1=0x00,Track/Dirt Road 1
+String1=0x00,碎石路 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
 String4=0x04,Track/Dirt Road 1
@@ -3917,7 +3917,7 @@ UseOrientation=N
 LineWidth=1
 Xpm="0 0 1 0"
 "1 c #809BC0"
-String1=0x00,freeway
+String1=0x00,高速道路
 String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
@@ -3933,7 +3933,7 @@ UseOrientation=N
 LineWidth=1
 Xpm="0 0 1 0"
 "1 c #EB989A"
-String1=0x00,Highway
+String1=0x00,快速道路
 String2=0x02,Bundesstraße
 String3=0x03,Autoweg smal
 String4=0x04,Highway
@@ -3952,7 +3952,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Path
+String1=0x00,路徑
 String2=0x02,Schmaler Weg / Pfad
 String3=0x03,Pad
 String4=0x04,Path
@@ -3970,7 +3970,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FDD6A4"
 "2 c #D4B388"
-String1=0x00,Secondary Road
+String1=0x00,替代道路
 String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,Secondary Road
@@ -3988,7 +3988,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEB3"
 "2 c #BBBBBB"
-String1=0x00,Country Road
+String1=0x00,鄉間小道
 String2=0x02,Kreisstraße
 String3=0x03,Landweg
 String4=0x04,Country Road
@@ -4006,7 +4006,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,dirt road (restricted)
+String1=0x00,泥巴路 (限)
 String2=0x02,Feldweg (Eingeschränkt)
 String3=0x03,Zandweg (afgesloten)
 String4=0x04,dirt road (restricted)
@@ -4022,7 +4022,7 @@ UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
 "1 c #0080FF"
-String1=0x00,Cycle-/Footway narrow
+String1=0x00,自行車/行人專用道
 String2=0x02,Rad-/Fußweg
 String3=0x03,Fietspad/Voetpad nauw
 String4=0x04,Cycle-/Footway narrow
@@ -4041,7 +4041,7 @@ Xpm="32 2 2  1"
 "  !!  !!  !!  !!  !!  !!  !!  !!"
 "  !!  !!  !!  !!  !!  !!  !!  !!"
 ;12345678901234567890123456789012
-String1=0x00,Path (restricted)
+String1=0x00,路徑 (限)
 String2=0x02,Schmaler Weg/Pfad (Eingeschränkt)
 String3=0x03,Pad (afgesloten)
 String4=0x04,Path (restricted)
@@ -4060,7 +4060,7 @@ Xpm="32 2 2  1"
 "  !!  !!  !!  !!  !!  !!  !!  !!"
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Path (restricted)
+String1=0x00,路 (限)
 String2=0x02,Schmaler Weg/Pfad (Eingeschränkt)
 String3=0x03,Pad (afgesloten)
 String4=0x04,Path (restricted)
@@ -4076,7 +4076,7 @@ UseOrientation=Y
 LineWidth=3
 Xpm="0 0 1 0"
 "1 c #BD65D5"
-String1=0x00,Track/Dirt Road 1 (restricted)
+String1=0x00,碎石路 1 (限)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
 String4=0x04,Track/Dirt Road 1 (restricted)
@@ -4092,7 +4092,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #BD65D5"
-String1=0x00,Track/Dirt Road 1 (restricted)
+String1=0x00,碎石路 1 (限)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
 String4=0x04,Track/Dirt Road 1 (restricted)
@@ -4111,7 +4111,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
+String1=0x00,碎石路 2/3 (限)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
 String4=0x04,Track/Dirt Road n.a/2/3 (restricted)
@@ -4130,7 +4130,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
+String1=0x00,碎石路 2/3 (限)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
 String4=0x04,Track/Dirt Road n.a/2/3 (restricted)
@@ -4149,7 +4149,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road 4/5 (restricted)
+String1=0x00,碎石路 4/5 (限)
 String2=0x02,Feld-/Waldweg 4/5 (Eingeschränkt)
 String3=0x03,Onverharde weg 4/5 (afgesloten)
 String4=0x04,Track/Dirt Road 4/5 (restricted)
@@ -4168,7 +4168,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road n.a/2/3
+String1=0x00,碎石路 2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde weg n.a/2/3
 String4=0x04,Track/Dirt Road n.a/2/3
@@ -4184,7 +4184,7 @@ UseOrientation=Y
 LineWidth=5
 Xpm="0 0 1 0"
 "1 c #BBBBCC"
-String1=0x00,Runway
+String1=0x00,跑道
 String2=0x02,Start- / Landebahn
 String3=0x03,Start- en landingsbaan
 String4=0x04,Runway
@@ -4200,7 +4200,7 @@ UseOrientation=Y
 LineWidth=3
 Xpm="0 0 1 0"
 "1 c #BBBBCC"
-String1=0x00,Runway
+String1=0x00,跑道
 String2=0x02,Start- / Landebahn
 String3=0x03,Start- en landingsbaan
 String4=0x04,Runway
@@ -4216,7 +4216,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #BBBBCC"
-String1=0x00,Taxiway
+String1=0x00,跑道
 String2=0x02,Rollweg
 String3=0x03,Taxibaan
 String4=0x04,Taxiway
@@ -4232,7 +4232,7 @@ UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
 "1 c #BBBBCC"
-String1=0x00,Taxiway
+String1=0x00,跑道
 String2=0x02,Rollweg
 String3=0x03,Taxibaan
 String4=0x04,Taxiway
@@ -4250,7 +4250,7 @@ BorderWidth=0
 Xpm="0 0 2 0"
 "1 c #CC99FF"
 "2 c #FFFFFF"
-String1=0x00,Platform
+String1=0x00,月台
 String2=0x02,Bahnsteig
 String3=0x03,Perron
 String4=0x04,Platform
@@ -4269,7 +4269,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Track/Dirt Road 4/5 (restricted)
+String1=0x00,碎石路 4/5 (限)
 String2=0x02,Feld-/Waldweg 4/5 (Eingeschränkt)
 String3=0x03,Onverharde weg 4/5 (afgesloten)
 String4=0x04,Track/Dirt Road 4/5 (restricted)
@@ -4285,7 +4285,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #BABABA"
-String1=0x00,Groyne/Breakwater
+String1=0x00,防波堤
 String2=0x02,Buhne
 String3=0x03,Krib/Golfbreker
 String4=0x04,Groyne/Breakwater
@@ -4301,7 +4301,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #F1EEE8"
-String1=0x00,Pier
+String1=0x00,碼頭
 String2=0x02,Anleger
 String3=0x03,Pier
 String4=0x04,Pier
@@ -4321,7 +4321,7 @@ Xpm="0 0 4 0"
 "2 c #FFFFFF"
 "3 c #000000"
 "4 c #FFFFFF"
-String1=0x00,Test line
+String1=0x00,測試用
 String2=0x02,Testlinie
 String3=0x03,Testlijn
 String4=0x04,Test line
@@ -4339,7 +4339,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #BABABA"
 "2 c #FEFEFE"
-String1=0x00,Living Street
+String1=0x00,社區巷弄
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
 String4=0x04,Living Street
@@ -4357,7 +4357,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #BABABA"
 "2 c #FEFEFE"
-String1=0x00,Living Street
+String1=0x00,社區巷弄
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
 String4=0x04,Living Street
@@ -4375,7 +4375,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #FEFEFE"
-String1=0x00,Living Street (restricted)
+String1=0x00,社區巷弄 (限)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
 String4=0x04,Living Street (restricted)
@@ -4393,7 +4393,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #FEFEFE"
-String1=0x00,Living Street (restricted)
+String1=0x00,社區巷弄 (限)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
 String4=0x04,Living Street (restricted)
@@ -4412,7 +4412,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cycleway
+String1=0x00,自行車道
 String2=0x02,Radweg
 String3=0x03,Fietspad
 String4=0x04,Cycleway
@@ -4430,7 +4430,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Pedestrianised Street
+String1=0x00,行人徒步專用道
 String2=0x02,Fußgängerstraße mittel
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrianised Street
@@ -4448,7 +4448,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Pedestrianised street
+String1=0x00,行人徒步專用道
 String2=0x02,Fußgängerstraße
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrianised street
@@ -4466,7 +4466,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #809BC0"
 "2 c #617188"
-String1=0x00,freeway
+String1=0x00,高速公路
 String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
@@ -4484,7 +4484,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #809BC0"
 "2 c #617188"
-String1=0x00,freeway
+String1=0x00,高速公路
 String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
@@ -4502,7 +4502,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway (like freeway)
+String1=0x00,快速道路 (或高速公路)
 String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Autosnelweg
 String4=0x04,Highway (like freeway)
@@ -4520,7 +4520,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway (like freeway)
+String1=0x00,快速道路 (或高速公路)
 String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Autosnelweg
 String4=0x04,Highway (like freeway)
@@ -4538,7 +4538,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway
+String1=0x00,快速道路
 String2=0x02,Bundesstraße
 String3=0x03,Autoweg
 String4=0x04,Highway
@@ -4556,7 +4556,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway
+String1=0x00,快速道路
 String2=0x02,Bundesstraße
 String3=0x03,Autoweg
 String4=0x04,Highway
@@ -4574,7 +4574,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FDD6A4"
 "2 c #D4B388"
-String1=0x00,secondary road
+String1=0x00,替代道路
 String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,secondary road
@@ -4592,7 +4592,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FDD6A4"
 "2 c #D4B388"
-String1=0x00,secondary road
+String1=0x00,替代道路
 String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,secondary road
@@ -4610,7 +4610,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEB3"
 "2 c #BBBBBB"
-String1=0x00,Country Road
+String1=0x00,鄉間小路
 String2=0x02,Kreisstraße
 String3=0x03,Provinciale weg
 String4=0x04,Country Road
@@ -4628,7 +4628,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEB3"
 "2 c #BBBBBB"
-String1=0x00,Country Road
+String1=0x00,鄉間小路
 String2=0x02,Kreisstraße
 String3=0x03,Provinciale weg
 String4=0x04,Country Road
@@ -4646,7 +4646,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Residential Road
+String1=0x00,社區巷弄
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
 String4=0x04,Residential Road
@@ -4664,7 +4664,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Residential Road
+String1=0x00,社區巷弄
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
 String4=0x04,Residential Road
@@ -4682,7 +4682,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Residential Road (restricted)
+String1=0x00,社區巷弄 (限)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
 String4=0x04,Residential Road (restricted)
@@ -4700,7 +4700,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Residential Road (restricted)
+String1=0x00,社區巷弄 (限)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
 String4=0x04,Residential Road (restricted)
@@ -4718,7 +4718,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Unclassified Road
+String1=0x00,未分類道路
 String2=0x02,Nebenstraße
 String3=0x03,Straat
 String4=0x04,Unclassified Road
@@ -4736,7 +4736,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Unclassified Road
+String1=0x00,未分類道路
 String2=0x02,Nebenstraße
 String3=0x03,Straat
 String4=0x04,Unclassified Road
@@ -4754,7 +4754,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Unclassified Road (restricted)
+String1=0x00,未分類道路 (限)
 String2=0x02,Nebenstraße (Eingeschränkt)
 String3=0x03,Straat (afgesloten)
 String4=0x04,Unclassified Road (restricted)
@@ -4772,7 +4772,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Unclassified Road (restricted)
+String1=0x00,未分類道路 (限)
 String2=0x02,Nebenstraße (Eingeschränkt)
 String3=0x03,Straat (afgesloten)
 String4=0x04,Unclassified Road (restricted)
@@ -4790,7 +4790,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Service Road
+String1=0x00,特殊用途道路
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
 String4=0x04,Service Road
@@ -4808,7 +4808,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Service Road (restricted)
+String1=0x00,特殊用途道路 (限)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
 String4=0x04,Service Road (restricted)
@@ -4826,7 +4826,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Service Road (restricted)
+String1=0x00,特殊用途道路 (限)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
 String4=0x04,Service Road (restricted)
@@ -4844,7 +4844,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F6D4D4"
 "2 c #BABABA"
-String1=0x00,Service Road (restricted)
+String1=0x00,特殊用途道路 (限)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
 String4=0x04,Service Road (restricted)
@@ -4869,7 +4869,7 @@ Xpm="32 8 2  1"
 "  !       !       !       !     "
 "  !       !       !       !     "
 ;12345678901234567890123456789012
-String1=0x00,Dam, not passable
+String1=0x00,壩堤, 無法通行
 String2=0x02,Damm, nicht befahrbar
 String3=0x03,Dam, afgesloten voor verkeer
 String4=0x04,Dam, not passable
@@ -4902,7 +4902,7 @@ Xpm="32 16 2  1"
 "  !   !   !   !   !   !   !   ! "
 "  !   !   !   !   !   !   !   ! "
 ;12345678901234567890123456789012
-String1=0x00,Dam
+String1=0x00,壩堤
 String2=0x02,Damm
 String3=0x03,Dam
 String4=0x04,Dam
@@ -4931,7 +4931,7 @@ Xpm="32 14 2  1"
 "  !   !   !   !   !   !   !   ! "
 "  !   !   !   !   !   !   !   ! "
 ;12345678901234567890123456789012
-String1=0x00,Dam
+String1=0x00,壩堤
 String2=0x02,Damm
 String3=0x03,Dam
 String4=0x04,Dam
@@ -4958,7 +4958,7 @@ Xpm="32 12 2  1"
 "  !   !   !   !   !   !   !   ! "
 "  !   !   !   !   !   !   !   ! "
 ;12345678901234567890123456789012
-String1=0x00,Dam
+String1=0x00,壩堤
 String2=0x02,Damm
 String3=0x03,Dam
 String4=0x04,Dam
@@ -4983,7 +4983,7 @@ Xpm="32 10 2  1"
 "  !   !   !   !   !   !   !   ! "
 "  !   !   !   !   !   !   !   ! "
 ;12345678901234567890123456789012
-String1=0x00,Dam
+String1=0x00,壩堤
 String2=0x02,Damm
 String3=0x03,Dam
 String4=0x04,Dam
@@ -4997,7 +4997,7 @@ UseOrientation=N
 LineWidth=1
 Xpm="0 0 1 0"
 "1 c #BABABA"
-String1=0x00,Fence
+String1=0x00,圍籬
 String2=0x02,Zaun
 String3=0x03,Hek
 String4=0x04,Fence
@@ -5016,7 +5016,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Alpine Trail T2/T3
+String1=0x00,山徑 T2/T3
 String2=0x02,Bergweg T2/T3
 String3=0x03,Bergpad T2/T3
 String4=0x04,Alpine Trail T2/T3
@@ -5035,7 +5035,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Alpine Trail T4/T5/T6
+String1=0x00,山徑 T4/T5/T6
 String2=0x02,Bergweg T4/T5/T6
 String3=0x03,Bergpad T4/T5/T6
 String4=0x04,Alpine Trail T4/T5/T6
@@ -5055,7 +5055,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Alpine Trail T1/T2
+String1=0x00,山徑 T1/T2
 String2=0x02,Bergweg T1/T2 breit
 String3=0x03,Bergpad T1/T2
 String4=0x04,Alpine Trail T1/T2
@@ -5074,7 +5074,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Alpine Trail T2/T3
+String1=0x00,山徑 T2/T3
 String2=0x02,Bergweg T2/T3
 String3=0x03,Bergpad T2/T3
 String4=0x04,Alpine Trail T2/T3
@@ -5093,7 +5093,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Alpine Trail T4/T5/T6
+String1=0x00,山徑 T4/T5/T6
 String2=0x02,Bergweg T4/T5/T6
 String3=0x03,Bergpad T4/T5/T6
 String4=0x04,Alpine Trail T4/T5/T6
@@ -5113,7 +5113,7 @@ Xpm="32 2 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Alpine Trail T1/T2
+String1=0x00,山徑 T1/T2
 String2=0x02,Bergweg T1/T2
 String3=0x03,Bergpad T1/T2
 String4=0x04,Alpine Trail T1/T2
@@ -5132,7 +5132,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Ferry
+String1=0x00,渡船
 String2=0x02,Fähre
 String3=0x03,Veerdienst
 String4=0x04,Ferry
@@ -5153,7 +5153,7 @@ Xpm="32 4 2  1"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
-String1=0x00,Steps
+String1=0x00,階梯
 String2=0x02,Treppe
 String3=0x03,Trap
 String4=0x04,Steps
@@ -5169,7 +5169,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #FF656A"
-String1=0x00,Foot path
+String1=0x00,步道
 String2=0x02,Fußweg
 String3=0x03,Voetpad
 String4=0x04,Foot path
@@ -5187,7 +5187,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #809BC0"
 "2 c #617188"
-String1=0x00,freeway
+String1=0x00,高速公路
 String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
@@ -5205,7 +5205,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway (like freeway)
+String1=0x00,快速道路 (或高速公路)
 String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Autosnelweg
 String4=0x04,Highway (like freeway)
@@ -5223,7 +5223,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway
+String1=0x00,快速道路
 String2=0x02,Bundesstraße
 String3=0x03,Autosnelweg
 String4=0x04,Highway
@@ -5241,7 +5241,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FDD6A4"
 "2 c #D4B388"
-String1=0x00,Secondary Road
+String1=0x00,替代道路
 String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,Secondary Road
@@ -5259,7 +5259,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,side street
+String1=0x00,路邊小道
 String2=0x02,Wohngebietsstraße
 String3=0x03,Straat
 String4=0x04,side street
@@ -5277,7 +5277,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Unclassified Road
+String1=0x00,未分類道路
 String2=0x02,Nebenstraße
 String3=0x03,Straat
 String4=0x04,Unclassified Road
@@ -5295,7 +5295,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Service Road
+String1=0x00,特殊用途道路
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
 String4=0x04,Service Road
@@ -5313,7 +5313,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #BABABA"
 "2 c #FEFEFE"
-String1=0x00,Living Street
+String1=0x00,社區巷弄
 String2=0x02,Spielstraße
 String3=0x03,Woonerf
 String4=0x04,Living Street
@@ -5331,7 +5331,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEFEFE"
 "2 c #BABABA"
-String1=0x00,Pedestrianised Street
+String1=0x00,行人徒步專用道
 String2=0x02,Fußgängerstraße
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrianised Street
@@ -5347,7 +5347,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #0080FF"
-String1=0x00,Cycle-/Footway
+String1=0x00,自行車/行人專用道
 String2=0x02,Rad-/Fußweg
 String3=0x03,Fietspad/Voetpad nauw
 String4=0x04,Cycle-/Footway
@@ -5366,7 +5366,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
-String1=0x00,Cyclepath
+String1=0x00,自行車道
 String2=0x02,Radweg
 String3=0x03,Fietspad
 String4=0x04,Cyclepath
@@ -5387,7 +5387,7 @@ Xpm="32 4 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "      !!              !!        "
 ;12345678901234567890123456789012
-String1=0x00,Skilift
+String1=0x00,滑雪纜車
 String2=0x02,Skilift
 String3=0x03,Skilift
 String4=0x04,Skilift
@@ -5408,7 +5408,7 @@ Xpm="32 4 2  1"
 "       !!!             !!!      "
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cable Car
+String1=0x00,纜車
 String2=0x02,Kabinenseilbahn
 String3=0x03,Kabelbaan
 String4=0x04,Cable Car
@@ -5424,7 +5424,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #00CA00"
-String1=0x00,Novice Piste
+String1=0x00,新手滑雪道
 String2=0x02,Skipiste für Anfänger
 String3=0x03,Skipiste
 String4=0x04,Novice Piste
@@ -5440,7 +5440,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #3930D5"
-String1=0x00,Easy Piste
+String1=0x00,初級滑雪道
 String2=0x02,Einfache Skipiste
 String3=0x03,Skipiste
 String4=0x04,Easy Piste
@@ -5456,7 +5456,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #FF0000"
-String1=0x00,Intermediate Piste
+String1=0x00,中級滑雪道
 String2=0x02,Skipiste mit mittlererem Schwierigkeitsgrad
 String3=0x03,Skipiste
 String4=0x04,Intermediate Piste
@@ -5472,7 +5472,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #202020"
-String1=0x00,Advanced Piste
+String1=0x00,進階滑雪道
 String2=0x02,Skipiste für Fortgeschrittene
 String3=0x03,Skipiste
 String4=0x04,Advanced Piste
@@ -5488,7 +5488,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #FF9500"
-String1=0x00,Expert Piste
+String1=0x00,專家級滑雪道
 String2=0x02,Skipiste für Experten
 String3=0x03,Skipiste
 String4=0x04,Expert Piste
@@ -5504,7 +5504,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #FFFF00"
-String1=0x00,Freeride
+String1=0x00,越野摩托車道
 String2=0x02,Freeride
 String3=0x03,Vrije rit
 String4=0x04,Freeride
@@ -5523,7 +5523,7 @@ Xpm="32 2 2  1"
 "#!!!#!!!#!!!#!!!#!!!#!!!#!!!#!!!"
 "!!!#!!!#!!!#!!!#!!!#!!!#!!!#!!!#"
 ;12345678901234567890123456789012
-String1=0x00,Extreme Piste
+String1=0x00,極限滑雪道
 String2=0x02,Extrem schwere Skipiste
 String3=0x03,Skipiste
 String4=0x04,Extreme Piste
@@ -5544,7 +5544,7 @@ Xpm="32 4 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cross-country Very Easy
+String1=0x00,入門越野
 String2=0x02,Langlauf sehr leicht
 String3=0x03,Launglaufloipe
 String4=0x04,Cross-country Very Easy
@@ -5563,7 +5563,7 @@ Xpm="32 4 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cross-country Easy
+String1=0x00,簡單越野
 String2=0x02,Langlauf leicht
 String3=0x03,Launglaufloipe
 String4=0x04,Cross-country Easy
@@ -5582,7 +5582,7 @@ Xpm="32 4 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cross-country Medium
+String1=0x00,中階越野
 String2=0x02,Langlauf weniger schwer
 String3=0x03,Launglaufloipe
 String4=0x04,Cross-country Medium
@@ -5601,7 +5601,7 @@ Xpm="32 4 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cross-country Difficult
+String1=0x00,高階越野
 String2=0x02,Langlauf schwer
 String3=0x03,Launglaufloipe
 String4=0x04,Cross-country Difficult
@@ -5620,7 +5620,7 @@ Xpm="32 4 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
 ;12345678901234567890123456789012
-String1=0x00,Cross-country very difficult
+String1=0x00,進階越野
 String2=0x02,Langlauf sehr schwer
 String3=0x03,Launglaufloipe
 String4=0x04,Cross-country very difficult
@@ -5637,7 +5637,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL L
+String1=0x00,滑雪道 SAL L
 String2=0x02,Skitour SAC L
 String3=0x03,Skitour SAL L
 String4=0x04,Skitour SAL L
@@ -5654,7 +5654,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL WS
+String1=0x00,滑雪道 SAL WS
 String2=0x02,Skitour SAC WS
 String3=0x03,Skitour SAL WS
 String4=0x04,Skitour SAL WS
@@ -5671,7 +5671,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL ZW
+String1=0x00,滑雪道 SAL ZW
 String2=0x02,Skitour SAC ZW
 String3=0x03,Skitour SAL ZW
 String4=0x04,Skitour SAL ZW
@@ -5688,7 +5688,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL S
+String1=0x00,滑雪道 SAL S
 String2=0x02,Skitour SAC S
 String3=0x03,Skitour SAL S
 String4=0x04,Skitour SAL S
@@ -5705,7 +5705,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL SS
+String1=0x00,滑雪道 SAL SS
 String2=0x02,Skitour SAC SS
 String3=0x03,Skitour SAL SS
 String4=0x04,Skitour SAL SS
@@ -5722,7 +5722,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL AS
+String1=0x00,滑雪道 SAL AS
 String2=0x02,Skitour SAC AS
 String3=0x03,Skitour SAL AS
 String4=0x04,Skitour SAL AS
@@ -5739,7 +5739,7 @@ Xpm="32 2 2  1"
 "!!!!!###!!!!!###!!!!!###!!!!!###"
 "!!!!!###!!!!!###!!!!!###!!!!!###"
 ;12345678901234567890123456789012
-String1=0x00,Skitour SAL EX
+String1=0x00,滑雪道 SAL EX
 String2=0x02,Skitour SAC EX
 String3=0x03,Skitour SAL EX
 String4=0x04,Skitour SAL EX
@@ -5756,7 +5756,7 @@ Xpm="32 2 2  1"
 "       !               !        "
 "!!!!!!  ! !!!!!!!!!!!!  ! !!!!!!"
 ;12345678901234567890123456789012
-String1=0x00,Toboggan Run
+String1=0x00,雪橇
 String2=0x02,Rodelbahns
 String3=0x03,Rodelbaan
 String4=0x04,Toboggan Run
@@ -5773,7 +5773,7 @@ Xpm="32 2 2  1"
 "    !!!!    !!!!    !!!!    !!!!"
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
-String1=0x00,Funpark
+String1=0x00,遊樂區
 String2=0x02,Funpark
 String3=0x03,Pretpark
 String4=0x04,Funpark
@@ -5789,7 +5789,7 @@ Xpm="32 1 2  1"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Stream (Tunnel)
+String1=0x00,小溪 (隧道)
 String2=0x02,Fluss (Tunnel)
 String3=0x03,Waterloop (tunnel)
 String4=0x04,Stream (Tunnel)
@@ -5808,7 +5808,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Canal (Tunnel)
+String1=0x00,通道 (隧道)
 String2=0x02,Kanal (Tunnel)
 String3=0x03,Kanaal (Tunnel)
 String4=0x04,Canal (Tunnel)
@@ -5828,7 +5828,7 @@ Xpm="32 3 2  1"
 "                                "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,River (Tunnel)
+String1=0x00,河流 (隧道)
 String2=0x02,Fluss (Tunnel)
 String3=0x03,Rivier (Tunnel)
 String4=0x04,River (Tunnel)
@@ -5849,7 +5849,7 @@ Xpm="32 4 2  1"
 "                                "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Canal (Tunnel)
+String1=0x00,通道 (隧道)
 String2=0x02,Kanal (Tunnel)
 String3=0x03,Kanaal (Tunnel)
 String4=0x04,Canal (Tunnel)
@@ -5871,7 +5871,7 @@ Xpm="32 5 2  1"
 "                                "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,River (Tunnel)
+String1=0x00,河流 (隧道)
 String2=0x02,Fluss (Tunnel)
 String3=0x03,Rivier (Tunnel)
 String4=0x04,River (Tunnel)
@@ -5894,7 +5894,7 @@ Xpm="32 6 2  1"
 "                                "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Canal (Tunnel)
+String1=0x00,通道 (隧道)
 String2=0x02,Kanal (Tunnel)
 String3=0x03,Kanaal (Tunnel)
 String4=0x04,Canal (Tunnel)
@@ -5913,7 +5913,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Ditch (Tunnel)
+String1=0x00,排水溝 (隧道)
 String2=0x02,Wassergraben (Tunnel)
 String3=0x03,Sloot (Tunnel)
 String4=0x04,Ditch (Tunnel)
@@ -5932,7 +5932,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Drainage Ditch/Drain (Tunnel)
+String1=0x00,排水溝 (隧道)
 String2=0x02,Entwässerungsgraben (Tunnel)
 String3=0x03,Greppel (Tunnel)
 String4=0x04,Drainage Ditch/Drain (Tunnel)
@@ -5951,7 +5951,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Stream (Tunnel)
+String1=0x00,小溪 (隧道)
 String2=0x02,Bach (Tunnel)
 String3=0x03,Beek (Tunnel)
 String4=0x04,Stream (Tunnel)
@@ -5970,7 +5970,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Marina
+String1=0x00,碼頭
 String2=0x02,Yachthafen
 String3=0x03,Jachthaven
 String4=0x04,Marina
@@ -5988,7 +5988,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway
+String1=0x00,快速道路
 String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Provinciale weg
 String4=0x04,Highway
@@ -6006,7 +6006,7 @@ BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #EB989A"
 "2 c #C77E80"
-String1=0x00,Highway
+String1=0x00,快速道路
 String2=0x02,Bundesstraße
 String3=0x03,Autoweg
 String4=0x04,Highway
@@ -6025,7 +6025,7 @@ Xpm="32 2 2  1"
 "  !!      !!      !!      !!    "
 "  !!      !!      !!      !!    "
 ;12345678901234567890123456789012
-String1=0x00,Decommisioned Railway
+String1=0x00,廢棄鐵道
 String2=0x02,Schienen (Rückbau)
 String3=0x03,Voormalige spoorbaan
 String4=0x04,Decommisioned Railway
@@ -6044,7 +6044,7 @@ Xpm="32 2 2  1"
 "!!!!!!!!!#######!!!!!!!!!#######"
 "!!!!!!!!!#######!!!!!!!!!#######"
 ;12345678901234567890123456789012
-String1=0x00,Railway
+String1=0x00,鐵路
 String2=0x02,Bahn
 String3=0x03,Spoorbaan
 String4=0x04,Railway
@@ -6060,7 +6060,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #99CCCC"
-String1=0x00,Drainage Ditch/Drain
+String1=0x00,排水溝
 String2=0x02,Entwässerungsgraben
 String3=0x03,Sloot
 String4=0x04,Drainage Ditch/Drain
@@ -6076,7 +6076,7 @@ UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
 "1 c #BABABA"
-String1=0x00,Dam
+String1=0x00,壩堤
 String2=0x02,Staudamm / -mauer
 String3=0x03,Stuwdam
 String4=0x04,Dam
@@ -6093,7 +6093,7 @@ BorderWidth=0
 Xpm="0 0 2 0"
 "1 c #808080"
 "2 c #FFFFFF"
-String1=0x00,Light Rail
+String1=0x00,輕軌
 String2=0x02,S-Bahn
 String3=0x03,Trambaan
 String4=0x04,Light Rail
@@ -6112,7 +6112,7 @@ Xpm="32 2 2  1"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Subway/Underground Railway
+String1=0x00,地下鐵
 String2=0x02,U-Bahn
 String3=0x03,Metro
 String4=0x04,Subway/Underground Railway
@@ -6131,7 +6131,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
-String1=0x00,Light Rail (tunnel)
+String1=0x00,輕軌 (隧道)
 String2=0x02,S-Bahn (Tunnel)
 String3=0x03,Metrotunnel
 String4=0x04,Light Rail (tunnel)
@@ -6150,7 +6150,7 @@ Xpm="32 2 2  1"
 "!!!!!!!!        !!!!!!!!        "
 "!!!!!!!!        !!!!!!!!        "
 ;12345678901234567890123456789012
-String1=0x00,Railway (tunnel)
+String1=0x00,鐵路 (隧道)
 String2=0x02,Bahn (Tunnel)
 String3=0x03,Spoortunnel
 String4=0x04,Railway (tunnel)
@@ -6247,7 +6247,7 @@ Xpm="32 2 2  1"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
-String1=0x00,Tramway (tunnel)
+String1=0x00,Tramway (隧道)
 String2=0x02,Straßenbahn (Tunnel)
 String3=0x03,Tramtunnel
 String4=0x04,Tramway (tunnel)
