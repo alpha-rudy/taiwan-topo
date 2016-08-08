@@ -3,8 +3,9 @@ TARGETS := gmapsupp_taiwan_zh_rudy.img taiwan_zh_rudy.gmap
 MAPID := 6368
 VERSION := 2016.07
 BUILD := 201607
-TYP := freizeit
-STYLE := fzk
+TYP := jean
+STYLE := jean
+CODE_PAGE := 1252
 
 NAME_LONG := Taiwan TOPO (Release $(VERSION)) by Rudy
 NAME_SHORT := Taiwan TOPO $(BUILD) by Rudy
@@ -59,7 +60,7 @@ $(WORK_LANG): $(WORK)
 	    	-e "s|input-file: \(.*\)|input-file: $(WORK_DIR)/\\1|g" >> taiwan.cfg && \
 	    cat $(ROOT_DIR)/TYPs/$(TYP).txt | sed \
 	    	-e "s|FID=.*|FID=$(MAPID)|g" \
-		-e "s|CodePage=.*|CodePage=950|g" > $(TYP).txt && \
+		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--product-id=1 \
 		--family-id=$(MAPID) \
