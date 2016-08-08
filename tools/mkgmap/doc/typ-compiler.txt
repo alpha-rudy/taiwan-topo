@@ -415,15 +415,10 @@ different resolution devices.
 
 Only a few tags are valid in this section.
 
-* The
-
-Type tag is required. It identifies the point type that this image set will be
-used for.
-
-* The
-
-String tag is also allowed, but it does not take a language code at the
-beginning. Therefore there can only be one of them.
+* The Type tag is required. It identifies the point type that this image set will
+  be used for.
+* The String tag is also allowed, but it does not take a language code at the
+  beginning. Therefore there can only be one of them.
 
 The other tag that can be present is IconXpm. There can be several of these tags,
 each one is a different resolution/size. Each one can have a different size,
