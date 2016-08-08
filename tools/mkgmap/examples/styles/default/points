@@ -261,7 +261,7 @@ shop=tyres [0x2f07 resolution 24]
 shop=* [0x2e0c resolution 24]
 
 sport=9pin [0x2d07 resolution 24]
-sport=10pin | leisure=bowling_alley [0x2d07 resolution 24]
+sport=10pin [0x2d07 resolution 24]
 sport=airport [0x2d0b resolution 24]
 sport=multi [0x2d0a resolution 24]
 sport=skating [0x2d08 resolution 24]
