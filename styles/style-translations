@@ -1,0 +1,334 @@
+#define $__ADIT__ Adit/Mine Entrance
+#define $__ADMINISTRATIVE__ Local Authorities
+#define $__AERIALWAYSTATION__ Cablecar Station
+#define $__AFRICAN__ African
+#define $__AIRFIELD__ mil. Airbase/Airfield
+#define $__AIRPORT__ Airport
+#define $__ALCOHOL__ Off Licence
+#define $__ALLOTMENTS__ Allotments
+#define $__ALPINEHUT__ Alpine hut
+#define $__ALPINETRAIL__ Alpine Trail
+#define $__AMERICAN__ American
+#define $__AQUARIUM__ Aquarium
+#define $__ARAB__ Arabic
+#define $__ARCHAELOGICALSITE__ Archeological Site
+#define $__ARTSCENTRE__ Art Gallery
+#define $__ARTSHOP__ Art Dealers/Art Gallery
+#define $__ARTWORK__ Work of Art
+#define $__ASIAN__ Asian
+#define $__ATM__ ATM
+#define $__ATTRACTION__ Attraction
+#define $__AUSTRIAN__ Austrian
+#define $__BAKERY__ Bakery
+#define $__BALKAN__ Balkan
+#define $__BANK__ Bank
+#define $__BARRACKS__ mil. Barracks
+#define $__BAR__ Bar
+#define $__BASICHUT__ Basic hut
+#define $__BASIN__ Water Basin
+#define $__BATTLEFIELD__ Battlefield
+#define $__BAVARIAN__ Bavarian
+#define $__BAY__ Bay
+#define $__BEACH__ Beach
+#define $__BEACON__ Beacon
+#define $__BEDANDBREAKFAST__ Bed & Breakfast
+#define $__BEDSHOP__ Bed Shop
+#define $__BEVERAGES__ Beverages/Off License
+#define $__BICYCLERENTAL__ Bicycle Hire/Rental
+#define $__BICYCLESHOP__ Bicycle Shop (Sales, Rental & Service)
+#define $__BIERGARTEN__ Beer Garden
+#define $__BOOKS__ Book Store
+#define $__BOUNDARYSTONE__ hist. Boundary Stone
+#define $__BOUTIQUE__ Boutique (vêtements)
+#define $__BRITISH__ British
+#define $__BROWNFIELD__ Brownfield Site
+#define $__BUNKER__ Bunker
+#define $__BURGER__ Burger Bar
+#define $__BUSSTATION__ Bus Station
+#define $__BUSSTOP__ Bus Stop
+#define $__BUTCHER__ Butcher Shop
+#define $__CAFE__ Cafe
+#define $__CAMPSITE__ Campsite
+#define $__CARAVANSITE__ Caravan Site
+#define $__CARCLUB__ Car Club
+#define $__CARPET__ Carpet Store
+#define $__CARRENTAL__ Car Hire/Rental
+#define $__CARREPAIR__ Car Repair (Garage)
+#define $__CARSHARING__ Car Sharing Point
+#define $__CARSHOP__ Garage
+#define $__CARWASH__ Car Wash
+#define $__CASINO__ Casino
+#define $__CASTLE__ Castle
+#define $__CAVEENTRANCE__ Cave
+#define $__CEMETERY__ Cemetery
+#define $__CHALET__ Chalet
+#define $__CHEMIST__ Chemist
+#define $__CHINESE__ Chinese
+#define $__CHRISTIAN__ Church
+#define $__CINEMA__ Cinema
+#define $__CLIFF__ Cliff
+#define $__CLOTHES__ Clothes Shop
+#define $__COFFEESHOP__ Coffee shop
+#define $__COLLEGE__ College
+#define $__COMMERCIAL__ Business Park
+#define $__COMMON__ Public Green Space
+#define $__COMMUNICATIONTOWER__ Radio Mast
+#define $__COMMUNITYCENTRE__ Community/Village Hall
+#define $__COMPOUND__ Zoo Enclosure
+#define $__COMPUTER__ Computer Store
+#define $__CONCERTHALL__ Concert Hall
+#define $__CONFECTIONERY__ Confectionery
+#define $__CONFERENCECENTRE__ Conference Center
+#define $__CONSERVATION__ Conservation Area
+#define $__CONSTRUCTION__ Construction Site
+#define $__CONVENIENCE__ Convenience Store
+#define $__COPYSHOOP__ Photocopy Shop
+#define $__COSMETICS__ Beauty Salon
+#define $__COURTHOUSE__ Courthouse
+#define $__CYCLING__ Velodrome
+#define $__DANCE__ Dance Studio
+#define $__DELICACY__ Deli (Delicatessen)
+#define $__DEPARTMENTSTORE__ Department Store
+#define $__DOGPARK__ Dog park
+#define $__DOGRACING__ Dog Track
+#define $__DOITYOURSELF__ DIY Store
+#define $__DRINKINGWATER__ Drinking Water/Fountain
+#define $__DRYCLEANING__ Dry Cleaners
+#define $__ELECTRONICS__ Electrical Store
+#define $__EMBASSY__ Embassy
+#define $__EMPLOYMENTAGENCY__ employment agency
+#define $__EQUESTRIAN__ Equestrian Centre
+#define $__EROTIC__ Sex Shop
+#define $__FABRIC__ Fabric Shop
+#define $__FARMSHOP__ Farm Shop
+#define $__FARMYARD__ Farmyard
+#define $__FASION__ Fashion Boutique
+#define $__FASTFOOD__ Fast-Food Restaurant/Takeaway
+#define $__FELL__ Open Fell
+#define $__FERRYTERMINAL__ Ferry Terminal
+#define $__FIRESTATION__ Fire Station
+#define $__FISHMONGER__ Fishmonger
+#define $__FISH__ Fish/Fish & Chips Restaurant
+#define $__FLORIST__ Florist
+#define $__FOREST__ Forest
+#define $__FORT__ Fort
+#define $__FOUNTAIN__ Fountain
+#define $__FRENCH__ French
+#define $__FUELSTATION__ Petrol Station
+#define $__FUNERALDIRECTORS__ Funeral Directors
+#define $__FURNITURE__ Furniture Store
+#define $__GARDENCENTRE__ Garden Centre
+#define $__GARDEN__ Garden
+#define $__GENERALSHOP__ General Store
+#define $__GERMAN__ German
+#define $__GIFTSHOP__ Gift Shop
+#define $__GLACIER__ Glacier
+#define $__GOLFCOURSE__ Golf Course
+#define $__GOVERNMENT__ Government Authority
+#define $__GRASSAREA__ Park/Village Green
+#define $__GRAVE__ Grave
+#define $__GREEK__ Greek
+#define $__GREENFIELD__ Greenfield Site
+#define $__GREENGROCER__ Greengrocer
+#define $__GUESTHOUSE__ Guest House
+#define $__HAIRDRESSER__ Hairdresser
+#define $__HARBOUR__ Harbour
+#define $__HARDWARE__ Hardware Store
+#define $__HEARINGAIDS__ Hearing Aid Shop
+#define $__HEATH__ Heath or Heathland
+#define $__HELIPAD__ Helipad
+#define $__HIFI__ Hifi Dealers
+#define $__HIGHWAYRESTAREA__ Rest Area
+#define $__HIGHWAYSERVICEAREA__ Motorway Services
+#define $__HORSERACING__ Racecourse
+#define $__HOSPITAL__ Hospital
+#define $__HOSTEL__ Hostel
+#define $__HOTEL__ Hotel
+#define $__ICECREAMRESTAURANT__ Ice Cream Parlour
+#define $__ICECREAMSHOP__ Ice Cream Parlour
+#define $__ICECREAM__ Ice Cream Parlour
+#define $__ICERINK__ Ice Rink
+#define $__INDIAN__ Indian
+#define $__INDUSTRIALAREA__ Industrial Estate
+#define $__INDUSTRIALPLANT__ Industrial Plant
+#define $__INFORMATION__ Info
+#define $__INSURANCE__ Insurance Brokers
+#define $__INTERIORDECORATION__ Interior Decoration Shop
+#define $__INTERNATIONAL__ International
+#define $__ISLET__ Island/Islet
+#define $__ISOLATEDDWELLING__ Isolated Dwelling
+#define $__ITALIAN__ Italian
+#define $__JAPANESE__ Japanese
+#define $__JEWELRY__ Jewellers
+#define $__JEWISH__ Synagogue
+#define $__KINDERGARTEN__ Kindergarten
+#define $__KIOSK__ Kiosk
+#define $__KITCHEN__ Kitchen Studio
+#define $__KOREAN__ Korean
+#define $__LANDFILL__ Landfill Site
+#define $__LEANTO__ Lean-to
+#define $__LEBANESE__ Lebanese
+#define $__LIBRARY__ Library
+#define $__LIGHTHOUSE__ Lighthouse
+#define $__LOCALITY__ Locality
+#define $__LOUNDRY__ Laundry
+#define $__MALL__ Shopping Centre
+#define $__MARINA__ Marina
+#define $__MARSH__ Marsh
+#define $__MASSAGE__ Massage Parlour
+#define $__MAST__ Radio Mast
+#define $__MEADOW__ Meadow
+#define $__MEDITERRANEAN__ Mediterranean
+#define $__MEMORIAL__ Memorial
+#define $__MEXICAN__ Mexican
+#define $__MILITARYBUNKER__ mil. Bunker
+#define $__MILITARYDANGERAREA__ Military Danger/Restricted Area
+#define $__MILITARYRANGE__ mil. Weapons Training Area/Range
+#define $__MILITARY__ Military Area
+#define $__MINESHAFT__ Mine Shaft
+#define $__MINIATUREGOLF__ Miniature Golf
+#define $__MOBILEPHONE__ Phone Shop
+#define $__MONUMENT__ Monument
+#define $__MOTEL__ Motel
+#define $__MOTORCYCLE__ Motorcycle Shop
+#define $__MOTORWAYJUNCTION__ Highway/Motorway Exit/Junction
+#define $__MUD__ Bog
+#define $__MUSEUM__ Museum
+#define $__MUSICALINSTRUMENT__ Musical Instrument Shop
+#define $__MUSICSHOP__ Music Store
+#define $__MUSLIM__ Mosque
+#define $__NATURERESERVE__ Nature Reserve
+#define $__NAVALBASE__ Naval Base
+#define $__NEWSAGENT__ Newsagent
+#define $__NGO__ NGO (Non-Governmental Organisation)
+#define $__NIGHTCLUB__ Nightclub/Discoteque
+#define $__OBSERVATIONTOWER__ Observation Tower
+#define $__OPTICIAN__ Optician
+#define $__ORCHARD__ Orchard
+#define $__ORGANICSHOP__ Health Food Store
+#define $__OUTCROP__ geol. Outcrop
+#define $__OUTDOOR__ Outdoor Shop/Store
+#define $__PAINT__ Specialist Paint Shop
+#define $__PALEONTOLOGICALSITE__ Palaeontological site
+#define $__PARKING__ Parking
+#define $__PARK__ Park
+#define $__PERSIAN__ Persian
+#define $__PETROLEUMWELL__ Oil Well
+#define $__PETSHOP__ Pet Shop
+#define $__PHARMACY__ Pharmacy
+#define $__PHOTO__ Photo Shop
+#define $__PICNICSITE__ Picnic Place
+#define $__PITCH__ Field/Pitch
+#define $__PIZZA__ Pizza
+#define $__PLACEOFWORSHIP__ Place of Worship
+#define $__PLAYGROUND__ Playground
+#define $__POLICE__ Police Station
+#define $__PORTUGUESE__ Portugese
+#define $__POSTOFFICE__ Post Office
+#define $__POWERGENERATOR__ Power Plant
+#define $__POWERSTATION__ Power Station
+#define $__POWERSUBSTATION__ Substation
+#define $__POWERTOWER__ Pylon
+#define $__PRIVATE__ Private
+#define $__PUBLICBUILDING__ Public Building
+#define $__PUB__ Pub
+#define $__PYLON__ Cablecar Pylon
+#define $__QUANGO__ Quango
+#define $__QUARRY__ Quarry
+#define $__RAILWAYHALT__ Railway Halt
+#define $__RAILWAYSTATION__ Station
+#define $__RECREATIONGROUND__ Recreation Ground
+#define $__REGIONAL__ Regional
+#define $__RESERVOIRCOVERED__ Covered Reservoir
+#define $__RESERVOIR__ Reservoir
+#define $__RESIDENTIAL__ Residential Area
+#define $__RESTAURANT__ Restaurant
+#define $__RESTRICTED__ Restricted
+#define $__RETAIL__ Shopping Centre
+#define $__RUINS__ Ruin
+#define $__RUNESTONE__ Rune Stone
+#define $__RUSSIAN__ Russian
+#define $__SALTPOND__ Salt Evaporation Pond
+#define $__SAND__ Sand
+#define $__SCHOOL__ School
+#define $__SCREE__ Scree
+#define $__SCRUB__ Scrubland
+#define $__SEAFOODSHOP__ Fish Shop
+#define $__SEAFOOD__ Seafood
+#define $__SECONDHAND__ Second Hand Shop
+#define $__SHELTER__ Shelter
+#define $__SHOES__ Shoe Shop
+#define $__SKIING__ Ski Area/Ski Dome
+#define $__SOCIALCENTRE__ Social Center
+#define $__SOCIALFACILITY__ Social Facility
+#define $__SOLARIUM__ Tanning Salon
+#define $__SPANISH__ Spanish
+#define $__SPECIALITY__ Speciality
+#define $__SPORT10PIN__ 10 Pin Bowling Alley
+#define $__SPORT9PIN__ 9 Pin Bowling Alley
+#define $__SPORTGOLF__ Golf Course
+#define $__SPORTMULTI__ Multi-Purpose hall
+#define $__SPORTSCENTRE__ Sports Centre
+#define $__SPORTSKATING__ Ice Rink
+#define $__SPORTSSHOP__ Sports Shop
+#define $__SPORTSWIMMING__ Swimming Pool
+#define $__SPRING__ Spring
+#define $__STADIUM__ Stadium
+#define $__STATIONERY__ Stationers
+#define $__STEAKHOUSE__ Steak House
+#define $__STONE__ Boulder
+#define $__SUBWAYENTRANCE__ Subway Entrance
+#define $__SUPERMARKET__ Supermarket
+#define $__SURVEYPOINT__ Trig Point
+#define $__SUSHI__ Sushi
+#define $__SWABIAN__ Swabian
+#define $__SWIMMINGPOOL__ Swimming Pool
+#define $__TAILOR__ Tailor
+#define $__TATTOO__ Tattoo Parlour
+#define $__TEASHOP__ Tea Shop
+#define $__TERMINAL__ Airport Building/Terminal
+#define $__THAI__ Thai
+#define $__THEATRE__ Theatre
+#define $__THEMEPARK__ Amusement/Theme Park
+#define $__TOBACCO__ Tobacconist
+#define $__TOILETS__ Toilets
+#define $__TOWER__ Tower
+#define $__TOWNHALL__ Town Hall
+#define $__TOYS__ Toy Shop
+#define $__TRACK__ Track
+#define $__TRADESHOP__ Builders Merchants
+#define $__TRAMSTOP__ Tram Stop
+#define $__TRAVELAGENCY__ Travel Agency
+#define $__TREE__ Tree
+#define $__TURKISH__ Turkish
+#define $__TYRES__ Tyre Retailers/Fitters
+#define $__UNIVERSITY__ University
+#define $__VACANT__ Vacant/Empty
+#define $__VARIETYSTORE__ Clearance Store
+#define $__VEGETARIAN__ Vegetarian
+#define $__VIDEO__ Video Library
+#define $__VIETNAMESE__ Vietnamese
+#define $__VIEWPOINT__ Viewpoint
+#define $__VILLAGEGREEN__ Village Green
+#define $__VINEYARD__ Vineyard
+#define $__VOLCANO__ Volcano
+#define $__WASTEWATERPLANT__ Water Treatment Plant
+#define $__WATERFALL__ Waterfall
+#define $__WATERMILL__ Watermill
+#define $__WATERPARK__ Water Park
+#define $__WATERTOWER__ Water Tower
+#define $__WATERWELL__ Well
+#define $__WATERWORKS__ Waterworks
+#define $__WATER__ Lake/Pond
+#define $__WAYSIDECROSS__ hist. Wayside Cross
+#define $__WAYSIDESHRINE__ hist. Shrine
+#define $__WEIR__ Weir
+#define $__WETLAND__ Wetland (Marsh, reeds or saltings)
+#define $__WILDERNESSHUT__ Wilderness Hut
+#define $__WINDGENERATOR__ Wind Turbine
+#define $__WINDMILL__ hist. Windmill
+#define $__WINESHOP__ Specialist Wine Shop
+#define $__WOOD__ Wood/Forest
+#define $__WRECK__ Wreck
+#define $__YUGOSLAVIAN__ Yugoslavian
+#define $__ZOO__ Zoo
