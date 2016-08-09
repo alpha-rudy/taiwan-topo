@@ -1,11 +1,13 @@
 TARGETS := gmapsupp_taiwan_zh_rudy.img taiwan_zh_rudy.gmap
 
+INSTALL_DIR := /Volumes/GARMIN/Garmin
+
 MAPID := 6158
 VERSION := 2016.07
 BUILD := 1607
-TYP := jean
-STYLE := jean
-CODE_PAGE := 1252
+TYP := jing
+STYLE := jing
+CODE_PAGE := 65001
 
 NAME_LONG := Taiwan TOPO (Release $(VERSION)) by Rudy
 NAME_SHORT := Taiwan TOPO $(VERSION) by Rudy
@@ -34,10 +36,14 @@ WORK_LANG := $(WORK_LANG_DIR)/.done
 all: $(TARGETS)
 
 clean:
-	-rm -rf $(WORK_DIR) $(WORK_LANG_DIR)
 	-rm -rf $(TARGETS)
+	-rm -rf $(WORK_LANG_DIR)
 
 distclean: clean
+	-rm -rf $(WORK_DIR)
+
+install: all
+	cp gmapsupp_taiwan_zh_rudy.img $(INSTALL_DIR)/
 
 taiwan_zh_rudy.gmap: $(WORK_LANG)
 	cd $(WORK_LANG_DIR) && \
@@ -61,7 +67,7 @@ gmapsupp_taiwan_zh_rudy.img: $(WORK_LANG)
 	        --family-name="$(NAME_SHORT)" \
 	        --description="$(NAME_SHORT)" \
 	        --overview-mapnumber=$(MAPID)0000 \
-	        --product-version=$(BUILD) \
+	        --product-version=$(VERSION) \
 		$(MAPID)*.img $(MAPID).TYP
 	cp $(WORK_LANG_DIR)/gmapsupp.img $@
 
@@ -69,20 +75,6 @@ $(WORK_LANG): $(WORK)
 	rm -rf $(WORK_LANG_DIR)
 	mkdir -p $(WORK_LANG_DIR)
 	cd $(WORK_LANG_DIR) && \
-	    cat $(ROOT_DIR)/mkgmap.cfg | sed \
-		-e "s|__root_dir__|$(ROOT_DIR)|g" \
-		-e "s|__work_lang_dir__|$(WORK_LANG_DIR)|g" \
-		-e "s|__version__|$(VERSION)|g" \
-		-e "s|__build__|$(BUILD)|g" \
-		-e "s|__style__|$(STYLE)|g" \
-		-e "s|__code_page__|$(CODE_PAGE)|g" \
-		-e "s|__name_long__|$(NAME_LONG)|g" \
-		-e "s|__name_short__|$(NAME_SHORT)|g" \
-		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(WORK_DIR)/template.args | sed \
-	    	-e "s|description: \(.*\)|description: \\1 $(VERSION)|g" \
-	    	-e "s|input-file: \(.*\)|input-file: $(WORK_DIR)/\\1|g" >> mkgmap.cfg && \
 	    cat $(ROOT_DIR)/TYPs/$(TYP).txt | sed \
 	    	-e "s|FID=.*|FID=$(MAPID)|g" \
 		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
@@ -94,6 +86,20 @@ $(WORK_LANG): $(WORK)
 	    mkdir $(WORK_LANG_DIR)/style && \
 	    cp -a $(ROOT_DIR)/styles/$(STYLE) $(WORK_LANG_DIR)/style/$(STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(WORK_LANG_DIR)/ && \
+	    cat $(ROOT_DIR)/mkgmap.cfg | sed \
+		-e "s|__root_dir__|$(ROOT_DIR)|g" \
+		-e "s|__work_lang_dir__|$(WORK_LANG_DIR)|g" \
+		-e "s|__version__|$(VERSION)|g" \
+		-e "s|__build__|$(VERSION)|g" \
+		-e "s|__style__|$(STYLE)|g" \
+		-e "s|__code_page__|$(CODE_PAGE)|g" \
+		-e "s|__name_long__|$(NAME_LONG)|g" \
+		-e "s|__name_short__|$(NAME_SHORT)|g" \
+		-e "s|__name_word__|$(NAME_WORD)|g" \
+		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+	    cat $(WORK_DIR)/template.args | sed \
+	    	-e "s|description: \(.*\)|description: \\1 $(VERSION)|g" \
+	    	-e "s|input-file: \(.*\)|input-file: $(WORK_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--max-jobs=2 \
 	    	-c mkgmap.cfg \
