@@ -4,7 +4,6 @@ INSTALL_DIR := /Volumes/GARMIN/Garmin
 
 MAPID := 6158
 VERSION := 2016.07
-BUILD := 1607
 TYP := jing
 STYLE := jing
 CODE_PAGE := 950
