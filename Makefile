@@ -7,7 +7,7 @@ VERSION := 2016.07
 BUILD := 1607
 TYP := jing
 STYLE := jing
-CODE_PAGE := 65001
+CODE_PAGE := 950
 
 NAME_LONG := Taiwan TOPO (Release $(VERSION)) by Rudy
 NAME_SHORT := Taiwan TOPO $(VERSION) by Rudy
