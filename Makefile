@@ -1,14 +1,14 @@
 TARGETS := gmapsupp_taiwan_zh_rudy.img taiwan_zh_rudy.gmap
 
-MAPID := 6368
+MAPID := 6158
 VERSION := 2016.07
-BUILD := 201607
+BUILD := 1607
 TYP := jean
 STYLE := jean
 CODE_PAGE := 1252
 
 NAME_LONG := Taiwan TOPO (Release $(VERSION)) by Rudy
-NAME_SHORT := Taiwan TOPO $(BUILD) by Rudy
+NAME_SHORT := Taiwan TOPO $(VERSION) by Rudy
 NAME_WORD := Taiwan_TOPO_Rudy
 
 # finetune options
@@ -34,40 +34,74 @@ WORK_LANG := $(WORK_LANG_DIR)/.done
 all: $(TARGETS)
 
 clean:
-	-rm $(TARGETS)
-
-distclean:
 	-rm -rf $(WORK_DIR) $(WORK_LANG_DIR)
 	-rm -rf $(TARGETS)
 
+distclean: clean
+
+taiwan_zh_rudy.gmap: $(WORK_LANG)
+	cd $(WORK_LANG_DIR) && \
+	    rm -rf $@ && \
+	    cat $(ROOT_DIR)/jmc_cli.cfg | sed \
+	    	-e "s|__work_lang_dir__|$(WORK_LANG_DIR)|g" \
+		-e "s|__name_word__|$(NAME_WORD)|g" \
+		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
+	    $(TOOLS_DIR)/jmc/osx/jmc_cli -v -config="$(WORK_LANG_DIR)/jmc_cli.cfg"
+	cp -a "$(WORK_LANG_DIR)/$(NAME_SHORT).gmap" $@
+
 gmapsupp_taiwan_zh_rudy.img: $(WORK_LANG)
+	cd $(WORK_LANG_DIR) && \
+	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+	        --license-file=$(ROOT_DIR)/license.txt \
+	        --index \
+	        --gmapsupp \
+	        --product-id=1 \
+	        --family-id=$(MAPID) \
+	        --series-name="$(NAME_WORD)" \
+	        --family-name="$(NAME_SHORT)" \
+	        --description="$(NAME_SHORT)" \
+	        --overview-mapnumber=$(MAPID)0000 \
+	        --product-version=$(BUILD) \
+		$(MAPID)*.img $(MAPID).TYP
+	cp $(WORK_LANG_DIR)/gmapsupp.img $@
 
 $(WORK_LANG): $(WORK)
-	#rm -rf $(WORK_LANG_DIR)
+	rm -rf $(WORK_LANG_DIR)
 	mkdir -p $(WORK_LANG_DIR)
 	cd $(WORK_LANG_DIR) && \
 	    cat $(ROOT_DIR)/mkgmap.cfg | sed \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
+		-e "s|__work_lang_dir__|$(WORK_LANG_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
 		-e "s|__build__|$(BUILD)|g" \
 		-e "s|__style__|$(STYLE)|g" \
+		-e "s|__code_page__|$(CODE_PAGE)|g" \
 		-e "s|__name_long__|$(NAME_LONG)|g" \
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > taiwan.cfg && \
+		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(WORK_DIR)/template.args | sed \
-	    	-e "s|description: \(.*\)|description: $(VERSION) \\1|g" \
-	    	-e "s|input-file: \(.*\)|input-file: $(WORK_DIR)/\\1|g" >> taiwan.cfg && \
+	    	-e "s|description: \(.*\)|description: \\1 $(VERSION)|g" \
+	    	-e "s|input-file: \(.*\)|input-file: $(WORK_DIR)/\\1|g" >> mkgmap.cfg && \
 	    cat $(ROOT_DIR)/TYPs/$(TYP).txt | sed \
 	    	-e "s|FID=.*|FID=$(MAPID)|g" \
 		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--product-id=1 \
 		--family-id=$(MAPID) \
-		$(TYP).txt
+		$(TYP).txt && \
+	    cp $(TYP).typ $(MAPID).TYP && \
+	    mkdir $(WORK_LANG_DIR)/style && \
+	    cp -a $(ROOT_DIR)/styles/$(STYLE) $(WORK_LANG_DIR)/style/$(STYLE) && \
+	    cp $(ROOT_DIR)/styles/style-translations $(WORK_LANG_DIR)/ && \
+	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+	    	--max-jobs=2 \
+	    	-c mkgmap.cfg \
+		--check-styles
+	touch $(WORK_LANG)
 
 $(WORK): $(EXTRACT) $(ELEVATION)
-	rm $(WORK_DIR)
+	rm -rf $(WORK_DIR)
 	mkdir -p $(WORK_DIR)
 	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && cd $(WORK_DIR) && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
