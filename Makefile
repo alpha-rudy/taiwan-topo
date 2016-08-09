@@ -2,8 +2,8 @@ TARGETS := gmapsupp_taiwan_zh_rudy.img taiwan_zh_rudy.gmap
 
 INSTALL_DIR := /Volumes/GARMIN/Garmin
 
-MAPID := 6158
-VERSION := 2016.07
+MAPID := 3158
+VERSION := $(date +%Y.%m)
 TYP := jing
 STYLE := jing
 CODE_PAGE := 950
