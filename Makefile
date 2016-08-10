@@ -2,7 +2,7 @@ TARGETS := gmapsupp_taiwan_zh_rudy.img taiwan_zh_rudy.gmap
 
 INSTALL_DIR := /Volumes/GARMIN/Garmin
 
-MAPID := 3158
+MAPID := 8208
 VERSION := $(date +%Y.%m)
 TYP := jing
 STYLE := jing
@@ -21,12 +21,12 @@ TOOLS_DIR := $(ROOT_DIR)/tools
 SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
-EXTRACTS_DIR := $(ROOT_DIR)/osm_extracts
 ELEVATIONS_DIR := $(ROOT_DIR)/osm_elevations
+EXTRACT_DIR := $(ROOT_DIR)/work/extracts
 WORK_DIR := $(ROOT_DIR)/work/osm
 WORK_LANG_DIR := $(ROOT_DIR)/work/zh
 
-EXTRACT := $(EXTRACTS_DIR)/taiwan-latest.osm.pbf
+EXTRACT := $(EXTRACT_DIR)/taiwan-latest.osm.pbf
 ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_50_100_view1,srtm1,view3,srtm3.osm.pbf
 CITY := $(CITIES_DIR)/TW.zip
 WORK := $(WORK_DIR)/.done
@@ -40,6 +40,7 @@ clean:
 
 distclean: clean
 	-rm -rf $(WORK_DIR)
+	-rm -rf $(EXTRACT_DIR)
 
 install: all
 	cp gmapsupp_taiwan_zh_rudy.img $(INSTALL_DIR)/
@@ -104,6 +105,14 @@ $(WORK_LANG): $(WORK)
 	    	-c mkgmap.cfg \
 		--check-styles
 	touch $(WORK_LANG)
+
+$(EXTRACT):
+	mkdir -p $(EXTRACT_DIR)
+	cd $(EXTRACT_DIR) && \
+	    curl http://download.geofabrik.de/asia/taiwan-latest.osm.pbf -o taiwan-latest.osm.pbf && \
+	    curl http://download.geofabrik.de/asia/taiwan-latest.osm.pbf.md5 -o taiwan-latest.osm.pbf.md5 && \
+	    [ "$$(md5 -q taiwan-latest.osm.pbf)" == "$$(cat taiwan-latest.osm.pbf.md5 | cut -d' ' -f1)" ] || \
+	    	( rm -rf $@ && false )
 
 $(WORK): $(EXTRACT) $(ELEVATION)
 	rm -rf $(WORK_DIR)
