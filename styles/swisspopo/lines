@@ -1,0 +1,1944 @@
+﻿# ---------------------------------------
+# Zweck   : mkgmap-Regeln fuer Linien
+# Version : 0.1 - 23.09.2011
+# Version : 0.2 - 03.10.2011: Adresssuche
+# Version : 0.3 - 26.10.2011: Logik bei Kreisverkehr modifiziert
+# Version : 0.4 - 12.11.2011: Verarbeitung von Hoehenlinien vorbereitet
+# Version : 0.5 - 27.11.2011: im Bau befindliche Strassen werden ausgewiesen
+# Version : 0.6 - 17.12.2011: Verbesserung der Adresssuchregeln; weitere Zoomstufe fuer Autobahnen
+# Version : 0.7 - 04.01.2012: Regeln fuer Hoehenlinien geaendert
+# Version : 0.8 - 17.02.2012: "waterway=canal" geaendert, "railway=*" komplett ueberarbeitet, Bruecken/Tunnel ueberarbeitet,
+#                             "highway=via_ferrata" ergaenzt, "natural=ridge" ergaenzt, Anzeige der Resolutionebenen begrenzt,
+#                             Logik fuer Bergwanderwege implementiert
+# Version : 0.9 - 16.03.2012: Routing vollstaendig neu definiert (durch Johannes Hahn)
+# Version : 0.10 -20.04.2012: Definition des Thema "Wintersport" (durch Roman)
+#                             Logik fuer Plaetze geaendert (durch Johannes Hahn)
+#                             Fehlerkorrektur beim Routing (durch Johannes Hahn)
+# Version : 0.11 -12.06.2012: Anleger (Pier) auch als Flaeche moeglich; Darstellung von Deichen;
+#                             Darstellung von auf Dämmen verlaufenden Straßen und Wegen;
+#                             "continue" bei Fähren eingefügt wg. fehlender Darstellung von Flüssen und Kanälen
+#                             Klettersteige die als Pfade getaggt sind umdefinieren
+# Version : 0.12 -16.07.2012: "embankment" für Bahnstrecken wieder entfernt (auskommentiert)
+#                             "embankment" für Wege durch "dyke" ersetzt
+# Version : 0.13 -24.08.2012: Berücksichtigung von Naturschutzgebieten und Nationalparks
+#                             Regel für tertiary_link (Auffahrt auf Kreisstraße)
+# Version : 0.14 -06.10.2012: Berücksichtigung von T36-Routing für z.B. die Alpenkarte (Johannes Hahn)
+#                             Routing auch für highwy=secondary, bicycle=designated (Johannes Hahn)
+# Version : 0.15 -19.11.2012: Kommentare aktualisiert
+#                             Wege die als "abandoned" getaggt sind, werden nicht mehr dargestellt
+# Version : 0.16 -21.12.2012: Darstellung der Strecken von Standseilbahnen (Funicular), Darstellung von Zäunen (fence)
+# Version : 0.17 -04.04.2013: Darstellung von Bussteigen (highway = platform)
+# Version : 0.18 -04.09.2013: - Added Monorail (Same as ligh_rail, S-Bahn)
+#                             - fixed a problem with streets not shown due to area=no
+#                             - boundaries of nationalparcs are shown later (starting at 21 instead of 19)
+#                             - adaptions for tracks with trackgrade 4 & 5, displaying them as others with resolution 23 and smaller line
+# Version : 0.19 -11.09.2013: Added proper display of waterways in tunnels and culverts
+# Version : 0.20 -07.01.2014: change logic of display for marina (moved from polygon to line)
+# Version : 0.21 -14.03.2014: Adapting things regarding barrier = * : adding more than only fence
+#                             Bugfix for leisure = marina
+# Version : 0.22 -05.05.2014: Adapting finalize section to support new mkgmap version 2096 and newer
+#                             Changed Routing to new version (due to upgrade of mkgmap) with better support of different actions
+# Version : 0.23  11.05.2014: - Remapped range 0x010410-0x010415 to 0x011f07-0x011f0c to avoid problems on Nuvi and other newer devices
+#                             - Bugfix for routing
+# Version : 0.24  26.05.2014  - Remapped different Line ID's (due to problems on different devices)
+#                               from 0x1040d - 0x1040e to 0x12100 - 0x12101
+#                               from 0x10110 - 0x10111 to 0x12102 - 0x12103
+# Version : 0.25  16.06.2014  - Remapped different Line ID's (due to problems with different devices, also Monterra)
+#                               from 0x01010b - 0x01010c to 0x12104 - 0x12105
+#                               from 0x010112 - 0x01011c to 0x12106 - 0x1210f
+# Version : 0.26  17.06.2014 - Adding some map features:
+#                              - barrier = hedge and barrier = hedge_bank
+#                              - natural = tree_row
+# Version : 0.27  31.10.2014 - Fixing Routing issue with trunks/motorway/motorroad restrictions
+#                            - Fixing problems with includes: clearly defining what is done by PPP (no include needed here) and what by mkgmap includes
+# Version : 0.28  29.01.2015 - Recategorisation of paths with sac_scale: before it was T1T2, T3T4 and T5T6, now it is T1, T2T3, T4T5T6
+#                            - Renaming T36ROUTING option to EXTENDEDROUTING
+# Version : 0.29  01.03.2015 - Showning some less important rails later with a different pattern style ( service = *, railway = disused, usage = industrial)
+#         : 0.30  01.05.2015 - Changes regarding highway = track and tracktype = grade*: don't show as unspecified road if cars allowed 
+#           0.31  30.05.2015 - Changes regarding bridges on highways and railways (different types): bridge can have other values than only 'yes'
+# Version : 0.32  25.04.2016 - Showing aerialway = rope-tow also
+
+
+
+#
+#
+# Copyright (C) 2011, 2013 Projekt Freizeitkarte <freizeitkarte@googlemail.com>
+# - Verbesserung der Adresssuchregeln in Zusammenarbeit mit Ludwich und Georg V.
+# - Definition der Routingregeln durch Johannes Hahn
+# - Definition der Pistenregeln durch Roman Büchler
+#
+# Hinweis auf weitere Unterlagen:
+# - http://wiki.openstreetmap.org/wiki/DE:Map_Features
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/How_to_create_a_map
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# - http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+#
+# Liste der Garmin-Standardbelegung (gemaess cGPSmapper-Manual; zur Orientierung):
+#
+# Routable types are: 0x01-0x13, 0x16, 0x1a, 0x1b
+#
+# Standard lines:                                Marine lines:                                             Custom lines:
+# ---------------                                -------------                                             -------------
+# R 0x01    Major Highway thick                  0x010100        misc line                                 0x010e00        custom line 1
+# R 0x02    Principal Highway thick              0x010101        line                                      0x010e01        custom line 2
+# R 0x03    Principal Highway medium             0x010102        cartographic line                         0x010e02        custom line 3
+# R 0x04    Arterial Road medium                 0x010103        road                                      0x010e03        custom line 4
+# R 0x05    Arterial Road thick                  0x010104        clearing line                             0x010e04        custom line 5
+# R 0x06    Road thin                            0x010105        contour line                              0x010e05        custom line 6
+# R 0x07    Alley thick                          0x010106        overhead cable                            0x010e06        custom line 7
+# R 0x08    Ramp                                 0x010107        bridge                                    0x010e07        custom line 8
+# R 0x09    Ramp                                 0x010108        recommended route                         0x010e08        custom line 9
+# R 0x0a    Unpaved Road thin                    0x010109        chart border                              0x010e09        custom line a
+# R 0x0b    Major Highway Connector thick        0x010300        depth contour                             0x010e0a        custom line b
+# R 0x0c    Roundabout                           0x010301        depth contour value                       0x010e0b        custom line c
+# R 0x0d    Custom routable road 1               0x010400        obstruction                               0x010e0c        custom line d
+# R 0x0e    Custom routable road 2               0x010401        submarine cable                           0x010e0d        custom line e
+# R 0x0f    Custom routable road 3               0x010402        submarine pipeline                        0x010e0e        custom line f
+# R 0x10    Custom routable road 4               0x010403        pile barrier                              0x010e0f        custom line 10
+# R 0x11    Custom routable road 5               0x010404        fishing stakes                            0x010e10        custom line 11
+# R 0x12    Custom routable road 6               0x010405        supply pipeline                           0x010e11        custom line 12
+# R 0x13    Custom routable road 7               0x010406        submarine cable                           0x010e12        custom line 13
+#   0x14    Railroad                             0x010407        dumping ground                            0x010e13        custom line 14
+#   0x15    Shoreline                            0x010408        explosive dumping ground                  0x010e14        custom line 15
+# R 0x16    Track/Trail                          0x010409        danger                                    0x010e15        custom line 16
+#   0x18    Stream thin                          0x01040a        overhead cable                            0x010e16        custom line 17
+#   0x19    Time-Zone                            0x01040b        submerged construction                    0x010e17        custom line 18
+# R 0x1a    Ferry                                0x01040c        pier/jetty                                0x010e18        custom line 19
+# R 0x1b    Ferry                                0x010500        restriction                               0x010e19        custom line 1b
+#   0x1c    Political Boundary                   0x010501        anchoring prohibited                      0x010e1a        custom line 1b
+#   0x1d    County Boundary                      0x010502        fishing prohibited                        0x010e1b        custom line 1c
+#   0x1e    International Boundary               0x010503        prohibited area                           0x010e1c        custom line 1d
+#   0x1f    River                                0x010504        military practice area                    0x010e1d        custom line 1e
+#   0x20    Land Contour (thin)                  0x010505        anchoring and fishing prohibited          0x010e1e        custom line 1f
+#   0x21    Land Contour (medium)                0x010506        limit of nature reservat                  0x010e1f        custom line 20
+#   0x22    Land Contour (thick)                 0x010507        restricted area                           0x010f00        custom line 21
+#   0x23    Depth Contour (thin)                 0x010508        minefield                                 0x010f01        custom line 22
+#   0x24    Depth Contour (medium)               0x010600        misc line                                 0x010f02        custom line 23
+#   0x25    Depth Contour (thick)                0x010601        cartographic line                         0x010f03        custom line 24
+#   0x26    Intermittent River                   0x010602        traffic separation line                   0x010f04        custom line 25
+#   0x27    Airport Runway                       0x010603        international maritime boundary           0x010f05        custom line 26
+#   0x28    Pipeline                             0x010604        straight territorial sea baseline         0x010f06        custom line 27
+#   0x29    Powerline                            0x010605        seaward limit of territorial sea          0x010f07        custom line 28
+#   0x2a    Marine Boundary (no line)            0x010606        anchorage area                            0x010f08        custom line 29
+#   0x2b    Marine Hazard (no line)              0x010607        quarantine anchorage area                 0x010f09        custom line 2a
+#                                                0x010608        fishery zone                              0x010f0a        custom line 2b
+#                                                0x010609        swept area                                0x010f0b        custom line 2c
+#                                                0x010701        river channel                             0x010f0c        custom line 2d
+#                                                0x010702        submerged object                          0x010f0d        custom line 2e
+#                                                                                                          0x010f0e        custom line 2f
+#                                                                                                          0x010f0f        custom line 30
+#                                                                                                          0x010f10        custom line 31
+#                                                                                                          0x010f11        custom line 32
+#                                                                                                          0x010f12        custom line 33
+#                                                                                                          0x010f13        custom line 34
+#                                                                                                          0x010f14        custom line 35
+#                                                                                                          0x010f15        custom line 36
+#                                                                                                          0x010f16        custom line 37
+#                                                                                                          0x010f17        custom line 38
+#                                                                                                          0x010f18        custom line 39
+#                                                                                                          0x010f19        custom line 3b
+#                                                                                                          0x010f1a        custom line 3b
+#                                                                                                          0x010f1b        custom line 3c
+#                                                                                                          0x010f1c        custom line 3d
+#                                                                                                          0x010f1d        custom line 3e
+#                                                                                                          0x010f1e        custom line 3f
+#                                                                                                          0x010f1f        custom line 40
+# Anmerkungen zum Thema Routing:
+# Nicht alle Strassen und Wege sind oeffentlich zugaenglich. Objekte die z.B. mit "access=no" oder "access=private"
+# getagt sind, sollten nicht "routfaehig" sein und als Privatstrasse / -weg / -zufahrt erkennbar sein. Aus diesem
+# Grund werden solche Objekte ueber einen eigenen Typ (custom line) dargestellt.
+#
+# Liste der verwendeten, routingfaehigen Strassen:
+#
+# Routing
+# R Type   TYP-File                     Garmin Default                       OSM
+# - ----   --------------------         --------------------                 -------------------------
+# R 0x01   Autobahn                     Major Highway thick                  motorway
+# R 0x02   Bundesstraße                 Principal Highway thick              trunk
+# R 0x03   Bundesstraße                 Principal Highway medium             primary
+# R 0x04   Landstraße                   Arterial Road medium                 secondary
+# R 0x05   Kreisstraße                  Arterial Road thick                  tertiary
+# R 0x06   Wohngebietsstraße            Road thin                            residential
+# R 0x07   Nebenstraße                  Alley thick                          unclassified
+# R 0x08   Erschliessungsstraße         Ramp                                 service
+# R 0x09   Spielstraße                  Ramp                                 living_street
+# R 0x0a   Rad-Fußweg-Straße            Unpaved Road thin
+# R 0x0b   Rad-Fußweg                   Major Highway Connector thick
+# R 0x0c   Kreisverkehr                 Roundabout                           junction = roundabout
+# R 0x0d   Fussgängerstraße             Custom routable road 1               pedestrian
+# R 0x0e   Fahrrad-Gegen-Einbahn        Custom routable road 2               "cycleway=opposite"
+# R 0x0f                                Custom routable road 3
+# R 0x10                                Custom routable road 4
+# R 0x11   Seilbahn                     Custom routable road 5               aerialway
+# R 0x12   Indexsuche                   Custom routable road 6               access=no, Nur Indexsuche
+# R 0x13   Treppe                       Custom routable road 7               steps
+# R 0x16   Fußweg                       Track/Trail                          "footway"
+# R 0x1a   Fähre                        Ferry                                ferry
+# R 0x1b                                Ferry
+#
+# Anmerkungen:
+# - Transparente Bitmap-Linien sollten immer eine gerade Pixelbreite (2, 4, ..) haben.
+#   Ist dies nicht der Fall, wird unter OS X eine schwarze Artefaktlinie dargestellt.
+# - Linien mit nur einem Pixel Breite, sind auf einem GPSr kaum / schwer erkennbar.
+# - Sind Linien in unterschiedlichen Leveln verschieden breit definiert, so sollte
+#   der Linientyp (mit / ohne Rand) nicht gemischt werden. Dies fuehrt auf dem
+#   GPS-Geraet zu einer inkorrekter Darstellung.
+#
+# Routing:
+# -------
+# Class  Used as
+# 4  Major HW/Ramp
+# 3  Principal HW
+# 2  Arterial St / Other HW
+# 1  Roundabout / Collector
+# 0  Residential Street / Unpaved road / Trail
+#
+# road_speed  highest speed
+# 7  No speed limit
+# 6  70 mph / 110 kmh
+# 5  60 mph /  90 kmh
+# 4  50 mph /  80 kmh
+# 3  35 mph /  60 kmh
+# 2  25 mph /  40 kmh
+# 1  15 mph /  20 kmh
+# 0   3 mph /   5 kmh
+#
+# Zugangsbeschraenkungen:
+# Fuer jeden Transporttyp kann die Art des erlaubten Verkehrs beschrieben werden (access):
+# - yes          : Oeffentliche Wege und Strassen, die jeder benutzen darf.
+# - private      : Der Eigentuemer kann die Erlaubnis zur Benutzung auf individueller Basis vergeben,
+#                  in der Regel besteht jedoch keine Erlaubnis.
+# - permissive   : Der Eigentuemer gestattet die Benutzung durch die Oeffentlichkeit in der Regel.
+# - destination  : Benutzung nur dann erlaubt, wenn sich das Ziel nur ueber diesen Weg erreichen laesst;
+#                  haeufig gekennzeichnet durch ein Zusatzschild "Anlieger frei", "ausgenommen Anrainer",
+#                  "kein oeffentlicher Durchgang" oder in der Schweiz: "Zubringerdienst gestattet" SSV Art. 17.
+# - agricultural : Benutzung nur fuer "landwirtschaftlichen Verkehr" erlaubt.
+# - forestry     : Benutzung nur fuer "forstwirtschaftlichen Verkehr" erlaubt.
+# - delivery     : Benutzung nur zur Anlieferung von Waren zum Kunden, meist mit Zusatzschild "Lieferverkehr frei".
+# - designated   : Fuer diesen Transporttyp vorgesehener Weg, meistens ausgeschildert.
+# - official     : Fuer diesen Transporttyp gesetzlich gewidmeter Weg, mit Verkehrszeichen ausgeschildert oder
+#                  per Verordnung gewidmet, impliziert in Deutschland eine Benutzungspflicht und ein Verbot fuer
+#                  alle anderen Transporttypen.
+# - unknown      : Zufahrtsbeschraenkungen sind unbekannt bzw. nicht geklaert.
+# - no           : Benutzung nicht erlaubt oder nicht moeglich.
+#
+# Um nicht alle Verkehrsteilnehmer erklaeren zu muessen fuer die der Weg verboten ist, verbietet
+# man den Zugang zunaechst fuer Alle und erlaubt ihn dann fuer die Ausnahmen. Beispiel:
+# - highway = path
+# - access = no
+# - foot = yes
+# - bicycle = yes
+#
+# Routing:
+# - Wege / Strassen ausschliesslich fuer Fussgaenger         : als Mautstrasse {add mkgmap:carpool=1}
+# - Wege / Strassen ausschliesslich fuer Radfahrer           : als Fahrgemeinschaftsspur {add toll=yes}
+# - Wege / Strassen gemeinsam fuer Fussgaenger und Radfahrer : als Fahrgemeinschaftsspur {add toll=yes}
+#
+# Zeichenreihenfolge von Linien:
+# Die Reihenfolge, mit der Linien gezeichnet werden, kann (leider) nicht beeinflusst werden und ist somit zufaellig.
+# Das heisst bei uebereinander liegenden oder sich kreuzenden Linien kann nicht bestimmt werden, welche Linien unten
+# und welche Linie oben liegt. Dies fuehrt mitunter zu ungewollten Effekten: Beispiel: Einige Flussbruecken weisen
+# "Luecken" auf. Diese entstehen, weil der Fluss ueber und nicht unter der Bruecke verlaeuft. Das Routing wird hierdurch
+# aber nicht beeinflusst.
+#
+# Kraftfahrzeugfahrer sollten vermeiden : Mautstrassen, Fahrgemeinschaftsspuren, unbefestigte Strassen
+# (Normal-) Radfahrer sollten vermeiden : Mautstrassen, unbefestigte Strassen
+#
+# Sonder-Routing: Wird nicht beachtet (weil für Routing verwendet) !
+# - Mautpflichtige Strassen : {add toll = yes}
+# - Fahrgemeinschaftsspuren : {add mkgmap:carpool=1}
+# - Faehrverbindungen       : {add mkgmap:ferry=1}
+#
+# Konzeptionelle Anmerkungen zum Thema Routing:
+# - Fuer das Routing wird ein eigenes "Netzwerk" definiert, insgesamt gibt es somit fuenf "Netzwerke":
+#   - Routing
+#   - Zoom-Level 1
+#   - Zoom-Level 2
+#   - Zoom-Level 3
+#   - Zoom-Level 4
+# - Folgende Transporttypen koennen unterschieden werden:
+#   - Auto
+#   - Zu Fuss
+#   - Fahrrad
+#   - Luftlinie
+# - Das Routing erfolgt anhand der fuer das Objekt (highway, steps, ...) definierten access-Vorgaben (yes/no):
+#   - motorcar
+#   - bicycle
+#   - foot
+#
+# Konzeptionelle Anmerkungen zum Thema Namen (von Strassen und Wegen):
+# - Resolution 24: Anzeige aller Namen.
+# - Resolution 23: Anzeige der Namen von Autobahnen und autobahnaehnlichen Bundesstrassen; kleiner Schrifttyp
+# - für einige Linien werden keine Namen angezeigt; der Grund hierfuer ist unklar
+# - die Ausgabeprioritaet von Namen ist unbekannt; ggf. haben die Namen "wichtiger" Strassen Vorrang
+# - Strassen und Wege fuer die (nur) ein Pseudorouting definiert ist (hierdurch sind die Namen suchbar)
+#   werden keine Namen ausgegeben
+# - Vorgehensmodell: Ausgabe der Namen ueber die transparenten, routingfaehigen Linien
+# - Ausnahmen: s.o. Resolution 23
+#
+# ppp supports the following standard preprocessor features:
+# #define %var% [value]
+# #define %pseudo_fn%([arg-list])
+# #undef %var%
+# #include "path"
+# #ifdef %var% .. #else .. #endif
+# #ifndef %var% .. #else .. #endif
+# #if <expr> .. #else .. #endif
+# Macro variable expansion
+#
+# Link: www.synesys.com/Downloads/ppp.html
+#
+# Optionale Features:
+# - WINTERSPORT: Linien für Wintersportaktivitäten (Pisten, Loipen, ...)
+# - EXTENDEDROUTING: Routing auch über (Berg-)Wanderwege der Klassen T3-T6
+# -------------------------------------------------
+
+
+# -------------------------------------------------
+# Include language file containing all translations
+# -------------------------------------------------
+
+# -------------------------------------------------
+# Adress- / Indexsuche:
+# -------------------------------------------------
+include "indexsearch";
+
+
+# ------------------------------------------------------------------
+# Klettersteige die als Pfade getaggt sind umdefinieren:
+# ------------------------------------------------------------------
+
+# Pfade die zusätzlich das Attribut "via_ferrata_scale" haben umdefinieren
+highway = path & via_ferrata_scale = * {set highway = via_ferrata}
+
+
+# ------------------------------------------------------------------
+# Straßen und Wege umdefinieren:
+# - die nicht mehr benutzt werden (disused=yes)
+# - die aufgegeben wurden (abandoned=yes)
+# ------------------------------------------------------------------
+
+### disused ggf. später nachziehen
+### highway = * & disused = yes  { set highway = disused }
+
+highway = * & abandoned = yes  { set highway = abandoned }
+
+
+# ------------------------------------------------------------------
+# Naturschutzgebiete und Nationalparks umdefinieren:
+#
+# 2 = National Park:
+# ... large natural or near natural areas set aside to protect large-scale ecological processes, ...
+# Examples: Yellowstone (USA), Watten Sea (Europe), ...
+#
+# 4 = Habitat/Species Management Area:
+# ... aim to protect particular species or habitats and management reflects this priority.
+# Many Category IV protected areas will need regular, active interventions ...
+# Examples: Naturereserves, Naturschutzgebiet, ...
+#
+# Naturschutzgebiete können auf folgende Arten definiert werden:
+# - leisure=nature_reserve
+# - boundary=protected_area & protect_class=4
+# - boundary=protected_area & protect_id=4
+# Hinweis: Naturschutzgebiete werden in lines und polygons verarbeitet.
+#
+# Nationalparks können auf folgende Arten definiert werden:
+# - boundary=national_park (wird allerdings sehr oft "falsch" benutzt")
+# - boundary=protected_area & protect_class=2
+# - boundary=protected_area & protect_id=2
+# Hinweis: Nationalparks werden wie Grenzen behandelt.
+# ------------------------------------------------------------------
+
+# Naturschutzgebiete:
+boundary = protected_area & protect_class = 4 {set leisure = nature_reserve}
+boundary = protected_area & protect_id = 4 {set leisure = nature_reserve}
+
+# Nationalparks:
+boundary = national_park & protect_class = 2 {set schutzgebiet = national_park}
+boundary = national_park & protect_id = 2 {set schutzgebiet = national_park}
+boundary = protected_area  & protect_class = 2 {set schutzgebiet = national_park}
+boundary = protected_area & protect_id = 2 {set schutzgebiet = national_park}
+
+
+# -------------------------------------------------
+# Unbefestigte (unpaved) Strassen markieren um sie ggf. vom Routing auszuschliessen.
+# - "avoid unpaved roads"
+# - "Unbefestigte Strassen vermeinden"
+# -------------------------------------------------
+
+# Folgende Strassen bekommen aufgrund ihrer Oberflaechenbeschaffenheit (surface) das Attribut "unbefestigt" (unpaved):
+# - verdichtete Decke (compacted)
+# - Schotter (gravel)
+# - Split (fine_gravel)
+# - Kies (pebblestone)
+# - Sand (sand)
+# - Gras / Wiese (grass)
+# - Trampelspur (earth / ground)
+# - Matsch / Morast (mud)
+# - unbefestigt (unpaved / dirt)
+# - Holz (wood)
+# - Rasengittersteine (grass_paver)
+#
+# Darueber hinaus alle Strassen mit folgenden Attributen:
+# - alle Mountain-Bike Trails und Wege (mtb:scale)
+# - alle Feld- und Waldwege der Klassen 2-5 (grade)
+# - alle Strassen mit den Oberflaechenglaetten (smoothness)
+#   - bad (Trekkingrad, normale Autos)
+#   - very_bad (Autos mit hoher Bodenfreiheit)
+#   - horrible (Gelaendewagen)
+#   - very_horrible (Gelaendewagen)
+#   - impassable (keine Radfahrzeuge)
+# - alle Wege mit SAC-Wanderskalaeinteilung (foot_scale)
+# - alle Klettersteige (via_ferrata)
+#
+# Darueber hinaus alle Reitwege, Pfade/Wege und Wirtschaftswege (Feld- / Waldweg) ohne Angaben zu:
+# - Oberflaechenbeschaffenheit (surface)
+# - Tracktyp (grade1 - grade5)
+# - Oberflaechenglaette (smoothness)
+# - SAC-Wanderskala (sac_scale)
+
+highway = *
+& (surface = ground  | surface = compacted   | surface = dirt |
+   surface = earth   | surface = grass       | surface = grass_paver |
+   surface = gravel  | surface = fine_gravel | surface = mud |
+   surface = wood    | surface = pebblestone | surface = sand |
+   surface = unpaved |
+   mtb:scale = * |
+   tracktype ~ 'grade[2-5]' |
+   smoothness ~ '.*(bad | very_bad | horrible | very_horrible | impassable)' |
+   sac_scale = * |
+   sport = via_ferrata)
+{ add mkgmap:unpaved=1 }
+
+(highway = bridleway | highway = path | highway = track)
+& surface != * & tracktype != * & smoothness != * & sac_scale != *
+{ add mkgmap:unpaved=1 }
+
+
+# ------------------------------------------------------------
+# Freizeit / leisure:
+# ------------------------------------------------------------
+
+# Naturschutzgebiet (NSG), dieser Tag ist ausschließlich für Naturschutzgebiete zu nutzen.
+# Andere Gebiete – wie z. B. Nationalpark, Biosphärenreservat, Landschaftsschutzgebiet, etc.
+# sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
+# Aus Gruenden der besseren Uebersichtlichkeit, wird die Ausweisung der NSGs begrenzt.
+# siehe auch Style-File "polygons" - dort wird zusätzlich auch die Fläche dargestellt
+leisure = nature_reserve [0x01210f resolution 20-23 continue]
+
+# Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
+# (New tagging includes land area also... therefore display of it needs to change: will be moved to 'lines')
+leisure = marina [0x01201e resolution 23 continue]
+
+
+
+# -----------------------------------------------------------------
+# NEUE MAXSPEED BERECHNUNG
+# Setzen der road-class wenn maxspeed gegeben ist
+# Bevor die Auffahrten umdefiniert sind, um ihnen eine niedrigere class geben zu können
+# -----------------------------------------------------------------
+maxspeed = * & ( maxspeedkmh() > 120 | maxspeed = none ) & ( highway = motorway | highway = trunk )                                                                                                                                                                                                                                                                              { set mkgmap:road-speed-class = 7 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 100 & ( highway = motorway | highway = trunk )                                                                                                                                                                                                                                                                     { set mkgmap:road-speed-class = 6 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 80 & ( highway = motorway | highway = trunk  | highway = primary | highway = motorway_link | highway = trunk_link )                                                                                                                                                                                                { set mkgmap:road-speed-class = 5 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 60 & ( highway = motorway | highway = trunk  | highway = primary | highway = motorway_link | highway = trunk_link | highway = secondary | highway = tertiary )                                                                                                                                                     { set mkgmap:road-speed-class = 4 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 40 & ( highway = motorway | highway = trunk  | highway = primary | highway = motorway_link | highway = trunk_link | highway = secondary | highway = tertiary | highway = primary_link )                                                                                                                            { set mkgmap:road-speed-class = 3 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 30 & ( highway = motorway | highway = trunk  | highway = primary | highway = motorway_link | highway = trunk_link | highway = secondary | highway = tertiary | highway = primary_link | highway = secondary_link | highway = tertiary_link | highway = residential  | highway = unclassified | highway = service ) { set mkgmap:road-speed-class = 2 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 10 & ( highway = motorway | highway = trunk  | highway = primary | highway = motorway_link | highway = trunk_link | highway = secondary | highway = tertiary | highway = primary_link | highway = secondary_link | highway = tertiary_link | highway = residential  | highway = unclassified | highway = service ) { set mkgmap:road-speed-class = 1 }
+
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 80            { set mkgmap:road-speed-class = 4 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 60            { set mkgmap:road-speed-class = 3 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 40            { set mkgmap:road-speed-class = 2 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() > 30            { set mkgmap:road-speed-class = 1 }
+maxspeed = * & mkgmap:road-speed-class != * & maxspeedkmh() < 11            { set mkgmap:road-speed-class = 0 }
+
+
+
+
+
+# ------------------------------------------------------------------
+# Auffahrten umdefinieren:
+# ------------------------------------------------------------------
+
+# Autobahnanschlussstelle:
+# ------------------------
+# Typischerweise mit den gleichen Nutzungsbeschraenkungen wie die Autobahn selber.
+highway = motorway_link {set highway = motorway}
+
+# Anschlussstelle einer autobahnaehnlichen Strasse:
+# -------------------------------------------------
+# Analog zu Autobahnanschlussstelle.
+highway = trunk_link {set highway = trunk}
+
+# Bundesstrassenanschlussstelle:
+# ------------------------------
+# Analog zu Autobahnanschlussstelle.
+highway = primary_link {set highway = primary}
+
+# Auffahrt zu einer Land- oder sehr gut ausgebauten Kreisstrasse:
+# ---------------------------------------------------------------
+highway = secondary_link {set highway = secondary}
+
+# Auffahrt zu einer Kreisstrasse:
+# -------------------------------
+highway = tertiary_link {set highway = tertiary}
+
+
+
+
+
+
+# ====================================================================================================
+# NEUES ROUTING:
+# ====================================================================================================
+
+# Umdefinition von verschiedenen Zugangsberechtigungen (official, private, permissive...) zu YES oder NO da mkgmap nichts anderes kennt.
+# Zunaechst werden nur access, motorcar, motor_vehicle, vehicle, bicycle, foot ausgewertet.
+# Da destination, customers, residents, permissive als JA angesehen wird, gilt es gegebenenfalls auf die Beschilderung vor Ort zu schauen!
+
+highway = cycleway & access != * & vehicle != *  {add bicycle = yes}
+highway = footway  & access != *                 {add foot = yes}
+
+# official umdefinieren: x = official: x = yes; y, z, ... = no
+foot = official & bicycle != *       {set bicycle = no}
+foot = official & vehicle != *       {set vehicle = no}
+foot = official & motor_vehicle != * {set motor_vehicle = no}
+foot = official & motorcar != *      {set motorcar = no}
+foot = official & access != *        {set access = no}
+foot = official                      {set foot = yes; set bfdesignated = yes}
+
+bicycle = official & foot != *          {set foot = no}
+bicycle = official & vehicle != *       {set vehicle = no}
+bicycle = official & motor_vehicle != * {set motor_vehicle = no}
+bicycle = official & motorcar != *      {set motorcar = no}
+bicycle = official & access != *        {set access = no}
+bicycle = official                      {set bicycle = yes; set bfdesignated = yes}
+
+vehicle = official & bicycle != *       {set bicycle = yes}
+vehicle = official & foot != *          {set foot = no}
+vehicle = official & motor_vehicle != * {set motor_vehicle = yes}
+vehicle = official & motorcar != *      {set motorcar = yes}
+vehicle = official & access != *        {set access = no}
+
+motor_vehicle = official & bicycle != *  {set bicycle = no}
+motor_vehicle = official & vehicle != *  {set vehicle = no}
+motor_vehicle = official & foot != *     {set foot = no}
+motor_vehicle = official & motorcar != * {set motorcar = yes}
+motor_vehicle = official & access != *   {set access = no}
+
+motorcar = official & bicycle != *       {set bicycle = no}
+motorcar = official & vehicle != *       {set vehicle = no}
+motorcar = official & motor_vehicle != * {set motor_vehicle = no}
+motorcar = official & foot != *          {set foot = no}
+motorcar = official & access != *        {set access = no}
+
+access = official {add foot = yes; add bicycle = yes; add vehicle = yes; add motor_vehicle = yes; set access = yes}
+
+foot = designated                        {set foot = yes; set bfdesignated = yes}
+bicycle = designated                     {set bicycle = yes; set bfdesignated = yes}
+
+# Highwayspezifisches hinzufuegen
+# -------------------------------
+
+
+
+# generell fuer das Routing gesperrt
+highway = proposed | highway = raceway | highway = no | highway = crossing | highway =  traffic_signals | highway = platform | highway = streetlamp | highway = emergency_access_point | highway = stop | highway = passing_place| highway = incline_steep | highway = incline | highway = milestone | highway = access_ramp {set access = no; set motorcar = no; set bicycle = no; set foot = no}
+highway = via_ferrata | highway = construction  {set access = no; set motorcar = no; set bicycle = no; set foot = no}
+
+# Motorroad (Kraftfahrstrasse): generell gesperrt fuer Fussganeger und Radfahrer
+motorroad = yes {add foot = no; add bicycle = no}
+ 
+# Autobahnen: generell gesperrt fuer Fussgaenger und Radfahrer
+highway = motorway {add foot = no; add bicycle = no}
+
+# Pfade, Radwege, Feld-/Waldwege: generell gesperrt fuer Autos
+highway = path | highway = cycleway | highway = track {add motorcar = no}
+
+# Reitwege: generell (in Deutschland) nur fuer Reiter erlaubt
+highway = bridleway {add motorcar = no; add bicycle = no; add foot = no}
+
+# Wege und Bereiche speziell fuer Fussgaenger: generell fuer Autos und Radfahrer gesperrt
+highway = footway | highway = elevator | highway = steps | highway = pedestrian {add motorcar = no; add bicycle = no}
+
+# Wanderwege Variante PoPo Trails - POPOTRAILS 
+
+# # Bergwege; ueber Wege der Kategorien 3-6 wird aus Sicherheitsgruenden nicht geroutet; Ausnahme: T36ROUTING ist explizit definiert
+# #ifdef T36ROUTING
+#   highway = path & (sac_scale = hiking                    | sac_scale = mountain_hiking)         {set highway = bergweg12}
+#   highway = path & (sac_scale = demanding_mountain_hiking | sac_scale = alpine_hiking)           {set highway = bergweg34}
+#   highway = path & (sac_scale = demanding_alpine_hiking   | sac_scale = difficult_alpine_hiking) {set highway = bergweg56}
+# #else
+#   highway = path & (sac_scale = hiking                    | sac_scale = mountain_hiking)         {set highway = bergweg12}
+#   highway = path & (sac_scale = demanding_mountain_hiking | sac_scale = alpine_hiking)           {set highway = bergweg34; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+#   highway = path & (sac_scale = demanding_alpine_hiking   | sac_scale = difficult_alpine_hiking) {set highway = bergweg56; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# #endif
+
+# Bergwege; T4 - T6 für routing aus Sicherheitsgründen gesperrt; Ausnahme: EXTENDEDROUTING ist explizit definiert
+# Alpine Trails; T4 - T6 expluded from routing for security reasons; Exception: EXTENDEDROUTING set
+  # T1
+  highway = path & sac_scale = hiking                     {set highway = sacscalet1;        set name = '${name} (T1)' | 'Alpine Trail (T1)' }
+  # T2
+  highway = path & sac_scale = mountain_hiking            {set highway = sacscalet2t3;      set name = '${name} (T2)' | 'Alpine Trail (T2)' }
+  # T3
+  highway = path & sac_scale = demanding_mountain_hiking  {set highway = sacscalet2t3;      set name = '${name} (T3)' | 'Alpine Trail (T3)' }
+  # T4
+  highway = path & sac_scale = alpine_hiking              {set highway = sacscalet4t5t6;    set name = '${name} (T4)' | 'Alpine Trail (T4)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+  # T5
+  highway = path & sac_scale = demanding_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T5)' | 'Alpine Trail (T5)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+  # T6
+  highway = path & sac_scale = difficult_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T6)' | 'Alpine Trail (T6)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+
+
+# access
+highway = * & (access = designated | access = permissive | access = destination | access = customers | access = official | access = public  | access = residents  | access = customer  | access = residential) {set access = yes}
+highway = * & (access = military | access = private | access = agricultural | access = forestry | access = delivery  | access = restricted  | access = psv  | access = bus | access = psv | access = unknown) {set access = no}
+
+# motorcar
+highway = * & (motorcar = designated | motorcar = permissive | motorcar = destination | motorcar = customers | motorcar = official | motorcar = public  | motorcar = residents  | motorcar = customer  | motorcar = residential) {set motorcar = yes}
+highway = * & (motorcar = military | motorcar = private | motorcar = agricultural | motorcar = forestry | motorcar = delivery  | motorcar = restricted  | motorcar = psv  | motorcar = bus | motorcar = psv | motorcar = unknown) {set motorcar = no}
+
+# motor_vehicle
+highway = * & (motor_vehicle = designated | motor_vehicle = permissive | motor_vehicle = destination | motor_vehicle = customers | motor_vehicle = official | motor_vehicle = public  | motor_vehicle = residents  | motor_vehicle = customer  | motor_vehicle = residential) {set motor_vehicle = yes}
+highway = * & (motor_vehicle = military | motor_vehicle = private | motor_vehicle = agricultural | motor_vehicle = forestry | motor_vehicle = delivery  | motor_vehicle = restricted  | motor_vehicle = psv  | motor_vehicle = bus | motor_vehicle = psv | motor_vehicle = unknown) {set motor_vehicle = no}
+
+# vehicle
+highway = * & (vehicle = designated | vehicle = permissive | vehicle = destination | vehicle = customers | vehicle = official | vehicle = public  | vehicle = residents  | vehicle = customer  | vehicle = residential) {set vehicle = yes}
+highway = * & (vehicle = military | vehicle = private | vehicle = agricultural | vehicle = forestry | vehicle = delivery  | vehicle = restricted  | vehicle = psv  | vehicle = bus | vehicle = psv | vehicle = unknown) {set vehicle = no}
+
+# bicycle
+highway = * & (bicycle = permissive | bicycle = destination | bicycle = customers | bicycle = official | bicycle = public  | bicycle = residents  | bicycle = customer  | bicycle = residential) {set bicycle = yes}
+highway = * & (bicycle = military | bicycle = private | bicycle = agricultural | bicycle = forestry | bicycle = delivery  | bicycle = restricted  | bicycle = psv  | bicycle = bus | bicycle = psv | bicycle = unknown) {set bicycle = no}
+# Fahrraeder schieben? Um gegebenenfalls die Geschwindigkeit runterzusetzen / gesondert zu markieren:
+bicycle = dismount {set bicycle = yes; set radschieben = yes}
+bicycle = yes & highway = steps { set radschieben = yes}
+
+# foot
+highway = * & (foot = permissive | foot = destination | foot = customers | foot = official | foot = public  | foot = residents  | foot = customer  | foot = residential) {set foot = yes}
+highway = * & (foot = military | foot = private | foot = agricultural | foot = forestry | foot = delivery  | foot = restricted  | foot = psv  | foot = bus | foot = psv | foot = unknown) {set foot = no}
+
+# Duerfen hier Autos fahren?
+# --------------------------
+
+highway = * & access != * & motorcar != * & motor_vehicle != * & vehicle != * {add auto = yes}
+highway = * & motorcar = no                                                   {add auto = no}
+highway = * & motorcar = yes                                                  {add auto = yes}
+
+auto != * & highway = * & motor_vehicle = no  {set auto = no}
+auto != * & highway = * & motor_vehicle = yes {set auto = yes}
+auto != * & highway = * & vehicle = no        {set auto = no}
+auto != * & highway = * & vehicle = yes       {set auto = yes}
+auto != * & highway = * & access = no         {set auto = no}
+auto != * & highway = * & access = yes        {set auto = yes}
+
+# falls irgend ein nicht ausgewertetes tag verwendet wird: access verbieten
+auto != * & highway = * {set auto = no}
+
+# Duerfen hier Fahrraeder fahren?
+# -------------------------------
+
+highway = * & access != * & bicycle != * & vehicle != * {add fahrrad = yes}
+highway = * & bicycle = no                              {add fahrrad = no}
+highway = * & bicycle = yes                             {set fahrrad = yes}
+
+fahrrad != * & highway = * & vehicle = no  {set fahrrad = no}
+fahrrad != * & highway = * & vehicle = yes {set fahrrad = yes}
+fahrrad != * & highway = * & access = no   {set fahrrad = no}
+fahrrad != * & highway = * & access = yes  {set fahrrad = yes}
+
+# falls irgend ein nicht ausgewertetes tag verwendet wird: access verbieten
+fahrrad != * & highway = * {set fahrrad = no}
+
+# Darf man hier als Fussgaenger laufen?
+# -------------------------------------
+
+highway = * & access != * & foot != * {add fuss = yes}
+highway = * & foot = no               {add fuss = no}
+highway = * & foot = yes              {set fuss = yes}
+
+fuss != * & highway = * & access = no  {set fuss = no}
+fuss != * & highway = * & access = yes {set fuss = yes}
+
+# falls irgend ein nicht ausgewertetes tag verwendet wird: access verbieten
+fuss != * & highway = * {set fuss = no}
+
+# Motorraeder werden nicht unterstuetzt.
+# --------------------------------------
+highway = * & motorcycle = * { delete motorcycle }
+
+
+# mkgmap:car, mkgmap:foot, mkgmap:bicycle setzen
+auto = yes       {set mkgmap:car = yes; set keinrouting = no}
+fahrrad = yes    {set mkgmap:bicycle = yes; set keinrouting = no}
+fuss = yes       {set mkgmap:foot = yes; set keinrouting = no}
+auto = no        {set mkgmap:car = no}
+fahrrad = no     {set mkgmap:bicycle = no}
+fuss = no        {set mkgmap:foot = no}
+
+# Fuer die Indexsuche muessen Wege routbar sein, damit sie gefunden werden
+# auto = no  & fahrrad = no  & fuss = no & name = * {set  keinrouting = yes;  set access = no; set motorcar = no; set bicycle = no; set foot = no}
+auto = no  & fahrrad = no  & fuss = no {set keinrouting = yes; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+
+
+# ===========================================================================================================
+# ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING! ROUTING!
+# ===========================================================================================================
+# Ausser Seilbahnen / Skilifte / Faehren, die werden erst spaeter behandelt.
+
+
+# --------------------------------------------
+# Kreisverkehr / roundabout:
+# --------------------------------------------
+# 0x0c = Bitmap 2 (transparent, nur fuer Routing, Label)
+junction = roundabout & highway = motorway     {set fzkrouting=yes} [0x0c road_class=4 road_speed=5 resolution 24 continue with_actions]
+junction = roundabout & highway = trunk        {set fzkrouting=yes} [0x0c road_class=4 road_speed=2 resolution 24 continue with_actions]
+junction = roundabout & highway = primary      {set fzkrouting=yes} [0x0c road_class=2 road_speed=2 resolution 24 continue with_actions]
+junction = roundabout & highway = secondary    {set fzkrouting=yes} [0x0c road_class=2 road_speed=2 resolution 24 continue with_actions]
+junction = roundabout & highway = tertiary     {set fzkrouting=yes} [0x0c road_class=2 road_speed=1 resolution 24 continue with_actions]
+junction = roundabout & highway = service      {set fzkrouting=yes} [0x0c road_class=0 road_speed=1 resolution 24 continue with_actions]
+junction = roundabout & highway = unclassified {set fzkrouting=yes} [0x0c road_class=0 road_speed=1 resolution 24 continue with_actions]
+junction = roundabout & highway = residential  {set fzkrouting=yes} [0x0c road_class=0 road_speed=1 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# Access=no Wege, fuer Indexsuche, (Nur Wege mit Namen machen Sinn)
+# --------------------------------------------
+# 0x12 = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+keinrouting = yes & fzkrouting != yes & name = * { set fzkrouting=yes } [0x12 road_class=0 road_speed=0 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# Treppen/Stufen
+# --------------------------------------------
+# 0x13 = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+keinrouting = no & fzkrouting != yes & highway = steps { set fzkrouting=yes; } [0x13 road_class=0 road_speed=0 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# Reiner Fussweg
+# --------------------------------------------
+# 0x16 = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+keinrouting = no & fzkrouting != yes & fuss = yes & fahrrad = no & auto = no { set fzkrouting=yes; } [0x16 road_class=0 road_speed=0 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# Radweg und Fussradweg
+# --------------------------------------------
+# 0x0b = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+keinrouting = no & fzkrouting != yes & radschieben = yes & auto = no { set fzkrouting=yes } [0x0b road_class=0 road_speed=0 resolution 24 continue with_actions]
+keinrouting = no & fzkrouting != yes & auto = no { set fzkrouting=yes } [0x0b road_class=0 road_speed=1 resolution 24 continue with_actions]
+
+
+#==========================================================
+# motorway / trunk / primary / secondary / tertiary
+#==========================================================
+
+# --------------------------------------------
+# motorway
+# --------------------------------------------
+# 0x01 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = motorway & fzkrouting != yes {set name = '${ref}' | ''; set fzkrouting=yes} [0x01 road_class=4 road_speed=7 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# trunk
+# --------------------------------------------
+# 0x02 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = trunk & fzkrouting != yes {set name = '${name}' | '${ref}' | ''; set fzkrouting=yes} [0x02 road_class=4 road_speed=6 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# primary
+# --------------------------------------------
+# 0x03 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = primary & fzkrouting != yes {set name = '${name}' | '${ref}' | ''; set fzkrouting=yes} [0x03 road_class=2 road_speed=5 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# secondary
+# --------------------------------------------
+# 0x04 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = secondary & fzkrouting != yes {set name = '${name}' | '${ref}' | ''; set fzkrouting=yes} [0x04 road_class=2 road_speed=4 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# tertiary
+# --------------------------------------------
+# 0x05 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = tertiary & fzkrouting != yes {set name = '${name}' | '${ref}' | ''; set fzkrouting=yes} [0x05 road_class=2 road_speed=3 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# residential
+# --------------------------------------------
+# 0x06 = Bitmap 2 (transparent, nur fuer Routing)
+highway = residential & fzkrouting != yes { set fzkrouting=yes }[0x06 road_class=0 road_speed=2 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# unclassified
+# --------------------------------------------
+# 0x07 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = unclassified & fzkrouting != yes { set fzkrouting=yes }[0x07 road_class=0 road_speed=2 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# service
+# --------------------------------------------
+# 0x08 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = service & fzkrouting != yes { set fzkrouting=yes }[0x08 road_class=0 road_speed=2 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# living_street
+# --------------------------------------------
+# 0x09 = Bitmap 2 (transparent, nur fuer Routing, Label)
+highway = living_street & fzkrouting != yes { set fzkrouting=yes }[0x09 road_class=0 road_speed=0 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# Andere mit dem Auto befahrbare Strasse
+# --------------------------------------------
+# 0x0a = Bitmap 2 (transparent, nur fuer Routing, Label)
+auto = yes & fzkrouting != yes { set fzkrouting=yes } [0x0a road_class=1 road_speed=1 resolution 24 continue with_actions]
+
+# --------------------------------------------
+# make opposite cycleways, zweite Routingstrasse wird gezeichnet
+# --------------------------------------------
+# Achtung, es liegen zwei routbare Wege uebereinander, auf eventuelle Probleme bei der Indexsuche muss geachtet werden.
+# 0x0e = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+highway = * & (oneway = yes | oneway = 1 | oneway = true) & (cycleway = opposite | cycleway = opposite_lane | cycleway = opposite_track | oneway:bicycle = no | bicycle:oneway = no) {set oneway = ''; set motorcar = no; set bicycle = yes; set mkgmap:bicycle = yes} [0x0e road_speed=1 road_class=0 resolution 24 continue]
+highway = * & oneway = -1 & (cycleway = opposite | cycleway=opposite_lane | cycleway = opposite_track | oneway:bicycle = no | bicycle:oneway = no) {set oneway = ''; set motorcar = no; set bicycle = yes; set mkgmap:bicycle = yes} [0x0e road_speed=1 road_class=0 resolution 24 continue]
+
+
+# ==============================================
+# ZEICHNEN VON Strassen und Wegen / highway:
+# ==============================================
+
+# Anmerkungen zu Strassennamen:
+# resolution 21: keine Anzeige von Strassennamen
+# resolution 22: Anzeige der Bezeichnungen / Namen von Autobahnen und autobahnaehnlichen Bundesstrassen (Schrift klein)
+# resolution 23: wie resolution 22, zusaetzlich Anzeige der Namen von Bundesstrassen (Schrift klein)
+# resolution 24: Anzeige aller Strassennamen (Schrift Default)
+
+# Anmerkung zu Bruecke, Tunnel, Deich: Der Strassentyp ist irrelevant; entscheident ist die Strassenbreite.
+# Gap   Bruecke      Tunnel     Deich
+# ----  ----------  ----------  ----------
+# 10    0x010409    0x01040a    0x011f02
+# 8     0x01040b    0x01040c    0x011f03
+# 6     0x010504    0x010406    0x011f04
+# 4     0x010407    0x010408    0x011f05
+
+#----------------------------
+# Wanderwege Variante PoPo Trails - POPOTRAILS
+# -----------------------------------------
+
+
+
+
+# Autobahn:
+# ---------
+# Strasse mit baulich getrennten Fahrtrichtungen (i.A. Gruenstreifen) und besonderen Nutzungsbeschraenkungen.
+# Typischerweise zwei Fahrspuren je Fahrtrichtung oder mehr und ein Standstreifen.
+
+# Bruecke / Tunnel / Deich
+highway = motorway & bridge = * & bridge != no   [0x010409 resolution 24 continue]
+highway = motorway & tunnel = yes                [0x01040a resolution 24 continue]
+highway = motorway & man_made = dyke             [0x011f02 resolution 24 continue]
+### highway = motorway & embankment = yes [0x011f02 resolution 24 continue]
+
+# Allgemein oeffentlich
+# 0x011f13 = 5/1 (breit, NoLabel)
+# 0x010f0a = 3/1 (mittel, Label, SmallFont)
+# 0x010f0b = 1/1 (schmal, NoLabel)
+# 0x010e0a = 1 (sehr schmal, NoLabel)
+highway = motorway [0x011f13 resolution 24 continue]
+highway = motorway [0x010f0a resolution 22-23 continue]
+highway = motorway [0x010f0b resolution 20-21 continue]
+#highway = motorway [0x010e0a resolution 17-19]
+# starting at 14 for overviewmap
+highway = motorway [0x010e0a resolution 14-19]
+
+
+# Autobahnaehnliche Strasse:
+# --------------------------
+# Autobahnaehnlich ausgebaute Strasse, aber keine Autobahn. Typischerweise unter zentraler Verwaltung.
+
+# Bruecke / Tunnel / Deich
+highway = trunk & bridge = * & bridge != no     [0x01040b resolution 24 continue with_actions]
+highway = trunk & tunnel = yes                  [0x01040c resolution 24 continue with_actions]
+highway = trunk & man_made = dyke               [0x011f03 resolution 24 continue with_actions]
+### highway = trunk & embankment = yes [0x011f03 resolution 24 continue with_actions]
+
+# Allgemein oeffentlich
+# 0x011f14 = 4/1 (breit, NoLabel)
+# 0x012100 = 4/1 (breit, Label, SmallFont)
+# 0x010f0c = 2/1 (mittel, NoLabel)
+# 0x010f0d = 1/1 (schmal, NoLabel)
+# 0x010e0b = 1 (sehr schmal, NoLabel)
+highway = trunk {set name = '${name}' | '${ref}' | ''} [0x011f14 resolution 24 continue with_actions]
+highway = trunk {set name = '${name}' | '${ref}' | ''} [0x012100 resolution 23-23 continue with_actions]
+highway = trunk {set name = '${ref}' | ''}             [0x010f0c resolution 22-22 continue with_actions]
+highway = trunk {set name = '${ref}' | ''}             [0x010f0d resolution 20-21 continue with_actions]
+highway = trunk {set name = '${ref}' | ''}             [0x010e0b resolution 18-19]
+
+
+# Bundesstrasse:
+# --------------
+# Hauptverbindungsstrasse unter zentraler Verwaltung mit besonderer Kennzeichnung, die meist groessere Staedte
+# verbindet und dem ueberregionalem Verkehr dient. Ausserdem: Strassen mit uebergeordneter Verkehrsbedeutung.
+
+# Bruecke / Tunnel / Deich
+highway = primary & bridge = * & bridge != no  [0x01040b resolution 24 continue with_actions]
+highway = primary & tunnel = yes               [0x01040c resolution 24 continue with_actions]
+highway = primary & man_made = dyke            [0x011f03 resolution 24 continue with_actions]
+### highway = primary & embankment = yes       [0x011f03 resolution 24 continue with_actions]
+
+# Allgemein oeffentlich
+# 0x011f15 = 4/1 (breit, NoLabel)
+# 0x012101 = 4/1 (breit, Label, SmallFont)
+# 0x010f0e = 2/1 (mittel, NoLabel)
+# 0x010f0f = 1/1 (schmal, NoLabel)
+highway = primary {set name = '${name}' | '${ref}' | ''} [0x011f15 resolution 24 continue with_actions]
+highway = primary {set name = '${name}' | '${ref}' | ''} [0x012101 resolution 23-23 continue with_actions]
+highway = primary {set name = '${ref}' | ''}             [0x010f0e resolution 22-22 continue with_actions]
+highway = primary {set name = '${ref}' | ''}             [0x010f0f resolution 20-21]
+
+
+# Land- oder sehr gut ausgebaute Kreisstrasse:
+# --------------------------------------------
+# Strasse mit Mittellinie, die kleinere Staedte oder groessere Orte verbindet.
+# Diese Strassen dienen dem zwischenregionalem Verkehr.
+
+# Bruecke / Tunnel / Deich
+highway = secondary & bridge = * & bridge != no [0x01040b resolution 24 continue with_actions]
+highway = secondary & tunnel = yes              [0x01040c resolution 24 continue with_actions]
+highway = secondary & man_made = dyke           [0x01040c resolution 24 continue with_actions]
+### highway = secondary & embankment = yes [0x01040c resolution 24 continue with_actions]
+
+# Allgemein oeffentlich
+# 0x011f16 = 4/1 (breit, NoLabel)
+# 0x010e0d = 4/1 (breit, NoLabel)
+# 0x010f10 = 2/1 (mittel, NoLabel)
+# 0x010f11 = 1/1 (schmal, NoLabel)
+highway = secondary {set name = '${ref}' | ''} [0x011f16 resolution 24 continue with_actions]
+highway = secondary {set name = '${ref}' | ''} [0x010e0d resolution 23-23 continue with_actions]
+highway = secondary {set name = '${ref}' | ''} [0x010f10 resolution 22-22 continue with_actions]
+highway = secondary {set name = '${ref}' | ''} [0x010f11 resolution 20-21]
+
+
+# Kreisstrasse:
+# -------------
+# Eine sehr gut ausgebaute Gemeindeverbindungsstrasse, die in erster Linie regionalen Verkehrsbeduerfnissen dient.
+# Wenig befahrene Vorfahrtstrasse, die kleinere Orte verbindet. Innerstaedtische Vorfahrtstrassen mit Durchfahrtscharakter.
+
+# Bruecke / Tunnel / Deich
+highway = tertiary & bridge = * & bridge != no  [0x01040b resolution 24 continue with_actions]
+highway = tertiary & tunnel = yes               [0x01040c resolution 24 continue with_actions]
+highway = tertiary & man_made = dyke            [0x011f03 resolution 24 continue with_actions]
+### highway = tertiary & embankment = yes [0x011f03 resolution 24 continue with_actions]
+
+# Allgemein oeffentlich
+# 0x010e0e = 4/1 (breit, NoLabel)
+# 0x010f12 = 2/1 (mittel, NoLabel)
+# 0x010f13 = 1/1 (schmal, NoLabel)
+highway = tertiary {set name = '${name}' | '${ref}' | ''} [0x010e0e resolution 24 continue with_actions]
+highway = tertiary {set name = '${ref}' | ''}             [0x010f12 resolution 22-23 continue with_actions]
+highway = tertiary {set name = '${ref}' | ''}             [0x010f13 resolution 20-21]
+
+
+# Strasse an und in Wohngebieten:
+# -------------------------------
+# Die Strasse gehoert keiner anderen Strassenklasse an.
+
+# Bruecke / Tunnel / Deich
+highway = residential & (area != * | area = no) & bridge = * & bridge != no [0x01040b resolution 24 continue]
+highway = residential & (area != * | area = no) & tunnel = yes              [0x01040c resolution 24 continue]
+highway = residential & (area != * | area = no) & man_made = dyke           [0x011f03 resolution 24 continue]
+### highway = residential & (area != * | area = no) & embankment = yes [0x011f03 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010f16 = 4/1 (breit, NoLabel)
+# 0x010f17 = 2/1 (mittel, NoLabel)
+# 0x010105 = 1/1 (schmal, NoLabel)
+highway = residential & (area != * | area = no) & keinrouting = yes [0x010f16 resolution 24 continue]
+highway = residential & (area != * | area = no) & keinrouting = yes [0x010f17 resolution 23-23 continue]
+highway = residential & (area != * | area = no) & keinrouting = yes [0x010105 resolution 21-22]
+
+# Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
+# 0x010f16 = 4/1 (breit, NoLabel)
+# 0x010f17 = 2/1 (mittel, NoLabel)
+# 0x010105 = 1/1 (schmal, NoLabel)
+highway = residential & (area != * | area = no) & auto = no [0x010f16 resolution 24 continue]
+highway = residential & (area != * | area = no) & auto = no [0x010f17 resolution 23-23 continue]
+highway = residential & (area != * | area = no) & auto = no [0x010105 resolution 21-22]
+
+# Allgemein oeffentlich
+# 0x011f17 = 4/1 (breit, NoLabel)
+# 0x010f14 = 2/1 (mittel, NoLabel)
+# 0x010f15 = 1/1 (schmal, NoLabel)
+highway = residential & (area != * | area = no) [0x011f17 resolution 24 continue]
+highway = residential & (area != * | area = no) [0x010f14 resolution 23-23 continue]
+highway = residential & (area != * | area = no) [0x010f15 resolution 21-22]
+
+
+# Oeffentlich befahrbare Nebenstrasse:
+# ------------------------------------
+# Eine Strasse mit einfachstem Ausbauzustand, und typischerweise ohne eine Mittellinie.
+# Z.B. Gemeindestrassen mit Verbindungscharakter, die zu schmal sind, um als Kreisstrasse zu gelten.
+
+# Bruecke / Tunnel / Deich
+highway = unclassified & (area != * | area = no) & bridge = * & bridge != no  [0x01040b resolution 24 continue]
+highway = unclassified & (area != * | area = no) & tunnel = yes               [0x01040c resolution 24 continue]
+highway = unclassified & (area != * | area = no) & man_made = dyke            [0x011f03 resolution 24 continue]
+### highway = unclassified & (area != * | area = no) & embankment = yes [0x011f03 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010f1a = 3/1 (breit, NoLabel)
+# 0x010f1b = 2/1 (mittel, NoLabel)
+# 0x010f19 = 1/1 (schmal, NoLabel)
+highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f1a resolution 24 continue]
+highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f1b resolution 23-23 continue]
+highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f19 resolution 21-22]
+
+# Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
+# 0x010f1a = 3/1 (breit, NoLabel)
+# 0x010f1b = 2/1 (mittel, NoLabel)
+# 0x010f19 = 1/1 (schmal, NoLabel)
+highway = unclassified & (area != * | area = no) & auto = no [0x010f1a resolution 24 continue]
+highway = unclassified & (area != * | area = no) & auto = no [0x010f1b resolution 23-23 continue]
+highway = unclassified & (area != * | area = no) & auto = no [0x010f19 resolution 21-22]
+
+# Allgemein oeffentlich
+# 0x011f18 = 3/1 (breit, NoLabel)
+# 0x010f18 = 2/1 (mittel, NoLabel)
+# 0x010106 = 1/1 (schmal, NoLabel)
+highway = unclassified & (area != * | area = no) [0x011f18 resolution 24 continue]
+highway = unclassified & (area != * | area = no) [0x010f18 resolution 23-23 continue]
+highway = unclassified & (area != * | area = no) [0x010106 resolution 21-22]
+
+
+# Erschliessungsweg zu Einrichtungen:
+# -----------------------------------
+# Erschliessungsweg z.B. zu Sportanlagen, Straenden, Autobahnraststaetten oder allgemein zu Gebaeuden.
+
+# Bruecke / Tunnel / Deich
+highway = service & (area != * | area = no) & bridge = * & bridge != no  [0x01040b resolution 24 continue]
+highway = service & (area != * | area = no) & tunnel = yes               [0x01040c resolution 24 continue]
+highway = service & (area != * | area = no) & man_made = dyke            [0x011f03 resolution 24 continue]
+### highway = service & (area != * | area = no) & embankment = yes [0x011f03 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010f1e = 3/1 (breit, NoLabel)
+# 0x010f1f = 2/1 (mittel, NoLabel)
+# 0x010f1d = 1/1 (schmal, NoLabel)
+highway = service & (area != * | area = no) & keinrouting = yes [0x010f1e resolution 24 continue]
+highway = service & (area != * | area = no) & keinrouting = yes [0x010f1f resolution 23-23 continue]
+highway = service & (area != * | area = no) & keinrouting = yes [0x010f1d resolution 21-22]
+
+# Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
+# 0x010f1e = 3/1 (breit, NoLabel)
+# 0x010f1f = 2/1 (mittel, NoLabel)
+# 0x010f1d = 1/1 (schmal, NoLabel)
+highway = service & (area != * | area = no) & auto = no [0x010f1e resolution 24 continue]
+highway = service & (area != * | area = no) & auto = no [0x010f1f resolution 23-23 continue]
+highway = service & (area != * | area = no) & auto = no [0x010f1d resolution 21-22]
+
+# Allgemein oeffentlich
+# 0x011f19 = 3/1 (breit, NoLabel)
+# 0x010f1c = 2/1 (mittel, NoLabel)
+# 0x010107 = 1/1 (schmal, NoLabel)
+highway = service & (area != * | area = no) [0x011f19 resolution 24 continue]
+highway = service & (area != * | area = no) [0x010f1c resolution 23-23 continue]
+highway = service & (area != * | area = no) [0x010107 resolution 21-22]
+
+
+# Verkehrsberuhigter Bereich:
+# ---------------------------
+# Eine Strasse in der auf spielende Kinder aufgepasst werden muss, Fussgaenger
+# bevorzugt behandelt werden und nur Schrittgeschwindigkeit erlaubt ist.
+
+# Bruecke / Tunnel / Deich
+highway = living_street & (area != * | area = no) & bridge = * & bridge != no  [0x01040b resolution 24 continue]
+highway = living_street & (area != * | area = no) & tunnel = yes               [0x01040c resolution 24 continue]
+highway = living_street & (area != * | area = no) & man_made = dyke            [0x011f03 resolution 24 continue]
+### highway = living_street & (area != * | area = no) & embankment = yes [0x011f03 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010f05 = 4/1 (breit, NoLabel)
+# 0x010f06 = 2/1 (mittel, NoLabel)
+# 0x010108 = 1/1 (schmal, NoLabel)
+highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f05 resolution 24 continue]
+highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f06 resolution 23-23 continue]
+highway = living_street & (area != * | area = no) & keinrouting = yes [0x010108 resolution 21-22]
+
+# Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
+# 0x010f05 = 4/1 (breit, NoLabel)
+# 0x010f06 = 2/1 (mittel, NoLabel)
+# 0x010108 = 1/1 (schmal, NoLabel)
+highway = living_street & (area != * | area = no) & auto = no [0x010f05 resolution 24 continue]
+highway = living_street & (area != * | area = no) & auto = no [0x010f06 resolution 23-23 continue]
+highway = living_street & (area != * | area = no) & auto = no [0x010108 resolution 21-22]
+
+# Allgemein oeffentlich
+# 0x011f1a = 4/1 (breit, NoLabel)
+# 0x010f03 = 2/1 (mittel, NoLabel)
+# 0x010f04 = 1/1 (schmal, NoLabel)
+highway = living_street & (area != * | area = no) [0x011f1a resolution 24 continue]
+highway = living_street & (area != * | area = no) [0x010f03 resolution 23-23 continue]
+highway = living_street & (area != * | area = no) [0x010f04 resolution 21-22]
+
+
+#======================================================================================
+# Beginn Fahrrad / Fuss / Wald / Berg / etc. Wege
+#======================================================================================
+
+# Ausgeschilderte, kombinierte Rad- und Fusswege:
+# -----------------------------------------------
+# Fuer den Radverkehr freigegebener Gehweg:
+# - highway = footway, foot = designated, bicycle = yes
+# - highway = path,    foot = designated, bicycle = yes
+# - highway = path,    foot = official,   bicycle = yes
+# Gemeinsamer Fuss- und Radweg:
+# - highway = cycleway, foot = designated, bicycle = designated
+# - highway = path,     foot = designated, bicycle = designated
+# - highway = path,     foot = official,   bicycle = official
+# Getrennter Fuss- und Radweg:
+# - highway = cycleway, foot = designated, bicycle = designated, segregated = yes
+# - highway = path,     foot = designated, bicycle = designated, segregated = yes
+# - highway = path,     foot = official,   bicycle = official,   segregated = yes
+
+highway = footway  & fahrrad = yes & fuss = yes                       {set highway = radfussweg}
+highway = path     & fahrrad = yes & fuss = yes & bfdesignated = yes  {set highway = radfussweg}
+highway = cycleway & fahrrad = yes & fuss = yes                       {set highway = radfussweg}
+
+
+# Ausgeschilderter Fussweg (nur Fussgaenger erlaubt):
+# ---------------------------------------------------
+# - highway = path, foot = designated
+# - highway = footway, foot = designated
+
+highway = path    & fuss = yes & bfdesignated = yes {set highway = fussweg}
+highway = footway & fuss = yes                      {set highway = fussweg}
+
+
+# Ausgeschilderter Radweg (nur Radfahrer erlaubt):
+# ------------------------------------------------
+# - highway = cycleway, bicycle = designated
+# - highway = path, bicycle = designated
+# - highway = path, bicycle = official
+
+
+highway = cycleway & fahrrad = yes                      {set highway = radweg}
+highway = path     & fahrrad = yes & bfdesignated = yes {set highway = radweg}
+
+
+# "radweg" verarbeiten:
+# ---------------------
+
+# Verbleibende Elemente "highway = cycleway" umdefinieren:
+highway = cycleway {set highway = radweg}
+
+# Bruecke / Tunnel / Deich
+highway = radweg & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = radweg & tunnel = yes               [0x010408 resolution 24 continue]
+highway = radweg & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = radweg & embankment = yes [0x011f05 resolution 24 continue]
+
+# Allgemein oeffentlich
+# 0x011f1d = Bitmap 2 (breit, NoLabel)
+# 0x010f07 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = radweg [0x011f1d resolution 24 continue]
+highway = radweg [0x010f07 resolution 23-23]
+
+
+# "fussweg" verarbeiten:
+# ----------------------
+
+# Verbleibende Elemente "highway=footway" umdefinieren:
+highway = footway {set highway = fussweg}
+
+# Bruecke / Tunnel / Deich
+highway = fussweg & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = fussweg & tunnel = yes               [0x010408 resolution 24 continue]
+highway = fussweg & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = fussweg & embankment = yes [0x011f05 resolution 24 continue]
+
+# Allgemein oeffentlich
+# 0x011f12 = 2 (breit, NoLabel)
+# 0x010e05 = 1 (schmal, NoLabel)
+highway = fussweg [0x011f12 resolution 24 continue]
+highway = fussweg [0x010e05 resolution 23-23]
+
+
+# "radfussweg" verarbeiten:
+# -------------------------
+
+# Bruecke / Tunnel / Deich
+highway = radfussweg & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = radfussweg & tunnel = yes               [0x010408 resolution 24 continue]
+highway = radfussweg & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = radfussweg & embankment = yes [0x011f05 resolution 24 continue]
+
+# Allgemein oeffentlich
+# 0x011f1c = 2 (breit, NoLabel)
+# 0x010e10 = 1 (schmal, NoLabel)
+highway = radfussweg [0x011f1c resolution 24 continue]
+highway = radfussweg [0x010e10 resolution 23-23]
+
+
+# Ausgeschilderter Reitweg (nur Reiter erlaubt):
+# ----------------------------------------------
+
+highway = path  & horse = official   {set highway = reitweg}
+highway = path  & horse = designated {set highway = reitweg}
+highway = bridleway                  {set highway = reitweg}
+
+# Bruecke / Tunnel / Deich
+highway = reitweg & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = reitweg & tunnel = yes               [0x010408 resolution 24 continue]
+highway = reitweg & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = reitweg & embankment = yes [0x011f05 resolution 24 continue]
+
+# Kein Routing
+# 0x010e03 = Bitmap 2 (nur ein Pixel gefuellt, NoLabel)
+highway = reitweg [0x010e03 resolution 24]
+
+
+# Treppen auf Fuss- / Wanderwegen:
+# --------------------------------
+
+# Bruecke / Tunnel / Deich
+highway = steps & bridge = * & bridge != no  [0x010405 resolution 24 continue]
+highway = steps & tunnel = yes               [0x010406 resolution 24 continue]
+highway = steps & man_made = dyke            [0x011f04 resolution 24 continue]
+### highway = steps & embankment = yes [0x011f04 resolution 24 continue]
+
+# Allgemein oeffentlich
+# 0x011f11 = Bitmap 4 (NoLabel)
+highway = steps [0x011f11 resolution 24 continue]
+
+
+# Weg oder Strasse nur fuer Fussgaenger:
+# --------------------------------------
+# Z.B. Fussgaengerstrasse, -zone, typisch fuer Einkaufspassagen.
+
+# Bruecke / Tunnel / Deich
+highway = pedestrian & (area != * | area = no) & bridge = * & bridge != no  [0x01040b resolution 24 continue]
+highway = pedestrian & (area != * | area = no) & tunnel = yes               [0x01040c resolution 24 continue]
+highway = pedestrian & (area != * | area = no) & man_made = dyke            [0x011f03 resolution 24 continue]
+### highway = pedestrian & (area != * | area = no) & embankment = yes [0x011f03 resolution 24 continue]
+
+# Allgemein oeffentlich
+# 0x011f1b = 3/1 (breit, NoLabel)
+# 0x010f08 = 2/1 (mittel, NoLabel)
+# 0x010f09 = 1/1 (schmal, NoLabel)
+highway = pedestrian & (area != * | area = no) [0x011f1b resolution 24 continue]
+highway = pedestrian & (area != * | area = no) [0x010f08 resolution 23-23 continue]
+highway = pedestrian & (area != * | area = no) [0x010f09 resolution 21-22]
+
+
+# Bergwanderweg, typischerweise im Gebirge:
+# -----------------------------------------
+# - hat sac_scale-Attribut:
+#   - sac_scale=hiking = T1 (Wandern)
+#   - sac_scale=mountain_hiking = T2 (Bergwandern)
+#   - sac_scale=demanding_mountain_hiking = T3 (erfahrener Bergwanderer )
+#   - sac_scale=alpine_hiking = T4 (Alpinwandern )
+#   - sac_scale=demanding_alpine_hiking = T5 (anspruchsvolles Alpinwandern )
+#   - sac_scale=difficult_alpine_hiking = T6 (schwieriges Alpinwandern)
+# Routing nur auf T1-T3 (aus Sicherheitsgruenden).
+
+# Bruecke / Tunnel / Deich
+#(highway = bergweg12 | highway = bergweg34 | highway = bergweg56) & bridge = yes     [0x010407 resolution 24 continue]
+#(highway = bergweg12 | highway = bergweg34 | highway = bergweg56) & tunnel = yes     [0x010408 resolution 24 continue]
+#(highway = bergweg12 | highway = bergweg34 | highway = bergweg56) & man_made = dyke  [0x011f05 resolution 24 continue]
+### (highway = bergweg12 | highway = bergweg34 | highway = bergweg56) & embankment = yes [0x011f05 resolution 24 continue]
+(highway = sacscalet1 | highway = sacscalet2t3 | highway = sacscalet4t5t6) & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+(highway = sacscalet1 | highway = sacscalet2t3 | highway = sacscalet4t5t6) & tunnel = yes               [0x010408 resolution 24 continue]
+(highway = sacscalet1 | highway = sacscalet2t3 | highway = sacscalet4t5t6) & man_made = dyke            [0x011f05 resolution 24 continue]
+
+# 0x010e0c = Bitmap 2 (breit, NoLabel)
+# 0x010e06 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = sacscalet1 [0x010e0c resolution 24 continue]
+highway = sacscalet1 [0x010e06 resolution 23-23]
+
+# 0x011f09 = Bitmap 2 (breit, NoLabel)
+# 0x011f0c = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+#highway = bergweg12 [0x011f09 resolution 24 continue]
+#highway = bergweg12 [0x011f0c resolution 23-23]
+
+# 0x011f07 = Bitmap 2 (breit, NoLabel)
+# 0x011f0a = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+#highway = bergweg34 [0x011f07 resolution 24 continue]
+#highway = bergweg34 [0x011f0a resolution 23-23]
+highway = sacscalet2t3 [0x011f07 resolution 24 continue]
+highway = sacscalet2t3 [0x011f0a resolution 23-23]
+
+# 0x011f08 = Bitmap 2 (breit, NoLabel)
+# 0x011f0b = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+#highway = bergweg56 [0x011f08 resolution 24 continue]
+#highway = bergweg56 [0x011f0b resolution 23-23]
+highway = sacscalet4t5t6 [0x011f08 resolution 24 continue]
+highway = sacscalet4t5t6 [0x011f0b resolution 23-23]
+
+
+# Allgemeiner Weg oder Pfad:
+# --------------------------
+# - keine Nutzungsart vorgegeben
+# - nicht fuer motorisierte Fahrzeuge gedacht
+# - fuer Fussgaenger, Radfahrer und Reiter
+
+# Bruecke / Tunnel / Deich
+highway = path & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = path & tunnel = yes               [0x010408 resolution 24 continue]
+highway = path & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = path & embankment = yes [0x011f05 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010e11 = Bitmap 2 (breit, NoLabel)
+# 0x010e12 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = path & keinrouting = yes [0x010e11 resolution 24 continue]
+highway = path & keinrouting = yes [0x010e12 resolution 23-23]
+
+# Allgemein oeffentlich
+# 0x010e0c = Bitmap 2 (breit, NoLabel)
+# 0x010e06 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = path [0x010e0c resolution 24 continue]
+highway = path [0x010e06 resolution 23-23]
+
+
+# Wirtschafts-, Feld- oder Waldweg:
+# ---------------------------------
+#
+# - sollte mit tracktype = 1-5 naeher spezifiziert werden
+# - der Weg ist breit genug fuer ein vierraedriges Fahrzeug
+#
+# Fuer die Mehrheit der Feld- / Waldwege gilt:
+# - Die Feldwege sind nicht fuer den oeffentlichen Kraftverkehr freigegeben.
+# - Die Feldwege koennen durch Fussgaenger und Radfahrer benutzt werden.
+# - Diese Feldwege werden in der Farbe "braun" dargestellt.
+#
+# Fuer einige Feld- / Waldwege gilt:
+# - Die Feldwege sind "privat" und duerfen nicht fuer das Routing benutzt werden.
+# - Diese Feldwege werden in der Farbe "lila" dargestellt.
+#
+# Fuer einige Feld- / Waldwege gilt:
+# - Diese Feldwege sind explizit fuer den oeffentlichen Kraftverkehr freigegeben.
+# - Damit ist dies kein Feldweg mehr, sondern eine "Strasse unbekannter Klassifikation".
+# - Die Darstellung erfolgt entsprechend oder aehnlich wie "highway = unclassified".
+
+highway = track & tracktype = grade1 {set highway = feldweg1}
+
+highway = track & tracktype = grade2 {set highway = feldweg023}
+highway = track & tracktype = grade3 {set highway = feldweg023}
+
+highway = track & tracktype = grade4 {set highway = feldweg45}
+highway = track & tracktype = grade5 {set highway = feldweg45}
+
+# Verbleibende Elemente "highway=track" umdefinieren (0 = ohne tracktype-Angabe):
+highway = track {set highway = feldweg023}
+
+
+# Feld- / Waldweg der Gueteklasse 1:
+# ----------------------------------
+
+# Bruecke / Tunnel / Deich
+highway = feldweg1 & bridge = * & bridge != no  [0x010405 resolution 24 continue]
+highway = feldweg1 & tunnel = yes               [0x010406 resolution 24 continue]
+highway = feldweg1 & man_made = dyke            [0x011f04 resolution 24 continue]
+# highway = feldweg1 & enbankment = yes [0x011f04 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010e13 = 3 (breit, NoLabel)
+# 0x010e14 = 2 (schmal, NoLabel)
+highway = feldweg1 & keinrouting = yes [0x010e13 resolution 24 continue]
+highway = feldweg1 & keinrouting = yes [0x010e14 resolution 23-23]
+
+# Nicht fuer Autos freigegeben oder öffentlich
+# 0x010e09 = 3 (breit, NoLabel)
+# 0x010e07 = 2 (schmal, NoLabel)
+highway = feldweg1  [0x010e09 resolution 24 continue]
+highway = feldweg1  [0x010e07 resolution 23-23]
+
+# Replaced with above, no distinction for auto=yes or auto=no
+## Nicht fuer Autos freigegeben
+## 0x010e09 = 3 (breit, NoLabel)
+## 0x010e07 = 2 (schmal, NoLabel)
+#highway = feldweg1 & auto = no [0x010e09 resolution 24 continue]
+#highway = feldweg1 & auto = no [0x010e07 resolution 23-23]
+#
+## Allgemein oeffentlich
+## 0x010f18 = 2/1 (mittel, NoLabel) (wie highway=unclassified)
+## 0x010106 = 1/1 (schmal, NoLabel) (wie highway=unclassified)
+#highway = feldweg1 [0x010f18 resolution 24 continue]
+#highway = feldweg1 [0x010106 resolution 23-23]
+
+
+# Feld- / Waldweg der Gueteklassen 0,2,3:
+# ---------------------------------------
+
+# Bruecke / Tunnel / Deich
+highway = feldweg023 & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = feldweg023 & tunnel = yes               [0x010408 resolution 24 continue]
+highway = feldweg023 & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = feldweg023 & embankment = yes [0x011f05 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010e15 = Bitmap 2 (breit, NoLabel)
+# 0x010e16 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = feldweg023 & keinrouting = yes [0x010e15 resolution 24 continue]
+highway = feldweg023 & keinrouting = yes [0x010e16 resolution 23-23]
+
+# Nicht fuer Autos freigegeben oder öffentlich
+# 0x010e18 = Bitmap 2 (breit, NoLabel)
+# 0x010e08 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = feldweg023 [0x010e18 resolution 24 continue]
+highway = feldweg023 [0x010e08 resolution 23-23]
+
+# Replaced with above, no distinction for auto=yes or auto=no
+## Nicht fuer Autos freigegeben
+## 0x010e18 = Bitmap 2 (breit, NoLabel)
+## 0x010e08 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+#highway = feldweg023 & auto = no [0x010e18 resolution 24 continue]
+#highway = feldweg023 & auto = no [0x010e08 resolution 23-23]
+#
+## Allgemein oeffentlich
+## 0x010f18 = 2/1 (mittel, NoLabel) (wie highway=unclassified)
+## 0x010106 = 1/1 (schmal, NoLabel) (wie highway=unclassified)
+#highway = feldweg023 [0x010f18 resolution 24 continue]
+#highway = feldweg023 [0x010106 resolution 23-23]
+
+
+# Feld- / Waldweg der Gueteklassen 4,5:
+# -------------------------------------
+
+# Bruecke / Tunnel / Deich
+highway = feldweg45 & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+highway = feldweg45 & tunnel = yes               [0x010408 resolution 24 continue]
+highway = feldweg45 & man_made = dyke            [0x011f05 resolution 24 continue]
+### highway = feldweg45 & embankment = yes [0x011f05 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010e17 = Bitmap 2 (breit, NoLabel)
+# 0x010e1e = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = feldweg45 & keinrouting = yes [0x010e17 resolution 24 continue]
+highway = feldweg45 & keinrouting = yes [0x010e1e resolution 23-23]
+
+
+# Nicht fuer Autos freigegeben oder öffentlich
+# 0x010109 = Bitmap 2 (breit, NoLabel)
+# 0x01011d = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = feldweg45 [0x010109 resolution 24 continue]
+highway = feldweg45 [0x01011d resolution 23-23]
+
+
+# Replaced with above, no distinction for auto=yes or auto=no
+## Nicht fuer Autos freigegeben
+## 0x010109 = Bitmap 2 (breit, NoLabel)
+## 0x01011d = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+#highway = feldweg45 & auto = no [0x010109 resolution 24 continue]
+#highway = feldweg45 & auto = no [0x01011d resolution 23-23]
+#
+#
+## Allgemein oeffentlich
+## 0x010f18 = 2/1 (mittel, NoLabel) (wie highway=unclassified)
+## 0x010106 = 1/1 (schmal, NoLabel) (wie highway=unclassified)
+#highway = feldweg45 [0x010f18 resolution 24 continue]
+#highway = feldweg45 [0x010106 resolution 23-23]
+
+
+# Strasse unbekannter Klassifikation:
+# -----------------------------------
+# Diese Bezeichnung ist gedacht um Strassen voruebergehend zu kennzeichnen,
+# bis ihnen die richtigen Eigenschaften zugewiesen werden koennen.
+
+# Bruecken / Tunnel / Deich
+highway = road & bridge = * & bridge != no  [0x010405 resolution 24 continue]
+highway = road & tunnel = yes               [0x010406 resolution 24 continue]
+highway = road & man_made = dyke            [0x011f04 resolution 24 continue]
+### highway = road & embankment = yes [0x011f04 resolution 24 continue]
+
+# Benutzung verboten, kein Routing
+# 0x010e02 = 2/1 (NoLabel)
+highway = road & keinrouting = yes [0x010e02 resolution 24]
+
+# Nicht fuer Autos freigegeben
+# 0x010e02 = 2/1 (NoLabel)
+highway = road &  auto = no [0x010e02 resolution 24]
+
+# Allgemein oeffentlich
+# 0x010e01 = 2/1 (NoLabel)
+highway = road [0x010e01 resolution 24]
+
+
+# Baustelle / im Bau:
+# -------------------
+# Markiert eine Strasse, die sich gerade im Bau befindet.
+# 0x010e04 = Bitmap 2 (NoLabel)
+highway = construction [0x010e04 resolution 23]
+
+
+# Geplante Strasse:
+# -----------------
+# For roads that are about to be built, but where any construction work hasn't yet been started.
+# Die Anzeige dieses Features wird als nicht sinnvoll angesehen.
+# highway = proposed
+
+
+# Rennstrecke:
+# ------------
+# Inkorrekt: Wird hier zunaechst wie eine private Wohnstrasse behandelt (wg. Groesse, Skalierung und Farbe).
+# 0x010f05 = 4/1 (breit, NoLabel)
+# 0x010f06 = 2/1 (mittel, NoLabel)
+# 0x010108 = 1/1 (schmal, NoLabel)
+highway = raceway [0x010f05 resolution 24 continue]
+highway = raceway [0x010f06 resolution 23-23 continue]
+highway = raceway [0x010108 resolution 21-22]
+
+
+# Klettersteig:
+# -------------
+# A via ferrata is a route equipped with fixed cables, stemples, ladders, and bridges in order to increase
+# ease and security for climbers. These via ferrata require equipment: climbing harness, shock absorber
+# and two short lengths of rope, but do not require a long rope as for climbing.
+
+# Allgemein oeffentlich
+# 0x01210b = Bitmap 2 (breit, NoLabel)
+# 0x01210c = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
+highway = via_ferrata [0x01210b resolution 24 continue]
+highway = via_ferrata [0x01210c resolution 23-23]
+
+
+# Bussteig:
+# ---------
+# Wie Bahnsteig.
+# 0x010e1d = 2 (NoLabel)
+highway = platform & (area != * | area = no) [0x010e1d resolution 24]
+
+
+# --------------------------------------------------------
+# Zivilisations- / Kunstbauten / man_made:
+# --------------------------------------------------------
+
+# Deich (künstlicher Damm zwecks Hochwasserschutz, nicht befahrbar). [way]
+man_made = dyke [0x011f01 resolution 24]
+
+# Künstlicher Steilhang / Klippe. [way]
+# wird derzeit nicht unterstützt
+# man_made = embankment
+
+# Buhne. [way, closedway]
+# 0x010e1f = 2 (NoLabel)
+man_made = groyne [0x010e1f resolution 24]
+
+# Anleger / Pier. [way, closedway] (oft nicht als "area" getaggt)
+# 0x010f01 = 2 (NoLabel)
+man_made = pier [0x010f01 resolution 24 continue]
+
+
+# ------------------------------------------------------------
+# Natur / natural:
+# ------------------------------------------------------------
+
+# Klippe. [point, way, closedway]
+# 0x010104 = Bitmap 4 (3 Pixel gefuellt, NoLabel)
+natural = cliff [0x010104 resolution 24]
+
+# Grat. [way]
+# Sollte nicht zusammen mit Hoehenlinien dargestellt werden (weil dann moeglicherweise irrefuehrend).
+# 0x01011c = 1 (NoLabel)
+# ridge - A long, narrow elevation of the land surface, usually sharp crested with steep sides and forming
+#         an extended upland between valleys. The term is used in areas of both hill and mountain relief.
+# natural = ridge & name = * [0x01011c resolution 23]
+
+# Baumreihe / Tree Rows
+# 0x012112 (NoLabel)
+natural = tree_row [ 0x012112 resolution 24 ]
+
+
+# ------------------------------------------------------------
+# Routen / route:
+# ------------------------------------------------------------
+
+# Faehre.
+# Faehren sind auch auf Fluessen und Kanaelen moeglich.
+# 0x1a     = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+# 0x011f10 = Bitmap 2 (nur 1 Pixel gefuellt, NoLabel)
+route = ferry {set mkgmap:ferry=1}  [0x1a road_class=0 road_speed=0 resolution 24 continue with_actions]
+route = ferry [0x011f10 resolution 20 continue with_actions]
+
+
+# ------------------------------------------------------------
+# Wasserlaeufe / waterway:
+# ------------------------------------------------------------
+
+# Kanal - wasserfuehrendes offenes Bauwerk, das verschiedene Zwecke erfuellen kann, z.B. Transport oder Wasserkraft.
+# 0x26     = 6 (breit, Label, SmallFont)
+# 0x01201a = 6 (breit, gestrichelt, NoLabel) Tunnel
+# 0x010102 = 4 (mittel, NoLabel)
+# 0x012018 = 4 (mittel, gestrichelt, NoLabel) Tunnel
+# 0x010103 = 2 (schmal, NoLabel)
+# 0x012016 = 2 (schmal, gestrichelt, NoLabel) Tunnel
+waterway = canal & ( tunnel != yes & tunnel != culvert) [0x26     resolution 24 continue]
+waterway = canal & ( tunnel = yes | tunnel = culvert)   [0x01201a resolution 24 continue]
+waterway = canal & ( tunnel != yes & tunnel != culvert) [0x010102 resolution 23-23 continue]
+waterway = canal & ( tunnel = yes | tunnel = culvert)   [0x012018 resolution 23-23 continue]
+waterway = canal & ( tunnel != yes & tunnel != culvert) [0x010103 resolution 21-22 continue]
+waterway = canal & ( tunnel = yes | tunnel = culvert)   [0x012016 resolution 21-22 continue]
+
+# Staudamm oder Staumauer fuer Speichersee und aehnliches. [way, aber auch closedway]
+# 0x01010c = 2 (NoLabel)
+waterway = dam [0x01010c resolution 23 continue]
+
+# Wassergraben.
+# 0x01010a = 2 (NoLabel)
+# 0x012016 = 2 (NoLabel, gestrichelt) Tunnel
+waterway = ditch & ( tunnel != yes & tunnel != culvert) [0x01010a resolution 24 continue]
+waterway = ditch & ( tunnel = yes | tunnel = culvert)   [0x01201b resolution 24 continue]
+
+# Abwassergraben, Abfluss - Bauwerk, das z.B. Regen- oder Industrieabwaesser aufnimmt.
+# 0x012104 = 2 (NoLabel)
+# 0x012016 = 2 (schmal, gestrichelt, NoLabel) Tunnel
+waterway = drain & ( tunnel != yes & tunnel != culvert) [0x012104 resolution 24]
+waterway = drain & ( tunnel = yes | tunnel = culvert)   [0x01201c resolution 24]
+
+# Fluss
+# 0x1f     = 5 (breit, Label, SmallFont)
+# 0x012019 = 5 (breit. gestrichelt, NoLabel) Tunnel
+# 0x010100 = 3 (mittel, Label, SmallFont)
+# 0x012017 = 3 (mittel, gestrichelt, NoLabel) Tunnel
+# 0x010101 = 1 (schmal, NoLabel)
+# 0x012015 = 1 (schmal, gestrichelt, NoLabel) Tunnel
+waterway = river & ( tunnel != yes & tunnel != culvert) [0x1f     resolution 24 continue]
+waterway = river & ( tunnel = yes | tunnel = culvert)   [0x012019 resolution 24 continue]
+waterway = river & ( tunnel != yes & tunnel != culvert) [0x010100 resolution 23-23 continue]
+waterway = river & ( tunnel = yes | tunnel = culvert)   [0x012017 resolution 23-23 continue]
+waterway = river & ( tunnel != yes & tunnel != culvert) [0x010101 resolution 21-22]
+waterway = river & ( tunnel = yes | tunnel = culvert)   [0x012015 resolution 21-22]
+
+# Bach - natuerliches schmales Gewaesser, zu klein fuer die Bezeichnung Fluss.
+# 0x18     = 2 (NoLabel)
+# 0x012016 = 2 (schmal, gestrichelt, NoLabel) Tunnel
+waterway = stream & ( tunnel != yes & tunnel != culvert) [0x18     resolution 24]
+waterway = stream & ( tunnel = yes | tunnel = culvert)   [0x01201d resolution 24]
+
+# Wehr (auch als Gebaeude moeglich, s.a. Staudamm / -mauer)
+# 0x012105 = 2 (NoLabel)
+waterway = weir & building != * [0x012105 resolution 22 continue]
+
+
+# ------------------------------------------------------------
+# Grenzen / boundary:
+# The following boundary styles are after the highway rules because ways
+# are frequently tagged with both and we want the highway to take priority.
+# ------------------------------------------------------------
+
+# Staatsgrenze - admin_level=2
+# 0x1e = Bitmap 2 (NoLabel)
+#boundary = administrative & admin_level = 2 [0x1e resolution 17]
+# starting from 11 for the overviewmap
+boundary = administrative & admin_level = 2 [0x1e resolution 11]
+# Kantonsgrenze - admin_level=4
+boundary = administrative & admin_level = 4 [0x1e resolution 23]
+
+# Nationalparkgrenze
+# 0x1d = Bitmap 2
+schutzgebiet = national_park [0x1d resolution 21-23]
+
+
+# ------------------------------------------------------------------
+# Energieversorgung / power:
+# ------------------------------------------------------------------
+
+# Stromleitung (Überlandleitung)
+# 0x29 = 1 (NoLabel)
+power = line [0x29 resolution 24]
+
+# Freileitung mit Nieder- oder Mittelspannung.
+# 0x29 = 1 (NoLabel)
+power = minor_line [0x29 resolution 24]
+
+
+# ------------------------------------------------------------------
+# Flughaefen / aeroway:
+# ------------------------------------------------------------------
+
+# Start- / Landebahn (breit)
+# 0x27     = 7 (breit, NoLabel)
+# 0x010e19 = 5 (mittel, NoLabel)
+# 0x010e1a = 3 (schmal, NoLabel)
+aeroway = runway [0x27     resolution 23 continue]
+aeroway = runway [0x010e19 resolution 22-22 continue]
+aeroway = runway [0x010e1a resolution 21-21]
+
+# Rollweg (schmal)
+# 0x010e00 = 3 (breit, NoLabel)
+# 0x010e1b = 2 (mittel, NoLabel)
+# 0x010e1c = 1 (schmal, NoLabel)
+aeroway = taxiway [0x010e00 resolution 23 continue]
+aeroway = taxiway [0x010e1b resolution 22-22 continue]
+aeroway = taxiway [0x010e1c resolution 21-21]
+
+
+# ------------------------------------
+# Eisenbahn / railway:
+#
+# Logik der Linien im Zusammenhang mit "Schienenverkehr":
+#
+# Strassenbahn    : Linie A) mit sichtbarer Beschriftung (OEPNV); Streckenverlauf typischerweise oberirdisch; 0x010114
+# Bruecke         : Standarddarstellung
+# Tunnel          : Standarddarstellung
+# Unterirdisch    : wie Tunnel
+#
+# U-Bahn          : Linie B) mit sichtbarer Beschriftung (OEPNV); Streckenverlauf typischerweise unterirdisch; 0x012107
+# Bruecke         : Standarddarstellung (bei Streckenverlauf oberirdisch)
+# Tunnel          : wird nicht unterstuetzt (da Streckenverlauf typischerweise unterirdisch = Tunnel)
+# Oberirdisch     : aehnlich S-Bahn; 0x01210a
+#
+# S-Bahn          : Linie C) mit sichtbarer Beschriftung (OEPNV); Streckenverlauf typischerweise oberirdisch; 0x012106
+# Bruecke         : Standarddarstellung
+# Tunnel          : aehnlich U-Bahn; 0x012108
+# Unterirdisch    : wie Tunnel
+#
+# Bundesbahn      : Linie D) ohne sichtbare Beschriftung; Streckenverlauf typischerweise oberirdisch; 0x012103
+# Bruecke         : Standarddarstellung
+# Tunnel          : aehnlich U-Bahn; 0x012109
+# Unterirdisch    : wie Tunnel
+# Sonstiges       : Museumsbahn, Schmalspurbahn, ungenutzte Strecken: werden analog dargestellt
+#
+# Rueckbau        : Linie E) ohne sichtbare Beschriftung; Streckenverlauf typischerweise oberirdisch; 0x012102
+# Bruecke         : Standarddarstellung
+# Tunnel          : Standarddarstellung
+# Unterirdisch    : wie Tunnel
+# ------------------------------------
+
+# Umdefinitionen:
+# ---------------
+
+# Nicht mehr in Benutzung, aber Schienen sind noch da (wie Eisenbahn).
+# (Now handled as Service rails)
+#railway = disused {set railway = rail}
+
+# Museumsbahn (wie Eisenbahn).
+railway = preserved {set railway = rail}
+
+# Schmalspurbahn (wie Eisenbahn).
+railway = narrow_gauge {set railway = rail}
+
+# Standseilbahn (Funicular) (wie Eisenbahn).
+railway = funicular {set railway = rail}
+
+# Unbenutzte ehemalige Strecke ohne Schienen. Der fruehere Streckenverlauf kann oft noch anhand von
+# Boeschungen / Daemmen, Einschnitten, Bruecken, Tunneln, geraden oder sanft geschwungenen Wegen erkannt werden.
+# Der Rueckbau einer Gleisanlage erfolgt typischerweise:
+# 1. Der Zugverkehr wird eingestellt, aber baulich wird nichts veraendert (railway=disused).
+# 2. Die Schienen und der Schotter werden entfernt, aber ansonsten bleibt das Gelaende unveraendert (railway=abandoned).
+# 3. Das Gelaende wird fuer eine neue Nutzung umgebaut (taggen der neuen Nutzung).
+# Zwischen den einzelnen Phasen liegen durchaus mehrere Jahre.
+# 0x012102 = Bitmap 2 (NoLabel)
+railway = abandoned & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = abandoned & tunnel = yes               [0x010408 resolution 24 continue]
+### railway = abandoned & embankment = yes [0x011f05 resolution 24 continue]
+railway = abandoned                              [0x012102 resolution 24]
+
+# Der Bahnsteig verlaeuft parallel zu den Gleisen. [point, way, closedway]
+# 0x010e1d = 2 (NoLabel)
+railway = platform & (area != * | area = no) [0x010e1d resolution 24]
+
+# Eisenbahn (service) (kann auch teilweise unterirdisch verkehren).
+# Railway service
+# 0x012109 = Bitmap 2 (NoLabel)
+# 0x012113 = Bitmap 2 (NoLabel)
+railway = rail & service = * & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = rail & service = * & tunnel = yes               [0x012109 resolution 23]
+railway = rail & service = *                              [0x012113 resolution 23]
+
+# Eisenbahn, auch S-Bahn (kann auch teilweise unterirdisch verkehren).
+# 0x012109 = Bitmap 2 (NoLabel)
+# 0x012113 = Bitmap 2 (NoLabel)
+railway = disused & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = disused & tunnel = yes               [0x012109 resolution 22]
+railway = disused                              [0x012113 resolution 22]
+
+# Eisenbahn, auch S-Bahn (kann auch teilweise unterirdisch verkehren).
+# 0x012109 = Bitmap 2 (NoLabel)
+# 0x012103 = Bitmap 2 (NoLabel)
+railway = rail & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = rail & tunnel = yes               [0x012109 resolution 22]
+### railway = rail & embankment = yes [0x011f05 resolution 24 continue]
+railway = rail                              [0x012103 resolution 22]
+
+
+# S-Bahn (wie Eisenbahn; kann auch teilweise unterirdisch verkehren).
+# 0x012108 = Bitmap 2 (Label, SmallFont)
+# 0x012106 = 2 (Label, SmallFont)
+railway = light_rail & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = light_rail & tunnel = yes               [0x012108 resolution 22]
+### railway = light_rail & embankment = yes [0x011f05 resolution 24 continue]
+railway = light_rail                              [0x012106 resolution 22]
+
+# Monorail (wie Eisenbahn; kann auch teilweise unterirdisch verkehren).
+# 0x012108 = Bitmap 2 (Label, SmallFont)
+# 0x012106 = 2 (Label, SmallFont)
+railway = monorail & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = monorail & tunnel = yes               [0x012108 resolution 22]
+### railway = light_rail & embankment = yes [0x011f05 resolution 24 continue]
+railway = monorail                              [0x012106 resolution 22]
+
+# U-Bahn (Untergrundbahn; kann auch teilweise oberirdisch verkehren).
+# 0x012107 = Bitmap 2 (Label, SmallFont)
+# 0x01210a = 2 (Label, SmallFont)
+railway = subway & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = subway & tunnel = yes               [0x012107 resolution 22]
+# oberirdisch
+railway = subway & tunnel = no                [0x01210a resolution 22]
+### railway = subway & embankment = yes [0x011f03 resolution 24 continue]
+railway = subway                              [0x01210a resolution 22]
+
+# Strassenbahn.
+# Die Strassenbahnfuehrung verlaeuft mitunter innerhalb der Strasse (z.B. Koeln).
+# 0x14     = Bitmap 4 (Label, SmallFont)
+# 0x01210e = Bitmap 2 (Label, SmallFont)
+railway = tram & bridge = * & bridge != no  [0x010405 resolution 24 continue]
+railway = tram & tunnel = yes               [0x01210e resolution 23]
+### railway = tram & embankment = yes [0x011f04 resolution 24 continue]
+railway = tram                              [0x14     resolution 23]
+
+
+# ------------------------------------------------------------
+# Seilbahnen / arialway:
+# ------------------------------------------------------------
+
+# cable_car: Eine Pendelbahn bestehend aus 2 grossen Kabinen die gegenlaeufig auf und ab fahren.
+# gondola: Eine Gondelbahn bestehend aus vielen Kabinen die im Kreis auf und ab fahren.
+# mixed_lift: A mixed lift, containing both gondolas and chairs.
+# chair_lift: Ein Sessellift
+# 0x11     = Bitmap 2 (transparent, nur fuer Routing)
+# 0x011f1f = Bitmap 4 (3 Pixel gefuellt, NoLabel)
+aerialway = cable_car | aerialway = gondola | aerialway = mixed_lift | aerialway = chair_lift [0x11 road_class=0 road_speed=0 resolution 24 continue]
+aerialway = cable_car | aerialway = gondola | aerialway = mixed_lift | aerialway = chair_lift [0x011f1f resolution 23]
+
+# drag_lift: Ein Schlepplift fuer Skifahrer.
+# t-bar: Ein T-foermiger Schlepplift fuer Skifahrer.
+# 0x11     = Bitmap 2 (transparent, nur fuer Routing, NoLabel)
+# 0x011f1e = Bitmap 4 (3 Pixel gefuellt, NoLabel)
+aerialway = drag_lift | aerialway=t-bar [0x11 road_class=0 road_speed=0 resolution 24 continue]
+aerialway = drag_lift | aerialway=t-bar [0x011f1e resolution 23]
+
+# rope-tow: A tow-line for skiers and riders. The passengers hold the rope by hand or use special tow grabbers (nutcrackers). 
+# 0x011f1e = Bitmap 4 (3 Pixel gefuellt, NoLabel)
+aerialway = rope_tow [0x011f1e resolution 23]
+
+# Materialseilbahn. Personentransport ist normalerweise nicht erlaubt.
+# 0x01210d = Bitmap 4 (3 Pixel gefuellt, NoLabel)
+aerialway = goods [0x01210d resolution 23]
+
+
+# -------------------------------------------------
+# Barrieren:
+# -------------------------------------------------
+
+# Zaun [way, closedway]
+# 0x011f06 = 1 (NoLabel)
+barrier = fence [0x011f06 resolution 24 continue with_actions]
+# Further object to be handled the same (possibly need adaption of the translations in TYP file ?)
+barrier = wall | barrier = city_wall | fence = retaining_wall [0x011f06 resolution 24 continue with_actions]
+fenced = yes [0x011f06 resolution 24 continue with_actions]
+
+# Hecken (hedges)
+# 0x012110 (NoLabel)
+barrier = hedge [ 0x012110 resolution 24 ]
+
+# Wallhecken / Knick (hedge_bank)
+barrier = hedge_bank [ 0x012111 resolution 24 ]
+
+# -------------------------------------------------
+# Hoehenlinien:
+# - Contours take their name from the elevation setting.
+# - Die Linie 0x20 wird (fuer Zoomlevel) mehrfach verwendet.
+#   Noch intensiv testen - ggf. ist eigene Linie besser.
+# - Die Bezeichnung der Linie wird im TYP-File gesteuert.
+# - "ele > 0": Im Flachland Linien der Hoehe "0" vermeiden.
+# -------------------------------------------------
+# 0x20 = 1 (NoLabel)
+# 0x21 = 2 (Label, SmallFont)
+# 0x22 = 2 (Label, SmallFont)
+contour = elevation & contour_ext = elevation_minor  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 23]
+
+contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 23 continue with_actions]
+contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 21-22]
+
+contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 23 continue with_actions]
+contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 21-22 continue with_actions]
+contour = elevation & contour_ext = elevation_major  & (ele = 500 | ele = 1000 | ele = 1500 | ele = 2000 | ele = 2500 | ele = 3000 | ele = 3500) { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 19-20]
+
+
+# ------------------------------------------------------------
+# Wintersport (Pisten, Loipen, Rodelbahnen, ...):
+# - Die Erstellung und Pflege Pistenregeln erfolgt durch Roman.
+# - Die Skitouren sind nach dem SAC (Schweizer Alpen Club) Standard definiert.
+# - Die Farben und Kategorien sind entsprechend der folgenden Quelle:
+#   http://wiki.openstreetmap.org/wiki/Proposed_features/Piste_Maps
+# ------------------------------------------------------------
+
+
+
+# Needed Include Lines for making
+# old mkgmap styles (pre r2906)
+# fully compatible with mkgmap r2906 and higher
+# ------------------------------------------------
+# add the following lines to your lines file
+ <finalize>
+# deactivated: include 'roadspeed';
+
+name=* { name '${name}' }
+mkgmap:default_name=* { name '${mkgmap:default_name}' }
+mkgmap:display_name=* { addlabel '${mkgmap:display_name|subst:;=>/}' }
+
+mkgmap:label:1!=* & ref=* { addlabel '${ref|part:;:1}' }
+mkgmap:label:1!=* & int_ref=* { addlabel '${int_ref|part:;:1}' }
+mkgmap:label:1!=* & nat_ref=* { addlabel '${nat_ref|part:;:1}' }
+mkgmap:label:1!=* & reg_ref=* { addlabel '${reg_ref|part:;:1}' }
+
+ref=*     { addlabel '${ref|part:;:1}';     addlabel '${ref|part:;:2}';     addlabel '${ref|part:;:3}'     }
+int_ref=* { addlabel '${int_ref|part:;:1}'; addlabel '${int_ref|part:;:2}'; addlabel '${int_ref|part:;:3}' }
+nat_ref=* { addlabel '${nat_ref|part:;:1}'; addlabel '${nat_ref|part:;:2}'; addlabel '${nat_ref|part:;:3}' }
+reg_ref=* { addlabel '${reg_ref|part:;:1}'; addlabel '${reg_ref|part:;:2}'; addlabel '${reg_ref|part:;:3}' }
+
+highway=* & mkgmap:label:1=* & mkgmap:street!=* { add mkgmap:street='${mkgmap:label:1}' }
+
+toll=* { set mkgmap:toll='${toll}' }
+
+# mkgmap:carpool tag is set but before new access handling was introduced it had a
+# different meaning. Copy it to keep its value which is handled in the old behaviour last.
+mkgmap:carpool=* { set mkgmap:carpool_compat='${mkgmap:carpool}'; delete mkgmap:carpool }
+
+access=private | access=no { setaccess no; set mkgmap:carpool=yes; }
+access=yes | access=permissive | access=official | access=designated { setaccess yes; set mkgmap:carpool=no; }
+access=destination { set mkgmap:throughroute=no }
+
+bicycle=private | bicycle=no { set mkgmap:bicycle=no; }
+bicycle=yes | bicycle=permissive | bicycle=official | bicycle=designated { set mkgmap:bicycle=yes; }
+
+carpool=private | carpool=no { set mkgmap:carpool=no; }
+carpool=yes | carpool=permissive | carpool=official | carpool=designated { set mkgmap:carpool=yes; }
+
+foot=private | foot=no { set mkgmap:foot=no; }
+foot=yes | foot=permissive | foot=official | foot=designated { set mkgmap:foot=yes; }
+
+hgv=private | hgv=no { set mkgmap:truck=no; }
+hgv=yes | hgv=permissive | hgv=official | hgv=designated { set mkgmap:truck=yes; }
+
+motorcar=private | motorcar=no { set mkgmap:car=no; }
+motorcar=yes | motorcar=permissive | motorcar=official | motorcar=designated { set mkgmap:car=yes; }
+motorcar=destination { set mkgmap:throughroute=no }
+
+motorcycle=private | motorcycle=no { set mkgmap:car=no; }
+motorcycle=yes | motorcycle=permissive | motorcycle=official | motorcycle=designated { set mkgmap:car=yes; }
+motorcycle=destination { set mkgmap:throughroute=no }
+
+psv=private | psv=no { set mkgmap:bus=no; }
+psv=yes | psv=permissive | psv=official | psv=designated { set mkgmap:bus=yes; }
+
+taxi=private | taxi=no { set mkgmap:taxi=no; }
+taxi=yes | taxi=permissive | taxi=official | taxi=designated { set mkgmap:taxi=yes; }
+
+emergency=private | emergency=no { set mkgmap:emergency=no; }
+emergency=yes | emergency=permissive | emergency=official | emergency=designated { set mkgmap:emergency=yes; }
+
+delivery=private | delivery=no { set mkgmap:delivery=no; }
+delivery=yes | delivery=permissive | delivery=official | delivery=designated { set mkgmap:delivery=yes; }
+
+goods=private | goods=no { set mkgmap:delivery=no; }
+goods=yes | goods=permissive | goods=official | goods=designated { set mkgmap:delivery=yes; }
+
+# Reintroduce the old carpool handling which allows access only for bus and emergency plus setting the carpool bit
+mkgmap:carpool_compat=yes  { setaccess=no; set mkgmap:bus=yes; set mkgmap:emergency=yes; set mkgmap:carpool=yes }
+
