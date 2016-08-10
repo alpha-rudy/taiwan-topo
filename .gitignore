@@ -2,3 +2,4 @@ work/
 /*.img
 /*.gmap
 .DS_Store
+install/
