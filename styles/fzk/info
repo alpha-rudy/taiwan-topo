@@ -1,0 +1,18 @@
+﻿# ---------------------------------------
+# Zweck   : Informationen bezüglich des Regelsatzes.
+# Version : 0.1 - 23.09.2011
+#
+# Copyright (C) 2011 Klaus Tockloth <freizeitkarte@googlemail.com>
+# ---------------------------------------
+
+# A short one line description of the Style:
+summary: Freizeitkarte (angelehnt an das Mapnik-Design)
+
+# Version of the Style itself:
+version=1.0
+
+# A longer description of the Style:
+description {
+Dieser Regelsatz beruecksichtigt Informationen die primaer fuer eine Freizeitkarte relevant sind.
+}
+
