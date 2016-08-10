@@ -1,0 +1,71 @@
+﻿# ---------------------------------------
+# Zweck   : mkgmap-Optionen
+# Version : 0.1 - 23.09.2011
+# Version : 0.2 - 04.09.2013: Preparations for upgrade to mkgmap r2617 (adding overviewmaps)
+#
+# Copyright (C) 2011 Klaus Tockloth <freizeitkarte@googlemail.com>
+#
+# Zweck dieser Freizeitkarte ist es, einen "lokalen" Bereich übersichtlich darzustellen.
+# Zielgruppe dieser Themenkarte sind Radfahrer und Wanderer/Fußgänger.
+#
+# Maßstab 1:4000 (10.0 km):
+#   Der Regierungsbezirk Münster kann noch nahezu vollständig dargestellt werden.
+#   Die dargestellt Karte stellt für einen Großraum eine "gute" Übersicht dar.
+#
+# Maßstab 1:2000 (5.0 km):
+#   Die dargestellte Karte stellt für (Touren-)Radfahrer eine "gute" Übersicht dar.
+#
+# Maßstab 1:1200 (3.0 km):
+#   Die dargestellte Karte stellt für Radfahrer eine "gute" Übersicht dar.
+#
+# Maßstab 1:600 (1.5 km):
+#   Eine mittlere Großstadt wie Münster wird nahezu vollständig dargestellt.
+#   Die dargestellte Karte stellt für Wanderer eine "gute" Übersicht dar.
+#
+# Maßstab 1:280 (0.7 km):
+#   Die dargestellte Karte stellt für Fußgänger eine "gute" (Stadtteil-)Übersicht dar.
+#   Alle Kartendetails sind zur Darstellung vorgesehen.
+#   Die tatsächliche Darstellung erfolgt kriterienabhängig.
+#
+# Weitere Zoomstufen:
+#   Die Karte kann für Fußgänger als Stadtplan verwendet werden.
+#   Abhängig von Objektgröße und Vorgaben werden alle Details sichtbar.
+#
+# Die vorgenannten Angaben beziehen sich auf BaseCamp in Vollbilddarstellung bei Full-HD-Auflösung.
+# ---------------------------------------
+
+# The name tag determines what tag is used as the name of a feature.
+# Usually this is just 'name' but you might want something more
+# specific such as name:en or another language variant. You can
+# specify a list here, the first one that exists will be used.
+name_tag = name:de, name:en, name:fr, int_name, name
+
+# The levels specification for this Style:
+# Level 0 - Objekt sichtbar bei Resolution 24:
+#   BaseCamp  : 0.7 km (Maßstab 1:280)
+#   Dakota 20 : 200 m
+# Level 1 - Objekt sichtbar bei Resolution 23:
+#   BaseCamp  : 1.5 km (Maßstab 1:600)
+#   Dakota 20 : 300 m
+# Level 2 - Objekt sichtbar bei Resolution 22:
+#   BaseCamp  : 3.0 km (Maßstab 1:1200)
+#   Dakota 20 : 500 m
+# Level 3 - Objekt sichtbar bei Resolution 21:
+#   BaseCamp  : 5.0 km (Maßstab 1:2000)
+#   Dakota 20 : ? m
+# Level 4 - Objekt sichtbar bei Resolution 20:
+#   BaseCamp  : 10.0 km (Maßstab 1:4000)
+#   Dakota 20 :  3.0 km
+# Level 5 - Objekt sichtbar bei Resolution 19:
+#   BaseCamp  : 20.0 km (Maßstab 1:???)
+#   Dakota 20 :  5.0 km
+# Level 6 - Objekt sichtbar bei Resolution 18:
+#   BaseCamp  : 50.0 km (Maßstab 1:???)
+#   Dakota 20 : 12.0 km
+# Level 7 - Objekt sichtbar bei Resolution 17:
+#   BaseCamp  : 100.0 km (Maßstab 1:???)
+#   Dakota 20 :  20.0 km
+
+levels = 0:24, 1:23, 2:22, 3:21, 4:20, 5:19, 6:18, 7:17
+overview-levels = 8:16, 9:14, 10:12, 11:11
+#overview-levels = 7:17
