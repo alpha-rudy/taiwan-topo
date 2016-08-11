@@ -2978,7 +2978,7 @@ String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2986,9 +2986,11 @@ CustomColor=No
 [_line]
 Type=0x10408
 UseOrientation=Y
-Xpm="32 6 2  1"
+Xpm="32 6 4  1"
 "! c #333333"
 "  c none"
+"3 c #FFFFFF"
+"4 c none"
 "!!!!    !!!!    !!!!    !!!!    "
 "                                "
 "                                "
@@ -3001,7 +3003,7 @@ String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3210,16 +3212,19 @@ CustomColor=No
 
 [_line]
 Type=0x10e05
-UseOrientation=N
-LineWidth=1
-Xpm="0 0 1 0"
-"1 c #702020"
+UseOrientation=Y
+Xpm="32 2 2  1"
+"! c #FF656A"
+"  c none"
+"!!!!    !!!!    !!!!    !!!!    "
+"                                "
+;12345678901234567890123456789012
 String1=0x00,Footpath
 String2=0x02,Fußweg
 String3=0x03,Voetpad
 String4=0x04,Footpath
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4542,15 +4547,18 @@ CustomColor=No
 [_line]
 Type=0x11f12
 UseOrientation=Y
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #702020"
+Xpm="32 2 2 1"
+"! c #FF656A"
+"  c none"
+"!!!!    !!!!    !!!!    !!!!    "
+"!!!!    !!!!    !!!!    !!!!    "
+;12345678901234567890123456789012
 String1=0x00,Foot path
 String2=0x02,Fußweg
 String3=0x03,Voetpad
 String4=0x04,Foot path
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
