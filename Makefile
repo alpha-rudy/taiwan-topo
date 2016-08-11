@@ -32,7 +32,7 @@ NAME_SHORT := Taiwan TOPO $(LANG).$(TYP) v$(VERSION) (by Rudy)
 NAME_WORD := Taiwan_TOPO_$(LANG)_$(TYP)
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx8192M
+JAVACMD_OPTIONS := -Xmx4096M
 
 # directory variables
 ROOT_DIR := $(shell pwd)
