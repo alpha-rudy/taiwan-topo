@@ -56,6 +56,14 @@ GMAPSUPP := $(INSTALL_DIR)/gmapsupp_taiwan_$(LANG)_$(TYP).img
 
 TARGETS := $(GMAPSUPP) $(GMAP)
 
+ifeq ($(shell uname),Darwin)
+MD5_CMD := md5 -q taiwan-latest.osm.pbf
+JMC_CMD := jmc/osx/jmc_cli
+else
+MD5_CMD := md5sum taiwan-latest.osm.pbf | cut -d' ' -f1
+JMC_CMD := jmc/linux/jmc_cli
+endif
+
 all: $(TARGETS)
 
 clean:
@@ -75,7 +83,7 @@ $(GMAP): $(MAP)
 	    	-e "s|__map_dir__|$(MAP_DIR)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
-	    $(TOOLS_DIR)/jmc/osx/jmc_cli -v -config="$(MAP_DIR)/jmc_cli.cfg"
+	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_DIR)/jmc_cli.cfg"
 	cp -a "$(MAP_DIR)/$(NAME_SHORT).gmap" $@
 
 $(GMAPSUPP): $(MAP)
@@ -140,7 +148,7 @@ $(EXTRACT):
 	cd $(EXTRACT_DIR) && \
 	    curl http://download.geofabrik.de/asia/taiwan-latest.osm.pbf -o taiwan-latest.osm.pbf && \
 	    curl http://download.geofabrik.de/asia/taiwan-latest.osm.pbf.md5 -o taiwan-latest.osm.pbf.md5 && \
-	    [ "$$(md5 -q taiwan-latest.osm.pbf)" == "$$(cat taiwan-latest.osm.pbf.md5 | cut -d' ' -f1)" ] || \
+	    [ "$$($(MD5_CMD))" == "$$(cat taiwan-latest.osm.pbf.md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 $(DATA): $(EXTRACT) $(ELEVATION)
