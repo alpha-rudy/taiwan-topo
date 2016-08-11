@@ -61,9 +61,9 @@ all: $(TARGETS)
 clean:
 	-rm -rf $(TARGETS)
 	-rm -rf $(MAP_DIR)
-	-rm -rf $(DATA_DIR)
 
 distclean: clean
+	-rm -rf $(DATA_DIR)
 	-rm -rf $(EXTRACT_DIR)
 
 $(GMAP): $(MAP)
@@ -159,7 +159,9 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 		--precomp-sea=$(SEA_DIR) \
 	        --keep-complete=true \
 		--mapid=$(MAPID)0001 \
-		--max-nodes=800000 \
+		--max-areas=4096 \
+		--max-nodes=3200000 \
+		--search-limit=1000000000 \
 		--output=xml \
 		--output-dir=$(DATA_DIR) \
 		taiwan.osm.pbf
