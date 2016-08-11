@@ -32,7 +32,7 @@ NAME_SHORT := Taiwan TOPO $(LANG).$(TYP) v$(VERSION) (by Rudy)
 NAME_WORD := Taiwan_TOPO_$(LANG)_$(TYP)
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx4096M
+JAVACMD_OPTIONS := -Xmx8192M
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -47,7 +47,7 @@ MAP_DIR := $(ROOT_DIR)/work/taiwan/$(NAME_WORD)
 INSTALL_DIR := $(ROOT_DIR)/install
 
 EXTRACT := $(EXTRACT_DIR)/taiwan-latest.osm.pbf
-ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_50_100_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_5_50_100_view1,srtm1,view3,srtm3.osm.pbf
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
