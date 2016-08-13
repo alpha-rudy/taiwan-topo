@@ -9,11 +9,11 @@ ifeq ($(SUITE),jing)
 TYP := jing
 STYLE := jing
 MAPID := $(shell printf %d 0x2010)
-else ifeq ($(SUITE),outdoor)
+else ifeq ($(SUITE),odr)
 TYP := outdoor
 STYLE := fzk
 MAPID := $(shell printf %d 0x2011)
-else ifeq ($(SUITE),outdoorc)
+else ifeq ($(SUITE),odc)
 TYP := outdoorc
 STYLE := swisspopo
 MAPID := $(shell printf %d 0x2012)
@@ -27,9 +27,9 @@ CODE_PAGE := 950
 # auto variables
 VERSION := $(shell date +%Y.%m)
 
-NAME_LONG := Taiwan TOPO $(LANG).$(TYP) v$(VERSION) (by Rudy)
-NAME_SHORT := Taiwan TOPO $(LANG).$(TYP) v$(VERSION) (by Rudy)
-NAME_WORD := Taiwan_TOPO_$(LANG)_$(TYP)
+NAME_LONG := SRTM3.OSM.$(SUITE) - Taiwan TOPO v$(VERSION) (by Rudy)
+NAME_SHORT := SRTM3.OSM.$(SUITE) - Taiwan TOPO v$(VERSION) (by Rudy)
+NAME_WORD := Taiwan_TOPO_$(SUITE)
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx4096M
@@ -47,7 +47,7 @@ MAP_DIR := $(ROOT_DIR)/work/taiwan/$(NAME_WORD)
 INSTALL_DIR := $(ROOT_DIR)/install
 
 EXTRACT := $(EXTRACT_DIR)/taiwan-latest.osm.pbf
-ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_5_50_100_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_50_100_view1,srtm1,view3,srtm3.osm.pbf
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
@@ -168,12 +168,9 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 	        --keep-complete=true \
 		--mapid=$(MAPID)0001 \
 		--max-areas=4096 \
-		--max-nodes=3200000 \
+		--max-nodes=800000 \
 		--search-limit=1000000000 \
 		--output=xml \
 		--output-dir=$(DATA_DIR) \
 		taiwan.osm.pbf
 	touch $(DATA)
-
-notyet:
-
