@@ -51,8 +51,8 @@ ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_50_100_view1,srtm1,view3,srtm3.osm.
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
-GMAP := $(INSTALL_DIR)/taiwan_$(LANG)_$(TYP).gmap
-GMAPSUPP := $(INSTALL_DIR)/gmapsupp_taiwan_$(LANG)_$(TYP).img
+GMAP := $(INSTALL_DIR)/taiwan_$(LANG)_$(SUITE).gmap
+GMAPSUPP := $(INSTALL_DIR)/gmapsupp_taiwan_$(LANG)_$(SUITE).img
 
 TARGETS := $(GMAPSUPP) $(GMAP)
 
