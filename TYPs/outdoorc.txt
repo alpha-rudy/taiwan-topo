@@ -102,7 +102,7 @@ String2=0x02,Wohngebiet
 String3=0x03,Woonwijk
 String4=0x04,Residential Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #E4E4E4"
@@ -116,7 +116,7 @@ String2=0x02,Militärgebiet
 String3=0x03,Militair gebied
 String4=0x04,Military Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #FFA8A8"
@@ -164,7 +164,7 @@ String2=0x02,Parkplatz
 String3=0x03,Parkeerplaats
 String4=0x04,Parking Place
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #F6EEB6"
@@ -178,7 +178,7 @@ String2=0x02,Handel
 String3=0x03,Winkelgebied
 String4=0x04,Retail Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -226,7 +226,7 @@ String2=0x02,Schule
 String3=0x03,School
 String4=0x04,School
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -274,7 +274,7 @@ String2=0x02,Krankenhaus
 String3=0x03,Ziekenhuis
 String4=0x04,Hospital
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -322,7 +322,7 @@ String2=0x02,Industrie
 String3=0x03,Industriegebied
 String4=0x04,Industrial Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F0D8A8"
@@ -370,7 +370,7 @@ String2=0x02,Naturreservat
 String3=0x03,Natuurgebied
 String4=0x04,Nature Reserve
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #006400"
@@ -418,7 +418,7 @@ String2=0x02,Spielplatz
 String3=0x03,Speelplaats
 String4=0x04,Playground
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
@@ -466,7 +466,7 @@ String2=0x02,Campingplatz
 String3=0x03,Camping
 String4=0x04,Camping
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #78C800"
@@ -514,7 +514,7 @@ String2=0x02,Attraktion
 String3=0x03,Attractie
 String4=0x04,Attraction
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #CC99FF"
@@ -562,7 +562,7 @@ String2=0x02,Rohstoffabbau
 String3=0x03,Groeve
 String4=0x04,Quarry
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F4F4F4"
@@ -610,7 +610,7 @@ String2=0x02,Gebäude
 String3=0x03,Gebouw
 String4=0x04,Building
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #707070"
@@ -624,7 +624,7 @@ String2=0x02,Rastplatz (Picknick)
 String3=0x03,Picknickplaats
 String4=0x04,Picnic Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #78C800"
@@ -672,7 +672,7 @@ String2=0x02,Laubwald
 String3=0x03,Loofbos
 String4=0x04,Deciduous Forest
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CC60"
@@ -686,7 +686,7 @@ String2=0x02,Fels
 String3=0x03,Klip
 String4=0x04,Cliff
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #A0A4A0"
@@ -734,7 +734,7 @@ String2=0x02,Wiese
 String3=0x03,Weide
 String4=0x04,Meadow
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #CFECA8"
@@ -748,7 +748,7 @@ String2=0x02,Golfplatz
 String3=0x03,Golfterrein
 String4=0x04,Golf Course
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #B5E3B5"
@@ -762,7 +762,7 @@ String2=0x02,Sportanlage
 String3=0x03,Sportcentrum
 String4=0x04,Sports Centre
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #33CC99"
@@ -776,7 +776,7 @@ String2=0x02,Friedhof
 String3=0x03,Begraafplaats
 String4=0x04,Cemetery
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #7B9520"
@@ -824,7 +824,7 @@ String2=0x02,Weinberg
 String3=0x03,Wijngaard
 String4=0x04,Vineyard
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F89800"
@@ -872,7 +872,7 @@ String2=0x02,Kasernen
 String3=0x03,Kazerne
 String4=0x04,Barracks
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #FF8F8F"
@@ -886,7 +886,7 @@ String2=0x02,Park
 String3=0x03,Park
 String4=0x04,Park
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #CDF6CA"
@@ -900,7 +900,7 @@ String2=0x02,Gefahrenzone
 String3=0x03,Gevaarlijk gebied
 String4=0x04,Danger Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #FFA8A8"
@@ -948,7 +948,7 @@ String2=0x02,Zoo
 String3=0x03,Dierentuin
 String4=0x04,Zoo
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
@@ -996,7 +996,7 @@ String2=0x02,Kleingärten
 String3=0x03,Volktuinen
 String4=0x04,Allotments
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #B3E2A8"
@@ -1044,7 +1044,7 @@ String2=0x02,Acker
 String3=0x03,Landbouwgrond
 String4=0x04,Farmland
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #E9D8BD"
@@ -1058,7 +1058,7 @@ String2=0x02,Kraftwerk
 String3=0x03,Krachtcentrale
 String4=0x04,Power Station
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #BABABA"
@@ -1106,7 +1106,7 @@ String2=0x02,Verwaltung
 String3=0x03,Beheerkantoor
 String4=0x04,Administration
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -1154,7 +1154,7 @@ String2=0x02,Baugebiet / Brache
 String3=0x03,Herbestemmingsgebied / Voormalig industriegebied
 String4=0x04,Construction / Brownfield Site
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #838383"
@@ -1202,7 +1202,7 @@ String2=0x02,Deponie
 String3=0x03,Vuilstort
 String4=0x04,Landfill Site
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #CCB29C"
@@ -1250,7 +1250,7 @@ String2=0x02,Heide
 String3=0x03,Heide
 String4=0x04,Heath
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #D6D99F"
@@ -1264,7 +1264,7 @@ String2=0x02,Vorfeld
 String3=0x03,Vliegveld
 String4=0x04,Airfield Apron
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #E9D1FF"
@@ -1278,7 +1278,7 @@ String2=0x02,Flugplatz
 String3=0x03,Vliegveld
 String4=0x04,Aerodrome/Airfield
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #EAE8E2"
@@ -1292,7 +1292,7 @@ String2=0x02,Strand
 String3=0x03,Strand
 String4=0x04,Beach
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -1340,7 +1340,7 @@ String2=0x02,Schlick
 String3=0x03,Slik
 String4=0x04,Mud
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #AEA397"
@@ -1388,7 +1388,7 @@ String2=0x02,Mischgebiet
 String3=0x03,Woonwijk
 String4=0x04,Living Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #CCCCCC"
@@ -1402,7 +1402,7 @@ String2=0x02,Platz
 String3=0x03,Plein
 String4=0x04,Square
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #FFFFFF"
@@ -1416,7 +1416,7 @@ String2=0x02,Meer
 String3=0x03,Zee
 String4=0x04,Sea
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CCF8"
@@ -1430,7 +1430,7 @@ String2=0x02,Fußgängerzone
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrian Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -1478,7 +1478,7 @@ String2=0x02,Supermarkt
 String3=0x03,Supermarkt
 String4=0x04,Supermarket
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #F6CDD2"
@@ -1492,7 +1492,7 @@ String2=0x02,Andachtsstätte
 String3=0x03,Gebedshuis
 String4=0x04,Place of Worship
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #949494"
@@ -1506,7 +1506,7 @@ String2=0x02,Spielfeld / Laufbahn
 String3=0x03,Sportveld -baan
 String4=0x04,Playing Field / Track
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #74DCBA"
@@ -1520,7 +1520,7 @@ String2=0x02,Terminal
 String3=0x03,Terminal
 String4=0x04,Terminal
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #CC99FF"
@@ -1534,7 +1534,7 @@ String2=0x02,Anlegestelle
 String3=0x03,Aanlegplaats
 String4=0x04,Moorings
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #F2EFE9"
@@ -1548,7 +1548,7 @@ String2=0x02,Land
 String3=0x03,Land
 String4=0x04,Land
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #F1EEE9"
@@ -1562,7 +1562,7 @@ String2=0x02,Wasser
 String3=0x03,Water
 String4=0x04,Water
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CCF8"
@@ -1576,7 +1576,7 @@ String2=0x02,Staudamm / -mauer
 String3=0x03,Stuwdam
 String4=0x04,Dam
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #BABABA"
@@ -1590,7 +1590,7 @@ String2=0x02,Bahnsteig
 String3=0x03,Spoorwegperron
 String4=0x04,Railway Platform
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #CC99FF"
@@ -1604,7 +1604,7 @@ String2=0x02,Wasser
 String3=0x03,Water
 String4=0x04,Water
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CCF8"
@@ -1618,7 +1618,7 @@ String2=0x02,Alm / Bergwiese
 String3=0x03,Bergweide
 String4=0x04,Fell
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #E0FCB8"
@@ -1666,7 +1666,7 @@ String2=0x02,Spielfeld
 String3=0x03,Speelveld
 String4=0x04,Playing Field
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #89D2AE"
@@ -1680,7 +1680,7 @@ String2=0x02,Stadion
 String3=0x03,Stadion
 String4=0x04,Stadium
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #33CC99"
@@ -1694,7 +1694,7 @@ String2=0x02,Geröll
 String3=0x03,Steenslag
 String4=0x04,Scree
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #888888"
@@ -1742,7 +1742,7 @@ String2=0x02,Raststätte
 String3=0x03,Verzorgingsplaats
 String4=0x04,Service Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #F1EEE8"
@@ -1756,7 +1756,7 @@ String2=0x02,Flussufer
 String3=0x03,Rivieroever
 String4=0x04,Riverbank
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CCF8"
@@ -1770,7 +1770,7 @@ String2=0x02,Sand
 String3=0x03,Zand
 String4=0x04,Sand
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #FEDF88"
@@ -1784,7 +1784,7 @@ String2=0x02,Bauernhof
 String3=0x03,Boerderij
 String4=0x04,Farm
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #DCBE91"
@@ -1798,7 +1798,7 @@ String2=0x02,Hintergrund
 String3=0x03,Achtergrond
 String4=0x04,Background
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #F1EEE9"
@@ -1812,7 +1812,7 @@ String2=0x02,Dock
 String3=0x03,Dok
 String4=0x04,Dock
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #0080FF"
@@ -1860,7 +1860,7 @@ String2=0x02,Gletscher
 String3=0x03,Gletscher
 String4=0x04,Glacier
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #ABBFBF"
@@ -1908,7 +1908,7 @@ String2=0x02,Plantage
 String3=0x03,Plantage
 String4=0x04,Plantation
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F89800"
@@ -1956,7 +1956,7 @@ String2=0x02,Unterholz, Gebüsch
 String3=0x03,Struikgewas
 String4=0x04,Brush/Scrub
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #98CC60"
@@ -2004,7 +2004,7 @@ String2=0x02,Nadelwald
 String3=0x03,Naaldbomen
 String4=0x04,Coniferous forest
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CC60"
@@ -2018,7 +2018,7 @@ String2=0x02,Feuchtgebiet
 String3=0x03,Moeras
 String4=0x04,Marsh/Wetland
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #6064F8"
@@ -2066,7 +2066,7 @@ String2=0x02,Mischwald
 String3=0x03,Gemengd bos
 String4=0x04,Mixed forest
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #98CC60"
@@ -2080,7 +2080,7 @@ String2=0x02,Schwarzes Loch
 String3=0x03,Zwart gat
 String4=0x04,Black Hole
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #000000"
@@ -2128,7 +2128,7 @@ String2=0x02,Watt
 String3=0x03,Slik / modderplaat
 String4=0x04,Mud Flat
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #E6DCD0"
@@ -2356,7 +2356,7 @@ String2=0x02,[Radweg]
 String3=0x03,[Ruiterpad]
 String4=0x04,[Bridleway]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2409,7 +2409,7 @@ String2=0x02,[Fahrrad-Gegen-Einbahn]
 String3=0x03,[Eenrichtingsverkeer]
 String4=0x04,[One Way Street]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2428,7 +2428,7 @@ String2=0x02,[Seilbahn]
 String3=0x03,[Kabelbaan]
 String4=0x04,[Cable Car]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2447,7 +2447,7 @@ String2=0x02,[Indexsuche]
 String3=0x03,[indexsearch]
 String4=0x04,[indexsearch]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2466,7 +2466,7 @@ String2=0x02,[Treppe]
 String3=0x03,[Trap]
 String4=0x04,[Steps]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2506,7 +2506,7 @@ String2=0x02,[Fußweg]
 String3=0x03,[Voetpad]
 String4=0x04,[Footpath]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2522,7 +2522,7 @@ String2=0x02,Bach
 String3=0x03,Beekje
 String4=0x04,Stream
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2541,7 +2541,7 @@ String2=0x02,[Fähre]
 String3=0x03,[Veerpont]
 String4=0x04,[Ferry]
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2559,7 +2559,9 @@ String1=0x00,National Park Boundary
 String2=0x02,Nationalparkgrenze
 String3=0x03,Nationaal Park grens
 String4=0x04,National Park Boundary
-ExtendedLabels=N
+ExtendedLabels=Y
+FontStyle=Default
+CustomColor=No
 [end]
 
 
@@ -2675,7 +2677,7 @@ String2=0x02,Start- / Landebahn
 String3=0x03,Start- en landingsbaan
 String4=0x04,Runway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2693,7 +2695,7 @@ String2=0x02,Stromleitung
 String3=0x03,Hoogspanningsleiding
 String4=0x04,Power Line
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2725,7 +2727,7 @@ String2=0x02,Fluss
 String3=0x03,Rivier
 String4=0x04,Stream
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2741,7 +2743,7 @@ String2=0x02,Kanal
 String3=0x03,Kanaal
 String4=0x04,Canal
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2757,7 +2759,7 @@ String2=0x02,Kanal
 String3=0x03,Sloot
 String4=0x04,Canal
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2778,7 +2780,7 @@ String2=0x02,Klippe
 String3=0x03,Klip
 String4=0x04,Cliff
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2796,7 +2798,7 @@ String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
 String4=0x04,Residential Street (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2814,7 +2816,7 @@ String2=0x02,Nebenstraße
 String3=0x03,Landweg (smal)
 String4=0x04,Unclassified Road (Narrow)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2832,7 +2834,7 @@ String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
 String4=0x04,Service Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2850,7 +2852,7 @@ String2=0x02,Spielstraße (Eingeschränkt)
 String3=0x03,Woonerf
 String4=0x04,Living Street (restricted) narrow
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2869,7 +2871,7 @@ String2=0x02,Feld-/Waldweg 4/5
 String3=0x03,Onverharde weg 4/5
 String4=0x04,Track/Dirt Road 4/5
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2885,7 +2887,7 @@ String2=0x02,Wassergraben
 String3=0x03,Greppel
 String4=0x04,Ditch
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2904,7 +2906,7 @@ String2=0x02,Feld-/Waldweg 4/5
 String3=0x03,Onverharde weg 4/5
 String4=0x04,Track/Dirt Road 4/5
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2929,7 +2931,7 @@ String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -2954,7 +2956,7 @@ String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3031,7 +3033,7 @@ String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3060,7 +3062,7 @@ String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3087,7 +3089,7 @@ String2=0x02,Brücke
 String3=0x03,Brug
 String4=0x04,Bridge
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3114,7 +3116,7 @@ String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3130,7 +3132,7 @@ String2=0x02,Rollweg
 String3=0x03,Taxibaan
 String4=0x04,Taxiway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3148,7 +3150,7 @@ String2=0x02,Straße unbekannter Art
 String3=0x03,Onbekende straat
 String4=0x04,Unknown Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3166,7 +3168,7 @@ String2=0x02,Straße unbekannter Art (Eingeschränkt)
 String3=0x03,Onbekende straat (afgesloten)
 String4=0x04,Unknown Street (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3185,7 +3187,7 @@ String2=0x02,Reitweg
 String3=0x03,Ruiterpad
 String4=0x04,bridle path
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3204,7 +3206,7 @@ String2=0x02,Straßenbaustelle
 String3=0x03,Wegaanleg
 String4=0x04,Road (under construction)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3242,7 +3244,7 @@ String2=0x02,Schmaler Weg / Pfad
 String3=0x03,Pad
 String4=0x04,Path
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3258,7 +3260,7 @@ String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
 String4=0x04,Track/Dirt Road 1
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3274,7 +3276,7 @@ String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde bosweg n.a/2/3
 String4=0x04,Track/Dirt Road n.a/2/3
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3292,7 +3294,7 @@ String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
 String4=0x04,Track/Dirt Road 1
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3310,7 +3312,7 @@ String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3328,7 +3330,7 @@ String2=0x02,Bundesstraße
 String3=0x03,Autoweg smal
 String4=0x04,Highway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3347,7 +3349,7 @@ String2=0x02,Schmaler Weg / Pfad
 String3=0x03,Pad
 String4=0x04,Path
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3365,7 +3367,7 @@ String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,Secondary Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3383,7 +3385,7 @@ String2=0x02,Kreisstraße
 String3=0x03,Landweg
 String4=0x04,Country Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3399,7 +3401,7 @@ String2=0x02,Feldweg (Eingeschränkt)
 String3=0x03,Zandweg (afgesloten)
 String4=0x04,dirt road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3415,7 +3417,7 @@ String2=0x02,Rad-/Fußweg
 String3=0x03,Fietspad/Voetpad nauw
 String4=0x04,Cycle-/Footway narrow
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3434,7 +3436,7 @@ String2=0x02,Schmaler Weg/Pfad (Eingeschränkt)
 String3=0x03,Pad (afgesloten)
 String4=0x04,Path (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3453,7 +3455,7 @@ String2=0x02,Schmaler Weg/Pfad (Eingeschränkt)
 String3=0x03,Pad (afgesloten)
 String4=0x04,Path (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3471,7 +3473,7 @@ String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
 String4=0x04,Track/Dirt Road 1 (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3487,7 +3489,7 @@ String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
 String4=0x04,Track/Dirt Road 1 (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3503,7 +3505,7 @@ String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
 String4=0x04,Track/Dirt Road n.a/2/3 (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3519,7 +3521,7 @@ String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
 String4=0x04,Track/Dirt Road n.a/2/3 (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3538,7 +3540,7 @@ String2=0x02,Feld-/Waldweg 4/5 (Eingeschränkt)
 String3=0x03,Onverharde weg 4/5 (afgesloten)
 String4=0x04,Track/Dirt Road 4/5 (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3554,7 +3556,7 @@ String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde weg n.a/2/3
 String4=0x04,Track/Dirt Road n.a/2/3
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3570,7 +3572,7 @@ String2=0x02,Start- / Landebahn
 String3=0x03,Start- en landingsbaan
 String4=0x04,Runway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3586,7 +3588,7 @@ String2=0x02,Start- / Landebahn
 String3=0x03,Start- en landingsbaan
 String4=0x04,Runway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3602,7 +3604,7 @@ String2=0x02,Rollweg
 String3=0x03,Taxibaan
 String4=0x04,Taxiway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3618,7 +3620,7 @@ String2=0x02,Rollweg
 String3=0x03,Taxibaan
 String4=0x04,Taxiway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3635,7 +3637,7 @@ String2=0x02,Bahnsteig
 String3=0x03,Perron
 String4=0x04,Platform
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3654,7 +3656,7 @@ String2=0x02,Feld-/Waldweg 4/5 (Eingeschränkt)
 String3=0x03,Onverharde weg 4/5 (afgesloten)
 String4=0x04,Track/Dirt Road 4/5 (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3670,7 +3672,7 @@ String2=0x02,Buhne
 String3=0x03,Krib/Golfbreker
 String4=0x04,Groyne/Breakwater
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3686,7 +3688,7 @@ String2=0x02,Anleger
 String3=0x03,Pier
 String4=0x04,Pier
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3706,7 +3708,7 @@ String2=0x02,Testlinie
 String3=0x03,Testlijn
 String4=0x04,Test line
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3724,7 +3726,7 @@ String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
 String4=0x04,Living Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3742,7 +3744,7 @@ String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
 String4=0x04,Living Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3760,7 +3762,7 @@ String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
 String4=0x04,Living Street (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3778,7 +3780,7 @@ String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
 String4=0x04,Living Street (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3797,7 +3799,7 @@ String2=0x02,Radweg
 String3=0x03,Fietspad
 String4=0x04,Cycleway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3815,7 +3817,7 @@ String2=0x02,Fußgängerstraße mittel
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrianised Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3833,7 +3835,7 @@ String2=0x02,Fußgängerstraße
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrianised street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3869,7 +3871,7 @@ String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3887,7 +3889,7 @@ String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Autosnelweg
 String4=0x04,Highway (like freeway)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3905,7 +3907,7 @@ String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Autosnelweg
 String4=0x04,Highway (like freeway)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3923,7 +3925,7 @@ String2=0x02,Bundesstraße
 String3=0x03,Autoweg
 String4=0x04,Highway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3941,7 +3943,7 @@ String2=0x02,Bundesstraße
 String3=0x03,Autoweg
 String4=0x04,Highway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3959,7 +3961,7 @@ String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,secondary road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3977,7 +3979,7 @@ String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,secondary road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -3995,7 +3997,7 @@ String2=0x02,Kreisstraße
 String3=0x03,Provinciale weg
 String4=0x04,Country Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4013,7 +4015,7 @@ String2=0x02,Kreisstraße
 String3=0x03,Provinciale weg
 String4=0x04,Country Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4031,7 +4033,7 @@ String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
 String4=0x04,Residential Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4049,7 +4051,7 @@ String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
 String4=0x04,Residential Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4067,7 +4069,7 @@ String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
 String4=0x04,Residential Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4085,7 +4087,7 @@ String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
 String4=0x04,Residential Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4103,7 +4105,7 @@ String2=0x02,Nebenstraße
 String3=0x03,Straat
 String4=0x04,Unclassified Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4121,7 +4123,7 @@ String2=0x02,Nebenstraße
 String3=0x03,Straat
 String4=0x04,Unclassified Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4139,7 +4141,7 @@ String2=0x02,Nebenstraße (Eingeschränkt)
 String3=0x03,Straat (afgesloten)
 String4=0x04,Unclassified Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4157,7 +4159,7 @@ String2=0x02,Nebenstraße (Eingeschränkt)
 String3=0x03,Straat (afgesloten)
 String4=0x04,Unclassified Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4175,7 +4177,7 @@ String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
 String4=0x04,Service Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4193,7 +4195,7 @@ String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
 String4=0x04,Service Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4211,7 +4213,7 @@ String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
 String4=0x04,Service Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4229,7 +4231,7 @@ String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
 String4=0x04,Service Road (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4254,7 +4256,7 @@ String2=0x02,Damm, nicht befahrbar
 String3=0x03,Dam, afgesloten voor verkeer
 String4=0x04,Dam, not passable
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4387,7 +4389,7 @@ String2=0x02,Zaun
 String3=0x03,Hek
 String4=0x04,Fence
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4406,7 +4408,7 @@ String2=0x02,Bergweg T2/T3
 String3=0x03,Bergpad T2/T3
 String4=0x04,Alpine Trail T2/T3
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4425,7 +4427,7 @@ String2=0x02,Bergweg T4/T5/T6
 String3=0x03,Bergpad T4/T5/T6
 String4=0x04,Alpine Trail T4/T5/T6
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4444,7 +4446,7 @@ String2=0x02,Bergweg T1/T2 breit
 String3=0x03,Bergpad T1/T2
 String4=0x04,Alpine Trail T1/T2
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4462,7 +4464,7 @@ String2=0x02,Bergweg T2/T3
 String3=0x03,Bergpad T2/T3
 String4=0x04,Alpine Trail T2/T3
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4480,7 +4482,7 @@ String2=0x02,Bergweg T4/T5/T6
 String3=0x03,Bergpad T4/T5/T6
 String4=0x04,Alpine Trail T4/T5/T6
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4498,7 +4500,7 @@ String2=0x02,Bergweg T1/T2
 String3=0x03,Bergpad T1/T2
 String4=0x04,Alpine Trail T1/T2
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4517,7 +4519,7 @@ String2=0x02,Fähre
 String3=0x03,Veerdienst
 String4=0x04,Ferry
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4538,7 +4540,7 @@ String2=0x02,Treppe
 String3=0x03,Trap
 String4=0x04,Steps
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4575,7 +4577,7 @@ String2=0x02,Autobahn
 String3=0x03,Autosnelweg
 String4=0x04,freeway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4593,7 +4595,7 @@ String2=0x02,Bundesstraße (wie Autobahn)
 String3=0x03,Autosnelweg
 String4=0x04,Highway (like freeway)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4611,7 +4613,7 @@ String2=0x02,Bundesstraße
 String3=0x03,Autosnelweg
 String4=0x04,Highway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4629,7 +4631,7 @@ String2=0x02,Landesstraße
 String3=0x03,Provinciale weg
 String4=0x04,Secondary Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4647,7 +4649,7 @@ String2=0x02,Wohngebietsstraße
 String3=0x03,Straat
 String4=0x04,side street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4665,7 +4667,7 @@ String2=0x02,Nebenstraße
 String3=0x03,Straat
 String4=0x04,Unclassified Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4683,7 +4685,7 @@ String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
 String4=0x04,Service Road
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4701,7 +4703,7 @@ String2=0x02,Spielstraße
 String3=0x03,Woonerf
 String4=0x04,Living Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4719,7 +4721,7 @@ String2=0x02,Fußgängerstraße
 String3=0x03,Voetgangersgebied
 String4=0x04,Pedestrianised Street
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4735,7 +4737,7 @@ String2=0x02,Rad-/Fußweg
 String3=0x03,Fietspad/Voetpad nauw
 String4=0x04,Cycle-/Footway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4754,7 +4756,7 @@ String2=0x02,Radweg
 String3=0x03,Fietspad
 String4=0x04,Cyclepath
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4775,7 +4777,7 @@ String2=0x02,Skilift
 String3=0x03,Skilift
 String4=0x04,Skilift
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -4798,7 +4800,7 @@ String2=0x02,Kabinenseilbahn
 String3=0x03,Kabelbaan
 String4=0x04,Cable Car
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5179,7 +5181,7 @@ String2=0x02,Fluss (Tunnel)
 String3=0x03,Waterloop (tunnel)
 String4=0x04,Stream (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5198,7 +5200,7 @@ String2=0x02,Kanal (Tunnel)
 String3=0x03,Kanaal (Tunnel)
 String4=0x04,Canal (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5219,7 +5221,7 @@ String2=0x02,Fluss (Tunnel)
 String3=0x03,Rivier (Tunnel)
 String4=0x04,River (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5240,7 +5242,7 @@ String2=0x02,Kanal (Tunnel)
 String3=0x03,Kanaal (Tunnel)
 String4=0x04,Canal (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5263,7 +5265,7 @@ String2=0x02,Fluss (Tunnel)
 String3=0x03,Rivier (Tunnel)
 String4=0x04,River (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5286,7 +5288,7 @@ String2=0x02,Kanal (Tunnel)
 String3=0x03,Kanaal (Tunnel)
 String4=0x04,Canal (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5305,7 +5307,7 @@ String2=0x02,Wassergraben (Tunnel)
 String3=0x03,Sloot (Tunnel)
 String4=0x04,Ditch (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5324,7 +5326,7 @@ String2=0x02,Entwässerungsgraben (Tunnel)
 String3=0x03,Greppel (Tunnel)
 String4=0x04,Drainage Ditch/Drain (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5343,7 +5345,7 @@ String2=0x02,Bach (Tunnel)
 String3=0x03,Beek (Tunnel)
 String4=0x04,Stream (Tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5362,7 +5364,7 @@ String2=0x02,Yachthafen
 String3=0x03,Jachthaven
 String4=0x04,Marina
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5417,7 +5419,7 @@ String2=0x02,Schienen (Rückbau)
 String3=0x03,Voormalige spoorbaan
 String4=0x04,Decommisioned Railway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5436,7 +5438,7 @@ String2=0x02,Bahn
 String3=0x03,Spoorbaan
 String4=0x04,Railway
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5452,7 +5454,7 @@ String2=0x02,Entwässerungsgraben
 String3=0x03,Sloot
 String4=0x04,Drainage Ditch/Drain
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5468,7 +5470,7 @@ String2=0x02,Staudamm / -mauer
 String3=0x03,Stuwdam
 String4=0x04,Dam
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5542,7 +5544,7 @@ String2=0x02,Bahn (Tunnel)
 String3=0x03,Spoortunnel
 String4=0x04,Railway (tunnel)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5577,7 +5579,7 @@ String2=0x02,Klettersteig
 String3=0x03,Rotspad breed
 String4=0x04,Via Ferrata
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5596,7 +5598,7 @@ String2=0x02,Klettersteig
 String3=0x03,Rotspad smal
 String4=0x04,Via Ferrata
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5617,7 +5619,7 @@ String2=0x02,Materialseilbahn
 String3=0x03,hangspoor (voor goederen)
 String4=0x04,Ropeway (for material transport)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5652,7 +5654,7 @@ String2=0x02,Naturreservat
 String3=0x03,Natuurgebied
 String4=0x04,Nature Reserve
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5668,7 +5670,7 @@ String2=0x02,Hecke
 String3=0x03,Haag
 String4=0x04,Hedge
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5834,7 +5836,7 @@ String2=0x02,Alpiner Weg T4-T6
 String3=0x03,Alpine pad T4-T6
 String4=0x04,Alpine Trail T4-T6
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5853,7 +5855,7 @@ String2=0x02,Bahn (Dienstgleis)
 String3=0x03,Spoorbaan (dienst)
 String4=0x04,Railway (Service)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5918,7 +5920,9 @@ String1=0x00,City
 String2=0x02,Stadt
 String3=0x03,Stad
 String4=0x04,City
-ExtendedLabels=N
+ExtendedLabels=Y
+FontStyle=Default
+CustomColor=No
 DayXpm="4 4 2 1"   Colormode=16
 "!	c #303030"
 "  	c none"
@@ -6006,7 +6010,7 @@ String2=0x02,Leuchtturm
 String3=0x03,Vuurtoren
 String4=0x04,Lighthouse
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="12 16 6 1"   Colormode=16
 "!	c #FFCA20"
@@ -6043,7 +6047,7 @@ String2=0x02,Tor
 String3=0x03,Poort
 String4=0x04,Gate
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 4 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6064,7 +6068,7 @@ String2=0x02,Poller
 String3=0x03,Beweegbare wegversperring
 String4=0x04,Bollard
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #101010"
@@ -6084,7 +6088,7 @@ String2=0x02,Umlaufsperre
 String3=0x03,Fietspadhek
 String4=0x04,Cycle Barrier
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6104,7 +6108,7 @@ String2=0x02,Schranke, Schlagbaum
 String3=0x03,Slagboom
 String4=0x04,Barrier
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 4 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6125,7 +6129,7 @@ String2=0x02,Block
 String3=0x03,Blok
 String4=0x04,Block
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="4 3 1 1"   Colormode=0
 "!	c #C1B0AF"
@@ -6144,7 +6148,7 @@ String2=0x02,Wrack
 String3=0x03,Wrak
 String4=0x04,Wreck
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6164,7 +6168,7 @@ String2=0x02,Ausfahrt
 String3=0x03,Uitgang
 String4=0x04,Exit
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 6 3 1"   Colormode=0
 "!	c #D5D5D5"
@@ -6188,7 +6192,7 @@ String2=0x02,Rastplatz / -stätte
 String3=0x03,Verzorgingsplaats
 String4=0x04,Rest Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 8 2 1"   Colormode=0
 "!	c #FFFFFF"
@@ -6213,7 +6217,7 @@ String2=0x02,Restaurant: Anderes
 String3=0x03,Restaurant: overig
 String4=0x04,Restaurant: other
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6233,7 +6237,7 @@ String2=0x02,Restaurant: Amerikanisch
 String3=0x03,Restaurant: Americaans
 String4=0x04,Restaurant: American
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6253,7 +6257,7 @@ String2=0x02,Restaurant: Asiatisch
 String3=0x03,Restaurant: Aziatisch
 String4=0x04,Restaurant: Asian
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6273,7 +6277,7 @@ String2=0x02,Restaurant: Barbecue
 String3=0x03,Restaurant: Barbecue
 String4=0x04,Ristorante: Barbecue
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6293,7 +6297,7 @@ String2=0x02,Restaurant: Chinesisch
 String3=0x03,Restaurant: Chinees
 String4=0x04,Restaurant: Chinese
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6313,7 +6317,7 @@ String2=0x02,Restaurant: Feinkost
 String3=0x03,Restaurant: Delicatessen / bakkerij
 String4=0x04,Restaurant: Deli/bakery
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6333,7 +6337,7 @@ String2=0x02,Restaurant: International
 String3=0x03,Restaurant: Internationaal
 String4=0x04,Restaurant: International
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6353,7 +6357,7 @@ String2=0x02,Restaurant: Fast Food
 String3=0x03,Restaurant: Fast food
 String4=0x04,Restaurant: Fast food
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6373,7 +6377,7 @@ String2=0x02,Restaurant: Italienisch
 String3=0x03,Restaurant: Italiaans
 String4=0x04,Restaurant: Italian
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6393,7 +6397,7 @@ String2=0x02,Restaurant: Mexikanisch
 String3=0x03,Restaurant: Mexicaans
 String4=0x04,Restaurant: Mexican
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6413,7 +6417,7 @@ String2=0x02,Restaurant: Pizza
 String3=0x03,Restaurant: Pizzeria
 String4=0x04,Restaurant: Pizzeria
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6433,7 +6437,7 @@ String2=0x02,Restaurant: Meeresfrüchte
 String3=0x03,Restaurant: Visrestaurant
 String4=0x04,Restaurant: Seafood
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6453,7 +6457,7 @@ String2=0x02,Restaurant: Steak/Grill
 String3=0x03,Restaurant: Steak House
 String4=0x04,Restaurant: Steak House
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6473,7 +6477,7 @@ String2=0x02,Restaurant: Bagel/Donut
 String3=0x03,Restaurant: Bagel/donut
 String4=0x04,Restaurant: Bagel/donut
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6493,7 +6497,7 @@ String2=0x02,Restaurant: Cafe/Diner
 String3=0x03,Restaurant: Eetcafe
 String4=0x04,Restaurant: Cafe/diner
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6513,7 +6517,7 @@ String2=0x02,Restaurant: Französisch
 String3=0x03,Restaurant: Frans
 String4=0x04,Restaurant: French
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6533,7 +6537,7 @@ String2=0x02,Restaurant: Deutsch
 String3=0x03,Restaurant: Duits
 String4=0x04,Restaurant: German
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6553,7 +6557,7 @@ String2=0x02,Restaurant: Britisch
 String3=0x03,Restaurant: Engels
 String4=0x04,Restaurant: British
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6573,7 +6577,7 @@ String2=0x02,Restaurant: Spezialitäten
 String3=0x03,Restaurant: Specialiteiten
 String4=0x04,Restaurant: Speciality
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6593,7 +6597,7 @@ String2=0x02,Restaurant: Anderes
 String3=0x03,Restaurant: overig
 String4=0x04,Restaurant: Other
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6613,7 +6617,7 @@ String2=0x02,Hotel
 String3=0x03,Hotel
 String4=0x04,Hotel
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 7 4 1"   Colormode=16
 "!	c #7B3000"
@@ -6639,7 +6643,7 @@ String2=0x02,Pension
 String3=0x03,Pension
 String4=0x04,Guest House
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 5 2 1"   Colormode=16
 "!	c #7B3000"
@@ -6662,7 +6666,7 @@ String2=0x02,Campingplatz
 String3=0x03,Camping
 String4=0x04,Camping
 ExtendedLabels=Y
-FontStyle=Default
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="9 7 3 1"   Colormode=16
 "!	c #0065FF"
@@ -6687,7 +6691,7 @@ String2=0x02,Schutzhütte
 String3=0x03,Schuilhut
 String4=0x04,Shelter
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="10 8 2 1"   Colormode=16
 "!	c #0065FF"
@@ -6712,7 +6716,7 @@ String2=0x02,Freizeitpark
 String3=0x03,Pretpark
 String4=0x04,Theme Park
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6732,7 +6736,7 @@ String2=0x02,Museum
 String3=0x03,Museum
 String4=0x04,Museum
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="7 7 2 1"   Colormode=0
 "!	c #FFFFFF"
@@ -6756,7 +6760,7 @@ String2=0x02,Bibliothek
 String3=0x03,Bibliotheek
 String4=0x04,Library
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6776,7 +6780,7 @@ String2=0x02,Kunstzentrum
 String3=0x03,Kunstcentrum
 String4=0x04,Arts Centre
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6796,7 +6800,7 @@ String2=0x02,Schule / Hochschule
 String3=0x03,School/College
 String4=0x04,School/College
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="5 7 2 1"   Colormode=0
 "!	c #0065FF"
@@ -6820,7 +6824,7 @@ String2=0x02,Park / Garten
 String3=0x03,Park / Tuin
 String4=0x04,Park / Garden
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6840,7 +6844,7 @@ String2=0x02,Zoo
 String3=0x03,Dierentuin
 String4=0x04,Zoo
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6860,7 +6864,7 @@ String2=0x02,Stadion, Rennbahn
 String3=0x03,Stadion, Racebaan
 String4=0x04,Stadium, Racetrack
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6880,7 +6884,7 @@ String2=0x02,Messe
 String3=0x03,Beurs
 String4=0x04,Fair
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6900,7 +6904,7 @@ String2=0x02,Kirche
 String3=0x03,Kerk
 String4=0x04,Church
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 11 2 1"   Colormode=16
 "!	c #202020"
@@ -6928,7 +6932,7 @@ String2=0x02,Vulkan
 String3=0x03,Vulkaan
 String4=0x04,Vulcano
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -6948,7 +6952,7 @@ String2=0x02,Moschee
 String3=0x03,Moskee
 String4=0x04,Mosque
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 11 2 1"   Colormode=16
 "!	c #202020"
@@ -6976,7 +6980,7 @@ String2=0x02,Synagoge
 String3=0x03,Synagoge
 String4=0x04,Synagogue
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="9 9 2 1"   Colormode=16
 "!	c #202020"
@@ -7002,7 +7006,7 @@ String2=0x02,Theater
 String3=0x03,Theater
 String4=0x04,Theatre
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7022,7 +7026,7 @@ String2=0x02,Kneipe, Bar, Biergarten, Nachtclub, Disco
 String3=0x03,Cafe, Bar, Terras, Nachtclub, Discotheek
 String4=0x04,Pub, Bar, Beergarden, Nightclub, Disco
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #7B3000"
@@ -7042,7 +7046,7 @@ String2=0x02,Kino
 String3=0x03,Bioscoop
 String4=0x04,Cinema
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7062,7 +7066,7 @@ String2=0x02,Casino
 String3=0x03,Casino
 String4=0x04,Casino
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7082,7 +7086,7 @@ String2=0x02,Golfanlage
 String3=0x03,Golfbaan
 String4=0x04,Golf Course
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7102,7 +7106,7 @@ String2=0x02,Skipiste / -halle
 String3=0x03,Skigebied, Skihal
 String4=0x04,Ski Area, Ski Dome
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7122,7 +7126,7 @@ String2=0x02,Kegel- / Bowlingbahn
 String3=0x03,Bowling (9 or 10 pin)
 String4=0x04,Bowling (9 or 10 pin)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7142,7 +7146,7 @@ String2=0x02,Eissporthalle
 String3=0x03,Kunstijsbaan
 String4=0x04,Ice Rink
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7162,7 +7166,7 @@ String2=0x02,Schwimmbad
 String3=0x03,Zwembad
 String4=0x04,Swimming Pool
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7182,7 +7186,7 @@ String2=0x02,Mehrzweckhalle
 String3=0x03,Evenementenhal
 String4=0x04,Multi-purpose Hall
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7202,7 +7206,7 @@ String2=0x02,Geschäft: Kaufhaus
 String3=0x03,Winkel: Warenhuis
 String4=0x04,Shop: Department Store
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7222,7 +7226,7 @@ String2=0x02,Geschäft: Lebensmittel
 String3=0x03,Winkel: supermarkt
 String4=0x04,Shop: Grocery
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7242,7 +7246,7 @@ String2=0x02,Geschäft: Gemischtwaren
 String3=0x03,Supermarkt
 String4=0x04,Grocery Shop
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7262,7 +7266,7 @@ String2=0x02,Geschäft: Einkaufszentrum
 String3=0x03,Winkel: Winkelcentrum
 String4=0x04,Shop: Shopping Centre
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7282,7 +7286,7 @@ String2=0x02,Geschäft: Apotheke
 String3=0x03,Winkel: Drogist, Apotheek
 String4=0x04,Shop: Pharmacy
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7302,7 +7306,7 @@ String2=0x02,Geschäft: Bedarfsartikel
 String3=0x03,Winkel: Supermarkt
 String4=0x04,Shop: Convinience
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7322,7 +7326,7 @@ String2=0x02,Geschäft: Bekleidung
 String3=0x03,Winkel: Kleding
 String4=0x04,Shop: Clothing
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7342,7 +7346,7 @@ String2=0x02,Geschäft: Haus und Garten
 String3=0x03,Winkel: Tuincentrum
 String4=0x04,Shop: Garden Centre
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7362,7 +7366,7 @@ String2=0x02,Geschäft: Wohnungseinrichtung
 String3=0x03,Winkel: Woninginrichting
 String4=0x04,Shop: Home Furnishing
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7382,7 +7386,7 @@ String2=0x02,Geschäft: Einzelhandel
 String3=0x03,Winkel: Speciaalzaak
 String4=0x04,Shop: Specialist
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7402,7 +7406,7 @@ String2=0x02,Geschäft: Computer/Software
 String3=0x03,Winkel: Computer/Software/IT
 String4=0x04,Shop: Computer/Software/IT
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7422,7 +7426,7 @@ String2=0x02,Geschäft: Metzger
 String3=0x03,Winkel: Slagerij
 String4=0x04,Shop: Butcher
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7442,7 +7446,7 @@ String2=0x02,Geschäft: Anderes
 String3=0x03,Winkel: Overig
 String4=0x04,Shop: Other
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7462,7 +7466,7 @@ String2=0x02,Tankstelle
 String3=0x03,Benzinepomp
 String4=0x04,Petrol Station
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="5 6 2 1"   Colormode=0
 "!	c #0065FF"
@@ -7485,7 +7489,7 @@ String2=0x02,Autoverleih
 String3=0x03,Autoverhuur
 String4=0x04,Car Rental/Car Hire
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7505,7 +7509,7 @@ String2=0x02,Autowerkstatt
 String3=0x03,Autoherstel
 String4=0x04,Car Repair/Garage
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7525,7 +7529,7 @@ String2=0x02,Postamt
 String3=0x03,Postkantoor
 String4=0x04,Post Office
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="11 8 2 1"   Colormode=0
 "!	c #000000"
@@ -7550,7 +7554,7 @@ String2=0x02,Geldautomat
 String3=0x03,Geldautomaat
 String4=0x04,ATM
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="5 9 3 1"   Colormode=16
 "!	c #0065FF"
@@ -7577,7 +7581,7 @@ String2=0x02,Geschäft: Auto
 String3=0x03,Winkel: Autodealer
 String4=0x04,Shop: Car Sales
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7597,7 +7601,7 @@ String2=0x02,Haltestelle
 String3=0x03,Bushalte
 String4=0x04,Stop
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 9 2 1"   Colormode=0
 "!	c #FFFFFF"
@@ -7623,7 +7627,7 @@ String2=0x02,Yachthafen
 String3=0x03,Jachthaven
 String4=0x04,Marina
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7643,7 +7647,7 @@ String2=0x02,Parken (eingeschränkt)
 String3=0x03,Parkeerplaats (afgesloten)
 String4=0x04,Parking (restricted)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 9 2 1"   Colormode=16
 "!	c #FF3000"
@@ -7669,7 +7673,7 @@ String2=0x02,Toilette
 String3=0x03,Toilet
 String4=0x04,Restroom
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="15 14 2 1"   Colormode=16
 "!	c #7B3000"
@@ -7700,7 +7704,7 @@ String2=0x02,Automobil-Club
 String3=0x03,Automobielclub
 String4=0x04,Car Club
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7720,7 +7724,7 @@ String2=0x02,Autowaschanlage
 String3=0x03,Autowasstraat
 String4=0x04,Car Wash
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7740,7 +7744,7 @@ String2=0x02,Friseurbedarf
 String3=0x03,Winkel: Kapper
 String4=0x04,Shop: Hairdresser
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7760,7 +7764,7 @@ String2=0x02,Funkmast, klein
 String3=0x03,Radiozendmast, klein
 String4=0x04,Radio Mast, small
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="9 12 3 1"   Colormode=16
 "!	c #000000"
@@ -7790,7 +7794,7 @@ String2=0x02,Funkmast
 String3=0x03,Radiozendmast
 String4=0x04,Radio Mast
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="17 18 3 1"   Colormode=16
 "!	c #808080"
@@ -7826,7 +7830,7 @@ String2=0x02,Fahrradladen
 String3=0x03,Winkel: Rijwielhandel
 String4=0x04,Shop: Bicycle
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #0000FF"
@@ -7846,7 +7850,7 @@ String2=0x02,Sozialeinrichtung
 String3=0x03,Buurthuis
 String4=0x04,Social Facility
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7866,7 +7870,7 @@ String2=0x02,Bahnhof
 String3=0x03,Spoorwegstation
 String4=0x04,Railway Station
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="7 7 2 1"   Colormode=0
 "!	c #626262"
@@ -7890,7 +7894,7 @@ String2=0x02,U-Bahn-Eingang
 String3=0x03,Metro-ingang
 String4=0x04,Subway Entrance
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 8 2 1"   Colormode=0
 "!	c #0000FF"
@@ -7915,7 +7919,7 @@ String2=0x02,Polizeirevier
 String3=0x03,Politiebureau
 String4=0x04,Police Station
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="14 14 3 1"   Colormode=16
 "!	c #FFFFFF"
@@ -7947,7 +7951,7 @@ String2=0x02,Krankenhaus
 String3=0x03,Ziekenhuis
 String4=0x04,Hospital
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="11 11 2 1"   Colormode=16
 "!	c #DA0092"
@@ -7975,7 +7979,7 @@ String2=0x02,Rathaus, Botschaft
 String3=0x03,Gemeentehuis, Consulaat
 String4=0x04,Town hall, Embassy
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -7995,7 +7999,7 @@ String2=0x02,Gericht
 String3=0x03,Rechtbank
 String4=0x04,Courthouse
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8015,7 +8019,7 @@ String2=0x02,Lokale Veranstaltungshalle
 String3=0x03,Buurthuis
 String4=0x04,Community/Village Hall
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8035,7 +8039,7 @@ String2=0x02,Amt, Behörde
 String3=0x03,Overheidsgebouw/kantoor
 String4=0x04,Government Building/Office
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8055,7 +8059,7 @@ String2=0x02,Feuerwache
 String3=0x03,Brandweerkazerne
 String4=0x04,Fire Station
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8230,7 +8234,7 @@ String2=0x02,Rastplatz (Picknick)
 String3=0x03,Picknickplaats
 String4=0x04,Picnic Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="10 7 2 1"   Colormode=16
 "!	c #7B3000"
@@ -8254,7 +8258,7 @@ String2=0x02,Parken
 String3=0x03,Parkeerplaats
 String4=0x04,Parking
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="6 9 2 1"   Colormode=16
 "!	c #0000FF"
@@ -8280,7 +8284,7 @@ String2=0x02,Aussichtspunkt
 String3=0x03,Uitzichtspunt
 String4=0x04,Viewpoint
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="14 14 2 1"   Colormode=16
 "!	c #000000"
@@ -8311,7 +8315,7 @@ String2=0x02,Hubschrauberlandeplatz
 String3=0x03,Helikopterpad
 String4=0x04,Helipad
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8363,7 +8367,7 @@ String2=0x02,Friedhof
 String3=0x03,Begraafplaats
 String4=0x04,Cemetery
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8383,7 +8387,7 @@ String2=0x02,Ruhe-/Gedenkstätte
 String3=0x03,Graf/Gedenkplaats
 String4=0x04,Grave/memorial
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #414141"
@@ -8403,7 +8407,7 @@ String2=0x02,Militär
 String3=0x03,Militair
 String4=0x04,Military
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8423,7 +8427,7 @@ String2=0x02,Spielplatz
 String3=0x03,Speelplaats
 String4=0x04,Playground
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="5 5 2 1"   Colormode=0
 "!	c #CCFFF1"
@@ -8445,7 +8449,7 @@ String2=0x02,Trinkwasser
 String3=0x03,Drinkwater
 String4=0x04,Drinking Water
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="8 8 2 1"   Colormode=0
 "!	c #0065FF"
@@ -8470,7 +8474,7 @@ String2=0x02,Strommast
 String3=0x03,Electriciteitsmast
 String4=0x04,Electricity Pylon
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="4 4 2 1"   Colormode=16
 "!	c #878686"
@@ -8491,7 +8495,7 @@ String2=0x02,Windkraftanlage
 String3=0x03,Windmolen
 String4=0x04,Wind Generator
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="16 26 4 1"   Colormode=16
 "!	c #000000"
@@ -8536,7 +8540,7 @@ String2=0x02,Bezeichnetes Gebiet (Wasser)
 String3=0x03,Aangewezen gebied (water)
 String4=0x04,Identified Area (water)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8556,7 +8560,7 @@ String2=0x02,Bucht
 String3=0x03,Baai
 String4=0x04,Bay
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8576,7 +8580,7 @@ String2=0x02,Wasserfall
 String3=0x03,Waterval
 String4=0x04,Waterfall
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8596,7 +8600,7 @@ String2=0x02,Gletscher
 String3=0x03,Gletscher
 String4=0x04,Glacier
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8616,7 +8620,7 @@ String2=0x02,Hafen
 String3=0x03,Haven
 String4=0x04,Port
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8636,7 +8640,7 @@ String2=0x02,See / Teich
 String3=0x03,Plas / Meer
 String4=0x04,Lake / Pond
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8656,7 +8660,7 @@ String2=0x02,Quelle
 String3=0x03,Bron
 String4=0x04,Spring
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="7 7 3 1"   Colormode=16
 "!	c #0000F8"
@@ -8681,7 +8685,7 @@ String2=0x02,Feuchtgebiet
 String3=0x03,Drassig gebied
 String4=0x04,Wetland
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8701,7 +8705,7 @@ String2=0x02,Information Office
 String3=0x03,Informatiekantoor
 String4=0x04,Information Office
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="9 15 2 1"   Colormode=16
 "!	c #0065FF"
@@ -8733,7 +8737,7 @@ String2=0x02,Bezeichnetes Gebiet (Land)
 String3=0x03,Aangewezen gebied (Land)
 String4=0x04,Identified Area (Land)
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8753,7 +8757,7 @@ String2=0x02,Höhle
 String3=0x03,Grot
 String4=0x04,Cave
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="12 6 4 1"   Colormode=16
 "!	c #000000"
@@ -8778,7 +8782,7 @@ String2=0x02,Bassin
 String3=0x03,Bassin
 String4=0x04,Basin
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8798,7 +8802,7 @@ String2=0x02,Strand
 String3=0x03,Strand
 String4=0x04,Beach
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8818,7 +8822,7 @@ String2=0x02,Industrieanlage
 String3=0x03,Fabrieksgebouw
 String4=0x04,Industrial Plant
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="5 7 2 1"   Colormode=0
 "!	c #FFFFFF"
@@ -8842,7 +8846,7 @@ String2=0x02,Klippe
 String3=0x03,Klip
 String4=0x04,Cliff
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8862,7 +8866,7 @@ String2=0x02,Trigonometrischer Punkt
 String3=0x03,Diehoeksmetings- landmeetkundigpunt
 String4=0x04,Trig/Survey Point
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8882,7 +8886,7 @@ String2=0x02,Trigonometrischer Punkt
 String3=0x03,Diehoeksmetings- landmeetkundigpunt
 String4=0x04,Trig/Survey point
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=DayAndNight
 DaycustomColor:#BD0041
 NightcustomColor:#BD0041
@@ -8904,7 +8908,7 @@ String2=0x02,Wald
 String3=0x03,Bos
 String4=0x04,Wood
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8924,7 +8928,7 @@ String2=0x02,Naturschutzgebiet
 String3=0x03,Natuurgebied
 String4=0x04,Conservation Area
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -8944,7 +8948,7 @@ String2=0x02,Findling
 String3=0x03,Gevaarlijke rots
 String4=0x04,Erratic Boulder
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #FF0000"
@@ -9011,7 +9015,7 @@ String2=0x02,Baum
 String3=0x03,Boom
 String4=0x04,Tree
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 3 2 1"   Colormode=16
 "!	c #239C45"
@@ -9031,7 +9035,7 @@ String2=0x02,Information
 String3=0x03,Informatie
 String4=0x04,Information
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="3 9 2 1"   Colormode=16
 "!	c #0065FF"
@@ -9081,7 +9085,7 @@ String2=0x02,Seilbahnstation
 String3=0x03,Kabelbaan station
 String4=0x04,Cablecar Station
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="4 4 1 1"   Colormode=0
 "!	c #3995FF"
@@ -9101,7 +9105,7 @@ String2=0x02,Mil. Bunker
 String3=0x03,Militaire bunker
 String4=0x04,Bunker
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="12 5 3 1"   Colormode=16
 "!	c #FFFFFF"
@@ -9124,7 +9128,7 @@ String2=0x02,Ruine
 String3=0x03,Ruine
 String4=0x04,Ruin
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="9 7 2 1"   Colormode=16
 "!	c #734A08"
@@ -9148,7 +9152,7 @@ String2=0x02,Turm, Plattform
 String3=0x03,Toren, Uitzichttoren
 String4=0x04,Tower, Platform
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 DayXpm="5 16 2 1"   Colormode=16
 "!	c #202020"
