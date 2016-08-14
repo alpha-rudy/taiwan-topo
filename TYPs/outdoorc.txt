@@ -8960,26 +8960,26 @@ DayXpm="3 3 2 1"   Colormode=16
 [end]
 
 
-[_point]
-Type=0x066
-SubType=0x16
-String1=0x00,Summit/Peak
-String2=0x02,Gipfel
-String3=0x03,Bergtop
-String4=0x04,Summit/Peak
-ExtendedLabels=N
-DayXpm="8 7 2 1"   Colormode=16
-"!	c #D08F55"
-"  	c none"
-"   !!   "
-"   !!   "
-"  !!!!  "
-"  !!!!  "
-" !!!!!! "
-" !!!!!! "
-"!!!!!!!!"
-;12345678
-[end]
+;[_point]
+;Type=0x066
+;SubType=0x16
+;String1=0x00,Summit/Peak
+;String2=0x02,Gipfel
+;String3=0x03,Bergtop
+;String4=0x04,Summit/Peak
+;ExtendedLabels=N
+;DayXpm="8 7 2 1"   Colormode=16
+;"!	c #D08F55"
+;"  	c none"
+;"   !!   "
+;"   !!   "
+;"  !!!!  "
+;"  !!!!  "
+;" !!!!!! "
+;" !!!!!! "
+;"!!!!!!!!"
+;;12345678
+;[end]
 
 
 [_point]
