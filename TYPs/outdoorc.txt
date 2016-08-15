@@ -675,7 +675,7 @@ ExtendedLabels=Y
 FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #98CC60"
+"1 c #A5DE98"
 [end]
 
 
@@ -2007,7 +2007,7 @@ ExtendedLabels=Y
 FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #98CC60"
+"1 c #A5DE98"
 [end]
 
 
@@ -2069,7 +2069,7 @@ ExtendedLabels=Y
 FontStyle=NormalFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #98CC60"
+"1 c #A5DE98"
 [end]
 
 
