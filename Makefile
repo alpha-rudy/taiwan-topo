@@ -72,7 +72,7 @@ clean:
 
 distclean: clean
 	-rm -rf $(DATA_DIR)
-	-rm -rf $(EXTRACT_DIR)
+	-rm -rf $(EXTRACT)
 
 $(GMAP): $(MAP)
 	-rm -rf $@
