@@ -47,7 +47,7 @@ MAP_DIR := $(ROOT_DIR)/work/taiwan/$(NAME_WORD)
 INSTALL_DIR := $(ROOT_DIR)/install
 
 EXTRACT := $(EXTRACT_DIR)/taiwan-latest.osm.pbf
-ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_50_100_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
