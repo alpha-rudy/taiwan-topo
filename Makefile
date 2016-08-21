@@ -1,24 +1,40 @@
 # base (0x2000) + region x lang x style
 # where, ...
-# - region -> taiwan(0), taipei
+# - region -> taiwan(0), taipei(1)
 # - lang   -> en(0), zh(1),
-# - style  -> jing(0), small(1), contrast_outdor (2)
+# - style  -> jing(0), outdoor(1), contrast_outdoor (2)
 
-# target
-ifeq ($(SUITE),jing)
+# target SUITE, no default
+ifeq ($(SUITE),taiwan_jing)
+REGION := Taiwan
+EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := jing
 STYLE := jing
+STYLE_NAME := jing
 MAPID := $(shell printf %d 0x2010)
-else ifeq ($(SUITE),odr)
+else ifeq ($(SUITE),taiwan_odr)
+REGION := Taiwan
+EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoor
 STYLE := fzk
+STYLE_NAME := odr
 MAPID := $(shell printf %d 0x2011)
-else ifeq ($(SUITE),odc)
+else ifeq ($(SUITE),taiwan_odc)
+REGION := Taiwan
+EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoorc
 STYLE := swisspopo
+STYLE_NAME := odc
 MAPID := $(shell printf %d 0x2012)
+else ifeq ($(SUITE),taipei_odc)
+REGION := Taipei
+EXTRACT_FILE := taipei_taiwan.osm.pbf
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+MAPID := $(shell printf %d 0x2112)
 else 
-    $(error Error: SUITE not specified. Please specify SUITE=[jing|outdoor|outdoorc])
+    $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei]_[jing|outdoor|outdoorc])
 endif
 
 LANG := zh
@@ -27,9 +43,9 @@ CODE_PAGE := 950
 # auto variables
 VERSION := $(shell date +%Y.%m)
 
-NAME_LONG := SRTM3.OSM.$(SUITE) - Taiwan TOPO v$(VERSION) (by Rudy)
-NAME_SHORT := SRTM3.OSM.$(SUITE) - Taiwan TOPO v$(VERSION) (by Rudy)
-NAME_WORD := Taiwan_TOPO_$(SUITE)
+NAME_LONG := SRTM3.OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
+NAME_SHORT := SRTM3.OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
+NAME_WORD := $(REGION)_TOPO_$(STYLE_NAME)
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx4096M
@@ -42,25 +58,25 @@ BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
 ELEVATIONS_DIR := $(ROOT_DIR)/osm_elevations
 EXTRACT_DIR := $(ROOT_DIR)/work/extracts
-DATA_DIR := $(ROOT_DIR)/work/taiwan/data$(MAPID)
-MAP_DIR := $(ROOT_DIR)/work/taiwan/$(NAME_WORD)
+DATA_DIR := $(ROOT_DIR)/work/$(REGION)/data$(MAPID)
+MAP_DIR := $(ROOT_DIR)/work/$(REGION)/$(NAME_WORD)
 INSTALL_DIR := $(ROOT_DIR)/install
 
-EXTRACT := $(EXTRACT_DIR)/taiwan-latest.osm.pbf
 ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
-GMAP := $(INSTALL_DIR)/taiwan_$(LANG)_$(SUITE).gmap
-GMAPSUPP := $(INSTALL_DIR)/gmapsupp_taiwan_$(LANG)_$(SUITE).img
+GMAP := $(INSTALL_DIR)/$(REGION)_$(LANG)_$(STYLE_NAME).gmap
+GMAPSUPP := $(INSTALL_DIR)/gmapsupp_$(REGION)_$(LANG)_$(STYLE_NAME).img
 
 TARGETS := $(GMAPSUPP) $(GMAP)
 
 ifeq ($(shell uname),Darwin)
-MD5_CMD := md5 -q taiwan-latest.osm.pbf
+MD5_CMD := md5 -q $(EXTRACT)
 JMC_CMD := jmc/osx/jmc_cli
 else
-MD5_CMD := md5sum taiwan-latest.osm.pbf | cut -d' ' -f1
+MD5_CMD := md5sum $(EXTRACT) | cut -d' ' -f1
 JMC_CMD := jmc/linux/jmc_cli
 endif
 
@@ -146,9 +162,9 @@ $(MAP): $(DATA)
 $(EXTRACT):
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    curl http://download.geofabrik.de/asia/taiwan-latest.osm.pbf -o taiwan-latest.osm.pbf && \
-	    curl http://download.geofabrik.de/asia/taiwan-latest.osm.pbf.md5 -o taiwan-latest.osm.pbf.md5 && \
-	    [ "$$($(MD5_CMD))" == "$$(cat taiwan-latest.osm.pbf.md5 | cut -d' ' -f1)" ] || \
+	    curl http://download.geofabrik.de/asia/$(EXTRACT_FILE) -o $(EXTRACT_FILE) && \
+	    curl http://download.geofabrik.de/asia/$(EXTRACT_FILE).md5 -o $(EXTRACT_FILE).md5 && \
+	    [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 $(DATA): $(EXTRACT) $(ELEVATION)
@@ -159,7 +175,7 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 		--read-pbf $(EXTRACT) \
 		--read-pbf $(ELEVATION) \
 		--merge \
-		--write-pbf taiwan.osm.pbf \
+		--write-pbf $(REGION).osm.pbf \
 		omitmetadata=true && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
 	    	--geonames-file=$(CITY) \
@@ -172,5 +188,5 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 		--search-limit=1000000000 \
 		--output=xml \
 		--output-dir=$(DATA_DIR) \
-		taiwan.osm.pbf
+		$(REGION).osm.pbf
 	touch $(DATA)
