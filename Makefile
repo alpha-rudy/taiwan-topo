@@ -2,7 +2,7 @@
 # where, ...
 # - region -> taiwan(0), taipei(1)
 # - lang   -> en(0), zh(1),
-# - style  -> jing(0), outdoor(1), contrast_outdoor (2)
+# - style  -> jing(0), outdoor(1), contrast_outdoor(2), test(3)
 
 # target SUITE, no default
 ifeq ($(SUITE),taiwan_jing)
@@ -26,6 +26,13 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 MAPID := $(shell printf %d 0x2012)
+else ifeq ($(SUITE),taiwan_test)
+REGION := Taiwan
+EXTRACT_FILE := taiwan-latest.osm.pbf
+TYP := test
+STYLE := swisspopo
+STYLE_NAME := test
+MAPID := $(shell printf %d 0x2013)
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 EXTRACT_FILE := taipei_taiwan.osm.pbf
@@ -41,7 +48,7 @@ LANG := zh
 CODE_PAGE := 950
 
 # auto variables
-VERSION := $(shell date +%Y.%m)
+VERSION := $(shell date +%Y.%m.%d)
 
 NAME_LONG := SRTM3.OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := SRTM3.OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
