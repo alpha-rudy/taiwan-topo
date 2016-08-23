@@ -1900,14 +1900,19 @@ barrier = hedge_bank [ 0x012111 resolution 24 ]
 # 0x20 = 1 (NoLabel)
 # 0x21 = 2 (Label, SmallFont)
 # 0x22 = 2 (Label, SmallFont)
+
+# minor
 contour = elevation & contour_ext = elevation_minor  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 23]
 
-contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 23 continue with_actions]
-contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 21-22]
+# medium
+contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x23 resolution 20-22 continue with_actions]
+contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 23]
 
+# major
+contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x25 resolution 19-19 continue with_actions]
+contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x24 resolution 20-22 continue with_actions]
 contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 23 continue with_actions]
-contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 21-22 continue with_actions]
-contour = elevation & contour_ext = elevation_major  & (ele = 500 | ele = 1000 | ele = 1500 | ele = 2000 | ele = 2500 | ele = 3000 | ele = 3500) { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 19-20]
+contour = elevation & contour_ext = elevation_major  & (ele = 1000 | ele = 2000 | ele = 3000) { set name = '${ele|conv:m=>ft}'; } [0x25 resolution 17-18]
 
 
 # ------------------------------------------------------------
