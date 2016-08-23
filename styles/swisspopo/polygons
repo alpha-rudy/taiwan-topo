@@ -413,7 +413,7 @@ landuse = commercial [0x26 resolution 20]
 
 # Conservation land is land protected from development. [?]
 # Inkorrekt: Wird zunächst wie "0x50 = Wald" dargestellt.
-landuse = conservation [0x50 resolution 20]
+landuse = conservation [0x50 resolution 17]
 
 # Baugebiet. [point, closedway]
 landuse = construction [0x27 resolution 20]
