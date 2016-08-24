@@ -888,7 +888,7 @@ highway = primary & man_made = dyke            [0x011f03 resolution 24 continue 
 highway = primary {set name = '${name}' | '${ref}' | ''} [0x011f15 resolution 24 continue with_actions]
 highway = primary {set name = '${name}' | '${ref}' | ''} [0x012101 resolution 23-23 continue with_actions]
 highway = primary {set name = '${ref}' | ''}             [0x010f0e resolution 22-22 continue with_actions]
-highway = primary {set name = '${ref}' | ''}             [0x010f0f resolution 20-21]
+highway = primary {set name = '${ref}' | ''}             [0x010f0f resolution 18-21]
 
 
 # Land- oder sehr gut ausgebaute Kreisstrasse:
@@ -910,7 +910,7 @@ highway = secondary & man_made = dyke           [0x01040c resolution 24 continue
 highway = secondary {set name = '${ref}' | ''} [0x011f16 resolution 24 continue with_actions]
 highway = secondary {set name = '${ref}' | ''} [0x010e0d resolution 23-23 continue with_actions]
 highway = secondary {set name = '${ref}' | ''} [0x010f10 resolution 22-22 continue with_actions]
-highway = secondary {set name = '${ref}' | ''} [0x010f11 resolution 20-21]
+highway = secondary {set name = '${ref}' | ''} [0x010f11 resolution 19-21]
 
 
 # Kreisstrasse:
