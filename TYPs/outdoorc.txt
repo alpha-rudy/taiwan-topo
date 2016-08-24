@@ -3175,12 +3175,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e03
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #BD008B"
+"! c #006400"
 "  c none"
-"!!!!!!!!!!!!!   !!!!!!!!!!!!!   "
-"!!!!!!!!!!!!!   !!!!!!!!!!!!!   "
+"  !!!!    !!!!    !!!!    !!!!  "
+"                                "
 ;12345678901234567890123456789012
 String1=0x00,bridle path
 String2=0x02,Reitweg
@@ -3234,7 +3234,7 @@ CustomColor=No
 Type=0x10e06
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #202020"
+"! c #FF656A"
 "  c none"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "                                "
@@ -3339,7 +3339,7 @@ CustomColor=No
 Type=0x10e0c
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #202020"
+"! c #FF656A"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -3408,10 +3408,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e10
-UseOrientation=N
-LineWidth=1
-Xpm="0 0 1 0"
-"1 c #000078"
+UseOrientation=Y
+Xpm="32 2 2  1"
+"! c #0080FF"
+"  c none"
+"!!!!    !!!!    !!!!    !!!!    "
+"                                "
 String1=0x00,Cycle-/Footway narrow
 String2=0x02,Rad-/Fußweg
 String3=0x03,Fietspad/Voetpad nauw
@@ -4528,7 +4530,7 @@ CustomColor=No
 Type=0x11f11
 UseOrientation=Y
 Xpm="32 4 2  1"
-"! c #702020"
+"! c #FF656A"
 "  c none"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
@@ -4728,10 +4730,13 @@ CustomColor=No
 
 [_line]
 Type=0x11f1c
-UseOrientation=N
+UseOrientation=Y
 LineWidth=2
-Xpm="0 0 1 0"
-"1 c #000078"
+Xpm="32 2 2  1"
+"! c #0080FF"
+"  c none"
+"!!!!    !!!!    !!!!    !!!!    "
+"!!!!    !!!!    !!!!    !!!!    "
 String1=0x00,Cycle-/Footway
 String2=0x02,Rad-/Fußweg
 String3=0x03,Fietspad/Voetpad nauw
