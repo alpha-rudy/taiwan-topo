@@ -2,7 +2,7 @@
 # where, ...
 # - region -> taiwan(0), taipei(1)
 # - lang   -> en(0), zh(1),
-# - style  -> jing(0), outdoor(1), contrast_outdoor(2), test(3)
+# - style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
 # target SUITE, no default
 ifeq ($(SUITE),taiwan_jing)
@@ -26,12 +26,12 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 MAPID := $(shell printf %d 0x2012)
-else ifeq ($(SUITE),taiwan_test)
+else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
 EXTRACT_FILE := taiwan-latest.osm.pbf
-TYP := test
+TYP := bw
 STYLE := swisspopo
-STYLE_NAME := test
+STYLE_NAME := bw
 MAPID := $(shell printf %d 0x2013)
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
