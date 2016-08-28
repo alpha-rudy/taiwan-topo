@@ -424,6 +424,10 @@ amenity = shelter & shelter_type = basic_hut & name = *           {name "${name}
 amenity = shelter & shelter_type = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
 amenity = shelter & shelter_type = basic_hut                      {name "Basic hut"}          [0x4805 resolution 23]
 
+# Trail Head
+highway = trailhead & name = *     {name "${name}"} [0x6412 resolution 21]
+highway = trailhead                 {name "步道口"} [0x6412 resolution 21]
+
 # Bed & Breakfast. [point, closedway]
 tourism = bed_and_breakfast & name = * { name "${name} (Bed & Breakfast)" } [0x2b02 resolution 24]
 

@@ -8448,6 +8448,42 @@ DayXpm="5 5 2 1"   Colormode=0
 
 [_point]
 Type=0x064
+SubType=0x12
+String1=0x00,Trailhead
+String2=0x02,Trailhead
+String3=0x03,Trailhead
+String4=0x04,Trailhead
+ExtendedLabels=Y
+FontStyle=NormalFont
+CustomColor=No
+Xpm="16 16 5 2"
+"__	c #FFFFFF"
+"ii	c #AAAAAA"
+"xx	c #555555"
+"XX	c #000000"
+"..	c none"
+"..XXXXXXXXXXXXXXXXXXXXXXXXXXXX.."
+"XXXXXXXXXXXXXX____XXXXXXXXXXXXXX"
+"XXXXXXXXXXxxXX____xxXXXXXXXXXXXX"
+"XXXXXXXXii__xxiiiiXXXXXXXXXXXXXX"
+"XXXXXXXXii__ii____XXXXXXxxXXXXXX"
+"XXXXXXXX____ii____xxXXxxiiXXXXXX"
+"XXXXXXXXiiii__________iiiiXXXXXX"
+"XXXXXXXXXXxx____iixxiiiixxXXXXXX"
+"XXXXXXXXXXii______XXXXiixxXXXXXX"
+"XXXXXXXXXXii______XXxxiiXXXXXXXX"
+"XXXXXXXXXX________xxxxiiXXXXXXXX"
+"XXXXXXXXxx__iixx__iixxiiXXXXXXXX"
+"XXXXXXXXii__iiXX__iixxiiXXXXXXXX"
+"XXXXXXXXii__xxXX____iixxXXXXXXXX"
+"XXXXXXXXiiiiXXXXiiiixxxxXXXXXXXX"
+"..XXXXXXXXXXXXXXXXXXXXXXXXXXXX.."
+;12345678
+[end]
+
+
+[_point]
+Type=0x064
 SubType=0x14
 String1=0x00,Drinking Water
 String2=0x02,Trinkwasser
