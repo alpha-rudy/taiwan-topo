@@ -2437,7 +2437,7 @@ CustomColor=No
 Type=0x12
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF656A"
+"! c #FF262D"
 "  c none"
 "                                "
 "                                "
@@ -2456,7 +2456,7 @@ CustomColor=No
 Type=0x13
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF656A"
+"! c #FF262D"
 "  c none"
 "                                "
 "                                "
@@ -2496,7 +2496,7 @@ CustomColor=No
 Type=0x16
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF656A"
+"! c #FF262D"
 "  c none"
 "                                "
 "                                "
@@ -2899,7 +2899,7 @@ Xpm="32 2 2  1"
 "! c #FF262D"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
-"                                "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Track/Dirt Road 4/5
 String2=0x02,Feld-/Waldweg 4/5
@@ -3251,10 +3251,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e07
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #404040"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3267,10 +3269,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e08
-UseOrientation=N
+UseOrientation=Y
 LineWidth=1
-Xpm="0 0 1 0"
-"1 c #FF262D"
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde bosweg n.a/2/3
@@ -3287,8 +3291,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F0F0F0"
-"2 c #202020"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3395,7 +3399,7 @@ Type=0x10e0f
 UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
-"1 c #FF656A"
+"1 c #FF262D"
 String1=0x00,dirt road (restricted)
 String2=0x02,Feldweg (Eingeschränkt)
 String3=0x03,Zandweg (afgesloten)
@@ -3469,7 +3473,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F0F0F0"
+"1 c #AAAAAA"
 "2 c #FF262D"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
@@ -3483,10 +3487,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e14
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #FF262D"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3499,10 +3505,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e15
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #FF262D"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3517,8 +3525,10 @@ CustomColor=No
 Type=0x10e16
 UseOrientation=Y
 LineWidth=1
-Xpm="0 0 1 0"
-"1 c #FF262D"
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3550,10 +3560,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e18
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #FF262D"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #AAAAAA"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde weg n.a/2/3
@@ -3649,10 +3661,10 @@ CustomColor=No
 Type=0x10e1e
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF656A"
+"! c #FF262D"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
-"                                "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Track/Dirt Road 4/5 (restricted)
 String2=0x02,Feld-/Waldweg 4/5 (Eingeschränkt)
@@ -8093,7 +8105,7 @@ DaycustomColor:#BD0041
 NightcustomColor:#BD0041
 DayXpm="11 12 4 1"   Colormode=16
 "!	c #000000"
-"#	c #FF656A"
+"#	c #FF262D"
 "%	c #333333"
 "  	c none"
 "     %     "
@@ -8126,7 +8138,7 @@ DaycustomColor:#BD0041
 NightcustomColor:#BD0041
 DayXpm="11 12 4 1"   Colormode=16
 "!	c #FFFFFF"
-"#	c #FF656A"
+"#	c #FF262D"
 "%	c #333333"
 "  	c none"
 "     %     "
