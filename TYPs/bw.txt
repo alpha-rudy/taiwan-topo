@@ -102,7 +102,7 @@ String2=0x02,Wohngebiet
 String3=0x03,Woonwijk
 String4=0x04,Residential Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #E4E4E4"
@@ -116,7 +116,7 @@ String2=0x02,Militärgebiet
 String3=0x03,Militair gebied
 String4=0x04,Military Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #FFA8A8"
@@ -178,7 +178,7 @@ String2=0x02,Handel
 String3=0x03,Winkelgebied
 String4=0x04,Retail Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -226,7 +226,7 @@ String2=0x02,Schule
 String3=0x03,School
 String4=0x04,School
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -322,7 +322,7 @@ String2=0x02,Industrie
 String3=0x03,Industriegebied
 String4=0x04,Industrial Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F0D8A8"
@@ -418,7 +418,7 @@ String2=0x02,Spielplatz
 String3=0x03,Speelplaats
 String4=0x04,Playground
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
@@ -562,7 +562,7 @@ String2=0x02,Rohstoffabbau
 String3=0x03,Groeve
 String4=0x04,Quarry
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F4F4F4"
@@ -610,7 +610,7 @@ String2=0x02,Gebäude
 String3=0x03,Gebouw
 String4=0x04,Building
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #707070"
@@ -672,7 +672,7 @@ String2=0x02,Laubwald
 String3=0x03,Loofbos
 String4=0x04,Deciduous Forest
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #FFFFFF"
@@ -2004,7 +2004,7 @@ String2=0x02,Nadelwald
 String3=0x03,Naaldbomen
 String4=0x04,Coniferous forest
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #FFFFFF"
@@ -2066,7 +2066,7 @@ String2=0x02,Mischwald
 String3=0x03,Gemengd bos
 String4=0x04,Mixed forest
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #FFFFFF"
