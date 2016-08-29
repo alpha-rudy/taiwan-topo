@@ -354,6 +354,7 @@ boundary = protected_area & protect_class = 4 {set leisure = nature_reserve}
 boundary = protected_area & protect_id = 4 {set leisure = nature_reserve}
 
 # Nationalparks:
+boundary = national_park {set schutzgebiet = national_park}
 boundary = national_park & protect_class = 2 {set schutzgebiet = national_park}
 boundary = national_park & protect_id = 2 {set schutzgebiet = national_park}
 boundary = protected_area  & protect_class = 2 {set schutzgebiet = national_park}
@@ -1627,11 +1628,11 @@ waterway = weir & building != * [0x012105 resolution 22 continue]
 # starting from 11 for the overviewmap
 boundary = administrative & admin_level = 2 [0x1e resolution 11]
 # Kantonsgrenze - admin_level=4
-boundary = administrative & admin_level = 4 [0x1e resolution 23]
+boundary = administrative & admin_level = 6 [0x1e resolution 17]
 
 # Nationalparkgrenze
 # 0x1d = Bitmap 2
-schutzgebiet = national_park [0x1d resolution 21-23]
+schutzgebiet = national_park { name '${name}' } [0x1d resolution 17-20]
 
 
 # ------------------------------------------------------------------
