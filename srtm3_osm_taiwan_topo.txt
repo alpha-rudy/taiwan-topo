@@ -1,4 +1,4 @@
-﻿SRTM3.OSM - Taiwan TOPO (by Rudy)
+SRTM3.OSM - Taiwan TOPO (by Rudy)
 =================================
 
 This is the weekly Taiwan TOPO Garmin Map designed for hiking & geocaching.
