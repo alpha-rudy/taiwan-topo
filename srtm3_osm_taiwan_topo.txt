@@ -40,9 +40,8 @@ digital elevation model, known as "SRTM Plus" or SRTM NASA Version 3. <br />
 > Link: http://www2.jpl.nasa.gov/srtm
 
 * Map Styles and TYP
-> Styles and TYPs origin from Freizeitkarte and Jing. <br />
-> Freizeitkarte: http://www.freizeitkarte-osm.de/garmin/en/index.html <br />
-> Jing: https://sites.google.com/site/asterosmtaiwantopo/
+> Styles and TYPs origin from Freizeitkarte. <br />
+> Link: http://www.freizeitkarte-osm.de/garmin/en/index.html
 
 * Tool of contour lines: phyghtmap
 > Contour lines of this map were generated using tool "phyghtmap". <br />
