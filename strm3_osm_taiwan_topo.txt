@@ -1,0 +1,83 @@
+﻿SRTM3.OSM - Taiwan TOPO (by Rudy)
+=================================
+
+This is the weekly Taiwan TOPO Garmin Map designed for hiking & geocaching.
+
+這是本週的 SRTM3.OSM - Taiwan TOPO Garmin 地圖，適合用在登山與尋寶！
+
+* SRTM3.OSM.bw - Taiwan TOPO v2016.09.01 (適合小螢幕)
+> https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_bw.img
+
+* SRTM3.OSM.odc - Taiwan TOPO v2016.09.01 (適合大螢幕)
+> https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_odc.img
+
+
+## Description / 說明
+
+The map combined the most up-to-date (in a week) OSM extracts and NASA SRTMv3 DEM. You could freely download and distributed the map without any charge. But keep in mind that the map contains errors, by using this map you are using it at your own risk. 
+
+這地圖使用目前最新（一個星期內）OSM 的圖資，並結合了藉由 NASA STRMv3 所繪出的等高線圖。你可以隨意的下載或傳給別人使用。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能發生的損失（包括受傷）。
+
+
+## History / 重大修改歷程
+
+* 2016, 9/1, First Release.
+
+
+## Licenses / 版權宣告
+
+* OpenSteetMap
+> © OpenStreetMap contributors <br />
+> 本作品內含部份資訊取自「OpenStreetMap」https://wiki.openstreetmap.org/wiki/Downloading_data，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
+> Link: http://www.openstreetmap.org/copyright
+
+* NASA STRMv3 DEM 
+> NASA has released a void-filled version of the Shuttle Radar Topography Mission
+digital elevation model, known as "SRTM Plus" or SRTM NASA Version 3. <br />
+> Link: http://www2.jpl.nasa.gov/srtm
+
+* Map Styles and TYP
+> Styles and TYPs origin from Freizeitkarte and Jing. <br />
+> Freizeitkarte: http://www.freizeitkarte-osm.de/garmin/en/index.html <br />
+> Jing: https://sites.google.com/site/asterosmtaiwantopo/
+
+* Tool of contour lines: phyghtmap
+> Contour lines of this map were generated using tool "phyghtmap". <br />
+> Link: http://katze.tfiu.de/projects/phyghtmap/ <br />
+> License: http://gnu.org/licenses/gpl.html
+
+* Tools of map: splitter and mkgmap
+> Maps were built using the tools "splitter" and "mkgmap". <br />
+> Link: http://www.mkgmap.org.uk/ <br />
+> License: http://gnu.org/licenses/gpl.html
+
+
+## 地圖版權與散佈說明
+
+<pre>
+Copyright (c) 2016 Rudy Chung
+All rights reserved.
+
+Redistribution and use are permitted provided that the following conditions 
+are met:
+
+    * Redistributions must reproduce the this copyright notice (or the HTTP 
+    link to this notice), this list of conditions and the following 
+    disclaimer in the documentation and/or other materials provided with the 
+    distribution.
+
+    * Neither the name of Rudy Chung nor the names of its contributors may be
+    used to endorse or promote products derived from this software without 
+    specific prior written permission.
+
+THIS MAP IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL RUDY BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+MAP, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre>
