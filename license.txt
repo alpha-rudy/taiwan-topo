@@ -1,8 +1,8 @@
 > 
 > Map: Rudy
-> Map data (OSM): Open Street Map Contributors
-> Contour data (SRTM3): U.S. Geological Survey or J. de Ferranti
-> Style/TYP: Jing, Freizeitkarte
+> Map data: © OpenStreetMap contributors
+> Contour data: U.S. Geological Survey or J. de Ferranti
+> Style/TYP: Freizeitkarte, Jing
 > 
 > Free for personal and non-commercial use at your own risk
 > 
