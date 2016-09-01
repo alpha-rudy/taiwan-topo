@@ -5,6 +5,9 @@ This is the weekly Taiwan TOPO Garmin Map designed for hiking & geocaching.
 
 這是本週的 SRTM3.OSM - Taiwan TOPO Garmin 地圖，適合用在登山與尋寶！
 
+* 說明網頁
+> https://dl.dropboxusercontent.com/u/899714/maps/srtm3_osm_taiwan_topo.html
+
 * SRTM3.OSM.bw - Taiwan TOPO v2016.09.01 (適合小螢幕)
 > https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_bw.img
 
