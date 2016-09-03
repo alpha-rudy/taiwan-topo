@@ -548,12 +548,12 @@ natural = marsh & name = * {name "${name} (Marsh)"} [0x6513 resolution 24]
 natural = mud & name = * {name "${name} (Bog)"} [0x6500 resolution 24]
 
 # Bergspitze. [point]
-natural = peak & man_made = survey_point & survey_point = triangulation:1st {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 17]
-natural = peak & man_made = survey_point & survey_point = * {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 19]
-natural = peak & name = * & ele = * {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 20]
-natural = peak & name = *           {name "${name}"}                              [0x6616 resolution 20]
-natural = peak & ele = *            {name "${ele|height:m=>ft|def:}"}             [0x6616 resolution 20]
-natural = peak                      {name "Peak"}                                 [0x6616 resolution 20]
+natural = peak & ref ~ '^百岳.*' {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 17]
+natural = peak & ref ~ '.*百岳.*' {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 19]
+natural = peak & name = * & ele = * {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 21]
+natural = peak & name = *           {name "${name}"}                              [0x6616 resolution 21]
+natural = peak & ele = *            {name "${ele|height:m=>ft|def:}"}             [0x6616 resolution 21]
+natural = peak                      {name "Peak"}                                 [0x6616 resolution 21]
 
 # natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 20-24]
 
