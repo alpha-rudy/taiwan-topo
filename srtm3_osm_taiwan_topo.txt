@@ -1,33 +1,41 @@
 SRTM3.OSM - Taiwan TOPO (by Rudy)
 =================================
 
-This is the weekly Taiwan TOPO Garmin Map designed for hiking & geocaching.
+這是這週 SRTM3.OSM - Taiwan TOPO v2016.09.08 。
 
-這是本週的 SRTM3.OSM - Taiwan TOPO Garmin 地圖，適合用在登山與尋寶！
+適合用在 Garmin 手持機上，拿來登山與尋寶 (hiking/geocaching)！
 
-* 說明網頁
+* 說明網頁（本頁）
 > https://dl.dropboxusercontent.com/u/899714/maps/srtm3_osm_taiwan_topo.html
 
-* SRTM3.OSM.bw - Taiwan TOPO v2016.09.01 (適合小螢幕)
+* SRTM3.OSM.bw - Taiwan TOPO v2016.09.08（適合小螢幕）
 > https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_bw.img
 
-* SRTM3.OSM.odc - Taiwan TOPO v2016.09.01 (適合大螢幕)
+* SRTM3.OSM.odc - Taiwan TOPO v2016.09.08（適合大螢幕）
 > https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_odc.img
 
 
-## Description / 說明
+## 說明
 
-The map combined the most up-to-date (in a week) OSM extracts and NASA SRTMv3 DEM. You could freely download and distributed the map without any charge. But keep in mind that the map contains errors, by using this map you are using it at your own risk. 
+SRTM3.OSM 每週（週四）發行，使用目前最新 OSM 的圖資。山友只需在登山前再來下載來使用就好，不用週週更新。OSM Taiwan 是自由且開源的圖資，由默默耕耘的 OSM Taiwan ([openstreetmap.tw](http://openstreetmap.tw)) mappers 們辛苦繪製而成。圖資的正確性可以（也需要）由山友們一起來維護。有興趣請上 OSM Taiwan 網站來瞭解如何回報或更新地圖的錯誤。
 
-這地圖使用目前最新（一個星期內）OSM 的圖資，並結合了藉由 NASA STRMv3 所繪出的等高線圖。你可以隨意的下載或傳給別人使用。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能發生的損失（包括受傷）。
+SRTM3.OSM 結合 NASA STRMv3 DEM ([www2.jpl.nasa.gov/srtm](http://www2.jpl.nasa.gov/srtm)) 所繪製而成的等高線，準確性可以用來做登山參考，但仍有錯誤的地方。探勘式的登山，建議使用 Happyman 兄 ([地圖產生器](http://map.happyman.idv.tw/twmap)) 列印的經建三地圖。
+
+SRTM3.OSM 由我來調整合適登山與尋寶（hiking/geocaching）活動的顯示樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
+
+讀者可以隨意下載或拿給別人使用（請用本頁連結來散佈）。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能因為使用此地圖所發生的損失（包括受傷）。
 
 
-## History / 重大修改歷程
+## 重大修改歷程
 
-* 2016, 9/1, First Release.
+* 2016, 9/8
+    * 增加百岳與小百岳的顯示
+    * 改善 2km 以上比例尺，作為 Garmin Basecamp 的規劃與瀏覽使用。
+* 2016, 9/1
+    * 第一次發行
 
 
-## Licenses / 版權宣告
+## 版權宣告
 
 * OpenSteetMap
 > © OpenStreetMap contributors <br />
@@ -55,7 +63,6 @@ digital elevation model, known as "SRTM Plus" or SRTM NASA Version 3. <br />
 
 
 ## 地圖版權與散佈說明
-
 <pre>
 Copyright (c) 2016 Rudy Chung
 All rights reserved.
