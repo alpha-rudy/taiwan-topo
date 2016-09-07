@@ -113,7 +113,7 @@ $(GMAP): $(MAP)
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
 	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_DIR)/jmc_cli.cfg"
-	cp -a "$(MAP_DIR)/$(NAME_SHORT).gmap" $@
+	cp -a "$(MAP_DIR)/$(NAME_SHORT).gmap" $@ || cp -a "$(MAP_DIR)/$(NAME_WORD).gmap" $@
 
 $(GMAPSUPP): $(MAP)
 	-rm -rf $@
