@@ -67,15 +67,15 @@ ELEVATIONS_DIR := $(ROOT_DIR)/osm_elevations
 EXTRACT_DIR := $(ROOT_DIR)/work/extracts
 DATA_DIR := $(ROOT_DIR)/work/$(REGION)/data$(MAPID)
 MAP_DIR := $(ROOT_DIR)/work/$(REGION)/$(NAME_WORD)
-INSTALL_DIR := $(ROOT_DIR)/install
+BUILD_DIR := $(ROOT_DIR)/install
 
 ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
-GMAP := $(INSTALL_DIR)/$(REGION)_$(LANG)_$(STYLE_NAME).gmap
-GMAPSUPP := $(INSTALL_DIR)/gmapsupp_$(REGION)_$(LANG)_$(STYLE_NAME).img
+GMAP := $(BUILD_DIR)/$(REGION)_$(LANG)_$(STYLE_NAME).gmap
+GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(LANG)_$(STYLE_NAME).img
 
 TARGETS := $(GMAPSUPP) $(GMAP)
 
@@ -97,9 +97,13 @@ distclean: clean
 	-rm -rf $(DATA_DIR)
 	-rm -rf $(EXTRACT)
 
+install: all
+	[ -d "$(INSTALL_DIR)" ]
+	cp -a $(TARGETS) $(INSTALL_DIR)
+
 $(GMAP): $(MAP)
 	-rm -rf $@
-	mkdir -p $(INSTALL_DIR)
+	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 	    rm -rf $@ && \
 	    cat $(ROOT_DIR)/jmc_cli.cfg | sed \
@@ -111,7 +115,7 @@ $(GMAP): $(MAP)
 
 $(GMAPSUPP): $(MAP)
 	-rm -rf $@
-	mkdir -p $(INSTALL_DIR)
+	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --license-file=$(ROOT_DIR)/license.txt \
