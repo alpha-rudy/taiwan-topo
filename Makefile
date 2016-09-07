@@ -100,6 +100,8 @@ distclean: clean
 install: all
 	[ -d "$(INSTALL_DIR)" ]
 	cp -a $(TARGETS) $(INSTALL_DIR)
+	cat srtm3_osm_taiwan_topo.html | sed \
+	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/srtm3_osm_taiwan_topo.html
 
 $(GMAP): $(MAP)
 	-rm -rf $@
