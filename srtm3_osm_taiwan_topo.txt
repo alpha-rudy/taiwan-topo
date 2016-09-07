@@ -1,17 +1,17 @@
 SRTM3.OSM - Taiwan TOPO (by Rudy)
 =================================
 
-這是這週 SRTM3.OSM - Taiwan TOPO v2016.09.08 。
+這是這週 SRTM3.OSM - Taiwan TOPO v__version__ 。
 
 適合用在 Garmin 手持機上，拿來登山與尋寶 (hiking/geocaching)！
 
 * 說明網頁（本頁）
 > https://dl.dropboxusercontent.com/u/899714/maps/srtm3_osm_taiwan_topo.html
 
-* SRTM3.OSM.bw - Taiwan TOPO v2016.09.08（適合小螢幕）
+* SRTM3.OSM.bw - Taiwan TOPO v__version__（適合小螢幕）
 > https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_bw.img
 
-* SRTM3.OSM.odc - Taiwan TOPO v2016.09.08（適合大螢幕）
+* SRTM3.OSM.odc - Taiwan TOPO v__version__（適合大螢幕）
 > https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_zh_odc.img
 
 
