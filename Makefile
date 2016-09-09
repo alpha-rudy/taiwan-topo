@@ -1,8 +1,8 @@
 # base (0x2000) + region x lang x style
 # where, ...
-# - region -> taiwan(0), taipei(1)
-# - lang   -> en(0), zh(1),
-# - style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
+# - 2nd hex, region -> taiwan(0), taipei(1)
+# - 3rd hex, lang   -> en(0), zh(1),
+# - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
 # target SUITE, no default
 ifeq ($(SUITE),taiwan_jing)
@@ -35,11 +35,20 @@ STYLE_NAME := bw
 MAPID := $(shell printf %d 0x2013)
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
-EXTRACT_FILE := taipei_taiwan.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Taipei.poly
 TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 MAPID := $(shell printf %d 0x2112)
+else ifeq ($(SUITE),taipei_bw)
+REGION := Taipei
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Taipei.poly
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+MAPID := $(shell printf %d 0x2113)
 else 
     $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei]_[jing|outdoor|outdoorc])
 endif
@@ -63,6 +72,7 @@ TOOLS_DIR := $(ROOT_DIR)/tools
 SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
+POLIES_DIR := $(ROOT_DIR)/polies
 ELEVATIONS_DIR := $(ROOT_DIR)/osm_elevations
 EXTRACT_DIR := $(ROOT_DIR)/work/extracts
 DATA_DIR := $(ROOT_DIR)/work/$(REGION)/data$(MAPID)
@@ -180,6 +190,11 @@ $(EXTRACT):
 	    [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
+# OSMOSIS_OPTS
+ifneq (,$(strip $(POLY_FILE)))) 
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)")
+endif
+
 $(DATA): $(EXTRACT) $(ELEVATION)
 	rm -rf $(DATA_DIR)
 	mkdir -p $(DATA_DIR)
@@ -188,6 +203,7 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 		--read-pbf $(EXTRACT) \
 		--read-pbf $(ELEVATION) \
 		--merge \
+		$(OSMOSIS_OPTS) \
 		--write-pbf $(REGION).osm.pbf \
 		omitmetadata=true && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
