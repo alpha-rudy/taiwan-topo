@@ -7,6 +7,8 @@
 # target SUITE, no default
 ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := jing
 STYLE := jing
@@ -14,6 +16,8 @@ STYLE_NAME := jing
 MAPID := $(shell printf %d 0x2010)
 else ifeq ($(SUITE),taiwan_odr)
 REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoor
 STYLE := fzk
@@ -21,6 +25,8 @@ STYLE_NAME := odr
 MAPID := $(shell printf %d 0x2011)
 else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoorc
 STYLE := swisspopo
@@ -28,6 +34,8 @@ STYLE_NAME := odc
 MAPID := $(shell printf %d 0x2012)
 else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := bw
 STYLE := swisspopo
@@ -35,6 +43,8 @@ STYLE_NAME := bw
 MAPID := $(shell printf %d 0x2013)
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
+LANG := zh
+CODE_PAGE := 950
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := outdoorc
@@ -43,18 +53,38 @@ STYLE_NAME := odc
 MAPID := $(shell printf %d 0x2112)
 else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
+LANG := zh
+CODE_PAGE := 950
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw
 MAPID := $(shell printf %d 0x2113)
+else ifeq ($(SUITE),taipei_en_bw)
+REGION := Taipei
+LANG := en
+CODE_PAGE := 950
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Taipei.poly
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+MAPID := $(shell printf %d 0x2103)
+else ifeq ($(SUITE),kyushu_bw)
+REGION := Kyushu
+LANG := en
+CODE_PAGE := 950
+#CODE_PAGE := 1252
+EXTRACT_FILE := japan-latest.osm.pbf
+POLY_FILE := Kyushu.poly
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+MAPID := $(shell printf %d 0x2313)
 else 
     $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei]_[jing|outdoor|outdoorc])
 endif
-
-LANG := zh
-CODE_PAGE := 950
 
 # auto variables
 VERSION := $(shell date +%Y.%m.%d)
@@ -143,6 +173,14 @@ $(GMAPSUPP): $(MAP)
 		$(MAPID)*.img $(MAPID).TYP
 	cp $(MAP_DIR)/gmapsupp.img $@
 
+ifeq ($(LANG),zh) 
+NTL := name,name:zh,name:en
+else ifeq ($(LANG),en)
+NTL := name:zh,name:en,name
+else
+    $(error Error: LANG not specified. something wrong at SUITE handlation)
+endif
+
 $(MAP): $(DATA)
 	rm -rf $(MAP_DIR)
 	mkdir -p $(MAP_DIR)
@@ -168,6 +206,7 @@ $(MAP): $(DATA)
 		-e "s|__map_dir__|$(MAP_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
 		-e "s|__style__|$(STYLE)|g" \
+		-e "s|__name_tag_list__|$(NTL)|g" \
 		-e "s|__code_page__|$(CODE_PAGE)|g" \
 		-e "s|__name_long__|$(NAME_LONG)|g" \
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
@@ -191,7 +230,7 @@ $(EXTRACT):
 	    	( rm -rf $@ && false )
 
 # OSMOSIS_OPTS
-ifneq (,$(strip $(POLY_FILE)))) 
+ifneq (,$(strip $(POLY_FILE)))
     OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)")
 endif
 
