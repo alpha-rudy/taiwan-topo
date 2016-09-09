@@ -1,6 +1,6 @@
 # base (0x2000) + region x lang x style
 # where, ...
-# - 2nd hex, region -> taiwan(0), taipei(1)
+# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2)
 # - 3rd hex, lang   -> en(0), zh(1),
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
@@ -9,6 +9,7 @@ ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := jing
 STYLE := jing
@@ -18,6 +19,7 @@ else ifeq ($(SUITE),taiwan_odr)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoor
 STYLE := fzk
@@ -27,6 +29,7 @@ else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoorc
 STYLE := swisspopo
@@ -36,6 +39,7 @@ else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := bw
 STYLE := swisspopo
@@ -45,6 +49,7 @@ else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := outdoorc
@@ -55,6 +60,7 @@ else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := bw
@@ -65,6 +71,7 @@ else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
 LANG := en
 CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := bw
@@ -76,6 +83,7 @@ REGION := Kyushu
 LANG := en
 CODE_PAGE := 950
 #CODE_PAGE := 1252
+ELEVATION_FILE = ele_japan_10_100_500_view1,view3.osm.pbf
 EXTRACT_FILE := japan-latest.osm.pbf
 POLY_FILE := Kyushu.poly
 TYP := bw
@@ -109,7 +117,7 @@ DATA_DIR := $(ROOT_DIR)/work/$(REGION)/data$(MAPID)
 MAP_DIR := $(ROOT_DIR)/work/$(REGION)/$(NAME_WORD)
 BUILD_DIR := $(ROOT_DIR)/install
 
-ELEVATION := $(ELEVATIONS_DIR)/ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
