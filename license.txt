@@ -1,7 +1,7 @@
 > 
 > Map: Rudy
 > Map data: © OpenStreetMap contributors
-> Contour data: U.S. Geological Survey or J. de Ferranti
+> Contour data: Taiwan MOI, Rex
 > Style/TYP: Freizeitkarte, Jing
 > 
 > Free for personal and non-commercial use at your own risk
