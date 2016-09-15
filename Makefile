@@ -9,13 +9,15 @@ ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := jing
 STYLE := jing
 STYLE_NAME := jing
+DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2010)
-else ifeq ($(SUITE),taiwan_odr)
+
+else ifeq ($(SUITE),taiwan_srtm3_odr)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
@@ -24,8 +26,10 @@ EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoor
 STYLE := fzk
 STYLE_NAME := odr
+DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2011)
-else ifeq ($(SUITE),taiwan_odc)
+
+else ifeq ($(SUITE),taiwan_srtm3_odc)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
@@ -34,51 +38,87 @@ EXTRACT_FILE := taiwan-latest.osm.pbf
 TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
+DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2012)
+
+else ifeq ($(SUITE),taiwan_srtm3_bw)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+DEM_NAME := SRTM3
+MAPID := $(shell printf %d 0x2013)
+
 else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Taiwan.poly
 TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw
-MAPID := $(shell printf %d 0x2013)
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1013)
+
+else ifeq ($(SUITE),taiwan_odc)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+#POLY_FILE := Taiwan.poly
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1012)
+
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
+DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2112)
+
 else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw
+DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2113)
+
 else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
 LANG := en
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw
+DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2103)
-else ifeq ($(SUITE),kyushu_bw)
+
+else ifeq ($(SUITE),kyushu_srtm3_en_bw)
 REGION := Kyushu
 LANG := en
 CODE_PAGE := 950
@@ -89,7 +129,9 @@ POLY_FILE := Kyushu.poly
 TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw
+DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2313)
+
 else 
     $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei]_[jing|outdoor|outdoorc])
 endif
@@ -97,9 +139,9 @@ endif
 # auto variables
 VERSION := $(shell date +%Y.%m.%d)
 
-NAME_LONG := SRTM3.OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
-NAME_SHORT := SRTM3.OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
-NAME_WORD := $(REGION)_TOPO_$(STYLE_NAME)
+NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
+NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
+NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx4096M
@@ -122,8 +164,11 @@ EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 DATA := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
-GMAP := $(BUILD_DIR)/$(REGION)_$(LANG)_$(STYLE_NAME).gmap
-GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(LANG)_$(STYLE_NAME).img
+
+DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
+
+GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap
+GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 
 TARGETS := $(GMAPSUPP) $(GMAP)
 
@@ -148,8 +193,8 @@ distclean: clean
 install: all
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(TARGETS) $(INSTALL_DIR)
-	cat srtm3_osm_taiwan_topo.html | sed \
-	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/srtm3_osm_taiwan_topo.html
+	cat taiwan_topo.html | sed \
+	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
 
 $(GMAP): $(MAP)
 	-rm -rf $@
