@@ -192,7 +192,7 @@ distclean: clean
 
 install: all
 	[ -d "$(INSTALL_DIR)" ]
-	cp -r $(TARGETS) $(INSTALL_DIR)
+	cp -r $(GMAPSUPP) $(INSTALL_DIR)
 	cat taiwan_topo.html | sed \
 	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
 
