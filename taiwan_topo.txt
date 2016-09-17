@@ -21,7 +21,7 @@ MOI.OSM 每週（週四）發行，使用當日 OSM 的圖資。山友只需登�
 
 OSM 是自由且開源的圖資，由默默耕耘的 OSM Taiwan ([openstreetmap.tw](http://openstreetmap.tw)) mappers 們辛苦繪製而成。圖資的正確性可以（也需要）由山友們一起來維護。有興趣請上 OSM Taiwan 網站來瞭解如何回報或更新地圖的錯誤。
 
-MOI 來自 Rex ([http://blog.nutsfactory.net](http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm/)) 轉換 "內政部 20 公尺網格數值地形模型資料" ([tgos.nat.gov.tw](https://tgos.nat.gov.tw/tgos/web/tgos_home.aspx)) 而成的等高線，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山胞反應錯誤的地方，以提供大家討論與參考。探勘式登山建議仍搭配經建三版地形圖 ([地圖產生器](http://map.happyman.idv.tw/~happyman/twmap3))。
+MOI 來自 Rex ([http://blog.nutsfactory.net](http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm/)) 轉換 "內政部 20 公尺網格數值地形模型資料" ([tgos.nat.gov.tw](https://tgos.nat.gov.tw/tgos/web/tgos_home.aspx)) 而成的等高線，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應錯誤的地方，以提供大家討論與參考。探勘式登山建議仍搭配經建三版地形圖 ([地圖產生器](http://map.happyman.idv.tw/~happyman/twmap3))。
 
 Style 由我來調整成合適登山與尋寶（hiking/geocaching）顯示樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
 
