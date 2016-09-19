@@ -1861,15 +1861,15 @@ contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${e
 contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 23-24]
 
 # major
-contour = elevation & contour_ext = elevation_major  & ele > 0{ set name = '${ele|conv:m=>ft}'; } [0x20 resolution 19-20 continue]
+contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 19-20 continue]
 contour = elevation & contour_ext = elevation_major  & (ele = 2000 | ele = 1000) { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 19-20 continue]
 contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 19-20 continue]
 contour = elevation & contour_ext = elevation_major  & (ele = 2000 | ele = 1000) { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 21-22 continue]
 contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 21-22 continue]
 contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 23-24 continue]
-contour = elevation & contour_ext = elevation_major  & ele = 1000 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 17-18]
-contour = elevation & contour_ext = elevation_major  & ele = 2000 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 17-18]
-contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 17-18]
+contour = elevation & contour_ext = elevation_major  & ele = 1000 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 18-18]
+contour = elevation & contour_ext = elevation_major  & ele = 2000 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 18-18]
+contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 18-18]
 
 
 # ------------------------------------------------------------
