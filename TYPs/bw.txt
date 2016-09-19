@@ -3292,7 +3292,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #AAAAAA"
-"2 c #FF262D"
+"2 c #000000"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3474,7 +3474,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #AAAAAA"
-"2 c #FF262D"
+"2 c #000000"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
