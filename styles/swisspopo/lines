@@ -1626,9 +1626,12 @@ waterway = weir & building != * [0x012105 resolution 22 continue]
 # 0x1e = Bitmap 2 (NoLabel)
 #boundary = administrative & admin_level = 2 [0x1e resolution 17]
 # starting from 11 for the overviewmap
-boundary = administrative & admin_level = 2 [0x1e resolution 11]
+boundary = administrative & admin_level = 2 [0x1e resolution 17]
 # Kantonsgrenze - admin_level=4
-boundary = administrative & admin_level = 6 [0x1e resolution 17]
+boundary = administrative & (admin_level = 4) [0x1e resolution 17]
+boundary = administrative & (admin_level = 6) [0x1e resolution 17]
+boundary = administrative & (admin_level = 8) [0x1e resolution 19]
+boundary = administrative & (admin_level = 9) [0x1e resolution 21]
 
 # Nationalparkgrenze
 # 0x1d = Bitmap 2
@@ -1641,11 +1644,11 @@ schutzgebiet = national_park { name '${name}' } [0x1d resolution 17-20]
 
 # Stromleitung (Überlandleitung)
 # 0x29 = 1 (NoLabel)
-power = line [0x29 resolution 24]
+power = line [0x29 resolution 23]
 
 # Freileitung mit Nieder- oder Mittelspannung.
 # 0x29 = 1 (NoLabel)
-power = minor_line [0x29 resolution 24]
+power = minor_line [0x29 resolution 23]
 
 
 # ------------------------------------------------------------------
