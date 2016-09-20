@@ -102,7 +102,7 @@ String2=0x02,Wohngebiet
 String3=0x03,Woonwijk
 String4=0x04,Residential Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #E4E4E4"
@@ -116,7 +116,7 @@ String2=0x02,Militärgebiet
 String3=0x03,Militair gebied
 String4=0x04,Military Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #FFA8A8"
@@ -178,7 +178,7 @@ String2=0x02,Handel
 String3=0x03,Winkelgebied
 String4=0x04,Retail Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -226,7 +226,7 @@ String2=0x02,Schule
 String3=0x03,School
 String4=0x04,School
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=SmalllFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -322,7 +322,7 @@ String2=0x02,Industrie
 String3=0x03,Industriegebied
 String4=0x04,Industrial Area
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F0D8A8"
@@ -418,7 +418,7 @@ String2=0x02,Spielplatz
 String3=0x03,Speelplaats
 String4=0x04,Playground
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLable
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
@@ -562,7 +562,7 @@ String2=0x02,Rohstoffabbau
 String3=0x03,Groeve
 String4=0x04,Quarry
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F4F4F4"
@@ -610,7 +610,7 @@ String2=0x02,Gebäude
 String3=0x03,Gebouw
 String4=0x04,Building
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #707070"
@@ -672,7 +672,7 @@ String2=0x02,Laubwald
 String3=0x03,Loofbos
 String4=0x04,Deciduous Forest
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #A5DE98"
@@ -2004,7 +2004,7 @@ String2=0x02,Nadelwald
 String3=0x03,Naaldbomen
 String4=0x04,Coniferous forest
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #A5DE98"
@@ -2066,7 +2066,7 @@ String2=0x02,Mischwald
 String3=0x03,Gemengd bos
 String4=0x04,Mixed forest
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
 "1 c #A5DE98"
@@ -2899,7 +2899,7 @@ Xpm="32 2 2  1"
 "! c #202020"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
-"                                "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Track/Dirt Road 4/5
 String2=0x02,Feld-/Waldweg 4/5
@@ -3251,10 +3251,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e07
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #404040"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #F0F0F0"
+"2 c #202020"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3267,10 +3269,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e08
-UseOrientation=N
+UseOrientation=Y
 LineWidth=1
-Xpm="0 0 1 0"
-"1 c #202020"
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #F0F0F0"
+"2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde bosweg n.a/2/3
@@ -3469,7 +3473,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F0F0F0"
-"2 c #FF656A"
+"2 c #202020"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3482,10 +3486,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e14
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #FF656A"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #F0F0F0"
+"2 c #202020"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3498,10 +3504,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e15
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #FF656A"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #F0F0F0"
+"2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3516,8 +3524,10 @@ CustomColor=No
 Type=0x10e16
 UseOrientation=Y
 LineWidth=1
-Xpm="0 0 1 0"
-"1 c #FF656A"
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #F0F0F0"
+"2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3549,10 +3559,12 @@ CustomColor=No
 
 [_line]
 Type=0x10e18
-UseOrientation=N
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #202020"
+UseOrientation=Y
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #F0F0F0"
+"2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde weg n.a/2/3
@@ -3651,7 +3663,7 @@ Xpm="32 2 2  1"
 "! c #FF656A"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
-"                                "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Track/Dirt Road 4/5 (restricted)
 String2=0x02,Feld-/Waldweg 4/5 (Eingeschränkt)
@@ -5432,11 +5444,13 @@ CustomColor=No
 [_line]
 Type=0x12103
 UseOrientation=N
-Xpm="32 2 2  1"
-"! c #808080"
+Xpm="32 4 2  1"
+"! c #404040"
 "# c #FFFFFF"
-"!!!!!!!!!#######!!!!!!!!!#######"
-"!!!!!!!!!#######!!!!!!!!!#######"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!########!!!!!!!!########"
+"!!!!!!!!########!!!!!!!!########"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
 String1=0x00,Railway
 String2=0x02,Bahn
