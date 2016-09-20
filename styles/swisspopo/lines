@@ -1635,7 +1635,7 @@ boundary = administrative & (admin_level = 9) [0x1e resolution 21]
 
 # Nationalparkgrenze
 # 0x1d = Bitmap 2
-schutzgebiet = national_park { name '${name}' } [0x1d resolution 17-20]
+schutzgebiet = national_park { name '${name}' } [0x1d resolution 17]
 
 
 # ------------------------------------------------------------------
