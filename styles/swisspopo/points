@@ -1105,7 +1105,7 @@ public_transport = stop_position & train = yes & name = *  {name "${name}"} [0x2
 # public_transport = platform (wird derzeit nicht unterstützt)
 
 # Bahnhof (mit mindestens einer Weiche). [point, closedway]
-railway = station {name "${name}" | "火車站"} [0x2f17 resolution 23]
+railway = station {name "${name}" | "火車站"} [0x2f17 resolution 18]
 
 # U-Bahn Eingang. [point]
 railway = subway_entrance {name "${name}" | "入口"} [0x2f1f resolution 24]
