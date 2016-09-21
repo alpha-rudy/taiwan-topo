@@ -1105,7 +1105,7 @@ public_transport = stop_position & train = yes & name = *  {name "${name}"} [0x2
 # public_transport = platform (wird derzeit nicht unterstützt)
 
 # Bahnhof (mit mindestens einer Weiche). [point, closedway]
-railway = station {name "${name}" | "火車站"} [0x2f17 resolution 18]
+railway = station & name = * {name "${name}"} [0x2f17 resolution 18]
 
 # U-Bahn Eingang. [point]
 railway = subway_entrance {name "${name}" | "入口"} [0x2f1f resolution 24]
@@ -1295,7 +1295,7 @@ highway = bus_stop {name "${name}" | "公車站"} [0x2f08 resolution 24]
 
 # Autobahnausfahrt. ref sollte die Nummer oder andere ID der Ausfahrt enthalten.
 # Kann auch für nicht-Autobahnen verwendet werden. Beispiel: name=Ascheberg, ref=79
-highway = motorway_junction {name "${name} (${ref}) 路口" | "${name} 路口" | "${ref} 路口"} [0x2900 resolution 23]
+highway = motorway_junction & name = * {name "${name}"} [0x2900 resolution 18]
 
 # Place where drivers can leave the road to rest, but not refuel. [point, closedway]
 highway = rest_area {name "${name}" | "休息站"} [0x2901 resolution 24]
