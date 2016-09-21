@@ -1222,7 +1222,7 @@ highway = pedestrian & (area != * | area = no) & man_made = dyke            [0x0
 # 0x010f09 = 1/1 (schmal, NoLabel)
 highway = pedestrian & (area != * | area = no) [0x011f1b resolution 24 continue]
 highway = pedestrian & (area != * | area = no) [0x010f08 resolution 23-23 continue]
-highway = pedestrian & (area != * | area = no) [0x010f09 resolution 22-22]
+#highway = pedestrian & (area != * | area = no) [0x010f09 resolution 22-22]
 
 
 # Bergwanderweg, typischerweise im Gebirge:
