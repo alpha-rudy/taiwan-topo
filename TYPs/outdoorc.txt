@@ -2983,7 +2983,7 @@ CustomColor=No
 Type=0x10407
 UseOrientation=Y
 Xpm="32 6 2  1"
-"! c #333333"
+"! c #DB5427"
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
@@ -5461,7 +5461,7 @@ CustomColor=No
 
 [_line]
 Type=0x12103
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 4 2  1"
 "! c #404040"
 "# c #FFFFFF"
@@ -5571,7 +5571,7 @@ CustomColor=No
 Type=0x12109
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #808080"
+"! c #DB5427"
 "  c none"
 "!!!!!!!!        !!!!!!!!        "
 "!!!!!!!!        !!!!!!!!        "
@@ -5880,16 +5880,18 @@ CustomColor=No
 
 [_line]
 Type=0x12113
-UseOrientation=N
-Xpm="32 2 2  1"
-"! c #B4B4B4"
+UseOrientation=Y
+Xpm="32 4 2  1"
+"! c #DB5427"
 "# c #FFFFFF"
-"!!!!!!!!!#######!!!!!!!!!#######"
-"!!!!!!!!!#######!!!!!!!!!#######"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!########!!!!!!!!########"
+"!!!!!!!!########!!!!!!!!########"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
 String1=0x00,Railway (Service)
-String2=0x02,Bahn (Dienstgleis)
-String3=0x03,Spoorbaan (dienst)
+String2=0x02,Bahn
+String3=0x03,Spoorbaan
 String4=0x04,Railway (Service)
 ExtendedLabels=Y
 FontStyle=NormalFont
