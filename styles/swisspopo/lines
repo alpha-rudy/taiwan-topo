@@ -576,18 +576,18 @@ highway = footway | highway = elevator | highway = steps | highway = pedestrian 
 
 # Bergwege; T4 - T6 für routing aus Sicherheitsgründen gesperrt; Ausnahme: EXTENDEDROUTING ist explizit definiert
 # Alpine Trails; T4 - T6 expluded from routing for security reasons; Exception: EXTENDEDROUTING set
-  # T1
-  highway = path & sac_scale = hiking                     {set highway = sacscalet1;        set name = '${name} (T1)' | 'Alpine Trail (T1)' }
-  # T2
-  highway = path & sac_scale = mountain_hiking            {set highway = sacscalet2t3;      set name = '${name} (T2)' | 'Alpine Trail (T2)' }
-  # T3
-  highway = path & sac_scale = demanding_mountain_hiking  {set highway = sacscalet2t3;      set name = '${name} (T3)' | 'Alpine Trail (T3)' }
-  # T4
-  highway = path & sac_scale = alpine_hiking              {set highway = sacscalet4t5t6;    set name = '${name} (T4)' | 'Alpine Trail (T4)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
-  # T5
-  highway = path & sac_scale = demanding_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T5)' | 'Alpine Trail (T5)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
-  # T6
-  highway = path & sac_scale = difficult_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T6)' | 'Alpine Trail (T6)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T1
+highway = path & sac_scale = hiking                     {set highway = sacscalet1;        set name = '${name} (T1)' | 'T1 步道' }
+# T2
+highway = path & sac_scale = mountain_hiking            {set highway = sacscalet2t3;      set name = '${name} (T2)' | 'T2 步道' }
+# T3
+highway = path & sac_scale = demanding_mountain_hiking  {set highway = sacscalet2t3;      set name = '${name} (T3)' | 'T3 步道' }
+# T4
+highway = path & sac_scale = alpine_hiking              {set highway = sacscalet4t5t6;    set name = '${name} (T4)' | 'T4 步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T5
+highway = path & sac_scale = demanding_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T5)' | 'T5 步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T6
+highway = path & sac_scale = difficult_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T6)' | 'T6 步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 
 
 # access
