@@ -284,7 +284,6 @@ $(MAP): $(DATA)
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(DATA_DIR)/template.args | sed \
-	    	-e "s|description: \(.*\)|description: \\1 $(VERSION)|g" \
 	    	-e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--max-jobs=2 \
