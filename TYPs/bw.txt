@@ -2651,6 +2651,24 @@ DaycustomColor:#606060
 
 
 [_line]
+Type=0x25
+UseOrientation=Y
+Xpm="32 1 2  1"
+"! c #DC94E9"
+"  c none"
+"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
+;12345678901234567890123456789012
+String1=0x00,County Border
+String2=0x02,Staatsgrenze
+String3=0x03,Staatsgrens
+String4=0x04,County Border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+CustomColor=No
+[end]
+
+
+[_line]
 Type=0x26
 UseOrientation=Y
 LineWidth=4
@@ -3292,7 +3310,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #AAAAAA"
-"2 c #000000"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3474,7 +3492,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #AAAAAA"
-"2 c #000000"
+"2 c #FF262D"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
