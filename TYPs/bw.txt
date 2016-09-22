@@ -2983,7 +2983,7 @@ CustomColor=No
 Type=0x10407
 UseOrientation=Y
 Xpm="32 6 2  1"
-"! c #DB5427"
+"! c #404040"
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
@@ -3133,6 +3133,29 @@ String1=0x00,Tunnel
 String2=0x02,Tunnel
 String3=0x03,Tunnel
 String4=0x04,Tunnel
+ExtendedLabels=Y
+FontStyle=NormalFont
+CustomColor=No
+[end]
+
+
+[_line]
+Type=0x1040d
+UseOrientation=Y
+Xpm="32 6 2  1"
+"! c #DB5427"
+"  c none"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"                                "
+"                                "
+"                                "
+"                                "
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+;12345678901234567890123456789012
+String1=0x00,Taiwan Highspeed Railway (Bridge)
+String2=0x02,Brücke
+String3=0x03,Brug
+String4=0x04,Taiwan Highspeed Railway (Bridge)
 ExtendedLabels=Y
 FontStyle=NormalFont
 CustomColor=No
@@ -5574,7 +5597,7 @@ CustomColor=No
 Type=0x12109
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #DB5427"
+"! c #404040"
 "  c none"
 "!!!!!!!!        !!!!!!!!        "
 "!!!!!!!!        !!!!!!!!        "
@@ -5748,6 +5771,25 @@ String3=0x03,Bomenrij
 String4=0x04,Tree Row
 ExtendedLabels=Y
 FontStyle=NoLabel (invisible)
+CustomColor=No
+[end]
+
+
+[_line]
+Type=0x12114
+UseOrientation=N
+Xpm="32 2 2  1"
+"! c #DB5427"
+"  c none"
+"!!!!!!!!        !!!!!!!!        "
+"!!!!!!!!        !!!!!!!!        "
+;12345678901234567890123456789012
+String1=0x00,Taiwan Highspeed Railway (tunnel)
+String2=0x02,Bahn (Tunnel)
+String3=0x03,Spoortunnel
+String4=0x04,Taiwan Highspeed Railway (tunnel)
+ExtendedLabels=Y
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
