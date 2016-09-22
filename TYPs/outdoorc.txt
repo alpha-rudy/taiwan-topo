@@ -226,7 +226,7 @@ String2=0x02,Schule
 String3=0x03,School
 String4=0x04,School
 ExtendedLabels=Y
-FontStyle=SmalllFont
+FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
@@ -418,7 +418,7 @@ String2=0x02,Spielplatz
 String3=0x03,Speelplaats
 String4=0x04,Playground
 ExtendedLabels=Y
-FontStyle=NoLable
+FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
