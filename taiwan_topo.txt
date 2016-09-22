@@ -30,6 +30,18 @@ Style 由我來調整成合適登山與尋寶（hiking/geocaching）顯示樣式
 
 ## 重大修改歷程
 
+* 2016, 9/22
+    * Thanks to 綬草北三兄許許多多的建議，...
+      * 增加澎湖區域等高線
+      * 增加金門、馬祖區域（SRTM3）等高線
+      * 顯示 0 ~ 50m 之間的等高線
+      * 翻譯來自 fzk style 樣式檔案中的英文的字串為中文
+      * 增加 odc style 等高線的粗細
+      * 調整物件顯示解析度對應的關係，現在看起來比較不會那麼擁擠（大工程，未完成）<br />
+      （細項：https://www.facebook.com/groups/taiwan.topo/permalink/678848122270804)
+    * Thanks to Chengtao Lin 兄修正的 MOI DEM
+      * 修正原始 MOI DEM 中低於 0m 與高出 3952m 的部分<br />
+      (出處：http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884)
 * 2016, 9/16
     * 改變等高線所使用的高程資料，由 NASA SRTM3 改成 MOI 內政部 20 公尺網格數值地形模型資料。
 * 2016, 9/8
@@ -51,7 +63,8 @@ Style 由我來調整成合適登山與尋寶（hiking/geocaching）顯示樣式
 > 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />
 > MOI Link: https://tgos.nat.gov.tw <br />
 > 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
-> Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm 
+> Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
+> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884
 
 * Map Styles and TYP
 > Styles and TYPs are origin from Freizeitkarte. <br />
