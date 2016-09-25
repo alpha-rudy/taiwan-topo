@@ -1,7 +1,7 @@
 # base (0x2000) + region x lang x style
 # where, ...
 # - 1st hex, dem    -> moi(1), srtm(2)
-# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), test(3)
+# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3)
 # - 3rd hex, lang   -> en(0), zh(1),
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
