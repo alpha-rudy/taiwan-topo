@@ -2651,6 +2651,23 @@ DaycustomColor:#606060
 
 
 [_line]
+Type=0x23
+UseOrientation=Y
+LineWidth=2
+Xpm="0 0 1 0"
+"1 c #404040"
+String1=0x00,Half Medium Contour Line
+String2=0x02,Höhenlinie major (breit)
+String3=0x03,Hoogtelijn groot
+String4=0x04,Half Medium Contour Line
+ExtendedLabels=Y
+FontStyle=NoLabel
+CustomColor=Day
+DaycustomColor:#606060
+[end]
+
+
+[_line]
 Type=0x25
 UseOrientation=Y
 Xpm="32 1 2  1"
