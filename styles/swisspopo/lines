@@ -1858,6 +1858,7 @@ barrier = hedge_bank [ 0x012111 resolution 24 ]
 # 0x22 = 2 (Label, SmallFont)
 
 # minor
+contour = elevation & contour_ext = elevation_minor & (ele ~ '.*00$' | ele ~ '.*50$') { set name = '${ele|conv:m=>ft}'; } [0x23 resolution 23-24]
 contour = elevation & contour_ext = elevation_minor & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 23-24]
 
 # medium
