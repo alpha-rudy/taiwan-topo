@@ -2848,7 +2848,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AAAAAA"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Unclassified Road (Narrow)
 String2=0x02,Nebenstraße
@@ -4175,7 +4175,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AAAAAA"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4193,7 +4193,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AAAAAA"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4211,7 +4211,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AAAAAA"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Unclassified Road (restricted)
 String2=0x02,Nebenstraße (Eingeschränkt)
@@ -4229,7 +4229,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AAAAAA"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Unclassified Road (restricted)
 String2=0x02,Nebenstraße (Eingeschränkt)
@@ -4739,7 +4739,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AAAAAA"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
