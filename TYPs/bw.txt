@@ -4103,7 +4103,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4175,7 +4175,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4211,7 +4211,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Unclassified Road (restricted)
 String2=0x02,Nebenstraße (Eingeschränkt)
@@ -4229,7 +4229,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Unclassified Road (restricted)
 String2=0x02,Nebenstraße (Eingeschränkt)
@@ -4247,7 +4247,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FEFEFE"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -4721,12 +4721,12 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
-String1=0x00,side street
-String2=0x02,Wohngebietsstraße
-String3=0x03,Straat
-String4=0x04,side street
+String1=0x00,Residential
+String2=0x02,Residential
+String3=0x03,Residential
+String4=0x04,Residential
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
@@ -4739,7 +4739,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4757,7 +4757,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
