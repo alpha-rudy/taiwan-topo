@@ -156,6 +156,8 @@ endif
 
 # auto variables
 VERSION := $(shell date +%Y.%m.%d)
+MAPID_LO_HEX := $(shell printf '%x' $(MAPID) | cut -c3-4)
+MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
@@ -187,8 +189,9 @@ DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
+NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 
-TARGETS := $(GMAPSUPP) $(GMAP)
+TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $(EXTRACT)
@@ -213,6 +216,18 @@ install: all
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
 	cat taiwan_topo.html | sed \
 	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
+
+$(NSIS): $(MAP)
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cd $(MAP_DIR) && \
+		rm -rf $@ && \
+		cat $(ROOT_DIR)/makensis.cfg | sed \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__version__|$(VERSION)|g" \
+			-e "s|__mapid_lo_hex__|$(MAPID_LO_HEX)|g" \
+			-e "s|__mapid_hi_hex__|$(MAPID_HI_HEX)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi
 
 $(GMAP): $(MAP)
 	-rm -rf $@
