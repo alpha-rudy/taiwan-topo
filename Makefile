@@ -191,7 +191,7 @@ GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 
-TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
+TARGETS := $(GMAPSUPP) $(GMAP)
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $(EXTRACT)
