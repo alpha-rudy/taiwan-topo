@@ -222,12 +222,28 @@ $(NSIS): $(MAP)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 		rm -rf $@ && \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
+			echo "  CopyFiles \"\$$MyTempDir\\$$i\" \"\$$INSTDIR\\$$i\"  "; \
+			echo "  Delete \"\$$MyTempDir\\$$i\"  "; \
+		done > copy_tiles.txt && \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
+			echo "  Delete \"\$$INSTDIR\\$$i\"  "; \
+		done > delete_tiles.txt && \
 		cat $(ROOT_DIR)/makensis.cfg | sed \
+			-e "s|__root_dir__|$(ROOT_DIR)|g" \
 			-e "s|__name_word__|$(NAME_WORD)|g" \
 			-e "s|__version__|$(VERSION)|g" \
 			-e "s|__mapid_lo_hex__|$(MAPID_LO_HEX)|g" \
 			-e "s|__mapid_hi_hex__|$(MAPID_HI_HEX)|g" \
-			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi
+			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi && \
+		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
+		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
+		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
+		cat $(ROOT_DIR)/taiwan_topo.txt | sed \
+			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT -o readme.txt && \
+		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
+		makensis $(NAME_WORD).nsi
+	cp "$(MAP_DIR)/Install_$(NAME_WORD).exe" $@
 
 $(GMAP): $(MAP)
 	-rm -rf $@
