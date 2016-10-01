@@ -1,11 +1,25 @@
 # base (0x2000) + region x lang x style
 # where, ...
-# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2)
+# - 1st hex, dem    -> moi(1), srtm(2)
+# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3)
 # - 3rd hex, lang   -> en(0), zh(1),
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
 # target SUITE, no default
-ifeq ($(SUITE),taiwan_jing)
+ifeq ($(SUITE),test)
+REGION := Beibeiji
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Beibeiji.poly
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1313)
+
+else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
@@ -142,6 +156,8 @@ endif
 
 # auto variables
 VERSION := $(shell date +%Y.%m.%d)
+MAPID_LO_HEX := $(shell printf '%x' $(MAPID) | cut -c3-4)
+MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
@@ -173,8 +189,9 @@ DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
+NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 
-TARGETS := $(GMAPSUPP) $(GMAP)
+TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $(EXTRACT)
@@ -194,12 +211,51 @@ distclean: clean
 	-rm -rf $(DATA_DIR)
 	-rm -rf $(EXTRACT)
 
-install: all
+.PHONY: install
+install: $(GMAPSUPP)
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
 	cat taiwan_topo.html | sed \
 	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
 
+drop: all
+	[ -d "$(INSTALL_DIR)" ]
+	cp -r $(TARGETS) $(INSTALL_DIR)
+	cat taiwan_topo.html | sed \
+	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
+
+.PHONY: nsis
+nsis: $(NSIS)
+$(NSIS): $(MAP)
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cd $(MAP_DIR) && \
+		rm -rf $@ && \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
+			echo "  CopyFiles \"\$$MyTempDir\\$$i\" \"\$$INSTDIR\\$$i\"  "; \
+			echo "  Delete \"\$$MyTempDir\\$$i\"  "; \
+		done > copy_tiles.txt && \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
+			echo "  Delete \"\$$INSTDIR\\$$i\"  "; \
+		done > delete_tiles.txt && \
+		cat $(ROOT_DIR)/makensis.cfg | sed \
+			-e "s|__root_dir__|$(ROOT_DIR)|g" \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__version__|$(VERSION)|g" \
+			-e "s|__mapid_lo_hex__|$(MAPID_LO_HEX)|g" \
+			-e "s|__mapid_hi_hex__|$(MAPID_HI_HEX)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi && \
+		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
+		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
+		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
+		cat $(ROOT_DIR)/taiwan_topo.txt | sed \
+			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT -o readme.txt && \
+		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
+		makensis $(NAME_WORD).nsi
+	cp "$(MAP_DIR)/Install_$(NAME_WORD).exe" $@
+
+.PHONY: gmap
+gmap: $(GMAP)
 $(GMAP): $(MAP)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -270,7 +326,6 @@ $(MAP): $(DATA)
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(DATA_DIR)/template.args | sed \
-	    	-e "s|description: \(.*\)|description: \\1 $(VERSION)|g" \
 	    	-e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--max-jobs=2 \

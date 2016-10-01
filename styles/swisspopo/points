@@ -392,64 +392,64 @@
 # Bewirtschaftete Berghütten
 tourism = alpine_hut & name = * & ele = * & amenity = restaurant {name "${name} (${ele})"}   [0x4803 resolution 23]
 tourism = alpine_hut & name = * & amenity = restaurant           {name "${name}"}            [0x4803 resolution 23]
-tourism = alpine_hut & ele = * & amenity = restaurant            {name "Alpine hut (${ele})"} [0x4803 resolution 23]
-tourism = alpine_hut & amenity = restaurant                      {name "Alpine hut"}          [0x4803 resolution 23]
+#tourism = alpine_hut & ele = * & amenity = restaurant            {name "Alpine hut (${ele})"} [0x4803 resolution 23]
+#tourism = alpine_hut & amenity = restaurant                      {name "Alpine hut"}          [0x4803 resolution 23]
 
 # Selbstversorger Berghütten
 tourism = alpine_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4804 resolution 23]
 tourism = alpine_hut & name = *           {name "${name}"}            [0x4804 resolution 23]
-tourism = alpine_hut & ele = *            {name "Alpine hut (${ele})"} [0x4804 resolution 23]
-tourism = alpine_hut                      {name "Alpine hut"}          [0x4804 resolution 23]
+#tourism = alpine_hut & ele = *            {name "Alpine hut (${ele})"} [0x4804 resolution 23]
+#tourism = alpine_hut                      {name "Alpine hut"}          [0x4804 resolution 23]
 
 # Aquarium.
-tourism = aquarium & name = * {name "${name} (Aquarium)"} [0x2c07 resolution 24]
+tourism = aquarium & name = * {name "${name}"} [0x2c07 resolution 24]
 
 # Sehenswürdigkeit. [point, closedway]
 # (Excluding worship places here, that tag should be stronger than attraction)
-tourism = attraction & name = * & amenity != place_of_worship {name "${name} (Attraction)"} [0x6600 resolution 24]
+tourism = attraction & name = * & amenity != place_of_worship {name "${name}"} [0x6600 resolution 24]
 
 # Kunstwerk, Kunstobjekt. [point, closedway]
-tourism = artwork & name = * {name "${name} (Work of Art)"} [0x6600 resolution 24]
+tourism = artwork & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Basic hut (Schutzhütte, Berghütte). [point, closedway]
 # A basic hut is a building located in the mountains or into the wild intended
 # to provide basic shelter, sleeping, to hikers and climbers.
 tourism = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 23]
 tourism = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 23]
-tourism = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
-tourism = basic_hut                      {name "Basic hut"}          [0x4805 resolution 23]
+#tourism = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
+#tourism = basic_hut                      {name "Basic hut"}          [0x4805 resolution 23]
 # Basic hut (new tagging) [point, closedway]
 amenity = shelter & shelter_type = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 23]
 amenity = shelter & shelter_type = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 23]
-amenity = shelter & shelter_type = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
-amenity = shelter & shelter_type = basic_hut                      {name "Basic hut"}          [0x4805 resolution 23]
+#amenity = shelter & shelter_type = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
+amenity = shelter & shelter_type = basic_hut                      {name "小屋"}          [0x4805 resolution 23]
 
 # Trail Head
 highway = trailhead & name = *     {name "${name}"} [0x6412 resolution 21]
 highway = trailhead                 {name "步道口"} [0x6412 resolution 21]
 
 # Bed & Breakfast. [point, closedway]
-tourism = bed_and_breakfast & name = * { name "${name} (Bed & Breakfast)" } [0x2b02 resolution 24]
+tourism = bed_and_breakfast & name = * { name "${name}" } [0x2b02 resolution 24]
 
 # Campingplatz. [point, closedway]
-tourism = camp_site & name = * {name "${name} (Campsite)"} [0x2b05 resolution 24]
+tourism = camp_site & name = * {name "${name}"} [0x2b05 resolution 24]
 
 # Stellplatz für Wohnmobile (Reisemobile). [point, closedway]
-tourism = caravan_site & name = * {name "${name} (Caravan Site)"} [0x2b05 resolution 24]
+tourism = caravan_site & name = * {name "${name}"} [0x2b05 resolution 24]
 
 # Ferienwohnung, Ferienhaus, Sennhütte. [point, closedway]
-tourism = chalet & name = * { name "${name} (Chalet)" } [0x2b02 resolution 24]
+tourism = chalet & name = * { name "${name}" } [0x2b02 resolution 24]
 
 # Pension, Gasthaus. [point, closedway]
-tourism = guest_house & name = * { name "${name} (Guest House)" } [0x2b02 resolution 24]
+tourism = guest_house & name = * { name "${name}" } [0x2b02 resolution 24]
 
 # Jugendherberge, Herberge, Naturfreundehaus usw. [point, closedway]
-tourism = hostel & name = * { name "${name} (Hostel)" } [0x2b02 resolution 24]
+tourism = hostel & name = * { name "${name}" } [0x2b02 resolution 24]
 
 # Hotel. [point, closedway]
 # continue: Für Hotel-Restaurants (tourism=hotel + amenity=restaurant) wird zusätzlich ein Restaurant-POI angelegt.
 # Das Restaurant enthält dann auch den Namenszusatz (Hotel) (Beispiel: 3* Gasthof Stern (Hotel)).
-tourism = hotel & name = * { set name = "${stars}* ${name} (Hotel)" | "${name} (Hotel)" } [0x2b01 resolution 24 continue with_actions]
+tourism = hotel & name = * { set name = "${name}" } [0x2b01 resolution 24 continue with_actions]
 
 # Touristeninformation. [point, closedway]
 #tourism = information [0x661a resolution 24]
@@ -464,25 +464,25 @@ tourism = information & information = map  [0x661a resolution 24]
 # A lean-to is a building located in the mountains or into the wild intended to provide shelter against rain.
 tourism = lean_to & name = * & ele = * {name "${name} (${ele})"} [0x4807 resolution 23]
 tourism = lean_to & name = *           {name "${name}"}          [0x4807 resolution 23]
-tourism = lean_to & ele = *            {name "Lean-to (${ele})"} [0x4807 resolution 23]
-tourism = lean_to                      {name "Lean-to"}          [0x4807 resolution 23]
+#tourism = lean_to & ele = *            {name "Lean-to (${ele})"} [0x4807 resolution 23]
+tourism = lean_to                      {name "小屋"}          [0x4807 resolution 23]
 # Lean-to (Schutzhütte, Berghütte), new Tagging version [point, closedway
 amenity = shelter & shelter_type = lean_to & name = * & ele = * {name "${name} (${ele})"} [0x4807 resolution 23]
 amenity = shelter & shelter_type = lean_to & name = *           {name "${name}"}          [0x4807 resolution 23]
-amenity = shelter & shelter_type = lean_to & ele = *            {name "Lean-to (${ele})"} [0x4807 resolution 23]
-amenity = shelter & shelter_type = lean_to                      {name "Lean-to"}          [0x4807 resolution 23]
+#amenity = shelter & shelter_type = lean_to & ele = *            {name "Lean-to (${ele})"} [0x4807 resolution 23]
+amenity = shelter & shelter_type = lean_to                      {name "小屋"}          [0x4807 resolution 23]
 
 # Motel. [point, closedway]
-tourism = motel & name = * { name "${stars}* ${name} (Motel)" | "${name} (Motel)" } [0x2b01 resolution 24]
+tourism = motel & name = * { name "${name}" } [0x2b01 resolution 24]
 
 # Museum.
-tourism = museum & name = * {name "${name} (Museum)"} [0x2c02 resolution 24]
+tourism = museum & name = * {name "${name}"} [0x2c02 resolution 24]
 
 # Rastplatz (Picknick). [point, closedway]
-tourism = picnic_site {name "${name} (Picnic Place)" | "Picnic Place"} [0x4a00 resolution 24]
+tourism = picnic_site {name "${name}" | "野餐區"} [0x4a00 resolution 24]
 
 # Freizeitpark, Themenpark. [point, closedway]
-tourism = theme_park & name = * {name "${name} (Amusement/Theme Park)"} [0x2C01 resolution 24]
+tourism = theme_park & name = * {name "${name}"} [0x2C01 resolution 24]
 
 # Aussichtspunkt. [point]
 tourism = viewpoint [0x5200 resolution 24]
@@ -492,11 +492,11 @@ tourism = viewpoint [0x5200 resolution 24]
 # to provide shelter, heating to hikers and climbers.
 tourism = wilderness_hut & name = * & ele = * {name "${name} (${ele})"}        [0x4806 resolution 23]
 tourism = wilderness_hut & name = *           {name "${name}"}                 [0x4806 resolution 23]
-tourism = wilderness_hut & ele = *            {name "Wilderness Hut (${ele})"} [0x4806 resolution 23]
-tourism = wilderness_hut                      {name "Wilderness Hut"}          [0x4806 resolution 23]
+#tourism = wilderness_hut & ele = *            {name "Wilderness Hut (${ele})"} [0x4806 resolution 23]
+#tourism = wilderness_hut                      {name "Wilderness Hut"}          [0x4806 resolution 23]
 
 # Zoologischer Garten (Zoo), Tierpark. [point, closedway]
-tourism = zoo & name = * {name "${name} (Zoo)"} [0x2C07 resolution 24]
+tourism = zoo & name = * {name "${name}"} [0x2C07 resolution 24]
 
 
 # ------------------------------------------------------------
@@ -505,22 +505,22 @@ tourism = zoo & name = * {name "${name} (Zoo)"} [0x2C07 resolution 24]
 # ------------------------------------------------------------
 
 # Meeresbucht. [point, closedway]
-natural = bay & name = * {name "${name} (Bay)"} [0x6503 resolution 24]
+natural = bay & name = * {name "${name}"} [0x6503 resolution 24]
 
 # Strand. [point, closedway]
-natural = beach & name = * {name "${name} (Beach)"} [0x6604 resolution 24]
+natural = beach & name = * {name "${name}"} [0x6604 resolution 24]
 
 # Eingang zu einer Höhle. [point, closedway]
-natural = cave_entrance {name "${name} (Cave)"} [0x6601 resolution 24]
+natural = cave_entrance {name "${name}"} [0x6601 resolution 24]
 
 # Klippe. [point, way, closedway]
-natural = cliff & name = * {name "${name} (Cliff)"} [0x6607 resolution 23]
+natural = cliff & name = * {name "${name}"} [0x6607 resolution 23]
 
 # Pass: Markiert die hoechste Stelle eines Gebirgspasses. [point] (s.a. natural=peak, natural=col)
 (mountain_pass = yes) & name = * & ele = * {name "${name} (${ele})"} [0x6617 resolution 23]
 (mountain_pass = yes) & name = *           {name "${name}"}          [0x6617 resolution 23]
-(mountain_pass = yes) & ele = *            {name "N.N. (${ele})"}    [0x6617 resolution 23]
-(mountain_pass = yes)                      {name "N.N."}             [0x6617 resolution 23]
+#(mountain_pass = yes) & ele = *            {name "N.N. (${ele})"}    [0x6617 resolution 23]
+#(mountain_pass = yes)                      {name "N.N."}             [0x6617 resolution 23]
 
 # Joch, Sattel. [point] (s.a. natural = peak)
 # col -    A high, narrow, sharp-edged pass or saddle through a divide or between two adjacent peaks in a mountain
@@ -529,68 +529,68 @@ natural = cliff & name = * {name "${name} (Cliff)"} [0x6607 resolution 23]
 #          flowing in opposite directions.
 (natural = col | natural = saddle) & name = * & ele = * {name "${name} (${ele})"} [0x661b resolution 23]
 (natural = col | natural = saddle) & name = *           {name "${name}"}          [0x661b resolution 23]
-(natural = col | natural = saddle) & ele = *            {name "N.N. (${ele})"}    [0x661b resolution 23]
-(natural = col | natural = saddle)                      {name "N.N."}             [0x661b resolution 23]
+#(natural = col | natural = saddle) & ele = *            {name "N.N. (${ele})"}    [0x661b resolution 23]
+#(natural = col | natural = saddle)                      {name "N.N."}             [0x661b resolution 23]
 
 # Alm, Matten: Bereich oberhalb der Baumgrenze. [point, closedway]
-natural = fell & name = * {name "${name} (Open Fell)"} [0x6600 resolution 24]
+natural = fell & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Gebiet (auch Bergspitze), das ganzjährig mit Eis bedeckt ist. [point, closedway]
-natural = glacier & name = * {name "${name} (Glacier)"} [0x650a resolution 24]
+natural = glacier & name = * {name "${name}"} [0x650a resolution 24]
 
 # Heide. [point, closedway]
-natural = heath & name = * {name "${name} (Heath or Heathland)"} [0x6600 resolution 24]
+natural = heath & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Marsch (Feuchtgebiet, Sumpf, Moor, etc.) veraltet, siehe natural=wetland). [point, closedway]
-natural = marsh & name = * {name "${name} (Marsh)"} [0x6513 resolution 24]
+natural = marsh & name = * {name "${name}"} [0x6513 resolution 24]
 
 # Schlick / Moor. [point, closedway]
-natural = mud & name = * {name "${name} (Bog)"} [0x6500 resolution 24]
+natural = mud & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Bergspitze. [point]
-natural = peak & ref ~ '^百岳.*' {name "${name|def:}"} [0x6616 resolution 17-18 continue]
-natural = peak & ref ~ '.*百岳.*' {name "${name|def:} (${ref|part:;:1})"} [0x6616 resolution 19-20 continue]
+natural = peak & ref ~ '^百岳.*' {name "${name|def:}"} [0x6616 resolution 18-19 continue]
+natural = peak & ref ~ '.*百岳.*' {name "${name|def:} (${ref|part:;:1})"} [0x6616 resolution 20-20 continue]
 natural = peak & name = * & ele = * {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 21]
 natural = peak & name = *           {name "${name}"}                              [0x6616 resolution 21]
-natural = peak & ele = *            {name "${ele|height:m=>ft|def:}"}             [0x6616 resolution 21]
-natural = peak                      {name "Peak"}                                 [0x6616 resolution 21]
+#natural = peak & ele = *            {name "${ele|height:m=>ft|def:}"}             [0x6616 resolution 22]
+#natural = peak                      {name "Peak"}                                 [0x6616 resolution 22]
 
 # natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 20-24]
 
 # Boden mit Sand bedeckt, kein oder nur spärlicher Bewuchs. [point, closedway]
-natural = sand & name = * {name "${name} (Sand)"} [0x6600 resolution 24]
+natural = sand & name = * {name "${name}"} [0x6600 resolution 24]
 
 # (Loses) Geröll. [point, closedway]
-natural = scree & name = * {name "${name} (Scree)"} [0x6600 resolution 24]
+natural = scree & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Unkultiviertes Land: Unterholz / Busch. [point, closedway]
-natural = scrub & name = * {name "${name} (Scrubland)"} [0x6600 resolution 24]
+natural = scrub & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Quelle. [point]
-natural = spring {name "${name} (Spring)" | "Spring"} [0x6511 resolution 24]
+natural = spring {name "${name}" | "泉水"} [0x6511 resolution 24]
 
 # Großer Stein, Findling. [point]
-natural = stone {name "${name} (Boulder)" | "Boulder"} [0x6614 resolution 24]
+natural = stone & name = * {name "${name}"} [0x6614 resolution 24]
 
 # Einzelner oder signifikanter Baum. [point]
 # Der Baum muss als Landmarke ausgewiesen sein.
-natural = tree & denotation = landmark {name "${name} (Tree)" | "Tree"} [0x6619 resolution 24]
+natural = tree & denotation = landmark {name "${name}" | "巨木"} [0x6619 resolution 24]
 
 # Vulkan, entweder ruhend, erloschen oder aktiv. [point]
-natural = volcano {name "${name} (Volcano)" | "Volcano"} [0x2c0c resolution 24]
+natural = volcano & name = * {name "${name}"} [0x2c0c resolution 24]
 
 # Wasser, Seen, Teiche usw. [point, closedway]
-natural = water & name = * {name "${name} (Lake/Pond)"} [0x650D resolution 24]
+natural = water & name = * {name "${name}"} [0x650D resolution 24]
 
 # Wasserfall. [point]
-natural = waterfall {name "${name} (Waterfall)" | "Waterfall"} [0x6508 resolution 24]
+natural = waterfall {name "${name}" | "瀑布"} [0x6508 resolution 24]
 
 # Feuchtgebiet wie Sumpf, Moor, Ried, Marsch, Aue, Röhricht, Watt, Salzwiese oder Mangrove.
 # Naturbelassene Flächen, die Überflutungen ausgesetzt sind oder staunasse Böden aufweisen. [point, closedway]
-natural = wetland & name = * {name "${name} (Wetland (Marsh, reeds or saltings))"} [0x6513 resolution 24]
+natural = wetland & name = * {name "${name}"} [0x6513 resolution 24]
 
 # Naturwald oder vollkommen unbewirtschaftete Wälder. [point, closedway]
-natural = wood & name = * {name "${name} (Wood/Forest)"} [0x660A resolution 24]
+natural = wood & name = * {name "${name}"} [0x660A resolution 24]
 
 
 # ------------------------------------------------------------
@@ -652,17 +652,17 @@ place = island & name = * [0x0d00 resolution 23]
 
 # An islet is any small, possibly hamlet sized piece of land that is completely surrounded by water
 # and isolated from other significant landmasses. [point, closedway]
-place = islet & name = * {name "${name} (Island/Islet)"} [0x6600 resolution 24]
+place = islet & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Isolated_dwelling: Smallest rural settlement, smaller than a hamlet, usually just one house. [point, closedway]
-place = isolated_dwelling & name = * {name "${name} (Isolated Dwelling)"} [0x6600 resolution 24]
+place = isolated_dwelling & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Ortsbezeichnung ohne Bezug auf Bevölkerung (z.B. "Wiesengrund", "Deutsches Eck"). [point, closedway]
 #-# place = locality & name = * {name "${name} (Ortsbezeichnung)"} [0x6600 resolution 24]
-place = locality & name = * & ele = * {name "${name} (${ele}) (Locality)"} [0x6600 resolution 23]
-place = locality & name = *           {name "${name} (Locality)"}          [0x6600 resolution 23]
-place = locality & ele = *            {name "N.N. (${ele}) (Locality)"}    [0x6600 resolution 23]
-place = locality                      {name "N.N. (Locality)"}             [0x6600 resolution 23]
+place = locality & name = * & ele = * {name "${name} (${ele})"} [0x6600 resolution 23]
+place = locality & name = *           {name "${name}"}          [0x6600 resolution 23]
+#place = locality & ele = *            {name "N.N. (${ele}) (Locality)"}    [0x6600 resolution 23]
+#place = locality                      {name "N.N. (Locality)"}             [0x6600 resolution 23]
 
 # Stadtteil, Stadtviertel. [point, closedway]
 place = suburb [0x0b00 resolution 21]
@@ -680,15 +680,15 @@ place = village [0x0c00 resolution 21]
 # ------------------------------------------
 
 # Strommast: Mast für Hochspannungsüberlandleitungen. [point]
-power = tower {name "${name} (Pylon)" | "Pylon"} [0x6417 resolution 24]
+power = tower [0x6417 resolution 24]
 
 # Strommast für Nieder- und Mittelspannungsleitungen, oft aus Holz oder Beton. [point]
 # power = pole (wird derzeit nicht unterstützt)
 
 # Umspannwerk: bezeichnet eine Umspannanlage, die ein Höchst- oder Hochspannungs- mit einem weiteren
 # Hochspannungs- oder einem Mittelspannungsnetz verbindet. [point, closedway]
-power = station & name = * {name "${name} (Power Station)"} [0x6600 resolution 24]
-power = plant & name = * {name "${name} (Power Station)"} [0x6600 resolution 24]
+power = station & name = * {name "${name}"} [0x6600 resolution 24]
+power = plant & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Umspannstation, kleiner als station, verbindet ein Mittel- mit einem Niederspannungsnetz,
 # z.B. Mini-Umspannwerk, Trafohäuschen oder großer Trafokasten. [point, closedway]
@@ -696,11 +696,11 @@ power = plant & name = * {name "${name} (Power Station)"} [0x6600 resolution 24]
 #power = sub_station & name = * {name "${name} ($__POWERSUBSTATION__)"} [0x6600 resolution 24]
 
 # Windenergieanlage. [point, closedway]
-power = generator & power_source = wind {name "${name} (Wind Turbine)" | "Wind Turbine"} [0x6419 resolution 24]
-power = generator & generator:source = wind {name "${name} (Wind Turbine)" | "Wind Turbine"} [0x6419 resolution 24]
+power = generator & power_source = wind {name "${name}" | "風力發電機"} [0x6419 resolution 24]
+power = generator & generator:source = wind {name "${name}" | "風力發電機"} [0x6419 resolution 24]
 
 # Kraftwerk: dient der Erzeugung von Strom oder Wärme. [point, closedway]
-power = generator & name = * {name "${name} (Power Plant)"} [0x6600 resolution 24]
+power = generator & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Kabelverteilerschrank: in diesen Schränken werden die 400V-Stromkreise zu den Hausanschlüssen,
 # Anschluss- und Übergabepunkten der regionalen Energieversorger verzweigt. Weitere Einsatzgebiete
@@ -714,16 +714,16 @@ power = generator & name = * {name "${name} (Power Plant)"} [0x6600 resolution 2
 # ------------------------------------------------------------
 
 # Flughafen. [point, closedway]
-aeroway = aerodrome | aeroway = airport {name "${name} (Airport)" | "Airport"} [0x5905 resolution 24]
+aeroway = aerodrome | aeroway = airport & name = * {name "${name}"} [0x5905 resolution 24]
 
 # Hubschrauberlandeplatz. [point, closedway]
-aeroway = helipad {name "${name} (Helipad)" | "Helipad"} [0x5904 resolution 24]
+aeroway = helipad {name "${name}" | "停機坪"} [0x5904 resolution 24]
 
 # Gate: Dient der Markierung der einzelnen Gates auf einem Vorfeld. [point]
 # aeroway = gate (wird derzeit nicht unterstützt)
 
 # Flughafengebäude. [point, closedway]
-aeroway = terminal & name = * {name "${name} (Airport Building/Terminal)"} [0x6600 resolution 24]
+aeroway = terminal & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Windsock: Standort eines Windsacks. [point]
 # aeroway = windsock (wird derzeit nicht unterstützt)
@@ -737,98 +737,97 @@ aeroway = terminal & name = * {name "${name} (Airport Building/Terminal)"} [0x66
 # --------------------------------
 
 # Bar, Nachtlokal. Es werden hauptsächlich alkoholische Getränke serviert. [point, closedway]
-amenity = bar & name = * {name "${name} (Bar)"}  [0x2d02 resolution 24]
+amenity = bar & name = * {name "${name}"}  [0x2d02 resolution 24]
 
 # Biergarten. [point, closedway]
-amenity = biergarten & name = * {name "${name} (Beer Garden)"} [0x2d02 resolution 24]
+amenity = biergarten & name = * {name "${name}"} [0x2d02 resolution 24]
 
 # Café, Bistro. [point, closedway]
-amenity = cafe & name = * {name "${name} (Cafe)"} [0x2a0e resolution 24]
+amenity = cafe & name = * {name "${name}"} [0x2a0e resolution 24]
 
 # Schnell-Restaurant, Imbiss. Die Art kann mit cuisine=* angegeben werden, als Wert z.B. =burger
 # für ein Burgerrestaurant oder =kebab für einen Dönerimbiss. [point, closedway]
-amenity = fast_food & cuisine = grill & name = * {name "${name} (${cuisine}, Fast-Food Restaurant/Takeaway)"} [0x2a03 resolution 24]
-amenity = fast_food & cuisine = pizza & name = * {name "${name} (${cuisine}, Fast-Food Restaurant/Takeaway)"} [0x2a0a resolution 24]
-amenity = fast_food & cuisine = *     & name = * {name "${name} (${cuisine}, Fast-Food Restaurant/Takeaway)"} [0x2a07 resolution 24]
-amenity = fast_food                   & name = * {name "${name} (Fast-Food Restaurant/Takeaway)"}             [0x2a07 resolution 24]
+amenity = fast_food & cuisine = grill & name = * {name "${name}"} [0x2a03 resolution 24]
+amenity = fast_food & cuisine = pizza & name = * {name "${name}"} [0x2a0a resolution 24]
+amenity = fast_food & cuisine = *     & name = * {name "${name}"} [0x2a07 resolution 24]
+amenity = fast_food                   & name = * {name "${name}"}             [0x2a07 resolution 24]
 
 # Eiscafé, Eisdiele. [point, closedway]
-amenity = ice_cream & name = * {name "${name} (Ice Cream Parlour)"} [0x2a0e resolution 24]
+amenity = ice_cream & name = * {name "${name}"} [0x2a0e resolution 24]
 
 # Kneipe. [point, closedway]
-amenity = pub & name = * {name "${name} (Pub)"}  [0x2d02 resolution 24]
+amenity = pub & name = * {name "${name}"}  [0x2d02 resolution 24]
 
 # Restaurant (ohne Fast-Food). Die Art der Küche kann mit "cuisine=*" angegeben werden,
 # als Wert z.B. "italian" für italienische oder "greek" für griechische Küche. [point, closedway]
 
 # Amerikanisch.
-amenity = restaurant & cuisine = american & name = * {set name = "${name} (American)"} [0x2a01 resolution 24]
-amenity = restaurant & cuisine = burger   & name = * {set name = "${name} (American)"} [0x2a01 resolution 24]
+amenity = restaurant & cuisine = american & name = * {set name = "${name} (美式)"} [0x2a01 resolution 24]
+amenity = restaurant & cuisine = burger   & name = * {set name = "${name} (漢堡)"} [0x2a01 resolution 24]
 
 # Asiatisch.
-amenity = restaurant & cuisine = thai       & name = * {set name = "${name} (Thai)"} [0x2a02 resolution 24]
-amenity = restaurant & cuisine = asian      & name = * {set name = "${name} (Asian)"} [0x2a02 resolution 24]
-amenity = restaurant & cuisine = japanese   & name = * {set name = "${name} (Japanese)"} [0x2a02 resolution 24]
-amenity = restaurant & cuisine = korean     & name = * {set name = "${name} (Korean)"} [0x2a02 resolution 24]
-amenity = restaurant & cuisine = vietnamese & name = * {set name = "${name} (Vietnamese)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = thai       & name = * {set name = "${name} (泰式)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = asian      & name = * {set name = "${name} (亞洲菜)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = japanese   & name = * {set name = "${name} (日式)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = korean     & name = * {set name = "${name} (韓式)"} [0x2a02 resolution 24]
+amenity = restaurant & cuisine = vietnamese & name = * {set name = "${name} (越南菜)"} [0x2a02 resolution 24]
 
 # Grillen.
-amenity = restaurant & cuisine = grill    & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a03 resolution 24]
-amenity = restaurant & cuisine = barbecue & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a03 resolution 24]
+amenity = restaurant & cuisine = grill    & name = * {set name = "${name} (燒烤)"} [0x2a03 resolution 24]
+amenity = restaurant & cuisine = barbecue & name = * {set name = "${name} (BBQ)"} [0x2a03 resolution 24]
 
 # Chinesisch.
-amenity = restaurant & cuisine = chinese & name = * {set name = "${name} (Chinese)"} [0x2a04 resolution 24]
+amenity = restaurant & cuisine = chinese & name = * {set name = "${name} (中國菜)"} [0x2a04 resolution 24]
 
 # International.
-amenity = restaurant & cuisine = international & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a06 resolution 24]
+amenity = restaurant & cuisine = international & name = * {set name = "${name}"} [0x2a06 resolution 24]
 
 # Fastfood.
-amenity = restaurant & cuisine = sandwich       & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = kebab          & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = 'kebab;pizza'  & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = chicken        & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = kebab          & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = fish_and_chips & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = friture        & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
-amenity = restaurant & cuisine = sausage        & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = sandwich       & name = * {set name = "${name} (三明治)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = kebab          & name = * {set name = "${name} (烤肉)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = 'kebab;pizza'  & name = * {set name = "${name} (烤肉)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = chicken        & name = * {set name = "${name} (炸雞)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = fish_and_chips & name = * {set name = "${name} (海鮮)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = friture        & name = * {set name = "${name} (海鮮)"} [0x2a07 resolution 24]
+amenity = restaurant & cuisine = sausage        & name = * {set name = "${name} (香腸)"} [0x2a07 resolution 24]
 
 # Italienisch.
-amenity = restaurant & cuisine = italian       & name = * {set name = "${name} (Italian)"} [0x2a08 resolution 24]
-amenity = restaurant & cuisine = mediterranean & name = * {set name = "${name} (Mediterranean)"} [0x2a08 resolution 24]
+amenity = restaurant & cuisine = italian       & name = * {set name = "${name} (義大利菜)"} [0x2a08 resolution 24]
+amenity = restaurant & cuisine = mediterranean & name = * {set name = "${name} (地中海)"} [0x2a08 resolution 24]
 
 # Mexikanisch.
-amenity = restaurant & cuisine = mexican & name = * {set name = "${name} (Mexican)"} [0x2a09 resolution 24]
+amenity = restaurant & cuisine = mexican & name = * {set name = "${name} (墨西哥菜)"} [0x2a09 resolution 24]
 
 # Spanisch.
-amenity = restaurant & cuisine = spanish & name = * {set name = "${name} (Spanish)"} [0x2a09 resolution 24]
+amenity = restaurant & cuisine = spanish & name = * {set name = "${name} (西班牙菜)"} [0x2a09 resolution 24]
 
 # Pizzeria.
-amenity = restaurant & cuisine = pizza & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a0a resolution 24]
+amenity = restaurant & cuisine = pizza & name = * {set name = "${name} (比薩)"} [0x2a0a resolution 24]
 
 # Meeresfrüchte.
-amenity = restaurant & cuisine = seafood & name = * {set name = "${name} (Seafood)"} [0x2a0b resolution 24]
-amenity = restaurant & cuisine = fish    & name = * {set name = "${name} (Fish/Fish & Chips Restaurant)"} [0x2a0b resolution 24]
-amenity = restaurant & cuisine = sushi   & name = * {set name = "${name} (Sushi)"} [0x2a0b resolution 24]
+amenity = restaurant & cuisine = seafood & name = * {set name = "${name} (海鮮)"} [0x2a0b resolution 24]
+amenity = restaurant & cuisine = fish    & name = * {set name = "${name} (海鮮)"} [0x2a0b resolution 24]
+amenity = restaurant & cuisine = sushi   & name = * {set name = "${name} (壽司)"} [0x2a0b resolution 24]
 
 # Steak / Grill.
-amenity = restaurant & cuisine = steak_house & name = * {set name = "${name} (Steak House)"} [0x2a0c resolution 24]
+amenity = restaurant & cuisine = steak_house & name = * {set name = "${name} (牛排)"} [0x2a0c resolution 24]
 
 # Bagel / Donut.
-amenity = restaurant & cuisine = bagel & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a0d resolution 24]
-amenity = restaurant & cuisine = cake  & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a0d resolution 24]
+amenity = restaurant & cuisine = bagel & name = * {set name = "${name} (貝果)"} [0x2a0d resolution 24]
+amenity = restaurant & cuisine = cake  & name = * {set name = "${name} (蛋糕)"} [0x2a0d resolution 24]
 
 # Cafe / Bar.
-amenity = restaurant & cuisine = coffee_shop & name = * {set name = "${name} (Coffee shop)"} [0x2a0e resolution 24]
+amenity = restaurant & cuisine = coffee_shop & name = * {set name = "${name} (咖啡)"} [0x2a0e resolution 24]
 
 # Französisch.
-amenity = restaurant & cuisine = french & name = * {set name = "${name} (French)"} [0x2a0f resolution 24]
+amenity = restaurant & cuisine = french & name = * {set name = "${name} (法式)"} [0x2a0f resolution 24]
 
 # Deutsch.
-amenity = restaurant & cuisine = german            & name = * {set name = "${name} (German)"} [0x2a10 resolution 24]
-amenity = restaurant & cuisine = bavarian          & name = * {set name = "${name} (Bavarian)"} [0x2a10 resolution 24]
-amenity = restaurant & cuisine = swabian           & name = * {set name = "${name} (Swabian)"} [0x2a10 resolution 24]
-amenity = restaurant & cuisine = regional          & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a10 resolution 24]
-amenity = restaurant & cuisine = 'german;regional' & name = * {set name = "${name} (German)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = german            & name = * {set name = "${name} (德式)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = bavarian          & name = * {set name = "${name} (德式)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = swabian           & name = * {set name = "${name} (德式)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = regional          & name = * {set name = "${name} (德式)"} [0x2a10 resolution 24]
+amenity = restaurant & cuisine = 'german;regional' & name = * {set name = "${name} (德式)"} [0x2a10 resolution 24]
 
 # Britisch.
 # Gibt es in Deutschland nicht (Stand 10/2011).
@@ -836,178 +835,178 @@ amenity = restaurant & cuisine = british & name = * {set name = "${name} (Britis
 
 # Spezialitäten.
 amenity = restaurant & cuisine = speciality  & name = * {set name = "${name} (Speciality)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = greek       & name = * {set name = "${name} (Greek)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = turkish     & name = * {set name = "${name} (Turkish)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = indian      & name = * {set name = "${name} (Indian)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = arab        & name = * {set name = "${name} (Arabic)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = portuguese  & name = * {set name = "${name} (Portugese)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = vegetarian  & name = * {set name = "${name} (Vegetarian)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = austrian    & name = * {set name = "${name} (Austrian)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = balkan      & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = persian     & name = * {set name = "${name} (Persian)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = lebanese    & name = * {set name = "${name} (Lebanese)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = african     & name = * {set name = "${name} (African)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = russian     & name = * {set name = "${name} (Russian)"} [0x2a12 resolution 24]
-amenity = restaurant & cuisine = yugoslavian & name = * {set name = "${name} (Yugoslavian)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = greek       & name = * {set name = "${name} (希臘菜)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = turkish     & name = * {set name = "${name} (土耳其)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = indian      & name = * {set name = "${name} (印度菜)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = arab        & name = * {set name = "${name} (阿拉伯)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = portuguese  & name = * {set name = "${name} (葡萄牙)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = vegetarian  & name = * {set name = "${name} (素菜)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = austrian    & name = * {set name = "${name} (澳洲)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = balkan      & name = * {set name = "${name} (巴爾幹)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = persian     & name = * {set name = "${name} (波斯菜)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = lebanese    & name = * {set name = "${name} (黎巴嫩)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = african     & name = * {set name = "${name} (非州菜)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = russian     & name = * {set name = "${name} (蘇俄)"} [0x2a12 resolution 24]
+amenity = restaurant & cuisine = yugoslavian & name = * {set name = "${name} (南斯拉夫)"} [0x2a12 resolution 24]
 
 # Eiscafé, Eisdiele.
-amenity = restaurant & cuisine = ice_cream & name = * {set name = "${name} (Ice Cream Parlour)"} [0x2a0e resolution 24]
+amenity = restaurant & cuisine = ice_cream & name = * {set name = "${name} (冰淇淋)"} [0x2a0e resolution 24]
 
 # Alle verbleibenden Restaurants mit bekannter Küche.
-amenity = restaurant & cuisine = * & name = * {set name = "${name} (${cuisine}, Restaurant)"} [0x2a13 resolution 24]
+amenity = restaurant & cuisine = * & name = * {set name = "${name} (${cuisine})"} [0x2a13 resolution 24]
 
 # Alle verbleidenden Restaurants.
-amenity = restaurant & name = * {set name = "${name} (Restaurant)"} [0x2a00 resolution 24]
+amenity = restaurant & name = * {set name = "${name}"} [0x2a00 resolution 24]
 
 # Kategorie "Bildung"
 # -------------------
 
 # Kindergarten. [point, closedway]
-amenity = kindergarten & name = * {name "${name} (Kindergarten)"} [0x2c05 resolution 24]
+amenity = kindergarten & name = * {name "${name}"} [0x2c05 resolution 24]
 
 # Schule. [point, closedway]
-amenity = school & name = * {name "${name} (School)"} [0x2c05 resolution 24]
+amenity = school & name = * {name "${name}"} [0x2c05 resolution 24]
 
 # Hochschule. [point, closedway]
-amenity = college & name = * {name "${name} College)"} [0x2c05 resolution 24]
+amenity = college & name = * {name "${name}"} [0x2c05 resolution 24]
 
 # Bibliothek, Bücherei. [point, closedway]
-amenity = library & name = * {name "${name} (Library)"} [0x2c03 resolution 24]
+amenity = library & name = * {name "${name}"} [0x2c03 resolution 24]
 
 # Universität (Campus oder Gebäude). [point, closedway]
-amenity = university & name = * {name "${name} (University)"} [0x2c05 resolution 24]
+amenity = university & name = * {name "${name}"} [0x2c05 resolution 24]
 
 # Kategorie "Transport, Verkehr"
 # ------------------------------
 
 # Fahrradverleih. [point, closedway] (s.a. shop)
-amenity = bicycle_rental {name "${name} (Bicycle Hire/Rental)" | "Bicycle Hire/Rental"} [0x2f13 resolution 24]
+amenity = bicycle_rental {name "${name}" | "單車租借站"} [0x2f13 resolution 24]
 
 # Busbahnhof (große Haltestelle). [point, closedway] (s.a. highway = bus_stop)
-amenity = bus_station                         {name "${name} (Bus Station)" | "Bus Station"} [0x2f08 resolution 24]
-public_transport = stop_position & bus = yes  {name "${name} (Bus Stop)" | "Bus Stop"} [0x2f08 resolution 24]
+amenity = bus_station                         {name "${name}"} [0x2f08 resolution 24]
+public_transport = stop_position & bus = yes  {name "${name}"} [0x2f08 resolution 24]
 
 # Automobil-Club. [point, closedway]
-amenity = car_club & name = * {name "${name} (Car Club)"} [0x2f0d resolution 24]
+amenity = car_club & name = * {name "${name}"} [0x2f0d resolution 24]
 
 # Autoverleih. [point, closedway]
-amenity = car_rental & name = * {name "${name} (Car Hire/Rental)"} [0x2f02 resolution 24]
+amenity = car_rental & name = * {name "${name}"} [0x2f02 resolution 24]
 
 # Carsharing-Station. [point, closedway]
-amenity = car_sharing & name = * {name "${name} (Car Sharing Point)"} [0x2f02 resolution 24]
+amenity = car_sharing & name = * {name "${name}"} [0x2f02 resolution 24]
 
 # Autowaschanlage. [point, closedway]
-amenity = car_wash & name = * {name "${name} (Car Wash)"} [0x2f0e resolution 24]
+amenity = car_wash & name = * {name "${name}"} [0x2f0e resolution 24]
 
 # Fährterminal. [point, closedway]
-amenity = ferry_terminal {name "${name} (Ferry Terminal)" | "Ferry Terminal"} [0x6500 resolution 24]
+amenity = ferry_terminal & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Tankstelle. [point, closedway]
-amenity = fuel { name "${brand}" | "${operator}" | "${name}" | "Petrol Station" } [0x2f01 resolution 24]
+amenity = fuel { name "${name}" | "${brand}" | "${operator}" | "加油站" } [0x2f01 resolution 24]
 
 # Parkplatz. [point, closedway]
-# amenity = parking & access = * {name "${name} (Parken eingeschränkt)" | "Parken (eingeschränkt)"} [0x2F0B resolution 24]
+# amenity = parking & access = * {name "${name} (Parken eingeschrnkt)" | "Parken (eingeschrnkt)"} [0x2F0B resolution 24]
 # amenity = parking              {name "${name} (Parken)" | "Parken"}                               [0x4D00 resolution 24]
 #amenity = parking & access = *                                    & (capacity != * | capacity >= 10) {name "${name} ($__PARKING__ $__RESTRICTED__)" | "$__PARKING__ ($__RESTRICTED__)"} [0x2F0B resolution 24]
-amenity = parking &  access = * & access != public & access != yes & (capacity != * | capacity >= 10) {name "${name} (Parking Restricted)" | "Parking (Restricted)"} [0x2F0B resolution 24]
-amenity = parking & (capacity != * | capacity >= 10)              {name "${name} (Parking)" | "Parking"}                               [0x4D00 resolution 24]
+amenity = parking &  access = * & access != public & access != yes & (capacity != * | capacity >= 10) & name = * {name "${name}"} [0x2F0B resolution 24]
+amenity = parking             {name "${name}" | "停車場"}                               [0x4D00 resolution 24]
 
 # Kategorie "Finanzen"
 # --------------------
 
 # Geldautomat. [point]
-amenity = atm {name "${name} (ATM)" | "${operator} (ATM)" | "ATM"} [0x2f06 resolution 24]
+amenity = atm {name "${name}" | "${operator} ATM" | "ATM"} [0x2f06 resolution 24]
 
 # Bank mit Geldautomat. [point, closedway]
-amenity = bank & atm = yes {name "${name} (ATM)" | "${operator} (ATM)" | "ATM"} [0x2f06 resolution 24]
+amenity = bank & atm = yes {name "${name}" | "${operator} 銀行" | "銀行"} [0x2f06 resolution 24]
 
 # Bank. [point, closedway]
-amenity = bank {name "${name} (Bank)" | "Bank"} [0x2f06 resolution 24]
+amenity = bank {name "${name} (Bank)" | "${operator} 銀行" | "銀行"} [0x2f06 resolution 24]
 
 # Kategorie "Gesundheitswesen"
 # ----------------------------
 
 # Apotheke. [point, closedway]
-amenity = pharmacy & name = * {name "${name} (Pharmacy)"} [0x2e05 resolution 24]
+amenity = pharmacy & name = * {name "${name}"} [0x2e05 resolution 24]
 
 # Krankenhaus. [point, closedway]
-amenity = hospital & name = * {name "${name} (Hospital)"} [0x3002 resolution 24]
+amenity = hospital & name = * {name "${name}"} [0x3002 resolution 24]
 
 # Kategorie "Unterhaltung, Kunst, Kultur"
 # ---------------------------------------
 
 # Kunstzentrum. [point, closedway]
-amenity = arts_centre & name = * {name "${name} (Art Gallery)"} [0x2c04 resolution 24]
+amenity = arts_centre & name = * {name "${name}"} [0x2c04 resolution 24]
 
 # Casino. [point, closedway]
-amenity = casino & name = * {name "${name} (Casino)"} [0x2d04 resolution 24]
+amenity = casino & name = * {name "${name}"} [0x2d04 resolution 24]
 
 # Kino. [point, closedway]
-amenity = cinema & name = * {name "${name} (Cinema)"} [0x2d03 resolution 24]
+amenity = cinema & name = * {name "${name}"} [0x2d03 resolution 24]
 
 # Lokale Veranstaltungshalle. [point, closedway]
-amenity = community_centre & name = * {name "${name} (Community/Village Hall)"} [0x3005 resolution 24]
-amenity = community_hall   & name = * {name "${name} (Community/Village Hall)"} [0x3005 resolution 24]
+amenity = community_centre & name = * {name "${name}"} [0x3005 resolution 24]
+amenity = community_hall   & name = * {name "${name}"} [0x3005 resolution 24]
 
 # Konzerthalle. [point, closedway]
-amenity = concert_hall & name = * {name "${name} (Concert Hall)"} [0x2c09 resolution 24]
+amenity = concert_hall & name = * {name "${name}"} [0x2c09 resolution 24]
 
 # Messe, Konferenzcenter. [point, closedway]
-amenity = conference_centre & name = * {name "${name} (Conference Center)"} [0x2c09 resolution 24]
+amenity = conference_centre & name = * {name "${name}"} [0x2c09 resolution 24]
 
 # Nachtclub, Disco. [point, closedway]
-amenity = nightclub & name = * {name "${name} (Nightclub/Discoteque)"} [0x2d02 resolution 24]
+amenity = nightclub & name = * {name "${name}"} [0x2d02 resolution 24]
 
 # A place for free and not-for-profit activities.
-amenity = social_centre   & name = * {name "${name} (Social Center)"} [0x2f14 resolution 24]
-amenity = social_facility & name = * {name "${name} (Social Facility)"} [0x2f14 resolution 24]
+amenity = social_centre   & name = * {name "${name}"} [0x2f14 resolution 24]
+amenity = social_facility & name = * {name "${name}"} [0x2f14 resolution 24]
 
 # Theater, Oper, Schauspielhaus. [point, closedway]
-amenity = theatre & name = * {name "${name} (Theatre)"} [0x2d01 resolution 24]
+amenity = theatre & name = * {name "${name}"} [0x2d01 resolution 24]
 
 # Kategorie "Andere"
 # ------------------
 
 # Gericht. [point, closedway]
-amenity = courthouse & name = * {name "${name} (Courthouse)"} [0x3004 resolution 24]
+amenity = courthouse & name = * {name "${name}"} [0x3004 resolution 24]
 
 # Trinkwasserstelle: Eine öffentlich zugängliche Trinkwasserstelle.
 
 # Botschaft, Botschaftsgebäude. [point, closedway]
-amenity = embassy & name = * {name "${name} (Embassy)"} [0x3003 resolution 24]
+amenity = embassy & name = * {name "${name}"} [0x3003 resolution 24]
 
 # Feuerwache. [point, closedway]
-amenity = fire_station & name = * {name "${name} (Fire Station)"} [0x3008 resolution 24]
+amenity = fire_station & name = * {name "${name}"} [0x3008 resolution 24]
 
 # Anbetungsort (Kirche, Moschee, Synagoge). [point, closedway]
-amenity = place_of_worship & religion = christian & name = * {name "${name} (Church, Place of Worship)"} [0x2c0b resolution 24]
-amenity = place_of_worship & religion = christian            {name "Church, Place of Worship"}           [0x2c0b resolution 24]
-amenity = place_of_worship & religion = muslim    & name = * {name "${name} (Mosque, Place of Worship)"}    [0x2c0d resolution 24]
-amenity = place_of_worship & religion = muslim               {name "Mosque, Place of Worship"}              [0x2c0d resolution 24]
-amenity = place_of_worship & religion = jewish    & name = * {name "${name} (Synagogue, Place of Worship)"}    [0x2c0e resolution 24]
-amenity = place_of_worship & religion = jewish               {name "Synagogue, Place of Worship"}              [0x2c0e resolution 24]
+amenity = place_of_worship & religion = christian & name = * {name "${name}"} [0x2c0b resolution 24]
+amenity = place_of_worship & religion = christian            {name "基督堂"}           [0x2c0b resolution 24]
+amenity = place_of_worship & religion = muslim    & name = * {name "${name}"}    [0x2c0d resolution 24]
+amenity = place_of_worship & religion = muslim               {name "清真寺"}              [0x2c0d resolution 24]
+amenity = place_of_worship & religion = jewish    & name = * {name "${name}"}    [0x2c0e resolution 24]
+amenity = place_of_worship & religion = jewish               {name "猶太教會堂"}              [0x2c0e resolution 24]
 
 # Anbetungsort (allgemein). [point, closedway]
-amenity = place_of_worship & name = * {name "${name} (Place of Worship)"} [0x6405 resolution 24]
-amenity = place_of_worship            {name "Place of Worship"}           [0x6405 resolution 24]
+amenity = place_of_worship & name = * {name "${name}"} [0x6405 resolution 24]
+amenity = place_of_worship            {name "小廟"}           [0x6405 resolution 24]
 
 # Polizeistation. [point, closedway]
-amenity = police {name "${name} (Police Station)" | "Police Station"} [0x3001 resolution 24]
+amenity = police {name "${name}" | "警察局"} [0x3001 resolution 24]
 
 # Postamt. [point, closedway]
-amenity = post_office {name "${name} (Post Office)" | "Post Office"} [0x2f05 resolution 24]
+amenity = post_office {name "${name}" | "郵局"} [0x2f05 resolution 24]
 
 # Öffentliches Gebäude.
-amenity = public_building & name = * {name "${name} (Public Building)"} [0x3007 resolution 24]
+amenity = public_building & name = * {name "${name}"} [0x3007 resolution 24]
 
 # Ein Unterstand ist ein überdachter offener Platz als Schutz vor der Witterung. [point, closedway]
-amenity = shelter {name "${name} (Shelter)" | "Shelter"} [0x2b06 resolution 23]
+amenity = shelter {name "${name}" | "涼亭"} [0x2b06 resolution 23]
 
 # Öffentliche Toilette / public toilet (z.T. mit Gebühr). [point, closedway]
 amenity = toilets [0x2f0c resolution 24]
 
 # Rathaus. [point, closedway]
-amenity = townhall {name "${name} (Town Hall)" | "Town Hall"} [0x3003 resolution 24]
+amenity = townhall & name = * {name "${name}"} [0x3003 resolution 24]
 
 
 # ------------------------------------------------------------
@@ -1015,10 +1014,10 @@ amenity = townhall {name "${name} (Town Hall)" | "Town Hall"} [0x3003 resolution
 # ------------------------------------------------------------
 
 # Stollen, Zugang zu einer Mine, horizontal oder fast horizontal. [point, closedway]
-man_made = adit & name = * {name "${name} (Adit/Mine Entrance)"} [0x6600 resolution 24]
+man_made = adit & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Blinklicht / Bake / Leuchtfeuer. [point]
-man_made = beacon & name = * {name "${name} (Beacon)"} [0x6500 resolution 24]
+man_made = beacon & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Ein stationärer Kran. (z.B. in Hafenanlagen oder Werften). [point, closedway]
 # man_made = crane (wird derzeit nicht unterstützt)
@@ -1027,23 +1026,23 @@ man_made = beacon & name = * {name "${name} (Beacon)"} [0x6500 resolution 24]
 # man_made = flagpole (wird derzeit nicht unterstützt)
 
 # Leuchtturm. [point]
-man_made = lighthouse {name "${name} (Lighthouse)" | "Lighthouse"} [0x1206 resolution 24]
+man_made = lighthouse {name "${name}" | "燈塔"} [0x1206 resolution 24]
 
 # Mast (z.B. Telekommunkations- / Funkmast)
 #man_made = mast {name "${name} ($__MAST__)" | "$__MAST__"} [0x2f12 resolution 24]
-man_made = mast {name "${name} (Radio Mast)" | "Radio Mast"} [0x2f11 resolution 24]
+man_made = mast & name = * {name "${name}"} [0x2f11 resolution 24]
 
 # Schacht. [point, closedway]
-man_made = mineshaft & name = * {name "${name} (Mine Shaft)"} [0x6600 resolution 24]
+man_made = mineshaft & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Messstation. [point, closedway]
 # man_made = monitoring_station (wird derzeit nicht unterstützt)
 
 # Ölfördereinrichtung. [point]
-man_made = petroleum_well & name = * {name "${name} (Oil Well)"} [0x6600 resolution 24]
+man_made = petroleum_well & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Überdecktes Speicherbasin. [point, closedway]
-man_made = reservoir_covered & name = * {name "${name} (Covered Reservoir)"} [0x6500 resolution 24]
+man_made = reservoir_covered & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Videoüberwachung Zum Kennzeichnen von Gebäuden oder Plätzen, die durch eine Kamera überwacht werden. [point, closedway]
 # man_made = surveillance (wird derzeit nicht unterstützt)
@@ -1051,37 +1050,37 @@ man_made = reservoir_covered & name = * {name "${name} (Covered Reservoir)"} [0x
 
 # Turm. [point, closedway]
 # Beobachtungsturm
-man_made = tower & tower:type = observation {name "${name} (Observation Tower)" | "Observation Tower"} [0x661f resolution 24]
+man_made = tower & tower:type = observation {name "${name}" | "眺望台"} [0x661f resolution 24]
 
 # Funkturm (s.a. "mast")
 #man_made = tower & tower:type = communication {name "${name} ($__COMMUNICATIONTOWER__)" | "$__COMMUNICATIONTOWER__"} [0x2f12 resolution 24]
-man_made = tower & tower:type = communication & ( communication:radio!=no | communication:television!=no ) {name "${name} (Radio Mast)" | "Radio Mast"} [0x2f12 resolution 24]
-man_made = tower & tower:type = communication & ( communication:mobile!=no ) {name "${name} (Radio Mast)" | "Radio Mast"} [0x2f11 resolution 24]
-man_made =  communications_tower  {name "${name} (Radio Mast)" | "Radio Mast"} [0x2f12 resolution 24]
+man_made = tower & tower:type = communication & ( communication:radio!=no | communication:television!=no ) & name = * {name "${name}"} [0x2f12 resolution 24]
+man_made = tower & tower:type = communication & ( communication:mobile!=no ) & name = * {name "${name} (Radio Mast)"} [0x2f11 resolution 24]
+man_made =  communications_tower & name = * {name "${name} (Radio Mast)"} [0x2f12 resolution 24]
 
 # allgemeiner Turm (z.B. auch Kirchturm)
-man_made = tower & name = * {name "${name} (Tower)"} [0x6500 resolution 24]
+man_made = tower & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Kläranlage. [point, closedway]
-man_made = wastewater_plant & name = * {name "${name} (Water Treatment Plant)"} [0x6500 resolution 24]
+man_made = wastewater_plant & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Wassermühle. [point, closedway]
-man_made = watermill & name = * {name "${name} (Watermill)"} [0x6500 resolution 24]
+man_made = watermill & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Wasserturm. [point, closedway]
-man_made = water_tower & name = * {name "${name} (Water Tower)"} [0x6500 resolution 24]
+man_made = water_tower & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Wasserwerk. [point, closedway]
-man_made = water_works & name = * {name "${name} (Waterworks)"} [0x6500 resolution 24]
+man_made = water_works & name = * {name "${name}"} [0x6500 resolution 24]
 
 # (Tief-)Brunnen, (Wikipedia) ein Bauwerk zur Wassergewinnung aus einem Grundwasserleiter (Aquifer). [point, closedway]
-man_made = water_well & name = * {name "${name} (Well)"} [0x6500 resolution 24]
+man_made = water_well & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Historische Windmühle. [point, closedway]
-man_made = windmill & name = * {name "${name} (hist. Windmill)"} [0x6600 resolution 24]
+man_made = windmill & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Industriebauten (Anlage, Werk). [point, closedway]
-man_made = works & name = * {name "${name} (Industrial Plant)"} [0x6605 resolution 24]
+man_made = works & name = * {name "${name}"} [0x6605 resolution 24]
 
 
 # ------------------------------------
@@ -1096,8 +1095,8 @@ man_made = works & name = * {name "${name} (Industrial Plant)"} [0x6605 resoluti
 
 # Haltepunkt (kein Bahnhof, z. T. ohne Bahnsteig, nur bei Bedarf). [point]
 # Ggf. eigenes Symbol - hier zunächst wie Bahnhof.
-railway = halt                                  {name "${name} (Railway Halt)" | "Railway Halt"} [0x2f17 resolution 24]
-public_transport = stop_position & train = yes  {name "${name} (Railway Halt)" | "Railway Halt"} [0x2f17 resolution 24]
+railway = halt & name = *                                 {name "${name}"} [0x2f17 resolution 24]
+public_transport = stop_position & train = yes & name = *  {name "${name}"} [0x2f17 resolution 24]
 
 # Bahnübergang – Straße kreuzt mit Bahnschiene. [point]
 # railway = level_crossing (wird derzeit nicht unterstützt)
@@ -1106,14 +1105,14 @@ public_transport = stop_position & train = yes  {name "${name} (Railway Halt)" |
 # public_transport = platform (wird derzeit nicht unterstützt)
 
 # Bahnhof (mit mindestens einer Weiche). [point, closedway]
-railway = station {name "${name} (Station)" | "Station"} [0x2f17 resolution 23]
+railway = station & name = * {name "${name}"} [0x2f17 resolution 18]
 
 # U-Bahn Eingang. [point]
-railway = subway_entrance {name "${name} (Subway Entrance)" | "Subway Entrance"} [0x2f1f resolution 24]
+railway = subway_entrance {name "${name}" | "入口"} [0x2f1f resolution 24]
 
 # Straßenbahnhaltestelle: Ein Ort an dem Pasagiere in Straßenbahnen ein- oder aussteigen können. [point]
-railway = tram_stop                            {name "${name} (Tram Stop)" | "Tram Stop"} [0x2f08 resolution 24]
-public_transport = stop_position & tram = yes  {name "${name} (Tram Stop)" | "Tram Stop"} [0x2f08 resolution 24]
+railway = tram_stop                            {name "${name}" | "電車站"} [0x2f08 resolution 24]
+public_transport = stop_position & tram = yes  {name "${name}" | "電車站"} [0x2f08 resolution 24]
 
 # Eine Drehscheibe zum Wenden von Schienenfahrzeugen; findet sich häufig in älteren Bahnbetriebswerken. [point]
 # railway = turntable (wird derzeit nicht unterstützt)
@@ -1132,144 +1131,144 @@ shop = musical_instruments  {set shop=musical_instrument; delete musical_instrum
 shop = winery               {set shop=wine; delete winery}
 
 # Bäckerei. [point, closedway]
-shop = bakery & name = * {name "${name} (Bakery)"} [0x2a0d resolution 24]
+shop = bakery & name = * {name "${name}"} [0x2a0d resolution 24]
 
 # Schönheitssalon, Kosmetiksalon, Damensalon, Nagelstudio, Parfümerie, Wellness-Center. [point, closedway]
-shop = beauty    & name = * {name "${name} (Beauty Salon)"} [0x2f10 resolution 24]
-shop = cosmetics & name = * {name "${name} (Beauty Salon)"} [0x2f10 resolution 24]
+shop = beauty    & name = * {name "${name}"} [0x2f10 resolution 24]
+shop = cosmetics & name = * {name "${name}"} [0x2f10 resolution 24]
 
 # Fahrradgeschäft, Fahrradwerkstatt, Fahrradverleih, Fahrradservice. [point, closedway]
-shop = bicycle & name = * {name "${name} (Bicycle Shop (Sales, Rental & Service))"} [0x2f13 resolution 24]
+shop = bicycle & name = * {name "${name}"} [0x2f13 resolution 24]
 
 # Metzgerei, Fleischerei, Schlachterei. [point, closedway]
-shop = butcher & name = * {name "${name} (Butcher Shop)"} [0x2e02 resolution 24]
+shop = butcher & name = * {name "${name}"} [0x2e02 resolution 24]
 
 # Autohaus. [point, closedway]
-shop = car & name = * {name "${name} (Garage)"} [0x2f07 resolution 24]
+shop = car & name = * {name "${name}"} [0x2f07 resolution 24]
 
 # Autowerkstatt, Autoreparatur. [point, closedway]
-shop = car_repair & name = * {name "${name} (Car Repair (Garage))"} [0x2f03 resolution 24]
+shop = car_repair & name = * {name "${name}"} [0x2f03 resolution 24]
 
 # Drogerie. [point, closedway]
-shop = chemist & name = * {name "${name} (Chemist)"} [0x2e05 resolution 24]
+shop = chemist & name = * {name "${name}"} [0x2e05 resolution 24]
 
 # Bekleidungsgeschäfte. [point, closedway]
-shop = boutique & name = * {name "${name} (Boutique (vêtements))"} [0x2e0a resolution 24]
-shop = clothes  & name = * {name "${name} (Clothes Shop)"} [0x2e07 resolution 24]
-shop = fashion  & name = * {name "${name} (Fashion Boutique)"} [0x2e07 resolution 24]
+shop = boutique & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = clothes  & name = * {name "${name}"} [0x2e07 resolution 24]
+shop = fashion  & name = * {name "${name}"} [0x2e07 resolution 24]
 
 # Computer-Fachhandel. [point, closedway]
-shop = computer & name = * {name "${name} (Computer Store)"} [0x2e0b resolution 24]
+shop = computer & name = * {name "${name}"} [0x2e0b resolution 24]
 
 # Süßwarenhändler, Confiserie, Konditorei. [point, closedway]
-shop = confectionery & name = * {name "${name} (Confectionery)"} [0x2a0d resolution 24]
+shop = confectionery & name = * {name "${name}"} [0x2a0d resolution 24]
 
 # Nachbarschaftsladen, Lebensmittelgeschäft, Tante-Emma-Laden. [point, closedway]
-shop = convenience & name = * {name "${name} (Convenience Store)"} [0x2e02 resolution 24]
+shop = convenience & name = * {name "${name}"} [0x2e02 resolution 24]
 
 # Feinkostladen. [point, closedway]
-shop = deli & name = * {name "${name} (Deli (Delicatessen))"} [0x2a05 resolution 24]
+shop = deli & name = * {name "${name}"} [0x2a05 resolution 24]
 
 # Warenhaus, in der Regel mehrstöckiges Kaufhaus mit breitem Sortiment. [point, closedway]
-shop = department_store & name = * {name "${name} (Department Store)"} [0x2e01 resolution 24]
+shop = department_store & name = * {name "${name}"} [0x2e01 resolution 24]
 
 # Baumarkt, Heimwerkergeschäft (Verkauf von Werkzeug und Baumaterial). [point, closedway]
-shop = doityourself & name = * {name "${name} (DIY Store)"} [0x2e08 resolution 24]
+shop = doityourself & name = * {name "${name}"} [0x2e08 resolution 24]
 
 # Möbelhaus, Einrichtungshaus. [point, closedway]
-shop = furniture  & name = * {name "${name} (Furniture Store)"} [0x2e09 resolution 24]
+shop = furniture  & name = * {name "${name}"} [0x2e09 resolution 24]
 
 # Garten-Center. [point, closedway]
-shop = garden_centre & name = * {name "${name} (Garden Centre)"} [0x2e08 resolution 24]
+shop = garden_centre & name = * {name "${name}"} [0x2e08 resolution 24]
 
 # Gemischtwarenhandlung, Dorfladen, mit breitem Warensortiment des täglichen Bedarfs. [point, closedway]
-shop = general & name = * {name "${name} (General Store)"} [0x2e03 resolution 24]
+shop = general & name = * {name "${name}"} [0x2e03 resolution 24]
 
 # Friseur. [point, closedway]
-shop = hairdresser & name = * {name "${name} (Hairdresser)"} [0x2f10 resolution 24]
+shop = hairdresser & name = * {name "${name}"} [0x2f10 resolution 24]
 
 # Eisenwaren. [point, closedway]
-shop = hardware & name = * {name "${name} (Hardware Store)"} [0x2e0a resolution 24]
+shop = hardware & name = * {name "${name}"} [0x2e0a resolution 24]
 
 # Eis, Eisdiele, Eiscaffee. [point, closedway] (s.a. amenity)
-shop = ice_cream & name = * {name "${name} (Ice Cream Parlour)"} [0x2a0e resolution 24]
+shop = ice_cream & name = * {name "${name}"} [0x2a0e resolution 24]
 
 # Einkaufszentrum. [point, closedway]
-shop = mall & name = * {name "${name} (Shopping Centre)"} [0x2e04 resolution 24]
+shop = mall & name = * {name "${name}"} [0x2e04 resolution 24]
 
 # Bio-Laden, Reformhaus. [point, closedway]
-shop = organic & name = * {name "${name} (Health Food Store)"} [0x2e02 resolution 24]
+shop = organic & name = * {name "${name}"} [0x2e02 resolution 24]
 
 # Schuhfachgeschäft. [point, closedway]
-shop = shoes & name = * {name "${name} (Shoe Shop)"} [0x2e07 resolution 24]
+shop = shoes & name = * {name "${name}"} [0x2e07 resolution 24]
 
 # Supermarkt (großes Lebensmittelgeschäft). [point, closedway]
-shop = supermarket & name = * {name "${name} (Supermarket)"} [0x2e02 resolution 24]
+shop = supermarket & name = * {name "${name}"} [0x2e02 resolution 24]
 
 # Baustoffhandel, Baumaterial: Steine,Holz, Zement ,etc. [point, closedway]
-shop = trade & name = * {name "${name} (Builders Merchants)"} [0x2e08 resolution 24]
+shop = trade & name = * {name "${name}"} [0x2e08 resolution 24]
 
 # Reifenhandel. [point, closedway]
-shop = tyres & name = * {name "${name} (Tyre Retailers/Fitters)"} [0x2f07 resolution 24]
+shop = tyres & name = * {name "${name}"} [0x2f07 resolution 24]
 
 # Spezialitäteneinzelhandel. [point, closedway]
-shop = alcohol             & name = * {name "${name} (Off Licence)"} [0x2e0a resolution 24]
-shop = art                 & name = * {name "${name} (Art Dealers/Art Gallery)"} [0x2e0a resolution 24]
-shop = bed                 & name = * {name "${name} (Bed Shop)"} [0x2e0a resolution 24]
-shop = beverages           & name = * {name "${name} (Beverages/Off License)"} [0x2e0a resolution 24]
-shop = books               & name = * {name "${name} (Book Store)"} [0x2e0a resolution 24]
-shop = copyshop            & name = * {name "${name} (Photocopy Shop)"} [0x2e0a resolution 24]
-shop = carpet              & name = * {name "${name} (Carpet Store)"} [0x2e0a resolution 24]
-shop = coffee              & name = * {name "${name} (Coffee shop)"} [0x2e0a resolution 24]
-shop = dry_cleaning        & name = * {name "${name} (Dry Cleaners)"} [0x2e0a resolution 24]
-shop = electronics         & name = * {name "${name} (Electrical Store)"} [0x2e0a resolution 24]
-shop = erotic              & name = * {name "${name} (Sex Shop)"} [0x2e0a resolution 24]
-shop = fabric              & name = * {name "${name} (Fabric Shop)"} [0x2e0a resolution 24]
-shop = farm                & name = * {name "${name} (Farm Shop)"} [0x2e0a resolution 24]
-shop = fish                & name = * {name "${name} (Fishmonger)"} [0x2e0a resolution 24]
-shop = fishmonger          & name = * {name "${name} (Fishmonger)"} [0x2e0a resolution 24]
-shop = florist             & name = * {name "${name} (Florist)"} [0x2e0a resolution 24]
-shop = funeral_directors   & name = * {name "${name} (Funeral Directors)"} [0x2e0a resolution 24]
-shop = gift                & name = * {name "${name} (Gift Shop)"} [0x2e0a resolution 24]
-shop = greengrocer         & name = * {name "${name} (Greengrocer)"} [0x2e0a resolution 24]
-shop = hearing_aids        & name = * {name "${name} (Hearing Aid Shop)"} [0x2e0a resolution 24]
-shop = hifi                & name = * {name "${name} (Hifi Dealers)"} [0x2e0a resolution 24]
-shop = insurance           & name = * {name "${name} (Insurance Brokers)"} [0x2e0a resolution 24]
-shop = interior_decoration & name = * {name "${name} (Interior Decoration Shop)"} [0x2e0a resolution 24]
-shop = jewelry             & name = * {name "${name} (Jewellers)"} [0x2e0a resolution 24]
-shop = kitchen             & name = * {name "${name} (Kitchen Studio)"} [0x2e0a resolution 24]
-shop = kiosk               & name = * {name "${name} (Kiosk)"} [0x2e0a resolution 24]
-shop = laundry             & name = * {name "${name} (Laundry)"} [0x2e0a resolution 24]
-shop = massage             & name = * {name "${name} (Massage Parlour)"} [0x2e0a resolution 24]
-shop = mobile_phone        & name = * {name "${name} (Phone Shop)"} [0x2e0a resolution 24]
-shop = motorcycle          & name = * {name "${name} (Motorcycle Shop)"} [0x2e0a resolution 24]
-shop = music               & name = * {name "${name} (Music Store)"} [0x2e0a resolution 24]
-shop = musical_instrument  & name = * {name "${name} (Musical Instrument Shop)"} [0x2e0a resolution 24]
-shop = newsagent           & name = * {name "${name} (Newsagent)"} [0x2e0a resolution 24]
-shop = optician            & name = * {name "${name} (Optician)"} [0x2e0a resolution 24]
-shop = outdoor             & name = * {name "${name} (Outdoor Shop/Store)"} [0x2e0a resolution 24]
-shop = paint               & name = * {name "${name} (Specialist Paint Shop)"} [0x2e0a resolution 24]
-shop = pet                 & name = * {name "${name} (Pet Shop)"} [0x2e0a resolution 24]
-shop = photo               & name = * {name "${name} (Photo Shop)"} [0x2e0a resolution 24]
-shop = seafood             & name = * {name "${name} (Fish Shop)"} [0x2e0a resolution 24]
-shop = second_hand         & name = * {name "${name} (Second Hand Shop)"} [0x2e0a resolution 24]
-shop = solarium            & name = * {name "${name} (Tanning Salon)"} [0x2e0a resolution 24]
-shop = sports              & name = * {name "${name} (Sports Shop)"} [0x2e0a resolution 24]
-shop = stationery          & name = * {name "${name} (Stationers)"} [0x2e0a resolution 24]
-shop = tanning             & name = * {name "${name} (Tanning Salon)"} [0x2e0a resolution 24]
-shop = tattoo              & name = * {name "${name} (Tattoo Parlour)"} [0x2e0a resolution 24]
-shop = tailor              & name = * {name "${name} (Tailor)"} [0x2e0a resolution 24]
-shop = tea                 & name = * {name "${name} (Tea Shop)"} [0x2e0a resolution 24]
-shop = tobacco             & name = * {name "${name} (Tobacconist)"} [0x2e0a resolution 24]
-shop = toys                & name = * {name "${name} (Toy Shop)"} [0x2e0a resolution 24]
-shop = travel_agency       & name = * {name "${name} (Travel Agency)"} [0x2e0a resolution 24]
-shop = vacant              & name = * {name "${name} (Vacant/Empty)"} [0x2e0a resolution 24]
-shop = variety_store       & name = * {name "${name} (Clearance Store)"} [0x2e0a resolution 24]
-shop = video               & name = * {name "${name} (Video Library)"} [0x2e0a resolution 24]
-shop = wine                & name = * {name "${name} (Specialist Wine Shop)"} [0x2e0a resolution 24]
+shop = alcohol             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = art                 & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = bed                 & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = beverages           & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = books               & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = copyshop            & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = carpet              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = coffee              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = dry_cleaning        & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = electronics         & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = erotic              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = fabric              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = farm                & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = fish                & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = fishmonger          & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = florist             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = funeral_directors   & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = gift                & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = greengrocer         & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = hearing_aids        & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = hifi                & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = insurance           & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = interior_decoration & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = jewelry             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = kitchen             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = kiosk               & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = laundry             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = massage             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = mobile_phone        & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = motorcycle          & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = music               & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = musical_instrument  & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = newsagent           & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = optician            & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = outdoor             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = paint               & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = pet                 & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = photo               & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = seafood             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = second_hand         & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = solarium            & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = sports              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = stationery          & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = tanning             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = tattoo              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = tailor              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = tea                 & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = tobacco             & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = toys                & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = travel_agency       & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = vacant              & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = variety_store       & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = video               & name = * {name "${name}"} [0x2e0a resolution 24]
+shop = wine                & name = * {name "${name}"} [0x2e0a resolution 24]
 
 # Alle anderen Geschäfte (Spezialitäteneinzelhandel). [point, closedway]
-shop = * & name = * {name "${name} (${shop})"} [0x2e0a resolution 24]
+shop = * & name = * {name "${name}"} [0x2e0a resolution 24]
 
 
 # --------------------------------------------
@@ -1277,7 +1276,7 @@ shop = * & name = * {name "${name} (${shop})"} [0x2e0a resolution 24]
 # --------------------------------------------
 
 # Bushaltestelle. [point] (s.a. amenity = bus_station)
-highway = bus_stop {name "${name} (Bus Stop)" | "Bus Stop"} [0x2f08 resolution 24]
+highway = bus_stop {name "${name}" | "公車站"} [0x2f08 resolution 24]
 
 # Fußgängerüberweg (Zebrastreifen, Fußgängerfurt). [point]
 # highway = crossing (wird derzeit nicht unterstützt)
@@ -1296,13 +1295,13 @@ highway = bus_stop {name "${name} (Bus Stop)" | "Bus Stop"} [0x2f08 resolution 2
 
 # Autobahnausfahrt. ref sollte die Nummer oder andere ID der Ausfahrt enthalten.
 # Kann auch für nicht-Autobahnen verwendet werden. Beispiel: name=Ascheberg, ref=79
-highway = motorway_junction {name "${name} (${ref}) (Highway/Motorway Exit/Junction)" | "${name} (Highway/Motorway Exit/Junction)" | "${ref} (Highway/Motorway Exit/Junction)"} [0x2900 resolution 23]
+highway = motorway_junction & name = * {name "${name}"} [0x2900 resolution 18]
 
 # Place where drivers can leave the road to rest, but not refuel. [point, closedway]
-highway = rest_area {name "${name} (Rest Area)" | "Rest Area"} [0x2901 resolution 24]
+highway = rest_area {name "${name}" | "休息站"} [0x2901 resolution 24]
 
 # Raststätte, auch Autobahnraststätte. [point, closedway]
-highway = services {name "${name} (Motorway Services)" | "Motorway Services"} [0x2901 resolution 24]
+highway = services {name "${name}" | "服務站"} [0x2901 resolution 24]
 
 # Fest installierte Geschwindigkeitsmessanlage ("Blitzer"). [point]
 # highway = speed_camera (wird derzeit nicht unterstützt)
@@ -1332,68 +1331,68 @@ highway = services {name "${name} (Motorway Services)" | "Motorway Services"} [0
 # --------------------------------------------
 
 # Öffentliche Grünfläche (UK) (siehe auch "leisure=garden"). [point, closedway]
-leisure = common & name = * {name "${name} (Public Green Space)"} [0x2c06 resolution 24]
+leisure = common & name = * {name "${name}"} [0x2c06 resolution 24]
 
 # Tanzen: Eine Örtlichkeit, speziell zum regelmäßigen Tanzen. [point, closedway]
-leisure = dance & name = * {name "${name} (Dance Studio)"} [0x6600 resolution 24]
+leisure = dance & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Ein Hundepark ist ein Gebiet, mit oder ohne Umzäunung, wo Hunde ohne Leine laufen dürfen. [point, closedway]
-leisure = dog_park & name = * {name "${name} (Dog park)"} [0x6600 resolution 24]
+leisure = dog_park & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Ein Garten ist ein Gelände, in dem Blumen und andere Pflanzen in dekorativer und strukturierter Form
 # wachsen oder zu Forschungszwecken gezogen werden, zum Beispiel ein Botanischer Garten. [point, closedway]
-# leisure = garden {name "${name} (Garten)" | "Garten"} [0x2c06 resolution 24]
-leisure = garden & name = * {name "${name} (Garden)"} [0x2c06 resolution 24]
+# leisure = garden {name "${name}" | "Garten"} [0x2c06 resolution 24]
+leisure = garden & name = * {name "${name}"} [0x2c06 resolution 24]
 
 # Golfanlage. [point, closedway]
-leisure = golf_course & name = * {name "${name} (Golf Course)"} [0x2D05 resolution 24]
+leisure = golf_course & name = * {name "${name}"} [0x2D05 resolution 24]
 
 # Angelstelle. [point, closedway]
 # leisure = fishing (wird derzeit nicht unterstützt)
 
 # Eislaufplatz, Eislaufbahn (in Deutschland typischerweise ein Gebäude). [point, closedway]
-leisure = ice_rink & name = * {name "${name} (Ice Rink)"} [0x2d08 resolution 24]
+leisure = ice_rink & name = * {name "${name}"} [0x2d08 resolution 24]
 
 # Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
-leisure = marina & name = * {name "${name} (Marina)"} [0x2F09 resolution 24]
+leisure = marina & name = * {name "${name}"} [0x2F09 resolution 24]
 
 # Minigolf (siehe auch Golfanlage). [point, closedway]
-leisure = miniature_golf & name = * {name "${name} (Miniature Golf)"} [0x6600 resolution 24]
+leisure = miniature_golf & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Naturschutzgebiet (NSG), dieser Tag ist ausschließlich für Naturschutzgebiete zu nutzen.
 # Andere Gebiete – wie z. B. Nationalpark, Biosphärenreservat, Landschaftsschutzgebiet, etc.
 # sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
-leisure = nature_reserve & name = * {name "${name} (Nature Reserve)"} [0x6612 resolution 24]
+leisure = nature_reserve & name = * {name "${name}"} [0x6612 resolution 24]
 
 # Park, Grünanlage. [point, closedway]
 # leisure = park {name "${name} (Park)" | "Park"} [0x2c06 resolution 24]
-leisure = park & name = * {name "${name} (Park)"} [0x2c06 resolution 24]
+leisure = park & name = * {name "${name}"} [0x2c06 resolution 24]
 
 # Spielfeld z.B. Fußball, Tennis, Handball, Hockey. [point, closedway]
-leisure = pitch & name = * {name "${name} (Field/Pitch)"} [0x6600 resolution 24]
+leisure = pitch & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Spielplatz für Kinder. [point, closedway]
 # leisure = playground {name "${name} (Spielplatz)" | "Spielplatz"} [0x2c06 resolution 24]
-leisure = playground {name "${name} (Playground)" | "Playground"} [0x640e resolution 24]
+leisure = playground {name "${name}" | "遊戲區"} [0x640e resolution 24]
 
 # Gibt es nur in den Commenwealth-Staaten - hier eher identisch mit landuse=village_green.
-leisure = recreation_ground & name = * {name "${name} (Recreation Ground)"} [0x2c08 resolution 24]
+leisure = recreation_ground & name = * {name "${name}"} [0x2c08 resolution 24]
 
 # Sportzentrum, auch kommerzielle Freizeitsportanbieter, Fitnesscenter u.ä. [point, closedway]
-leisure = sports_centre & name = * {name "${name} (Sports Centre)"} [0x2D0A resolution 24]
-leisure = sports_center & name = * {name "${name} (Sports Centre)"} [0x2D0A resolution 24]
+leisure = sports_centre & name = * {name "${name}"} [0x2D0A resolution 24]
+leisure = sports_center & name = * {name "${name}"} [0x2D0A resolution 24]
 
 # Stadion: Eine größere Sportanlage mit permanenten, gestaffelten Sitzreihen. [point, closedway]
-leisure = stadium & name = * {name "${name} (Stadium)"} [0x2c08 resolution 24]
+leisure = stadium & name = * {name "${name}"} [0x2c08 resolution 24]
 
 # Laufbahn oder Rennbahn zum Beispiel für Wett-, Rad-, Hunde- oder Pferderennen. [point, way, closedway]
-leisure = track & name = * {name "${name} (Track)"} [0x2c08 resolution 24]
+leisure = track & name = * {name "${name}"} [0x2c08 resolution 24]
 
 # Schwimmbecken. [point, closedway]
-leisure = swimming_pool & name = * {name "${name} (Swimming Pool)"} [0x2D09 resolution 24]
+leisure = swimming_pool & name = * {name "${name}"} [0x2D09 resolution 24]
 
 # Wasserpark: Vergnügnungsstätte mit Wasserrutschen, Schwimmbecken und Umkleiden. [point, closedway]
-leisure = water_park & name = * {name "${name} (Water Park)"} [0x2D09 resolution 24]
+leisure = water_park & name = * {name "${name}"} [0x2D09 resolution 24]
 
 
 # --------------------------------------------
@@ -1402,41 +1401,41 @@ leisure = water_park & name = * {name "${name} (Water Park)"} [0x2D09 resolution
 
 # Ausgrabungsstätte, oberirdisch sichtbare Bodendenkmal. [point, closedway]
 # Ausgrabungsstätte, oberirdisch sichtbare Bodendenkmal. [point, closedway]
-historic = archaelogical_site & name = * {name "${name} (Archeological Site)"} [0x6600 resolution 24]
+historic = archaelogical_site & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Schlachtfeld. [point, closedway]
-historic = battlefield & name = * {name "${name} (Battlefield)"} [0x6600 resolution 24]
+historic = battlefield & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Historischer Grenzstein. [point]
-historic = boundary_stone & name = * {name "${name} (hist. Boundary Stone)"} [0x6600 resolution 24]
+historic = boundary_stone & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Burg oder Schloss. [point, closedway]
-historic = castle & name = * {name "${name} (Castle)"} [0x6600 resolution 24]
+historic = castle & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Militärisches Fort (ist gegenüber einer Burg moderner). [point, closedway]
-historic = fort & name = * {name "${name} (Fort)"} [0x6600 resolution 24]
+historic = fort & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Gedenkstätte: Ähnlich wie historic=monument, aber üblicherweise kleiner. [point, closedway]
-historic = memorial & name = * & memorial:type!=stolperstein & memorial:type!=plate & memorial:type!=plaque  {name "${name} (Memorial)"} [0x6405 resolution 24]
+historic = memorial & name = * & memorial:type!=stolperstein & memorial:type!=plate & memorial:type!=plaque  {name "${name}"} [0x6405 resolution 24]
 
 # Denkmal, Standbild [point, closedway]
-historic = monument & name = * {name "${name} (Monument)"} [0x6405 resolution 24]
+historic = monument & name = * {name "${name}"} [0x6405 resolution 24]
 
 # Ruine. [point, closedway]
-historic = ruins & military = bunker & name = * {name "${name} (Ruin, Bunker)"} [0x661e resolution 24]
-historic = ruins & name = *                     {name "${name} (Ruin)"}         [0x661e resolution 24]
+historic = ruins & military = bunker & name = * {name "${name}"} [0x661e resolution 24]
+historic = ruins & name = *                     {name "${name}"}         [0x661e resolution 24]
 
 # Runestone (typically a raised stone with a runic inscription). [point]
-historic=rune_stone  & name = * {name "${name} (Rune Stone)"} [0x6600 resolution 24]
+historic=rune_stone  & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Historisches (üblicherweise christliches) Wegkreuz. [point, closedway]
-historic = wayside_cross & name = * {name "${name} (hist. Wayside Cross)"} [0x6600 resolution 24]
+historic = wayside_cross & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Ein historischer Schrein, oftmals mit religiöser Darstellung. [point, closedway]
-historic = wayside_shrine  & name = * {name "${name} (hist. Shrine)"} [0x6405 resolution 24]
+historic = wayside_shrine  & name = * {name "${name}"} [0x6405 resolution 24]
 
 # Wrack (gesunkenes Schiff). [point, closedway]
-historic = wreck & name = * {name "${name} (Wreck)"} [0x1C01 resolution 24]
+historic = wreck & name = * {name "${name}"} [0x1C01 resolution 24]
 
 
 # --------------------------------------------
@@ -1444,81 +1443,81 @@ historic = wreck & name = * {name "${name} (Wreck)"} [0x1C01 resolution 24]
 # --------------------------------------------
 
 # Kleingarten (Schrebergarten, Grabeland). [point, closedway]
-landuse = allotments & name = * {name "${name} (Allotments)"} [0x6600 resolution 24]
+landuse = allotments & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Bassin, Wasserbecken (zusammen mit basin=* für Hoch-/Regenwassersicker-/-rückhaltebecken). [point, closedway]
-landuse = basin & name = * {name "${name} (Water Basin)"} [0x6603 resolution 24]
+landuse = basin & name = * {name "${name}"} [0x6603 resolution 24]
 
 # Vorher bebautes Land (für Wiederbebauung vorgesehen), Industrie- und Gewerbebrache, Sanierungsgebiet, Altlast. [point, closedway]
-landuse = brownfield & name = * {name "${name} (Brownfield Site)"} [0x6600 resolution 24]
+landuse = brownfield & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Friedhof. [closedway]
-landuse = cemetery & name = * {name "${name} (Cemetery)"} [0x6403 resolution 24]
+landuse = cemetery & name = * {name "${name}"} [0x6403 resolution 24]
 
 # Überwiegend Büros, Business Parks. [point, closedway]
-landuse = commercial & name = * {name "${name} (Business Park)"} [0x6600 resolution 24]
+landuse = commercial & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Conservation land is land protected from development. [?]
-landuse = conservation & name = * {name "${name} (Conservation Area)"} [0x6600 resolution 24]
+landuse = conservation & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Baugebiet. [point, closedway]
-landuse = construction & name = * {name "${name} (Construction Site)"} [0x6600 resolution 24]
+landuse = construction & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Landwirtschaftlich genutzte Flächen mit Gebäuden wie Häuser, Unterkünften, Ställen, Fahrzeughallen, Futterspeichern usw.
 # Ebenso die Flächen zwischen den Gebäuden, sowie nahe Bäume, Hecken und Grünflächen. [closedway]
-landuse = farmyard & name = * {name "${name} (Farmyard)"} [0x6600 resolution 24]
+landuse = farmyard & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Forst, landwirtschaftlich genutzter Wald (siehe auch natural=wood). [point, closedway]
-landuse = forest & name = * {name "${name} (Forest)"} [0x660A resolution 24]
+landuse = forest & name = * {name "${name}"} [0x660A resolution 24]
 
 # Rasenfläche (vorzugsweise innerorts). [point, closedway]
-landuse = grass & name = * {name "${name} (Park/Village Green)"} [0x6600 resolution 24]
+landuse = grass & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Bauerwartungsland, unerschlossenes, für Bebauung vorgesehenes Land (keine vorherige Bebauung). [point, closedway]
-landuse = greenfield & name = * {name "${name} (Greenfield Site)"} [0x6600 resolution 24]
+landuse = greenfield & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Großes Hafengebiet / -areal: The harbour site (land area, not area of water), mostly fenced or
 # outlined by hedge, barrier or access restriction is tagged on land using "landuse=harbour". [?]
-landuse = harbour & name = * {name "${name} (Harbour)"} [0x650B resolution 24]
+landuse = harbour & name = * {name "${name}"} [0x650B resolution 24]
 
 # Gewerbe-/Industriegebiet (überwiegend Werkstätten, Fabriken oder Lagerhallen). [point, closedway]
-landuse = industrial & name = * {name "${name} (Industrial Estate)"} [0x6600 resolution 24]
+landuse = industrial & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Deponie, Aufschüttung, Müllhalde. [point, closedway]
-landuse = landfill & name = * {name "${name} (Landfill Site)"} [0x6600 resolution 24]
+landuse = landfill & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Wiese (meist außerorts; nicht für öffentliche Zwecke). [point, closedway]
-landuse = meadow & name = * {name "${name} (Meadow)"} [0x6600 resolution 24]
+landuse = meadow & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Militärisch genutztes Gebiet (Kasernen, Truppenübungsplätze, use.). [point, closedway]
-landuse = military & name = * {name "${name} (Military Area)"} [0x640B resolution 24]
+landuse = military & name = * {name "${name}"} [0x640B resolution 24]
 
 # Obstplantage, Obstgarten, Gemüseanbau, Anpflanzung von Bäumen oder Sträuchern zur Lebensmittelproduktion. [point, closedway]
-landuse = orchard & name = * {name "${name} (Orchard)"} [0x6600 resolution 24]
+landuse = orchard & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Steinbruch, Grube (Kies, Ton, ...), oberflächlicher Abbau von Rohstoffen (Tagebau). [point, closedway]
-landuse = quarry & name = * {name "${name} (Quarry)"} [0x6600 resolution 24]
+landuse = quarry & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Erholungsgebiet. [point, closedway]
-landuse = recreation_ground & name = * {name "${name} (Recreation Ground)"} [0x6600 resolution 24]
+landuse = recreation_ground & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Speicherbecken (auch Talsperren; siehe auch landuse=basin). [point, closedway]
-landuse = reservoir & name = * {name "${name} (Reservoir)"} [0x6500 resolution 24]
+landuse = reservoir & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Wohngebiet. [point, closedway]
-landuse = residential & name = * {name "${name} (Residential Area)"} [0x6600 resolution 24]
+landuse = residential & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Einkaufszentrum oder überwiegend Einzelhandelsgeschäfte. [point, closedway]
-landuse = retail & name = * {name "${name} (Shopping Centre)"} [0x2E04 resolution 24]
+landuse = retail & name = * {name "${name}"} [0x2E04 resolution 24]
 
 # Meerwassersaline, angelegter oder natürlicher Salzgarten, der das Salz durch Verdunstung von Meerwasser freigibt. [closedway]
-landuse = salt_pond & name = * {name "${name} (Salt Evaporation Pond)"} [0x6500 resolution 24]
+landuse = salt_pond & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Dorfanger/-wiese (innerorts). [point, closedway]
-landuse = village_green & name = * {name "${name} (Village Green)"} [0x6600 resolution 24]
+landuse = village_green & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Weinberg, Wengert. [point, closedway]
-landuse = vineyard & name = * {name "${name} (Vineyard)"} [0x6600 resolution 24]
+landuse = vineyard & name = * {name "${name}"} [0x6600 resolution 24]
 
 
 # --------------------------------------------
@@ -1526,23 +1525,23 @@ landuse = vineyard & name = * {name "${name} (Vineyard)"} [0x6600 resolution 24]
 # --------------------------------------------
 
 # Militärflugplatz: Ein Ort, an dem militärische Luftfahrzeuge starten und landen können. [point, closedway]
-military = airfield & name = * {name "${name} (mil. Airbase/Airfield)"} [0x640B resolution 24]
+military = airfield & name = * {name "${name}"} [0x640B resolution 24]
 
 # Gebäude: Kaserne, Unterkünfte und Arbeitsgebäude für Soldaten. [point, closedway]
-military = barracks & name = * {name "${name} (mil. Barracks)"} [0x640B resolution 24]
+military = barracks & name = * {name "${name}"} [0x640B resolution 24]
 
 # Gebäude: Bunker, Gebäude mit sehr dicken Mauern, die auch schweren Beschuss stand halten. [point, closedway]
-military = bunker & ruins = yes & name = * {name "${name} (Ruin, Bunker)"} [0x661e resolution 24]
-military = bunker & name = *               {name "${name} (mil. Bunker)"}   [0x661d resolution 24]
+military = bunker & ruins = yes {name "${name}" | "地堡"} [0x661e resolution 24]
+military = bunker               {name "${name}" | "地堡"}   [0x661d resolution 24]
 
 # Gefahrenzone, in der man sich nicht aufhalten sollte. [point, closedway]
-military = danger_area & name = * {name "${name} (Military Danger/Restricted Area)"} [0x640B resolution 24]
+military = danger_area & name = * {name "${name}"} [0x640B resolution 24]
 
 # Waffenübungsplatz (z.B. ein Schießstand, aber auch größere Truppenübungsplätze). [point, closedway]
-military = range & name = * {name "${name} (mil. Weapons Training Area/Range)"} [0x640B resolution 24]
+military = range & name = * {name "${name}"} [0x640B resolution 24]
 
 # Marinestützpunkt. [point, closedway]
-military = naval_base & name = * {name "${name} (Naval Base)"} [0x640B resolution 24]
+military = naval_base & name = * {name "${name}"} [0x640B resolution 24]
 
 
 # --------------------------------------------
@@ -1551,12 +1550,12 @@ military = naval_base & name = * {name "${name} (Naval Base)"} [0x640B resolutio
 
 # Fossillagerstaette. Sedimentgesteine die eine außergewöhnlich hohe Anzahl von Fossilien und
 # Fossilienvielfalt und/oder durch eine besonders vollständige Fossilerhaltung auszeichnen. [point, closedway]
-geological = palaeontological_site & name = * {name "${name} (Palaeontological site)"} [0x6600 resolution 24]
+geological = palaeontological_site & name = * {name "${name}"} [0x6600 resolution 24]
 
 # A outcrop site is a place where is absent in the coverage of alteration due to exogenous agents
 # or vegetation, and where, therefore, the rock macroscopic surfaces by being directly accessible
 # to analysis. [point, closedway]
-geological = outcrop & name = * {name "${name} (geol. Outcrop)"} [0x6600 resolution 24]
+geological = outcrop & name = * {name "${name}"} [0x6600 resolution 24]
 
 
 # --------------------------------------------
@@ -1564,37 +1563,37 @@ geological = outcrop & name = * {name "${name} (geol. Outcrop)"} [0x6600 resolut
 # --------------------------------------------
 
 # Kegelbahn. [point, closedway]
-sport = 9pin & name = * {name "${name} (9 Pin Bowling Alley)"} [0x2d07 resolution 24]
+sport = 9pin & name = * {name "${name}"} [0x2d07 resolution 24]
 
 # Bowlingbahn. [point, closedway]
-sport = 10pin & name = * {name "${name} (10 Pin Bowling Alley)"} [0x2d07 resolution 24]
+sport = 10pin & name = * {name "${name}"} [0x2d07 resolution 24]
 
 # Radrennbahn, Radsporthalle. [point, closedway]
-sport = cycling & name = * {name "${name} (Velodrome)"} [0x2c08 resolution 24]
+sport = cycling & name = * {name "${name}"} [0x2c08 resolution 24]
 
 # Hunderennbahn. [point, closedway]
-sport = dog_racing & name = * {name "${name} (Dog Track)"} [0x2c08 resolution 24]
+sport = dog_racing & name = * {name "${name}"} [0x2c08 resolution 24]
 
 # Reitsporthalle, Reitplatz. [point, closedway]
-sport = equestrian & name = * {name "${name} (Equestrian Centre)"} [0x6600 resolution 24]
+sport = equestrian & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Golfplatz. [point, closedway]
-sport = golf & name = * {name "${name} (Golf Course)"} [0x2D05 resolution 24]
+sport = golf & name = * {name "${name}"} [0x2D05 resolution 24]
 
 # Pferderennbahn. [point, closedway]
-sport = horse_racing & name = * {name "${name} (Racecourse)"} [0x2c08 resolution 24]
+sport = horse_racing & name = * {name "${name}"} [0x2c08 resolution 24]
 
 # Mehrzweckhalle, Mehrzweckanlage.
-sport = multi & name = * {name "${name} (Multi-Purpose hall)"} [0x2d0a resolution 24]
+sport = multi & name = * {name "${name}"} [0x2d0a resolution 24]
 
 # Eislaufplatz, Eishalle. [point, closedway]
-sport = skating & name = * {name "${name} (Ice Rink)"} [0x2d08 resolution 24]
+sport = skating & name = * {name "${name}"} [0x2d08 resolution 24]
 
 # Skipiste, Skihalle. [point, closedway]
-sport = skiing & name = * {name "${name} (Ski Area/Ski Dome)"} [0x2d06 resolution 24]
+sport = skiing & name = * {name "${name}"} [0x2d06 resolution 24]
 
 # Schwimmbad. [point, closedway]
-sport = swimming & name = * {name "${name} (Swimming Pool)"} [0x2d09 resolution 24]
+sport = swimming & name = * {name "${name}"} [0x2d09 resolution 24]
 
 
 # --------------------------------------------
@@ -1629,10 +1628,10 @@ sport = swimming & name = * {name "${name} (Swimming Pool)"} [0x2d09 resolution 
 # waterway = turning_point (wird derzeit nicht unterstützt)
 
 # Wasserfall.
-waterway = waterfall & name = * {name "${name} (Waterfall)"} [0x6508 resolution 24]
+waterway = waterfall & name = * {name "${name}"} [0x6508 resolution 24]
 
 # Wehr. [point, way]
-waterway = weir {name "${name} (Weir)" | "Weir"} [0x6500 resolution 24]
+waterway = weir {name "${name}" | "水閘"} [0x6500 resolution 24]
 
 
 # --------------------------------------------
@@ -1640,13 +1639,13 @@ waterway = weir {name "${name} (Weir)" | "Weir"} [0x6500 resolution 24]
 # --------------------------------------------
 
 # Eine Station, an der Passagiere ein- oder aussteigen können. [point, closedway]
-aerialway = station & name = * & ele = * {name "${name} (${ele}) (Cablecar Station)"} [0x661c resolution 23]
-aerialway = station & name = *           {name "${name} (Cablecar Station)"}          [0x661c resolution 23]
-aerialway = station & ele = *            {name "Cablecar Station (${ele})"}           [0x661c resolution 23]
-aerialway = station                      {name "Cablecar Station"}                    [0x661c resolution 23]
+aerialway = station & name = * & ele = * {name "${name} (${ele})"} [0x661c resolution 23]
+aerialway = station & name = *           {name "${name}"}          [0x661c resolution 23]
+#aerialway = station & ele = *            {name "Cablecar Station (${ele})"}           [0x661c resolution 23]
+#aerialway = station                      {name "Cablecar Station"}                    [0x661c resolution 23]
 
 # Mast einer Liftanlage. [point]
-aerialway = pylon {name "${name} (Cablecar Pylon)" | "Cablecar Pylon"} [0x6417 resolution 24]
+aerialway = pylon [0x6417 resolution 24]
 
 
 # --------------------------------------------
@@ -1654,19 +1653,19 @@ aerialway = pylon {name "${name} (Cablecar Pylon)" | "Cablecar Pylon"} [0x6417 r
 # --------------------------------------------
 
 # Local authorities, administrative and supervising institutions that are not related to state government. [point, closedway]
-office = administrative & name = * {name "${name} (Local Authorities)"} [0x3007 resolution 24]
+office = administrative & name = * {name "${name}"} [0x3007 resolution 24]
 
 # Job-Center / Arbeitsvermittlung. [point, closedway]
-office = employment_agency & name = * {name "${name} (employment agency)"} [0x3007 resolution 24]
+office = employment_agency & name = * {name "${name}"} [0x3007 resolution 24]
 
 # Büro einer Regierung / Behörde / Regierungseinrichtung. [point, closedway]
-office = government & name = * {name "${name} (Government Authority)"} [0x3007 resolution 24]
+office = government & name = * {name "${name}"} [0x3007 resolution 24]
 
 # Büro einer Nichtregierungsorganisation. [point, closedway]
-office = ngo & name = * {name "${name} (NGO (Non-Governmental Organisation))"} [0x3007 resolution 24]
+office = ngo & name = * {name "${name}"} [0x3007 resolution 24]
 
 # Büro oder Sitz einer halbstaatlichen Organisation. [point, closedway]
-office = quango & name = * {name "${name} (Quango)"} [0x3007 resolution 24]
+office = quango & name = * {name "${name}"} [0x3007 resolution 24]
 
 
 # ------------------------------------------------------------
@@ -1721,8 +1720,8 @@ barrier = lift_gate [0x1210 resolution 24]
 # ------------------------------------------------------------
 
 # Grabstellen bedeutender Persönlichkeiten (d.h. Personen mit Wikipedia-Eintrag)
-# cemetery = grave & name = * & (wikipedia:de = * | wikipedia = * | website ~ 'wikipedia') {name "${name} (Ruhestaette)"} [0x6405 resolution 24]
-cemetery = grave & name = * & (wikipedia:de = * | wikipedia = * | website = *) {name "${name} (Grave)"} [0x6405 resolution 24]
+# cemetery = grave & name = * & (wikipedia:de = * | wikipedia = * | website ~ 'wikipedia') {name "${name}"} [0x6405 resolution 24]
+cemetery = grave & name = * & (wikipedia:de = * | wikipedia = * | website = *) {name "${name}"} [0x6405 resolution 24]
 
 
 # ------------------------------------------------
