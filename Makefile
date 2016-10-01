@@ -187,8 +187,8 @@ MAP := $(MAP_DIR)/.done
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
-GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
+GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 
 TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
@@ -266,7 +266,8 @@ $(GMAP): $(MAP)
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
 	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_DIR)/jmc_cli.cfg"
-	cp -a "$(MAP_DIR)/$(NAME_SHORT).gmap" $@ || cp -a "$(MAP_DIR)/$(NAME_WORD).gmap" $@
+	-[ -d "$(MAP_DIR)/$(NAME_SHORT).gmap" ] && mv "$(MAP_DIR)/$(NAME_SHORT).gmap" "$(MAP_DIR)/$(NAME_WORD).gmap"
+	zip -r $@ "$(MAP_DIR)/$(NAME_WORD).gmap"
 
 $(GMAPSUPP): $(MAP)
 	-rm -rf $@
