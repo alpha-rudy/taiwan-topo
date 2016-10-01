@@ -191,7 +191,7 @@ GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 
-TARGETS := $(GMAPSUPP) $(GMAP)
+TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $(EXTRACT)
@@ -211,12 +211,21 @@ distclean: clean
 	-rm -rf $(DATA_DIR)
 	-rm -rf $(EXTRACT)
 
-install: all
+.PHONY: install
+install: $(GMAPSUPP)
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
 	cat taiwan_topo.html | sed \
 	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
 
+drop: all
+	[ -d "$(INSTALL_DIR)" ]
+	cp -r $(TARGETS) $(INSTALL_DIR)
+	cat taiwan_topo.html | sed \
+	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
+
+.PHONY: nsis
+nsis: $(NSIS)
 $(NSIS): $(MAP)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -245,6 +254,8 @@ $(NSIS): $(MAP)
 		makensis $(NAME_WORD).nsi
 	cp "$(MAP_DIR)/Install_$(NAME_WORD).exe" $@
 
+.PHONY: gmap
+gmap: $(GMAP)
 $(GMAP): $(MAP)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
