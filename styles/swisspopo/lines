@@ -576,18 +576,18 @@ highway = footway | highway = elevator | highway = steps | highway = pedestrian 
 
 # Bergwege; T4 - T6 für routing aus Sicherheitsgründen gesperrt; Ausnahme: EXTENDEDROUTING ist explizit definiert
 # Alpine Trails; T4 - T6 expluded from routing for security reasons; Exception: EXTENDEDROUTING set
-  # T1
-  highway = path & sac_scale = hiking                     {set highway = sacscalet1;        set name = '${name} (T1)' | 'Alpine Trail (T1)' }
-  # T2
-  highway = path & sac_scale = mountain_hiking            {set highway = sacscalet2t3;      set name = '${name} (T2)' | 'Alpine Trail (T2)' }
-  # T3
-  highway = path & sac_scale = demanding_mountain_hiking  {set highway = sacscalet2t3;      set name = '${name} (T3)' | 'Alpine Trail (T3)' }
-  # T4
-  highway = path & sac_scale = alpine_hiking              {set highway = sacscalet4t5t6;    set name = '${name} (T4)' | 'Alpine Trail (T4)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
-  # T5
-  highway = path & sac_scale = demanding_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T5)' | 'Alpine Trail (T5)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
-  # T6
-  highway = path & sac_scale = difficult_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T6)' | 'Alpine Trail (T6)'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T1
+highway = path & sac_scale = hiking                     {set highway = sacscalet1;        set name = '${name} (T1)' | 'T1 步道' }
+# T2
+highway = path & sac_scale = mountain_hiking            {set highway = sacscalet2t3;      set name = '${name} (T2)' | 'T2 步道' }
+# T3
+highway = path & sac_scale = demanding_mountain_hiking  {set highway = sacscalet2t3;      set name = '${name} (T3)' | 'T3 步道' }
+# T4
+highway = path & sac_scale = alpine_hiking              {set highway = sacscalet4t5t6;    set name = '${name} (T4)' | 'T4 步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T5
+highway = path & sac_scale = demanding_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T5)' | 'T5 步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T6
+highway = path & sac_scale = difficult_alpine_hiking    {set highway = sacscalet4t5t6;    set name = '${name} (T6)' | 'T6 步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 
 
 # access
@@ -844,7 +844,7 @@ highway = motorway [0x010f0a resolution 22-23 continue]
 highway = motorway [0x010f0b resolution 20-21 continue]
 #highway = motorway [0x010e0a resolution 17-19]
 # starting at 14 for overviewmap
-highway = motorway [0x010e0a resolution 14-19]
+highway = motorway [0x010e0a resolution 18-19]
 
 
 # Autobahnaehnliche Strasse:
@@ -866,8 +866,8 @@ highway = trunk & man_made = dyke               [0x011f03 resolution 24 continue
 highway = trunk {set name = '${name}' | '${ref}' | ''} [0x011f14 resolution 24 continue with_actions]
 highway = trunk {set name = '${name}' | '${ref}' | ''} [0x012100 resolution 23-23 continue with_actions]
 highway = trunk {set name = '${ref}' | ''}             [0x010f0c resolution 22-22 continue with_actions]
-highway = trunk {set name = '${ref}' | ''}             [0x010f0d resolution 20-21 continue with_actions]
-highway = trunk {set name = '${ref}' | ''}             [0x010e0b resolution 18-19]
+highway = trunk {set name = '${ref}' | ''}             [0x010f0d resolution 21-21 continue with_actions]
+highway = trunk {set name = '${ref}' | ''}             [0x010e0b resolution 19-20]
 
 
 # Bundesstrasse:
@@ -889,7 +889,7 @@ highway = primary & man_made = dyke            [0x011f03 resolution 24 continue 
 highway = primary {set name = '${name}' | '${ref}' | ''} [0x011f15 resolution 24 continue with_actions]
 highway = primary {set name = '${name}' | '${ref}' | ''} [0x012101 resolution 23-23 continue with_actions]
 highway = primary {set name = '${ref}' | ''}             [0x010f0e resolution 22-22 continue with_actions]
-highway = primary {set name = '${ref}' | ''}             [0x010f0f resolution 18-21]
+highway = primary {set name = '${ref}' | ''}             [0x010f0f resolution 19-21]
 
 
 # Land- oder sehr gut ausgebaute Kreisstrasse:
@@ -911,7 +911,7 @@ highway = secondary & man_made = dyke           [0x01040c resolution 24 continue
 highway = secondary {set name = '${ref}' | ''} [0x011f16 resolution 24 continue with_actions]
 highway = secondary {set name = '${ref}' | ''} [0x010e0d resolution 23-23 continue with_actions]
 highway = secondary {set name = '${ref}' | ''} [0x010f10 resolution 22-22 continue with_actions]
-highway = secondary {set name = '${ref}' | ''} [0x010f11 resolution 19-21]
+highway = secondary {set name = '${ref}' | ''} [0x010f11 resolution 20-21]
 
 
 # Kreisstrasse:
@@ -930,8 +930,8 @@ highway = tertiary & man_made = dyke            [0x011f03 resolution 24 continue
 # 0x010f12 = 2/1 (mittel, NoLabel)
 # 0x010f13 = 1/1 (schmal, NoLabel)
 highway = tertiary {set name = '${name}' | '${ref}' | ''} [0x010e0e resolution 24 continue with_actions]
-highway = tertiary {set name = '${ref}' | ''}             [0x010f12 resolution 22-23 continue with_actions]
-highway = tertiary {set name = '${ref}' | ''}             [0x010f13 resolution 20-21]
+highway = tertiary {set name = '${ref}' | ''}             [0x010f12 resolution 23-23 continue with_actions]
+highway = tertiary {set name = '${ref}' | ''}             [0x010f13 resolution 21-22]
 
 
 # Strasse an und in Wohngebieten:
@@ -950,7 +950,7 @@ highway = residential & (area != * | area = no) & man_made = dyke           [0x0
 # 0x010105 = 1/1 (schmal, NoLabel)
 highway = residential & (area != * | area = no) & keinrouting = yes [0x010f16 resolution 24 continue]
 highway = residential & (area != * | area = no) & keinrouting = yes [0x010f17 resolution 23-23 continue]
-highway = residential & (area != * | area = no) & keinrouting = yes [0x010105 resolution 21-22]
+highway = residential & (area != * | area = no) & keinrouting = yes [0x010105 resolution 22-22]
 
 # Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
 # 0x010f16 = 4/1 (breit, NoLabel)
@@ -958,7 +958,7 @@ highway = residential & (area != * | area = no) & keinrouting = yes [0x010105 re
 # 0x010105 = 1/1 (schmal, NoLabel)
 highway = residential & (area != * | area = no) & auto = no [0x010f16 resolution 24 continue]
 highway = residential & (area != * | area = no) & auto = no [0x010f17 resolution 23-23 continue]
-highway = residential & (area != * | area = no) & auto = no [0x010105 resolution 21-22]
+highway = residential & (area != * | area = no) & auto = no [0x010105 resolution 22-22]
 
 # Allgemein oeffentlich
 # 0x011f17 = 4/1 (breit, NoLabel)
@@ -966,7 +966,7 @@ highway = residential & (area != * | area = no) & auto = no [0x010105 resolution
 # 0x010f15 = 1/1 (schmal, NoLabel)
 highway = residential & (area != * | area = no) [0x011f17 resolution 24 continue]
 highway = residential & (area != * | area = no) [0x010f14 resolution 23-23 continue]
-highway = residential & (area != * | area = no) [0x010f15 resolution 21-22]
+highway = residential & (area != * | area = no) [0x010f15 resolution 22-22]
 
 
 # Oeffentlich befahrbare Nebenstrasse:
@@ -986,7 +986,7 @@ highway = unclassified & (area != * | area = no) & man_made = dyke            [0
 # 0x010f19 = 1/1 (schmal, NoLabel)
 highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f1a resolution 24 continue]
 highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f1b resolution 23-23 continue]
-highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f19 resolution 21-22]
+highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f19 resolution 22-22]
 
 # Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
 # 0x010f1a = 3/1 (breit, NoLabel)
@@ -994,7 +994,7 @@ highway = unclassified & (area != * | area = no) & keinrouting = yes [0x010f19 r
 # 0x010f19 = 1/1 (schmal, NoLabel)
 highway = unclassified & (area != * | area = no) & auto = no [0x010f1a resolution 24 continue]
 highway = unclassified & (area != * | area = no) & auto = no [0x010f1b resolution 23-23 continue]
-highway = unclassified & (area != * | area = no) & auto = no [0x010f19 resolution 21-22]
+highway = unclassified & (area != * | area = no) & auto = no [0x010f19 resolution 22-22]
 
 # Allgemein oeffentlich
 # 0x011f18 = 3/1 (breit, NoLabel)
@@ -1002,7 +1002,7 @@ highway = unclassified & (area != * | area = no) & auto = no [0x010f19 resolutio
 # 0x010106 = 1/1 (schmal, NoLabel)
 highway = unclassified & (area != * | area = no) [0x011f18 resolution 24 continue]
 highway = unclassified & (area != * | area = no) [0x010f18 resolution 23-23 continue]
-highway = unclassified & (area != * | area = no) [0x010106 resolution 21-22]
+highway = unclassified & (area != * | area = no) [0x010106 resolution 22-22]
 
 
 # Erschliessungsweg zu Einrichtungen:
@@ -1021,7 +1021,7 @@ highway = service & (area != * | area = no) & man_made = dyke            [0x011f
 # 0x010f1d = 1/1 (schmal, NoLabel)
 highway = service & (area != * | area = no) & keinrouting = yes [0x010f1e resolution 24 continue]
 highway = service & (area != * | area = no) & keinrouting = yes [0x010f1f resolution 23-23 continue]
-highway = service & (area != * | area = no) & keinrouting = yes [0x010f1d resolution 21-22]
+#highway = service & (area != * | area = no) & keinrouting = yes [0x010f1d resolution 22-22]
 
 # Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
 # 0x010f1e = 3/1 (breit, NoLabel)
@@ -1029,7 +1029,7 @@ highway = service & (area != * | area = no) & keinrouting = yes [0x010f1d resolu
 # 0x010f1d = 1/1 (schmal, NoLabel)
 highway = service & (area != * | area = no) & auto = no [0x010f1e resolution 24 continue]
 highway = service & (area != * | area = no) & auto = no [0x010f1f resolution 23-23 continue]
-highway = service & (area != * | area = no) & auto = no [0x010f1d resolution 21-22]
+#highway = service & (area != * | area = no) & auto = no [0x010f1d resolution 22-22]
 
 # Allgemein oeffentlich
 # 0x011f19 = 3/1 (breit, NoLabel)
@@ -1037,7 +1037,7 @@ highway = service & (area != * | area = no) & auto = no [0x010f1d resolution 21-
 # 0x010107 = 1/1 (schmal, NoLabel)
 highway = service & (area != * | area = no) [0x011f19 resolution 24 continue]
 highway = service & (area != * | area = no) [0x010f1c resolution 23-23 continue]
-highway = service & (area != * | area = no) [0x010107 resolution 21-22]
+#highway = service & (area != * | area = no) [0x010107 resolution 22-22]
 
 
 # Verkehrsberuhigter Bereich:
@@ -1057,7 +1057,7 @@ highway = living_street & (area != * | area = no) & man_made = dyke            [
 # 0x010108 = 1/1 (schmal, NoLabel)
 highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f05 resolution 24 continue]
 highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f06 resolution 23-23 continue]
-highway = living_street & (area != * | area = no) & keinrouting = yes [0x010108 resolution 21-22]
+highway = living_street & (area != * | area = no) & keinrouting = yes [0x010108 resolution 22-22]
 
 # Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
 # 0x010f05 = 4/1 (breit, NoLabel)
@@ -1065,7 +1065,7 @@ highway = living_street & (area != * | area = no) & keinrouting = yes [0x010108 
 # 0x010108 = 1/1 (schmal, NoLabel)
 highway = living_street & (area != * | area = no) & auto = no [0x010f05 resolution 24 continue]
 highway = living_street & (area != * | area = no) & auto = no [0x010f06 resolution 23-23 continue]
-highway = living_street & (area != * | area = no) & auto = no [0x010108 resolution 21-22]
+highway = living_street & (area != * | area = no) & auto = no [0x010108 resolution 22-22]
 
 # Allgemein oeffentlich
 # 0x011f1a = 4/1 (breit, NoLabel)
@@ -1073,7 +1073,7 @@ highway = living_street & (area != * | area = no) & auto = no [0x010108 resoluti
 # 0x010f04 = 1/1 (schmal, NoLabel)
 highway = living_street & (area != * | area = no) [0x011f1a resolution 24 continue]
 highway = living_street & (area != * | area = no) [0x010f03 resolution 23-23 continue]
-highway = living_street & (area != * | area = no) [0x010f04 resolution 21-22]
+highway = living_street & (area != * | area = no) [0x010f04 resolution 22-22]
 
 
 #======================================================================================
@@ -1135,8 +1135,8 @@ highway = radweg & man_made = dyke            [0x011f05 resolution 24 continue]
 # Allgemein oeffentlich
 # 0x011f1d = Bitmap 2 (breit, NoLabel)
 # 0x010f07 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
-highway = radweg [0x011f1d resolution 24 continue]
-highway = radweg [0x010f07 resolution 23-23]
+highway = radweg [0x011f1d resolution 23-24 continue]
+highway = radweg [0x010f07 resolution 21-22]
 
 
 # "fussweg" verarbeiten:
@@ -1155,7 +1155,7 @@ highway = fussweg & man_made = dyke            [0x011f05 resolution 24 continue]
 # 0x011f12 = 2 (breit, NoLabel)
 # 0x010e05 = 1 (schmal, NoLabel)
 highway = fussweg [0x011f12 resolution 23-24 continue]
-highway = fussweg [0x010e05 resolution 20-22]
+highway = fussweg [0x010e05 resolution 21-22]
 
 
 # "radfussweg" verarbeiten:
@@ -1171,7 +1171,7 @@ highway = radfussweg & man_made = dyke            [0x011f05 resolution 24 contin
 # 0x011f1c = 2 (breit, NoLabel)
 # 0x010e10 = 1 (schmal, NoLabel)
 highway = radfussweg [0x011f1c resolution 23-24 continue]
-highway = radfussweg [0x010e10 resolution 20-22]
+highway = radfussweg [0x010e10 resolution 21-22]
 
 
 # Ausgeschilderter Reitweg (nur Reiter erlaubt):
@@ -1189,7 +1189,7 @@ highway = reitweg & man_made = dyke            [0x011f05 resolution 24 continue]
 
 # Kein Routing
 # 0x010e03 = Bitmap 2 (nur ein Pixel gefuellt, NoLabel)
-highway = reitweg [0x010e03 resolution 20-24]
+highway = reitweg [0x010e03 resolution 21-24]
 
 
 # Treppen auf Fuss- / Wanderwegen:
@@ -1203,7 +1203,7 @@ highway = steps & man_made = dyke            [0x011f04 resolution 24 continue]
 
 # Allgemein oeffentlich
 # 0x011f11 = Bitmap 4 (NoLabel)
-highway = steps [0x011f11 resolution 20-24 continue]
+highway = steps [0x011f11 resolution 21-24 continue]
 
 
 # Weg oder Strasse nur fuer Fussgaenger:
@@ -1222,7 +1222,7 @@ highway = pedestrian & (area != * | area = no) & man_made = dyke            [0x0
 # 0x010f09 = 1/1 (schmal, NoLabel)
 highway = pedestrian & (area != * | area = no) [0x011f1b resolution 24 continue]
 highway = pedestrian & (area != * | area = no) [0x010f08 resolution 23-23 continue]
-highway = pedestrian & (area != * | area = no) [0x010f09 resolution 21-22]
+#highway = pedestrian & (area != * | area = no) [0x010f09 resolution 22-22]
 
 
 # Bergwanderweg, typischerweise im Gebirge:
@@ -1248,7 +1248,7 @@ highway = pedestrian & (area != * | area = no) [0x010f09 resolution 21-22]
 # 0x010e0c = Bitmap 2 (breit, NoLabel)
 # 0x010e06 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = sacscalet1 [0x010e0c resolution 23-24 continue]
-highway = sacscalet1 [0x010e06 resolution 20-22]
+highway = sacscalet1 [0x010e06 resolution 21-22]
 
 # 0x011f09 = Bitmap 2 (breit, NoLabel)
 # 0x011f0c = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
@@ -1260,14 +1260,14 @@ highway = sacscalet1 [0x010e06 resolution 20-22]
 #highway = bergweg34 [0x011f07 resolution 24 continue]
 #highway = bergweg34 [0x011f0a resolution 23-23]
 highway = sacscalet2t3 [0x011f07 resolution 23-24 continue]
-highway = sacscalet2t3 [0x011f0a resolution 20-22]
+highway = sacscalet2t3 [0x011f0a resolution 21-22]
 
 # 0x011f08 = Bitmap 2 (breit, NoLabel)
 # 0x011f0b = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 #highway = bergweg56 [0x011f08 resolution 24 continue]
 #highway = bergweg56 [0x011f0b resolution 23-23]
 highway = sacscalet4t5t6 [0x011f08 resolution 23-24 continue]
-highway = sacscalet4t5t6 [0x011f0b resolution 20-22]
+highway = sacscalet4t5t6 [0x011f0b resolution 21-22]
 
 
 # Allgemeiner Weg oder Pfad:
@@ -1286,13 +1286,13 @@ highway = path & man_made = dyke            [0x011f05 resolution 24 continue]
 # 0x010e11 = Bitmap 2 (breit, NoLabel)
 # 0x010e12 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = path & keinrouting = yes [0x010e11 resolution 23-24 continue]
-highway = path & keinrouting = yes [0x010e12 resolution 20-22]
+highway = path & keinrouting = yes [0x010e12 resolution 21-22]
 
 # Allgemein oeffentlich
 # 0x010e0c = Bitmap 2 (breit, NoLabel)
 # 0x010e06 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = path [0x010e0c resolution 23-24 continue]
-highway = path [0x010e06 resolution 20-22]
+highway = path [0x010e06 resolution 21-22]
 
 
 # Wirtschafts-, Feld- oder Waldweg:
@@ -1341,13 +1341,13 @@ highway = feldweg01 & man_made = dyke            [0x011f04 resolution 24 continu
 # 0x010e13 = 3 (breit, NoLabel)
 # 0x010e14 = 2 (schmal, NoLabel)
 highway = feldweg01 & keinrouting = yes [0x010e13 resolution 23-24 continue]
-highway = feldweg01 & keinrouting = yes [0x010e14 resolution 20-22]
+highway = feldweg01 & keinrouting = yes [0x010e14 resolution 22-22]
 
 # Nicht fuer Autos freigegeben oder öffentlich
 # 0x010e09 = 3 (breit, NoLabel)
 # 0x010e07 = 2 (schmal, NoLabel)
 highway = feldweg01  [0x010e09 resolution 23-24 continue]
-highway = feldweg01  [0x010e07 resolution 20-22]
+highway = feldweg01  [0x010e07 resolution 22-22]
 
 # Replaced with above, no distinction for auto=yes or auto=no
 ## Nicht fuer Autos freigegeben
@@ -1376,13 +1376,13 @@ highway = feldweg23 & man_made = dyke            [0x011f05 resolution 24 continu
 # 0x010e15 = Bitmap 2 (breit, NoLabel)
 # 0x010e16 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = feldweg23 & keinrouting = yes [0x010e15 resolution 23-24 continue]
-highway = feldweg23 & keinrouting = yes [0x010e16 resolution 20-22]
+highway = feldweg23 & keinrouting = yes [0x010e16 resolution 22-22]
 
 # Nicht fuer Autos freigegeben oder öffentlich
 # 0x010e18 = Bitmap 2 (breit, NoLabel)
 # 0x010e08 = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = feldweg23 [0x010e18 resolution 23-24 continue]
-highway = feldweg23 [0x010e08 resolution 20-22]
+highway = feldweg23 [0x010e08 resolution 22-22]
 
 # Replaced with above, no distinction for auto=yes or auto=no
 ## Nicht fuer Autos freigegeben
@@ -1411,14 +1411,14 @@ highway = feldweg45 & man_made = dyke            [0x011f05 resolution 24 continu
 # 0x010e17 = Bitmap 2 (breit, NoLabel)
 # 0x010e1e = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = feldweg45 & keinrouting = yes [0x010e17 resolution 23-24 continue]
-highway = feldweg45 & keinrouting = yes [0x010e1e resolution 20-22]
+highway = feldweg45 & keinrouting = yes [0x010e1e resolution 22-22]
 
 
 # Nicht fuer Autos freigegeben oder öffentlich
 # 0x010109 = Bitmap 2 (breit, NoLabel)
 # 0x01011d = Bitmap 2 (schmal, nur ein Pixel gefuellt, NoLabel)
 highway = feldweg45 [0x010109 resolution 23-24 continue]
-highway = feldweg45 [0x01011d resolution 20-22]
+highway = feldweg45 [0x01011d resolution 22-22]
 
 
 # Replaced with above, no distinction for auto=yes or auto=no
@@ -1626,13 +1626,16 @@ waterway = weir & building != * [0x012105 resolution 22 continue]
 # 0x1e = Bitmap 2 (NoLabel)
 #boundary = administrative & admin_level = 2 [0x1e resolution 17]
 # starting from 11 for the overviewmap
-boundary = administrative & admin_level = 2 [0x1e resolution 11]
+boundary = administrative & admin_level = 2 [0x1e resolution 17]
 # Kantonsgrenze - admin_level=4
-boundary = administrative & admin_level = 6 [0x1e resolution 17]
+boundary = administrative & (admin_level = 4) [0x1e resolution 17]
+boundary = administrative & (admin_level = 6) [0x1e resolution 17]
+boundary = administrative & (admin_level = 5 | admin_level = 7 | admin_level = 8) [0x25 resolution 19]
+#boundary = administrative & (admin_level = 9) [0x1e resolution 21]
 
 # Nationalparkgrenze
 # 0x1d = Bitmap 2
-schutzgebiet = national_park { name '${name}' } [0x1d resolution 17-20]
+schutzgebiet = national_park { name '${name}' } [0x1d resolution 17]
 
 
 # ------------------------------------------------------------------
@@ -1641,11 +1644,11 @@ schutzgebiet = national_park { name '${name}' } [0x1d resolution 17-20]
 
 # Stromleitung (Überlandleitung)
 # 0x29 = 1 (NoLabel)
-power = line [0x29 resolution 24]
+power = line [0x29 resolution 23]
 
 # Freileitung mit Nieder- oder Mittelspannung.
 # 0x29 = 1 (NoLabel)
-power = minor_line [0x29 resolution 24]
+power = minor_line [0x29 resolution 23]
 
 
 # ------------------------------------------------------------------
@@ -1738,24 +1741,25 @@ railway = platform & (area != * | area = no) [0x010e1d resolution 24]
 # Railway service
 # 0x012109 = Bitmap 2 (NoLabel)
 # 0x012113 = Bitmap 2 (NoLabel)
-railway = rail & service = * & bridge = * & bridge != no  [0x010407 resolution 24 continue]
-railway = rail & service = * & tunnel = yes               [0x012109 resolution 23]
-railway = rail & service = *                              [0x012113 resolution 23]
+# use for Taiwan Highspeed Railway
+railway = rail & gauge = 1435 & bridge = * & bridge != no  [0x01040d resolution 24 continue]
+railway = rail & gauge = 1435 & tunnel = yes               [0x012114 resolution 17]
+railway = rail & gauge = 1435                             [0x012113 resolution 17]
 
 # Eisenbahn, auch S-Bahn (kann auch teilweise unterirdisch verkehren).
 # 0x012109 = Bitmap 2 (NoLabel)
 # 0x012113 = Bitmap 2 (NoLabel)
-railway = disused & bridge = * & bridge != no  [0x010407 resolution 24 continue]
-railway = disused & tunnel = yes               [0x012109 resolution 22]
+railway = disused & bridge = * & bridge != no  [0x01040d resolution 24 continue]
+railway = disused & tunnel = yes               [0x012114 resolution 22]
 railway = disused                              [0x012113 resolution 22]
 
 # Eisenbahn, auch S-Bahn (kann auch teilweise unterirdisch verkehren).
 # 0x012109 = Bitmap 2 (NoLabel)
 # 0x012103 = Bitmap 2 (NoLabel)
 railway = rail & bridge = * & bridge != no  [0x010407 resolution 24 continue]
-railway = rail & tunnel = yes               [0x012109 resolution 22]
+railway = rail & tunnel = yes               [0x012109 resolution 17]
 ### railway = rail & embankment = yes [0x011f05 resolution 24 continue]
-railway = rail                              [0x012103 resolution 22]
+railway = rail                              [0x012103 resolution 17]
 
 
 # S-Bahn (wie Eisenbahn; kann auch teilweise unterirdisch verkehren).
@@ -1854,22 +1858,24 @@ barrier = hedge_bank [ 0x012111 resolution 24 ]
 # 0x22 = 2 (Label, SmallFont)
 
 # minor
-contour = elevation & contour_ext = elevation_minor & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 23-24]
+contour = elevation & contour_ext = elevation_minor & (ele ~ '.*00$' | ele ~ '.*50$') { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 23 continue]
+contour = elevation & contour_ext = elevation_minor & (ele ~ '.*00$' | ele ~ '.*50$') { set name = '${ele|conv:m=>ft}'; } [0x23 resolution 24]
+contour = elevation & contour_ext = elevation_minor & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 24]
 
 # medium
 contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 21-22 continue]
 contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 23-24]
 
 # major
-contour = elevation & contour_ext = elevation_major  & ele > 0{ set name = '${ele|conv:m=>ft}'; } [0x20 resolution 19-20 continue]
+contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 19-20 continue]
 contour = elevation & contour_ext = elevation_major  & (ele = 2000 | ele = 1000) { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 19-20 continue]
 contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 19-20 continue]
 contour = elevation & contour_ext = elevation_major  & (ele = 2000 | ele = 1000) { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 21-22 continue]
 contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 21-22 continue]
 contour = elevation & contour_ext = elevation_major  & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 23-24 continue]
-contour = elevation & contour_ext = elevation_major  & ele = 1000 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 17-18]
-contour = elevation & contour_ext = elevation_major  & ele = 2000 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 17-18]
-contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 17-18]
+contour = elevation & contour_ext = elevation_major  & ele = 1000 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 18-18]
+contour = elevation & contour_ext = elevation_major  & ele = 2000 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 18-18]
+contour = elevation & contour_ext = elevation_major  & ele = 3000 { set name = '${ele|conv:m=>ft}'; } [0x22 resolution 18-18]
 
 
 # ------------------------------------------------------------
