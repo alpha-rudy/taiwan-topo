@@ -30,6 +30,10 @@ Style 由我來調整成合適登山與尋寶（hiking/geocaching）顯示樣式
 
 ## 重大修改歷程
 
+* 2016, 10/2
+  * 支援 Windows BaseCamp map installer
+  * 支援 Mac BaseCamp map installer 
+  * 修正 MOI DEM 在翡翠水庫南方的瑕疵
 * 2016, 9/27
   * 區分台灣鐵路與台灣高鐵的顏色
   * 微調 Re23, Re24 等高線，讓等高線可以清楚顯示
