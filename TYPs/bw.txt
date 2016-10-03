@@ -3427,7 +3427,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #CCCC00"
+"1 c #F8FC00"
 "2 c #404040"
 String1=0x00,Secondary Road
 String2=0x02,Landesstraße
@@ -3445,7 +3445,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #999900"
+"1 c #FFFFD5"
 "2 c #404040"
 String1=0x00,Country Road
 String2=0x02,Kreisstraße
@@ -3996,7 +3996,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFF00"
+"1 c #F8CC00"
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -4014,7 +4014,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFF00"
+"1 c #F8CC00"
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -4032,7 +4032,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #CCCC00"
+"1 c #F8FC00"
 "2 c #404040"
 String1=0x00,secondary road
 String2=0x02,Landesstraße
@@ -4050,7 +4050,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #CCCC00"
+"1 c #F8FC00"
 "2 c #404040"
 String1=0x00,secondary road
 String2=0x02,Landesstraße
@@ -4068,7 +4068,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #999900"
+"1 c #FFFFD5"
 "2 c #404040"
 String1=0x00,Country Road
 String2=0x02,Kreisstraße
@@ -4086,7 +4086,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #999900"
+"1 c #FFFFD5"
 "2 c #404040"
 String1=0x00,Country Road
 String2=0x02,Kreisstraße
@@ -4104,7 +4104,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #666600"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4122,7 +4122,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #666600"
+"1 c #FFFFFF"
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4704,7 +4704,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #CCCC00"
+"1 c #F8FC00"
 "2 c #404040"
 String1=0x00,Secondary Road
 String2=0x02,Landesstraße
@@ -4722,7 +4722,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #666600"
+"1 c #E0E0E0"
 "2 c #404040"
 String1=0x00,Residential
 String2=0x02,Residential
