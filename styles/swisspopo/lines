@@ -1628,10 +1628,12 @@ waterway = weir & building != * [0x012105 resolution 22 continue]
 # starting from 11 for the overviewmap
 boundary = administrative & admin_level = 2 [0x1e resolution 17]
 # Kantonsgrenze - admin_level=4
-boundary = administrative & (admin_level = 4) [0x1e resolution 17]
-boundary = administrative & (admin_level = 6) [0x1e resolution 17]
-boundary = administrative & (admin_level = 5 | admin_level = 7 | admin_level = 8) [0x25 resolution 19]
-#boundary = administrative & (admin_level = 9) [0x1e resolution 21]
+boundary = administrative & admin_level = 4  [0x1e resolution 17]
+boundary = administrative & admin_level = 6  [0x1e resolution 17]
+boundary = administrative & admin_level = 5  [0x10000 resolution 19]
+boundary = administrative & admin_level = 7  [0x10000 resolution 19]
+boundary = administrative & admin_level = 8  [0x10000 resolution 19]
+#boundary = administrative & admin_level = 9 [0x1e resolution 21]
 
 # Nationalparkgrenze
 # 0x1d = Bitmap 2
