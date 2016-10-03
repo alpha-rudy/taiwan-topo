@@ -9,10 +9,14 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 > https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
 
 * MOI.OSM.bw - Taiwan TOPO v__version__（適合小螢幕）
-> https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img
+  * Garmin 手持機: https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img
+  * macOS BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_bw.gmap.zip
+  * Windows BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_bw.exe
 
 * MOI.OSM.odc - Taiwan TOPO v__version__（適合大螢幕）
-> https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_odc.img
+  * Garmin 手持機: https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_odc.img
+  * macOS BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_odc.gmap.zip
+  * Windows BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_odc.exe
 
 
 ## 說明
