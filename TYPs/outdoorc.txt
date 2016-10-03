@@ -2631,7 +2631,7 @@ String2=0x02,Höhenlinie medium (breit)
 String3=0x03,Hoogtelijn middel
 String4=0x04,Medium Contour Line
 ExtendedLabels=Y
-FontStyle=SmallFont
+FontStyle=NormalFont
 CustomColor=Day
 DaycustomColor:#606060
 [end]
@@ -2648,7 +2648,7 @@ String2=0x02,Höhenlinie major (breit)
 String3=0x03,Hoogtelijn groot
 String4=0x04,Major Contour Line
 ExtendedLabels=Y
-FontStyle=SmallFont
+FontStyle=LargeFont
 CustomColor=Day
 DaycustomColor:#606060
 [end]
