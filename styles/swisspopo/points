@@ -669,7 +669,7 @@ place = suburb [0x0b00 resolution 21]
 
 # Stadt, Markt, selbständige Gemeinde (wie von der zuständigen Behörde definiert),
 # in ländlichen Regionen > 2.000 Einwohner; in Ballungsräumen > 10.000 Einwohner. [point, closedway]
-place = town [0x0600 resolution 18]
+place = town [0x0600 resolution 19]
 
 # Dorf (< 2.000 Einwohner), ehemals selbständige Gemeinde. [point, closedway]
 place = village [0x0c00 resolution 21]
