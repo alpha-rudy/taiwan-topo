@@ -31,13 +31,21 @@ Style 由我來調整成合適登山與尋寶（hiking/geocaching）顯示樣式
 
 讀者可以隨意下載或拿給別人使用（請用本頁連結來散佈）。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能因為使用此地圖所發生的損失（包括受傷）。
 
+已知 Windows BaseCamp v4.6.2 有問題，無法正確顯示地圖，請改用 v4.5.2。
+
+macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
+
 
 ## 重大修改歷程
 
-* 2016, 10/2
+* 2016, 10/6
+  * 依據北三兄的建議，調整道路配色
+  * 修正 MOI DEM 在翡翠水庫與灣坑頭山的瑕疵
+  * 等高線數字使用大字形
+  * 修正界線 label 有時不會顯示的問題
+  * 依據北三兄的建議，調整國家公園界線的紋路
   * 支援 Windows BaseCamp map installer
   * 支援 Mac BaseCamp map installer 
-  * 修正 MOI DEM 在翡翠水庫南方的瑕疵
 * 2016, 9/27
   * 區分台灣鐵路與台灣高鐵的顏色
   * 微調 Re23, Re24 等高線，讓等高線可以清楚顯示
