@@ -1751,9 +1751,9 @@ railway = rail & gauge = 1435                             [0x012113 resolution 1
 # Eisenbahn, auch S-Bahn (kann auch teilweise unterirdisch verkehren).
 # 0x012109 = Bitmap 2 (NoLabel)
 # 0x012113 = Bitmap 2 (NoLabel)
-railway = disused & bridge = * & bridge != no  [0x01040d resolution 24 continue]
-railway = disused & tunnel = yes               [0x012114 resolution 22]
-railway = disused                              [0x012113 resolution 22]
+railway = disused & bridge = * & bridge != no  [0x010407 resolution 24 continue]
+railway = disused & tunnel = yes               [0x010408 resolution 22]
+railway = disused                              [0x012102 resolution 22]
 
 # Eisenbahn, auch S-Bahn (kann auch teilweise unterirdisch verkehren).
 # 0x012109 = Bitmap 2 (NoLabel)
