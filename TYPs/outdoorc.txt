@@ -2552,10 +2552,10 @@ UseOrientation=Y
 Xpm="32 4 2  1"
 "! c #408000"
 "  c none"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
 ;12345678901234567890123456789012
 String1=0x00,National Park Boundary
 String2=0x02,Nationalparkgrenze
@@ -2573,10 +2573,10 @@ UseOrientation=Y
 Xpm="32 4 2  1"
 "! c #DC94E9"
 "  c none"
-"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
-"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
-"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
-"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
 ;12345678901234567890123456789012
 String1=0x00,National/State/County Border
 String2=0x02,Staatsgrenze
@@ -2849,7 +2849,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;unclassified
+"1 c #F4BFD1"  ;unclassified
 "2 c #404040"
 String1=0x00,Unclassified Road (Narrow)
 String2=0x02,Nebenstraße
@@ -2867,7 +2867,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;service
+"1 c #F2EABC"  ;service
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -3165,7 +3165,7 @@ CustomColor=No
 Type=0x1040d
 UseOrientation=Y
 Xpm="32 6 2  1"
-"! c #DB5427"
+"! c #FCA311"  ;highspeed_rail
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
@@ -3318,7 +3318,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
@@ -3336,7 +3336,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
@@ -3354,7 +3354,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
@@ -3445,7 +3445,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AA8E0A"  ;tertiary
+"1 c #FFD69B"  ;tertiary
 "2 c #404040"
 String1=0x00,Country Road
 String2=0x02,Kreisstraße
@@ -3535,7 +3535,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
@@ -3553,7 +3553,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
@@ -3571,7 +3571,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
@@ -3589,7 +3589,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
@@ -3626,7 +3626,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;track
+"1 c #F4BFD1"  ;track
 "2 c #202020"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
@@ -3995,7 +3995,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFC61E"  ;primary
+"1 c #FFED38"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -4013,7 +4013,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFC61E"  ;primary
+"1 c #FFED38"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -4067,7 +4067,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AA8E0A"  ;tertiary
+"1 c #FFD69B"  ;tertiary
 "2 c #404040"
 String1=0x00,Country Road
 String2=0x02,Kreisstraße
@@ -4085,7 +4085,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #AA8E0A"  ;tertiary
+"1 c #FFD69B"  ;tertiary
 "2 c #404040"
 String1=0x00,Country Road
 String2=0x02,Kreisstraße
@@ -4103,7 +4103,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;residential
+"1 c #F2EABC"  ;residential
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4121,7 +4121,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;residential
+"1 c #F2EABC"  ;residential
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4175,7 +4175,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;unclassified
+"1 c #F4BFD1"  ;unclassified
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4247,7 +4247,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;service
+"1 c #F2EABC"  ;service
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -4683,7 +4683,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFC61E"  ;primary
+"1 c #FFED38"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -4719,7 +4719,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;residential
+"1 c #F2EABC"  ;residential
 "2 c #404040"
 String1=0x00,side street
 String2=0x02,Wohngebietsstraße
@@ -4737,7 +4737,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FC70BA"  ;unclassified
+"1 c #F4BFD1"  ;unclassified
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4755,7 +4755,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;service
+"1 c #F2EABC"  ;service
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -5473,7 +5473,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFC61E"  ;primary
+"1 c #FFED38"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -5798,7 +5798,7 @@ CustomColor=No
 Type=0x12114
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #DB5427"
+"! c #FCA311"  ;highspeed_rail
 "  c none"
 "!!!!!!!!        !!!!!!!!        "
 "!!!!!!!!        !!!!!!!!        "
@@ -5946,17 +5946,17 @@ CustomColor=No
 Type=0x12113
 UseOrientation=Y
 Xpm="32 4 2  1"
-"! c #DB5427"
+"! c #FCA311"  ;highspeed_rail
 "# c #FFFFFF"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!!!!!!!!########!!!!!!!!########"
 "!!!!!!!!########!!!!!!!!########"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
-String1=0x00,Railway (Service)
+String1=0x00,Taiwan Highspeed Railway (Service)
 String2=0x02,Bahn
 String3=0x03,Spoorbaan
-String4=0x04,Railway (Service)
+String4=0x04,Taiwan Highspeed Railway (Service)
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
