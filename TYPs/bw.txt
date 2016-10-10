@@ -2868,7 +2868,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2EABC"  ;service
-"2 c #404040"
+"2 c #B0B0B0"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -3797,8 +3797,8 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2EABC"  ;residential
-"2 c #FFFFFF"
+"1 c #F2EABC"  ;service
+"2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
@@ -3815,8 +3815,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2EABC"  ;residential
-"2 c #FFFFFF"
+"1 c #F2EABC"  ;service
+"2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
@@ -3888,8 +3888,8 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
-"2 c #BABABA"
+"1 c #F2EABC"  ;service
+"2 c #B0B0B0"
 String1=0x00,Pedestrianised Street
 String2=0x02,Fußgängerstraße mittel
 String3=0x03,Voetgangersgebied
@@ -3906,8 +3906,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
-"2 c #BABABA"
+"1 c #F2EABC"  ;service
+"2 c #B0B0B0"
 String1=0x00,Pedestrianised street
 String2=0x02,Fußgängerstraße
 String3=0x03,Voetgangersgebied
@@ -4105,7 +4105,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2EABC"  ;residential
-"2 c #404040"
+"2 c #B0B0B0"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
@@ -4123,7 +4123,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2EABC"  ;residential
-"2 c #404040"
+"2 c #B0B0B0"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
@@ -4249,7 +4249,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2EABC"  ;service
-"2 c #404040"
+"2 c #B0B0B0"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -4723,7 +4723,7 @@ LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2EABC"  ;residential
-"2 c #404040"
+"2 c #B0B0B0"
 String1=0x00,Residential
 String2=0x02,Residential
 String3=0x03,Residential
@@ -4759,7 +4759,7 @@ LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2EABC"  ;service
-"2 c #404040"
+"2 c #B0B0B0"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -4776,8 +4776,8 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2EABC"  ;residential
-"2 c #FFFFFF"
+"1 c #F2EABC"  ;service
+"2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Spielstraße
 String3=0x03,Woonerf
@@ -4794,8 +4794,8 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFFFFF"
-"2 c #BABABA"
+"1 c #F2EABC"  ;service
+"2 c #B0B0B0"
 String1=0x00,Pedestrianised Street
 String2=0x02,Fußgängerstraße
 String3=0x03,Voetgangersgebied
