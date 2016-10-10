@@ -3203,7 +3203,7 @@ CustomColor=No
 [_line]
 Type=0x10e01
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
@@ -3221,7 +3221,7 @@ CustomColor=No
 [_line]
 Type=0x10e02
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
@@ -3351,7 +3351,7 @@ CustomColor=No
 [_line]
 Type=0x10e09
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
@@ -3532,7 +3532,7 @@ CustomColor=No
 [_line]
 Type=0x10e13
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
@@ -3568,7 +3568,7 @@ CustomColor=No
 [_line]
 Type=0x10e15
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
@@ -3623,7 +3623,7 @@ CustomColor=No
 [_line]
 Type=0x10e18
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
