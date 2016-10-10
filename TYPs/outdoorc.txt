@@ -3319,7 +3319,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3337,7 +3337,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde bosweg n.a/2/3
@@ -3355,7 +3355,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3536,7 +3536,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3554,7 +3554,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3572,7 +3572,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3590,7 +3590,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3627,7 +3627,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4BFD1"  ;track
-"2 c #FF262D"
+"2 c #B0B0B0"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde weg n.a/2/3
