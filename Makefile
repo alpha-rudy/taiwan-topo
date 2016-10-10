@@ -6,7 +6,7 @@
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
 # target SUITE, no default
-ifeq ($(SUITE),test)
+ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
@@ -18,6 +18,19 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1313)
+
+else ifeq ($(SUITE),beibeiji_odc)
+REGION := Beibeiji
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Beibeiji.poly
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1312)
 
 else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
