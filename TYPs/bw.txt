@@ -1565,7 +1565,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #51B5E0"  ;water
 [end]
 
 
@@ -1607,7 +1607,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #51B5E0"  ;water
 [end]
 
 
@@ -1759,7 +1759,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #51B5E0"  ;water
 [end]
 
 
@@ -2516,7 +2516,7 @@ Type=0x18
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #98CCF8"  ;river
+"1 c #51B5E0"  ;water
 String1=0x00,Stream
 String2=0x02,Bach
 String3=0x03,Beekje
@@ -2593,7 +2593,7 @@ Type=0x1f
 UseOrientation=Y
 LineWidth=4
 Xpm="0 0 1 0"
-"1 c #98CCF8"  ;river
+"1 c #51B5E0"  ;water
 String1=0x00,River
 String2=0x02,Fluss
 String3=0x03,Rivier
@@ -2676,7 +2676,7 @@ Type=0x26
 UseOrientation=Y
 LineWidth=4
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #51B5E0"  ;water
 String1=0x00,Canal
 String2=0x02,Kanal
 String3=0x03,Kanaal
@@ -2745,7 +2745,7 @@ Type=0x10100
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #98CCF8"  ;river
+"1 c #51B5E0"  ;water
 String1=0x00,River
 String2=0x02,Fluss
 String3=0x03,Rivier
@@ -2761,7 +2761,7 @@ Type=0x10101
 UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
-"1 c #98CCF8"  ;river
+"1 c #51B5E0"  ;water
 String1=0x00,Stream
 String2=0x02,Fluss
 String3=0x03,Rivier
@@ -2777,7 +2777,7 @@ Type=0x10102
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #51B5E0"  ;water
 String1=0x00,Canal
 String2=0x02,Kanal
 String3=0x03,Kanaal
@@ -2793,7 +2793,7 @@ Type=0x10103
 UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #51B5E0"  ;water
 String1=0x00,Canal
 String2=0x02,Kanal
 String3=0x03,Sloot
@@ -2849,8 +2849,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;unclassified
-"2 c #404040"
+"1 c #ED72AA"  ;unclassified
+"2 c #999999"
 String1=0x00,Unclassified Road (Narrow)
 String2=0x02,Nebenstraße
 String3=0x03,Landweg (smal)
@@ -3206,7 +3206,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Unknown Street
 String2=0x02,Straße unbekannter Art
@@ -3224,7 +3224,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Unknown Street (restricted)
 String2=0x02,Straße unbekannter Art (Eingeschränkt)
@@ -3318,7 +3318,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
@@ -3336,7 +3336,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
@@ -3354,7 +3354,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
@@ -3427,7 +3427,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4ED47"  ;secondary
+"1 c #F9E070"  ;secondary
 "2 c #404040"
 String1=0x00,Secondary Road
 String2=0x02,Landesstraße
@@ -3536,7 +3536,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
@@ -3554,7 +3554,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
@@ -3572,7 +3572,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
@@ -3590,7 +3590,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
@@ -3627,7 +3627,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;track
+"1 c #ED72AA"  ;track
 "2 c #999999"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
@@ -4032,7 +4032,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4ED47"  ;secondary
+"1 c #F9E070"  ;secondary
 "2 c #404040"
 String1=0x00,secondary road
 String2=0x02,Landesstraße
@@ -4050,7 +4050,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4ED47"  ;secondary
+"1 c #F9E070"  ;secondary
 "2 c #404040"
 String1=0x00,secondary road
 String2=0x02,Landesstraße
@@ -4176,8 +4176,8 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;unclassified
-"2 c #404040"
+"1 c #ED72AA"  ;unclassified
+"2 c #999999"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
 String3=0x03,Straat
@@ -4704,7 +4704,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4ED47"  ;secondary
+"1 c #F9E070"  ;secondary
 "2 c #404040"
 String1=0x00,Secondary Road
 String2=0x02,Landesstraße
@@ -4740,8 +4740,8 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F4BFD1"  ;unclassified
-"2 c #404040"
+"1 c #ED72AA"  ;unclassified
+"2 c #999999"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
 String3=0x03,Straat
@@ -5255,7 +5255,7 @@ ExtendedLabels=N
 Type=0x12015
 UseOrientation=N
 Xpm="32 1 2  1"
-"! c #98CCF8"
+"! c #51B5E0"  ;water
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
@@ -5273,7 +5273,7 @@ CustomColor=No
 Type=0x12016
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #98CCF8"
+"! c #51B5E0"  ;water
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -5292,7 +5292,7 @@ CustomColor=No
 Type=0x12017
 UseOrientation=N
 Xpm="32 4 2  1"
-"! c #98CCF8"
+"! c #51B5E0"  ;water
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "                                "
@@ -5313,7 +5313,7 @@ CustomColor=No
 Type=0x12018
 UseOrientation=N
 Xpm="32 4 2  1"
-"! c #98CCF8"
+"! c #51B5E0"  ;water
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "                                "
@@ -5334,7 +5334,7 @@ CustomColor=No
 Type=0x12019
 UseOrientation=N
 Xpm="32 6 2  1"
-"! c #98CCF8"
+"! c #51B5E0"  ;water
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "                                "
@@ -5357,7 +5357,7 @@ CustomColor=No
 Type=0x1201a
 UseOrientation=N
 Xpm="32 6 2  1"
-"! c #98CCF8"
+"! c #51B5E0"  ;water
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "                                "
