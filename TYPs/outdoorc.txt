@@ -2604,60 +2604,60 @@ CustomColor=No
 [end]
 
 
-[_line]
-Type=0x20
-UseOrientation=Y
-LineWidth=1
-Xpm="0 0 1 0"
-"1 c #B99466"
-String1=0x00,Minor Contour Line
-String2=0x02,Höhenlinie minor
-String3=0x03,Hoogtelijn klein
-String4=0x04,Minor Contour Line
-ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
-CustomColor=No
-[end]
+;[_line]
+;Type=0x20
+;UseOrientation=Y
+;LineWidth=1
+;Xpm="0 0 1 0"
+;"1 c #B99466"
+;String1=0x00,Minor Contour Line
+;String2=0x02,Höhenlinie minor
+;String3=0x03,Hoogtelijn klein
+;String4=0x04,Minor Contour Line
+;ExtendedLabels=Y
+;FontStyle=NoLabel (invisible)
+;CustomColor=No
+;[end]
 
 
-[_line]
-Type=0x21
-UseOrientation=Y
-LineWidth=2
-Xpm="0 0 1 0"
-"1 c #B99466"
-String1=0x00,Medium Contour Line
-String2=0x02,Höhenlinie medium (breit)
-String3=0x03,Hoogtelijn middel
-String4=0x04,Medium Contour Line
-ExtendedLabels=Y
-FontStyle=NormalFont
-CustomColor=Day
-DaycustomColor:#606060
-[end]
+;[_line]
+;Type=0x21
+;UseOrientation=Y
+;LineWidth=2
+;Xpm="0 0 1 0"
+;"1 c #B99466"
+;String1=0x00,Medium Contour Line
+;String2=0x02,Höhenlinie medium (breit)
+;String3=0x03,Hoogtelijn middel
+;String4=0x04,Medium Contour Line
+;ExtendedLabels=Y
+;FontStyle=NormalFont
+;CustomColor=Day
+;DaycustomColor:#606060
+;[end]
 
 
-[_line]
-Type=0x22
-UseOrientation=Y
-LineWidth=3
-Xpm="0 0 1 0"
-"1 c #B99466"
-String1=0x00,Major Contour Line
-String2=0x02,Höhenlinie major (breit)
-String3=0x03,Hoogtelijn groot
-String4=0x04,Major Contour Line
-ExtendedLabels=Y
-FontStyle=LargeFont
-CustomColor=Day
-DaycustomColor:#606060
-[end]
+;[_line]
+;Type=0x22
+;UseOrientation=Y
+;LineWidth=3
+;Xpm="0 0 1 0"
+;"1 c #B99466"
+;String1=0x00,Major Contour Line
+;String2=0x02,Höhenlinie major (breit)
+;String3=0x03,Hoogtelijn groot
+;String4=0x04,Major Contour Line
+;ExtendedLabels=Y
+;FontStyle=LargeFont
+;CustomColor=Day
+;DaycustomColor:#606060
+;[end]
 
 
 [_line]
 Type=0x23
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 Xpm="0 0 1 0"
 "1 c #BA9E7B"
 String1=0x00,Half Medium Contour Line
