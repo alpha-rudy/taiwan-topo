@@ -2516,7 +2516,7 @@ Type=0x18
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #98CCF8"  ;river
 String1=0x00,Stream
 String2=0x02,Bach
 String3=0x03,Beekje
@@ -2593,7 +2593,7 @@ Type=0x1f
 UseOrientation=Y
 LineWidth=4
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #98CCF8"  ;river
 String1=0x00,River
 String2=0x02,Fluss
 String3=0x03,Rivier
@@ -2745,7 +2745,7 @@ Type=0x10100
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #98CCF8"  ;river
 String1=0x00,River
 String2=0x02,Fluss
 String3=0x03,Rivier
@@ -2761,7 +2761,7 @@ Type=0x10101
 UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
-"1 c #98CCF8"
+"1 c #98CCF8"  ;river
 String1=0x00,Stream
 String2=0x02,Fluss
 String3=0x03,Rivier
