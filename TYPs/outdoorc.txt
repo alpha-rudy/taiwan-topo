@@ -3203,11 +3203,11 @@ CustomColor=No
 [_line]
 Type=0x10e01
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDDDDD"
-"2 c #404040"
+"1 c #F4BFD1"  ;track
+"2 c #999999"
 String1=0x00,Unknown Street
 String2=0x02,Straße unbekannter Art
 String3=0x03,Onbekende straat
@@ -3221,11 +3221,11 @@ CustomColor=No
 [_line]
 Type=0x10e02
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #F4BFD1"  ;track
+"2 c #999999"
 String1=0x00,Unknown Street (restricted)
 String2=0x02,Straße unbekannter Art (Eingeschränkt)
 String3=0x03,Onbekende straat (afgesloten)
@@ -3299,8 +3299,8 @@ UseOrientation=Y
 Xpm="32 2 2  1"
 "! c #FF656A"
 "  c none"
-"!!  !!  !!  !!  !!  !!  !!  !!  "
-"                                "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Path
 String2=0x02,Schmaler Weg / Pfad
@@ -3404,7 +3404,7 @@ CustomColor=No
 
 [_line]
 Type=0x10e0c
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
 "! c #FF656A"
 "  c none"
@@ -3516,8 +3516,8 @@ UseOrientation=Y
 Xpm="32 2 2  1"
 "! c #FF656A"
 "  c none"
-"  !!  !!  !!  !!  !!  !!  !!  !!"
-"                                "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Path (restricted)
 String2=0x02,Schmaler Weg/Pfad (Eingeschränkt)
@@ -4473,12 +4473,12 @@ CustomColor=No
 
 [_line]
 Type=0x11f07
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF8000"
-"# c #202020"
-"#####!!!#####!!!#####!!!#####!!!"
-"#####!!!#####!!!#####!!!#####!!!"
+"! c #FF656A"
+"  c none"
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T2/T3
 String2=0x02,Bergweg T2/T3
@@ -4492,12 +4492,12 @@ CustomColor=No
 
 [_line]
 Type=0x11f08
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #7BCAFF"
-"# c #202020"
-"#####!!!#####!!!#####!!!#####!!!"
-"#####!!!#####!!!#####!!!#####!!!"
+"! c #FF656A"
+"  c none"
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T4/T5/T6
 String2=0x02,Bergweg T4/T5/T6
@@ -4530,11 +4530,12 @@ CustomColor=No
 
 [_line]
 Type=0x11f0a
-UseOrientation=N
-Xpm="32 1 2  1"
-"! c #FF8000"
-"# c #202020"
-"#####!!!#####!!!#####!!!#####!!!"
+UseOrientation=Y
+Xpm="32 2 2  1"
+"! c #FF656A"
+"  c none"
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T2/T3
 String2=0x02,Bergweg T2/T3
@@ -4548,11 +4549,12 @@ CustomColor=No
 
 [_line]
 Type=0x11f0b
-UseOrientation=N
-Xpm="32 1 2  1"
-"! c #7BCAFF"
-"# c #202020"
-"#####!!!#####!!!#####!!!#####!!!"
+UseOrientation=Y
+Xpm="32 2 2  1"
+"! c #FF656A"
+"  c none"
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T4/T5/T6
 String2=0x02,Bergweg T4/T5/T6

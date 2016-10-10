@@ -3203,11 +3203,11 @@ CustomColor=No
 [_line]
 Type=0x10e01
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDDDDD"
-"2 c #404040"
+"1 c #F4BFD1"  ;track
+"2 c #999999"
 String1=0x00,Unknown Street
 String2=0x02,Straße unbekannter Art
 String3=0x03,Onbekende straat
@@ -3221,11 +3221,11 @@ CustomColor=No
 [_line]
 Type=0x10e02
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #F4BFD1"  ;track
+"2 c #999999"
 String1=0x00,Unknown Street (restricted)
 String2=0x02,Straße unbekannter Art (Eingeschränkt)
 String3=0x03,Onbekende straat (afgesloten)
@@ -3404,7 +3404,7 @@ CustomColor=No
 
 [_line]
 Type=0x10e0c
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
 "! c #FF262D"
 "  c none"
@@ -4493,7 +4493,7 @@ CustomColor=No
 
 [_line]
 Type=0x11f08
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
 "! c #FF262D"
 "  c none"
@@ -4550,7 +4550,7 @@ CustomColor=No
 
 [_line]
 Type=0x11f0b
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 2 2  1"
 "! c #FF262D"
 "  c none"
