@@ -1203,7 +1203,8 @@ highway = steps & man_made = dyke            [0x011f04 resolution 24 continue]
 
 # Allgemein oeffentlich
 # 0x011f11 = Bitmap 4 (NoLabel)
-highway = steps [0x011f11 resolution 21-24 continue]
+highway = steps [0x011f11 resolution 23-24 continue]
+highway = steps [0x011f0d resolution 21-22]
 
 
 # Weg oder Strasse nur fuer Fussgaenger:
