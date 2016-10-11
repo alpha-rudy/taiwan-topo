@@ -278,9 +278,9 @@ $(GMAP): $(MAP)
 	    	-e "s|__map_dir__|$(MAP_DIR)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
-	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_DIR)/jmc_cli.cfg"
-	-[ -d "$(MAP_DIR)/$(NAME_SHORT).gmap" ] && mv "$(MAP_DIR)/$(NAME_SHORT).gmap" "$(MAP_DIR)/$(NAME_WORD).gmap"
-	zip -r $@ "$(MAP_DIR)/$(NAME_WORD).gmap"
+	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_DIR)/jmc_cli.cfg" && \
+	    [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap" || true && \
+	    zip -r $@ "$(NAME_WORD).gmap"
 
 $(GMAPSUPP): $(MAP)
 	-rm -rf $@
@@ -342,7 +342,7 @@ $(MAP): $(DATA)
 	    cat $(DATA_DIR)/template.args | sed \
 	    	-e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--max-jobs=2 \
+	    	--max-jobs=4 \
 	    	-c mkgmap.cfg \
 		--check-styles
 	touch $(MAP)
@@ -372,6 +372,7 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 		--write-pbf $(REGION).osm.pbf \
 		omitmetadata=true && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
+	    	--max-threads=4 \
 	    	--geonames-file=$(CITY) \
 		--no-trim \
 		--precomp-sea=$(SEA_DIR) \
