@@ -1608,8 +1608,8 @@ waterway = river & ( tunnel = yes | tunnel = culvert)   [0x012015 resolution 21-
 # Bach - natuerliches schmales Gewaesser, zu klein fuer die Bezeichnung Fluss.
 # 0x18     = 2 (NoLabel)
 # 0x012016 = 2 (schmal, gestrichelt, NoLabel) Tunnel
-waterway = stream & ( tunnel != yes & tunnel != culvert) [0x18     resolution 23]
-waterway = stream & ( tunnel = yes | tunnel = culvert)   [0x01201d resolution 23]
+waterway = stream & ( tunnel != yes & tunnel != culvert) [0x18     resolution 22]
+waterway = stream & ( tunnel = yes | tunnel = culvert)   [0x01201d resolution 22]
 
 # Wehr (auch als Gebaeude moeglich, s.a. Staudamm / -mauer)
 # 0x012105 = 2 (NoLabel)
