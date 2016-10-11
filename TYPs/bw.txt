@@ -3478,7 +3478,7 @@ Type=0x10e10
 UseOrientation=Y
 LineWidth=2
 Xpm="32 2 2  1"
-"! c #0080FF"
+"! c #0080FF"  ;cycleway
 "  c none"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
@@ -3867,7 +3867,7 @@ CustomColor=No
 Type=0x10f07
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #000078"
+"! c #0080FF"  ;cycleway
 "  c none"
 "!!!!!!!!!!!!!!  !!!!!!!!!!!!!!  "
 "                                "
@@ -4811,7 +4811,7 @@ Type=0x11f1c
 UseOrientation=Y
 LineWidth=2
 Xpm="32 2 2  1"
-"! c #0080FF"
+"! c #0080FF"  ;cycleway
 "  c none"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
@@ -4829,7 +4829,7 @@ CustomColor=No
 Type=0x11f1d
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #000078"
+"! c #0080FF"  ;cycleway
 "  c none"
 "!!!!!!!!!!!!!!  !!!!!!!!!!!!!!  "
 "!!!!!!!!!!!!!!  !!!!!!!!!!!!!!  "
