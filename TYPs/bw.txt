@@ -2759,7 +2759,7 @@ CustomColor=No
 [_line]
 Type=0x10101
 UseOrientation=Y
-LineWidth=1
+LineWidth=2
 Xpm="0 0 1 0"
 "1 c #51B5E0"  ;water
 String1=0x00,Stream
@@ -5490,7 +5490,7 @@ CustomColor=No
 
 [_line]
 Type=0x12102
-UseOrientation=N
+UseOrientation=Y
 Xpm="32 4 2  1"
 "! c #606060"
 "# c #FFFFFF"
