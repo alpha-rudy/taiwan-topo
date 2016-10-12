@@ -2625,13 +2625,13 @@ Type=0x21
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #000000"
+"1 c #404040"
 String1=0x00,Medium Contour Line
 String2=0x02,Höhenlinie medium (breit)
 String3=0x03,Hoogtelijn middel
 String4=0x04,Medium Contour Line
 ExtendedLabels=Y
-FontStyle=NormalFont
+FontStyle=SmallFont
 CustomColor=Day
 DaycustomColor:#606060
 [end]
@@ -2640,7 +2640,7 @@ DaycustomColor:#606060
 [_line]
 Type=0x22
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 Xpm="0 0 1 0"
 "1 c #000000"
 String1=0x00,Major Contour Line
