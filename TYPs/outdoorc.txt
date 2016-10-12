@@ -2850,7 +2850,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;service
+"1 c #F2CE68"  ;service
 "2 c #B0B0B0"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -2868,7 +2868,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;service
+"1 c #F2CE68"  ;service
 "2 c #B0B0B0"
 String1=0x00,Living Street (restricted) narrow
 String2=0x02,Spielstraße (Eingeschränkt)
@@ -3774,7 +3774,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;service
+"1 c #F2CE68"  ;service
 "2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
@@ -3792,7 +3792,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;service
+"1 c #F2CE68"  ;service
 "2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
@@ -4080,7 +4080,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;residential
+"1 c #F2CE68"  ;residential
 "2 c #B0B0B0"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4098,7 +4098,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;residential
+"1 c #F2CE68"  ;residential
 "2 c #B0B0B0"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4224,7 +4224,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;service
+"1 c #F2CE68"  ;service
 "2 c #B0B0B0"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -4713,7 +4713,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;residential
+"1 c #F2CE68"  ;residential
 "2 c #B0B0B0"
 String1=0x00,side street
 String2=0x02,Wohngebietsstraße
@@ -4749,7 +4749,7 @@ UseOrientation=Y
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #DDD69B"  ;service
+"1 c #F2CE68"  ;service
 "2 c #B0B0B0"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
