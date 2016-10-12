@@ -282,6 +282,8 @@ $(GMAP): $(MAP)
 	    [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap" || true && \
 	    zip -r $@ "$(NAME_WORD).gmap"
 
+.PHONY: gmapsupp
+gmapsupp: $(GMAPSUPP)
 $(GMAPSUPP): $(MAP)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
