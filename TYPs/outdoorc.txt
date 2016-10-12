@@ -2655,23 +2655,6 @@ CustomColor=No
 
 
 [_line]
-Type=0x23
-UseOrientation=Y
-LineWidth=1
-Xpm="0 0 1 0"
-"1 c #BA9E7B"
-String1=0x00,Half Medium Contour Line
-String2=0x02,Höhenlinie major (breit)
-String3=0x03,Hoogtelijn groot
-String4=0x04,Major Contour Line
-ExtendedLabels=Y
-FontStyle=NoLabel
-CustomColor=Day
-DaycustomColor:#606060
-[end]
-
-
-[_line]
 Type=0x26
 UseOrientation=Y
 LineWidth=4
