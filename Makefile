@@ -164,7 +164,7 @@ DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2313)
 
 else 
-    $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei]_[jing|outdoor|outdoorc])
+    $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei|beibeiji]_[jing|outdoor|outdoorc])
 endif
 
 # auto variables
