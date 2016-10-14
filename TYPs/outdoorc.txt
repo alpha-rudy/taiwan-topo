@@ -613,7 +613,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #707070"
+"1 c #C8C9C7"
 [end]
 
 
