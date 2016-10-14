@@ -2988,7 +2988,7 @@ CustomColor=No
 Type=0x10407
 UseOrientation=Y
 Xpm="32 6 2  1"
-"! c #404040"
+"! c #101820"  ;rail
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
@@ -3148,7 +3148,7 @@ CustomColor=No
 Type=0x1040d
 UseOrientation=Y
 Xpm="32 6 2  1"
-"! c #FCA311"  ;highspeed_rail
+"! c #FF6900"  ;highspeed_rail
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
@@ -3972,7 +3972,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFED38"  ;primary
+"1 c #FEDD00"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -3990,7 +3990,7 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFED38"  ;primary
+"1 c #FEDD00"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -4677,7 +4677,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFED38"  ;primary
+"1 c #FEDD00"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -5467,7 +5467,7 @@ UseOrientation=Y
 LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFED38"  ;primary
+"1 c #FEDD00"  ;primary
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -5504,7 +5504,7 @@ CustomColor=No
 Type=0x12103
 UseOrientation=Y
 Xpm="32 4 2  1"
-"! c #000000"  ;rail
+"! c #101820"  ;rail
 "# c #FFFFFF"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!!!!!!!!########!!!!!!!!########"
@@ -5612,7 +5612,7 @@ CustomColor=No
 Type=0x12109
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #404040"
+"! c #101820"  ;rail
 "  c none"
 "!!!!!!!!        !!!!!!!!        "
 "!!!!!!!!        !!!!!!!!        "
@@ -5794,7 +5794,7 @@ CustomColor=No
 Type=0x12114
 UseOrientation=N
 Xpm="32 2 2  1"
-"! c #FCA311"  ;highspeed_rail
+"! c #FF6900"  ;highspeed_rail
 "  c none"
 "!!!!!!!!        !!!!!!!!        "
 "!!!!!!!!        !!!!!!!!        "
@@ -5942,7 +5942,7 @@ CustomColor=No
 Type=0x12113
 UseOrientation=Y
 Xpm="32 4 2  1"
-"! c #FCA311"  ;highspeed_rail
+"! c #FF6900"  ;highspeed_rail
 "# c #FFFFFF"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!!!!!!!!########!!!!!!!!########"
