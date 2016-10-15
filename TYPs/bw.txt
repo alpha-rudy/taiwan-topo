@@ -5575,7 +5575,7 @@ CustomColor=No
 Type=0x12107
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #808080"
+"! c #0051BA"  ;subway
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -5633,7 +5633,7 @@ Type=0x1210a
 UseOrientation=N
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #808080"
+"1 c #0051BA"  ;subway
 String1=0x00,Subway (overground)
 String2=0x02,U-Bahn (oberirdisch)
 String3=0x03,Tram
