@@ -1785,11 +1785,11 @@ railway = monorail                              [0x012106 resolution 22]
 # 0x012107 = Bitmap 2 (Label, SmallFont)
 # 0x01210a = 2 (Label, SmallFont)
 railway = subway & bridge = * & bridge != no  [0x010407 resolution 24 continue]
-railway = subway & tunnel = yes               [0x012107 resolution 22]
+railway = subway & tunnel = yes               [0x012107 resolution 19-21]
 # oberirdisch
-railway = subway & tunnel = no                [0x01210a resolution 22]
+railway = subway & tunnel = no                [0x01210a resolution 19-24]
 ### railway = subway & embankment = yes [0x011f03 resolution 24 continue]
-railway = subway                              [0x01210a resolution 22]
+railway = subway                              [0x01210a resolution 19-24]
 
 # Strassenbahn.
 # Die Strassenbahnfuehrung verlaeuft mitunter innerhalb der Strasse (z.B. Koeln).
