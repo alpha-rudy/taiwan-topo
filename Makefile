@@ -175,6 +175,7 @@ MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx4096M
@@ -203,6 +204,7 @@ DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
+MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 
 TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
 
@@ -361,6 +363,19 @@ $(EXTRACT):
 ifneq (,$(strip $(POLY_FILE)))
     OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)")
 endif
+
+.PHONY: mapsforge
+mapsforge: $(MAPSFORGE)
+$(MAPSFORGE): $(EXTRACT) $(ELEVATION)
+	rm -rf $(DATA_DIR)
+	mkdir -p $(DATA_DIR)
+	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && cd $(DATA_DIR) && \
+	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+		--read-pbf "$(EXTRACT)" \
+		--read-pbf "$(ELEVATION)" \
+		--merge \
+		$(OSMOSIS_OPTS) \
+		--mapfile-writer file="$@"
 
 $(DATA): $(EXTRACT) $(ELEVATION)
 	rm -rf $(DATA_DIR)
