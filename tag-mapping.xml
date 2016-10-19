@@ -1,0 +1,1116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tag-mapping xmlns='http://mapsforge.org/tag-mapping' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://mapsforge.org/tag-mapping ../resources/tag-mapping.xsd' default-zoom-appear='16' profile-name='default-profile'>
+
+<ways>
+<!-- land_sea -->
+<osm-tag key='natural' value='sea' zoom-appear='3' />
+<osm-tag key='natural' value='nosea' zoom-appear='3' />
+<!-- cycle_relations -->
+<osm-tag key='network' value='icn' zoom-appear='7' />
+<osm-tag key='network' value='ncn' zoom-appear='7' />
+<osm-tag key='network' value='rcn' zoom-appear='12' />
+<osm-tag key='network' value='lcn' zoom-appear='12' />
+<osm-tag key='network' value='ucn' zoom-appear='12' />
+<osm-tag key='network' value='hcw' zoom-appear='13' />
+<osm-tag key='network' value='mtb' zoom-appear='12' />
+<osm-tag key='network' value='rad' zoom-appear='10' />
+<!-- hiking_relations -->
+<osm-tag key='hknetwork' value='iwn' zoom-appear='7' />
+<osm-tag key='hknetwork' value='nwn' zoom-appear='8' />
+<osm-tag key='hknetwork' value='rwn' zoom-appear='12' />
+<osm-tag key='hknetwork' value='lwn' zoom-appear='12' />
+<osm-tag key='hknetwork' value='uwn' zoom-appear='12' />
+<!-- Contourlines -->
+<osm-tag key='contour_ext' value='elevation_major' force-polygon-line='true' zoom-appear='8' />
+<osm-tag key='contour_ext' value='elevation_medium' force-polygon-line='true' zoom-appear='8' />
+<osm-tag key='contour_ext' value='elevation_minor' force-polygon-line='true' zoom-appear='11' />
+<osm-tag key='ele' value='100' zoom-appear='15' />
+<osm-tag key='ele' value='200' zoom-appear='15' />
+<osm-tag key='ele' value='300' zoom-appear='15' />
+<osm-tag key='ele' value='400' zoom-appear='15' />
+<osm-tag key='ele' value='500' zoom-appear='15' />
+<osm-tag key='ele' value='600' zoom-appear='15' />
+<osm-tag key='ele' value='700' zoom-appear='15' />
+<osm-tag key='ele' value='800' zoom-appear='15' />
+<osm-tag key='ele' value='900' zoom-appear='15' />
+<osm-tag key='ele' value='1000' zoom-appear='15' />
+<osm-tag key='ele' value='1100' zoom-appear='15' />
+<osm-tag key='ele' value='1200' zoom-appear='15' />
+<osm-tag key='ele' value='1300' zoom-appear='15' />
+<osm-tag key='ele' value='1400' zoom-appear='15' />
+<osm-tag key='ele' value='1500' zoom-appear='15' />
+<osm-tag key='ele' value='1600' zoom-appear='15' />
+<osm-tag key='ele' value='1700' zoom-appear='15' />
+<osm-tag key='ele' value='1800' zoom-appear='15' />
+<osm-tag key='ele' value='1900' zoom-appear='15' />
+<osm-tag key='ele' value='2000' zoom-appear='15' />
+<osm-tag key='ele' value='2100' zoom-appear='15' />
+<osm-tag key='ele' value='2200' zoom-appear='15' />
+<osm-tag key='ele' value='2300' zoom-appear='15' />
+<osm-tag key='ele' value='2400' zoom-appear='15' />
+<osm-tag key='ele' value='2500' zoom-appear='15' />
+<osm-tag key='ele' value='2600' zoom-appear='15' />
+<osm-tag key='ele' value='2700' zoom-appear='15' />
+<osm-tag key='ele' value='2800' zoom-appear='15' />
+<osm-tag key='ele' value='2900' zoom-appear='15' />
+<osm-tag key='ele' value='3000' zoom-appear='15' />
+<osm-tag key='ele' value='3100' zoom-appear='15' />
+<osm-tag key='ele' value='3200' zoom-appear='15' />
+<osm-tag key='ele' value='3300' zoom-appear='15' />
+<osm-tag key='ele' value='3400' zoom-appear='15' />
+<osm-tag key='ele' value='3500' zoom-appear='15' />
+<osm-tag key='ele' value='3600' zoom-appear='15' />
+<osm-tag key='ele' value='3700' zoom-appear='15' />
+<osm-tag key='ele' value='3800' zoom-appear='15' />
+<osm-tag key='ele' value='3900' zoom-appear='15' />
+<osm-tag key='ele' value='4000' zoom-appear='15' />
+<osm-tag key='ele' value='4100' zoom-appear='15' />
+<osm-tag key='ele' value='4200' zoom-appear='15' />
+<osm-tag key='ele' value='4300' zoom-appear='15' />
+<osm-tag key='ele' value='4400' zoom-appear='15' />
+<osm-tag key='ele' value='4500' zoom-appear='15' />
+<osm-tag key='ele' value='4600' zoom-appear='15' />
+<osm-tag key='ele' value='4700' zoom-appear='15' />
+<osm-tag key='ele' value='4800' zoom-appear='15' />
+<osm-tag key='ele' value='4900' zoom-appear='15' />
+<osm-tag key='ele' value='5000' zoom-appear='15' />
+<osm-tag key='ele' value='5100' zoom-appear='15' />
+<osm-tag key='ele' value='5200' zoom-appear='15' />
+<osm-tag key='ele' value='5300' zoom-appear='15' />
+<osm-tag key='ele' value='5400' zoom-appear='15' />
+<osm-tag key='ele' value='5500' zoom-appear='15' />
+<osm-tag key='ele' value='5600' zoom-appear='15' />
+<osm-tag key='ele' value='5700' zoom-appear='15' />
+<osm-tag key='ele' value='5800' zoom-appear='15' />
+<osm-tag key='ele' value='5900' zoom-appear='15' />
+<osm-tag key='ele' value='6000' zoom-appear='15' />
+<osm-tag key='ele' value='6100' zoom-appear='15' />
+<osm-tag key='ele' value='6200' zoom-appear='15' />
+<osm-tag key='ele' value='6300' zoom-appear='15' />
+<osm-tag key='ele' value='6400' zoom-appear='15' />
+<osm-tag key='ele' value='6500' zoom-appear='15' />
+<osm-tag key='ele' value='6600' zoom-appear='15' />
+<osm-tag key='ele' value='6700' zoom-appear='15' />
+<osm-tag key='ele' value='6800' zoom-appear='15' />
+<osm-tag key='ele' value='6900' zoom-appear='15' />
+<osm-tag key='ele' value='7000' zoom-appear='15' />
+<osm-tag key='ele' value='7100' zoom-appear='15' />
+<osm-tag key='ele' value='7200' zoom-appear='15' />
+<osm-tag key='ele' value='7300' zoom-appear='15' />
+<osm-tag key='ele' value='7400' zoom-appear='15' />
+<osm-tag key='ele' value='7500' zoom-appear='15' />
+<osm-tag key='ele' value='7600' zoom-appear='15' />
+<osm-tag key='ele' value='7700' zoom-appear='15' />
+<osm-tag key='ele' value='7800' zoom-appear='15' />
+<osm-tag key='ele' value='7900' zoom-appear='15' />
+<osm-tag key='ele' value='8000' zoom-appear='15' />
+<osm-tag key='ele' value='8100' zoom-appear='15' />
+<osm-tag key='ele' value='8200' zoom-appear='15' />
+<osm-tag key='ele' value='8300' zoom-appear='15' />
+<osm-tag key='ele' value='8400' zoom-appear='15' />
+<osm-tag key='ele' value='8500' zoom-appear='15' />
+<osm-tag key='ele' value='8600' zoom-appear='15' />
+<osm-tag key='ele' value='8700' zoom-appear='15' />
+<osm-tag key='ele' value='8800' zoom-appear='15' />
+<osm-tag key='ele' value='8900' zoom-appear='15' />
+<osm-tag key='ele' value='9000' zoom-appear='15' />
+<osm-tag key='ele' value='(c)www.OpenAndroMaps.org' zoom-appear='3' />
+<!-- poly_labels -->
+<osm-tag key='protect_class' value='1' equivalent-values='fpier,1a,1b,1A,1B,2' renderable='false' />
+<osm-tag key='protect_class' value='5' equivalent-values='6' renderable='false' />
+<osm-tag key='protect_class' value='11' equivalent-values='12,13,14,15,16,19' renderable='false' />
+<osm-tag key='protect_class' value='21' equivalent-values='22,23,24,25,26,27,29' renderable='false' />
+<osm-tag key='bBoxWeight' value='tiny' equivalent-values='1,2,3,4,5,6,7,8,9' zoom-appear='15'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xsmall' equivalent-values='10,11,12,13' zoom-appear='12'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='small' equivalent-values='14,15,16,17,18,19,20' zoom-appear='10'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='mid' equivalent-values='21,22,23,24' zoom-appear='9'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='large' equivalent-values='25,26,27,28' zoom-appear='8'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xlarge' equivalent-values='29,30,31,32' zoom-appear='7'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xxlarge' equivalent-values='33,34,35,36,37,38,39,40' zoom-appear='6'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xxxlarge' equivalent-values='41,42,43,44,45,46,47,48,49,50,51,52,53,55' zoom-appear='5'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<!-- Labels w/o prozessing -->
+<osm-tag key='natural' value='canyon' zoom-appear='12' />
+<osm-tag key='natural' value='fjord' zoom-appear='12' />
+<osm-tag key='natural' value='crater' zoom-appear='12' />
+<!-- boundarys -->
+<osm-tag key='boundary' value='administrative' force-polygon-line='true' enabled='false' zoom-appear='0' />
+<osm-tag key='boundary' value='national_park' zoom-appear='10' />
+<osm-tag key='boundary' value='protected_area' zoom-appear='10' />
+<osm-tag key='boundary' value='maritime' zoom-appear='5' />
+<osm-tag key='boundary' value='map_inner' zoom-appear='3' />
+<osm-tag key='border_type' value='contiguous' renderable='false' zoom-appear='5' />
+<osm-tag key='border_type' value='eez' renderable='false' zoom-appear='5' />
+<osm-tag key='admin_level' value='1' force-polygon-line='true' zoom-appear='3'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='2' force-polygon-line='true' zoom-appear='3'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='3' force-polygon-line='true' zoom-appear='8'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='4' force-polygon-line='true' zoom-appear='8'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<!-- attributes_misc -->
+<osm-tag key='area' value='yes' zoom-appear='12' />
+<osm-tag key='bridge' value='yes' equivalent-values='viaduct,aqueduct,suspension,culvert,swing' renderable='false' zoom-appear='8' />
+<osm-tag key='bridge' value='movable' renderable='false' zoom-appear='8' />
+<osm-tag key='tunnel' value='yes' equivalent-values='culvert,building_passage,passage' renderable='false' />
+<osm-tag key='tunnel' value='no' renderable='false' />
+<osm-tag key='location' value='underground' renderable='false' />
+<osm-tag key='access' value='destination' renderable='false' />
+<osm-tag key='access' value='private' renderable='false' />
+<osm-tag key='access' value='acc_no' equivalent-values='no' renderable='false' />
+<osm-tag key='oneway' value='yes' equivalent-values='1,true' renderable='false' />
+<osm-tag key='oneway' value='-1' renderable='false' />
+<osm-tag key='oneway' value='no' equivalent-values='0,false' renderable='false' />
+<osm-tag key='oneway:bicycle' value='ow_bic_no' renderable='false' />
+<osm-tag key='bicycle' value='bic_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='bicycle' value='bic_designated' equivalent-values='designated,official' renderable='false' />
+<osm-tag key='bicycle' value='bic_permissive' equivalent-values='permissive' renderable='false' />
+<osm-tag key='bicycle' value='bic_no' equivalent-values='no' renderable='false' />
+<osm-tag key='foot' value='ft_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='foot' value='ft_designated' equivalent-values='designated,official' renderable='false' />
+<osm-tag key='foot' value='ft_permissive' equivalent-values='permissive' renderable='false' />
+<osm-tag key='foot' value='ft_no' equivalent-values='no' renderable='false' />
+<osm-tag key='embankment' value='emb_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='wood' value='coniferous' renderable='false' />
+<osm-tag key='wood' value='deciduous' renderable='false' />
+<osm-tag key='wood' value='mixed' renderable='false' />
+<osm-tag key='incline_dir' value='up' renderable='false' />
+<osm-tag key='incline_dir' value='down' renderable='false' />
+<osm-tag key='religion' value='christian' renderable='false' />
+<osm-tag key='religion' value='jewish' renderable='false' />
+<osm-tag key='religion' value='muslim' renderable='false' />
+<osm-tag key='religion' value='buddhist' renderable='false' />
+<osm-tag key='religion' value='hindu' renderable='false' />
+<osm-tag key='religion' value='shinto' renderable='false' />
+<osm-tag key='leaf_type' value='broadleaved' equivalent-values='deciduous, broad_leaved' renderable='false' />
+<osm-tag key='leaf_type' value='needleleaved' equivalent-values='coniferous, needle_leaved' renderable='false' />
+<osm-tag key='leaf_type' value='mixed' renderable='false' />
+<osm-tag key='leaf_type' value='leafless' renderable='false' />
+<!-- attributes_alpine -->
+<osm-tag key='trail_visibility' value='excellent' renderable='false' />
+<osm-tag key='trail_visibility' value='good' renderable='false' />
+<osm-tag key='trail_visibility' value='intermediate' renderable='false' />
+<osm-tag key='trail_visibility' value='bad' renderable='false' />
+<osm-tag key='trail_visibility' value='horrible' renderable='false' />
+<osm-tag key='trail_visibility' value='no' renderable='false' />
+<osm-tag key='surface' value='asphalt' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='compacted' equivalent-values='fine_gravel' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='smooth_paved' equivalent-values='paved,concrete,concrete:plates,concrete:lanes,paving_stones,paving_stones:30,paving_stones:20,cobblestone:flattened,sett,bricks,cement' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='rough_paved' equivalent-values='cobblestone,stone,grass_paver' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='gravel' equivalent-values='pebblestone' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='raw' equivalent-values='ground,dirt,grass,sand,wood,earth,mud,clay' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='winter' equivalent-values='ice,snow' renderable='false' />
+<osm-tag key='surface' value='unpaved' renderable='false' zoom-appear='8' />
+<osm-tag key='raw_sac_scale' value='RT1' renderable='false' zoom-appear='12' />
+<osm-tag key='raw_sac_scale' value='RT2' renderable='false' zoom-appear='12' />
+<osm-tag key='raw_sac_scale' value='RT3' renderable='false' zoom-appear='12' />
+<osm-tag key='raw_sac_scale' value='RT4' renderable='false' zoom-appear='12' />
+<osm-tag key='raw_sac_scale' value='RT5' renderable='false' zoom-appear='12' />
+<osm-tag key='raw_sac_scale' value='RT6' renderable='false' zoom-appear='12' />
+<osm-tag key='sac_scale' value='T1' renderable='false' />
+<osm-tag key='sac_scale' value='T2' renderable='false' />
+<osm-tag key='sac_scale' value='T3' renderable='false' />
+<osm-tag key='sac_scale' value='T4' renderable='false' />
+<osm-tag key='via_ferrata_flag' value='set' renderable='false' />
+<osm-tag key='winter_room' value='wr_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='reservation' value='members_only' renderable='false' />
+<osm-tag key='shelter_type' value='basic_hut' renderable='false' />
+<osm-tag key='shelter_type' value='lean_to' renderable='false' />
+<osm-tag key='shelter_type' value='public_transport' renderable='false' />
+<osm-tag key='shelter_type' value='picnic_shelter' renderable='false' />
+<osm-tag key='shelter_type' value='weather_shelter' equivalent-values='Wetterpilz' renderable='false' />
+<osm-tag key='shelter_type' value='rock_shelter' renderable='false' />
+<osm-tag key='climbing' value='cl_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='noexit' value='ne_yes' equivalent-values='yes' renderable='false' zoom-appear='12' />
+<!-- tags_alpine -->
+<osm-tag key='safety_rope' value='sr_yes' equivalent-values='yes' zoom-appear='15' />
+<osm-tag key='ladder' value='ld_yes' equivalent-values='yes' zoom-appear='15' />
+<osm-tag key='rungs' value='rn_yes' equivalent-values='yes' zoom-appear='15' />
+<!-- attributes_MTB -->
+<osm-tag key='mtb_scale' value='mtbs_0' equivalent-values='-0,+0,0-,0+' renderable='false' />
+<osm-tag key='mtb_scale' value='mtbs_1' equivalent-values='-1,+1,1-,1+' renderable='false' />
+<osm-tag key='mtb_scale' value='mtbs_2' equivalent-values='-2,+2,2-,2+' renderable='false' />
+<osm-tag key='mtb_scale' value='mtbs_3' equivalent-values='-3,+3,3-,3+' renderable='false' />
+<osm-tag key='mtb_scale' value='mtbs_4' equivalent-values='-4,+4,4-,4+' renderable='false' />
+<osm-tag key='mtb_scale' value='mtbs_5' equivalent-values='-5,+5,5-,5+' renderable='false' />
+<osm-tag key='mtb_scale' value='mtbs_6' equivalent-values='-6,+6,6-,6+' renderable='false' />
+<osm-tag key='mtb_scale_uphill' value='mtbu_0' equivalent-values='-0,+0,0-,0+' renderable='false' />
+<osm-tag key='mtb_scale_uphill' value='mtbu_1' equivalent-values='-1,+1,1-,1+' renderable='false' />
+<osm-tag key='mtb_scale_uphill' value='mtbu_2' equivalent-values='-2,+2,2-,2+' renderable='false' />
+<osm-tag key='mtb_scale_uphill' value='mtbu_3' equivalent-values='-3,+3,3-,3+' renderable='false' />
+<osm-tag key='mtb_scale_uphill' value='mtbu_4' equivalent-values='-4,+4,4-,4+' renderable='false' />
+<osm-tag key='mtb_scale_uphill' value='mtbu_5' equivalent-values='-5,+5,5-,5+' renderable='false' />
+<!-- attrib class:bike -->
+<osm-tag key='class_bicycle_road' value='cbr-3' renderable='false' />
+<osm-tag key='class_bicycle_road' value='cbr-2' renderable='false' />
+<osm-tag key='class_bicycle_road' value='cbr-1' renderable='false' />
+<osm-tag key='class_bicycle_road' value='cbr+0' renderable='false' />
+<osm-tag key='class_bicycle_road' value='cbr+1' renderable='false' />
+<osm-tag key='class_bicycle_road' value='cbr+2' renderable='false' />
+<osm-tag key='class_bicycle_road' value='cbr+3' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb-3' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb-2' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb-1' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb+0' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb+1' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb+2' renderable='false' />
+<osm-tag key='class_bicycle_mtb' value='cbmtb+3' renderable='false' />
+<!-- barriers -->
+<osm-tag key='barrier' value='city_wall' zoom-appear='13' />
+<osm-tag key='barrier' value='fence' zoom-appear='13' />
+<osm-tag key='barrier' value='retaining_wall' zoom-appear='14' />
+<osm-tag key='barrier' value='wall' zoom-appear='14' />
+<osm-tag key='barrier' value='block' zoom-appear='14' />
+<!-- route -->
+<osm-tag key='route' value='ferry' zoom-appear='6' />
+<!-- amenity -->
+<osm-tag key='amenity' value='bicycle_rental' zoom-appear='14' />
+<osm-tag key='amenity' value='biergarten' zoom-appear='15' />
+<osm-tag key='amenity' value='bus_station' zoom-appear='13' />
+<osm-tag key='amenity' value='cafe' zoom-appear='16' />
+<osm-tag key='amenity' value='college' zoom-appear='15' />
+<osm-tag key='amenity' value='doctors' zoom-appear='12' />
+<osm-tag key='amenity' value='drinking_water' zoom-appear='13' />
+<osm-tag key='amenity' value='embassy' zoom-appear='13' />
+<osm-tag key='amenity' value='fast_food' zoom-appear='17' />
+<osm-tag key='amenity' value='fountain' zoom-appear='14' />
+<osm-tag key='amenity' value='fuel' zoom-appear='14' />
+<osm-tag key='amenity' value='grave_yard' zoom-appear='13' />
+<osm-tag key='amenity' value='hospital' equivalent-values='clinic' zoom-appear='13' />
+<osm-tag key='amenity' value='kindergarten' zoom-appear='17' />
+<osm-tag key='amenity' value='marketplace' zoom-appear='15' />
+<osm-tag key='amenity' value='parking' zoom-appear='15' />
+<osm-tag key='amenity' value='pharmacy' zoom-appear='13' />
+<osm-tag key='amenity' value='place_of_worship' zoom-appear='14' />
+<osm-tag key='amenity' value='police' zoom-appear='15' />
+<osm-tag key='amenity' value='post_office' zoom-appear='14' />
+<osm-tag key='amenity' value='pub' zoom-appear='17' />
+<osm-tag key='amenity' value='bar' zoom-appear='17' />
+<osm-tag key='amenity' value='recycling' zoom-appear='17' />
+<osm-tag key='amenity' value='restaurant' zoom-appear='14' />
+<osm-tag key='amenity' value='school' zoom-appear='15' />
+<osm-tag key='amenity' value='shelter' zoom-appear='13' />
+<osm-tag key='amenity' value='theatre' zoom-appear='17' />
+<osm-tag key='amenity' value='toilets' zoom-appear='14' />
+<osm-tag key='amenity' value='university' zoom-appear='15' />
+<osm-tag key='amenity' value='ferry_terminal' zoom-appear='13' />
+<!-- leisure -->
+<osm-tag key='leisure' value='common' zoom-appear='13' />
+<osm-tag key='leisure' value='dog_park' zoom-appear='14' />
+<osm-tag key='leisure' value='garden' zoom-appear='13' />
+<osm-tag key='leisure' value='golf_course' zoom-appear='13' />
+<osm-tag key='leisure' value='nature_reserve' zoom-appear='10' />
+<osm-tag key='leisure' value='park' zoom-appear='13' />
+<osm-tag key='leisure' value='pitch' zoom-appear='13' />
+<osm-tag key='leisure' value='playground' zoom-appear='15' />
+<osm-tag key='leisure' value='slipway' zoom-appear='15' />
+<osm-tag key='leisure' value='sports_centre' zoom-appear='13' />
+<osm-tag key='leisure' value='stadium' zoom-appear='13' />
+<osm-tag key='leisure' value='swimming_pool' zoom-appear='15' />
+<osm-tag key='leisure' value='ls_track' zoom-appear='14' />
+<osm-tag key='leisure' value='water_park' zoom-appear='14' />
+<osm-tag key='sport' value='golf' zoom-appear='14' />
+<osm-tag key='sport' value='shooting' zoom-appear='14' />
+<osm-tag key='sport' value='soccer' zoom-appear='14' />
+<osm-tag key='sport' value='swimming' zoom-appear='14' />
+<osm-tag key='sport' value='tennis' zoom-appear='14' />
+<osm-tag key='sport' value='climbing' zoom-appear='14' />
+<!-- shop -->
+<osm-tag key='shop' value='hairdresser' zoom-appear='16' />
+<osm-tag key='shop' value='chemist' equivalent-values='herbalist' zoom-appear='16' />
+<osm-tag key='shop' value='butcher' equivalent-values='seafood,deli' zoom-appear='16' />
+<osm-tag key='shop' value='organic' equivalent-values='farm,greengrocer,cheese' zoom-appear='16' />
+<osm-tag key='shop' value='laundry' equivalent-values='dry_cleaning' zoom-appear='16' />
+<osm-tag key='shop' value='books' equivalent-values='newsagent' zoom-appear='16' />
+<osm-tag key='shop' value='beverages' equivalent-values='alcohol' zoom-appear='16' />
+<osm-tag key='shop' value='supermarket' zoom-appear='14' />
+<osm-tag key='shop' value='mall' equivalent-values='department_store' zoom-appear='14' />
+<osm-tag key='shop' value='convenience' equivalent-values='general,kiosk' zoom-appear='14' />
+<osm-tag key='shop' value='bakery' zoom-appear='14' />
+<osm-tag key='shop' value='doityourself' equivalent-values='hardware,houseware' zoom-appear='16' />
+<osm-tag key='shop' value='sports' equivalent-values='outdoor,dive,fishing,hunting' zoom-appear='15' />
+<osm-tag key='shop' value='bicycle' zoom-appear='15' />
+<osm-tag key='shop' value='car' equivalent-values='car_repair,car_parts,motorcycle' zoom-appear='16' />
+<osm-tag key='shop' value='travel_agency' zoom-appear='14' />
+<!-- railway -->
+<osm-tag key='railway' value='station' zoom-appear='12' />
+<osm-tag key='railway' value='funicular' zoom-appear='12' />
+<osm-tag key='railway' value='light_rail' zoom-appear='11' />
+<osm-tag key='railway' value='miniature' zoom-appear='15' />
+<osm-tag key='railway' value='narrow_gauge' equivalent-values='monorail' zoom-appear='11' />
+<osm-tag key='railway' value='platform' zoom-appear='14' />
+<osm-tag key='railway' value='preserved' zoom-appear='12' />
+<osm-tag key='railway' value='rail' zoom-appear='10' />
+<osm-tag key='railway' value='subway' zoom-appear='14' />
+<osm-tag key='railway' value='tram' zoom-appear='14' />
+<osm-tag key='railway' value='abandoned' zoom-appear='14' />
+<osm-tag key='railway' value='disused' zoom-appear='14' />
+<!-- tourism -->
+<osm-tag key='tourism' value='alpine_hut' zoom-appear='12' />
+<osm-tag key='tourism' value='attraction' zoom-appear='14' />
+<osm-tag key='tourism' value='camp_site' zoom-appear='12' />
+<osm-tag key='tourism' value='caravan_site' zoom-appear='12' />
+<osm-tag key='tourism' value='chalet' zoom-appear='15' />
+<osm-tag key='tourism' value='apartment' zoom-appear='15' />
+<osm-tag key='tourism' value='hostel' zoom-appear='14' />
+<osm-tag key='tourism' value='hotel' equivalent-values='guest_house,motel' zoom-appear='14' />
+<osm-tag key='tourism' value='information' zoom-appear='14' />
+<osm-tag key='tourism' value='museum' zoom-appear='17' />
+<osm-tag key='tourism' value='picnic_site' zoom-appear='14' />
+<osm-tag key='tourism' value='viewpoint' zoom-appear='14' />
+<osm-tag key='tourism' value='wilderness_hut' zoom-appear='12' />
+<osm-tag key='tourism' value='zoo' zoom-appear='15' />
+<!-- information -->
+<osm-tag key='information' value='office' zoom-appear='14' />
+<!-- historic -->
+<osm-tag key='historic' value='castle' zoom-appear='14' />
+<osm-tag key='historic' value='memorial' zoom-appear='15' />
+<osm-tag key='memorial' value='stolperstein' equivalent-values='Stolperstein' renderable='false' />
+<osm-tag key='memorial' value='plaque' equivalent-values='plate, blue_plaque' renderable='false' />
+<osm-tag key='memorial' value='statue' equivalent-values='bust, sculpture' renderable='false' />
+<osm-tag key='memorial' value='stone' equivalent-values='obelisk, stele' renderable='false' />
+<osm-tag key='memorial' value='war_memorial' renderable='false' />
+<osm-tag key='historic' value='monument' zoom-appear='15' />
+<osm-tag key='historic' value='ruins' zoom-appear='15' />
+<osm-tag key='historic' value='archaeological_site' zoom-appear='15' />
+<!-- place -->
+<osm-tag key='place' value='locality' zoom-appear='14' />
+<!-- natural -->
+<osm-tag key='natural' value='beach' zoom-appear='10' />
+<osm-tag key='natural' value='shingle' zoom-appear='10' />
+<osm-tag key='natural' value='sand' zoom-appear='10' />
+<osm-tag key='natural' value='heath' zoom-appear='10' />
+<osm-tag key='natural' value='marsh' zoom-appear='10' />
+<osm-tag key='natural' value='water' zoom-appear='8' />
+<osm-tag key='natural' value='wetland' equivalent-values='mud' zoom-appear='10' />
+<osm-tag key='natural' value='gorge' zoom-appear='12' />
+<osm-tag key='natural' value='grassland' zoom-appear='10' />
+<osm-tag key='natural' value='wood' zoom-appear='8' />
+<osm-tag key='natural' value='glacier' zoom-appear='6' />
+<osm-tag key='natural' value='crevasse' zoom-appear='12' />
+<osm-tag key='natural' value='ridge' equivalent-values='arete' zoom-appear='12' />
+<osm-tag key='natural' value='cliff' zoom-appear='12' />
+<osm-tag key='natural' value='rock' equivalent-values='bare_rock,bedrock,stone' zoom-appear='12' />
+<osm-tag key='natural' value='scree' zoom-appear='12' />
+<osm-tag key='natural' value='scrub' zoom-appear='12' />
+<osm-tag key='natural' value='fell' equivalent-values='tundra' zoom-appear='12' />
+<osm-tag key='natural' value='valley' zoom-appear='12' />
+<osm-tag key='natural' value='desert' zoom-appear='6' />
+<!-- landuse -->
+<osm-tag key='landuse' value='allotments' zoom-appear='10' />
+<osm-tag key='landuse' value='basin' zoom-appear='12' />
+<osm-tag key='landuse' value='brownfield' zoom-appear='10' />
+<osm-tag key='landuse' value='cemetery' zoom-appear='13' />
+<osm-tag key='landuse' value='commercial' zoom-appear='10' />
+<osm-tag key='landuse' value='construction' zoom-appear='10' />
+<osm-tag key='landuse' value='farm' zoom-appear='10' />
+<osm-tag key='landuse' value='farmland' zoom-appear='10' />
+<osm-tag key='landuse' value='forest' zoom-appear='8' />
+<osm-tag key='landuse' value='grass' zoom-appear='10' />
+<osm-tag key='landuse' value='orchard' zoom-appear='10' />
+<osm-tag key='landuse' value='greenfield' zoom-appear='10' />
+<osm-tag key='landuse' value='industrial' zoom-appear='10' />
+<osm-tag key='landuse' value='landfill' zoom-appear='10' />
+<osm-tag key='landuse' value='meadow' zoom-appear='10' />
+<osm-tag key='landuse' value='military' zoom-appear='10' />
+<osm-tag key='landuse' value='quarry' zoom-appear='10' />
+<osm-tag key='landuse' value='railway' zoom-appear='10' />
+<osm-tag key='landuse' value='recreation_ground' zoom-appear='10' />
+<osm-tag key='landuse' value='reservoir' zoom-appear='8' />
+<osm-tag key='landuse' value='residential' zoom-appear='10' />
+<osm-tag key='landuse' value='retail' zoom-appear='10' />
+<osm-tag key='landuse' value='village_green' zoom-appear='10' />
+<osm-tag key='landuse' value='vineyard' zoom-appear='12' />
+<osm-tag key='landuse' value='wood' zoom-appear='8' />
+<osm-tag key='landuse' value='farmyard' zoom-appear='12' />
+<!-- highway -->
+<osm-tag key='highway' value='motorway' zoom-appear='6' />
+<osm-tag key='highway' value='motorway_link' zoom-appear='10' />
+<osm-tag key='highway' value='trunk' zoom-appear='6' />
+<osm-tag key='highway' value='trunk_link' zoom-appear='12' />
+<osm-tag key='highway' value='primary' zoom-appear='6' />
+<osm-tag key='highway' value='primary_link' zoom-appear='12' />
+<osm-tag key='highway' value='secondary' zoom-appear='8' />
+<osm-tag key='highway' value='secondary_link' zoom-appear='12' />
+<osm-tag key='highway' value='tertiary' zoom-appear='9' />
+<osm-tag key='highway' value='tertiary_link' zoom-appear='12' />
+<osm-tag key='highway' value='living_street' zoom-appear='12' />
+<osm-tag key='highway' value='residential' zoom-appear='10' />
+<osm-tag key='highway' value='unclassified' zoom-appear='9' />
+<osm-tag key='highway' value='road' zoom-appear='9' />
+<osm-tag key='highway' value='service' zoom-appear='9' />
+<osm-tag key='highway' value='services' zoom-appear='9' />
+<osm-tag key='highway' value='track' zoom-appear='9' />
+<osm-tag key='highway' value='cycleway' zoom-appear='12' />
+<osm-tag key='highway' value='footway' zoom-appear='10' />
+<osm-tag key='highway' value='path' zoom-appear='9' />
+<osm-tag key='highway' value='steps' zoom-appear='10' />
+<osm-tag key='highway' value='bridleway' zoom-appear='10' />
+<osm-tag key='highway' value='pedestrian' zoom-appear='13' />
+<osm-tag key='area:highway' value='pedestrian' zoom-appear='13' />
+<osm-tag key='highway' value='bus_guideway' zoom-appear='13' />
+<osm-tag key='highway' value='byway' zoom-appear='13' />
+<osm-tag key='highway' value='construction' zoom-appear='9' />
+<osm-tag key='highway' value='raceway' zoom-appear='13' />
+<osm-tag key='highway' value='ford' zoom-appear='12' />
+<osm-tag key='ford' value='fd_yes' equivalent-values='stepping_stones,yes' renderable='false' />
+<osm-tag key='toll' value='tl_yes' equivalent-values='true,yes' renderable='false' />
+<osm-tag key='tracktype' value='grade1' renderable='false' />
+<osm-tag key='tracktype' value='grade2' renderable='false' />
+<osm-tag key='tracktype' value='grade3' renderable='false' />
+<osm-tag key='tracktype' value='grade4' renderable='false' />
+<osm-tag key='tracktype' value='grade5' renderable='false' />
+<osm-tag key='cycleway' value='cw_track' equivalent-values='track' zoom-appear='13' />
+<osm-tag key='cycleway' value='lane' zoom-appear='13' />
+<!-- buildings -->
+<osm-tag key='building' value='embassy' zoom-appear='14' />
+<osm-tag key='building' value='government' zoom-appear='13' />
+<osm-tag key='building' value='gym' zoom-appear='15' />
+<osm-tag key='building' value='hangar' zoom-appear='14' />
+<osm-tag key='building' value='hotel' zoom-appear='13' />
+<osm-tag key='building' value='library' zoom-appear='14' />
+<osm-tag key='building' value='museum' zoom-appear='14' />
+<osm-tag key='building' value='office' equivalent-values='public,civic' zoom-appear='13' />
+<osm-tag key='building' value='roof' zoom-appear='14' />
+<osm-tag key='building' value='ruins' zoom-appear='14' />
+<osm-tag key='building' value='service' zoom-appear='15' />
+<osm-tag key='building' value='sports' zoom-appear='15' />
+<osm-tag key='building' value='train_station' equivalent-values='station,transportation' zoom-appear='13' />
+<osm-tag key='building' value='university' equivalent-values='school' zoom-appear='14' />
+<osm-tag key='building' value='church' equivalent-values='cathedral,chapel' zoom-appear='13' />
+<osm-tag key='building' value='yes' equivalent-values='house,detached,farm,terrace,apartments,residential,dormitory,hut,cabin,tower' zoom-appear='13' />
+<osm-tag key='building' value='commercial' equivalent-values='industrial,warehouse,retail,manufacture' zoom-appear='13' />
+<osm-tag key='building' value='farm_auxiliary' equivalent-values='barn,greenhouse,shed,stable,garage,garages' zoom-appear='13' />
+<osm-tag key='building' value='wall' zoom-appear='15' />
+<osm-tag key='building' value='hospital' zoom-appear='13' />
+<osm-tag key='man_made' value='pier' zoom-appear='12' />
+<osm-tag key='man_made' value='reservoir_covered' zoom-appear='15' />
+<osm-tag key='man_made' value='embankment' zoom-appear='15' />
+<osm-tag key='man_made' value='dyke' equivalent-values='dike,levee' zoom-appear='15' />
+<osm-tag key='man_made' value='groyne' zoom-appear='15' />
+<osm-tag key='tower' value='communication' zoom-appear='12' />
+<osm-tag key='tower' value='observation' zoom-appear='12' />
+<osm-tag key='tower' value='windmill' zoom-appear='14' />
+<osm-tag key='military' value='airfield' zoom-appear='12' />
+<osm-tag key='military' value='barracks' zoom-appear='12' />
+<osm-tag key='military' value='naval_base' zoom-appear='12' />
+<!-- waterways -->
+<osm-tag key='lock' value='yes' zoom-appear='13' />
+<osm-tag key='waterway' value='river' zoom-appear='8' />
+<osm-tag key='waterway' value='riverbank' zoom-appear='10' />
+<osm-tag key='waterway' value='dock' zoom-appear='10' />
+<osm-tag key='waterway' value='dam' zoom-appear='12' />
+<osm-tag key='waterway' value='canal' zoom-appear='10' />
+<osm-tag key='waterway' value='drain' equivalent-values='ditch' zoom-appear='12' />
+<osm-tag key='waterway' value='stream' zoom-appear='8' />
+<osm-tag key='waterway' value='water_point' zoom-appear='13' />
+<osm-tag key='waterway' value='weir' zoom-appear='14' />
+<osm-tag key='waterway' value='waterfall' zoom-appear='15' />
+<osm-tag key='natural' value='waterfall' zoom-appear='15' />
+<osm-tag key='waterway' value='rapids' zoom-appear='15' />
+<osm-tag key='natural' value='rapids' zoom-appear='15' />
+<osm-tag key='waterway' value='wrn_kanal' zoom-appear='10' />
+<osm-tag key='waterway' value='lock_gate' zoom-appear='10' />
+<!-- air traffic -->
+<osm-tag key='aeroway' value='aerodrome' zoom-appear='11' />
+<osm-tag key='aeroway' value='helipad' zoom-appear='12' />
+<osm-tag key='aeroway' value='apron' zoom-appear='12' />
+<osm-tag key='aeroway' value='runway' zoom-appear='10' />
+<osm-tag key='aeroway' value='taxiway' zoom-appear='10' />
+<osm-tag key='aeroway' value='terminal' zoom-appear='14' />
+<!-- power -->
+<osm-tag key='power' value='generator' zoom-appear='16' />
+<osm-tag key='power' value='station' equivalent-values='sub_station,cable_distribution_cabinet,generator,substation,transformer' zoom-appear='12' />
+<osm-tag key='power' value='plant' zoom-appear='14' />
+<osm-tag key='generator:source' value='wind' zoom-appear='14' />
+<osm-tag key='generator:source' value='nuclear' zoom-appear='16' />
+<osm-tag key='generator:source' value='hydro' zoom-appear='16' />
+<osm-tag key='generator:source' value='tidal' zoom-appear='16' />
+<osm-tag key='generator:source' value='wave' zoom-appear='16' />
+<osm-tag key='generator:source' value='geothermal' zoom-appear='16' />
+<osm-tag key='generator:source' value='solar' zoom-appear='16' />
+<osm-tag key='generator:source' value='coal' zoom-appear='16' />
+<osm-tag key='generator:source' value='gas' zoom-appear='16' />
+<osm-tag key='generator:source' value='biomass' zoom-appear='16' />
+<osm-tag key='generator:source' value='biofuel' zoom-appear='16' />
+<osm-tag key='generator:source' value='oil' zoom-appear='16' />
+<osm-tag key='generator:source' value='diesel' zoom-appear='16' />
+<osm-tag key='generator:source' value='gasoline' zoom-appear='16' />
+<osm-tag key='generator:source' value='waste' zoom-appear='16' />
+<osm-tag key='power' value='line' zoom-appear='12' />
+<osm-tag key='power' value='minor_line' zoom-appear='12' />
+<osm-tag key='man_made' value='pipeline' zoom-appear='12' />
+<!-- winter sports -->
+<osm-tag key='piste:type' value='downhill' zoom-appear='13' />
+<osm-tag key='piste:type' value='nordic' zoom-appear='13' />
+<osm-tag key='piste:type' value='sled' zoom-appear='13' />
+<osm-tag key='piste:type' value='skitour' zoom-appear='13' />
+<osm-tag key='piste:type' value='hike' zoom-appear='13' />
+<osm-tag key='piste:type' value='sleigh' zoom-appear='13' />
+<osm-tag key='piste:type' value='ice_skate' zoom-appear='13' />
+<osm-tag key='piste:type' value='snow_park' zoom-appear='13' />
+<osm-tag key='piste:type' value='playground' zoom-appear='13' />
+<osm-tag key='man_made' value='piste:halfpipe' zoom-appear='13' />
+<osm-tag key='piste:difficulty' value='novice' renderable='false' />
+<osm-tag key='piste:difficulty' value='easy' renderable='false' />
+<osm-tag key='piste:difficulty' value='intermediate' renderable='false' />
+<osm-tag key='piste:difficulty' value='advanced' renderable='false' />
+<osm-tag key='piste:difficulty' value='expert' renderable='false' />
+<osm-tag key='piste:difficulty' value='freeride' renderable='false' />
+<osm-tag key='piste:grooming' value='classic' renderable='false' />
+<osm-tag key='piste:grooming' value='backcountry' renderable='false' />
+<osm-tag key='aerialway' value='cable_car' zoom-appear='13' />
+<osm-tag key='aerialway' value='chair_lift' zoom-appear='13' />
+<osm-tag key='aerialway' value='drag_lift' equivalent-values='t-bar,j-bar,platter' zoom-appear='13' />
+<osm-tag key='aerialway' value='gondola' zoom-appear='13' />
+<osm-tag key='aerialway' value='magic_carpet' zoom-appear='13' />
+<osm-tag key='aerialway' value='mixed_lift' zoom-appear='13' />
+<osm-tag key='aerialway' value='rope_tow' zoom-appear='13' />
+<osm-tag key='aerialway' value='goods' zoom-appear='13' />
+<!-- OSCM Identifier -->
+<!-- OSMC text-Length -->
+<!-- OSMC Network -->
+<!-- OSCM Color -->
+<!-- OSCM TextColor -->
+<!-- OSMC foreground -->
+<!-- OSMC Background -->
+</ways>
+
+<pois>
+<!-- land_sea -->
+<!-- cycle_relations -->
+<osm-tag key='cycle_node' value='NLBE' zoom-appear='12' />
+<!-- hiking_relations -->
+<osm-tag key='hike_node' value='rwn' zoom-appear='13' />
+<!-- Contourlines -->
+<!-- poly_labels -->
+<osm-tag key='natural' value='water' zoom-appear='10' />
+<osm-tag key='natural' value='glacier' zoom-appear='6' />
+<osm-tag key='natural' value='desert' zoom-appear='6' />
+<osm-tag key='natural' value='mountain_range' zoom-appear='5' />
+<osm-tag key='natural' value='mountain_area' zoom-appear='9' />
+<osm-tag key='natural' value='wood' zoom-appear='8' />
+<osm-tag key='landuse' value='forest' zoom-appear='8' />
+<osm-tag key='landuse' value='basin' zoom-appear='12' />
+<osm-tag key='landuse' value='orchard' zoom-appear='10' />
+<osm-tag key='landuse' value='reservoir' zoom-appear='10' />
+<osm-tag key='leisure' value='nature_reserve' zoom-appear='10' />
+<osm-tag key='boundary' value='national_park' zoom-appear='10' />
+<osm-tag key='boundary' value='protected_area' zoom-appear='10' />
+<osm-tag key='protect_class' value='1' equivalent-values='fpier,1a,1b,1A,1B,2' renderable='false' />
+<osm-tag key='protect_class' value='5' equivalent-values='6' renderable='false' />
+<osm-tag key='protect_class' value='11' equivalent-values='12,13,14,15,16,19' renderable='false' />
+<osm-tag key='protect_class' value='21' equivalent-values='22,23,24,25,26,27,29' renderable='false' />
+<osm-tag key='bBoxWeight' value='tiny' equivalent-values='1,2,3,4,5,6,7,8,9' zoom-appear='15'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xsmall' equivalent-values='10,11,12,13' zoom-appear='12'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='small' equivalent-values='14,15,16,17,18,19,20' zoom-appear='10'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='mid' equivalent-values='21,22,23,24' zoom-appear='9'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='large' equivalent-values='25,26,27,28' zoom-appear='8'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xlarge' equivalent-values='29,30,31,32' zoom-appear='7'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xxlarge' equivalent-values='33,34,35,36,37,38,39,40' zoom-appear='6'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<osm-tag key='bBoxWeight' value='xxxlarge' equivalent-values='41,42,43,44,45,46,47,48,49,50,51,52,53,55' zoom-appear='5'>
+<zoom-override key='natural' value='water' />
+<zoom-override key='landuse' value='reservoir' />
+<zoom-override key='landuse' value='basin' />
+</osm-tag>
+<!-- Labels w/o prozessing -->
+<osm-tag key='natural' value='bay' zoom-appear='9' />
+<osm-tag key='natural' value='cape' zoom-appear='12' />
+<osm-tag key='place' value='sea' zoom-appear='6' />
+<osm-tag key='natural' value='peninsula' zoom-appear='9' />
+<osm-tag key='place' value='archipelago' zoom-appear='9' />
+<osm-tag key='place' value='ocean' zoom-appear='3' />
+<osm-tag key='natural' value='canyon' zoom-appear='12' />
+<osm-tag key='natural' value='fjord' zoom-appear='12' />
+<osm-tag key='natural' value='crater' zoom-appear='12' />
+<osm-tag key='natural' value='valley' zoom-appear='12' />
+<!-- boundarys -->
+<!-- attributes_misc -->
+<osm-tag key='access' value='private' renderable='false' />
+<osm-tag key='access' value='acc_no' equivalent-values='no' renderable='false' />
+<osm-tag key='bicycle' value='bic_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='bicycle' value='bic_designated' equivalent-values='designated,official' renderable='false' />
+<osm-tag key='bicycle' value='bic_permissive' equivalent-values='permissive' renderable='false' />
+<osm-tag key='bicycle' value='bic_no' equivalent-values='no' renderable='false' />
+<osm-tag key='religion' value='christian' renderable='false' />
+<osm-tag key='religion' value='jewish' renderable='false' />
+<osm-tag key='religion' value='muslim' renderable='false' />
+<osm-tag key='religion' value='buddhist' renderable='false' />
+<osm-tag key='religion' value='hindu' renderable='false' />
+<osm-tag key='religion' value='shinto' renderable='false' />
+<!-- attributes_alpine -->
+<osm-tag key='winter_room' value='wr_yes' equivalent-values='yes' renderable='false' />
+<osm-tag key='reservation' value='members_only' renderable='false' />
+<osm-tag key='shelter_type' value='basic_hut' renderable='false' />
+<osm-tag key='shelter_type' value='lean_to' renderable='false' />
+<osm-tag key='shelter_type' value='public_transport' renderable='false' />
+<osm-tag key='shelter_type' value='picnic_shelter' renderable='false' />
+<osm-tag key='shelter_type' value='weather_shelter' equivalent-values='Wetterpilz' renderable='false' />
+<osm-tag key='shelter_type' value='rock_shelter' renderable='false' />
+<osm-tag key='noexit' value='ne_yes' equivalent-values='yes' zoom-appear='14' />
+<!-- tags_alpine -->
+<osm-tag key='safety_rope' value='sr_yes' equivalent-values='yes' zoom-appear='15' />
+<osm-tag key='ladder' value='ld_yes' equivalent-values='yes' zoom-appear='15' />
+<osm-tag key='rungs' value='rn_yes' equivalent-values='yes' zoom-appear='15' />
+<!-- attributes_MTB -->
+<!-- attrib class:bike -->
+<!-- barriers -->
+<osm-tag key='barrier' value='border_control' zoom-appear='8' />
+<osm-tag key='barrier' value='checkpoint' zoom-appear='8' />
+<osm-tag key='barrier' value='block' zoom-appear='14' />
+<osm-tag key='barrier' value='bollard' zoom-appear='14' />
+<osm-tag key='barrier' value='cycle_barrier' zoom-appear='14' />
+<osm-tag key='barrier' value='gate' zoom-appear='14' />
+<osm-tag key='barrier' value='lift_gate' equivalent-values='swing_gate' zoom-appear='14' />
+<osm-tag key='barrier' value='chain' zoom-appear='14' />
+<osm-tag key='barrier' value='stile' zoom-appear='14' />
+<osm-tag key='barrier' value='kissing_gate' zoom-appear='14' />
+<osm-tag key='barrier' value='turnstile' zoom-appear='14' />
+<!-- route -->
+<!-- amenity -->
+<osm-tag key='amenity' value='atm' zoom-appear='15' />
+<osm-tag key='amenity' value='bank' zoom-appear='15' />
+<osm-tag key='amenity' value='bench' zoom-appear='17' />
+<osm-tag key='leisure' value='picnic_table' zoom-appear='15' />
+<osm-tag key='amenity' value='bicycle_rental' zoom-appear='14' />
+<osm-tag key='amenity' value='biergarten' zoom-appear='15' />
+<osm-tag key='amenity' value='bus_station' zoom-appear='13' />
+<osm-tag key='amenity' value='cafe' zoom-appear='16' />
+<osm-tag key='amenity' value='cinema' zoom-appear='17' />
+<osm-tag key='amenity' value='doctors' zoom-appear='12' />
+<osm-tag key='amenity' value='drinking_water' zoom-appear='13' />
+<osm-tag key='amenity' value='embassy' zoom-appear='13' />
+<osm-tag key='amenity' value='fast_food' zoom-appear='17' />
+<osm-tag key='amenity' value='fire_station' zoom-appear='17' />
+<osm-tag key='amenity' value='fountain' zoom-appear='14' />
+<osm-tag key='amenity' value='fuel' zoom-appear='14' />
+<osm-tag key='amenity' value='grave_yard' zoom-appear='13' />
+<osm-tag key='amenity' value='hospital' equivalent-values='clinic' zoom-appear='13' />
+<osm-tag key='amenity' value='kindergarten' zoom-appear='17' />
+<osm-tag key='amenity' value='library' zoom-appear='17' />
+<osm-tag key='amenity' value='marketplace' zoom-appear='15' />
+<osm-tag key='amenity' value='parking' zoom-appear='15' />
+<osm-tag key='amenity' value='pharmacy' zoom-appear='13' />
+<osm-tag key='emergency' value='phone' zoom-appear='16' />
+<osm-tag key='emergency' value='defibrillator' zoom-appear='14' />
+<osm-tag key='amenity' value='place_of_worship' zoom-appear='14' />
+<osm-tag key='amenity' value='police' zoom-appear='15' />
+<osm-tag key='amenity' value='post_box' zoom-appear='16' />
+<osm-tag key='amenity' value='post_office' zoom-appear='14' />
+<osm-tag key='amenity' value='pub' zoom-appear='17' />
+<osm-tag key='amenity' value='bar' zoom-appear='17' />
+<osm-tag key='amenity' value='recycling' zoom-appear='17' />
+<osm-tag key='amenity' value='restaurant' zoom-appear='14' />
+<osm-tag key='amenity' value='school' zoom-appear='17' />
+<osm-tag key='amenity' value='shelter' zoom-appear='13' />
+<osm-tag key='amenity' value='telephone' zoom-appear='17' />
+<osm-tag key='amenity' value='theatre' zoom-appear='17' />
+<osm-tag key='amenity' value='toilets' zoom-appear='14' />
+<osm-tag key='amenity' value='university' zoom-appear='17' />
+<osm-tag key='amenity' value='ferry_terminal' zoom-appear='13' />
+<osm-tag key='amenity' value='charging_station' equivalent-values='ev_charging' zoom-appear='14' />
+<!-- leisure -->
+<osm-tag key='leisure' value='playground' zoom-appear='15' />
+<osm-tag key='leisure' value='slipway' zoom-appear='15' />
+<osm-tag key='leisure' value='water_park' zoom-appear='14' />
+<osm-tag key='sport' value='swimming' zoom-appear='14' />
+<osm-tag key='sport' value='climbing' zoom-appear='14' />
+<!-- shop -->
+<osm-tag key='shop' value='hairdresser' zoom-appear='16' />
+<osm-tag key='shop' value='chemist' equivalent-values='herbalist' zoom-appear='16' />
+<osm-tag key='shop' value='butcher' equivalent-values='seafood,deli' zoom-appear='16' />
+<osm-tag key='shop' value='organic' equivalent-values='farm,greengrocer,cheese' zoom-appear='16' />
+<osm-tag key='shop' value='laundry' equivalent-values='dry_cleaning' zoom-appear='16' />
+<osm-tag key='shop' value='books' equivalent-values='newsagent' zoom-appear='16' />
+<osm-tag key='shop' value='beverages' equivalent-values='alcohol' zoom-appear='16' />
+<osm-tag key='shop' value='supermarket' zoom-appear='14' />
+<osm-tag key='shop' value='mall' equivalent-values='department_store' zoom-appear='14' />
+<osm-tag key='shop' value='convenience' equivalent-values='general,kiosk' zoom-appear='14' />
+<osm-tag key='shop' value='bakery' zoom-appear='14' />
+<osm-tag key='shop' value='doityourself' equivalent-values='hardware,houseware' zoom-appear='16' />
+<osm-tag key='shop' value='sports' equivalent-values='outdoor,dive,fishing,hunting' zoom-appear='15' />
+<osm-tag key='shop' value='bicycle' zoom-appear='15' />
+<osm-tag key='shop' value='car' equivalent-values='car_repair,car_parts,motorcycle' zoom-appear='16' />
+<osm-tag key='vending' value='bicycle_tube' zoom-appear='16' />
+<osm-tag key='shop' value='travel_agency' zoom-appear='14' />
+<!-- railway -->
+<osm-tag key='railway' value='halt' zoom-appear='14' />
+<osm-tag key='railway' value='level_crossing' zoom-appear='16' />
+<osm-tag key='railway' value='crossing' zoom-appear='16' />
+<osm-tag key='station' value='light_rail' zoom-appear='14'>
+<zoom-override key='railway' value='station' />
+</osm-tag>
+<osm-tag key='railway' value='station' zoom-appear='12' />
+<osm-tag key='station' value='subway' zoom-appear='14'>
+<zoom-override key='railway' value='station' />
+</osm-tag>
+<osm-tag key='railway' value='tram_stop' zoom-appear='14' />
+<!-- tourism -->
+<osm-tag key='tourism' value='alpine_hut' zoom-appear='12' />
+<osm-tag key='tourism' value='attraction' zoom-appear='14' />
+<osm-tag key='tourism' value='camp_site' zoom-appear='12' />
+<osm-tag key='tourism' value='caravan_site' zoom-appear='12' />
+<osm-tag key='tourism' value='chalet' zoom-appear='15' />
+<osm-tag key='tourism' value='apartment' zoom-appear='15' />
+<osm-tag key='tourism' value='hostel' zoom-appear='14' />
+<osm-tag key='tourism' value='hotel' equivalent-values='guest_house,motel' zoom-appear='14' />
+<osm-tag key='tourism' value='information' zoom-appear='14' />
+<osm-tag key='tourism' value='museum' zoom-appear='17' />
+<osm-tag key='tourism' value='picnic_site' zoom-appear='14' />
+<osm-tag key='tourism' value='viewpoint' zoom-appear='14' />
+<osm-tag key='tourism' value='wilderness_hut' zoom-appear='12' />
+<osm-tag key='tourism' value='zoo' zoom-appear='15' />
+<!-- information -->
+<osm-tag key='information' value='office' zoom-appear='14' />
+<osm-tag key='information' value='guidepost' zoom-appear='15' />
+<osm-tag key='information' value='board' equivalent-values='map' zoom-appear='15' />
+<osm-tag key='information' value='terminal' zoom-appear='15' />
+<!-- historic -->
+<osm-tag key='historic' value='castle' zoom-appear='14' />
+<osm-tag key='historic' value='memorial' zoom-appear='15' />
+<osm-tag key='memorial' value='stolperstein' equivalent-values='Stolperstein' renderable='false' />
+<osm-tag key='memorial' value='plaque' equivalent-values='plate, blue_plaque' renderable='false' />
+<osm-tag key='memorial' value='statue' equivalent-values='bust, sculpture' renderable='false' />
+<osm-tag key='memorial' value='stone' equivalent-values='obelisk, stele' renderable='false' />
+<osm-tag key='memorial' value='war_memorial' renderable='false' />
+<osm-tag key='historic' value='monument' zoom-appear='15' />
+<osm-tag key='historic' value='ruins' zoom-appear='15' />
+<osm-tag key='historic' value='wayside_cross' zoom-appear='15' />
+<osm-tag key='historic' value='wayside_shrine' zoom-appear='15' />
+<osm-tag key='historic' value='archaeological_site' zoom-appear='15' />
+<!-- place -->
+<osm-tag key='place' value='country' zoom-appear='3' />
+<osm-tag key='place' value='state' zoom-appear='5' />
+<osm-tag key='place' value='city' zoom-appear='6' />
+<osm-tag key='place' value='town' zoom-appear='8' />
+<osm-tag key='place' value='village' zoom-appear='8' />
+<osm-tag key='place' value='suburb' zoom-appear='9' />
+<osm-tag key='place' value='quarter' zoom-appear='9' />
+<osm-tag key='place' value='neighbourhood' equivalent-values='neighborhood' zoom-appear='9' />
+<osm-tag key='place' value='island' zoom-appear='9' />
+<osm-tag key='place' value='islet' zoom-appear='9' />
+<osm-tag key='place' value='hamlet' zoom-appear='9' />
+<osm-tag key='place' value='isolated_dwelling' zoom-appear='12' />
+<osm-tag key='place' value='farm' zoom-appear='12' />
+<osm-tag key='place' value='locality' zoom-appear='15' />
+<osm-tag key='capital' value='2' equivalent-values='yes' renderable='false' />
+<osm-tag key='capital' value='4' renderable='false' />
+<!-- natural -->
+<osm-tag key='natural' value='cave_entrance' zoom-appear='14' />
+<osm-tag key='natural' value='peak' zoom-appear='10' />
+<osm-tag key='summit:cross' value='yes' renderable='false' zoom-appear='10' />
+<osm-tag key='natural' value='volcano' zoom-appear='10' />
+<osm-tag key='natural' value='saddle' zoom-appear='10' />
+<osm-tag key='natural' value='geyser' zoom-appear='12' />
+<osm-tag key='natural' value='spring' zoom-appear='13' />
+<osm-tag key='natural' value='hot_spring' zoom-appear='13' />
+<osm-tag key='man_made' value='water_well' zoom-appear='13' />
+<osm-tag key='drinking_water' value='yes' equivalent-values='saisonal' zoom-appear='13' />
+<osm-tag key='drinking_water' value='no' zoom-appear='13' />
+<osm-tag key='natural' value='tree' zoom-appear='14' />
+<!-- landuse -->
+<!-- highway -->
+<osm-tag key='highway' value='ford' zoom-appear='12' />
+<osm-tag key='highway' value='bus_stop' zoom-appear='14' />
+<osm-tag key='highway' value='mini_roundabout' zoom-appear='15' />
+<osm-tag key='highway' value='traffic_signals' zoom-appear='17' />
+<osm-tag key='highway' value='turning_circle' zoom-appear='13' />
+<osm-tag key='highway' value='emergency_access_point' zoom-appear='12' />
+<osm-tag key='ford' value='fd_yes' equivalent-values='stepping_stones,yes' zoom-appear='12' />
+<osm-tag key='highway' value='motorway_junction' zoom-appear='12' />
+<osm-tag key='highway' value='motorway_junction_noref' zoom-appear='14' />
+<osm-tag key='mountain_pass' value='yes' zoom-appear='12' />
+<osm-tag key='highway' value='passing_place' zoom-appear='15' />
+<!-- buildings -->
+<osm-tag key='man_made' value='lighthouse' zoom-appear='12' />
+<osm-tag key='man_made' value='surveillance' zoom-appear='14' />
+<osm-tag key='man_made' value='survey_point' zoom-appear='14' />
+<osm-tag key='man_made' value='windmill' zoom-appear='14' />
+<osm-tag key='man_made' value='reservoir_covered' zoom-appear='15' />
+<osm-tag key='tower' value='communication' zoom-appear='12' />
+<osm-tag key='tower' value='observation' zoom-appear='12' />
+<osm-tag key='tower' value='windmill' zoom-appear='14' />
+<!-- waterways -->
+<osm-tag key='waterway' value='water_point' zoom-appear='13' />
+<osm-tag key='waterway' value='weir' zoom-appear='14' />
+<osm-tag key='waterway' value='waterfall' zoom-appear='15' />
+<osm-tag key='natural' value='waterfall' zoom-appear='15' />
+<osm-tag key='waterway' value='rapids' zoom-appear='15' />
+<osm-tag key='natural' value='rapids' zoom-appear='15' />
+<osm-tag key='waterway' value='wrn_kanal' zoom-appear='10' />
+<osm-tag key='waterway' value='lock_gate' zoom-appear='10' />
+<!-- air traffic -->
+<osm-tag key='aeroway' value='aerodrome' zoom-appear='11' />
+<osm-tag key='aeroway' value='airport' zoom-appear='11' />
+<osm-tag key='aeroway' value='gate' zoom-appear='17' />
+<osm-tag key='aeroway' value='helipad' zoom-appear='12' />
+<!-- power -->
+<osm-tag key='power' value='generator' zoom-appear='16' />
+<osm-tag key='generator:source' value='wind' zoom-appear='14' />
+<osm-tag key='generator:source' value='nuclear' zoom-appear='16' />
+<osm-tag key='generator:source' value='hydro' zoom-appear='16' />
+<osm-tag key='generator:source' value='tidal' zoom-appear='16' />
+<osm-tag key='generator:source' value='wave' zoom-appear='16' />
+<osm-tag key='generator:source' value='geothermal' zoom-appear='16' />
+<osm-tag key='generator:source' value='solar' zoom-appear='16' />
+<osm-tag key='generator:source' value='coal' zoom-appear='16' />
+<osm-tag key='generator:source' value='gas' zoom-appear='16' />
+<osm-tag key='generator:source' value='biomass' zoom-appear='16' />
+<osm-tag key='generator:source' value='biofuel' zoom-appear='16' />
+<osm-tag key='generator:source' value='oil' zoom-appear='16' />
+<osm-tag key='generator:source' value='diesel' zoom-appear='16' />
+<osm-tag key='generator:source' value='gasoline' zoom-appear='16' />
+<osm-tag key='generator:source' value='waste' zoom-appear='16' />
+<!-- winter sports -->
+<!-- OSCM Identifier -->
+<osm-tag key='osmc' value='osmc_yes' equivalent-values='yes' zoom-appear='13' />
+<osm-tag key='osmc' value='osmc_no' equivalent-values='no' zoom-appear='13' />
+<!-- OSMC text-Length -->
+<osm-tag key='osmc_text_len' value='wmtl_1' zoom-appear='13' />
+<osm-tag key='osmc_text_len' value='wmtl_2' zoom-appear='13' />
+<osm-tag key='osmc_text_len' value='wmtl_3' zoom-appear='13' />
+<osm-tag key='osmc_text_len' value='wmtl_4' zoom-appear='13' />
+<osm-tag key='osmc_text_len' value='wmtl_5' zoom-appear='13' />
+<!-- OSMC Network -->
+<osm-tag key='osmc_nw' value='wmnw_iwn' zoom-appear='13' />
+<osm-tag key='osmc_nw' value='wmnw_nwn' zoom-appear='13' />
+<osm-tag key='osmc_nw' value='wmnw_rwn' zoom-appear='13' />
+<osm-tag key='osmc_nw' value='wmnw_lwn' zoom-appear='13' />
+<!-- OSCM Color -->
+<!-- OSCM TextColor -->
+<osm-tag key='osmc_textcolor' value='wmtc_black' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_white' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_yellow' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_red' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_green' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_blue' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_brown' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_orange' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_gray' zoom-appear='13' />
+<osm-tag key='osmc_textcolor' value='wmtc_purple' zoom-appear='13' />
+<!-- OSMC foreground -->
+<osm-tag key='osmc_foreground' value='wmfg_blue_l' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_bowl' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_circle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_corner' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_cross' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_fork' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_lower' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_pointer' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_rectangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_slash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_stripe' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_triangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_triangle_turned' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_turned_t' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_blue_x' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_l' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_arch' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_backslash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_circle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_corner' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_crest' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_cross' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_hiker' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_drop' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_drop_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_fork' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_lower' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_pointer' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_rectangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_slash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_stripe' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_triangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_triangle_turned' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_turned_t' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_red_x' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_l' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_backslash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_bowl' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_circle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_corner' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_cross' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_hiker' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_fork' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_lower' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_pointer' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_rectangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_rectangle_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_slash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_stripe' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_triangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_turned_t' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_yellow_x' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_arch' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_circle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_crest' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_cross' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_fork' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_horse' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_pointer' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_rectangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_rectangle_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_red_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_triangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_triangle_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_black_x' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_l' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_backslash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_bowl' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_circle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_corner' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_cross' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_hiker' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_drop_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_fork' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_horse' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_lower' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_pointer' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_rectangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_slash' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_stripe' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_triangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_triangle_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_triangle_turned' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_turned_t' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_green_x' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_arch' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_circle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_cross' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_diamond_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_hiker' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_lower' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_pointer' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_rectangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_rectangle_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_red_diamond' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_stripe' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_triangle' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_triangle_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_turned_t' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_white_x' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_ammonit' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_bridleway' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_heart' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_hiker' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_mine' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_orange_bar' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_orange_diamond_line' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_orange_dot' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_shell' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_shell_modern' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_tower' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='wmfg_wolfshook' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='blue_right' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='green_right' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='orange_right' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='red_right' zoom-appear='13' />
+<osm-tag key='osmc_foreground' value='white_right' zoom-appear='13' />
+<!-- OSMC Background -->
+<osm-tag key='osmc_background' value='wmbg_black' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_black_circle' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_blue' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_blue_circle' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_blue_frame' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_blue_round' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_brown' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_green' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_green_frame' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_green_round' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_orange' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_purple' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_red' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_red_circle' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_red_frame' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_red_round' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_white' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_white_circle' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_white_round' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_yellow' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_yellow_circle' zoom-appear='13' />
+<osm-tag key='osmc_background' value='wmbg_yellow_frame' zoom-appear='13' />
+</pois>
+
+</tag-mapping>

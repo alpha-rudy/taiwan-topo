@@ -422,7 +422,7 @@ mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile 
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
+	export JAVACMD_OPTIONS=-Xmx64G && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(PBF)" \
 		--mapfile-writer \
