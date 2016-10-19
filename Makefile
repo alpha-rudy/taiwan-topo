@@ -237,7 +237,11 @@ GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 
+ifeq ($(MAPID),)
+TARGETS := $(MAPSFORGE)
+else
 TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
+endif
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $(EXTRACT)
@@ -419,7 +423,7 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
-$(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile 
+$(MAPSFORGE): $(PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS=-Xmx64G && \
