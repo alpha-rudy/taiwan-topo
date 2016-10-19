@@ -205,7 +205,7 @@ NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx4096M
+JAVACMD_OPTIONS := -Xmx4G
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -228,6 +228,7 @@ MAP := $(MAP_DIR)/.done
 PBF := $(BUILD_DIR)/$(REGION).osm.pbf
 TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 STYLE_DIR := $(ROOT_DIR)/styles/$(STYLE)
+TAG_MAPPING := $(ROOT_DIR)/tag-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
@@ -342,8 +343,10 @@ $(GMAPSUPP): $(MAP)
 
 ifeq ($(LANG),zh) 
 NTL := name,name:zh,name:en
+MAPSFORGE_NTL := zh,en
 else ifeq ($(LANG),en)
-NTL := name:zh,name:en,name
+NTL := name:en,name:zh,name
+MAPSFORGE_NTL := en
 else
     $(error Error: LANG not specified. something wrong at SUITE handlation)
 endif
@@ -416,13 +419,17 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
-$(MAPSFORGE): $(PBF)
+$(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile 
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(PBF)" \
-		--mapfile-writer file="$@"
+		--mapfile-writer \
+		    preferred-languages="$(MAPSFORGE_NTL)" \
+		    tag-conf-file="$(TAG_MAPPING)" \
+		    polygon-clipping=true way-clipping=true label-position=true \
+		    file="$@"
 
 $(TILES): $(PBF)
 	[ -n "$(MAPID)" ]
