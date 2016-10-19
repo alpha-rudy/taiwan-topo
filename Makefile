@@ -6,7 +6,34 @@
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
 # target SUITE, no default
-ifeq ($(SUITE),beibeiji_bw)
+ifeq ($(SUITE),taiwan)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Taiwan.poly
+DEM_NAME := MOI
+
+else ifeq ($(SUITE),beibeiji)
+REGION := Beibeiji
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Beibeiji.poly
+DEM_NAME := MOI
+
+else ifeq ($(SUITE),taipei)
+REGION := Taipei
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := Taipei.poly
+DEM_NAME := MOI
+
+else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
@@ -196,8 +223,11 @@ BUILD_DIR := $(ROOT_DIR)/install
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
-DATA := $(DATA_DIR)/.done
+TILES := $(DATA_DIR)/.done
 MAP := $(MAP_DIR)/.done
+PBF := $(BUILD_DIR)/$(REGION).osm.pbf
+TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
+STYLE_DIR := $(ROOT_DIR)/styles/$(STYLE)
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
@@ -224,16 +254,19 @@ clean:
 
 distclean: clean
 	-rm -rf $(DATA_DIR)
+	-rm -rf $(PBF)
 	-rm -rf $(EXTRACT)
 
 .PHONY: install
 install: $(GMAPSUPP)
+	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
 	cat taiwan_topo.html | sed \
 	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
 
 drop: all
+	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(TARGETS) $(INSTALL_DIR)
 	cat taiwan_topo.html | sed \
@@ -242,6 +275,7 @@ drop: all
 .PHONY: nsis
 nsis: $(NSIS)
 $(NSIS): $(MAP)
+	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
@@ -272,6 +306,7 @@ $(NSIS): $(MAP)
 .PHONY: gmap
 gmap: $(GMAP)
 $(GMAP): $(MAP)
+	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
@@ -287,6 +322,7 @@ $(GMAP): $(MAP)
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
 $(GMAPSUPP): $(MAP)
+	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
@@ -312,11 +348,12 @@ else
     $(error Error: LANG not specified. something wrong at SUITE handlation)
 endif
 
-$(MAP): $(DATA)
+$(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
+	[ -n "$(MAPID)" ]
 	rm -rf $(MAP_DIR)
 	mkdir -p $(MAP_DIR)
 	cd $(MAP_DIR) && \
-	    cat $(ROOT_DIR)/TYPs/$(TYP).txt | sed \
+	    cat $(TYP_FILE) | sed \
 	    	-e "s|ä|a|g" \
 	    	-e "s|é|e|g" \
 	    	-e "s|ß|b|g" \
@@ -330,7 +367,7 @@ $(MAP): $(DATA)
 		$(TYP).txt && \
 	    cp $(TYP).typ $(MAPID).TYP && \
 	    mkdir $(MAP_DIR)/style && \
-	    cp -a $(ROOT_DIR)/styles/$(STYLE) $(MAP_DIR)/style/$(STYLE) && \
+	    cp -a $(STYLE_DIR) $(MAP_DIR)/style/$(STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(MAP_DIR)/ && \
 	    cat $(ROOT_DIR)/mkgmap.cfg | sed \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
@@ -352,6 +389,7 @@ $(MAP): $(DATA)
 	touch $(MAP)
 
 $(EXTRACT):
+	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
 	    curl http://download.geofabrik.de/asia/$(EXTRACT_FILE) -o $(EXTRACT_FILE) && \
@@ -364,30 +402,33 @@ ifneq (,$(strip $(POLY_FILE)))
     OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)")
 endif
 
-.PHONY: mapsforge
-mapsforge: $(MAPSFORGE)
-$(MAPSFORGE): $(EXTRACT) $(ELEVATION)
-	rm -rf $(DATA_DIR)
-	mkdir -p $(DATA_DIR)
-	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && cd $(DATA_DIR) && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf "$(EXTRACT)" \
-		--read-pbf "$(ELEVATION)" \
-		--merge \
-		$(OSMOSIS_OPTS) \
-		--mapfile-writer file="$@"
-
-$(DATA): $(EXTRACT) $(ELEVATION)
-	rm -rf $(DATA_DIR)
-	mkdir -p $(DATA_DIR)
-	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && cd $(DATA_DIR) && \
+$(PBF): $(EXTRACT) $(ELEVATION)
+	[ -n "$(REGION)" ]
+	mkdir -p $(BUILD_DIR)
+	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT) \
 		--read-pbf $(ELEVATION) \
 		--merge \
 		$(OSMOSIS_OPTS) \
-		--write-pbf $(REGION).osm.pbf \
-		omitmetadata=true && \
+		--write-pbf $(PBF) \
+		omitmetadata=true
+
+.PHONY: mapsforge
+mapsforge: $(MAPSFORGE)
+$(MAPSFORGE): $(PBF)
+	[ -n "$(REGION)" ]
+	mkdir -p $(BUILD_DIR)
+	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
+	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+		--read-pbf "$(PBF)" \
+		--mapfile-writer file="$@"
+
+$(TILES): $(PBF)
+	[ -n "$(MAPID)" ]
+	rm -rf $(DATA_DIR)
+	mkdir -p $(DATA_DIR)
+	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && cd $(DATA_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
 	    	--max-threads=4 \
 	    	--geonames-file=$(CITY) \
@@ -400,5 +441,5 @@ $(DATA): $(EXTRACT) $(ELEVATION)
 		--search-limit=1000000000 \
 		--output=xml \
 		--output-dir=$(DATA_DIR) \
-		$(REGION).osm.pbf
-	touch $(DATA)
+		$(PBF)
+	touch $@
