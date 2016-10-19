@@ -429,6 +429,9 @@ $(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
+		    zoom-interval-conf=10,8,11,14,12,21 \
+		    map-start-zoom=12 map-start-position=25.0378,121.549 \
+		    comment="$(NAME_SHORT)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
 		    file="$@"
 
 $(TILES): $(PBF)
