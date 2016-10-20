@@ -27,7 +27,7 @@ OSM 是自由且開源的圖資，由默默耕耘的 OSM Taiwan ([openstreetmap.
 
 MOI 來自 Rex ([http://blog.nutsfactory.net](http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm/)) 轉換 "內政部 20 公尺網格數值地形模型資料" ([tgos.nat.gov.tw](https://tgos.nat.gov.tw/tgos/web/tgos_home.aspx)) 而成的等高線，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應錯誤的地方，以提供大家討論與參考。探勘式登山建議仍搭配經建三版地形圖 ([地圖產生器](http://map.happyman.idv.tw/~happyman/twmap3))。
 
-Style 由我來調整成合適登山與尋寶（hiking/geocaching）顯示樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
+Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hiking/geocaching）風格樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
 
 讀者可以隨意下載或拿給別人使用（請用本頁連結來散佈）。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能因為使用此地圖所發生的損失（包括受傷）。
 
@@ -38,6 +38,10 @@ macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManage
 
 ## 重大修改歷程
 
+* 2016, 10/20
+  * 調整高鐵、省道、捷運、建築物的配色
+  * 改用 OSM 預編的 bounds 與 sea
+  * 修改山徑的配色與標註 (label)
 * 2016, 10/13
   * 再次依據北三兄的建議，調整道路與邊界的配色
   * 調整道路邊線的配色
