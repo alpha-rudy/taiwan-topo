@@ -433,14 +433,14 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
-$(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile
+$(MAPSFORGE): $(PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS=-Xmx64G && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(PBF)" \
 		--mapfile-writer \
-		    type=hd \
+		    $(MF_WRITER_OPTS) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
