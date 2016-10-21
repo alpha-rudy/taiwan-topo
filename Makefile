@@ -6,7 +6,16 @@
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
 # target SUITE, no default
-ifeq ($(SUITE),taiwan)
+ifeq ($(SUITE),yushan)
+REGION := Yushan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest.osm.pbf
+POLY_FILE := YushanNationalPark.poly
+DEM_NAME := MOI
+
+else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
@@ -406,11 +415,12 @@ $(EXTRACT):
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)")
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
 endif
 
 $(PBF): $(EXTRACT) $(ELEVATION)
 	[ -n "$(REGION)" ]
+	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
@@ -423,7 +433,7 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
-$(MAPSFORGE): $(PBF) $(TAG_MAPPING)
+$(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS=-Xmx64G && \
@@ -433,9 +443,9 @@ $(MAPSFORGE): $(PBF) $(TAG_MAPPING)
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
-		    zoom-interval-conf=10,8,11,14,12,21 \
-		    map-start-zoom=12 map-start-position=25.0378,121.549 \
-		    comment="$(NAME_SHORT)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
+		    zoom-interval-conf=7,0,7,10,8,11,14,12,21 \
+		    map-start-zoom=12 \
+		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
 		    file="$@"
 
 $(TILES): $(PBF)
