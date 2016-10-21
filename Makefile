@@ -440,6 +440,7 @@ $(MAPSFORGE): $(PBF) $(TAG_MAPPING) Makefile
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(PBF)" \
 		--mapfile-writer \
+		    type=hd \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
