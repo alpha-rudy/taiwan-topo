@@ -24,6 +24,7 @@
 <osm-tag key='contour_ext' value='elevation_major' force-polygon-line='true' zoom-appear='8' />
 <osm-tag key='contour_ext' value='elevation_medium' force-polygon-line='true' zoom-appear='8' />
 <osm-tag key='contour_ext' value='elevation_minor' force-polygon-line='true' zoom-appear='11' />
+<!--
 <osm-tag key='ele' value='100' zoom-appear='15' />
 <osm-tag key='ele' value='200' zoom-appear='15' />
 <osm-tag key='ele' value='300' zoom-appear='15' />
@@ -64,57 +65,7 @@
 <osm-tag key='ele' value='3800' zoom-appear='15' />
 <osm-tag key='ele' value='3900' zoom-appear='15' />
 <osm-tag key='ele' value='4000' zoom-appear='15' />
-<osm-tag key='ele' value='4100' zoom-appear='15' />
-<osm-tag key='ele' value='4200' zoom-appear='15' />
-<osm-tag key='ele' value='4300' zoom-appear='15' />
-<osm-tag key='ele' value='4400' zoom-appear='15' />
-<osm-tag key='ele' value='4500' zoom-appear='15' />
-<osm-tag key='ele' value='4600' zoom-appear='15' />
-<osm-tag key='ele' value='4700' zoom-appear='15' />
-<osm-tag key='ele' value='4800' zoom-appear='15' />
-<osm-tag key='ele' value='4900' zoom-appear='15' />
-<osm-tag key='ele' value='5000' zoom-appear='15' />
-<osm-tag key='ele' value='5100' zoom-appear='15' />
-<osm-tag key='ele' value='5200' zoom-appear='15' />
-<osm-tag key='ele' value='5300' zoom-appear='15' />
-<osm-tag key='ele' value='5400' zoom-appear='15' />
-<osm-tag key='ele' value='5500' zoom-appear='15' />
-<osm-tag key='ele' value='5600' zoom-appear='15' />
-<osm-tag key='ele' value='5700' zoom-appear='15' />
-<osm-tag key='ele' value='5800' zoom-appear='15' />
-<osm-tag key='ele' value='5900' zoom-appear='15' />
-<osm-tag key='ele' value='6000' zoom-appear='15' />
-<osm-tag key='ele' value='6100' zoom-appear='15' />
-<osm-tag key='ele' value='6200' zoom-appear='15' />
-<osm-tag key='ele' value='6300' zoom-appear='15' />
-<osm-tag key='ele' value='6400' zoom-appear='15' />
-<osm-tag key='ele' value='6500' zoom-appear='15' />
-<osm-tag key='ele' value='6600' zoom-appear='15' />
-<osm-tag key='ele' value='6700' zoom-appear='15' />
-<osm-tag key='ele' value='6800' zoom-appear='15' />
-<osm-tag key='ele' value='6900' zoom-appear='15' />
-<osm-tag key='ele' value='7000' zoom-appear='15' />
-<osm-tag key='ele' value='7100' zoom-appear='15' />
-<osm-tag key='ele' value='7200' zoom-appear='15' />
-<osm-tag key='ele' value='7300' zoom-appear='15' />
-<osm-tag key='ele' value='7400' zoom-appear='15' />
-<osm-tag key='ele' value='7500' zoom-appear='15' />
-<osm-tag key='ele' value='7600' zoom-appear='15' />
-<osm-tag key='ele' value='7700' zoom-appear='15' />
-<osm-tag key='ele' value='7800' zoom-appear='15' />
-<osm-tag key='ele' value='7900' zoom-appear='15' />
-<osm-tag key='ele' value='8000' zoom-appear='15' />
-<osm-tag key='ele' value='8100' zoom-appear='15' />
-<osm-tag key='ele' value='8200' zoom-appear='15' />
-<osm-tag key='ele' value='8300' zoom-appear='15' />
-<osm-tag key='ele' value='8400' zoom-appear='15' />
-<osm-tag key='ele' value='8500' zoom-appear='15' />
-<osm-tag key='ele' value='8600' zoom-appear='15' />
-<osm-tag key='ele' value='8700' zoom-appear='15' />
-<osm-tag key='ele' value='8800' zoom-appear='15' />
-<osm-tag key='ele' value='8900' zoom-appear='15' />
-<osm-tag key='ele' value='9000' zoom-appear='15' />
-<osm-tag key='ele' value='(c)www.OpenAndroMaps.org' zoom-appear='3' />
+-->
 <!-- poly_labels -->
 <osm-tag key='protect_class' value='1' equivalent-values='fpier,1a,1b,1A,1B,2' renderable='false' />
 <osm-tag key='protect_class' value='5' equivalent-values='6' renderable='false' />
