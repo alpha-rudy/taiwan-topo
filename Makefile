@@ -245,6 +245,7 @@ GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 
 ifeq ($(MAPID),)
 TARGETS := $(MAPSFORGE)
@@ -430,6 +431,13 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 		$(OSMOSIS_OPTS) \
 		--write-pbf $(PBF) \
 		omitmetadata=true
+.PHONY: mapsforge_style
+mapsforge_style: $(MAPSFORGE_STYLE)
+$(MAPSFORGE_STYLE): styles/MOI_OSM_style
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cd styles/MOI_OSM_style && \
+	   zip -r $@ * 
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
