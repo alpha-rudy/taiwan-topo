@@ -416,7 +416,7 @@ $(EXTRACT):
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" bbox-enlargement=500 completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
 endif
 
 $(PBF): $(EXTRACT) $(ELEVATION)
