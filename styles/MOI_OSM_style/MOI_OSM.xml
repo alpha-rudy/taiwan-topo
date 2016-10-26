@@ -1521,13 +1521,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 		</rule>
 	</rule>
 	<rule cat="borders" e="way" k="leisure|boundary" v="nature_reserve|national_park|protected_area">
-		<rule e="any" k="protect_class" v="1|~" zoom-max="7">
+            <!-- <rule e="any" k="protect_class" v="1|~" zoom-max="7">
 			<area fill="#80C0FFBF" />
-		</rule>
+                </rule> -->
 		<rule e="any" k="protect_class" v="1|~" zoom-min="8" zoom-max="10">
 			<area fill="#60C0FFBF" />
 		</rule>
-		<rule e="any" k="protect_class" v="1|~" zoom-min="8" zoom-max="13">
+		<rule e="any" k="protect_class" v="1|~" zoom-min="11" zoom-max="13">
 			<area src="file:moiosm_res/p_nature-reserve.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" />
 		</rule>
 		<rule e="any" k="protect_class" v="1|~" zoom-min="14" zoom-max="14">
