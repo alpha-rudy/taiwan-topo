@@ -1536,10 +1536,25 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 			</rule>
 		</rule>
 	</rule>
-	<rule cat="borders" e="way" k="leisure|boundary" v="nature_reserve|national_park|protected_area">
-            <!-- <rule e="any" k="protect_class" v="1|~" zoom-max="7">
-			<area fill="#80C0FFBF" />
-                </rule> -->
+<!--
+	<rule cat="borders" e="way" k="boundary" v="national_park">
+	        <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
+		     <area fill="#60C0FFBF" />
+  	        </rule>
+	        <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
+	            <line stroke="#709DFF9C" stroke-width="6" stroke-linecap="butt" />
+	            <line stroke="#EEEEEE" stroke-width="0.7" />
+	            <line stroke="#333333" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt" />
+		     <area fill="#60C0FFBF" />
+	        </rule>
+	        <rule e="any" k="*" v="*" zoom-min="14">
+	            <line stroke="#409DFF9C" stroke-width="5" stroke-linecap="butt" />
+ 	           <line stroke="#FFFFFF" stroke-width="0.2" />
+ 	           <line stroke="#444444" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt" />
+		     <area fill="#60C0FFBF" />
+	        </rule>
+	</rule>
+	<rule cat="borders" e="way" k="leisure|boundary" v="nature_reserve|protected_area">
 		<rule e="any" k="protect_class" v="1|~" zoom-min="8" zoom-max="10">
 			<area fill="#60C0FFBF" />
 		</rule>
@@ -1556,8 +1571,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 		<rule e="any" k="protect_class" v="1|~" zoom-min="16">
 			<line stroke="#909DFF9C" stroke-width="0.7" stroke-dasharray="15, 5, 5, 5" stroke-linecap="butt" />
 			<area src="file:moiosm_res/p_nature-reserve-thin.svg" symbol-scaling="size" symbol-height="128" symbol-width="128" />
-		</rule>
+                </rule>
 	</rule>
+-->
 
 <!-- buildings etc -->
 	<rule e="any" k="*" v="*" zoom-min="9">
