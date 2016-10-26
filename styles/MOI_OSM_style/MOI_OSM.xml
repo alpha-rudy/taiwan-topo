@@ -2997,7 +2997,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
 
 	<!-- poly_labels & landcover captions-->
-	<rule cat="landscapename" e="any" k="*" v="*">
+	<rule cat="landscapename" e="any" k="*" v="*" zoom-min="13">
 		<rule e="way" k="landuse" v="farm|farmyard|residential">
 			<caption k="name" font-style="italic" font-family="serif" font-size="11" fill="#888888" stroke="#888888" stroke-width="0.1" />
 		</rule>
@@ -4208,11 +4208,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 	</rule>
 
 	<!-- traffic barriers -->
-	<rule cat="barriers" e="any" k="*" v="*" zoom-min="9">
+	<rule cat="barriers" e="any" k="*" v="*" zoom-min="13">
 		<rule e="any" k="highway|ford" v="ford|fd_yes">
-			<rule e="any" k="*" v="*" zoom-max="12">
+                    <!-- <rule e="any" k="*" v="*" zoom-max="12">
 				<symbol id="s_ford" src="file:moiosm_res/s_ford_small.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" />
-			</rule>
+                        </rule> -->
 			<rule e="any" k="*" v="*" zoom-min="13">
 				<symbol id="s_ford" priority="72" src="file:moiosm_res/s_ford.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" />
 			</rule>
@@ -4239,7 +4239,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 	</rule>
 
 	<!-- barriers -->
-	<rule cat="barriers" e="any" k="*" v="*" zoom-min="9">
+	<rule cat="barriers" e="any" k="*" v="*" zoom-min="13">
 		<rule e="any" k="barrier" v="border_control">
 			<symbol id="s_border_control" priority="72" src="file:moiosm_res/s_border_control.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" />
 			<rule e="any" k="*" v="*">
