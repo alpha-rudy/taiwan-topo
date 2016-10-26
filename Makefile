@@ -433,11 +433,11 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 		omitmetadata=true
 .PHONY: mapsforge_style
 mapsforge_style: $(MAPSFORGE_STYLE)
-$(MAPSFORGE_STYLE): styles/MOI_OSM_style
+$(MAPSFORGE_STYLE): styles/MOI_OSM_style/MOI_OSM.xml
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd styles/MOI_OSM_style && \
-	   zip -r $@ * 
+	   zip -r $@ *
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
@@ -452,7 +452,7 @@ $(MAPSFORGE): $(PBF) $(TAG_MAPPING)
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
-		    zoom-interval-conf=7,0,7,10,8,11,14,12,21 \
+		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 		    map-start-zoom=12 \
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
 		    file="$@"
