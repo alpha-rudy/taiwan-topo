@@ -333,17 +333,17 @@
 <osm-tag key='shop' value='travel_agency' zoom-appear='14' />
 <!-- railway -->
 <osm-tag key='railway' value='station' zoom-appear='12' />
-<osm-tag key='railway' value='funicular' zoom-appear='12' />
-<osm-tag key='railway' value='light_rail' zoom-appear='11' />
-<osm-tag key='railway' value='miniature' zoom-appear='15' />
-<osm-tag key='railway' value='narrow_gauge' equivalent-values='monorail' zoom-appear='11' />
-<osm-tag key='railway' value='platform' zoom-appear='14' />
+<osm-tag key='railway' value='funicular' zoom-appear='7' />
+<osm-tag key='railway' value='light_rail' zoom-appear='12' />
+<osm-tag key='railway' value='miniature' zoom-appear='12' />
+<osm-tag key='railway' value='narrow_gauge' equivalent-values='monorail' zoom-appear='7' />
+<osm-tag key='railway' value='platform' zoom-appear='12' />
 <osm-tag key='railway' value='preserved' zoom-appear='12' />
-<osm-tag key='railway' value='rail' zoom-appear='10' />
-<osm-tag key='railway' value='subway' zoom-appear='14' />
-<osm-tag key='railway' value='tram' zoom-appear='14' />
-<osm-tag key='railway' value='abandoned' zoom-appear='14' />
-<osm-tag key='railway' value='disused' zoom-appear='14' />
+<osm-tag key='railway' value='rail' zoom-appear='7' />
+<osm-tag key='railway' value='subway' zoom-appear='12' />
+<osm-tag key='railway' value='tram' zoom-appear='12' />
+<osm-tag key='railway' value='abandoned' zoom-appear='12' />
+<osm-tag key='railway' value='disused' zoom-appear='12' />
 <!-- tourism -->
 <osm-tag key='tourism' value='alpine_hut' zoom-appear='12' />
 <osm-tag key='tourism' value='attraction' zoom-appear='14' />
