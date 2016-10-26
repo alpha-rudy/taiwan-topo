@@ -16,7 +16,7 @@
 <osm-tag key='network' value='rad' zoom-appear='10' />
 <!-- hiking_relations -->
 <osm-tag key='hknetwork' value='iwn' zoom-appear='7' />
-<osm-tag key='hknetwork' value='nwn' zoom-appear='8' />
+<osm-tag key='hknetwork' value='nwn' zoom-appear='7' />
 <osm-tag key='hknetwork' value='rwn' zoom-appear='12' />
 <osm-tag key='hknetwork' value='lwn' zoom-appear='12' />
 <osm-tag key='hknetwork' value='uwn' zoom-appear='12' />
@@ -91,7 +91,7 @@
 <zoom-override key='landuse' value='reservoir' />
 <zoom-override key='landuse' value='basin' />
 </osm-tag>
-<osm-tag key='bBoxWeight' value='large' equivalent-values='25,26,27,28' zoom-appear='8'>
+<osm-tag key='bBoxWeight' value='large' equivalent-values='25,26,27,28' zoom-appear='7'>
 <zoom-override key='natural' value='water' />
 <zoom-override key='landuse' value='reservoir' />
 <zoom-override key='landuse' value='basin' />
@@ -149,8 +149,8 @@
 </osm-tag>
 <!-- attributes_misc -->
 <osm-tag key='area' value='yes' zoom-appear='12' />
-<osm-tag key='bridge' value='yes' equivalent-values='viaduct,aqueduct,suspension,culvert,swing' renderable='false' zoom-appear='8' />
-<osm-tag key='bridge' value='movable' renderable='false' zoom-appear='8' />
+<osm-tag key='bridge' value='yes' equivalent-values='viaduct,aqueduct,suspension,culvert,swing' renderable='false' zoom-appear='7' />
+<osm-tag key='bridge' value='movable' renderable='false' zoom-appear='7' />
 <osm-tag key='tunnel' value='yes' equivalent-values='culvert,building_passage,passage' renderable='false' />
 <osm-tag key='tunnel' value='no' renderable='false' />
 <osm-tag key='location' value='underground' renderable='false' />
@@ -192,14 +192,14 @@
 <osm-tag key='trail_visibility' value='bad' renderable='false' />
 <osm-tag key='trail_visibility' value='horrible' renderable='false' />
 <osm-tag key='trail_visibility' value='no' renderable='false' />
-<osm-tag key='surface' value='asphalt' renderable='false' zoom-appear='8' />
-<osm-tag key='surface' value='compacted' equivalent-values='fine_gravel' renderable='false' zoom-appear='8' />
-<osm-tag key='surface' value='smooth_paved' equivalent-values='paved,concrete,concrete:plates,concrete:lanes,paving_stones,paving_stones:30,paving_stones:20,cobblestone:flattened,sett,bricks,cement' renderable='false' zoom-appear='8' />
-<osm-tag key='surface' value='rough_paved' equivalent-values='cobblestone,stone,grass_paver' renderable='false' zoom-appear='8' />
-<osm-tag key='surface' value='gravel' equivalent-values='pebblestone' renderable='false' zoom-appear='8' />
-<osm-tag key='surface' value='raw' equivalent-values='ground,dirt,grass,sand,wood,earth,mud,clay' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='asphalt' renderable='false' zoom-appear='7' />
+<osm-tag key='surface' value='compacted' equivalent-values='fine_gravel' renderable='false' zoom-appear='7' />
+<osm-tag key='surface' value='smooth_paved' equivalent-values='paved,concrete,concrete:plates,concrete:lanes,paving_stones,paving_stones:30,paving_stones:20,cobblestone:flattened,sett,bricks,cement' renderable='false' zoom-appear='7' />
+<osm-tag key='surface' value='rough_paved' equivalent-values='cobblestone,stone,grass_paver' renderable='false' zoom-appear='7' />
+<osm-tag key='surface' value='gravel' equivalent-values='pebblestone' renderable='false' zoom-appear='7' />
+<osm-tag key='surface' value='raw' equivalent-values='ground,dirt,grass,sand,wood,earth,mud,clay' renderable='false' zoom-appear='7' />
 <osm-tag key='surface' value='winter' equivalent-values='ice,snow' renderable='false' />
-<osm-tag key='surface' value='unpaved' renderable='false' zoom-appear='8' />
+<osm-tag key='surface' value='unpaved' renderable='false' zoom-appear='7' />
 <osm-tag key='raw_sac_scale' value='RT1' renderable='false' zoom-appear='12' />
 <osm-tag key='raw_sac_scale' value='RT2' renderable='false' zoom-appear='12' />
 <osm-tag key='raw_sac_scale' value='RT3' renderable='false' zoom-appear='12' />
@@ -380,11 +380,11 @@
 <osm-tag key='natural' value='sand' zoom-appear='10' />
 <osm-tag key='natural' value='heath' zoom-appear='10' />
 <osm-tag key='natural' value='marsh' zoom-appear='10' />
-<osm-tag key='natural' value='water' zoom-appear='8' />
+<osm-tag key='natural' value='water' zoom-appear='7' />
 <osm-tag key='natural' value='wetland' equivalent-values='mud' zoom-appear='10' />
 <osm-tag key='natural' value='gorge' zoom-appear='12' />
 <osm-tag key='natural' value='grassland' zoom-appear='10' />
-<osm-tag key='natural' value='wood' zoom-appear='8' />
+<osm-tag key='natural' value='wood' zoom-appear='7' />
 <osm-tag key='natural' value='glacier' zoom-appear='6' />
 <osm-tag key='natural' value='crevasse' zoom-appear='12' />
 <osm-tag key='natural' value='ridge' equivalent-values='arete' zoom-appear='12' />
@@ -404,7 +404,7 @@
 <osm-tag key='landuse' value='construction' zoom-appear='10' />
 <osm-tag key='landuse' value='farm' zoom-appear='10' />
 <osm-tag key='landuse' value='farmland' zoom-appear='10' />
-<osm-tag key='landuse' value='forest' zoom-appear='8' />
+<osm-tag key='landuse' value='forest' zoom-appear='7' />
 <osm-tag key='landuse' value='grass' zoom-appear='10' />
 <osm-tag key='landuse' value='orchard' zoom-appear='10' />
 <osm-tag key='landuse' value='greenfield' zoom-appear='10' />
@@ -415,12 +415,12 @@
 <osm-tag key='landuse' value='quarry' zoom-appear='10' />
 <osm-tag key='landuse' value='railway' zoom-appear='10' />
 <osm-tag key='landuse' value='recreation_ground' zoom-appear='10' />
-<osm-tag key='landuse' value='reservoir' zoom-appear='8' />
+<osm-tag key='landuse' value='reservoir' zoom-appear='7' />
 <osm-tag key='landuse' value='residential' zoom-appear='10' />
 <osm-tag key='landuse' value='retail' zoom-appear='10' />
 <osm-tag key='landuse' value='village_green' zoom-appear='10' />
 <osm-tag key='landuse' value='vineyard' zoom-appear='12' />
-<osm-tag key='landuse' value='wood' zoom-appear='8' />
+<osm-tag key='landuse' value='wood' zoom-appear='7' />
 <osm-tag key='landuse' value='farmyard' zoom-appear='12' />
 <!-- highway -->
 <osm-tag key='highway' value='motorway' zoom-appear='6' />
@@ -429,7 +429,7 @@
 <osm-tag key='highway' value='trunk_link' zoom-appear='12' />
 <osm-tag key='highway' value='primary' zoom-appear='6' />
 <osm-tag key='highway' value='primary_link' zoom-appear='12' />
-<osm-tag key='highway' value='secondary' zoom-appear='8' />
+<osm-tag key='highway' value='secondary' zoom-appear='7' />
 <osm-tag key='highway' value='secondary_link' zoom-appear='12' />
 <osm-tag key='highway' value='tertiary' zoom-appear='9' />
 <osm-tag key='highway' value='tertiary_link' zoom-appear='12' />
@@ -495,13 +495,13 @@
 <osm-tag key='military' value='naval_base' zoom-appear='12' />
 <!-- waterways -->
 <osm-tag key='lock' value='yes' zoom-appear='13' />
-<osm-tag key='waterway' value='river' zoom-appear='8' />
+<osm-tag key='waterway' value='river' zoom-appear='7' />
 <osm-tag key='waterway' value='riverbank' zoom-appear='10' />
 <osm-tag key='waterway' value='dock' zoom-appear='10' />
 <osm-tag key='waterway' value='dam' zoom-appear='12' />
 <osm-tag key='waterway' value='canal' zoom-appear='10' />
 <osm-tag key='waterway' value='drain' equivalent-values='ditch' zoom-appear='12' />
-<osm-tag key='waterway' value='stream' zoom-appear='8' />
+<osm-tag key='waterway' value='stream' zoom-appear='7' />
 <osm-tag key='waterway' value='water_point' zoom-appear='13' />
 <osm-tag key='waterway' value='weir' zoom-appear='14' />
 <osm-tag key='waterway' value='waterfall' zoom-appear='15' />
@@ -620,7 +620,7 @@
 <zoom-override key='landuse' value='reservoir' />
 <zoom-override key='landuse' value='basin' />
 </osm-tag>
-<osm-tag key='bBoxWeight' value='large' equivalent-values='25,26,27,28' zoom-appear='8'>
+<osm-tag key='bBoxWeight' value='large' equivalent-values='25,26,27,28' zoom-appear='7'>
 <zoom-override key='natural' value='water' />
 <zoom-override key='landuse' value='reservoir' />
 <zoom-override key='landuse' value='basin' />
@@ -682,8 +682,8 @@
 <!-- attributes_MTB -->
 <!-- attrib class:bike -->
 <!-- barriers -->
-<osm-tag key='barrier' value='border_control' zoom-appear='8' />
-<osm-tag key='barrier' value='checkpoint' zoom-appear='8' />
+<osm-tag key='barrier' value='border_control' zoom-appear='7' />
+<osm-tag key='barrier' value='checkpoint' zoom-appear='7' />
 <osm-tag key='barrier' value='block' zoom-appear='14' />
 <osm-tag key='barrier' value='bollard' zoom-appear='14' />
 <osm-tag key='barrier' value='cycle_barrier' zoom-appear='14' />
@@ -810,8 +810,8 @@
 <osm-tag key='place' value='state' zoom-appear='5' />
 <osm-tag key='place' value='city' zoom-appear='6' />
 <osm-tag key='place' value='county' zoom-appear='7' />
-<osm-tag key='place' value='town' zoom-appear='8' />
-<osm-tag key='place' value='village' zoom-appear='8' />
+<osm-tag key='place' value='town' zoom-appear='7' />
+<osm-tag key='place' value='village' zoom-appear='7' />
 <osm-tag key='place' value='suburb' zoom-appear='9' />
 <osm-tag key='place' value='quarter' zoom-appear='9' />
 <osm-tag key='place' value='neighbourhood' equivalent-values='neighborhood' zoom-appear='9' />
