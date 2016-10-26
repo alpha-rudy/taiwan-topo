@@ -1430,52 +1430,65 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 	<rule e="way" k="boundary" v="map_inner" zoom-max="13">
 		<line stroke="#308E8072" stroke-width="6" stroke-linecap="butt" />
 	</rule>
-	<!-- administrative borders -->
-	<rule cat="borders" e="way" k="admin_level" v="2">
-		<rule e="any" k="*" v="*" zoom-max="8">
-			<line stroke="#666666" stroke-width="2.5" />
-		</rule>
-		<rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-			<line stroke="#70888888" stroke-width="8" stroke-linecap="butt" />
-			<line stroke="#333333" stroke-width="0.7" />
-		</rule>
-		<rule e="any" k="*" v="*" zoom-min="14">
-			<line stroke="#40888888" stroke-width="8" stroke-linecap="butt" />
-			<line stroke="#888888" stroke-width="0.3" />
-			<line stroke="#444444" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt" />
-		</rule>
-	</rule>
-	<rule cat="borders" e="way" k="admin_level" v="3">
-		<rule e="any" k="*" v="*" zoom-max="8">
-			<line stroke="#AAAAAA" stroke-width="1.5" />
-			<line stroke="#333333" stroke-width="1.5" stroke-dasharray="10, 10" stroke-linecap="butt" />
-		</rule>
-		<rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-			<line stroke="#70888888" stroke-width="6" stroke-linecap="butt" />
-			<line stroke="#EEEEEE" stroke-width="0.7" />
-			<line stroke="#333333" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt" />
+    <!-- administrative borders -->
+    <rule cat="borders" e="way" k="admin_level" v="2">
+        <rule e="any" k="*" v="*" zoom-max="8">
+            <line stroke="#666666" stroke-width="2.5" />
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
+            <line stroke="#70888888" stroke-width="8" stroke-linecap="butt" />
+            <line stroke="#333333" stroke-width="0.7" />
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="14">
+            <line stroke="#40888888" stroke-width="8" stroke-linecap="butt" />
+            <line stroke="#888888" stroke-width="0.3" />
+            <line stroke="#444444" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt" />
+        </rule>
+    </rule>
+    <rule cat="borders" e="way" k="admin_level" v="4|6">
+        <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
+            <line stroke="#AAAAAA" stroke-width="1.5" />
+            <line stroke="#333333" stroke-width="1.5" stroke-dasharray="10, 10" stroke-linecap="butt" />
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
+            <line stroke="#70888888" stroke-width="6" stroke-linecap="butt" />
+            <line stroke="#EEEEEE" stroke-width="0.7" />
+            <line stroke="#333333" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt" />
 
-		</rule>
-		<rule e="any" k="*" v="*" zoom-min="14">
-			<line stroke="#40888888" stroke-width="5" stroke-linecap="butt" />
-			<line stroke="#FFFFFF" stroke-width="0.2" />
-			<line stroke="#444444" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt" />
-		</rule>
-	</rule>
-	<rule cat="borders" e="way" k="admin_level" v="4">
-		<rule e="any" k="*" v="*" zoom-max="8">
-			<line stroke="#666666" stroke-width="1.5" stroke-dasharray="8,5" stroke-linecap="butt" />
-		</rule>
-		<rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-			<line stroke="#70888888" stroke-width="4" stroke-linecap="butt" />
-			<line stroke="#A0333333" stroke-width="0.7" stroke-dasharray="10, 6" stroke-linecap="butt" />
-		</rule>
-		<rule e="any" k="*" v="*" zoom-min="14">
-			<line stroke="#40888888" stroke-width="3" stroke-linecap="butt" />
-			<line stroke="#A0444444" stroke-width="0.2" stroke-dasharray="10, 6" stroke-linecap="butt" />
-		</rule>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="14">
+            <line stroke="#40888888" stroke-width="5" stroke-linecap="butt" />
+            <line stroke="#FFFFFF" stroke-width="0.2" />
+            <line stroke="#444444" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt" />
+        </rule>
+    </rule>
+    <rule cat="borders" e="way" k="admin_level" v="5|7|8">
+        <!-- <rule e="any" k="*" v="*" zoom-max="8">
+            <line stroke="#666666" stroke-width="1.5" stroke-dasharray="8,5" stroke-linecap="butt" />
+        </rule> -->
+        <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
+            <line stroke="#70888888" stroke-width="4" stroke-linecap="butt" />
+            <line stroke="#A0333333" stroke-width="0.7" stroke-dasharray="10, 6" stroke-linecap="butt" />
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="14">
+            <line stroke="#40888888" stroke-width="3" stroke-linecap="butt" />
+            <line stroke="#A0444444" stroke-width="0.2" stroke-dasharray="10, 6" stroke-linecap="butt" />
+        </rule>
+    </rule>
+    <rule cat="borders" e="way" k="admin_level" v="9">
+        <!-- <rule e="any" k="*" v="*" zoom-max="8">
+            <line stroke="#666666" stroke-width="1.5" stroke-dasharray="8,5" stroke-linecap="butt" />
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
+            <line stroke="#70888888" stroke-width="4" stroke-linecap="butt" />
+            <line stroke="#A0333333" stroke-width="0.7" stroke-dasharray="10, 6" stroke-linecap="butt" />
+        </rule> -->
+        <rule e="any" k="*" v="*" zoom-min="14">
+            <line stroke="#40888888" stroke-width="3" stroke-linecap="butt" />
+            <line stroke="#A0444444" stroke-width="0.2" stroke-dasharray="10, 6" stroke-linecap="butt" />
+        </rule>
+    </rule>
 
-	</rule>
 	<!-- special areas -->
 	<rule cat="borders" e="way" k="landuse" v="~">
 		<rule e="way" k="military" v="*">
@@ -2810,100 +2823,116 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 	</rule>
 
 <!-- POIS -->
-	<!-- settlements -->
-	<rule cat="settlements" e="any" k="*" v="*">
-		<rule e="node" k="place" v="city|town|village|hamlet|quarter|neighbourhood|isolated_dwelling|farm">
-			<caption k="ele" priority="-5" dy="20" font-size="10" font-style="normal" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-		</rule>
-		<rule e="node" k="place" v="suburb">
-			<caption k="name" priority="101" font-style="bold_italic" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-		</rule>
-		<rule e="node" k="place" v="isolated_dwelling|neighbourhood|farm">
-			<caption k="name" priority="99" font-style="italic" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-		</rule>
-		<rule e="node" k="place" v="hamlet|quarter">
-			<caption k="name" priority="100" font-style="italic" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-		</rule>
-		<rule e="node" k="place" v="village">
-			<rule e="any" k="*" v="*" zoom-max="12">
-				<caption k="name" priority="102" font-style="normal" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-			</rule>
-			<rule e="any" k="*" v="*" zoom-min="13">
-				<caption k="name" priority="102" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-			</rule>
-		</rule>
-		<rule e="node" k="place" v="town">
-			<rule cat="city" e="any" k="*" v="*" zoom-max="10">
-				<caption k="name" priority="104" font-style="normal" font-size="9" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-			</rule>
-			<rule cat="nocity" e="any" k="*" v="*" zoom-max="10">
-				<caption k="name" priority="104" font-style="normal" font-size="9" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-			</rule>
-			<rule e="any" k="*" v="*" zoom-min="11">
-				<caption k="name" priority="104" font-style="bold" font-size="11" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-			</rule>
-		</rule>
-		<rule e="node" k="place" v="city">
-			<rule e="any" k="capital" v="~">
-				<rule e="any" k="*" v="*" zoom-max="10">
-					<symbol id="s_city" priority="108" display="always" src="file:moiosm_res/s_city.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-max="7">
-					<caption k="name" symbol-id="s_city" position="above" priority="105" font-style="normal" font-size="8" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-max="8" zoom-min="8">
-					<caption k="name" symbol-id="s_city" position="above" priority="105" font-style="normal" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-min="9" zoom-max="10">
-					<caption k="name" symbol-id="s_city" position="above" priority="105" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-min="11">
-					<caption k="name" priority="105" font-style="bold" font-size="14" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-			</rule>
-		</rule>
-		<rule e="node" k="place" v="city|town|village|hamlet">
-			<rule e="node" k="capital" v="4">
-				<rule e="any" k="*" v="*" zoom-max="10">
-					<symbol id="s_city_4" priority="109" display="always" src="file:moiosm_res/s_city_4.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-max="7">
-					<caption k="name" symbol-id="s_city_4" position="above" priority="106" font-style="bold" font-size="9" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-max="10" zoom-min="8">
-					<caption k="name" symbol-id="s_city_4" position="above" priority="106" font-style="bold" font-size="11" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-min="11">
-					<caption k="name" priority="106" font-style="bold" font-size="18" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-			</rule>
-			<rule e="node" k="capital" v="2">
-				<rule e="any" k="*" v="*" zoom-max="10">
-					<symbol id="s_city_2" priority="110" display="always" src="file:moiosm_res/s_city_2.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-max="7">
-					<caption k="name" symbol-id="s_city_2" position="above" priority="108" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-max="10" zoom-min="8">
-					<caption k="name" symbol-id="s_city_2" position="above" priority="108" font-style="bold" font-size="13" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-				<rule e="any" k="*" v="*" zoom-min="11">
-					<caption k="name" priority="108" font-style="bold" font-size="21" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
-				</rule>
-			</rule>
-		</rule>
-		<rule e="node" k="place" v="state">
-			<rule e="any" k="*" v="*" zoom-max="7">
-				<caption k="name" priority="107" font-style="italic" font-size="10" fill="#444444" stroke="#E5FFFFFF" stroke-width="2.5" />
-			</rule>
-			<rule e="any" k="*" v="*" zoom-max="9" zoom-min="8">
-				<caption k="name" priority="107" font-style="italic" font-size="13" fill="#444444" stroke="#E5FFFFFF" stroke-width="2.5" />
-			</rule>
-		</rule>
-		<rule e="node" k="place" v="country" zoom-max="7">
-			<caption k="name" priority="109" font-style="bold_italic" font-size="11" fill="#444444" stroke="#E5FFFFFF" stroke-width="2" />
-		</rule>
-	</rule>
+    <!-- settlements -->
+    <rule cat="settlements" e="any" k="*" v="*">
+        <rule e="node" k="place" v="city|town|village|hamlet|quarter|neighbourhood|isolated_dwelling|farm">
+            <caption k="ele" priority="-5" dy="20" font-size="10" font-style="normal" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+        </rule>
+        <!-- <rule e="node" k="place" v="suburb">
+            <caption k="name" priority="101" font-style="bold_italic" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+        </rule> -->
+        <!-- <rule e="node" k="place" v="isolated_dwelling|neighbourhood|farm">
+            <caption k="name" priority="99" font-style="italic" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+        </rule> -->
+        <rule e="node" k="place" v="hamlet|quarter" zoom-min="13">
+            <caption k="name" priority="100" font-style="italic" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+        </rule>
+        <rule e="node" k="place" v="village">
+            <rule e="any" k="*" v="*" zoom-min="12" zoom-max="12">
+                <caption k="name" priority="102" font-style="normal" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+            </rule>
+            <rule e="any" k="*" v="*" zoom-min="13">
+                <caption k="name" priority="102" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+            </rule>
+        </rule>
+        <rule e="node" k="place" v="town">
+            <rule cat="city" e="any" k="*" v="*" zoom-min="10" zoom-max="10">
+                <caption k="name" priority="104" font-style="normal" font-size="9" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+            </rule>
+            <rule cat="nocity" e="any" k="*" v="*" zoom-min="10" zoom-max="10">
+                <caption k="name" priority="104" font-style="normal" font-size="9" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+            </rule>
+            <rule e="any" k="*" v="*" zoom-min="11">
+                <caption k="name" priority="104" font-style="bold" font-size="11" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+            </rule>
+        </rule>
+        <rule e="node" k="place" v="county">
+            <rule e="any" k="capital" v="~">
+                <rule e="any" k="*" v="*" zoom-max="10">
+                    <symbol id="s_city" priority="108" display="always" src="file:moiosm_res/s_city.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-max="8" zoom-min="8">
+                    <caption k="name" symbol-id="s_city" position="above" priority="105" font-style="normal" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="9" zoom-max="10">
+                    <caption k="name" symbol-id="s_city" position="above" priority="105" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="11">
+                    <caption k="name" priority="105" font-style="bold" font-size="14" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+            </rule>
+        </rule>
+        <rule e="node" k="place" v="city">
+            <rule e="any" k="capital" v="~">
+                <rule e="any" k="*" v="*" zoom-max="10">
+                    <symbol id="s_city" priority="108" display="always" src="file:moiosm_res/s_city.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="7" zoom-max="7">
+                    <caption k="name" symbol-id="s_city" position="above" priority="105" font-style="normal" font-size="8" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-max="8" zoom-min="8">
+                    <caption k="name" symbol-id="s_city" position="above" priority="105" font-style="normal" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="9" zoom-max="10">
+                    <caption k="name" symbol-id="s_city" position="above" priority="105" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="11">
+                    <caption k="name" priority="105" font-style="bold" font-size="14" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+            </rule>
+        </rule>
+        <rule e="node" k="place" v="city|town|village|hamlet">
+            <rule e="node" k="capital" v="4">
+                <rule e="any" k="*" v="*" zoom-max="10">
+                    <symbol id="s_city_4" priority="109" display="always" src="file:moiosm_res/s_city_4.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-max="7">
+                    <caption k="name" symbol-id="s_city_4" position="above" priority="106" font-style="bold" font-size="9" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-max="10" zoom-min="8">
+                    <caption k="name" symbol-id="s_city_4" position="above" priority="106" font-style="bold" font-size="11" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="11">
+                    <caption k="name" priority="106" font-style="bold" font-size="18" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+            </rule>
+            <rule e="node" k="capital" v="2">
+                <rule e="any" k="*" v="*" zoom-max="10">
+                    <symbol id="s_city_2" priority="110" display="always" src="file:moiosm_res/s_city_2.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-max="7">
+                    <caption k="name" symbol-id="s_city_2" position="above" priority="108" font-style="bold" font-size="10" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-max="10" zoom-min="8">
+                    <caption k="name" symbol-id="s_city_2" position="above" priority="108" font-style="bold" font-size="13" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+                <rule e="any" k="*" v="*" zoom-min="11">
+                    <caption k="name" priority="108" font-style="bold" font-size="21" fill="#193480" stroke="#E5FFFFFF" stroke-width="2" />
+                </rule>
+            </rule>
+        </rule>
+        <rule e="node" k="place" v="state">
+            <rule e="any" k="*" v="*" zoom-max="7">
+                <caption k="name" priority="107" font-style="italic" font-size="10" fill="#444444" stroke="#E5FFFFFF" stroke-width="2.5" />
+            </rule>
+            <rule e="any" k="*" v="*" zoom-max="9" zoom-min="8">
+                <caption k="name" priority="107" font-style="italic" font-size="13" fill="#444444" stroke="#E5FFFFFF" stroke-width="2.5" />
+            </rule>
+        </rule>
+        <rule e="node" k="place" v="country" zoom-max="7">
+            <caption k="name" priority="109" font-style="bold_italic" font-size="11" fill="#444444" stroke="#E5FFFFFF" stroke-width="2" />
+        </rule>
+    </rule>
 
 	<!-- poly_labels & landcover captions-->
 	<rule cat="landscapename" e="any" k="*" v="*">
