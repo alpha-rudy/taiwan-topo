@@ -1800,7 +1800,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 <!-- highway casings -->
 	<rule e="way" k="tunnel" v="~|no">
 		<rule e="way" k="area" v="~|no">
-			<rule e="way" k="highway" v="track|byway" zoom-max="13">
+			<rule e="way" k="highway" v="track|byway" zoom-min="13" zoom-max="13">
 				<line stroke="#664329" stroke-width="1.2" stroke-linecap="butt" />
 			</rule>
 			<rule e="way" k="highway" v="track|byway" zoom-min="14">
@@ -1821,32 +1821,41 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 				</rule>
 			</rule>
 			<rule e="way" k="bridge" v="~">
-				<rule cat="city" e="way" k="highway" v="cycleway">
+				<rule cat="city" e="way" k="highway" v="cycleway" zoom-min="13">
 					<rule e="any" k="foot" v="ft_no|~">
 						<line stroke="#3366FF" stroke-width="0.8" />
 					</rule>
 				</rule>
-				<rule cat="hike" e="way" k="highway" v="cycleway">
+				<rule cat="hike" e="way" k="highway" v="cycleway" zoom-min="13">
 					<rule e="any" k="foot" v="ft_no|~">
 						<line stroke="#3366FF" stroke-width="0.8" />
 					</rule>
 				</rule>
-				<rule e="way" k="highway" v="service">
+				<rule e="way" k="highway" v="service" zoom-min="13">
 					<line stroke="#222222" stroke-width="0.95" />
 				</rule>
-				<rule e="way" k="highway" v="road|unclassified|residential|living_street|ford" zoom-min="12">
+				<rule e="way" k="highway" v="road|unclassified|residential|living_street|ford" zoom-min="13">
 					<line stroke="#222222" stroke-width="1.3" />
 				</rule>
-				<rule e="way" k="highway" v="construction">
+				<rule e="way" k="highway" v="construction" zoom-min="13">
 					<line stroke="#60888888" stroke-width="1.3" />
 				</rule>
-				<rule e="way" k="highway" v="tertiary|tertiary_link|secondary_link|primary_link|trunk_link|secondary|primary|trunk" zoom-min="12">
+				<rule e="way" k="highway" v="tertiary|tertiary_link" zoom-min="12">
 					<line stroke="#222222" stroke-width="1.45" stroke-linecap="butt" />
 				</rule>
-				<rule e="way" k="highway" v="motorway_link" zoom-min="12">
+				<rule e="way" k="highway" v="secondary_link|secondary" zoom-min="11">
+					<line stroke="#222222" stroke-width="1.45" stroke-linecap="butt" />
+				</rule>
+				<rule e="way" k="highway" v="primary_link|primary" zoom-min="10">
+					<line stroke="#222222" stroke-width="1.45" stroke-linecap="butt" />
+				</rule>
+				<rule e="way" k="highway" v="trunk_link|trunk" zoom-min="9">
+					<line stroke="#222222" stroke-width="1.45" stroke-linecap="butt" />
+				</rule>
+				<rule e="way" k="highway" v="motorway_link" zoom-min="8">
 					<line stroke="#FF4D00" stroke-width="1.45" stroke-linecap="butt" />
 				</rule>
-				<rule e="way" k="highway" v="motorway" zoom-min="12">
+				<rule e="way" k="highway" v="motorway" zoom-min="8">
 					<line stroke="#FF4D00" stroke-width="2" stroke-linecap="butt" />
 				</rule>
 			</rule>
