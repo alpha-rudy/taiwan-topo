@@ -117,8 +117,8 @@
 <osm-tag key='natural' value='crater' zoom-appear='12' />
 <!-- boundarys -->
 <osm-tag key='boundary' value='administrative' force-polygon-line='true' enabled='false' zoom-appear='0' />
-<osm-tag key='boundary' value='national_park' zoom-appear='10' />
-<osm-tag key='boundary' value='protected_area' zoom-appear='10' />
+<osm-tag key='boundary' value='national_park' zoom-appear='7' />
+<osm-tag key='boundary' value='protected_area' zoom-appear='7' />
 <osm-tag key='boundary' value='maritime' zoom-appear='5' />
 <osm-tag key='boundary' value='map_inner' zoom-appear='3' />
 <osm-tag key='border_type' value='contiguous' renderable='false' zoom-appear='5' />
@@ -594,8 +594,6 @@
 <osm-tag key='landuse' value='orchard' zoom-appear='10' />
 <osm-tag key='landuse' value='reservoir' zoom-appear='10' />
 <osm-tag key='leisure' value='nature_reserve' zoom-appear='10' />
-<osm-tag key='boundary' value='national_park' zoom-appear='7' />
-<osm-tag key='boundary' value='protected_area' zoom-appear='10' />
 <osm-tag key='protect_class' value='1' equivalent-values='fpier,1a,1b,1A,1B,2' renderable='false' />
 <osm-tag key='protect_class' value='5' equivalent-values='6' renderable='false' />
 <osm-tag key='protect_class' value='11' equivalent-values='12,13,14,15,16,19' renderable='false' />
