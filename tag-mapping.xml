@@ -21,9 +21,9 @@
 <osm-tag key='hknetwork' value='lwn' zoom-appear='12' />
 <osm-tag key='hknetwork' value='uwn' zoom-appear='12' />
 <!-- Contourlines -->
-<osm-tag key='contour_ext' value='elevation_major' force-polygon-line='true' zoom-appear='8' />
-<osm-tag key='contour_ext' value='elevation_medium' force-polygon-line='true' zoom-appear='8' />
-<osm-tag key='contour_ext' value='elevation_minor' force-polygon-line='true' zoom-appear='11' />
+<osm-tag key='contour_ext' value='elevation_major' force-polygon-line='true' zoom-appear='7' />
+<osm-tag key='contour_ext' value='elevation_medium' force-polygon-line='true' zoom-appear='7' />
+<osm-tag key='contour_ext' value='elevation_minor' force-polygon-line='true' zoom-appear='12' />
 <!--
 <osm-tag key='ele' value='100' zoom-appear='15' />
 <osm-tag key='ele' value='200' zoom-appear='15' />
@@ -129,10 +129,22 @@
 <osm-tag key='admin_level' value='2' force-polygon-line='true' zoom-appear='3'>
 <zoom-override key='boundary' value='administrative' />
 </osm-tag>
-<osm-tag key='admin_level' value='3' force-polygon-line='true' zoom-appear='8'>
+<osm-tag key='admin_level' value='4' force-polygon-line='true' zoom-appear='7'>
 <zoom-override key='boundary' value='administrative' />
 </osm-tag>
-<osm-tag key='admin_level' value='4' force-polygon-line='true' zoom-appear='8'>
+<osm-tag key='admin_level' value='6' force-polygon-line='true' zoom-appear='7'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='5' force-polygon-line='true' zoom-appear='7'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='7' force-polygon-line='true' zoom-appear='7'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='8' force-polygon-line='true' zoom-appear='7'>
+<zoom-override key='boundary' value='administrative' />
+</osm-tag>
+<osm-tag key='admin_level' value='9' force-polygon-line='true' zoom-appear='7'>
 <zoom-override key='boundary' value='administrative' />
 </osm-tag>
 <!-- attributes_misc -->
@@ -575,14 +587,14 @@
 <osm-tag key='natural' value='glacier' zoom-appear='6' />
 <osm-tag key='natural' value='desert' zoom-appear='6' />
 <osm-tag key='natural' value='mountain_range' zoom-appear='5' />
-<osm-tag key='natural' value='mountain_area' zoom-appear='9' />
-<osm-tag key='natural' value='wood' zoom-appear='8' />
-<osm-tag key='landuse' value='forest' zoom-appear='8' />
+<osm-tag key='natural' value='mountain_area' zoom-appear='7' />
+<osm-tag key='natural' value='wood' zoom-appear='7' />
+<osm-tag key='landuse' value='forest' zoom-appear='7' />
 <osm-tag key='landuse' value='basin' zoom-appear='12' />
 <osm-tag key='landuse' value='orchard' zoom-appear='10' />
 <osm-tag key='landuse' value='reservoir' zoom-appear='10' />
 <osm-tag key='leisure' value='nature_reserve' zoom-appear='10' />
-<osm-tag key='boundary' value='national_park' zoom-appear='10' />
+<osm-tag key='boundary' value='national_park' zoom-appear='7' />
 <osm-tag key='boundary' value='protected_area' zoom-appear='10' />
 <osm-tag key='protect_class' value='1' equivalent-values='fpier,1a,1b,1A,1B,2' renderable='false' />
 <osm-tag key='protect_class' value='5' equivalent-values='6' renderable='false' />
