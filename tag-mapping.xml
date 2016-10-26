@@ -809,6 +809,7 @@
 <osm-tag key='place' value='country' zoom-appear='3' />
 <osm-tag key='place' value='state' zoom-appear='5' />
 <osm-tag key='place' value='city' zoom-appear='6' />
+<osm-tag key='place' value='county' zoom-appear='7' />
 <osm-tag key='place' value='town' zoom-appear='8' />
 <osm-tag key='place' value='village' zoom-appear='8' />
 <osm-tag key='place' value='suburb' zoom-appear='9' />
