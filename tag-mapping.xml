@@ -338,6 +338,7 @@
 <osm-tag key='railway' value='platform' zoom-appear='12' />
 <osm-tag key='railway' value='preserved' zoom-appear='12' />
 <osm-tag key='railway' value='rail' zoom-appear='7' />
+<osm-tag key='gauge' value='1435' zoom-appear='7' />
 <osm-tag key='railway' value='subway' zoom-appear='12' />
 <osm-tag key='railway' value='tram' zoom-appear='12' />
 <osm-tag key='railway' value='abandoned' zoom-appear='12' />
