@@ -1048,7 +1048,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 			<line stroke="#60999999" stroke-width="0.25" stroke-dasharray="4,6" stroke-linecap="butt" />
 		</rule>
 		<rule e="way" k="railway" v="rail" zoom-min="7">
+                    <rule e="way" k="gauge" v="1435">
 			<line stroke="#60999999" stroke-width="1.8" stroke-dasharray="6,6" stroke-linecap="butt" />
+                    </rule>
+                    <rule e="way" k="gauge" v="1067|~">
+			<line stroke="#60999999" stroke-width="1.8" stroke-dasharray="6,6" stroke-linecap="butt" />
+                    </rule>
 		</rule>
 	</rule>
 
@@ -1463,8 +1468,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule cat="borders" e="way" k="admin_level" v="4|6">
         <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-            <line stroke="#AAAAAA" stroke-width="1.5" />
-            <line stroke="#333333" stroke-width="1.5" stroke-dasharray="10, 10" stroke-linecap="butt" />
+            <line stroke="#AAAAAA" stroke-width="1.0" />
+            <line stroke="#333333" stroke-width="1.0" stroke-dasharray="10, 10" stroke-linecap="butt" />
         </rule>
         <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
             <line stroke="#70888888" stroke-width="6" stroke-linecap="butt" />
@@ -1666,8 +1671,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 		<rule e="way" k="tunnel" v="no|~">
 			<rule e="any" k="area" v="~">
 				<rule e="way" k="railway" v="rail" zoom-min="7">
+                                    <rule e="way" k="gauge" v="1435">
 					<line stroke="#333333" stroke-width="2.8" stroke-linecap="butt" />
 					<line stroke="#F8F8F8" stroke-width="2" stroke-linecap="butt" />
+				    </rule>
+                                    <rule e="way" k="gauge" v="1067|~">
+					<line stroke="#333333" stroke-width="2.8" stroke-linecap="butt" />
+					<line stroke="#F8F8F8" stroke-width="2" stroke-linecap="butt" />
+				    </rule>
 				</rule>
 				<rule e="way" k="railway|highway" v="subway|narrow_gauge|preserved|funicular|miniature|tram|light_rail|bus_guideway|disused|abandoned" zoom-min="13">
 					<line stroke="#333333" stroke-width="1.2" stroke-linecap="butt" />
@@ -2873,9 +2884,16 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 			<line stroke="#333333" stroke-width="0.25" stroke-dasharray="12,12" stroke-linecap="butt" />
 		</rule>
 		<rule e="way" k="railway" v="rail" zoom-min="7">
+                    <rule e="way" k="gauge" v="1435">
 			<line stroke="#333333" stroke-width="2.2" stroke-linecap="butt" />
 			<line stroke="#E6E6E6" stroke-width="1.6" stroke-linecap="butt" />
 			<line stroke="#333333" stroke-width="1.6" stroke-dasharray="15,15" stroke-linecap="butt" />
+                    </rule>
+                    <rule e="way" k="gauge" v="1067|~">
+			<line stroke="#333333" stroke-width="2.2" stroke-linecap="butt" />
+			<line stroke="#E6E6E6" stroke-width="1.6" stroke-linecap="butt" />
+			<line stroke="#333333" stroke-width="1.6" stroke-dasharray="15,15" stroke-linecap="butt" />
+                    </rule>
 		</rule>
 		<rule e="way" k="railway" v="disused" zoom-min="13">
 			<line stroke="#E0FFFFFF" stroke-width="0.4" stroke-dasharray="15,23" stroke-linecap="butt" />
