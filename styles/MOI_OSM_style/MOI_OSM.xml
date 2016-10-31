@@ -1025,7 +1025,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 			<line stroke="#FF7700" stroke-width="1.5" stroke-dasharray="2,2" stroke-linecap="butt" />
 		</rule>
 		<rule e="way" k="highway" v="motorway_link" zoom-min="8" zoom-max="11">
-			<line stroke="#FF4D00" stroke-width="1.5" stroke-dasharray="2,2" stroke-linecap="butt" />
+                    <line stroke="#F4476B" stroke-width="1.5" stroke-dasharray="2,2" stroke-linecap="butt" />  <!-- ;motorway -->
 		</rule>
                 <!-- <rule e="way" k="highway" v="tertiary" zoom-max="11">
 			<line stroke="#F7DE4B" stroke-width="1.5" stroke-dasharray="2,2" stroke-linecap="butt" />
@@ -1040,7 +1040,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 			<line stroke="#FF7700" stroke-width="1.7" stroke-dasharray="2,2" stroke-linecap="butt" />
 		</rule>
 		<rule e="way" k="highway" v="motorway" zoom-min="8" zoom-max="11">
-			<line stroke="#FF4D00" stroke-width="1.8" stroke-dasharray="2,2" stroke-linecap="butt" />
+			<line stroke="#F4476B" stroke-width="1.8" stroke-dasharray="2,2" stroke-linecap="butt" />  <!-- ;motorway -->
 		</rule>
 
 		<!-- railway tunnels -->
@@ -1550,13 +1550,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 	            <line stroke="#709DFF9C" stroke-width="6" stroke-linecap="butt" />
 	            <line stroke="#EEEEEE" stroke-width="0.7" />
 	            <line stroke="#333333" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt" />
-		     <area fill="#60C0FFBF" />
+		     <area fill="#30C0FFBF" />
 	        </rule>
 	        <rule e="any" k="*" v="*" zoom-min="14">
 	            <line stroke="#409DFF9C" stroke-width="5" stroke-linecap="butt" />
  	           <line stroke="#FFFFFF" stroke-width="0.2" />
  	           <line stroke="#444444" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt" />
-		     <area fill="#60C0FFBF" />
+		     <area fill="#30C0FFBF" />
 	        </rule>
 	</rule>
 	<rule cat="borders" e="way" k="leisure|boundary" v="nature_reserve|protected_area">
@@ -1726,12 +1726,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 				<rule e="way" k="highway" v="motorway_link" zoom-min="8">
 					<line stroke="#333333" stroke-width="2.4" stroke-linecap="butt" />
 					<line stroke="#F8F8F8" stroke-width="1.9" stroke-linecap="butt" />
-					<line stroke="#FF7700" stroke-width="1.45" stroke-linecap="butt" />
+					<line stroke="#F4476B" stroke-width="1.45" stroke-linecap="butt" />  <!-- ;motorway -->
 				</rule>
 				<rule e="way" k="highway" v="motorway" zoom-min="8">
 					<line stroke="#333333" stroke-width="2.8" stroke-linecap="butt" />
 					<line stroke="#F8F8F8" stroke-width="2.3" stroke-linecap="butt" />
-					<line stroke="#FF4D00" stroke-width="2" stroke-linecap="butt" />
+					<line stroke="#F4476B" stroke-width="2" stroke-linecap="butt" />  <!-- ;motorway -->
 				</rule>
 			</rule>
 		</rule>
@@ -1896,10 +1896,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 					<line stroke="#222222" stroke-width="1.45" stroke-linecap="butt" />
 				</rule>
 				<rule e="way" k="highway" v="motorway_link" zoom-min="8">
-					<line stroke="#FF4D00" stroke-width="1.45" stroke-linecap="butt" />
+					<line stroke="#F4476B" stroke-width="1.45" stroke-linecap="butt" />  <!-- ;motorway -->
 				</rule>
 				<rule e="way" k="highway" v="motorway" zoom-min="8">
-					<line stroke="#FF4D00" stroke-width="2" stroke-linecap="butt" />
+					<line stroke="#F4476B" stroke-width="2" stroke-linecap="butt" />  <!-- ;motorway -->
 				</rule>
 			</rule>
 		</rule>
@@ -2436,7 +2436,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 				<line stroke="#FF7700" stroke-width="1.5" />
 			</rule>
 			<rule e="way" k="highway" v="motorway_link" zoom-max="11" zoom-min="8">
-				<line stroke="#FF4D00" stroke-width="1.5" />
+				<line stroke="#F4476B" stroke-width="1.5" />  <!-- ;motorway -->
 			</rule>
                         <!-- <rule e="way" k="highway" v="tertiary" zoom-max="11">
 				<line stroke="#F7DE4B" stroke-width="1.5" />
@@ -2451,7 +2451,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 				<line stroke="#FF7700" stroke-width="1.7" />
 			</rule>
 			<rule e="way" k="highway" v="motorway" zoom-max="11" zoom-min="8">
-				<line stroke="#FF4D00" stroke-width="1.8" />
+				<line stroke="#F4476B" stroke-width="1.8" />  <!-- ;motorway -->
 			</rule>
 
 			<!-- highway surfaces -->
