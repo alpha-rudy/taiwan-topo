@@ -3223,7 +3223,7 @@ CustomColor=No
 Type=0x10e03
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #006400"
+"! c #0080FF"  ;cycleway
 "  c none"
 "  !!!!    !!!!    !!!!    !!!!  "
 ;12345678901234567890123456789012
@@ -3260,7 +3260,7 @@ CustomColor=No
 Type=0x10e05
 UseOrientation=Y
 Xpm="32 1 2 1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!    !!!!    !!!!    !!!!    "
 ;12345678901234567890123456789012
@@ -3278,7 +3278,7 @@ CustomColor=No
 Type=0x10e06
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
@@ -3386,7 +3386,7 @@ CustomColor=No
 Type=0x10e0c
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -3475,7 +3475,7 @@ CustomColor=No
 Type=0x10e11
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -3494,7 +3494,7 @@ CustomColor=No
 Type=0x10e12
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
@@ -4453,7 +4453,7 @@ CustomColor=No
 Type=0x11f07
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -4472,7 +4472,7 @@ CustomColor=No
 Type=0x11f08
 UseOrientation=Y
 Xpm="32 2 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 "!!!!!   !!!!!   !!!!!   !!!!!   "
@@ -4510,7 +4510,7 @@ CustomColor=No
 Type=0x11f0a
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
@@ -4528,7 +4528,7 @@ CustomColor=No
 Type=0x11f0b
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
@@ -4564,7 +4564,7 @@ CustomColor=No
 Type=0x11f0d
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!  !!  !!  !!  !!  !!  !!  !!  "
 ;12345678901234567890123456789012
@@ -4601,7 +4601,7 @@ CustomColor=No
 Type=0x11f11
 UseOrientation=Y
 Xpm="32 3 2  1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!  !!  !!      !!  !!  !!  !!  "
 "!!  !!  !!  !!  !!  !!  !!  !!  "
@@ -4621,7 +4621,7 @@ CustomColor=No
 Type=0x11f12
 UseOrientation=Y
 Xpm="32 2 2 1"
-"! c #FF262D"
+"! c #E10600"  ;trail
 "  c none"
 "!!!!    !!!!    !!!!    !!!!    "
 "!!!!    !!!!    !!!!    !!!!    "
