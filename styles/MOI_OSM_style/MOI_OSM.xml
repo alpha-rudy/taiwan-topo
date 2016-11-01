@@ -622,7 +622,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-car-h"/>
       <overlay id="elmt-buildings-h"/>
     </layer>
-    <layer id="elmt-city" visible="true">
+    <layer id="elmt-city" visible="false">
       <name lang="de" value="Stadt"/>
       <name lang="en" value="City"/>
       <name lang="es" value="Ciudad"/>
@@ -648,7 +648,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-car-c"/>
       <overlay id="elmt-buildings-c"/>
     </layer>
-    <layer id="elmt-cycling" visible="true">
+    <layer id="elmt-cycling" visible="false">
       <name lang="de" value="Radfahren"/>
       <name lang="en" value="Cycling"/>
       <name lang="es" value="Ciclismo"/>
@@ -677,7 +677,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-car-b"/>
       <overlay id="elmt-buildings-b"/>
     </layer>
-    <layer id="elmt-mtb" visible="true">
+    <layer id="elmt-mtb" visible="false">
       <name lang="de" value="Mountainbike"/>
       <name lang="en" value="Mountain bike"/>
       <name lang="es" value="Bicicleta todo terreno"/>
@@ -1823,7 +1823,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule cat="hike" e="way" k="highway" v="cycleway" zoom-min="13">
           <rule e="any" k="foot" v="ft_no|~">
-            <line stroke="#3366FF" stroke-width="0.8"/>
+            <line stroke="#0080FF" stroke-width="0.4" stroke-dasharray="5,3" stroke-linecap="butt"/>  <!-- ;cycleway -->
           </rule>
         </rule>
         <rule e="way" k="highway" v="service" zoom-min="13">
@@ -1888,6 +1888,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <!-- paths/footways -->
       <rule cat="hike" e="any" k="*" v="*">
+<!--
         <rule e="way" k="trail_visibility" v="excellent|good">
           <rule e="way" k="highway" v="path|footway" zoom-min="13">
             <rule e="way" k="sac_scale" v="T1">
@@ -2077,6 +2078,16 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <rule e="any" k="sac_scale" v="T4">
             <line stroke="#000000" stroke-width="0.65" stroke-dasharray="3,3" stroke-linecap="butt"/>
           </rule>
+        </rule>
+-->
+        <rule e="way" k="highway" v="footway|path" zoom-min="13">
+          <line stroke="#E10600" stroke-width="0.4" stroke-dasharray="5,3" stroke-linecap="butt"/>  <!-- ;trail -->
+          <rule e="way" k="bicycle" v="bic_yes|bic_permissive|bic_designated">
+            <line stroke="#0080FF" stroke-width="0.1" stroke-dasharray="0,1,8,2.5" stroke-linecap="butt"/>
+          </rule>
+        </rule>
+        <rule e="way" k="highway" v="steps" zoom-min="13">
+          <line stroke="#E10600" stroke-width="0.6" stroke-dasharray="1,1" stroke-linecap="butt"/>  <!-- ;trail -->
         </rule>
       </rule>
       <rule cat="city" e="any" k="*" v="*">
@@ -2311,6 +2322,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
       </rule>
       <rule cat="hike" e="way" k="highway" v="cycleway" zoom-min="13">
+        <line stroke="#0080FF" stroke-width="0.4" stroke-dasharray="5,3" stroke-linecap="butt"/>  <!-- ;cycleway -->
+<!--         
         <rule e="any" k="foot" v="ft_no|~">
           <line stroke="#FFFFFF" stroke-width="0.5"/>
         </rule>
@@ -2323,6 +2336,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
           <line stroke="#3366FF" stroke-width="0.1" stroke-dasharray="10,3" stroke-linecap="butt"/>
         </rule>
+ -->      
       </rule>
       <rule e="way" k="highway" v="service" zoom-min="13">
         <line stroke="#FFFFFF" stroke-width="0.65"/>
