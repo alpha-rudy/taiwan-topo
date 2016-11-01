@@ -1469,6 +1469,22 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <line stroke="#DC94E9" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
   </rule>
+  <rule cat="borders" e="way" k="boundary" v="national_park">
+    <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
+      <line stroke="#AAAAAA" stroke-width="1.0"/>
+      <line stroke="#408000" stroke-width="1.0" stroke-dasharray="10, 10" stroke-linecap="butt"/>  <!-- ;national_park -->
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
+      <line stroke="#70408000" stroke-width="6" stroke-linecap="butt"/>  <!-- ;national_park -->
+      <line stroke="#EEEEEE" stroke-width="0.7"/>
+      <line stroke="#408000" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt"/>  <!-- ;national_park -->
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="14">
+      <line stroke="#40408000" stroke-width="5" stroke-linecap="butt"/>  <!-- ;national_park -->
+      <line stroke="#FFFFFF" stroke-width="0.2"/>
+      <line stroke="#408000" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt"/>  <!-- ;national_park -->
+    </rule>
+  </rule>
   <!-- special areas -->
   <rule cat="borders" e="way" k="landuse" v="~">
     <rule e="way" k="military" v="*">
@@ -1501,23 +1517,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!--
-	<rule cat="borders" e="way" k="boundary" v="national_park">
-	        <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-		     <area fill="#60C0FFBF" />
-  	        </rule>
-	        <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-	            <line stroke="#709DFF9C" stroke-width="6" stroke-linecap="butt" />
-	            <line stroke="#EEEEEE" stroke-width="0.7" />
-	            <line stroke="#333333" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt" />
-		     <area fill="#30C0FFBF" />
-	        </rule>
-	        <rule e="any" k="*" v="*" zoom-min="14">
-	            <line stroke="#409DFF9C" stroke-width="5" stroke-linecap="butt" />
- 	           <line stroke="#FFFFFF" stroke-width="0.2" />
- 	           <line stroke="#444444" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt" />
-		     <area fill="#30C0FFBF" />
-	        </rule>
-	</rule>
 	<rule cat="borders" e="way" k="leisure|boundary" v="nature_reserve|protected_area">
 		<rule e="any" k="protect_class" v="1|~" zoom-min="8" zoom-max="10">
 			<area fill="#60C0FFBF" />
