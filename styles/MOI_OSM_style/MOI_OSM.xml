@@ -1431,58 +1431,40 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <rule cat="borders" e="way" k="admin_level" v="4|6">
     <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-      <line stroke="#AAAAAA" stroke-width="2.0"/>
-      <line stroke="#DC94E9" stroke-width="2.0" stroke-dasharray="10, 10" stroke-linecap="butt"/>  <!-- ;admin -->
+      <line stroke="#DC94E9" stroke-width="2.0" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-      <line stroke="#D6DC94E9" stroke-width="6" stroke-linecap="butt"/>  <!-- ;admin -->
-      <line stroke="#EEEEEE" stroke-width="0.7"/>
-      <line stroke="#DC94E9" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt"/>  <!-- ;admin -->
+      <line stroke="#D6DC94E9" stroke-width="3" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <line stroke="#80DC94E9" stroke-width="3" stroke-linecap="butt"/>  <!-- ;admin -->
-      <line stroke="#FFFFFF" stroke-width="0.2"/>
-      <line stroke="#DC94E9" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt"/>  <!-- ;admin -->
+      <line stroke="#80DC94E9" stroke-width="1.5" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
   </rule>
   <rule cat="borders" e="way" k="admin_level" v="5|7|8">
     <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
       <line stroke="#D6DC94E9" stroke-width="3" stroke-linecap="butt"/>  <!-- ;admin -->
-      <line stroke="#EEEEEE" stroke-width="0.7"/>
-      <line stroke="#DC94E9" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
       <line stroke="#80DC94E9" stroke-width="1.5" stroke-linecap="butt"/>  <!-- ;admin -->
-      <line stroke="#FFFFFF" stroke-width="0.2"/>
-      <line stroke="#DC94E9" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
   </rule>
   <rule cat="borders" e="way" k="admin_level" v="9">
     <rule e="any" k="*" v="*" zoom-min="13" zoom-max="13">
       <line stroke="#D6DC94E9" stroke-width="1.5" stroke-linecap="butt"/>  <!-- ;admin -->
-      <line stroke="#EEEEEE" stroke-width="0.7"/>
-      <line stroke="#DC94E9" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
       <line stroke="#80DC94E9" stroke-width="0.75" stroke-linecap="butt"/>  <!-- ;admin -->
-      <line stroke="#FFFFFF" stroke-width="0.2"/>
-      <line stroke="#DC94E9" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt"/>  <!-- ;admin -->
     </rule>
   </rule>
   <rule cat="borders" e="way" k="boundary" v="national_park">
     <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-      <line stroke="#AAAAAA" stroke-width="2.0"/>
-      <line stroke="#408000" stroke-width="2.0" stroke-dasharray="10, 10" stroke-linecap="butt"/>  <!-- ;national_park -->
+      <line stroke="#408000" stroke-width="2.0" stroke-linecap="butt"/>  <!-- ;national_park -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-      <line stroke="#C0408000" stroke-width="6" stroke-linecap="butt"/>  <!-- ;national_park -->
-      <line stroke="#EEEEEE" stroke-width="0.7"/>
-      <line stroke="#408000" stroke-width="0.7" stroke-dasharray="12, 12" stroke-linecap="butt"/>  <!-- ;national_park -->
+      <line stroke="#C0408000" stroke-width="3" stroke-linecap="butt"/>  <!-- ;national_park -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <line stroke="#80408000" stroke-width="3" stroke-linecap="butt"/>  <!-- ;national_park -->
-      <line stroke="#FFFFFF" stroke-width="0.2"/>
-      <line stroke="#408000" stroke-width="0.2" stroke-dasharray="15, 15" stroke-linecap="butt"/>  <!-- ;national_park -->
+      <line stroke="#80408000" stroke-width="1.5" stroke-linecap="butt"/>  <!-- ;national_park -->
     </rule>
   </rule>
   <!-- special areas -->
