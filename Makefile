@@ -246,11 +246,12 @@ GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(MAPID),)
-TARGETS := $(MAPSFORGE)
+TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_STYLE)
 else
-TARGETS := $(GMAPSUPP) $(GMAP) $(NSIS)
+TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAP) $(NSIS)
 endif
 
 ifeq ($(shell uname),Darwin)
@@ -273,19 +274,24 @@ distclean: clean
 	-rm -rf $(EXTRACT)
 
 .PHONY: install
-install: $(GMAPSUPP)
+install: $(LICENSE) $(GMAPSUPP)
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
-	cat taiwan_topo.html | sed \
-	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
+	cp $(LICENSE) $(INSTALL_DIR)/taiwan_topo.html
 
 drop: all
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(TARGETS) $(INSTALL_DIR)
+
+.PHONY: license $(LICENSE)
+license: $(LICENSE)
+$(LICENSE):
+	[ -n "$(VERSION)" ]
+	mkdir -p $(BUILD_DIR)
 	cat taiwan_topo.html | sed \
-	    -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/taiwan_topo.html
+	    -e "s|__version__|$(VERSION)|g" > $(BUILD_DIR)/taiwan_topo.html
 
 .PHONY: nsis
 nsis: $(NSIS)
