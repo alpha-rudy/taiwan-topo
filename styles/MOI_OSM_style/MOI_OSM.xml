@@ -3253,7 +3253,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- natural -->
   <rule cat="landscapefeat" e="any" k="*" v="*" zoom-min="9">
     <rule e="node" k="natural" v="tree">
-      <circle radius="1.0" scale-radius="true" fill="#008800"/>
+      <circle radius="0.5" scale-radius="true" fill="#008800"/>
       <caption dy="-21" k="name" font-style="bold" font-size="10" fill="#008800" stroke="#E5FFFFFF" stroke-width="2"/>
       <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#008800" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
