@@ -223,7 +223,7 @@ SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
-ELEVATIONS_DIR := $(ROOT_DIR)/osm_elevations
+ELEVATIONS_DIR := $(ROOT_DIR)/work/osm_elevations
 EXTRACT_DIR := $(ROOT_DIR)/work/extracts
 DATA_DIR := $(ROOT_DIR)/work/$(REGION)/data$(MAPID)
 MAP_DIR := $(ROOT_DIR)/work/$(REGION)/$(NAME_WORD)
@@ -255,10 +255,10 @@ TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAP) $(NSIS)
 endif
 
 ifeq ($(shell uname),Darwin)
-MD5_CMD := md5 -q $(EXTRACT)
+MD5_CMD := md5 -q $$EXAM_FILE
 JMC_CMD := jmc/osx/jmc_cli
 else
-MD5_CMD := md5sum $(EXTRACT) | cut -d' ' -f1
+MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
 JMC_CMD := jmc/linux/jmc_cli
 endif
 
@@ -272,6 +272,7 @@ distclean: clean
 	-rm -rf $(DATA_DIR)
 	-rm -rf $(PBF)
 	-rm -rf $(EXTRACT)
+	-rm -rf $(ELEVATION)
 
 .PHONY: install
 install: $(LICENSE) $(GMAPSUPP)
@@ -411,13 +412,24 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
 		--check-styles
 	touch $(MAP)
 
+ELEVATIONS_URL := https://dl.dropboxusercontent.com/u/899714/src-data/osm_elevations
+$(ELEVATION):
+	[ -n "$(REGION)" ]
+	mkdir -p $(ELEVATIONS_DIR)
+	cd $(ELEVATIONS_DIR) && \
+	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
+	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ] || \
+	    	( rm -rf $@ && false )
+
+EXTRACT_URL := http://download.geofabrik.de/asia
 $(EXTRACT):
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    curl http://download.geofabrik.de/asia/$(EXTRACT_FILE) -o $(EXTRACT_FILE) && \
-	    curl http://download.geofabrik.de/asia/$(EXTRACT_FILE).md5 -o $(EXTRACT_FILE).md5 && \
-	    [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).md5 | cut -d' ' -f1)" ] || \
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE) -o $(EXTRACT_FILE) && \
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).md5 -o $(EXTRACT_FILE).md5 && \
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 # OSMOSIS_OPTS
