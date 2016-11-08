@@ -2,7 +2,9 @@
 
 ## Usage
 
-    $ make SUITE=taiwan_bw gmapsupp
+    $ make SUITE=taiwan_bw gmapsupp   ### make a Garmin handheld map
+    
+    $ make SUITE=taiwan mapsforge   ### make a mapsforge map
 
 ## SUITE list
 
