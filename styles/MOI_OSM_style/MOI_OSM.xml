@@ -23,6 +23,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas excursiones"/>
       <name lang="fr" value="itinéraires de randonnée"/>
       <name lang="it" value="itinerari a piedi"/>
+      <name lang="zh" value="登山步道"/>
       <cat id="h_routes"/>
     </layer>
     <layer id="elmt-h_s_routes" enabled="false">
@@ -31,6 +32,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas resaltadas"/>
       <name lang="fr" value="itinéraires soulignés"/>
       <name lang="it" value="percorsi accentato"/>
+      <name lang="zh" value="困難路線"/>
       <cat id="h_s_routes"/>
     </layer>
     <layer id="elmt-waymarks" enabled="false">
@@ -39,6 +41,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="balizas"/>
       <name lang="fr" value="balisage"/>
       <name lang="it" value="segnavia"/>
+      <name lang="zh" value="路標"/>
       <cat id="waymarks"/>
     </layer>
     <layer id="elmt-pt_network" enabled="false">
@@ -47,6 +50,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="red de transporte público"/>
       <name lang="fr" value="réseau de transport public"/>
       <name lang="it" value="rete di trasporto pubblico"/>
+      <name lang="zh" value="大眾運輸"/>
       <cat id="pt_network"/>
       <cat id="aerway"/>
     </layer>
@@ -56,6 +60,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas en bici"/>
       <name lang="fr" value="itinéraires cyclable"/>
       <name lang="it" value="percorsi ciclabili"/>
+      <name lang="zh" value="自行車道"/>
       <cat id="c_routes"/>
     </layer>
     <layer id="elmt-c_s_routes" enabled="false">
@@ -64,6 +69,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas resaltadas"/>
       <name lang="fr" value="itinéraires soulignés"/>
       <name lang="it" value="percorsi accentato"/>
+      <name lang="zh" value="困難路線"/>
       <cat id="c_s_routes"/>
     </layer>
     <layer id="elmt-mtb_routes" enabled="true">
@@ -72,6 +78,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas en BTT"/>
       <name lang="fr" value="itinéraires VTT"/>
       <name lang="it" value="percorsi mountain bike"/>
+      <name lang="zh" value="登山自行車道"/>
       <cat id="mtb_routes"/>
     </layer>
     <layer id="elmt-mtb_c_routes" enabled="false">
@@ -80,6 +87,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas en bici"/>
       <name lang="fr" value="itinéraires cyclable"/>
       <name lang="it" value="percorsi ciclabili"/>
+      <name lang="zh" value="自行車道"/>
       <cat id="c_routes"/>
     </layer>
     <layer id="elmt-mtb_s_routes" enabled="false">
@@ -88,6 +96,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas resaltadas"/>
       <name lang="fr" value="itinéraires soulignés"/>
       <name lang="it" value="percorsi accentato"/>
+      <name lang="zh" value="困難路線"/>
       <cat id="mtb_s_routes"/>
       <cat id="c_s_routes"/>
     </layer>
@@ -98,6 +107,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="toponimia"/>
       <name lang="fr" value="noms de lieux"/>
       <name lang="it" value="toponimi"/>
+      <name lang="zh" value="鄉鎮城市名稱"/>
       <cat id="settlements"/>
     </layer>
     <layer id="elmt-settlements-c" enabled="true">
@@ -106,6 +116,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="toponimia"/>
       <name lang="fr" value="noms de lieux"/>
       <name lang="it" value="toponimi"/>
+      <name lang="zh" value="鄉鎮城市名稱"/>
       <cat id="settlements"/>
     </layer>
     <layer id="elmt-settlements-b" enabled="true">
@@ -114,6 +125,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="toponimia"/>
       <name lang="fr" value="noms de lieux"/>
       <name lang="it" value="toponimi"/>
+      <name lang="zh" value="鄉鎮城市名稱"/>
       <cat id="settlements"/>
     </layer>
     <layer id="elmt-settlements-m" enabled="true">
@@ -122,6 +134,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="toponimia"/>
       <name lang="fr" value="noms de lieux"/>
       <name lang="it" value="toponimi"/>
+      <name lang="zh" value="鄉鎮城市名稱"/>
       <cat id="settlements"/>
     </layer>
     <layer id="elmt-landscapefeat-h" enabled="true">
@@ -130,6 +143,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="características del paisaje"/>
       <name lang="fr" value="caractéristiques du paysage"/>
       <name lang="it" value="caratteristiche del paesaggio"/>
+      <name lang="zh" value="地理景觀特徵"/>
       <cat id="landscapefeat"/>
       <cat id="landscapename"/>
     </layer>
@@ -139,6 +153,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="características del paisaje"/>
       <name lang="fr" value="caractéristiques du paysage"/>
       <name lang="it" value="caratteristiche del paesaggio"/>
+      <name lang="zh" value="地理景觀特徵"/>
       <cat id="landscapename"/>
     </layer>
     <layer id="elmt-landscapefeat-b" enabled="true">
@@ -147,6 +162,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="características del paisaje"/>
       <name lang="fr" value="caractéristiques du paysage"/>
       <name lang="it" value="caratteristiche del paesaggio"/>
+      <name lang="zh" value="地理景觀特徵"/>
       <cat id="landscapefeat"/>
       <cat id="landscapename"/>
     </layer>
@@ -156,6 +172,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="características del paisaje"/>
       <name lang="fr" value="caractéristiques du paysage"/>
       <name lang="it" value="caratteristiche del paesaggio"/>
+      <name lang="zh" value="地理景觀特徵"/>
       <cat id="landscapefeat"/>
       <cat id="landscapename"/>
     </layer>
@@ -165,6 +182,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="curva de nivel"/>
       <name lang="fr" value="courbe de niveau"/>
       <name lang="it" value="curva di livello"/>
+      <name lang="zh" value="等高線"/>
       <cat id="contour"/>
     </layer>
     <layer id="elmt-borders-h" enabled="true">
@@ -173,6 +191,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="fronteras y zonas especiales"/>
       <name lang="fr" value="frontières et zones spéciales"/>
       <name lang="it" value="confini e zone speciali"/>
+      <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
     <layer id="elmt-borders-c" enabled="true">
@@ -181,6 +200,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="fronteras y zonas especiales"/>
       <name lang="fr" value="frontières et zones spéciales"/>
       <name lang="it" value="confini e zone speciali"/>
+      <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
     <layer id="elmt-borders-b" enabled="true">
@@ -189,6 +209,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="fronteras y zonas especiales"/>
       <name lang="fr" value="frontières et zones spéciales"/>
       <name lang="it" value="confini e zone speciali"/>
+      <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
     <layer id="elmt-borders-m" enabled="true">
@@ -197,6 +218,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="fronteras y zonas especiales"/>
       <name lang="fr" value="frontières et zones spéciales"/>
       <name lang="it" value="confini e zone speciali"/>
+      <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
     <layer id="elmt-outdoorsports-h" enabled="true">
@@ -205,6 +227,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="outdoor e deporte"/>
       <name lang="fr" value="outdoor et sport"/>
       <name lang="it" value="outdoor e sport"/>
+      <name lang="zh" value="戶外與運動"/>
       <cat id="outdoor"/>
       <cat id="sports"/>
       <cat id="sled"/>
@@ -218,6 +241,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="outdoor e deporte"/>
       <name lang="fr" value="outdoor et sport"/>
       <name lang="it" value="outdoor e sport"/>
+      <name lang="zh" value="戶外與運動"/>
       <cat id="outdoor"/>
       <cat id="sports"/>
       <cat id="sled"/>
@@ -231,6 +255,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="outdoor e deporte"/>
       <name lang="fr" value="outdoor et sport"/>
       <name lang="it" value="outdoor e sport"/>
+      <name lang="zh" value="戶外與運動"/>
       <cat id="outdoor"/>
       <cat id="sports"/>
       <cat id="aerway"/>
@@ -243,6 +268,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="outdoor e deporte"/>
       <name lang="fr" value="outdoor et sport"/>
       <name lang="it" value="outdoor e sport"/>
+      <name lang="zh" value="戶外與運動"/>
       <cat id="outdoor"/>
       <cat id="sports"/>
       <cat id="aerway"/>
@@ -255,6 +281,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="emergencia"/>
       <name lang="fr" value="urgence"/>
       <name lang="it" value="emergenza"/>
+      <name lang="zh" value="緊急設施"/>
       <cat id="emergency"/>
     </layer>
     <layer id="elmt-emergency-c" enabled="false">
@@ -263,6 +290,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="emergencia"/>
       <name lang="fr" value="urgence"/>
       <name lang="it" value="emergenza"/>
+      <name lang="zh" value="緊急設施"/>
       <cat id="emergency"/>
     </layer>
     <layer id="elmt-emergency-b" enabled="false">
@@ -271,6 +299,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="emergencia"/>
       <name lang="fr" value="urgence"/>
       <name lang="it" value="emergenza"/>
+      <name lang="zh" value="緊急設施"/>
       <cat id="emergency"/>
     </layer>
     <layer id="elmt-emergency-m" enabled="false">
@@ -279,6 +308,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="emergencia"/>
       <name lang="fr" value="urgence"/>
       <name lang="it" value="emergenza"/>
+      <name lang="zh" value="緊急設施"/>
       <cat id="emergency"/>
     </layer>
     <layer id="elmt-amenities-h" enabled="true">
@@ -287,6 +317,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comodidades"/>
       <name lang="fr" value="aménagements"/>
       <name lang="it" value="servizi"/>
+      <name lang="zh" value="公共設施"/>
       <cat id="amenities"/>
     </layer>
     <layer id="elmt-amenities-c" enabled="true">
@@ -295,6 +326,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comodidades"/>
       <name lang="fr" value="aménagements"/>
       <name lang="it" value="servizi"/>
+      <name lang="zh" value="公共設施"/>
       <cat id="amenities"/>
     </layer>
     <layer id="elmt-amenities-b" enabled="true">
@@ -303,6 +335,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comodidades"/>
       <name lang="fr" value="aménagements"/>
       <name lang="it" value="servizi"/>
+      <name lang="zh" value="公共設施"/>
       <cat id="amenities"/>
     </layer>
     <layer id="elmt-amenities-m" enabled="true">
@@ -311,6 +344,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comodidades"/>
       <name lang="fr" value="aménagements"/>
       <name lang="it" value="servizi"/>
+      <name lang="zh" value="公共設施"/>
       <cat id="amenities"/>
     </layer>
     <layer id="elmt-accommodation-h" enabled="false">
@@ -319,6 +353,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
+      <name lang="en" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -328,6 +363,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
+      <name lang="en" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -337,6 +373,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
+      <name lang="en" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -346,6 +383,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
+      <name lang="en" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -355,6 +393,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="restaurantes y bares"/>
       <name lang="fr" value="restaurants et bars"/>
       <name lang="it" value="ristoranti e bar"/>
+      <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
     <layer id="elmt-restaurants-c" enabled="true">
@@ -363,6 +402,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="restaurantes y bares"/>
       <name lang="fr" value="restaurants et bars"/>
       <name lang="it" value="ristoranti e bar"/>
+      <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
     <layer id="elmt-restaurants-b" enabled="true">
@@ -371,6 +411,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="restaurantes y bares"/>
       <name lang="fr" value="restaurants et bars"/>
       <name lang="it" value="ristoranti e bar"/>
+      <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
     <layer id="elmt-restaurants-m" enabled="true">
@@ -379,6 +420,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="restaurantes y bares"/>
       <name lang="fr" value="restaurants et bars"/>
       <name lang="it" value="ristoranti e bar"/>
+      <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
     <layer id="elmt-shops-h" enabled="false">
@@ -387,6 +429,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comercios y servicios"/>
       <name lang="fr" value="commerces et services"/>
       <name lang="it" value="negozi e servizi"/>
+      <name lang="zh" value="商店與服務"/>
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
@@ -396,6 +439,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comercios y servicios"/>
       <name lang="fr" value="commerces et services"/>
       <name lang="it" value="negozi e servizi"/>
+      <name lang="zh" value="商店與服務"/>
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
@@ -405,6 +449,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comercios y servicios"/>
       <name lang="fr" value="commerces et services"/>
       <name lang="it" value="negozi e servizi"/>
+      <name lang="zh" value="商店與服務"/>
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
@@ -414,6 +459,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="comercios y servicios"/>
       <name lang="fr" value="commerces et services"/>
       <name lang="it" value="negozi e servizi"/>
+      <name lang="zh" value="商店與服務"/>
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
@@ -423,6 +469,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="turismo y cultura"/>
       <name lang="fr" value="tourisme et culture"/>
       <name lang="it" value="turismo e cultura"/>
+      <name lang="zh" value="旅遊和人文"/>
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
@@ -432,6 +479,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="turismo y cultura"/>
       <name lang="fr" value="tourisme et culture"/>
       <name lang="it" value="turismo e cultura"/>
+      <name lang="zh" value="旅遊和人文"/>
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
@@ -441,6 +489,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="turismo y cultura"/>
       <name lang="fr" value="tourisme et culture"/>
       <name lang="it" value="turismo e cultura"/>
+      <name lang="zh" value="旅遊和人文"/>
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
@@ -450,6 +499,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="turismo y cultura"/>
       <name lang="fr" value="tourisme et culture"/>
       <name lang="it" value="turismo e cultura"/>
+      <name lang="zh" value="旅遊和人文"/>
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
@@ -459,6 +509,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="transporte público"/>
       <name lang="fr" value="transport public"/>
       <name lang="it" value="trasporto pubblico"/>
+      <name lang="zh" value="大眾運輸"/>
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
@@ -468,6 +519,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="transporte público"/>
       <name lang="fr" value="transport public"/>
       <name lang="it" value="trasporto pubblico"/>
+      <name lang="zh" value="大眾運輸"/>
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
@@ -477,6 +529,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="transporte público"/>
       <name lang="fr" value="transport public"/>
       <name lang="it" value="trasporto pubblico"/>
+      <name lang="zh" value="大眾運輸"/>
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
@@ -486,6 +539,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="transporte público"/>
       <name lang="fr" value="transport public"/>
       <name lang="it" value="trasporto pubblico"/>
+      <name lang="zh" value="大眾運輸"/>
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
@@ -495,6 +549,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="coche"/>
       <name lang="fr" value="voiture"/>
       <name lang="it" value="auto"/>
+      <name lang="zh" value="汽車"/>
       <cat id="car"/>
       <cat id="fuel"/>
       <cat id="toll"/>
@@ -505,7 +560,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="coche"/>
       <name lang="fr" value="voiture"/>
       <name lang="it" value="auto"/>
-      <cat id="car"/>
+       <name lang="zh" value="汽車"/>
+     <cat id="car"/>
       <cat id="fuel"/>
       <cat id="toll"/>
     </layer>
@@ -515,6 +571,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="coche"/>
       <name lang="fr" value="voiture"/>
       <name lang="it" value="auto"/>
+      <name lang="zh" value="汽車"/>
       <cat id="car"/>
       <cat id="fuel"/>
       <cat id="toll"/>
@@ -525,6 +582,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="coche"/>
       <name lang="fr" value="voiture"/>
       <name lang="it" value="auto"/>
+      <name lang="zh" value="汽車"/>
       <cat id="car"/>
       <cat id="fuel"/>
       <cat id="toll"/>
@@ -535,6 +593,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="barreras"/>
       <name lang="fr" value="barrières"/>
       <name lang="it" value="barriere"/>
+      <name lang="zh" value="障礙物"/>
       <cat id="barriers"/>
     </layer>
     <layer id="elmt-barriers-c" enabled="true">
@@ -543,6 +602,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="barreras"/>
       <name lang="fr" value="barrières"/>
       <name lang="it" value="barriere"/>
+      <name lang="zh" value="障礙物"/>
       <cat id="barriers"/>
     </layer>
     <layer id="elmt-barriers-b" enabled="true">
@@ -551,6 +611,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="barreras"/>
       <name lang="fr" value="barrières"/>
       <name lang="it" value="barriere"/>
+      <name lang="zh" value="障礙物"/>
       <cat id="barriers"/>
     </layer>
     <layer id="elmt-barriers-m" enabled="true">
@@ -559,6 +620,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="barreras"/>
       <name lang="fr" value="barrières"/>
       <name lang="it" value="barriere"/>
+      <name lang="zh" value="障礙物"/>
       <cat id="barriers"/>
     </layer>
     <layer id="elmt-buildings-h" enabled="false">
@@ -567,6 +629,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="edificios especiales"/>
       <name lang="fr" value="bâtiments spéciaux"/>
       <name lang="it" value="edifici speciali"/>
+      <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
     <layer id="elmt-buildings-c" enabled="false">
@@ -575,6 +638,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="edificios especiales"/>
       <name lang="fr" value="bâtiments spéciaux"/>
       <name lang="it" value="edifici speciali"/>
+      <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
     <layer id="elmt-buildings-b" enabled="false">
@@ -583,6 +647,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="edificios especiales"/>
       <name lang="fr" value="bâtiments spéciaux"/>
       <name lang="it" value="edifici speciali"/>
+      <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
     <layer id="elmt-buildings-m" enabled="false">
@@ -591,6 +656,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="edificios especiales"/>
       <name lang="fr" value="bâtiments spéciaux"/>
       <name lang="it" value="edifici speciali"/>
+      <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
     <!-- mapstyles -->
@@ -600,6 +666,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="Excursionismo"/>
       <name lang="fr" value="Randonnées"/>
       <name lang="it" value="Escursioni"/>
+      <name lang="zh" value="登山"/>
       <cat id="hike"/>
       <cat id="nobike"/>
       <cat id="nocity"/>
@@ -628,6 +695,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="Ciudad"/>
       <name lang="fr" value="Ville"/>
       <name lang="it" value="Città"/>
+      <name lang="zh" value="都市"/>
       <cat id="city"/>
       <cat id="nohike"/>
       <cat id="nobike"/>
@@ -654,6 +722,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="Ciclismo"/>
       <name lang="fr" value="Cyclisme"/>
       <name lang="it" value="Ciclismo"/>
+      <name lang="zh" value="自行車"/>
       <cat id="bike"/>
       <cat id="bike_paths"/>
       <cat id="nohike"/>
@@ -683,6 +752,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="Bicicleta todo terreno"/>
       <name lang="fr" value="Vélo tout terrain"/>
       <name lang="it" value="Mountain bike"/>
+      <name lang="zh" value="登山自行車"/>
       <cat id="bike"/>
       <cat id="nohike"/>
       <cat id="nocity"/>
