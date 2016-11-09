@@ -158,8 +158,8 @@ modification, are permitted provided that the following conditions are met:
     following disclaimer in the documentation and/or other materials provided
     with the distribution.
 
-     * Redistributions with modification must use a different map name which
-     could be easily and clearly to be distinguished with this map.
+    * Redistributions with modification must use a different map name which
+    could be easily and clearly to be distinguished with this map.
 
     * Neither the name of Rudy Chung nor the names of its contributors may be
     used to endorse or promote products derived from this software without 
