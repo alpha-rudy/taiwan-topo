@@ -17,6 +17,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip)：未支援。點選下載，並手動安裝
+  * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
+  > (歡迎製作並取代我的不專業解說)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
   * 分開安裝
@@ -25,6 +27,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * [![DEM](images/Locus_dem.jpeg =36x) DEM](locus-actions://https/dl.dropboxusercontent.com/u/899714/beta/locus_dem.xml)：點選啟動高程檔自動安裝
   * 一次安裝
     * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://https/dl.dropboxusercontent.com/u/899714/beta/locus_all.xml)：點選啟動地圖/風格/高程一次安裝
+  * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
+  > (歡迎製作並取代我的不專業解說)
 
 * ![Android](images/Android.png =36x) Android 手動下載自行安裝
   * [![Map](images/Android.png =36x) Map](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選下載地圖檔，需手動安裝
