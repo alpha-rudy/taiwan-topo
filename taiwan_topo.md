@@ -34,6 +34,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Map](images/Android.png =36x) Map](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選下載地圖檔，需手動安裝
   * [![Style](images/Android.png =36x) Style](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，需手動安裝
   * [![DEM](images/Android.png =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip)：點選下載高程檔，需手動安裝
+  * 安裝示範影片：
+    * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
+    * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
+    > (歡迎製作並取代我的不專業解說)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__（適合小螢幕）
   * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img)：點選下載
