@@ -291,8 +291,9 @@ license: $(LICENSE)
 $(LICENSE):
 	[ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
-	cat taiwan_topo.html | sed \
-	    -e "s|__version__|$(VERSION)|g" > $(BUILD_DIR)/taiwan_topo.html
+	cat taiwan_topo.md | sed -e "s|__version__|$(VERSION)|g" | \
+	    markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
+	cat github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
 
 .PHONY: nsis
 nsis: $(NSIS)
@@ -319,7 +320,7 @@ $(NSIS): $(MAP)
 		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
 		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
 		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
-		cat $(ROOT_DIR)/taiwan_topo.txt | sed \
+		cat $(ROOT_DIR)/taiwan_topo.md | sed \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT -o readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi
