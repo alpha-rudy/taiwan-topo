@@ -69,6 +69,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 * 2016, 11/10
   * 開始支援 OruxMaps 與 Locus Map 自動安裝
   * Mapsforge Style Catagory Selection 增加中文標示
+  * 移上 GitHub.com 來管理
+  * 改良 License 說明，更符合 Free BSD 概念
 * 2016, 11/3
   * 開始支援 Mapsforge Maps
   * 調整山徑的配色
