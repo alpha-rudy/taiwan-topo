@@ -1,27 +1,45 @@
 MOI.OSM - Taiwan TOPO (by Rudy)
 =================================
 
-每週四發行的 MOI.OSM - Taiwan TOPO v__version__ 。
+每週四發行 MOI.OSM - Taiwan TOPO v__version__
 
 適合用在 Garmin / Android 上，拿來登山與尋寶 (hiking/geocaching)！
 
 * 說明網頁（本頁）
 > https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
 
-* Android Mapsforge, MOI_OSM_Taiwan_TOPO_Rudy
-  * Map: https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip
-  * Style: https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy_style.zip
-  * DEM: https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip
+* ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
+  * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
+    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
+    * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip)：未支援。請點選下載，並手動安裝
+  * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
+    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
+    * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip)：未支援。點選下載，並手動安裝
 
-* Garmin GMAP, MOI.OSM.bw - Taiwan TOPO v__version__（適合小螢幕）
-  * Garmin 手持機: https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img
-  * macOS BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_bw.gmap.zip
-  * Windows BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_bw.exe
+* ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
+  * 分開安裝
+    * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://https/dl.dropboxusercontent.com/u/899714/beta/locus_map.xml)：點選啟動地圖自動安裝
+    * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://https/dl.dropboxusercontent.com/u/899714/beta/locus_style.xml)：點選啟動風格主題自動安裝
+    * [![DEM](images/Locus_dem.jpeg =36x) DEM](locus-actions://https/dl.dropboxusercontent.com/u/899714/beta/locus_dem.xml)：點選啟動高程檔自動安裝
+  * 一次安裝
+    * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://https/dl.dropboxusercontent.com/u/899714/beta/locus_all.xml)：點選啟動地圖/風格/高程一次安裝
 
-* Garmin GMAP, MOI.OSM.odc - Taiwan TOPO v__version__（適合大螢幕）
-  * Garmin 手持機: https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_odc.img
-  * macOS BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_odc.gmap.zip
-  * Windows BaseCamp: https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_odc.exe
+* ![Android](images/Android.png =36x) Android 手動下載自行安裝
+  * [![Map](images/Android.png =36x) Map](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選下載地圖檔，需手動安裝
+  * [![Style](images/Android.png =36x) Style](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，需手動安裝
+  * [![DEM](images/Android.png =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip)：點選下載高程檔，需手動安裝
+
+* ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__（適合小螢幕）
+  * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img)：點選下載
+  * [![Map](images/Windows.png =36x) exe](https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_bw.exe)：點選下載
+  * [![Map](images/macOS.png =36x) gmap](https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_bw.gmap.zip)：點選下載
+
+* ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__（適合小螢幕）
+  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_odc.img)：點選下載
+  * [![Map](images/Windows.png =36x) exe](https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_odc.exe)：點選下載
+  * [![Map](images/macOS.png =36x) gmap](https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_odc.gmap.zip)：點選下載
 
 
 ## 說明
@@ -48,6 +66,9 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 ## 重大修改歷程
 
+* 2016, 11/10
+  * 開始支援 OruxMaps 與 Locus Map 自動安裝
+  * Mapsforge Style Catagory Selection 增加中文標示
 * 2016, 11/3
   * 開始支援 Mapsforge Maps
   * 調整山徑的配色

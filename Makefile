@@ -279,11 +279,13 @@ install: $(LICENSE) $(GMAPSUPP)
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
+	cp -r images $(INSTALL_DIR)
 	cp $(LICENSE) $(INSTALL_DIR)/taiwan_topo.html
 
 drop: all
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
+	cp -r images $(INSTALL_DIR)
 	cp -r $(TARGETS) $(INSTALL_DIR)
 
 .PHONY: license $(LICENSE)
@@ -291,6 +293,7 @@ license: $(LICENSE)
 $(LICENSE):
 	[ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
+	cp -a images $(BUILD_DIR)
 	cat taiwan_topo.md | sed -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
 	cat github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
