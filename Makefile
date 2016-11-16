@@ -455,10 +455,10 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 		omitmetadata=true
 .PHONY: mapsforge_style
 mapsforge_style: $(MAPSFORGE_STYLE)
-$(MAPSFORGE_STYLE): styles/MOI_OSM_style/MOI_OSM.xml
+$(MAPSFORGE_STYLE): styles/mapsforge_style/MOI_OSM.xml
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cd styles/MOI_OSM_style && \
+	cd styles/mapsforge_style && \
 	   zip -r $@ *
 
 .PHONY: mapsforge
