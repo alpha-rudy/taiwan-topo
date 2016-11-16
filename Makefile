@@ -279,13 +279,13 @@ install: $(LICENSE) $(GMAPSUPP)
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
-	cp -r images $(INSTALL_DIR)
+	cp -r $(BUILD_DIR)/images $(INSTALL_DIR)
 	cp $(LICENSE) $(INSTALL_DIR)/taiwan_topo.html
 
 drop: all
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
-	cp -r images $(INSTALL_DIR)
+	cp -r $(BUILD_DIR)/images $(INSTALL_DIR)
 	cp -r $(TARGETS) $(INSTALL_DIR)
 
 .PHONY: license $(LICENSE)
