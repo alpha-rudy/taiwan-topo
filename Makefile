@@ -199,8 +199,6 @@ STYLE_NAME := bw
 DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2313)
 
-else 
-    $(error Error: SUITE not specified. Please specify SUITE=[taiwan|taipei|beibeiji]_[jing|outdoor|outdoorc])
 endif
 
 # auto variables
@@ -223,11 +221,12 @@ SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
-ELEVATIONS_DIR := $(ROOT_DIR)/work/osm_elevations
-EXTRACT_DIR := $(ROOT_DIR)/work/extracts
-DATA_DIR := $(ROOT_DIR)/work/$(REGION)/data$(MAPID)
-MAP_DIR := $(ROOT_DIR)/work/$(REGION)/$(NAME_WORD)
+WORKS_DIR := $(ROOT_DIR)/work
 BUILD_DIR := $(ROOT_DIR)/install
+ELEVATIONS_DIR := $(WORKS_DIR)/osm_elevations
+EXTRACT_DIR := $(WORKS_DIR)/extracts
+DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
+MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
 
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
@@ -266,14 +265,16 @@ endif
 all: $(TARGETS)
 
 clean:
+	[ -n "$(TARGETS)" ]
+	[ -d "$(MAP_DIR)" ]
 	-rm -rf $(TARGETS)
 	-rm -rf $(MAP_DIR)
 
-distclean: clean
-	-rm -rf $(DATA_DIR)
-	-rm -rf $(PBF)
-	-rm -rf $(EXTRACT)
-	-rm -rf $(ELEVATION)
+distclean:
+	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(WORKS_DIR)" ]
+	-rm -rf $(BUILD_DIR)
+	-rm -rf $(WORKS_DIR)
 
 .PHONY: install
 install: $(LICENSE) $(GMAPSUPP)
@@ -288,6 +289,15 @@ drop: all
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(BUILD_DIR)/images $(INSTALL_DIR)
 	cp -r $(TARGETS) $(INSTALL_DIR)
+
+suites:
+	echo "make SUITE taiwan_bw taiwan_odc taiwan"
+	git pull --rebase
+	git status
+	make distclean
+	make SUITE=taiwan_bw all
+	make SUITE=taiwan_odc all
+	make SUITE=taiwan all
 
 .PHONY: license $(LICENSE)
 license: $(LICENSE)
@@ -373,8 +383,6 @@ MAPSFORGE_NTL := zh,en
 else ifeq ($(LANG),en)
 NTL := name:en,name:zh,name
 MAPSFORGE_NTL := en
-else
-    $(error Error: LANG not specified. something wrong at SUITE handlation)
 endif
 
 $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
@@ -422,8 +430,8 @@ $(ELEVATION):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)
 	cd $(ELEVATIONS_DIR) && \
-	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
-	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
+	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
+	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
