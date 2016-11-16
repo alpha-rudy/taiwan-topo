@@ -246,10 +246,11 @@ GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(MAPID),)
-TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_STYLE)
+TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_STYLE) $(LOCUS_STYLE)
 else
 TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAP) $(NSIS)
 endif
@@ -453,13 +454,22 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 		$(OSMOSIS_OPTS) \
 		--write-pbf $(PBF) \
 		omitmetadata=true
+
 .PHONY: mapsforge_style
 mapsforge_style: $(MAPSFORGE_STYLE)
 $(MAPSFORGE_STYLE): styles/mapsforge_style/MOI_OSM.xml
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cd styles/mapsforge_style && \
-	   zip -r $@ *
+	cp -a styles/mapsforge_style $(BUILD_DIR)
+	cd $(BUILD_DIR)/mapsforge_style && zip -r $@ *
+
+.PHONY: locus_style
+locus_style: $(LOCUS_STYLE)
+$(LOCUS_STYLE): styles/locus_style/MOI_OSM.xml
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/mapsforge_style $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
+	cd $(BUILD_DIR) && zip -r $@ MOI_OSM_Taiwan_TOPO_Rudy_style/
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
