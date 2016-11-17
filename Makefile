@@ -241,17 +241,19 @@ TAG_MAPPING := $(ROOT_DIR)/tag-mapping.xml
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
+GMAPSUPP_ZIP := $(GMAPSUPP).zip
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
+MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(MAPID),)
-TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_STYLE) $(LOCUS_STYLE)
+TARGETS := $(LICENSE) $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE)
 else
-TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAP) $(NSIS)
+TARGETS := $(LICENSE) $(GMAPSUPP_ZIP) $(GMAP) $(NSIS)
 endif
 
 ifeq ($(shell uname),Darwin)
@@ -377,6 +379,12 @@ $(GMAPSUPP): $(MAP)
 		$(MAPID)*.img $(MAPID).TYP
 	cp $(MAP_DIR)/gmapsupp.img $@
 
+$(GMAPSUPP_ZIP): $(GMAPSUPP)
+	[ -d "$(BUILD_DIR)" ]
+	[ -f "$(GMAPSUPP)" ]
+	-rm -rf $@
+	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(GMAPSUPP))
+
 ifeq ($(LANG),zh) 
 NTL := name,name:zh,name:en
 MAPSFORGE_NTL := zh,en
@@ -478,6 +486,12 @@ $(LOCUS_STYLE): styles/locus_style/MOI_OSM.xml
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_style $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
 	cd $(BUILD_DIR) && zip -r $@ MOI_OSM_Taiwan_TOPO_Rudy_style/
+
+$(MAPSFORGE_ZIP): $(MAPSFORGE)
+	[ -d "$(BUILD_DIR)" ]
+	[ -f "$(MAPSFORGE)" ]
+	-rm -rf $@
+	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(MAPSFORGE))
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
