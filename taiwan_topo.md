@@ -40,12 +40,12 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > (歡迎製作並取代我的不專業解說)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__（適合小螢幕）
-  * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img)：點選下載
+  * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_bw.img.zip)：點選下載
   * [![Map](images/Windows.png =36x) exe](https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_bw.exe)：點選下載
   * [![Map](images/macOS.png =36x) gmap](https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_bw.gmap.zip)：點選下載
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__（適合小螢幕）
-  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_odc.img)：點選下載
+  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapsupp_Taiwan_moi_zh_odc.img.zip)：點選下載
   * [![Map](images/Windows.png =36x) exe](https://dl.dropboxusercontent.com/u/899714/maps/Install_MOI_Taiwan_TOPO_odc.exe)：點選下載
   * [![Map](images/macOS.png =36x) gmap](https://dl.dropboxusercontent.com/u/899714/maps/Taiwan_moi_zh_odc.gmap.zip)：點選下載
 
