@@ -8,6 +8,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 * 說明網頁（本頁）
 > https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
 
+* 使用討論臉書社團
+> https://www.facebook.com/groups/taiwan.topo/permalink/712550895567193
+
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
