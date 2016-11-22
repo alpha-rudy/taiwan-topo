@@ -8,7 +8,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 * 說明網頁（本頁）
 > https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
 
-* 使用討論臉書社團
+* 使用討論（臉書社團）
 > https://www.facebook.com/groups/taiwan.topo/permalink/712550895567193
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
