@@ -11,6 +11,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 * 使用討論（臉書社團）
 > https://www.facebook.com/groups/taiwan.topo/permalink/712550895567193
 
+**自動安裝目前只能在 Chrome 下才能執行，請閱讀後面的注意事項。**
+
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
@@ -74,9 +76,14 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 * Andoid Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps 與 Locus Map。
 
+* 若你在 FaceBook APP 上，請透過下面方法進入 Chrome：
+  ![WorkAround](images/workaround.png)
+
 
 ## 重大修改歷程
 
+* 2016, 11/24
+  * 增加 Mapsforge 等高線的數值顯示
 * 2016, 11/10
   * 開始支援 OruxMaps 與 Locus Map 自動安裝
   * Mapsforge Style Catagory Selection 增加中文標示
