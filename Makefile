@@ -11,6 +11,7 @@ REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := YushanNationalPark.poly
 DEM_NAME := MOI
@@ -20,6 +21,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taiwan.poly
 DEM_NAME := MOI
@@ -29,6 +31,7 @@ REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Beibeiji.poly
 DEM_NAME := MOI
@@ -38,6 +41,7 @@ REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest.osm.pbf
 POLY_FILE := Taipei.poly
 DEM_NAME := MOI
@@ -229,6 +233,7 @@ DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
 MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
 
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
+ELEVATION_MARKER := $(ELEVATIONS_DIR)/$(ELEVATION_MARKER_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 TILES := $(DATA_DIR)/.done
@@ -247,13 +252,14 @@ NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+MAPSFORGE_PBF := $(BUILD_DIR)/$(REGION)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(MAPID),)
-TARGETS := $(LICENSE) $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE)
+TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE)
 else
-TARGETS := $(LICENSE) $(GMAPSUPP_ZIP) $(GMAP) $(NSIS)
+TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAPSUPP_ZIP) $(GMAP) $(NSIS)
 endif
 
 ifeq ($(shell uname),Darwin)
@@ -268,7 +274,7 @@ all: $(TARGETS)
 
 clean:
 	[ -n "$(TARGETS)" ]
-	[ -d "$(MAP_DIR)" ]
+	[ -n "$(MAP_DIR)" ]
 	-rm -rf $(TARGETS)
 	-rm -rf $(MAP_DIR)
 
@@ -443,6 +449,15 @@ $(ELEVATION):
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
+$(ELEVATION_MARKER):
+	[ -n "$(REGION)" ]
+	mkdir -p $(ELEVATIONS_DIR)
+	cd $(ELEVATIONS_DIR) && \
+	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE) -o $(ELEVATION_MARKER_FILE) && \
+	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE).md5 -o $(ELEVATION_MARKER_FILE).md5 && \
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MARKER_FILE).md5 | cut -d' ' -f1)" ] || \
+	    	( rm -rf $@ && false )
+
 EXTRACT_URL := http://download.geofabrik.de/asia
 $(EXTRACT):
 	[ -n "$(REGION)" ]
@@ -468,7 +483,22 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 		--read-pbf $(ELEVATION) \
 		--merge \
 		$(OSMOSIS_OPTS) \
-		--write-pbf $(PBF) \
+		--write-pbf $@ \
+		omitmetadata=true
+
+$(MAPSFORGE_PBF): $(EXTRACT) $(ELEVATION) $(ELEVATION_MARKER)
+	[ -n "$(REGION)" ]
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
+	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+		--read-pbf $(EXTRACT) \
+		--read-pbf $(ELEVATION) \
+		--read-pbf $(ELEVATION_MARKER) \
+		--merge \
+		--merge \
+		$(OSMOSIS_OPTS) \
+		--write-pbf $@ \
 		omitmetadata=true
 
 .PHONY: mapsforge_style
@@ -495,12 +525,12 @@ $(MAPSFORGE_ZIP): $(MAPSFORGE)
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
-$(MAPSFORGE): $(PBF) $(TAG_MAPPING)
+$(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS=-Xmx64G && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf "$(PBF)" \
+		--read-pbf "$(MAPSFORGE_PBF)" \
 		--mapfile-writer \
 		    $(MF_WRITER_OPTS) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
