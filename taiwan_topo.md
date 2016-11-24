@@ -9,9 +9,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 > https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
 
 * 使用討論（臉書社團）
-> https://www.facebook.com/groups/taiwan.topo/permalink/712550895567193
+> https://www.facebook.com/groups/taiwan.topo
 
-**自動安裝目前只能在 Chrome 下才能執行，請閱讀後面的注意事項。**
+* 請注意
+> **自動安裝目前只能在 Chrome 下才能執行，請閱讀後面的注意事項！！！**
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
