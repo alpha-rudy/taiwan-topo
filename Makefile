@@ -512,9 +512,11 @@ $(MAPSFORGE_STYLE): styles/mapsforge_style/MOI_OSM.xml
 .PHONY: locus_style
 locus_style: $(LOCUS_STYLE)
 $(LOCUS_STYLE): styles/locus_style/MOI_OSM.xml
+	[ -n "$(BUILD_DIR)" ]
 	-rm -rf $@
+	-rm -rf $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
 	mkdir -p $(BUILD_DIR)
-	cp -a styles/mapsforge_style $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
+	cp -a styles/locus_style $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
 	cd $(BUILD_DIR) && zip -r $@ MOI_OSM_Taiwan_TOPO_Rudy_style/
 
 $(MAPSFORGE_ZIP): $(MAPSFORGE)
