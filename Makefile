@@ -504,6 +504,8 @@ $(MAPSFORGE_PBF): $(EXTRACT) $(ELEVATION) $(ELEVATION_MARKER)
 .PHONY: mapsforge_style $(MAPSFORGE_STYLE)
 mapsforge_style: $(MAPSFORGE_STYLE)
 $(MAPSFORGE_STYLE):
+	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_style $(BUILD_DIR)
@@ -515,6 +517,7 @@ $(MAPSFORGE_STYLE):
 locus_style: $(LOCUS_STYLE)
 $(LOCUS_STYLE):
 	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(REGION)" ]
 	-rm -rf $@
 	-rm -rf $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
 	mkdir -p $(BUILD_DIR)
