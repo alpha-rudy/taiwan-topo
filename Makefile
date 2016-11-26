@@ -501,22 +501,26 @@ $(MAPSFORGE_PBF): $(EXTRACT) $(ELEVATION) $(ELEVATION_MARKER)
 		--write-pbf $@ \
 		omitmetadata=true
 
-.PHONY: mapsforge_style
+.PHONY: mapsforge_style $(MAPSFORGE_STYLE)
 mapsforge_style: $(MAPSFORGE_STYLE)
-$(MAPSFORGE_STYLE): styles/mapsforge_style/MOI_OSM.xml
+$(MAPSFORGE_STYLE):
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_style $(BUILD_DIR)
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
 	cd $(BUILD_DIR)/mapsforge_style && zip -r $@ *
 
-.PHONY: locus_style
+.PHONY: locus_style $(LOCUS_STYLE)
 locus_style: $(LOCUS_STYLE)
-$(LOCUS_STYLE): styles/locus_style/MOI_OSM.xml
+$(LOCUS_STYLE):
 	[ -n "$(BUILD_DIR)" ]
 	-rm -rf $@
 	-rm -rf $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/locus_style $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
+	cat styles/locus_style/MOI_OSM.xml | \
+	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style/MOI_OSM.xml
 	cd $(BUILD_DIR) && zip -r $@ MOI_OSM_Taiwan_TOPO_Rudy_style/
 
 $(MAPSFORGE_ZIP): $(MAPSFORGE)
