@@ -661,12 +661,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </layer>
     <!-- mapstyles -->
     <layer id="elmt-hiking" visible="true">
-      <name lang="de" value="Wandern"/>
-      <name lang="en" value="Hiking"/>
-      <name lang="es" value="Excursionismo"/>
-      <name lang="fr" value="Randonnées"/>
-      <name lang="it" value="Escursioni"/>
-      <name lang="zh" value="登山"/>
+      <name lang="de" value="Wandern v__version__"/>
+      <name lang="en" value="Hiking v__version__"/>
+      <name lang="es" value="Excursionismo v__version__"/>
+      <name lang="fr" value="Randonnées v__version__"/>
+      <name lang="it" value="Escursioni v__version__"/>
+      <name lang="zh" value="登山 v__version__"/>
       <cat id="hike"/>
       <cat id="nobike"/>
       <cat id="nocity"/>
