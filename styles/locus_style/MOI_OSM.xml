@@ -2953,11 +2953,18 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- railways -->
-  <!-- <rule e="way" k="railway" v="rail" zoom-min="7" zoom-max="12">
-		<line stroke="#333333" stroke-width="0.55" stroke-linecap="butt" />
-		<line stroke="#E6E6E6" stroke-width="0.4" stroke-linecap="butt" />
-		<line stroke="#333333" stroke-width="0.4" stroke-dasharray="15,15" stroke-linecap="butt" />
-        </rule> -->
+  <rule e="way" k="railway" v="rail" zoom-min="8" zoom-max="12">
+    <rule e="way" k="gauge" v="1435">
+      <line stroke="#E6E6E6" stroke-width="1.2" stroke-linecap="butt"/>
+      <line stroke="#FF6900" stroke-width="1.2" stroke-dasharray="8,8" stroke-linecap="butt"/>
+      <!-- ;highspeed_rail -->
+    </rule>
+    <rule e="way" k="gauge" v="1067|~">
+      <line stroke="#E6E6E6" stroke-width="1.8" stroke-linecap="butt"/>
+      <line stroke="#101820" stroke-width="1.8" stroke-dasharray="8,8" stroke-linecap="butt"/>
+      <!-- ;rail -->
+    </rule>
+  </rule>
   <rule e="way" k="tunnel" v="~|no">
     <rule e="way" k="railway|highway" v="tram|light_rail|bus_guideway" zoom-min="14">
       <line stroke="#9999CC" stroke-width="0.2"/>
@@ -2972,17 +2979,17 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <line stroke="#E6E6E6" stroke-width="0.25" stroke-linecap="butt"/>
       <line stroke="#333333" stroke-width="0.25" stroke-dasharray="12,12" stroke-linecap="butt"/>
     </rule>
-    <rule e="way" k="railway" v="rail" zoom-min="8">
+    <rule e="way" k="railway" v="rail" zoom-min="13">
       <rule e="way" k="gauge" v="1435">
-        <line stroke="#333333" stroke-width="1.8" stroke-linecap="butt"/>
-        <line stroke="#E6E6E6" stroke-width="1.5" stroke-linecap="butt"/>
-        <line stroke="#FF6900" stroke-width="1.5" stroke-dasharray="15,15" stroke-linecap="butt"/>
+        <line stroke="#333333" stroke-width="1.1" stroke-linecap="butt"/>
+        <line stroke="#E6E6E6" stroke-width="0.8" stroke-linecap="butt"/>
+        <line stroke="#FF6900" stroke-width="0.8" stroke-dasharray="15,15" stroke-linecap="butt"/>
         <!-- ;highspeed_rail -->
       </rule>
       <rule e="way" k="gauge" v="1067|~">
-        <line stroke="#333333" stroke-width="1.8" stroke-linecap="butt"/>
-        <line stroke="#E6E6E6" stroke-width="1.5" stroke-linecap="butt"/>
-        <line stroke="#101820" stroke-width="1.5" stroke-dasharray="15,15" stroke-linecap="butt"/>
+        <line stroke="#333333" stroke-width="1.1" stroke-linecap="butt"/>
+        <line stroke="#E6E6E6" stroke-width="0.8" stroke-linecap="butt"/>
+        <line stroke="#101820" stroke-width="0.8" stroke-dasharray="15,15" stroke-linecap="butt"/>
         <!-- ;rail -->
       </rule>
     </rule>
