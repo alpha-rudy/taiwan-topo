@@ -5,11 +5,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 適合用在 Garmin / Android 上，拿來登山與尋寶 (hiking/geocaching)！
 
-* 說明網頁（本頁）
-> https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
-
-* 使用討論（臉書社團）
-> https://www.facebook.com/groups/taiwan.topo
+* 相關網頁
+  * 說明網頁（本頁）: https://dl.dropboxusercontent.com/u/899714/maps/taiwan_topo.html
+  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * 請注意
 > **自動安裝目前只能在 Chrome 下才能執行，請閱讀後面的注意事項！！！**
