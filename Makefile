@@ -216,7 +216,7 @@ NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx4G
+JAVACMD_OPTIONS := -Xmx48G -server
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -434,7 +434,7 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
 	    cat $(DATA_DIR)/template.args | sed \
 	    	-e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--max-jobs=4 \
+	    	--max-jobs=8 \
 	    	-c mkgmap.cfg \
 		--check-styles
 	touch $(MAP)
@@ -477,20 +477,20 @@ $(PBF): $(EXTRACT) $(ELEVATION)
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT) \
 		--read-pbf $(ELEVATION) \
 		--merge \
 		$(OSMOSIS_OPTS) \
-		--write-pbf $@ \
+		--buffer --write-pbf $@ \
 		omitmetadata=true
 
 $(MAPSFORGE_PBF): $(EXTRACT) $(ELEVATION) $(ELEVATION_MARKER)
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT) \
 		--read-pbf $(ELEVATION) \
@@ -498,7 +498,7 @@ $(MAPSFORGE_PBF): $(EXTRACT) $(ELEVATION) $(ELEVATION_MARKER)
 		--merge \
 		--merge \
 		$(OSMOSIS_OPTS) \
-		--write-pbf $@ \
+		--buffer --write-pbf $@ \
 		omitmetadata=true
 
 .PHONY: mapsforge_style $(MAPSFORGE_STYLE)
@@ -537,10 +537,10 @@ mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS=-Xmx64G && \
+	export JAVACMD_OPTIONS="-Xmx48G -server" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
-		--mapfile-writer \
+		--buffer --mapfile-writer \
 		    $(MF_WRITER_OPTS) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
@@ -554,7 +554,7 @@ $(TILES): $(PBF)
 	[ -n "$(MAPID)" ]
 	rm -rf $(DATA_DIR)
 	mkdir -p $(DATA_DIR)
-	export JAVACMD_OPTIONS=$(JAVACMD_OPTIONS) && cd $(DATA_DIR) && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(DATA_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
 	    	--max-threads=4 \
 	    	--geonames-file=$(CITY) \
