@@ -3460,24 +3460,23 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="node" k="natural" v="peak">
-      <rule cat="nocity" e="node" k="" v="玉山|雪山|北大武山" zoom-min="7" zoom-max="8">
-        <symbol id="s_peak_small" priority="88" src="file:moiosm_res/s_peak_small.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
-        <caption k="name" symbol-id="s_peak_small" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
-        <rule e="any" k="*" v="*">
-          <caption k="ele" priority="-5" symbol-id="s_peak_small" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      <rule cat="nocity" e="node" k="ref" v="百岳">
+       <rule e="node" k="name" v=".|玉山|雪山|北大武山" zoom-min="7" zoom-max="8">
+          <symbol id="s_peak_small" priority="88" src="file:moiosm_res/s_peak_small.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+          <caption k="name" symbol-id="s_peak_small" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
-      </rule>
-      <rule cat="nocity" e="node" k="ref" v="百岳" zoom-min="9" zoom-max="11">
-        <symbol id="s_peak_small" priority="88" src="file:moiosm_res/s_peak_small.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
-        <caption k="name" symbol-id="s_peak_small" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
-        <rule e="any" k="*" v="*">
-          <caption k="ele" priority="-5" symbol-id="s_peak_small" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+        <rule e="any" k="*" v="*" zoom-min="9" zoom-max="10">
+          <symbol id="s_peak_small" priority="88" src="file:moiosm_res/s_peak_small.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+          <caption k="name" symbol-id="s_peak_small" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          <rule e="any" k="*" v="*" zoom-min="10">
+            <caption k="ele" priority="-5" symbol-id="s_peak_small" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
         </rule>
       </rule>
       <rule cat="nocity" e="node" k="ref" v="小百岳" zoom-min="10" zoom-max="11">
         <symbol id="s_peak_small" priority="88" src="file:moiosm_res/s_peak_small.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
         <caption k="name" symbol-id="s_peak_small" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
-        <rule e="any" k="*" v="*">
+        <rule e="any" k="*" v="*" zoom-min="11">
           <caption k="ele" priority="-5" symbol-id="s_peak_small" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
       </rule>
