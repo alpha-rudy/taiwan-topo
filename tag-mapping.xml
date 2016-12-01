@@ -876,7 +876,9 @@
 <osm-tag key='capital' value='4' renderable='false' />
 <!-- natural -->
 <osm-tag key='natural' value='cave_entrance' zoom-appear='14' />
-<osm-tag key='natural' value='peak' zoom-appear='10' />
+<osm-tag key='natural' value='peak' zoom-appear='6' />
+<osm-tag key='ref' value='百岳' zoom-appear='6' />
+<osm-tag key='ref' value='小百岳' zoom-appear='10' />
 <osm-tag key='summit:cross' value='yes' renderable='false' zoom-appear='10' />
 <osm-tag key='natural' value='volcano' zoom-appear='10' />
 <osm-tag key='natural' value='saddle' zoom-appear='10' />
