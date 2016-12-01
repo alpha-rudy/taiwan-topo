@@ -12,7 +12,7 @@ LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 DEM_NAME := MOI
 
@@ -22,7 +22,7 @@ LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 DEM_NAME := MOI
 
@@ -32,7 +32,7 @@ LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 DEM_NAME := MOI
 
@@ -42,7 +42,7 @@ LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 DEM_NAME := MOI
 
@@ -51,7 +51,7 @@ REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := bw
 STYLE := swisspopo
@@ -64,7 +64,7 @@ REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := outdoorc
 STYLE := swisspopo
@@ -77,7 +77,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := jing
 STYLE := jing
@@ -90,7 +90,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoor
 STYLE := fzk
@@ -103,7 +103,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoorc
 STYLE := swisspopo
@@ -116,7 +116,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := bw
 STYLE := swisspopo
@@ -129,7 +129,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := bw
 STYLE := swisspopo
@@ -142,7 +142,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoorc
 STYLE := swisspopo
@@ -155,7 +155,7 @@ REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := outdoorc
 STYLE := swisspopo
@@ -168,7 +168,7 @@ REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := bw
 STYLE := swisspopo
@@ -181,7 +181,7 @@ REGION := Taipei
 LANG := en
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-EXTRACT_FILE := taiwan-latest.osm.pbf
+EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := bw
 STYLE := swisspopo
@@ -195,7 +195,7 @@ LANG := en
 CODE_PAGE := 950
 #CODE_PAGE := 1252
 ELEVATION_FILE = ele_japan_10_100_500_view1,view3.osm.pbf
-EXTRACT_FILE := japan-latest.osm.pbf
+EXTRACT_FILE := japan-latest
 POLY_FILE := Kyushu.poly
 TYP := bw
 STYLE := swisspopo
@@ -459,40 +459,53 @@ $(ELEVATION_MARKER):
 	    	( rm -rf $@ && false )
 
 EXTRACT_URL := http://download.geofabrik.de/asia
-$(EXTRACT):
+$(EXTRACT).osm:
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE) -o $(EXTRACT_FILE) && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).md5 -o $(EXTRACT_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).md5 | cut -d' ' -f1)" ] || \
-	    	( rm -rf $@ && false )
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).osm.bz2 -o $(EXTRACT_FILE).osm.bz2 && \
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).osm.bz2.md5 -o $(EXTRACT_FILE).osm.bz2.md5 && \
+	    EXAM_FILE=$(EXTRACT_FILE).osm.bz2; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).osm.bz2.md5 | cut -d' ' -f1)" ] && \
+	    bzip2 -df $(EXTRACT_FILE).osm.bz2 || \
+	        ( rm -rf $(EXTRACT_FILE).osm.bz2 && false )
+
+$(EXTRACT).osm.pbf: $(EXTRACT).osm
+	[ -n "$(REGION)" ]
+	mkdir -p $(EXTRACT_DIR)
+	cd $(EXTRACT_DIR) && \
+	    cat $(EXTRACT_FILE).osm | osmconvert - -o=$@
+
+$(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm
+	[ -n "$(REGION)" ]
+	mkdir -p $(EXTRACT_DIR)
+	cd $(EXTRACT_DIR) && \
+	    cat $(EXTRACT_FILE).osm | sed -e 's/百岳#.*"/百岳"/g' | osmconvert - -o=$@
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
     OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
 endif
 
-$(PBF): $(EXTRACT) $(ELEVATION)
+$(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf $(EXTRACT) \
+		--read-pbf $(EXTRACT).osm.pbf \
 		--read-pbf $(ELEVATION) \
 		--merge \
 		$(OSMOSIS_OPTS) \
 		--buffer --write-pbf $@ \
 		omitmetadata=true
 
-$(MAPSFORGE_PBF): $(EXTRACT) $(ELEVATION) $(ELEVATION_MARKER)
+$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf $(EXTRACT) \
+		--read-pbf $(EXTRACT)-sed.osm.pbf \
 		--read-pbf $(ELEVATION) \
 		--read-pbf $(ELEVATION_MARKER) \
 		--merge \
