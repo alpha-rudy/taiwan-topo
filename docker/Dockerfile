@@ -15,6 +15,7 @@ RUN dpkg --add-architecture i386 && \
         libc6:i386 libncurses5:i386 libstdc++6:i386 \
         make \
         nsis \
+        osmctools \
         zip \
     && rm -rf /var/lib/apt/lists/*
 RUN adduser --disabled-password --gecos '' builder
