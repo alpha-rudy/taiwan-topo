@@ -292,11 +292,12 @@ install: $(LICENSE) $(GMAPSUPP)
 	cp -r $(BUILD_DIR)/images $(INSTALL_DIR)
 	cp $(LICENSE) $(INSTALL_DIR)/taiwan_topo.html
 
-drop: all
+.PHONY: drop
+drop:
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
-	cp -r $(BUILD_DIR)/images $(INSTALL_DIR)
-	cp -r $(TARGETS) $(INSTALL_DIR)
+	cp -r images auto-install/* $(INSTALL_DIR)
+	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
 
 suites:
 	echo "make SUITE taiwan_bw taiwan_odc taiwan"
