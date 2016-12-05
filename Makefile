@@ -298,6 +298,7 @@ drop:
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r images auto-install/* $(INSTALL_DIR)
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
+	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 
 suites:
 	echo "make SUITE taiwan_bw taiwan_odc taiwan"
