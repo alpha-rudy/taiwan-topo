@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<locusActions>
+  <download>
+    <source><![CDATA[https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></source>
+    <dest><![CDATA[/mapsVector/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></dest>
+    <after>extract|deleteSource|refreshMap</after>
+  </download>
+</locusActions>
