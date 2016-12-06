@@ -23,4 +23,5 @@ RUN adduser --disabled-password --gecos '' builder
 USER builder
 WORKDIR /home/builder
 
-CMD ["bash"]
+COPY build.sh /home/builder/bin
+CMD ["/home/builder/bin/build.sh"]
