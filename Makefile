@@ -216,7 +216,7 @@ NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx48G -server
+JAVACMD_OPTIONS := -Xmx64G -server
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -477,11 +477,11 @@ $(EXTRACT).osm.pbf: $(EXTRACT).osm
 	cd $(EXTRACT_DIR) && \
 	    cat $(EXTRACT_FILE).osm | osmconvert - -o=$@
 
-$(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm
+$(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm parse_osm.py
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    cat $(EXTRACT_FILE).osm | sed -e 's/百岳#.*"/百岳"/g' | osmconvert - -o=$@
+	    cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/parse_osm.py | osmconvert - -o=$@
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
@@ -552,7 +552,7 @@ mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS="-Xmx48G -server" && \
+	export JAVACMD_OPTIONS="-Xmx64G -server" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
@@ -564,7 +564,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    map-start-zoom=12 \
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
 		    file="$@"
-
+	
 $(TILES): $(PBF)
 	[ -n "$(MAPID)" ]
 	rm -rf $(DATA_DIR)
