@@ -395,7 +395,7 @@ $(GMAPSUPP_ZIP): $(GMAPSUPP)
 
 ifeq ($(LANG),zh) 
 NTL := name,name:zh,name:en
-MAPSFORGE_NTL := zh,en
+MAPSFORGE_NTL := zh
 else ifeq ($(LANG),en)
 NTL := name:en,name:zh,name
 MAPSFORGE_NTL := en
