@@ -1,5 +1,6 @@
 work/
 drops/
+download
 /*.img
 /*.gmap
 .DS_Store
