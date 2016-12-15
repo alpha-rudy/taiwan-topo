@@ -227,13 +227,14 @@ CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 WORKS_DIR := $(ROOT_DIR)/work
 BUILD_DIR := $(ROOT_DIR)/install
-ELEVATIONS_DIR := $(WORKS_DIR)/osm_elevations
-EXTRACT_DIR := $(WORKS_DIR)/extracts
+DOWNLOAD_DIR := $(ROOT_DIR)/download
+ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
+EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
 DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
 MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
 
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
-ELEVATION_MARKER := $(ELEVATIONS_DIR)/$(ELEVATION_MARKER_FILE)
+ELEVATION_MARKER := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MARKER_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 TILES := $(DATA_DIR)/.done
@@ -273,16 +274,17 @@ endif
 all: $(TARGETS)
 
 clean:
-	[ -n "$(TARGETS)" ]
-	[ -n "$(MAP_DIR)" ]
-	-rm -rf $(TARGETS)
-	-rm -rf $(MAP_DIR)
+	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(WORKS_DIR)" ]
+	-rm -rf $(BUILD_DIR)
+	-rm -rf $(WORKS_DIR)
 
 distclean:
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
+	-rm -rf $(DOWNLOAD_DIR)
 
 .PHONY: install
 install: $(LICENSE) $(GMAPSUPP)
@@ -453,8 +455,8 @@ $(ELEVATION):
 
 $(ELEVATION_MARKER):
 	[ -n "$(REGION)" ]
-	mkdir -p $(ELEVATIONS_DIR)
-	cd $(ELEVATIONS_DIR) && \
+	mkdir -p $(ELEVATIONS_DIR)/marker
+	cd $(ELEVATIONS_DIR)/marker && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE) -o $(ELEVATION_MARKER_FILE) && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE).md5 -o $(ELEVATION_MARKER_FILE).md5 && \
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MARKER_FILE).md5 | cut -d' ' -f1)" ] || \
