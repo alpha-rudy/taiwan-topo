@@ -3461,20 +3461,20 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule cat="nocity" e="node" k="natural" v="peak">
       <rule e="any" k="zl" v="0" zoom-min="7" zoom-max="11">
-        <symbol id="s_peak_small_m" display="always" priority="250" src="file:moiosm_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
-        <caption k="name" symbol-id="s_peak_small_m" display="always" priority="220" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+        <symbol id="s_peak_small_m" display="always" priority="250" src="file:moiosm_res/s_peak_small_m.png" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <caption k="name" symbol-id="s_peak_small_m" priority="220" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
       </rule>
       <rule e="any" k="zl" v="1" zoom-min="10" zoom-max="11">
-        <symbol id="s_peak_small_m" display="always" priority="240" src="file:moiosm_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <symbol id="s_peak_small_m" priority="240" src="file:moiosm_res/s_peak_small_m.png" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
         <caption k="name" symbol-id="s_peak_small_m" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
       </rule>
       <rule e="any" k="zl" v="2" zoom-min="10" zoom-max="11">
-        <symbol id="s_peak_small_m" display="always" priority="230" src="file:moiosm_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <symbol id="s_peak_small_m" priority="230" src="file:moiosm_res/s_peak_small_m.png" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
         <caption k="name" symbol-id="s_peak_small_m" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
       </rule>
       <rule e="any" k="*" v="*" zoom-min="12" zoom-max="13">
         <rule e="any" k="zl" v="0|1|2">
-          <symbol id="s_peak_small_m" display="always" priority="210" src="file:moiosm_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+          <symbol id="s_peak_small_m" display="always" priority="210" src="file:moiosm_res/s_peak_small_m.png" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
           <caption k="name" symbol-id="s_peak_small_m" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
           <caption k="ref" priority="-5" symbol-id="s_peak_small_m" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
