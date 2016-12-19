@@ -16,6 +16,7 @@ RUN dpkg --add-architecture i386 && \
         make \
         nsis \
         osmctools \
+        python-lxml \
         zip \
     && rm -rf /var/lib/apt/lists/*
 RUN adduser --disabled-password --gecos '' builder
