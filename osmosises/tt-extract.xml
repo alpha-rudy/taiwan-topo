@@ -1,0 +1,52 @@
+<?xml version="1.0" encording="utf-8"?>
+<translations>
+  <translation>
+    <name>Remove name:zh and ref:zh tags</name>
+    <description>remove all name:zh, ref:zh tags, used only name and ref tags</description>
+    <match mode="or" type="all">
+      <tag k="name:zh" v=".*" />
+      <tag k="ref:zh" v=".*" />
+    </match>
+    <output>
+      <copy-unmatched />
+    </output>
+  </translation>
+  <translation>
+    <name>Peak (zl 0)</name>
+    <description>tag for zoom level 0 peak</description>
+    <match mode="and" type="node">
+      <tag k="natural" v="peak" />
+      <tag k="ref" v="^百岳#" />
+      <tag k="name" v="^(玉山|雪山|北大武山)$"/>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="zl" v="0" />
+    </output>
+  </translation>
+  <translation>
+    <name>Peak (zl 1)</name>
+    <description>tag for zoom level 1 peak</description>
+    <match mode="and" type="node">
+      <tag k="natural" v="peak" />
+      <tag k="ref" v="^百岳#" />
+      <notag k="name" v="^(玉山|雪山|北大武山)$"/>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="zl" v="1" />
+    </output>
+  </translation>
+  <translation>
+    <name>Peak (zl 2)</name>
+    <description>tag for zoom level 2 peak</description>
+    <match mode="and" type="node">
+      <tag k="natural" v="peak" />
+      <tag k="ref" v="^小百岳#" />
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="zl" v="2" />
+    </output>
+  </translation>
+</translations>
