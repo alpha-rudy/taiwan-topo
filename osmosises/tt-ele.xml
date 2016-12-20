@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<translations>
+  <translation>
+    <name>Tag Sub Contour Line</name>
+    <description>Tag for sub contour line per 50m.</description>
+    <match mode="and" type="way">
+      <tag k="contour" v="elevation"/>
+      <tag k="contour_ext" v="elevation_minor"/>
+      <tag k="ele" v=".*50$"/>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="contour_ext" v="elevation_sub"/>
+    </output>
+  </translation>
+</translations>
