@@ -1123,6 +1123,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="way" k="contour_ext" v="elevation_minor">
         <line stroke="#8E8072" stroke-width="0.15"/>
       </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <line stroke="#8E8072" stroke-width="0.27"/>
+      </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
         <line stroke="#8E8072" stroke-width="0.4"/>
       </rule>
@@ -1133,6 +1136,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="way" k="contour_ext" v="*" zoom-min="15" zoom-max="15">
       <rule e="way" k="contour_ext" v="elevation_minor">
         <line stroke="#8E8072" stroke-width="0.12"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <line stroke="#8E8072" stroke-width="0.21"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
         <line stroke="#8E8072" stroke-width="0.3"/>
@@ -1145,6 +1151,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="way" k="contour_ext" v="elevation_minor">
         <line stroke="#8E8072" stroke-width="0.08"/>
       </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <line stroke="#8E8072" stroke-width="0.14"/>
+      </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
         <line stroke="#8E8072" stroke-width="0.2"/>
       </rule>
@@ -1155,6 +1164,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="way" k="contour_ext" v="*" zoom-min="17">
       <rule e="way" k="contour_ext" v="elevation_minor">
         <line stroke="#8E8072" stroke-width="0.06"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <line stroke="#8E8072" stroke-width="0.11"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
         <line stroke="#8E8072" stroke-width="0.15"/>
@@ -1170,7 +1182,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_320m" v="*" zoom-min="14" zoom-max="14">
       <rule e="way" k="contour_320m" v="elevation_medium">
-        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="contour_320m" v="elevation_major">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
@@ -1178,7 +1190,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_160m" v="*" zoom-min="15" zoom-max="15">
       <rule e="way" k="contour_160m" v="elevation_minor">
-        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="contour_160m" v="elevation_medium">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
@@ -1189,7 +1201,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_80m" v="*" zoom-min="16" zoom-max="16">
       <rule e="way" k="contour_80m" v="elevation_minor">
-        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="contour_80m" v="elevation_medium">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
@@ -1200,7 +1212,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_40m" v="*" zoom-min="17" zoom-max="17">
       <rule e="way" k="contour_40m" v="elevation_minor">
-        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="contour_40m" v="elevation_medium">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
@@ -1210,8 +1222,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="18">
-      <rule e="way" k="contour_ext" v="elevation_minor">
-        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <pathText k="ele" font-size="7" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>

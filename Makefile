@@ -510,7 +510,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT)-sed.osm.pbf \
-		--read-pbf $(ELEVATION) \
+		--read-pbf $(ELEVATION) --tag-transform file="$(ROOT_DIR)/osmosises/tt-ele.xml" \
 		--read-pbf $(ELEVATION_MARKER) \
 		--merge \
 		--merge \

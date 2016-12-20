@@ -23,6 +23,7 @@
 <!-- Contourlines -->
 <osm-tag key='contour_ext' value='elevation_major' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='contour_ext' value='elevation_medium' force-polygon-line='true' zoom-appear='12' />
+<osm-tag key='contour_ext' value='elevation_sub' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='contour_ext' value='elevation_minor' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='contour_40m' value='elevation_major' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='contour_40m' value='elevation_medium' force-polygon-line='true' zoom-appear='12' />
