@@ -242,7 +242,7 @@ MAP := $(MAP_DIR)/.done
 PBF := $(BUILD_DIR)/$(REGION).osm.pbf
 TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 STYLE_DIR := $(ROOT_DIR)/styles/$(STYLE)
-TAG_MAPPING := $(ROOT_DIR)/tag-mapping.xml
+TAG_MAPPING := $(ROOT_DIR)/osmosises/tag-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
