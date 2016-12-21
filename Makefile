@@ -438,7 +438,7 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
 	    cat $(DATA_DIR)/template.args | sed \
 	    	-e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--max-jobs=8 \
+	        --max-jobs=16 \
 	    	-c mkgmap.cfg \
 		--check-styles
 	touch $(MAP)
@@ -573,7 +573,7 @@ $(TILES): $(PBF)
 	mkdir -p $(DATA_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(DATA_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
-	    	--max-threads=4 \
+	        --max-threads=16 \
 	    	--geonames-file=$(CITY) \
 		--no-trim \
 		--precomp-sea=$(SEA_DIR) \
