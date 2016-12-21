@@ -582,7 +582,7 @@ $(TILES): $(PBF)
 		--max-areas=4096 \
 		--max-nodes=800000 \
 		--search-limit=1000000000 \
-		--output=xml \
+		--output=pbf \
 		--output-dir=$(DATA_DIR) \
 		$(PBF)
 	touch $@
