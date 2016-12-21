@@ -9,7 +9,7 @@ for i in 1 2 3; do
   gcloud compute instances stop taiwan-topo-builder
   sleep $((i*60))
   gcloud compute instances start taiwan-topo-builder
-done || echo "Failed after retry 10 times."
+done || echo "Failed after retry 3 times."
 
 gcloud compute instances stop taiwan-topo-builder
 
