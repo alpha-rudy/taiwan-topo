@@ -18,9 +18,10 @@ gcloud compute instances stop taiwan-topo-builder
 [ "${build}" = "OK" ] || exit 1
 
 VERSION=$(date +%Y.%m.%d)
+GS_FILENAME="dayofmonth_$(date +%d)"
 
-gsutil cp gs://osm-twmap-drops/v${VERSION}.tgz .
-tar xzf v${VERSION}.tgz 
+gsutil cp gs://osm-twmap-drops/${GS_FILENAME}.tgz .
+tar xzf ${GS_FILENAME}.tgz
 cp -r v${VERSION}/* /var/shared/Dropbox/Public/drops/  ### daily drops
 
 [ "$(date +%w)" -eq 4 ] && {  ### weekly drops
