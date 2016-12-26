@@ -242,7 +242,7 @@ MAP := $(MAP_DIR)/.done
 PBF := $(BUILD_DIR)/$(REGION).osm.pbf
 TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 STYLE_DIR := $(ROOT_DIR)/styles/$(STYLE)
-TAG_MAPPING := $(ROOT_DIR)/osmosises/tag-mapping.xml
+TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
@@ -317,7 +317,7 @@ $(LICENSE):
 	[ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
 	cp -a images $(BUILD_DIR)
-	cat taiwan_topo.md | sed -e "s|__version__|$(VERSION)|g" | \
+	cat docs/taiwan_topo.md | sed -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
 	cat github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
 
@@ -336,7 +336,7 @@ $(NSIS): $(MAP)
 		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
 			echo "  Delete \"\$$INSTDIR\\$$i\"  "; \
 		done > delete_tiles.txt && \
-		cat $(ROOT_DIR)/makensis.cfg | sed \
+		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | sed \
 			-e "s|__root_dir__|$(ROOT_DIR)|g" \
 			-e "s|__name_word__|$(NAME_WORD)|g" \
 			-e "s|__version__|$(VERSION)|g" \
@@ -346,7 +346,7 @@ $(NSIS): $(MAP)
 		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
 		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
 		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
-		cat $(ROOT_DIR)/taiwan_topo.md | sed \
+		cat $(ROOT_DIR)/docs/taiwan_topo.md | sed \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT -o readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi
@@ -360,7 +360,7 @@ $(GMAP): $(MAP)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 	    rm -rf $@ && \
-	    cat $(ROOT_DIR)/jmc_cli.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | sed \
 	    	-e "s|__map_dir__|$(MAP_DIR)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
@@ -376,7 +376,7 @@ $(GMAPSUPP): $(MAP)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --license-file=$(ROOT_DIR)/license.txt \
+	        --license-file=$(ROOT_DIR)/docs/license.txt \
 	        --index \
 	        --gmapsupp \
 	        --product-id=1 \
@@ -424,7 +424,7 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
 	    mkdir $(MAP_DIR)/style && \
 	    cp -a $(STYLE_DIR) $(MAP_DIR)/style/$(STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(MAP_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmap.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
 		-e "s|__map_dir__|$(MAP_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
@@ -479,11 +479,11 @@ $(EXTRACT).osm.pbf: $(EXTRACT).osm
 	cd $(EXTRACT_DIR) && \
 	    cat $(EXTRACT_FILE).osm | osmconvert - -o=$@
 
-$(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm parse_osm.py
+$(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/parse_osm.py | osmconvert - -o=$@
+	    cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/parse_osm.py | osmconvert - -o=$@
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
@@ -510,7 +510,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT)-sed.osm.pbf \
-		--read-pbf $(ELEVATION) --tag-transform file="$(ROOT_DIR)/osmosises/tt-ele.xml" \
+		--read-pbf $(ELEVATION) --tag-transform file="$(ROOT_DIR)/osm_scripts/tt-ele.xml" \
 		--read-pbf $(ELEVATION_MARKER) \
 		--merge \
 		--merge \
