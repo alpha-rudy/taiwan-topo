@@ -301,6 +301,8 @@ drop:
 	cp -r images auto-install/* $(INSTALL_DIR)
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
+	cat docs/beta.md | sed -e "s|__version__|$(VERSION)|g" | \
+	    markdown -f +autolink > $(INSTALL_DIR)/beta.html
 
 suites:
 	echo "make SUITE taiwan_bw taiwan_odc taiwan"
