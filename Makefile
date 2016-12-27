@@ -321,7 +321,7 @@ $(LICENSE):
 	cp -a images $(BUILD_DIR)
 	cat docs/taiwan_topo.md | sed -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
-	cat github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
+	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
 
 .PHONY: nsis
 nsis: $(NSIS)
