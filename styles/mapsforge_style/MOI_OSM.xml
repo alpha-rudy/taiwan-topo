@@ -3503,7 +3503,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="any" k="summit:cross" v="~|no" zoom-min="14">
         <rule e="node" k="zl" v="0|1|2">
           <symbol id="s_peak_m" display="always" priority="210" src="file:moiosm_res/s_peak_m.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-          <caption k="name" display="always" priority="210" symbol-id="s_peak_m" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" priority="210" symbol-id="s_peak_m" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption k="ref" priority="-5" symbol-id="s_peak_m" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="node" k="zl" v="~|no">
