@@ -50,11 +50,19 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_bw.img.zip)：點選下載
   * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw.exe)：點選下載
   * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_bw.gmap.zip)：點選下載
+  * 安裝示範影片：
+    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
+    > (歡迎製作並取代我的不專業解說)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__（適合較大螢幕）
   * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_odc.img.zip)：點選下載
   * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc.exe)：點選下載
   * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_odc.gmap.zip)：點選下載
+  * 安裝示範影片：
+    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
+    > (歡迎製作並取代我的不專業解說)
 
 
 ## 說明
