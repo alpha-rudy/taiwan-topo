@@ -1130,11 +1130,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="15" zoom-max="15">
-      <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#8E8072" stroke-width="0.11"/>
-      </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#8E8072" stroke-width="0.18"/>
+        <line stroke="#8E8072" stroke-width="0.11"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
         <line stroke="#8E8072" stroke-width="0.30"/>
