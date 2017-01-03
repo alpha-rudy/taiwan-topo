@@ -2190,7 +2190,25 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
 -->
         <rule e="way" k="highway" v="footway|path" zoom-min="13">
-          <line stroke="#E10600" stroke-width="0.35" stroke-dasharray="5,3" stroke-linecap="butt"/>  <!-- ;trail -->
+          <rule e="way" k="*" v="*" zoom-max="14">
+            <line stroke="#E10600" stroke-width="0.35" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+            <line stroke="#E10600" stroke-width="0.32" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+            <line stroke="#E10600" stroke-width="0.3" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+            <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="18">
+            <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="19">
+            <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <!-- ;trail -->
           <rule e="way" k="bicycle" v="bic_yes|bic_permissive|bic_designated">
             <line stroke="#0080FF" stroke-width="0.1" stroke-dasharray="0,1,8,2.5" stroke-linecap="butt"/>
           </rule>
@@ -3511,7 +3529,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- outdoor -->
-  <rule cat="huts" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="huts" e="any" k="*" v="*" zoom-min="13">
     <rule e="any" k="tourism" v="alpine_hut">
       <rule e="any" k="name" v="*">
         <rule e="any" k="access" v="~">
@@ -3555,7 +3573,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
-  <rule cat="outdoor" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="outdoor" e="any" k="*" v="*" zoom-min="13">
     <rule e="any" k="amenity" v="shelter">
       <rule e="any" k="shelter_type" v="picnic_shelter">
         <symbol id="s_shelter_picnic" priority="86" src="file:moiosm_res/s_shelter_picnic.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
@@ -3621,7 +3639,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
-  <rule cat="viewpoint" e="any" k="tourism" v="viewpoint" zoom-min="9">
+  <rule cat="viewpoint" e="any" k="tourism" v="viewpoint" zoom-min="13">
     <rule e="any" k="natural" v="~">
       <rule e="any" k="tower" v="~">
         <symbol id="s_viewpoint" priority="63" src="file:moiosm_res/s_viewpoint.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
@@ -3635,7 +3653,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- sports -->
-  <rule cat="sports" e="any" k="*" v="*" zoom-min="12">
+  <rule cat="sports" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="leisure" v="water_park">
       <symbol id="s_swimming_outdoor" priority="63" src="file:moiosm_res/s_swimming_outdoor.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -3700,7 +3718,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- emergency -->
-  <rule cat="emergency" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="emergency" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="amenity" v="hospital">
       <symbol id="s_hospital" priority="83" src="file:moiosm_res/s_hospital.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -3756,7 +3774,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- amenities -->
-  <rule cat="amenities" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="amenities" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="amenity" v="toilets">
       <symbol id="s_toilets" priority="75" src="file:moiosm_res/s_toilets.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -3830,7 +3848,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- restaurants -->
-  <rule cat="restaurants" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="restaurants" e="any" k="*" v="*" zoom-min="14">
     <rule cat="nocity" e="any" k="amenity" v="restaurant">
       <symbol id="s_restaurant" priority="69" src="file:moiosm_res/s_restaurant.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -3882,7 +3900,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- accommodation -->
-  <rule cat="accommodation" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="accommodation" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="tourism" v="camp_site">
       <symbol id="s_camp_site" priority="67" src="file:moiosm_res/s_camp_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -3923,7 +3941,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- shops -->
-  <rule cat="shops" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="shops" e="any" k="*" v="*" zoom-min="14">
     <rule cat="bike" e="any" k="shop|vending" v="bicycle|bicycle_tube">
       <symbol id="s_bicycle_shop" priority="69" src="file:moiosm_res/s_bicycle_shop.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4057,14 +4075,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
-  <rule cat="fuel" e="any" k="amenity" v="fuel">
+  <rule cat="fuel" e="any" k="amenity" v="fuel" zoom-min="14">
     <symbol id="s_fuel" priority="68" src="file:moiosm_res/s_fuel.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
     <rule e="any" k="*" v="*">
       <caption k="name" symbol-id="s_fuel" position="above" font-style="bold" font-size="10" fill="#AC39AC" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
   </rule>
   <!-- tourism -->
-  <rule cat="tourism" e="any" k="*" v="*" zoom-min="11">
+  <rule cat="tourism" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="historic|building" v="castle">
       <symbol id="s_castle" priority="59" src="file:moiosm_res/s_castle.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4229,7 +4247,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- public transport -->
-  <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="14">
     <!-- stations -->
     <rule cat="nocity" e="any" k="highway" v="bus_stop">
       <symbol id="s_pt_bus" priority="76" src="file:moiosm_res/s_pt_bus.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
@@ -4289,7 +4307,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- car -->
-  <rule cat="car" e="any" k="*" v="*" zoom-min="9">
+  <rule cat="car" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="shop" v="car">
       <symbol id="s_car_shop" priority="79" src="file:moiosm_res/s_car_shop.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4326,7 +4344,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- traffic barriers -->
-  <rule cat="barriers" e="any" k="*" v="*" zoom-min="13">
+  <rule cat="barriers" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="highway|ford" v="ford|fd_yes">
       <!-- <rule e="any" k="*" v="*" zoom-max="12">
 				<symbol id="s_ford" src="file:moiosm_res/s_ford_small.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" />
@@ -4356,7 +4374,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- barriers -->
-  <rule cat="barriers" e="any" k="*" v="*" zoom-min="13">
+  <rule cat="barriers" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="barrier" v="border_control">
       <symbol id="s_border_control" priority="72" src="file:moiosm_res/s_border_control.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4422,7 +4440,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- special buildings -->
-  <rule cat="buildings" e="any" k="*" v="*" zoom-min="11">
+  <rule cat="buildings" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="man_made" v="lighthouse">
       <symbol id="s_lighthouse" priority="57" src="file:moiosm_res/s_lighthouse.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
