@@ -10,9 +10,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
   * Beta 版（每日建置）: https://dl.dropboxusercontent.com/u/899714/drops/beta.html
-
-* 請注意
-> **自動安裝目前只能在 Chrome 下才能執行，請閱讀後面的注意事項！！！**
+  * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
@@ -75,6 +73,8 @@ MOI 來自 Rex ([http://blog.nutsfactory.net](http://blog.nutsfactory.net/2016/0
 
 Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hiking/geocaching）風格樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
 
+手機GPS登山網頁，由曾耕暉先生編輯製作。
+
 讀者可以隨意下載或拿給別人使用（請用本頁連結來散佈）。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能因為使用此地圖所發生的損失（包括受傷）。
 
 
@@ -86,11 +86,10 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 * Andoid Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps 與 Locus Map。
 
-* 若你在 FaceBook APP 上，請透過下面方法進入 Chrome：
-  ![WorkAround](images/workaround.png)
-
 
 ## 重大修改歷程
+* 2017, 1/12
+  * 增加曾耕暉的手機GPS登山說明網頁
 * 2016, 12/21
   * 增加 per 50m 等高線顯示
 * 2016, 12/16
