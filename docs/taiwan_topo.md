@@ -29,6 +29,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://https/dl.dropboxusercontent.com/u/899714/maps/locus_map.xml)：點選啟動地圖自動安裝
     * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://https/dl.dropboxusercontent.com/u/899714/maps/locus_style.xml)：點選啟動風格主題自動安裝
     * [![DEM](images/Locus_dem.jpeg =36x) DEM](locus-actions://https/dl.dropboxusercontent.com/u/899714/maps/locus_dem.xml)：點選啟動高程檔自動安裝
+  * 圖資更新
+    * [![Map](images/Locus.jpeg =36x) 更新](locus-actions://https/dl.dropboxusercontent.com/u/899714/maps/locus_upgrade.xml)：點選啟動地圖/風格更新
   * 一次安裝
     * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://https/dl.dropboxusercontent.com/u/899714/maps/locus_all.xml)：點選啟動地圖/風格/高程一次安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
