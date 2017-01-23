@@ -16,6 +16,42 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 DEM_NAME := MOI
 
+else ifeq ($(SUITE),bbox)
+# REGION: specify your REGION name for bbox
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+DEM_NAME := MOI
+
+else ifeq ($(SUITE),bbox_bw)
+# REGION: specify your REGION name for bbox
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1f13)
+
+else ifeq ($(SUITE),bbox_odc)
+# REGION: specify your REGION name for bbox
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1f12)
+
 else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
 LANG := zh
@@ -489,7 +525,9 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
+else ifneq (,$(strip $(BOUNDING_BOX)))
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-box top=$(TOP) bottom=$(BOTTOM) left=$(LEFT) right=$(RIGHT) completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
 endif
 
 $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
