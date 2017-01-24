@@ -5,14 +5,22 @@
     $ make SUITE=taiwan_bw gmapsupp   ### make a Garmin handheld map
     
     $ make SUITE=taiwan mapsforge   ### make a mapsforge map
+    
+    $ make SUITE=bbox REGION=陽明山 \  ### make a small mapsforge map 
+        TOP=25.24917 BOTTOM=25.11332 \
+        LEFT=121.48012 RIGHT=121.63218 \ 
+        mapsforge
 
 ## SUITE list
 
 * Garmin GMAP Maps
   * `taiwan_bw`: Taiwan region, bw style
   * `taiwan_odc`: Taiwan region, odc style
+  * `bbox_bw`: Bonding Box, bw style (TOP/BOTTOM/LEFT/RIGHT)
+  * `bbox_odc`: Bonding Box, odc style (TOP/BOTTOM/LEFT/RIGHT)
 * Mapsforge Maps
   * `taiwan`: Taiwan
+  * `bbox`: Bonding Box with coords (TOP/BOTTOM/LEFT/RIGHT)
 
 ## target list
 
