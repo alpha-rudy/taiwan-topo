@@ -17,6 +17,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 <rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme-v4.xsd" version="4" map-background-outside="#EEEEEE" map-background="#F8F8F8">
   <stylemenu id="elmt-menu" defaultvalue="elmt-hiking" defaultlang="en">
     <!-- overlays special -->
+    <layer id="elmt-landcover" enabled="true">
+      <name lang="de" value="land cover"/>
+      <name lang="en" value="land cover"/>
+      <name lang="es" value="land cover"/>
+      <name lang="fr" value="land cover"/>
+      <name lang="it" value="land cover"/>
+      <name lang="zh" value="地表圖案"/>
+      <cat id="landcover"/>
+    </layer>
     <layer id="elmt-h_routes" enabled="true">
       <name lang="de" value="Wanderrouten"/>
       <name lang="en" value="hiking routes"/>
@@ -671,6 +680,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="nobike"/>
       <cat id="nocity"/>
       <cat id="contour"/>
+      <overlay id="elmt-landcover"/>
       <overlay id="elmt-h_routes"/>
       <overlay id="elmt-h_s_routes"/>
       <overlay id="elmt-waymarks"/>
@@ -800,7 +810,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- landcover -->
-  <rule e="way" k="tunnel" v="~|no">
+  <rule cat="landcover" e="way" k="tunnel" v="~|no">
     <rule e="way" k="landuse" v="residential|farmyard|retail|commercial|industrial|brownfield|railway|garages|construction|landfill" closed="yes" zoom-max="13">
       <area fill="#E6DFDF"/>
     </rule>
