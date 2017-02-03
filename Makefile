@@ -598,7 +598,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
-		    $(MF_WRITER_OPTS) \
+		    type=ram bbox=0,0,90,180 \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
