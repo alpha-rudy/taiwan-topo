@@ -9,9 +9,9 @@ cd ~/taiwan-topo
 git pull --rebase
 
 make distclean
+make SUITE=taiwan all
 make SUITE=taiwan_bw all
 make SUITE=taiwan_odc all
-make SUITE=taiwan all
 
 rm -rf install/${INSTALL_DIR}
 mkdir -p install/${INSTALL_DIR}
