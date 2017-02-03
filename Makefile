@@ -252,7 +252,7 @@ NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx64G -server
+JAVACMD_OPTIONS := -Xmx72G -server
 
 # directory variables
 ROOT_DIR := $(shell pwd)
