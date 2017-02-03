@@ -525,7 +525,7 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
 else ifneq (,$(strip $(BOUNDING_BOX)))
     OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-box top=$(TOP) bottom=$(BOTTOM) left=$(LEFT) right=$(RIGHT) completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
 endif
