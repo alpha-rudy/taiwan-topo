@@ -14,6 +14,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
+MF_WRITER_OPTS := bbox=23.226,120.822,23.578,121.249
 DEM_NAME := MOI
 
 else ifeq ($(SUITE),bbox)
@@ -60,6 +61,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
+MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
 
 else ifeq ($(SUITE),beibeiji)
@@ -70,6 +72,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
+MF_WRITER_OPTS := bbox=24.6731646,121.2826336,25.2997353,122.0064049
 DEM_NAME := MOI
 
 else ifeq ($(SUITE),taipei)
@@ -80,6 +83,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
+MF_WRITER_OPTS := bbox=24.96034,121.4570,25.21024,121.6659
 DEM_NAME := MOI
 
 else ifeq ($(SUITE),beibeiji_bw)
@@ -525,11 +529,10 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
 
 # OSMOSIS_OPTS
 ifneq (,$(strip $(POLY_FILE)))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
-    MF_WRITER_OPTS := bbox=0,0,90,180
+    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
 else ifneq (,$(strip $(BOUNDING_BOX)))
     OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-box top=$(TOP) bottom=$(BOTTOM) left=$(LEFT) right=$(RIGHT) completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
-    MF_WRITER_OPTS := bbox=0,0,90,180
+    MF_WRITER_OPTS := bbox=$(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
 endif
 
 $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
