@@ -24,22 +24,19 @@
 <table style="width:100%;">
   <tr>
     <th>風格</th>
-    <th>Garmin 地圖檔</th>
-    <th>Garmin 高程檔</th>
-    <th>Windows 安裝檔</th>
-    <th>macOS 安裝檔</th>
+    <th>Garmin 手持機</th>
+    <th>Windows 微軟</th>
+    <th>macOS 頻果</th>
   </tr>
   <tr>
     <th>bw<br />(適合小螢幕)</th>
     <th><a href="./gmapsupp_Taiwan_moi_zh_bw.img.zip"><img src="images/Garmin_small.jpeg" alt="Click for Garmin Handheld Map Download"></a></th>
-    <th><a href="./gmapdem.img.zip"><img src="images/Garmin_small.jpeg" alt="Click for Garmin Handheld DEM Download"></a></th>
     <th><a href="./Install_MOI_Taiwan_TOPO_bw.exe"><img src="images/Windows.png" alt="Click for Windows BaseCamp Map Download"></a></th>
     <th><a href="./Taiwan_moi_zh_bw.gmap.zip"><img src="images/macOS.png" alt="Click for macOS BaseCamp Map Download"></a></th>
   </tr>
   <tr>
     <th>odc<br />(適合大螢幕)</th>
     <th><a href="./gmapsupp_Taiwan_moi_zh_odc.img.zip"><img src="images/Garmin_large.jpeg" alt="Click for Garmin Handheld Map Download"></a></th>
-    <th><a href="./gmapdem.img.zip"><img src="images/Garmin_large.jpeg" alt="Click for Garmin Handheld DEM Download"></a></th>
     <th><a href="./Install_MOI_Taiwan_TOPO_odc.exe"><img src="images/Windows.png" alt="Click for Windows BaseCamp Map Download"></a></th>
     <th><a href="./Taiwan_moi_zh_odc.gmap.zip"><img src="images/macOS.png" alt="Click for macOS BaseCamp Map Download"></a></th>
   </tr>
