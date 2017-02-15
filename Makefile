@@ -286,9 +286,11 @@ TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
 
 ifeq ($(DEM_NAME),MOI)
     GMAPDEM_ID := 05010000
-    GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_ID).img
+    GMAPDEM_FILE := $(GMAPDEM_ID).img
+    GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
 else
     GMAPDEM_ID :=
+    GMAPDEM_FILE :=
     GMAPDEM :=
 endif
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
@@ -378,19 +380,13 @@ $(NSIS): $(MAP)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 		rm -rf $@ && \
-		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
-			echo '  CopyFiles "$$MyTempDir\\'"$${i}"'" "$$INSTDIR\\'"$${i}"'"  '; \
-			echo '  Delete "$$MyTempDir\\'"$${i}"'"  '; \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img $(GMAPDEM_FILE)); do \
+			echo '  CopyFiles "$$MyTempDir\'"$${i}"'" "$$INSTDIR\'"$${i}"'"  '; \
+			echo '  Delete "$$MyTempDir\'"$${i}"'"  '; \
 		done > copy_tiles.txt && \
-		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
-			echo '  Delete "$$INSTDIR\\'"$${i}"'"  '; \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img $(GMAPDEM_FILE)); do \
+			echo '  Delete "$$INSTDIR\'"$${i}"'"  '; \
 		done > delete_tiles.txt && \
-		{ [ -n "$(GMAPDEM_ID)" ] && \
-			echo '  CopyFiles "$$MyTempDir\\$(GMAPDEM_ID).img" "$$INSTDIR\\$(GMAPDEM_ID).img"  ' >> copy_tiles.txt && \
-			echo '  Delete "$$MyTempDir\\$(GMAPDEM_ID).img"  ' >> copy_tiles.txt && \
-			echo '  Delete "$$INSTDIR\\$(GMAPDEM_ID).img"  ' >> delete_tiles.txt || \
-		    echo "no gmapdem"; \
-		} && \
 		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | sed \
 			-e "s|__root_dir__|$(ROOT_DIR)|g" \
 			-e "s|__name_word__|$(NAME_WORD)|g" \
@@ -400,7 +396,7 @@ $(NSIS): $(MAP)
 			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi && \
 		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
 		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
-		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
+		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(GMAPDEM_FILE) $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
 		cat $(ROOT_DIR)/docs/taiwan_topo.md | sed \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT -o readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
@@ -529,9 +525,9 @@ $(GMAPDEM):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)/gmapdem
 	cd $(ELEVATIONS_DIR)/gmapdem && \
-	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_ID).img -o $(GMAPDEM_ID).img && \
-	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_ID).md5 -o $(GMAPDEM_ID).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(GMAPDEM_ID).md5 | cut -d' ' -f1)" ] || \
+	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_FILE) -o $(GMAPDEM_FILE) && \
+	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_FILE).md5 -o $(GMAPDEM_FILE).md5 && \
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(GMAPDEM_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 EXTRACT_URL := http://download.geofabrik.de/asia
