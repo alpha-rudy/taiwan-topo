@@ -284,6 +284,13 @@ TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 STYLE_DIR := $(ROOT_DIR)/styles/$(STYLE)
 TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
 
+ifeq ($(DEM_NAME),MOI)
+    GMAPDEM_ID := 05010000
+    GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_ID).img
+else
+    GMAPDEM_ID :=
+    GMAPDEM :=
+endif
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
 GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
@@ -372,12 +379,18 @@ $(NSIS): $(MAP)
 	cd $(MAP_DIR) && \
 		rm -rf $@ && \
 		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
-			echo "  CopyFiles \"\$$MyTempDir\\$$i\" \"\$$INSTDIR\\$$i\"  "; \
-			echo "  Delete \"\$$MyTempDir\\$$i\"  "; \
+			echo '  CopyFiles "$$MyTempDir\\'"$${i}"'" "$$INSTDIR\\'"$${i}"'"  '; \
+			echo '  Delete "$$MyTempDir\\'"$${i}"'"  '; \
 		done > copy_tiles.txt && \
 		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img); do \
-			echo "  Delete \"\$$INSTDIR\\$$i\"  "; \
+			echo '  Delete "$$INSTDIR\\'"$${i}"'"  '; \
 		done > delete_tiles.txt && \
+		{ [ -n "$(GMAPDEM_ID)" ] && \
+			echo '  CopyFiles "$$MyTempDir\\$(GMAPDEM_ID).img" "$$INSTDIR\\$(GMAPDEM_ID).img"  ' >> copy_tiles.txt && \
+			echo '  Delete "$$MyTempDir\\$(GMAPDEM_ID).img"  ' >> copy_tiles.txt && \
+			echo '  Delete "$$INSTDIR\\$(GMAPDEM_ID).img"  ' >> delete_tiles.txt || \
+		    echo "no gmapdem"; \
+		} && \
 		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | sed \
 			-e "s|__root_dir__|$(ROOT_DIR)|g" \
 			-e "s|__name_word__|$(NAME_WORD)|g" \
@@ -445,7 +458,9 @@ NTL := name:en,name:zh,name
 MAPSFORGE_NTL := en
 endif
 
-$(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
+.PHONY: map
+map: $(MAP)
+$(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 	[ -n "$(MAPID)" ]
 	rm -rf $(MAP_DIR)
 	mkdir -p $(MAP_DIR)
@@ -478,10 +493,16 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR)
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(DATA_DIR)/template.args | sed \
-	    	-e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	    { [ -n "$(GMAPDEM)" ] && \
+		cp $(GMAPDEM) . && \
+	        cat $(ROOT_DIR)/mkgmaps/gmapdem.cfg | sed \
+	            -e "s|__gmapdem_id__|$(GMAPDEM_ID)|g" \
+	            -e "s|__map_dir__|$(MAP_DIR)|g" >> mkgmap.cfg || \
+		echo no gmapdem ; } && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
-	    	-c mkgmap.cfg \
+	        -c mkgmap.cfg \
 		--check-styles
 	touch $(MAP)
 
@@ -502,6 +523,15 @@ $(ELEVATION_MARKER):
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE) -o $(ELEVATION_MARKER_FILE) && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE).md5 -o $(ELEVATION_MARKER_FILE).md5 && \
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MARKER_FILE).md5 | cut -d' ' -f1)" ] || \
+	    	( rm -rf $@ && false )
+
+$(GMAPDEM):
+	[ -n "$(REGION)" ]
+	mkdir -p $(ELEVATIONS_DIR)/gmapdem
+	cd $(ELEVATIONS_DIR)/gmapdem && \
+	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_ID).img -o $(GMAPDEM_ID).img && \
+	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_ID).md5 -o $(GMAPDEM_ID).md5 && \
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(GMAPDEM_ID).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 EXTRACT_URL := http://download.geofabrik.de/asia
