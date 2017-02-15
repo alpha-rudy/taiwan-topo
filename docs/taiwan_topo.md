@@ -47,18 +47,20 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > (歡迎製作並取代我的不專業解說)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__（適合較小螢幕）
-  * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_bw.img.zip)：點選下載
-  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw.exe)：點選下載
-  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_bw.gmap.zip)：點選下載
+  * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_bw.img.zip)：點選下載地圖檔
+  * [![Map](images/Garmin_small.jpeg =36x) gmapdem](https://dl.dropboxusercontent.com/u/899714/maps/gmapdem.img.zip)：點選下載高程檔
+  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw.exe)：點選下載安裝檔
+  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_bw.gmap.zip)：點選下載安裝檔
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
     > (歡迎製作並取代我的不專業解說)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__（適合較大螢幕）
-  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_odc.img.zip)：點選下載
-  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc.exe)：點選下載
-  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_odc.gmap.zip)：點選下載
+  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_odc.img.zip)：點選下載地圖檔
+  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](https://dl.dropboxusercontent.com/u/899714/maps/gmapdem.img.zip)：點選下載高程檔
+  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc.exe)：點選下載安裝檔
+  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_odc.gmap.zip)：點選下載安裝檔
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
@@ -72,6 +74,8 @@ MOI.OSM 每週（週四）發行，使用當日 OSM 的圖資。山友只需登�
 OSM 是自由且開源的圖資，由默默耕耘的 OSM Taiwan ([openstreetmap.tw](http://openstreetmap.tw)) mappers 們辛苦繪製而成。圖資的正確性可以（也需要）由山友們一起來維護。有興趣請上 OSM Taiwan 網站來瞭解如何回報或更新地圖的錯誤。
 
 MOI 來自 Rex ([http://blog.nutsfactory.net](http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm/)) 轉換 "內政部 20 公尺網格數值地形模型資料" ([tgos.nat.gov.tw](https://tgos.nat.gov.tw/tgos/web/tgos_home.aspx)) 而成的等高線，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應錯誤的地方，以提供大家討論與參考。探勘式登山建議仍搭配經建三版地形圖 ([地圖產生器](http://map.happyman.idv.tw/~happyman/twmap3))。
+
+Garmin 高程檔 (gmapdem.img) 由林朝露兄透過 MPC 轉換 MOI DEM 而成。
 
 Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hiking/geocaching）風格樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
 
@@ -90,6 +94,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2017, 2/16
+  * 增加林朝露的 gmapdem.img，Garmin 地圖可以顯示 3D 與山形陰影。
 * 2017, 1/12
   * 增加曾耕暉的手機GPS登山說明網頁
 * 2016, 12/21
@@ -203,6 +209,9 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 > License: http://gnu.org/licenses/gpl.html <br />
 > Mapsforge Maps were built using the tools "Mapsforge Map-Writer" <br />
 > Link: https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
+
+* Tool of GMAP gmapdem.img: MPC (Map Product Creator)
+> Link: https://developer.garmin.com/map-product-creator/help
 
 
 ## 地圖版權與散佈說明
