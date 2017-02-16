@@ -1,7 +1,7 @@
 # base (0x2000) + region x lang x style
 # where, ...
 # - 1st hex, dem    -> moi(1), srtm(2)
-# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3)
+# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3), Yushan(4)
 # - 3rd hex, lang   -> en(0), zh(1),
 # - 4th hex, style  -> jing(0), outdoor(1), contrast_outdoor(2), bw(3)
 
@@ -85,6 +85,32 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MF_WRITER_OPTS := bbox=24.96034,121.4570,25.21024,121.6659
 DEM_NAME := MOI
+
+else ifeq ($(SUITE),yushan_bw)
+REGION := Yushan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := YushanNationalPark.poly
+TYP := bw
+STYLE := swisspopo
+STYLE_NAME := bw
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1413)
+
+else ifeq ($(SUITE),yushan_odc)
+REGION := Yushan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := YushanNationalPark.poly
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1412)
 
 else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
