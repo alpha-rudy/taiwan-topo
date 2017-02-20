@@ -810,119 +810,195 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- landcover -->
-  <rule cat="landcover" e="way" k="tunnel" v="~|no">
-    <rule e="way" k="landuse" v="residential|farmyard|retail|commercial|industrial|brownfield|railway|garages|construction|landfill" closed="yes" zoom-max="14">
-      <area fill="#E6DFDF"/>
-    </rule>
-    <rule e="way" k="landuse" v="residential|farmyard" closed="yes" zoom-min="15">
-      <area fill="#BBF0F2E9"/>
-    </rule>
-    <rule e="way" k="landuse" v="retail" closed="yes" zoom-min="15">
-      <area fill="#BBFFE6FC"/>
-    </rule>
-    <rule e="way" k="landuse" v="commercial|industrial|brownfield|railway|garages|construction|landfill" closed="yes" zoom-min="15">
-      <area fill="#BBE9F4F7"/>
-    </rule>
-    <rule e="way" k="amenity" v="school|college|university" closed="yes">
-      <area fill="#BBFCF7E3" stroke="#CC7466" stroke-width="0.15"/>
-    </rule>
-    <rule e="way" k="aeroway" v="aerodrome" closed="yes">
-      <area fill="#BBF2EFE4"/>
-    </rule>
-    <rule e="way" k="boundary" v="~">
-      <rule e="way" k="leisure" v="park" closed="yes">
-        <area fill="#BBC7F1A3"/>
+  <rule e="way" k="tunnel" v="~|no">
+    <rule cat="landcover" e="any" k="*" v="*">
+      <rule e="way" k="landuse" v="residential|farmyard|retail|commercial|industrial|brownfield|railway|garages|construction|landfill" closed="yes" zoom-max="14">
+        <area fill="#E6DFDF"/>
       </rule>
-    </rule>
-    <rule e="way" k="leisure|tourism|landuse" v="zoo|picnic_site|camp_site|caravan_site|recreation_ground" closed="yes">
-      <area fill="#BBC7F1A3" stroke="#6FC18E" stroke-width="0.15"/>
-    </rule>
-    <rule e="way" k="natural|landuse" v="forest|wood" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="14">
-        <area fill="#A5CBA5" stroke="#A5CBA5" stroke-width="0.2"/>
+      <rule e="way" k="landuse" v="residential|farmyard" closed="yes" zoom-min="15">
+        <area fill="#BBF0F2E9"/>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="15" zoom-max="17">
-        <rule e="any" k="wood|leaf_type" v="coniferous|needleleaved">
-          <area src="file:moiosm_res/p_wood-coniferous.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
-        </rule>
-        <rule e="any" k="wood|leaf_type" v="deciduous|broadleaved">
-          <area src="file:moiosm_res/p_wood-deciduous.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
-        </rule>
-        <rule e="any" k="wood|leaf_type" v="~|mixed|leafless">
-          <area src="file:moiosm_res/p_wood-mixed.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+      <rule e="way" k="landuse" v="retail" closed="yes" zoom-min="15">
+        <area fill="#BBFFE6FC"/>
+      </rule>
+      <rule e="way" k="landuse" v="commercial|industrial|brownfield|railway|garages|construction|landfill" closed="yes" zoom-min="15">
+        <area fill="#BBE9F4F7"/>
+      </rule>
+      <rule e="way" k="amenity" v="school|college|university" closed="yes">
+        <area fill="#BBFCF7E3" stroke="#CC7466" stroke-width="0.15"/>
+      </rule>
+      <rule e="way" k="aeroway" v="aerodrome" closed="yes">
+        <area fill="#BBF2EFE4"/>
+      </rule>
+      <rule e="way" k="boundary" v="~">
+        <rule e="way" k="leisure" v="park" closed="yes">
+          <area fill="#BBC7F1A3"/>
         </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <rule e="any" k="wood|leaf_type" v="coniferous|needleleaved">
-          <area src="file:moiosm_res/p_wood-coniferous.svg" symbol-scaling="size" symbol-height="128" symbol-width="128"/>
+      <rule e="way" k="leisure|tourism|landuse" v="zoo|picnic_site|camp_site|caravan_site|recreation_ground" closed="yes">
+        <area fill="#BBC7F1A3" stroke="#6FC18E" stroke-width="0.15"/>
+      </rule>
+      <rule e="way" k="natural|landuse" v="forest|wood" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="14">
+          <area fill="#A5CBA5" stroke="#A5CBA5" stroke-width="0.2"/>
         </rule>
-        <rule e="any" k="wood|leaf_type" v="deciduous|broadleaved">
-          <area src="file:moiosm_res/p_wood-deciduous.svg" symbol-scaling="size" symbol-height="128" symbol-width="128"/>
+        <rule e="any" k="*" v="*" zoom-min="15" zoom-max="17">
+          <rule e="any" k="wood|leaf_type" v="coniferous|needleleaved">
+            <area src="file:moiosm_res/p_wood-coniferous.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+          </rule>
+          <rule e="any" k="wood|leaf_type" v="deciduous|broadleaved">
+            <area src="file:moiosm_res/p_wood-deciduous.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+          </rule>
+          <rule e="any" k="wood|leaf_type" v="~|mixed|leafless">
+            <area src="file:moiosm_res/p_wood-mixed.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+          </rule>
         </rule>
-        <rule e="any" k="wood|leaf_type" v="~|mixed|leafless">
-          <area src="file:moiosm_res/p_wood-mixed.svg" symbol-scaling="size" symbol-height="128" symbol-width="128"/>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <rule e="any" k="wood|leaf_type" v="coniferous|needleleaved">
+            <area src="file:moiosm_res/p_wood-coniferous.svg" symbol-scaling="size" symbol-height="128" symbol-width="128"/>
+          </rule>
+          <rule e="any" k="wood|leaf_type" v="deciduous|broadleaved">
+            <area src="file:moiosm_res/p_wood-deciduous.svg" symbol-scaling="size" symbol-height="128" symbol-width="128"/>
+          </rule>
+          <rule e="any" k="wood|leaf_type" v="~|mixed|leafless">
+            <area src="file:moiosm_res/p_wood-mixed.svg" symbol-scaling="size" symbol-height="128" symbol-width="128"/>
+          </rule>
         </rule>
       </rule>
-    </rule>
-    <rule e="way" k="landuse|natural" v="meadow|grass|grassland" closed="yes">
-      <area fill="#BBE6FFDB"/>
-    </rule>
-    <rule e="way" k="landuse" v="field|farm|farmland" closed="yes">
-      <area fill="#BBF5FFDB"/>
-    </rule>
-    <rule e="way" k="natural" v="marsh|wetland" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="way" k="landuse|natural" v="meadow|grass|grassland" closed="yes">
+        <area fill="#BBE6FFDB"/>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+      <rule e="way" k="landuse" v="field|farm|farmland" closed="yes">
+        <area fill="#BBF5FFDB"/>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+      <rule e="way" k="natural" v="marsh|wetland" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+        </rule>
       </rule>
-    </rule>
-    <rule e="way" k="natural" v="rock" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="way" k="natural" v="rock" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+        </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+      <rule e="way" k="natural" v="heath" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+        </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+      <rule e="way" k="natural" v="scrub" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_scrub.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_scrub.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_scrub.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+        </rule>
       </rule>
-    </rule>
-    <rule e="way" k="natural" v="heath" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="way" k="natural" v="fell" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_fell.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_fell.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_fell.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+        </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+      <rule e="way" k="natural" closed="yes" v="glacier">
+        <rule e="any" k="*" v="*" zoom-max="14">
+          <line stroke="#88F7F7" stroke-width="0.60"/>
+          <area fill="#E8FFFF"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <line stroke="#88F7F7" stroke-width="0.38"/>
+          <area src="file:moiosm_res/p_glacier.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <line stroke="#88F7F7" stroke-width="0.38"/>
+          <area src="file:moiosm_res/p_glacier.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <line stroke="#88F7F7" stroke-width="0.22"/>
+          <area src="file:moiosm_res/p_glacier.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+        </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+      <rule e="way" k="natural" v="beach|sand|desert" closed="yes">
+        <area fill="#BBFAEBB9"/>
       </rule>
-    </rule>
-    <rule e="way" k="natural" v="scrub" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_scrub.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="way" k="landuse" v="orchard" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_orchard.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_orchard.svg" symbol-scaling="size" symbol-height="32" symbol-width="32" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_orchard.svg" symbol-scaling="size" symbol-height="64" symbol-width="64" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_scrub.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+      <rule e="way" k="landuse" v="vineyard" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_vineyard.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
+          <area src="file:moiosm_res/p_vineyard.svg" symbol-scaling="size" symbol-height="32" symbol-width="32" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="18">
+          <area src="file:moiosm_res/p_vineyard.svg" symbol-scaling="size" symbol-height="64" symbol-width="64" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_scrub.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+      <rule e="way" k="landuse|leisure" v="garden|village_green|common" closed="yes">
+        <area fill="#BBC7F1A3" stroke="#6FC18E" stroke-width="0.2"/>
       </rule>
-    </rule>
-    <rule e="way" k="natural" v="fell" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_fell.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="way" k="landuse" v="allotments|greenfield" closed="yes">
+        <area fill="#BBD3EBD9" stroke="#6FC13D" stroke-width="0.2"/>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_fell.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+      <rule e="way" k="leisure" v="golf_course" closed="yes">
+        <area fill="#66D3EBD9" stroke="#6FC13D" stroke-width="0.2"/>
       </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_fell.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
+      <rule e="way" k="landuse|amenity" v="cemetery|grave_yard" closed="yes">
+        <rule e="any" k="*" v="*" zoom-max="15">
+          <area src="file:moiosm_res/p_cemetery.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="16" zoom-max="16">
+          <area src="file:moiosm_res/p_cemetery.svg" symbol-scaling="size" symbol-height="32" symbol-width="32" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="17">
+          <area src="file:moiosm_res/p_cemetery.svg" symbol-scaling="size" symbol-height="64" symbol-width="64" stroke="#E4E4E4" stroke-width="0.15"/>
+        </rule>
+      </rule>
+      <rule e="way" k="natural" v="crevasse" closed="yes">
+        <line stroke="#88F7F7" stroke-width="0.15"/>
+        <area fill="#2888F7F7"/>
+      </rule>
+      <rule e="way" k="natural" v="crevasse" closed="no">
+        <line stroke="#88F7F7" stroke-width="0.52" stroke-linecap="butt"/>
+        <line stroke="#E8FFFF" stroke-width="0.22" stroke-linecap="butt"/>
+      </rule>
+      <rule e="way" k="natural" v="crater" closed="yes">
+        <area fill="#306E5050"/>
       </rule>
     </rule>
     <rule e="way" k="natural" v="scree|shingle" closed="yes">
@@ -936,24 +1012,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <area src="file:moiosm_res/p_scree.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
       </rule>
     </rule>
-    <rule e="way" k="natural" closed="yes" v="glacier">
-      <rule e="any" k="*" v="*" zoom-max="14">
-        <line stroke="#88F7F7" stroke-width="0.60"/>
-        <area fill="#E8FFFF"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <line stroke="#88F7F7" stroke-width="0.38"/>
-        <area src="file:moiosm_res/p_glacier.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <line stroke="#88F7F7" stroke-width="0.38"/>
-        <area src="file:moiosm_res/p_glacier.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <line stroke="#88F7F7" stroke-width="0.22"/>
-        <area src="file:moiosm_res/p_glacier.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
-      </rule>
-    </rule>
     <rule e="way" k="landuse" v="quarry" closed="yes">
       <rule e="any" k="*" v="*" zoom-max="15">
         <area src="file:moiosm_res/p_scree.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
@@ -965,62 +1023,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <area src="file:moiosm_res/p_scree.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
       </rule>
       <area fill="#CCF2EFE4" stroke="#9EA199" stroke-width="0.2"/>
-    </rule>
-    <rule e="way" k="natural" v="beach|sand|desert" closed="yes">
-      <area fill="#BBFAEBB9"/>
-    </rule>
-    <rule e="way" k="landuse" v="orchard" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_orchard.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_orchard.svg" symbol-scaling="size" symbol-height="32" symbol-width="32" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_orchard.svg" symbol-scaling="size" symbol-height="64" symbol-width="64" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-    </rule>
-    <rule e="way" k="landuse" v="vineyard" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_vineyard.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="17">
-        <area src="file:moiosm_res/p_vineyard.svg" symbol-scaling="size" symbol-height="32" symbol-width="32" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="18">
-        <area src="file:moiosm_res/p_vineyard.svg" symbol-scaling="size" symbol-height="64" symbol-width="64" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-    </rule>
-    <rule e="way" k="landuse|leisure" v="garden|village_green|common" closed="yes">
-      <area fill="#BBC7F1A3" stroke="#6FC18E" stroke-width="0.2"/>
-    </rule>
-    <rule e="way" k="landuse" v="allotments|greenfield" closed="yes">
-      <area fill="#BBD3EBD9" stroke="#6FC13D" stroke-width="0.2"/>
-    </rule>
-    <rule e="way" k="leisure" v="golf_course" closed="yes">
-      <area fill="#66D3EBD9" stroke="#6FC13D" stroke-width="0.2"/>
-    </rule>
-    <rule e="way" k="landuse|amenity" v="cemetery|grave_yard" closed="yes">
-      <rule e="any" k="*" v="*" zoom-max="15">
-        <area src="file:moiosm_res/p_cemetery.svg" symbol-scaling="size" symbol-height="16" symbol-width="16" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="16" zoom-max="16">
-        <area src="file:moiosm_res/p_cemetery.svg" symbol-scaling="size" symbol-height="32" symbol-width="32" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="17">
-        <area src="file:moiosm_res/p_cemetery.svg" symbol-scaling="size" symbol-height="64" symbol-width="64" stroke="#E4E4E4" stroke-width="0.15"/>
-      </rule>
-    </rule>
-    <rule e="way" k="natural" v="crevasse" closed="yes">
-      <line stroke="#88F7F7" stroke-width="0.15"/>
-      <area fill="#2888F7F7"/>
-    </rule>
-    <rule e="way" k="natural" v="crevasse" closed="no">
-      <line stroke="#88F7F7" stroke-width="0.52" stroke-linecap="butt"/>
-      <line stroke="#E8FFFF" stroke-width="0.22" stroke-linecap="butt"/>
-    </rule>
-    <rule e="way" k="natural" v="crater" closed="yes">
-      <area fill="#306E5050"/>
     </rule>
   </rule>
   <!-- tunnels -->
