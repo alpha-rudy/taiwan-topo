@@ -48,9 +48,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__（適合較小螢幕）
   * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_bw.img.zip)：點選下載地圖檔
-  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw.exe)，[![Map](images/Windows.png =36x) 3D版](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw3D.exe)：點選下載安裝檔
-  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_bw.gmap.zip)，[![Map](images/macOS.png
-    =36x) 3D版](http://rudy.basecamp.tw/Taiwan_moi_zh_bw3D.gmap.zip)：點選下載安裝檔
+  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw.exe), [地形](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_bw3D.exe)：點選下載安裝檔
+  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_bw.gmap.zip), [地形](http://rudy.basecamp.tw/Taiwan_moi_zh_bw3D.gmap.zip)：點選下載安裝檔
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
@@ -58,9 +57,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__（適合較大螢幕）
   * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_odc.img.zip)：點選下載地圖檔
-  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc.exe)，[![Map](images/Windows.png =36x) 3D版](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc3D.exe)：點選下載安裝檔
-  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_odc.gmap.zip)，[![Map](images/macOS.png
-    =36x) 3D版](http://rudy.basecamp.tw/Taiwan_moi_zh_odc3D.gmap.zip)：點選下載安裝檔
+  * [![Map](images/Windows.png =36x) exe](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc.exe), [地形](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_odc3D.exe)：點選下載安裝檔
+  * [![Map](images/macOS.png =36x) gmap](http://rudy.basecamp.tw/Taiwan_moi_zh_odc.gmap.zip), [地形](http://rudy.basecamp.tw/Taiwan_moi_zh_odc3D.gmap.zip)：點選下載安裝檔
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
