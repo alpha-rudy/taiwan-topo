@@ -1,6 +1,6 @@
 build=NG
 instance=ttb-hd
-[ -z "$DROPBOX" ] && DROPBOX=/var/shared/Dropbox
+[ -n "$DROPBOX" ] || { echo "DROPBOX path is not specified."; exit 1; }
 
 ## start Google GCE for taiwan topo building
 gcloud compute instances start ${instance}
