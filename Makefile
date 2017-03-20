@@ -352,12 +352,13 @@ NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(REGION)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(MAPID),)
-TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE)
+TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE) $(TWMAP_STYLE)
 else
 TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAPSUPP_ZIP) $(GMAP) $(NSIS)
 endif
@@ -667,6 +668,18 @@ $(LOCUS_STYLE):
 	cat styles/locus_style/MOI_OSM.xml | \
 	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style/MOI_OSM.xml
 	cd $(BUILD_DIR) && zip -r $@ MOI_OSM_Taiwan_TOPO_Rudy_style/
+
+.PHONY: twmap_style $(TWMAP_STYLE)
+twmap_style: $(TWMAP_STYLE)
+$(TWMAP_STYLE):
+	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(REGION)" ]
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/twmap_style $(BUILD_DIR)
+	cat styles/twmap_style/MOI_OSM_twmap.xml | \
+	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
+	cd $(BUILD_DIR)/twmap_style && zip -r $@ *
 
 $(MAPSFORGE_ZIP): $(MAPSFORGE)
 	[ -d "$(BUILD_DIR)" ]
