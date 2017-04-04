@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <locusActions>
   <download>
-    <source><![CDATA[http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></source>
+    <source><![CDATA[https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></source>
     <dest><![CDATA[/mapsVector/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></dest>
     <after>extract|deleteSource</after>
   </download>
   <download>
-    <source><![CDATA[http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
+    <source><![CDATA[https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
     <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
     <after>extract|deleteSource</after>
   </download>
   <download>
-    <source><![CDATA[http://rudy.basecamp.tw/moi-hgt.zip]]></source>
+    <source><![CDATA[https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
