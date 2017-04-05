@@ -1122,42 +1122,42 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <rule e="any" k="*" v="*" cat="contour">
     <rule e="way" k="ele" v="1000|2000|3000" zoom-min="10" zoom-max="11">
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.22"/>
+        <line stroke="#5F564C" stroke-width="0.22"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="12" zoom-max="12">
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.38"/>
+        <line stroke="#5F564C" stroke-width="0.38"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="13" zoom-max="14">
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#474039" stroke-width="0.15"/>
+        <line stroke="#5F564C" stroke-width="0.15"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.38"/>
+        <line stroke="#5F564C" stroke-width="0.38"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="15" zoom-max="15">
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#474039" stroke-width="0.11"/>
+        <line stroke="#5F564C" stroke-width="0.11"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#474039" stroke-width="0.22"/>
+        <line stroke="#5F564C" stroke-width="0.22"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.33"/>
+        <line stroke="#5F564C" stroke-width="0.33"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="16" zoom-max="16">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#474039" stroke-width="0.09"/>
+        <line stroke="#5F564C" stroke-width="0.09"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#474039" stroke-width="0.15"/>
+        <line stroke="#5F564C" stroke-width="0.15"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#474039" stroke-width="0.22"/>
+        <line stroke="#5F564C" stroke-width="0.22"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
         <line stroke="#474039" stroke-width="0.30"/>
@@ -1165,13 +1165,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="17" zoom-max="17">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#474039" stroke-width="0.06"/>
+        <line stroke="#5F564C" stroke-width="0.06"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#474039" stroke-width="0.11"/>
+        <line stroke="#5F564C" stroke-width="0.11"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#474039" stroke-width="0.15"/>
+        <line stroke="#5F564C" stroke-width="0.15"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
         <line stroke="#474039" stroke-width="0.24"/>
@@ -1179,13 +1179,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="18">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#474039" stroke-width="0.04"/>
+        <line stroke="#5F564C" stroke-width="0.04"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#474039" stroke-width="0.08"/>
+        <line stroke="#5F564C" stroke-width="0.08"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#474039" stroke-width="0.11"/>
+        <line stroke="#5F564C" stroke-width="0.11"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
         <line stroke="#474039" stroke-width="0.18"/>
