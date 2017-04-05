@@ -12,6 +12,17 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * Beta 版（每日建置）: https://dl.dropboxusercontent.com/u/899714/drops/beta.html
   * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
 
+* ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
+  * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
+    * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動離線地圖自動安裝
+    * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
+    * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt.zip)：點選啟動高程檔自動安裝
+  * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
+    * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
+    * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt.zip)：點選啟動高程檔自動安裝
+  * 安裝示範影片：(尚無，歡迎山友提供)
+
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
@@ -90,8 +101,10 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2017, 4/5
+  * 感謝王天利兄，增加支援綠野遊蹤自動安裝
 * 2017, 2/16
-  * 感謝林朝露兄，Garmin 地圖可以顯示 3D 與山形陰影。
+  * 感謝林朝露兄，Garmin 地圖可以顯示 3D 與山形陰影
 * 2017, 1/12
   * 增加曾耕暉的手機GPS登山說明網頁
 * 2016, 12/21
