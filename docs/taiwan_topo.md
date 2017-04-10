@@ -51,7 +51,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Map](images/Android.png =36x) Map](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選下載地圖檔，需手動安裝
   * [![Style](images/Android.png =36x) Orux Style](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，需手動安裝
   * [![Style](images/Android.png =36x) Locus Style](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，需手動安裝
-  * [![DEM](images/Android.png =36x) DEM](http://rudy.basecamp.tw/moi-hgt.zip)：點選下載高程檔，需手動安裝
+  * [![DEM](images/Android.png =36x) DEM](http://rudy.basecamp.tw/moi-hgt.zip)：點選下載高程檔，給 Orux 與 Locus 手動安裝
+  * [![DEM](images/Android.png =36x) DEM](http://rudy.basecamp.tw/moi3-srtm3-hgt.zip)：點選下載高程檔，給綠野遊蹤手動安裝
   * 安裝示範影片：
     * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
