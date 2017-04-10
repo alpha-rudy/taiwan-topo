@@ -17,7 +17,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 <rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme-v4.xsd" version="4" map-background-outside="#FFFFFF" map-background="#FFFFFF">
   <stylemenu id="elmt-menu" defaultvalue="elmt-hiking" defaultlang="en">
     <!-- overlays special -->
-    <layer id="elmt-landcover" enabled="true">
+    <layer id="elmt-landcover" enabled="false">
       <name lang="de" value="land cover"/>
       <name lang="en" value="land cover"/>
       <name lang="es" value="land cover"/>
@@ -185,7 +185,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="landscapefeat"/>
       <cat id="landscapename"/>
     </layer>
-    <layer id="elmt-contour-c" enabled="false">
+    <layer id="elmt-contour-c" enabled="true">
       <name lang="de" value="Höhenlinien"/>
       <name lang="en" value="contour lines"/>
       <name lang="es" value="curva de nivel"/>
@@ -669,7 +669,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="buildings"/>
     </layer>
     <!-- mapstyles -->
-    <layer id="elmt-hiking" visible="true">
+    <layer id="elmt-hiking" enabled="true" visible="true">
       <name lang="de" value="Wandern v__version__"/>
       <name lang="en" value="Hiking v__version__"/>
       <name lang="es" value="Excursionismo v__version__"/>
