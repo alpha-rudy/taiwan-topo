@@ -1153,6 +1153,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <line stroke="#474039" stroke-width="0.40"/>
       </rule>
     </rule>
+    <!-- twmap 地圖產生器:  10,50,100,1000 0.2,0.35,0.45,5 stroke #948C85 #948C85 #948C85 #730016 -->
     <rule e="way" k="contour_ext" v="*" zoom-min="16" zoom-max="16">
       <rule e="way" k="contour_ext" v="elevation_minor">
         <line stroke="#5F564C" stroke-width="0.08"/>
@@ -1205,6 +1206,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
     </rule>
+    <!-- twmap 地圖產生器 minor,medium,major font-size 10,12,12 fill #000000,#000000,#000000 -->
     <rule e="way" k="contour_160m" v="*" zoom-min="16" zoom-max="16">
       <rule e="way" k="contour_160m" v="elevation_minor">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
@@ -3532,11 +3534,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="any" k="summit:cross" v="~|no" zoom-min="14">
         <rule e="node" k="zl" v="0|1">
           <symbol id="s_peak_m" display="always" priority="210" src="file:moiosm_res/s_peak_m.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+	<!-- twmap 地圖產生器: font-size=14 -->
           <caption k="name" priority="210" symbol-id="s_peak_m" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption k="ref" priority="-5" symbol-id="s_peak_m" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="node" k="zl" v="2">
           <symbol id="s_peak_l" display="always" priority="210" src="file:moiosm_res/s_peak_l.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+	<!-- twmap 地圖產生器: font-size=14 -->
           <caption k="name" priority="210" symbol-id="s_peak_l" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption k="ref" priority="-5" symbol-id="s_peak_l" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
