@@ -17,12 +17,16 @@ RUN dpkg --add-architecture i386 && \
         nsis \
         osmctools \
         python-lxml \
+        ssh \
+        sudo \
         zip \
     && rm -rf /var/lib/apt/lists/*
-RUN adduser --disabled-password --gecos '' builder
+RUN adduser --disabled-password --gecos '' builder && adduser builder sudo
+
+COPY rootfs/etc/sudoers /etc
 
 USER builder
 WORKDIR /home/builder
 
-COPY build.sh /home/builder/bin
+COPY rootfs/home/builder/bin /home/builder/
 CMD ["/home/builder/bin/build.sh"]
