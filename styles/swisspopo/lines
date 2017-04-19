@@ -350,15 +350,15 @@ highway = * & abandoned = yes  { set highway = abandoned }
 # ------------------------------------------------------------------
 
 # Naturschutzgebiete:
-boundary = protected_area & protect_class = 4 {set leisure = nature_reserve}
-boundary = protected_area & protect_id = 4 {set leisure = nature_reserve}
+boundary = protected_area & protect_class = 1 {set leisure = nature_reserve}
+boundary = protected_area & protect_id = 1 {set leisure = nature_reserve}
 
 # Nationalparks:
 boundary = national_park {set schutzgebiet = national_park}
-boundary = national_park & protect_class = 2 {set schutzgebiet = national_park}
-boundary = national_park & protect_id = 2 {set schutzgebiet = national_park}
-boundary = protected_area  & protect_class = 2 {set schutzgebiet = national_park}
-boundary = protected_area & protect_id = 2 {set schutzgebiet = national_park}
+#boundary = national_park & protect_class = 2 {set schutzgebiet = national_park}
+#boundary = national_park & protect_id = 2 {set schutzgebiet = national_park}
+#boundary = protected_area  & protect_class = 2 {set schutzgebiet = national_park}
+#boundary = protected_area & protect_id = 2 {set schutzgebiet = national_park}
 
 
 # -------------------------------------------------
@@ -425,7 +425,7 @@ highway = *
 # sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
 # Aus Gruenden der besseren Uebersichtlichkeit, wird die Ausweisung der NSGs begrenzt.
 # siehe auch Style-File "polygons" - dort wird zusätzlich auch die Fläche dargestellt
-leisure = nature_reserve [0x01210f resolution 20-23 continue]
+leisure = nature_reserve & protect_class = 1 [0x01210f resolution 17-20 continue]
 
 # Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
 # (New tagging includes land area also... therefore display of it needs to change: will be moved to 'lines')
