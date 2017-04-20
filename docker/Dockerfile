@@ -8,6 +8,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         bash \
+        bzip2 \
         curl \
         discount \
         default-jre \ 
