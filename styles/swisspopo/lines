@@ -425,7 +425,7 @@ highway = *
 # sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
 # Aus Gruenden der besseren Uebersichtlichkeit, wird die Ausweisung der NSGs begrenzt.
 # siehe auch Style-File "polygons" - dort wird zusätzlich auch die Fläche dargestellt
-leisure = nature_reserve & protect_class = 1 [0x01210f resolution 17-20 continue]
+leisure = nature_reserve & protect_class = 1 [0x01210f resolution 17-24 continue]
 
 # Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
 # (New tagging includes land area also... therefore display of it needs to change: will be moved to 'lines')
