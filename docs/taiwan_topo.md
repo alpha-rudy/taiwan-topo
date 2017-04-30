@@ -26,10 +26,12 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![POI](images/OruxMaps_poi.jpeg =36x) POI](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選啟動興趣點自動安裝
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt-v2.zip)：未支援。請點選下載，並手動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![POI](images/OruxMaps_poi.jpeg =36x) POI](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選啟動興趣點自動安裝
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt-v2.zip)：未支援。點選下載，並手動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
@@ -49,6 +51,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![Android](images/Android.png =36x) Android 手動下載自行安裝
   * [![Map](images/Android.png =36x) Map](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選下載地圖檔，需手動安裝
+  * [![POI](images/Android.png =36x) POI](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選下載興趣點，需手動安裝
   * [![Style](images/Android.png =36x) Orux Style](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，需手動安裝
   * [![Style](images/Android.png =36x) Locus Style](https://dl.dropboxusercontent.com/u/899714/maps/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，需手動安裝
   * [![DEM](images/Android.png =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt-v2.zip)：點選下載高程檔，給綠野遊蹤-GTs、Orux 與 Locus 手動安裝
@@ -101,6 +104,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2017, 4/30
+  * 感謝阿牛與 Happyman Chiu 的建議與指引，增加 POI 以供 OruxMaps 離線搜尋
 * 2017, 4/5
   * 感謝王天利兄，增加支援綠野遊蹤自動安裝
 * 2017, 2/16
