@@ -349,6 +349,8 @@ GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 GMAPSUPP_ZIP := $(GMAPSUPP).zip
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
+POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
+POI_ZIP := $(POI).zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
@@ -358,7 +360,7 @@ LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(MAPID),)
-TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE) $(TWMAP_STYLE)
+TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_ZIP) $(POI) $(POI_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE) $(TWMAP_STYLE)
 else
 TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAPSUPP_ZIP) $(GMAP) $(NSIS)
 endif
@@ -453,6 +455,21 @@ $(NSIS): $(MAP)
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi
 	cp "$(MAP_DIR)/Install_$(NAME_WORD).exe" $@
+
+.PHONY: poi
+poi: $(POI)
+$(POI): $(EXTRACT).osm.pbf
+	[ -n "$(EXTRACT)" ]
+	mkdir -p $(BUILD_DIR)
+	-rm -rf $@
+	export JAVACMD_OPTIONS="-server" && \
+	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+		--rb file="$(EXTRACT).osm.pbf" \
+		--poi-writer \
+			all-tags=false \
+			ways=true \
+			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
+		    file="$@"
 
 .PHONY: gmap
 gmap: $(GMAP)
@@ -686,6 +703,12 @@ $(MAPSFORGE_ZIP): $(MAPSFORGE)
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
 	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(MAPSFORGE))
+
+$(POI_ZIP): $(POI)
+	[ -d "$(BUILD_DIR)" ]
+	[ -f "$(POI)" ]
+	-rm -rf $@
+	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(POI))
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
