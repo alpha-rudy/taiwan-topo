@@ -18,9 +18,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt-v2.zip)：點選啟動高程檔自動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
-    * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
-    * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
-    * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt-v2.zip)：點選啟動高程檔自動安裝
+    * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
+    * [高程檔](gts-hgt://rudy.basecamp.tw/moi-hgt-v2.zip)：點選啟動高程檔自動安裝
   * 安裝示範影片：(尚無，歡迎山友提供)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
@@ -30,9 +30,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt-v2.zip)：未支援。請點選下載，並手動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
-    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
-    * [![POI](images/OruxMaps_poi.jpeg =36x) POI](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選啟動興趣點自動安裝
-    * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
+    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![POI](images/OruxMaps_poi.jpeg =36x) POI](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選啟動興趣點自動安裝
+    * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt-v2.zip)：未支援。點選下載，並手動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
   > (歡迎製作並取代我的不專業解說)
