@@ -40,6 +40,9 @@
 <osm-tag key='contour_640m' value='elevation_major' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='contour_640m' value='elevation_medium' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='contour_640m' value='elevation_minor' force-polygon-line='true' zoom-appear='12' />
+<osm-tag key='contour_1280m' value='elevation_major' force-polygon-line='true' zoom-appear='12' />
+<osm-tag key='contour_1280m' value='elevation_medium' force-polygon-line='true' zoom-appear='12' />
+<osm-tag key='contour_1280m' value='elevation_minor' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='ele' value='100' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='ele' value='150' force-polygon-line='true' zoom-appear='12' />
 <osm-tag key='ele' value='200' force-polygon-line='true' zoom-appear='12' />
