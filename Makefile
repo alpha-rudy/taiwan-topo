@@ -71,7 +71,6 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-LIGHT_ELE_FILE = ele_taiwan_20_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
@@ -326,7 +325,6 @@ NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
-NAME_LIGHT := $(DEM_NAME)_OSM_$(REGION)_TOPO_Light
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx72G -server
@@ -335,7 +333,6 @@ DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
 MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
 
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
-LIGHT_ELE := $(ELEVATIONS_DIR)/$(LIGHT_ELE_FILE)
 ELEVATION_MARKER := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MARKER_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
@@ -355,12 +352,10 @@ NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 POI_ZIP := $(POI).zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
-LIGHT := $(BUILD_DIR)/$(NAME_LIGHT).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(REGION)_zls.osm.pbf
-LIGHT_PBF := $(BUILD_DIR)/$(REGION)_le.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
@@ -666,19 +661,6 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 		--buffer --write-pbf $@ \
 		omitmetadata=true
 
-$(LIGHT_PBF): $(EXTRACT)-sed.osm.pbf $(LIGHT_ELE)
-	[ -n "$(REGION)" ]
-	-rm -rf $@
-	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf $(EXTRACT)-sed.osm.pbf \
-		--read-pbf $(ELEVATION) \
-		--merge \
-		$(OSMOSIS_OPTS) \
-		--buffer --write-pbf $@ \
-		omitmetadata=true
-
 .PHONY: mapsforge_style $(MAPSFORGE_STYLE)
 mapsforge_style: $(MAPSFORGE_STYLE)
 $(MAPSFORGE_STYLE):
@@ -736,24 +718,6 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	export JAVACMD_OPTIONS="-Xmx64G -server" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
-		--buffer --mapfile-writer \
-		    type=ram $(MF_WRITER_OPTS) \
-		    preferred-languages="$(MAPSFORGE_NTL)" \
-		    tag-conf-file="$(TAG_MAPPING)" \
-		    polygon-clipping=true way-clipping=true label-position=true \
-		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
-		    map-start-zoom=12 \
-		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
-		    file="$@"
-	
-.PHONY: light
-light: $(LIGHT)
-$(LIGHT): $(LIGHT_PBF) $(TAG_MAPPING)
-	[ -n "$(REGION)" ]
-	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS="-Xmx64G -server" && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf "$(LIGHT_PBF)" \
 		--buffer --mapfile-writer \
 		    type=ram $(MF_WRITER_OPTS) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
