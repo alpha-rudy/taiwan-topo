@@ -1191,16 +1191,24 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <line stroke="#474039" stroke-width="0.18"/>
       </rule>
     </rule>
-    <rule e="way" k="contour_640m" v="*" zoom-min="13" zoom-max="14">
-      <rule e="way" k="contour_640m" v="elevation_major">
+    <rule e="way" k="contour_1280m" v="*" zoom-min="12" zoom-max="13">
+      <rule e="way" k="contour_1280m" v="elevation_major">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="way" k="contour_640m" v="*" zoom-min="15" zoom-max="15">
+    <rule e="way" k="contour_640m" v="*" zoom-min="14" zoom-max="14">
       <rule e="way" k="contour_640m" v="elevation_medium">
         <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="contour_640m" v="elevation_major">
+        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_320m" v="*" zoom-min="15" zoom-max="15">
+      <rule e="way" k="contour_320m" v="elevation_medium">
+        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="way" k="contour_320m" v="elevation_major">
         <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="2"/>
       </rule>
     </rule>

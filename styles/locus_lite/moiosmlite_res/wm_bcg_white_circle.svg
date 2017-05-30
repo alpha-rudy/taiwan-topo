@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
+ <metadata id="metadata12"/>
+ <path d="M 12.000001,24 C 5.3824,24 1.4999999e-8,18.616533 1.4999999e-8,12.000001 1.4999999e-8,5.3824 5.3824,0 12.000001,0 18.6176,0 24,5.3834667 24,12.000001 24,18.616533 18.616533,24 12.000001,24 l 0,0 z" id="path4"/>
+ <path d="M 12,1 C 5.9426347,1 1,5.9426347 1,12 1,18.057365 5.9426347,23 12,23 18.057365,23 23,18.057365 23,12 23,5.9426347 18.057365,1 12,1 Z m 0,3 c 4.436045,0 8,3.5639551 8,8 0,4.436045 -3.563955,8 -8,8 C 7.5639551,20 4,16.436045 4,12 4,7.5639551 7.5639551,4 12,4 Z" id="path4148" shape-rendering="auto" mix-blend-mode="normal" color-interpolation-filters="linearRGB" isolation="auto" white-space="normal" fill="#ffffff" solid-opacity="1" image-rendering="auto" solid-color="#000000" color="#000000" color-rendering="auto" color-interpolation="sRGB"/>
+</svg>

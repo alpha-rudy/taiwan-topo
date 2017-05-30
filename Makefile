@@ -71,11 +71,33 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
+MAPSFORGE_STYLE_DIR := mapsforge_style
+MAPSFORGE_STYLE_FILE := MOI_OSM.xml
+LOCUS_STYLE_DIR := locus_style
+LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
+LOCUS_STYLE_FILE := MOI_OSM.xml
+
+else ifeq ($(SUITE),taiwan_lite)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_20_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls_lite.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
+DEM_NAME := MOI
+MAPSFORGE_STYLE_DIR := mapsforge_lite
+MAPSFORGE_STYLE_FILE := MOI_OSM_lite.xml
+LOCUS_STYLE_DIR := locus_lite
+LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
+LOCUS_STYLE_FILE := MOI_OSM_lite.xml
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 
 else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
@@ -324,7 +346,7 @@ MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+NAME_MAPSFORGE ?= $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx72G -server
@@ -355,7 +377,7 @@ MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
-MAPSFORGE_PBF := $(BUILD_DIR)/$(REGION)_zls.osm.pbf
+MAPSFORGE_PBF := $(BUILD_DIR)/$(SUITE)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
@@ -667,11 +689,12 @@ $(MAPSFORGE_STYLE):
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(REGION)" ]
 	-rm -rf $@
+	-rm -rf $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)
 	mkdir -p $(BUILD_DIR)
-	cp -a styles/mapsforge_style $(BUILD_DIR)
-	cat styles/mapsforge_style/MOI_OSM.xml | \
-	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
-	cd $(BUILD_DIR)/mapsforge_style && zip -r $@ *
+	cp -a styles/$(MAPSFORGE_STYLE_DIR) $(BUILD_DIR)
+	cat styles/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE) | \
+	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE)
+	cd $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR) && zip -r $@ *
 
 .PHONY: locus_style $(LOCUS_STYLE)
 locus_style: $(LOCUS_STYLE)
@@ -679,12 +702,12 @@ $(LOCUS_STYLE):
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(REGION)" ]
 	-rm -rf $@
-	-rm -rf $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
+	-rm -rf $(BUILD_DIR)/$(LOCUS_STYLE_INST)
 	mkdir -p $(BUILD_DIR)
-	cp -a styles/locus_style $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style
-	cat styles/locus_style/MOI_OSM.xml | \
-	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style/MOI_OSM.xml
-	cd $(BUILD_DIR) && zip -r $@ MOI_OSM_Taiwan_TOPO_Rudy_style/
+	cp -a styles/$(LOCUS_STYLE_DIR) $(BUILD_DIR)/$(LOCUS_STYLE_INST)
+	cat styles/$(LOCUS_STYLE_DIR)/$(LOCUS_STYLE_FILE) | \
+	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/$(LOCUS_STYLE_FILE)
+	cd $(BUILD_DIR) && zip -r $@ $(LOCUS_STYLE_INST)/
 
 .PHONY: twmap_style $(TWMAP_STYLE)
 twmap_style: $(TWMAP_STYLE)
