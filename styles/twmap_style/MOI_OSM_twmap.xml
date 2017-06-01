@@ -791,10 +791,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- render land above sea -->
   <rule e="way" k="natural" v="sea">
     <rule e="any" k="*" v="*" zoom-max="13">
-      <area fill="#B3DDFF"/>
+      <area fill="#0a2676"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <area fill="#DDB3DDFF"/>
+      <area fill="#0a2678"/>
     </rule>
   </rule>
   <rule e="way" k="natural" v="nosea">
@@ -1313,52 +1313,52 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <rule e="way" k="waterway" v="ditch">
-    <line stroke="#B3DDFF" stroke-width="0.6"/>
+    <line stroke="#0a2676" stroke-width="0.6"/>
   </rule>
   <rule e="way" k="waterway" v="drain">
     <line stroke="#A69D9D" stroke-width="0.7" stroke-linecap="butt"/>
-    <line stroke="#B3DDFF" stroke-width="0.5" stroke-linecap="butt"/>
+    <line stroke="#0a2676" stroke-width="0.5" stroke-linecap="butt"/>
   </rule>
   <rule e="way" k="waterway" v="canal">
     <line stroke="#A69D9D" stroke-width="1.1" stroke-linecap="butt"/>
-    <line stroke="#B3DDFF" stroke-width="0.9" stroke-linecap="butt"/>
+    <line stroke="#0a2676" stroke-width="0.9" stroke-linecap="butt"/>
   </rule>
   <rule e="way" k="waterway" v="stream">
-    <line stroke="#B3DDFF" stroke-width="0.6"/>
+    <line stroke="#0a2676" stroke-width="0.6"/>
   </rule>
   <rule e="way" k="waterway" v="river">
-    <line stroke="#B3DDFF" stroke-width="1.1"/>
+    <line stroke="#0a2676" stroke-width="1.1"/>
   </rule>
   <rule e="way" k="waterway" v="riverbank" closed="yes">
-    <area fill="#B3DDFF" stroke="#B3DDFF" stroke-width="0.2"/>
+    <area fill="#0a2676" stroke="#0a2676" stroke-width="0.2"/>
   </rule>
   <rule e="way" k="waterway" v="riverbank" closed="no">
-    <line stroke="#B3DDFF" stroke-width="1"/>
+    <line stroke="#0a2676" stroke-width="1"/>
   </rule>
   <rule e="way" k="natural" v="water" closed="yes">
     <rule e="any" k="*" v="*" zoom-max="13">
-      <area fill="#B3DDFF" stroke="#B3DDFF" stroke-width="0.2"/>
+      <area fill="#0a2676" stroke="#0a2676" stroke-width="0.2"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <area fill="#DDB3DDFF" stroke="#DDB3DDFF" stroke-width="0.2"/>
+      <area fill="#0a2678" stroke="#0a2678" stroke-width="0.2"/>
     </rule>
   </rule>
   <rule e="way" k="natural" v="water" closed="no">
-    <line stroke="#B3DDFF" stroke-width="1"/>
+    <line stroke="#0a2676" stroke-width="1"/>
   </rule>
   <rule e="way" k="landuse" v="reservoir|basin" closed="yes">
     <line stroke="#A69D9D" stroke-width="0.3"/>
-    <area fill="#B3DDFF"/>
+    <area fill="#0a2676"/>
   </rule>
   <rule e="way" k="landuse" v="reservoir|basin" closed="no">
     <line stroke="#A69D9D" stroke-width="1"/>
-    <line stroke="#B3DDFF" stroke-width="0.2"/>
+    <line stroke="#0a2676" stroke-width="0.2"/>
   </rule>
   <rule cat="landscapename" e="way" k="waterway" v="river">
-    <pathText k="name" font-style="bold" font-size="11" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+    <pathText k="name" font-style="bold" font-size="11" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
   </rule>
   <rule cat="landscapename" e="way" k="waterway" v="stream|canal|ditch|drain">
-    <pathText k="name" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+    <pathText k="name" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
   </rule>
   <!-- underground waterways -->
   <rule e="way" k="tunnel" v="yes">
@@ -1440,7 +1440,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="way" k="amenity" v="fountain" closed="yes">
-      <area fill="#B3DDFF" stroke="#A69D9D" stroke-width="0.2"/>
+      <area fill="#0a2676" stroke="#A69D9D" stroke-width="0.2"/>
     </rule>
     <rule e="way" k="leisure|sport" v="sports_centre|shooting|stadium">
       <area fill="#DDD3EBD9" stroke="#6FC18E" stroke-width="0.2"/>
@@ -1473,7 +1473,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <line stroke="#CCCCCC" stroke-width="1"/>
     </rule>
     <rule e="way" k="leisure" v="swimming_pool">
-      <area fill="#B3DDFF" stroke="#A69D9D" stroke-width="0.2"/>
+      <area fill="#0a2676" stroke="#A69D9D" stroke-width="0.2"/>
     </rule>
     <rule cat="sports" e="way" k="sport|leisure" v="swimming|water_park">
       <line stroke="#806060FF" stroke-width="0.3"/>
@@ -1670,7 +1670,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="waterway" v="weir" closed="no">
       <line stroke="#E6DFDF" stroke-width="0.7" stroke-linecap="butt"/>
-      <line stroke="#B3DDFF" stroke-width="0.5" stroke-dasharray="3,4" stroke-linecap="butt"/>
+      <line stroke="#0a2676" stroke-width="0.5" stroke-dasharray="3,4" stroke-linecap="butt"/>
     </rule>
     <rule e="way" k="waterway" v="weir" closed="yes">
       <line stroke="#E6DFDF" stroke-width="0.2"/>
@@ -3215,18 +3215,18 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="any" k="place" v="sea">
       <rule e="any" k="*" v="*" zoom-max="8">
-        <caption k="name" priority="103" font-style="bold_italic" font-size="13" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" priority="103" font-style="bold_italic" font-size="13" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="*" v="*" zoom-max="12" zoom-min="9">
-        <caption k="name" priority="103" font-style="bold_italic" font-size="19" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" priority="103" font-style="bold_italic" font-size="19" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="place" v="ocean" zoom-max="12">
       <rule e="any" k="*" v="*" zoom-max="8">
-        <caption k="name" priority="103" font-style="bold_italic" font-size="16" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" priority="103" font-style="bold_italic" font-size="16" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="*" v="*" zoom-max="12" zoom-min="9">
-        <caption k="name" priority="103" font-style="bold_italic" font-size="24" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" priority="103" font-style="bold_italic" font-size="24" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <!-- poly_labels -->
@@ -3235,9 +3235,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule cat="city" e="node" k="landuse|natural" v="reservoir|basin|water">
       <rule e="any" k="amenity" v="~">
-        <caption k="name" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         <rule e="any" k="*" v="*">
-          <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
     </rule>
@@ -3304,28 +3304,28 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule cat="nocity" e="node" k="landuse|natural" v="reservoir|basin|water">
       <rule e="any" k="amenity" v="~">
         <rule e="any" k="bBoxWeight" v="xxxlarge|xxlarge">
-          <caption k="name" priority="103" font-style="bold" font-size="11" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" priority="103" font-style="bold" font-size="11" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="bBoxWeight" v="xlarge">
-          <caption k="name" priority="103" font-style="bold" font-size="11" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" priority="103" font-style="bold" font-size="11" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="bBoxWeight" v="large">
-          <caption k="name" priority="103" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" priority="103" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="bBoxWeight" v="mid">
-          <caption k="name" priority="103" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" priority="103" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="bBoxWeight" v="small|~" zoom-min="14">
-          <caption k="name" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="bBoxWeight" v="xsmall" zoom-min="15">
-          <caption k="name" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="bBoxWeight" v="tiny" zoom-min="16">
-          <caption k="name" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="any" k="*" v="*" zoom-min="16">
-          <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#77A5FC" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#0a2677" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
     </rule>
