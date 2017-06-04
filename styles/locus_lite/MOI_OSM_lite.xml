@@ -1920,6 +1920,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
+  <hillshading />
   <!-- turning circle casing -->
   <rule e="node" k="highway" v="turning_circle|mini_roundabout">
     <circle radius="1.0" scale-radius="true" fill="#222222"/>
