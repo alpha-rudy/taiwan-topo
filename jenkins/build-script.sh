@@ -30,6 +30,6 @@ cp -r v${VERSION}/* $DROPBOX/Public/drops/  ### daily drops
   cp -r v${VERSION}/* $DROPBOX/Public/maps/
   cp -r v${VERSION}/MOI_OSM_* $DROPBOX/Apps/share-mapdata/
   cd $DROPBOX/Public/maps/
-  tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' > files.html
+  tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
   echo "Completed with weeekly drop."
 }  || echo "Completed without weekly drop."
