@@ -29,6 +29,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 MF_WRITER_OPTS := bbox=23.226,120.822,23.578,121.249
 DEM_NAME := MOI
+TARGETS := mapsforge
 
 else ifeq ($(SUITE),bbox)
 # REGION: specify your REGION name for bbox
@@ -39,6 +40,7 @@ ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 DEM_NAME := MOI
+TARGETS := mapsforge
 
 else ifeq ($(SUITE),bbox_bw)
 # REGION: specify your REGION name for bbox
@@ -52,6 +54,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1f13)
+TARGETS := gmap
 
 else ifeq ($(SUITE),bbox_odc)
 # REGION: specify your REGION name for bbox
@@ -65,6 +68,7 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1f12)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
@@ -81,6 +85,7 @@ MAPSFORGE_STYLE_FILE := MOI_OSM.xml
 LOCUS_STYLE_DIR := locus_style
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
 LOCUS_STYLE_FILE := MOI_OSM.xml
+TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
@@ -98,6 +103,7 @@ LOCUS_STYLE_DIR := locus_lite
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
 LOCUS_STYLE_FILE := MOI_OSM_lite.xml
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
+TARGETS := mapsforge_zip mapsforge_style locus_style
 
 else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
@@ -109,6 +115,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 MF_WRITER_OPTS := bbox=24.6731646,121.2826336,25.2997353,122.0064049
 DEM_NAME := MOI
+TARGETS := mapsforge
 
 else ifeq ($(SUITE),taipei)
 REGION := Taipei
@@ -120,6 +127,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MF_WRITER_OPTS := bbox=24.96034,121.4570,25.21024,121.6659
 DEM_NAME := MOI
+TARGETS := mapsforge
 
 else ifeq ($(SUITE),yushan_bw)
 REGION := Yushan
@@ -133,6 +141,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1413)
+TARGETS := gmap
 
 else ifeq ($(SUITE),yushan_odc)
 REGION := Yushan
@@ -146,6 +155,7 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1412)
+TARGETS := gmap
 
 else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
@@ -159,6 +169,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1313)
+TARGETS := gmap
 
 else ifeq ($(SUITE),beibeiji_odc)
 REGION := Beibeiji
@@ -172,6 +183,7 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1312)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
@@ -185,6 +197,7 @@ STYLE := jing
 STYLE_NAME := jing
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2010)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_srtm3_odr)
 REGION := Taiwan
@@ -198,6 +211,7 @@ STYLE := fzk
 STYLE_NAME := odr
 DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2011)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_srtm3_odc)
 REGION := Taiwan
@@ -211,6 +225,7 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2012)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_srtm3_bw)
 REGION := Taiwan
@@ -224,6 +239,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2013)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
@@ -237,6 +253,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1013)
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
@@ -250,6 +267,7 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1012)
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bw_dem)
 REGION := Taiwan
@@ -266,6 +284,7 @@ GMAPDEM_ID := 05010000
 GMAPDEM_FILE := $(GMAPDEM_ID).img
 GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1015)
+TARGETS := gmap nsis
 
 else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
@@ -282,6 +301,7 @@ GMAPDEM_ID := 05010000
 GMAPDEM_FILE := $(GMAPDEM_ID).img
 GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1014)
+TARGETS := gmap nsis
 
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
@@ -295,6 +315,7 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2112)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
@@ -308,6 +329,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2113)
+TARGETS := gmap
 
 else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
@@ -321,6 +343,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2103)
+TARGETS := gmap
 
 else ifeq ($(SUITE),kyushu_srtm3_en_bw)
 REGION := Kyushu
@@ -335,6 +358,7 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2313)
+TARGETS := gmap
 
 endif
 
@@ -380,12 +404,6 @@ TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(SUITE)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
-
-ifeq ($(MAPID),)
-TARGETS := $(LICENSE) $(MAPSFORGE) $(MAPSFORGE_ZIP) $(POI) $(POI_ZIP) $(MAPSFORGE_STYLE) $(LOCUS_STYLE) $(TWMAP_STYLE)
-else
-TARGETS := $(LICENSE) $(GMAPSUPP) $(GMAPSUPP_ZIP) $(GMAP) $(NSIS)
-endif
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $$EXAM_FILE
@@ -530,6 +548,8 @@ $(GMAPSUPP): $(MAP)
 		$(MAPID)*.img $(MAPID).TYP
 	cp $(MAP_DIR)/gmapsupp.img $@
 
+.PHONY: gmapsupp_zip
+gmapsupp_zip: $(GMAPSUPP_ZIP)
 $(GMAPSUPP_ZIP): $(GMAPSUPP)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(GMAPSUPP)" ]
@@ -721,12 +741,16 @@ $(TWMAP_STYLE):
 	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
 	cd $(BUILD_DIR)/twmap_style && zip -r $@ *
 
+.PHONY: mapsforge_zip
+mapsforge_zip: $(MAPSFORGE_ZIP)
 $(MAPSFORGE_ZIP): $(MAPSFORGE)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
 	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(MAPSFORGE))
 
+.PHONY: poi_zip
+poi_zip: $(POI_ZIP)
 $(POI_ZIP): $(POI)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(POI)" ]
