@@ -1,46 +1,96 @@
-# Taiwan TOPO Daily Drop
+## 測試版：MOI.OSM - Taiwan TOPO (by Rudy)
 
 (目前版本：Taiwan TOPO v__version__)
 
-* **Android Mapsforge, MOI_OSM_Taiwan_TOPO_Rudy, 手動安裝**
+* ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
+  * [![Map](./images/Android.png =36x)Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+  * [![POI](./images/Android.png =36x)Orux POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![Style](./images/Android.png =36x)Orux/GTs Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+  * [![Style](./images/Android.png =36x)Locus Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+  * [![DEM](./images/Android.png =36x)HGT v3](./moi-hgt-v3.zip)
 
-<table style="width:100%;">
-  <tr>
-    <th>Map</th>
-    <th>Orux Style</th>
-    <th>Locus Style</th>
-    <th>DEM</th>
-  </tr>
-  <tr>
-    <th><a href="./MOI_OSM_Taiwan_TOPO_Rudy.map.zip"><img src="images/Android.png" alt="Click for Map Download"></a></th>
-    <th><a href="./MOI_OSM_Taiwan_TOPO_Rudy_style.zip"><img src="images/Android.png" alt="Click for Style Download"></a></th>
-    <th><a href="./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip"><img src="images/Android.png" alt="Click for Style Download"></a></th>
-    <th><a href="./moi-hgt.zip"><img src="images/Android.png" alt="Click for DEM Download"></a></th>
-  </tr>
-</table>
+* ![Map](./images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__
+  * [![Map](./images/Garmin_small.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_bw.img.zip)
+  * [![Map](./images/Windows.png =36x)exe](./Install_MOI_Taiwan_TOPO_bw.exe), [地形](./Install_MOI_Taiwan_TOPO_bw3D.exe)
+  * [![Map](./images/macOS.png =36x)gmap](./Taiwan_moi_zh_bw.gmap.zip), [地形](./Taiwan_moi_zh_bw3D.gmap.zip)
 
-* **Garmin GMAP, MOI.OSM - Taiwan TOPO, 下載**
+* ![Map](./images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__
+  * [![Map](./images/Garmin_large.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_odc.img.zip)
+  * [![Map](./images/Windows.png =36x)exe](./Install_MOI_Taiwan_TOPO_odc.exe), [地形](./Install_MOI_Taiwan_TOPO_odc3D.exe)
+  * [![Map](./images/macOS.png =36x)gmap](./Taiwan_moi_zh_odc.gmap.zip), [地形](./Taiwan_moi_zh_odc3D.gmap.zip)
 
-<table style="width:100%;">
-  <tr>
-    <th>風格</th>
-    <th>Garmin 地圖檔</th>
-    <th>Garmin 高程檔</th>
-    <th>Windows 安裝檔</th>
-    <th>macOS 安裝檔</th>
-  </tr>
-  <tr>
-    <th>bw<br />(適合小螢幕)</th>
-    <th><a href="./gmapsupp_Taiwan_moi_zh_bw.img.zip"><img src="images/Garmin_small.jpeg" alt="Click for Garmin Handheld Map Download"></a></th>
-    <th><a href="./gmapdem.img.zip"><img src="images/Garmin_small.jpeg" alt="Click for Garmin Handheld DEM Download"></a></th>
-    <th><a href="./Install_MOI_Taiwan_TOPO_bw.exe"><img src="images/Windows.png" alt="Click for Windows BaseCamp Map Download"></a></th>
-    <th><a href="./Taiwan_moi_zh_bw.gmap.zip"><img src="images/macOS.png" alt="Click for macOS BaseCamp Map Download"></a></th>
-  </tr>
-  <tr>
-    <th>odc<br />(適合大螢幕)</th>
-    <th><a href="./gmapsupp_Taiwan_moi_zh_odc.img.zip"><img src="images/Garmin_large.jpeg" alt="Click for Garmin Handheld Map Download"></a></th>
-    <th><a href="./gmapdem.img.zip"><img src="images/Garmin_large.jpeg" alt="Click for Garmin Handheld DEM Download"></a></th>
-    <th><a href="./Install_MOI_Taiwan_TOPO_odc.exe"><img src="images/Windows.png" alt="Click for Windows BaseCamp Map Download"></a></th>
-    <th><a href="./Taiwan_moi_zh_odc.gmap.zip"><img src="images/macOS.png" alt="Click for macOS BaseCamp Map Download"></a></th>
-  </tr>
-</table>
+### 版權宣告
+
+* OpenSteetMap
+> © OpenStreetMap contributors <br />
+> 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
+> License: http://www.openstreetmap.org/copyright
+
+* 內政部 20 公尺網格數值地形模型資料與 Rex OSM PBF
+> 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />
+> MOI Link: https://tgos.nat.gov.tw <br />
+> 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
+> Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
+> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884
+
+* GMAP Styles and TYP
+> Garmin GMAP Styles and TYPs are origin from Freizeitkarte. <br />
+> Link: http://www.freizeitkarte-osm.de/garmin/en/index.html
+
+* Mapsforge Style
+> Symbols/patterns/code is derived and based on OpenAndroMaps Elevate theme by Tobias Kühn. <br />
+> Link: http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme <br />
+> Detail Link: http://www.openandromaps.org/wp-content/users/tobias/licenses.txt <br />
+> Theme style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike License 3.0 Unported License. <br />
+> Link: http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+* Tool of Contour Lines: gdal and phyghtmap
+> Contour lines of this map were generated by using tools "gdal" and "phyghtmap". <br />
+> gdal Link: http://www.gdal.org <br />
+> gdal License: http://svn.osgeo.org/gdal/trunk/gdal/LICENSE.TXT <br />
+> phyghtmap Link: http://katze.tfiu.de/projects/phyghtmap/ <br />
+> phyghtmap License: http://gnu.org/licenses/gpl.html
+
+* Tools of Maps: osm, mkgmap, and mapsforge
+> OSM Maps were built using the tools "osmosis" <br />
+> Link: http://wiki.openstreetmap.org/wiki/Osmosis <br />
+> GMAP Maps were built using the tools "splitter" and "mkgmap" <br />
+> Link: http://www.mkgmap.org.uk/ <br />
+> License: http://gnu.org/licenses/gpl.html <br />
+> Mapsforge Maps were built using the tools "Mapsforge Map-Writer" <br />
+> Link: https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
+
+### 地圖版權與散佈說明
+<pre>
+Copyright (c) 2016 Rudy Chung
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the this copyright notice
+    (or the HTTP link to this notice), this list of conditions and the
+    following disclaimer in the documentation and/or other materials provided
+    with the distribution.
+
+    * Redistributions with modification must use a different map name which
+    could be easily and clearly to be distinguished with this map.
+
+    * Neither the name of Rudy Chung nor the names of its contributors may be
+    used to endorse or promote products derived from this software without 
+    specific prior written permission.
+
+THIS MAP IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL RUDY BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+MAP, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre>
