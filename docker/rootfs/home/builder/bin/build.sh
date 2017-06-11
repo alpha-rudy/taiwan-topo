@@ -19,6 +19,7 @@ make SUITE=taiwan_bw all
 make SUITE=taiwan_odc all
 make SUITE=taiwan_bw_dem all
 make SUITE=taiwan_odc_dem all
+make license
 
 rm -rf install/${INSTALL_DIR}
 mkdir -p install/${INSTALL_DIR}
@@ -27,12 +28,12 @@ cd install/${INSTALL_DIR}
 tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
 
 ## rclone to dropbox
-rclone copy . rudybox:Public/drops/
+rclone copy --update . rudybox:Public/drops/
 [ "${DAYOFWEEK}" -eq 4 ] && {
-    rclone copy . rudybox:Public/maps/
+    rclone copy --update . rudybox:Public/maps/
     mkdir -p share-mapdata
     cp -r MOI_OSM_* share-mapdata/
-    rclone copy share-mapdata/ rudybox:Apps/share-mapdata/
+    rclone copy --update share-mapdata/ rudybox:Apps/share-mapdata/
     echo "Completed with weeekly drop."
 } || echo "Completed without weekly drop."
   
