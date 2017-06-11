@@ -7,7 +7,6 @@
   * [![POI](./images/Android.png =36x)Orux POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
   * [![Style](./images/Android.png =36x)Orux/GTs Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
   * [![Style](./images/Android.png =36x)Locus Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-  * [![DEM](./images/Android.png =36x)HGT v3](./moi-hgt-v3.zip)
 
 * ![Map](./images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__
   * [![Map](./images/Garmin_small.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_bw.img.zip)
