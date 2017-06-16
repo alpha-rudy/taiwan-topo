@@ -653,16 +653,16 @@ $(GMAPDEM):
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(GMAPDEM_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
-EXTRACT_URL := http://download.geofabrik.de/asia
+EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).osm:
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).osm.bz2 -o $(EXTRACT_FILE).osm.bz2 && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).osm.bz2.md5 -o $(EXTRACT_FILE).osm.bz2.md5 && \
-	    EXAM_FILE=$(EXTRACT_FILE).osm.bz2; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).osm.bz2.md5 | cut -d' ' -f1)" ] && \
-	    bzip2 -df $(EXTRACT_FILE).osm.bz2 || \
-	        ( rm -rf $(EXTRACT_FILE).osm.bz2 && false )
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m -o $(EXTRACT_FILE).o5m && \
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.md5 -o $(EXTRACT_FILE).o5m.md5 && \
+	    EXAM_FILE=$(EXTRACT_FILE).o5m; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.md5 | sed -e 's/^.* = //')" ] && \
+	    osmconvert $(EXTRACT_FILE).o5m -o=$(EXTRACT_FILE).osm || \
+	        ( rm -rf $(EXTRACT_FILE).o5m* && false )
 
 $(EXTRACT).osm.pbf: $(EXTRACT).osm
 	[ -n "$(REGION)" ]
