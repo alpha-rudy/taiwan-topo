@@ -85,7 +85,10 @@ MAPSFORGE_STYLE_FILE := MOI_OSM.xml
 LOCUS_STYLE_DIR := locus_style
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
 LOCUS_STYLE_FILE := MOI_OSM.xml
-TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
+GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
+TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style gts_all
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
@@ -103,6 +106,7 @@ LOCUS_STYLE_DIR := locus_lite
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
 LOCUS_STYLE_FILE := MOI_OSM_lite.xml
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
+HGT := $(ROOT_DIR)/hgt/moi-hgt-lite.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style locus_style gts_all
 
@@ -468,14 +472,14 @@ $(LICENSE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(ROOT_DIR)/hgt/moi-hgt-lite.zip
-	[ "$(SUITE)" == "taiwan_lite" ]
+$(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
+	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
 	mkdir -p $(GTS_ALL)
 	cd $(GTS_ALL) && \
 		unzip $(MAPSFORGE_ZIP) -d map && \
 		unzip $(MAPSFORGE_STYLE) -d mapthemes && \
-		unzip $(ROOT_DIR)/hgt/moi-hgt-lite.zip -d hgt && \
+		unzip $(HGT) -d hgt && \
 		zip -r $(GTS_ALL).zip map/ mapthemes/ hgt/
 
 .PHONY: nsis
