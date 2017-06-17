@@ -450,6 +450,8 @@ drop:
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	cat docs/beta.md | sed -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(INSTALL_DIR)/beta.html
+	cp -r docs/gts $(INSTALL_DIR) && \
+		cat docs/gts/index.html | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 
 suites:
 	echo "make SUITE taiwan_bw taiwan_odc taiwan"
