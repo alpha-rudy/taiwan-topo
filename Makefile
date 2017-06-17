@@ -80,15 +80,32 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_style
 MAPSFORGE_STYLE_FILE := MOI_OSM.xml
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 LOCUS_STYLE_DIR := locus_style
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
 LOCUS_STYLE_FILE := MOI_OSM.xml
+TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style
+
+else ifeq ($(SUITE),taiwan_gts)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
+DEM_NAME := MOI
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+MAPSFORGE_STYLE_DIR := mapsforge_hs
+MAPSFORGE_STYLE_FILE := MOI_OSM.xml
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_hs_style.zip
 HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
-TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style gts_all
+TARGETS := mapsforge_zip mapsforge_style gts_all
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
@@ -100,15 +117,16 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 MAPSFORGE_STYLE_DIR := mapsforge_lite
 MAPSFORGE_STYLE_FILE := MOI_OSM_Lite.xml
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 LOCUS_STYLE_DIR := locus_lite
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
 LOCUS_STYLE_FILE := MOI_OSM_Lite.xml
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 HGT := $(ROOT_DIR)/hgt/moi-hgt-lite.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
-TARGETS := mapsforge_zip mapsforge_style locus_style gts_all
+TARGETS := mapsforge_zip mapsforge_style gts_all
 
 else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
@@ -404,9 +422,8 @@ POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 POI_ZIP := $(POI).zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
-MAPSFORGE_PBF := $(BUILD_DIR)/$(SUITE)_zls.osm.pbf
+MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
