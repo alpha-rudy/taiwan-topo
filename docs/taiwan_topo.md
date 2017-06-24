@@ -14,13 +14,27 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
-    * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動離線地圖自動安裝
-    * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
-    * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt-v3.zip)：點選啟動高程檔自動安裝
+    * 傳統版
+      * [三合一](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.zip)：點選啟動三合一自動安裝
+      * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動離線地圖自動安裝
+      * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動風格主題自動安裝
+      * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt-v3.zip)：點選啟動高程檔自動安裝
+    * 輕量版
+      * [三合一](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.zip)：點選啟動三合一自動安裝
+      * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.map.zip)：點選啟動離線地圖自動安裝
+      * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip)：點選啟動風格主題自動安裝
+      * [高程檔](gts-hgt://moi.kcwu.csie.org/moi-hgt-lite.zip)：點選啟動高程檔自動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
-    * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
-    * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
-    * [高程檔](gts-hgt://rudy.basecamp.tw/moi-hgt-v3.zip)：點選啟動高程檔自動安裝
+    * 傳統版
+      * [三合一](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.zip)：點選啟動三合一自動安裝
+      * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+      * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動風格主題自動安裝
+      * [高程檔](gts-hgt://rudy.basecamp.tw/moi-hgt-v3.zip)：點選啟動高程檔自動安裝
+    * 輕量版
+      * [三合一](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite.zip)：點選啟動三合一自動安裝
+      * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite.map.zip)：點選啟動地圖自動安裝
+      * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite_style.zip)：點選啟動風格主題自動安裝
+      * [高程檔](gts-hgt://rudy.basecamp.tw/moi-hgt-lite.zip)：點選啟動高程檔自動安裝
   * 安裝示範影片：(尚無，歡迎山友提供)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
