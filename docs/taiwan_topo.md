@@ -11,6 +11,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
   * Beta 版（每日建置）: https://dl.dropboxusercontent.com/u/899714/drops/beta.html
   * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
+  * 圖例說明文件：https://dl.dropboxusercontent.com/u/899714/maps/legend_V1R1.pdf
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
@@ -118,6 +119,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2017, 8/3
+  * 感謝阿牛兄的圖例說明，增加圖例說明文件
 * 2017, 4/30
   * 感謝阿牛與 Happyman Chiu 的建議與指引，增加 POI 以供 OruxMaps 離線搜尋
 * 2017, 4/5
