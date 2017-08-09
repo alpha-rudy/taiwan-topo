@@ -915,6 +915,7 @@
 <osm-tag key='man_made' value='survey_point' zoom-appear='14' />
 <osm-tag key='man_made' value='windmill' zoom-appear='14' />
 <osm-tag key='man_made' value='reservoir_covered' zoom-appear='15' />
+<osm-tag key='power' value='tower' zoom-appear='12' />
 <osm-tag key='tower' value='communication' zoom-appear='12' />
 <osm-tag key='tower' value='observation' zoom-appear='12' />
 <osm-tag key='tower' value='windmill' zoom-appear='14' />
