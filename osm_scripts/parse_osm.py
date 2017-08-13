@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 from lxml import etree
+import json
 
 
 def round_float(value):
@@ -54,12 +55,31 @@ def parse_node(node):
 
     return
 
-xml = etree.parse(sys.stdin)
 
+def parse_way(way):
+    way_id = way.get("id")
+    for hknetwork in hknetworks:
+        if way_id in hknetwork["members"]:
+            ref_tag = way.find("tag[@k='ref']")
+            if ref_tag is None:
+                if len(hknetwork["name"]) != 0:
+                    add_tag(way, "ref", hknetwork["name"])
+            else:
+                if len(hknetwork["name"]) != 0:
+                    ref_tag.attrib['v'] = u'{}'.format(hknetwork["name"])
+            add_tag(way, "hknetwork", hknetwork["network"])
+            break
+
+
+hknetworks = json.load(open("./hknetworks.json"))
+
+xml = etree.parse(sys.stdin)
 osm = xml.getroot()
 
 for i in osm:
     if i.tag == 'node':
         parse_node(i)
+    elif i.tag == 'way':
+        parse_way(i)
 
 xml.write(sys.stdout, encoding='utf-8', method='xml', pretty_print=True, xml_declaration=True)
