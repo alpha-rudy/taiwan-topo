@@ -4995,32 +4995,29 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- Power lines -->
+  <rule e="any" k="power" v="tower" zoom-min="16">
+    <symbol id="s_power_tower" src="file:moiosm_res/s_power_tower.svg" symbol-scaling="size" symbol-height="6" symbol-width="6"/>
+  </rule>
   <rule e="way" k="power" v="line">
-    <rule e="any" k="*" v="*" zoom-max="16">
-      <line stroke="#799079" stroke-width="0.98" stroke-dasharray="1,44" stroke-linecap="round"/>
-      <line stroke="#799079" stroke-width="0.15" stroke-dasharray="1,7,30,7" stroke-linecap="butt"/>
+    <rule e="any" k="*" v="*" zoom-min="16" zoom-max="16">
+      <line stroke="#799079" stroke-width="0.18" stroke-linecap="butt"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="17" zoom-max="19">
-      <line stroke="#799079" stroke-width="0.52" stroke-dasharray="1,64" stroke-linecap="round"/>
-      <line stroke="#799079" stroke-width="0.08" stroke-dasharray="1,10,44,10" stroke-linecap="butt"/>
+      <line stroke="#799079" stroke-width="0.10" stroke-linecap="butt"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="20">
-      <line stroke="#799079" stroke-width="0.30" stroke-dasharray="1,84" stroke-linecap="round"/>
-      <line stroke="#799079" stroke-width="0.04" stroke-dasharray="1,15,54,15" stroke-linecap="butt"/>
+      <line stroke="#799079" stroke-width="0.05" stroke-linecap="butt"/>
     </rule>
   </rule>
   <rule e="way" k="power" v="minor_line">
     <rule e="any" k="*" v="*" zoom-max="16">
-      <line stroke="#799079" stroke-width="0.75" stroke-dasharray="1,44" stroke-linecap="round"/>
-      <line stroke="#799079" stroke-width="0.11" stroke-dasharray="1,7,8,3,8,3,8,7" stroke-linecap="butt"/>
+      <line stroke="#799079" stroke-width="0.13" stroke-linecap="butt"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="17" zoom-max="19">
-      <line stroke="#799079" stroke-width="0.38" stroke-dasharray="1,64" stroke-linecap="round"/>
-      <line stroke="#799079" stroke-width="0.06" stroke-dasharray="1,10,12,4,12,4,12,10" stroke-linecap="butt"/>
+      <line stroke="#799079" stroke-width="0.07" stroke-linecap="butt"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="20">
-      <line stroke="#799079" stroke-width="0.15" stroke-dasharray="1,85" stroke-linecap="round"/>
-      <line stroke="#799079" stroke-width="0.02" stroke-dasharray="1,15,15,5,15,5,15,15" stroke-linecap="butt"/>
+      <line stroke="#799079" stroke-width="0.02" stroke-linecap="butt"/>
     </rule>
   </rule>
   <!-- Hiking waymarks -->
