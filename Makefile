@@ -697,6 +697,7 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
+		cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/extrac_hknetwork.py > hknetworks.json && \
 	    cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/parse_osm.py | osmconvert - -o=$@
 
 # OSMOSIS_OPTS
