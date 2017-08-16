@@ -34,7 +34,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="it" value="itinerari a piedi"/>
       <name lang="zh" value="登山步道"/>
       <cat id="h_routes"/>
-      <cat id="h_s_routes"/>
     </layer>
     <layer id="elmt-h_s_routes" enabled="false">
       <name lang="de" value="Betonte Routen"/>
@@ -2215,7 +2214,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
 -->
-        <rule e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|difficult_alpine_hiking">
+        <rule cat="h_routes" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|difficult_alpine_hiking">
           <rule e="way" k="highway" v="footway|path" zoom-min="14">
             <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
               <line stroke="#E10600" stroke-width="0.5" stroke-dasharray="6,4" stroke-linecap="butt" />
@@ -4701,18 +4700,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <caption k="name" priority="-1" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
   </rule>
   <!-- hiking-routes -->
-  <rule cat="h_routes" e="any" k="*" v="*">
-    <rule cat="h_s_routes" e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="13">
+  <rule cat="h_s_routes" e="any" k="*" v="*">
+    <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="13">
       <line stroke="#88FF4080" stroke-width="0.75"/>
     </rule>
     <!-- captions -->
-    <rule cat="h_s_routes" e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn">
-      <rule e="any" k="*" v="*" zoom-min="13" zoom-max="16">
-        <caption k="ref" font-style="normal" font-size="8" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="17">
-        <pathText display="always" priority="10" k="ref" font-style="bold" font-size="11" dy="-2" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2.5"/>
-      </rule>
+    <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="13">
+      <caption k="ref" font-style="normal" font-size="8" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <!-- hiking nodes -->
     <rule e="node" k="hike_node" v="*">
