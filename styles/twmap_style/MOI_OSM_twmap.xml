@@ -41,7 +41,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas resaltadas"/>
       <name lang="fr" value="itinéraires soulignés"/>
       <name lang="it" value="percorsi accentato"/>
-      <name lang="zh" value="官方路線"/>
+      <name lang="zh" value="建議路線"/>
       <cat id="h_s_routes"/>
     </layer>
     <layer id="elmt-waymarks" enabled="false">
@@ -78,7 +78,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas resaltadas"/>
       <name lang="fr" value="itinéraires soulignés"/>
       <name lang="it" value="percorsi accentato"/>
-      <name lang="zh" value="官方路線"/>
+      <name lang="zh" value="建議路線"/>
       <cat id="c_s_routes"/>
     </layer>
     <layer id="elmt-mtb_routes" enabled="true">
@@ -105,7 +105,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="rutas resaltadas"/>
       <name lang="fr" value="itinéraires soulignés"/>
       <name lang="it" value="percorsi accentato"/>
-      <name lang="zh" value="官方路線"/>
+      <name lang="zh" value="建議路線"/>
       <cat id="mtb_s_routes"/>
       <cat id="c_s_routes"/>
     </layer>
