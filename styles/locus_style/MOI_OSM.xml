@@ -35,7 +35,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="登山步道"/>
       <cat id="h_routes"/>
     </layer>
-    <layer id="elmt-h_s_routes" enabled="false">
+    <layer id="elmt-h_s_routes" enabled="true">
       <name lang="de" value="Betonte Routen"/>
       <name lang="en" value="emphasized routes"/>
       <name lang="es" value="rutas resaltadas"/>
@@ -44,7 +44,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="官方路線"/>
       <cat id="h_s_routes"/>
     </layer>
-    <layer id="elmt-waymarks" enabled="false">
+    <layer id="elmt-waymarks" enabled="true">
       <name lang="de" value="Wegzeichen"/>
       <name lang="en" value="waymarks"/>
       <name lang="es" value="balizas"/>
@@ -185,7 +185,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="landscapefeat"/>
       <cat id="landscapename"/>
     </layer>
-    <layer id="elmt-contour-c" enabled="false">
+    <layer id="elmt-contour-c" enabled="true">
       <name lang="de" value="Höhenlinien"/>
       <name lang="en" value="contour lines"/>
       <name lang="es" value="curva de nivel"/>
@@ -230,7 +230,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
-    <layer id="elmt-outdoorsports-h" enabled="true">
+    <layer id="elmt-outdoorsports-h" enabled="false">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
@@ -258,7 +258,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="huts"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-outdoorsports-b" enabled="true">
+    <layer id="elmt-outdoorsports-b" enabled="false">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
@@ -271,7 +271,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="huts"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-outdoorsports-m" enabled="true">
+    <layer id="elmt-outdoorsports-m" enabled="false">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
@@ -396,7 +396,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
-    <layer id="elmt-restaurants-h" enabled="true">
+    <layer id="elmt-restaurants-h" enabled="false">
       <name lang="de" value="Restaurants + Bars"/>
       <name lang="en" value="restaurants + bars"/>
       <name lang="es" value="restaurantes y bares"/>
@@ -405,7 +405,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
-    <layer id="elmt-restaurants-c" enabled="true">
+    <layer id="elmt-restaurants-c" enabled="false">
       <name lang="de" value="Restaurants + Bars"/>
       <name lang="en" value="restaurants + bars"/>
       <name lang="es" value="restaurantes y bares"/>
@@ -414,7 +414,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
-    <layer id="elmt-restaurants-b" enabled="true">
+    <layer id="elmt-restaurants-b" enabled="false">
       <name lang="de" value="Restaurants + Bars"/>
       <name lang="en" value="restaurants + bars"/>
       <name lang="es" value="restaurantes y bares"/>
@@ -423,7 +423,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="餐廳和酒吧"/>
       <cat id="restaurants"/>
     </layer>
-    <layer id="elmt-restaurants-m" enabled="true">
+    <layer id="elmt-restaurants-m" enabled="false">
       <name lang="de" value="Restaurants + Bars"/>
       <name lang="en" value="restaurants + bars"/>
       <name lang="es" value="restaurantes y bares"/>
@@ -442,7 +442,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
-    <layer id="elmt-shops-c" enabled="true">
+    <layer id="elmt-shops-c" enabled="false">
       <name lang="de" value="Geschäfte + Dienstleistungen"/>
       <name lang="en" value="shops + services"/>
       <name lang="es" value="comercios y servicios"/>
@@ -472,7 +472,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
-    <layer id="elmt-tourism-h" enabled="true">
+    <layer id="elmt-tourism-h" enabled="false">
       <name lang="de" value="Tourismus + Kultur"/>
       <name lang="en" value="tourism + culture"/>
       <name lang="es" value="turismo y cultura"/>
@@ -482,7 +482,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-tourism-c" enabled="true">
+    <layer id="elmt-tourism-c" enabled="false">
       <name lang="de" value="Tourismus + Kultur"/>
       <name lang="en" value="tourism + culture"/>
       <name lang="es" value="turismo y cultura"/>
@@ -532,7 +532,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
-    <layer id="elmt-pubtrans-b" enabled="false">
+    <layer id="elmt-pubtrans-b" enabled="true">
       <name lang="de" value="Öffentlicher Verkehr"/>
       <name lang="en" value="public transport"/>
       <name lang="es" value="transporte público"/>
@@ -542,7 +542,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
-    <layer id="elmt-pubtrans-m" enabled="false">
+    <layer id="elmt-pubtrans-m" enabled="true">
       <name lang="de" value="Öffentlicher Verkehr"/>
       <name lang="en" value="public transport"/>
       <name lang="es" value="transporte público"/>
@@ -552,7 +552,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="pubtrans"/>
       <cat id="aerway"/>
     </layer>
-    <layer id="elmt-car-h" enabled="true">
+    <layer id="elmt-car-h" enabled="false">
       <name lang="de" value="Auto"/>
       <name lang="en" value="car"/>
       <name lang="es" value="coche"/>
