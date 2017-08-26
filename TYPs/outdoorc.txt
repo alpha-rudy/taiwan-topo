@@ -5781,14 +5781,12 @@ CustomColor=No
 [_line]
 Type=0x12201
 UseOrientation=N
-Xpm="32 6 2  1"
-"! c #FFFF00"
+Xpm="32 4 2  1"
+"! c #E1726F"
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
 "                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 ;12345678901234567890123456789012
 String1=0x00,Hiking Trail T1
@@ -5796,7 +5794,7 @@ String2=0x02,Wanderweg T1
 String3=0x03,Spoor T1
 String4=0x04,Hiking Trail T1
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5805,7 +5803,7 @@ CustomColor=No
 Type=0x12202
 UseOrientation=N
 Xpm="32 3 2  1"
-"! c #FFFF00"
+"! c #E1726F"
 "  c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "                                "
@@ -5816,7 +5814,7 @@ String2=0x02,Wanderweg T1
 String3=0x03,Spoor T1
 String4=0x04,Hiking Trail T1
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=NormalFont
 CustomColor=No
 [end]
 
@@ -5824,22 +5822,18 @@ CustomColor=No
 [_line]
 Type=0x12203
 UseOrientation=N
-Xpm="32 6 2  1"
-"! c #FF8000"
+Xpm="32 2 2  1"
+"! c #E10600"  ;trail
 "  c none"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
 String1=0x00,Mountain Trail T2/T3
 String2=0x02,Bergweg T2/T3
 String3=0x03,Bergpad T2/T3
 String4=0x04,Mountain Trail T2/T3
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=SmallFont
 CustomColor=No
 [end]
 
