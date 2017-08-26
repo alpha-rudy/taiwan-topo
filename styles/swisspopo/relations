@@ -58,4 +58,4 @@ type=route
 #----------------------------
 # Hiking Trails
 # -----------------------------------------
-
+type = route & route = hiking & network = *   { apply { set hknetwork = '${network}'; set ref = '${name}' } }

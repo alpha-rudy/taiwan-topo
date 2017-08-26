@@ -820,7 +820,9 @@ highway = * & oneway = -1 & (cycleway = opposite | cycleway=opposite_lane | cycl
 # Wanderwege Variante PoPo Trails - POPOTRAILS
 # -----------------------------------------
 
-
+highway = * & hknetwork = * [0x012201 resolution 23-24 continue]
+highway = * & hknetwork = * [0x012202 resolution 21-22 continue]
+highway = * & hknetwork = * [0x012203 resolution 20-20 continue]
 
 
 # Autobahn:
