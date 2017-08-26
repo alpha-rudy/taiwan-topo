@@ -70,6 +70,23 @@ DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1f12)
 TARGETS := gmap
 
+else ifeq ($(SUITE),bbox_odc_dem)
+# REGION: specify your REGION name for bbox
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+DEM_NAME := MOI
+GMAPDEM_ID := 05010000
+GMAPDEM_FILE := $(GMAPDEM_ID).img
+GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+MAPID := $(shell printf %d 0x1f14)
+TARGETS := gmap
+
 else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
 LANG := zh
@@ -178,6 +195,23 @@ STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1412)
+TARGETS := gmap
+
+else ifeq ($(SUITE),yushan_odc_dem)
+REGION := Yushan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := YushanNationalPark.poly
+TYP := outdoorc
+STYLE := swisspopo
+STYLE_NAME := odc
+DEM_NAME := MOI
+GMAPDEM_ID := 05010000
+GMAPDEM_FILE := $(GMAPDEM_ID).img
+GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
 else ifeq ($(SUITE),beibeiji_bw)
