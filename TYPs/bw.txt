@@ -5781,16 +5781,12 @@ CustomColor=No
 
 [_line]
 Type=0x12201
-UseOrientation=N
-Xpm="32 5 2  1"
-"! c #E1726F"
-"  c none"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"                                "
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-;12345678901234567890123456789012
+UseOrientation=Y
+LineWidth=5
+BorderWidth=5
+Xpm="0 0 2 0"
+"1 c none"  ;trail
+"2 c #E1726F"
 String1=0x00,Hiking Trail T1
 String2=0x02,Wanderweg T1
 String3=0x03,Spoor T1
@@ -5803,15 +5799,12 @@ CustomColor=No
 
 [_line]
 Type=0x12202
-UseOrientation=N
-Xpm="32 4 2  1"
-"! c #E1726F"
-"  c none"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-;12345678901234567890123456789012
+UseOrientation=Y
+LineWidth=3
+BorderWidth=3
+Xpm="0 0 2 0"
+"1 c none"  ;trail
+"2 c #E1726F"
 String1=0x00,Hiking Trail T1
 String2=0x02,Wanderweg T1
 String3=0x03,Spoor T1
@@ -5824,7 +5817,7 @@ CustomColor=No
 
 [_line]
 Type=0x12203
-UseOrientation=N
+UseOrientation=y
 Xpm="32 2 2  1"
 "! c #E10600"  ;trail
 "  c none"
