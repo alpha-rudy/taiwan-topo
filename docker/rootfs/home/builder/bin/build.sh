@@ -29,12 +29,11 @@ cd install/${INSTALL_DIR}
 tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
 
 ## rclone to dropbox
-rclone copy --update . rudybox:Public/drops/
+#rclone copy --update . rudybox:Public/drops/
+rclone copy --update . rudybox:Apps/share-mapdata/drops/
 [ "${DAYOFWEEK}" -eq 4 ] && {
-    rclone copy --update . rudybox:Public/maps/
-    mkdir -p share-mapdata
-    cp -r MOI_OSM_* share-mapdata/
-    rclone copy --update share-mapdata/ rudybox:Apps/share-mapdata/
+    #rclone copy --update . rudybox:Public/maps/
+    rclone copy --update . rudybox:Apps/share-mapdata/
     echo "Completed with weeekly drop."
 } || echo "Completed without weekly drop."
   
