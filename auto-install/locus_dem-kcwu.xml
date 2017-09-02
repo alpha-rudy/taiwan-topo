@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <locusActions>
   <download>
-    <source><![CDATA[https://dl.dropboxusercontent.com/u/899714/maps/moi-hgt-v3.zip]]></source>
+    <source><![CDATA[http://moi.kcwu.csie.org/moi-hgt-v3.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
