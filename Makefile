@@ -24,7 +24,7 @@ REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 MF_WRITER_OPTS := bbox=23.226,120.822,23.578,121.249
@@ -36,7 +36,7 @@ else ifeq ($(SUITE),bbox)
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 DEM_NAME := MOI
@@ -150,7 +150,7 @@ REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 MF_WRITER_OPTS := bbox=24.6731646,121.2826336,25.2997353,122.0064049
@@ -162,7 +162,7 @@ REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = ele_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MF_WRITER_OPTS := bbox=24.96034,121.4570,25.21024,121.6659
@@ -682,7 +682,7 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 		--check-styles
 	touch $(MAP)
 
-ELEVATIONS_URL := https://dl.dropboxusercontent.com/u/899714/src-data/osm_elevations
+ELEVATIONS_URL := file://${HOME}/osm_elevations
 $(ELEVATION):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)
