@@ -1608,16 +1608,16 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <!-- ;admin -->
     </rule>
   </rule>
+<!--
   <rule cat="borders" e="way" k="admin_level" v="9">
     <rule e="any" k="*" v="*" zoom-min="14" zoom-max="14">
       <line stroke="#80DC94E9" stroke-width="0.56" stroke-linecap="butt"/>
-      <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="15">
       <line stroke="#80DC94E9" stroke-width="0.30" stroke-linecap="butt"/>
-      <!-- ;admin -->
     </rule>
   </rule>
+-->
   <rule cat="borders" e="way" k="boundary" v="national_park">
     <rule e="any" k="*" v="*" zoom-min="8" zoom-max="9">
       <line stroke="#408000" stroke-width="1.50" stroke-linecap="butt"/>
