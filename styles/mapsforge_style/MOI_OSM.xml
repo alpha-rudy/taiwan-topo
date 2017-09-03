@@ -4674,13 +4674,33 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <rule e="any" k="building" v="*" zoom-min="18">
     <caption k="name" priority="-1" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
   </rule>
-  <!-- hiking-routes -->
+  <!-- hiking-routes ;hknetwork -->
   <rule cat="h_s_routes" e="any" k="*" v="*">
-    <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="12">
-      <line stroke="#88FF4080" stroke-width="1.0"/>
+    <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
+      <rule e="way" k="*" v="*" zoom-min="11" zoom-max="12">
+        <line stroke="#E10600" stroke-width="1.0" stroke-dasharray="5,3" stroke-linecap="butt"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+        <line stroke="#80E13D38" stroke-width="2.00"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+        <line stroke="#80E15854" stroke-width="1.52"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+        <line stroke="#80E1726F" stroke-width="1.12"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+        <line stroke="#80E1726F" stroke-width="0.80"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+        <line stroke="#80E1726F" stroke-width="0.72"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="18">
+        <line stroke="#80E1726F" stroke-width="0.64"/>
+      </rule>
     </rule>
     <!-- captions -->
-    <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="12">
+    <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
       <caption k="ref" font-style="normal" font-size="8" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <!-- hiking nodes -->
