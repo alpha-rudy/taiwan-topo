@@ -500,7 +500,8 @@ drop:
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	cat docs/beta.md | sed -e "s|__version__|$(VERSION)|g" | \
-	    markdown -f +autolink > $(INSTALL_DIR)/beta.html
+	    markdown -f +autolink > $(BUILD_DIR)/beta.article
+	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
 	cp -r docs/gts $(INSTALL_DIR) && \
 		cat docs/gts/index.html | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 
