@@ -230,7 +230,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
-    <layer id="elmt-outdoorsports-h" enabled="false">
+    <layer id="elmt-outdoorsports-h" enabled="true">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
@@ -244,7 +244,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="huts"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-outdoorsports-c" enabled="false">
+    <layer id="elmt-outdoorsports-c" enabled="true">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
@@ -258,7 +258,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="huts"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-outdoorsports-b" enabled="false">
+    <layer id="elmt-outdoorsports-b" enabled="true">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
@@ -271,7 +271,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="huts"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-outdoorsports-m" enabled="false">
+    <layer id="elmt-outdoorsports-m" enabled="true">
       <name lang="de" value="Outdoor + Sport"/>
       <name lang="en" value="outdoors + sports"/>
       <name lang="es" value="outdoor e deporte"/>
