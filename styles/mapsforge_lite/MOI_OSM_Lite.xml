@@ -472,7 +472,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="shops"/>
       <cat id="fuel"/>
     </layer>
-    <layer id="elmt-tourism-h" enabled="false">
+    <layer id="elmt-tourism-h" enabled="true">
       <name lang="de" value="Tourismus + Kultur"/>
       <name lang="en" value="tourism + culture"/>
       <name lang="es" value="turismo y cultura"/>
@@ -482,7 +482,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-tourism-c" enabled="false">
+    <layer id="elmt-tourism-c" enabled="true">
       <name lang="de" value="Tourismus + Kultur"/>
       <name lang="en" value="tourism + culture"/>
       <name lang="es" value="turismo y cultura"/>
@@ -492,7 +492,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-tourism-b" enabled="false">
+    <layer id="elmt-tourism-b" enabled="true">
       <name lang="de" value="Tourismus + Kultur"/>
       <name lang="en" value="tourism + culture"/>
       <name lang="es" value="turismo y cultura"/>
@@ -502,7 +502,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="tourism"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-tourism-m" enabled="false">
+    <layer id="elmt-tourism-m" enabled="true">
       <name lang="de" value="Tourismus + Kultur"/>
       <name lang="en" value="tourism + culture"/>
       <name lang="es" value="turismo y cultura"/>
