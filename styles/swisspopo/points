@@ -390,14 +390,14 @@
 # Schutzhütte, Berghütte. [point, closedway]
 # siehe auch "amenity = shelter"
 # Bewirtschaftete Berghütten
-tourism = alpine_hut & name = * & ele = * & amenity = restaurant {name "${name} (${ele})"}   [0x4803 resolution 23]
-tourism = alpine_hut & name = * & amenity = restaurant           {name "${name}"}            [0x4803 resolution 23]
+tourism = alpine_hut & name = * & ele = * & amenity = restaurant {name "${name} (${ele})"}   [0x4803 resolution 22]
+tourism = alpine_hut & name = * & amenity = restaurant           {name "${name}"}            [0x4803 resolution 22]
 #tourism = alpine_hut & ele = * & amenity = restaurant            {name "Alpine hut (${ele})"} [0x4803 resolution 23]
 #tourism = alpine_hut & amenity = restaurant                      {name "Alpine hut"}          [0x4803 resolution 23]
 
 # Selbstversorger Berghütten
-tourism = alpine_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4804 resolution 23]
-tourism = alpine_hut & name = *           {name "${name}"}            [0x4804 resolution 23]
+tourism = alpine_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4804 resolution 22]
+tourism = alpine_hut & name = *           {name "${name}"}            [0x4804 resolution 22]
 #tourism = alpine_hut & ele = *            {name "Alpine hut (${ele})"} [0x4804 resolution 23]
 #tourism = alpine_hut                      {name "Alpine hut"}          [0x4804 resolution 23]
 
@@ -414,15 +414,15 @@ tourism = artwork & name = * {name "${name}"} [0x6600 resolution 24]
 # Basic hut (Schutzhütte, Berghütte). [point, closedway]
 # A basic hut is a building located in the mountains or into the wild intended
 # to provide basic shelter, sleeping, to hikers and climbers.
-tourism = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 23]
-tourism = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 23]
+tourism = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 22]
+tourism = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 22]
 #tourism = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
 #tourism = basic_hut                      {name "Basic hut"}          [0x4805 resolution 23]
 # Basic hut (new tagging) [point, closedway]
-amenity = shelter & shelter_type = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 23]
-amenity = shelter & shelter_type = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 23]
+amenity = shelter & shelter_type = basic_hut & name = * & ele = * {name "${name} (${ele})"}   [0x4805 resolution 22]
+amenity = shelter & shelter_type = basic_hut & name = *           {name "${name}"}            [0x4805 resolution 22]
 #amenity = shelter & shelter_type = basic_hut & ele = *            {name "Basic hut (${ele})"} [0x4805 resolution 23]
-amenity = shelter & shelter_type = basic_hut                      {name "小屋"}          [0x4805 resolution 23]
+amenity = shelter & shelter_type = basic_hut                      {name "小屋"}          [0x4805 resolution 22]
 
 # Trail Head
 highway = trailhead & name = *     {name "${name}"} [0x6412 resolution 21]
@@ -432,7 +432,7 @@ highway = trailhead                 {name "步道口"} [0x6412 resolution 21]
 tourism = bed_and_breakfast & name = * { name "${name}" } [0x2b02 resolution 24]
 
 # Campingplatz. [point, closedway]
-tourism = camp_site & name = * {name "${name}"} [0x2b05 resolution 24]
+tourism = camp_site & name = * {name "${name}" | "營地"} [0x2b05 resolution 22]
 
 # Stellplatz für Wohnmobile (Reisemobile). [point, closedway]
 tourism = caravan_site & name = * {name "${name}"} [0x2b05 resolution 24]
@@ -490,8 +490,8 @@ tourism = viewpoint [0x5200 resolution 24]
 # Wilderness hut (Schutzhütte, Berghütte). [point, closedway]
 # A wilderness hut is a building located in the mountains or into the wild intended
 # to provide shelter, heating to hikers and climbers.
-tourism = wilderness_hut & name = * & ele = * {name "${name} (${ele})"}        [0x4806 resolution 23]
-tourism = wilderness_hut & name = *           {name "${name}"}                 [0x4806 resolution 23]
+tourism = wilderness_hut & name = * & ele = * {name "${name} (${ele})"}        [0x4806 resolution 22]
+tourism = wilderness_hut & name = *           {name "${name}"}                 [0x4806 resolution 22]
 #tourism = wilderness_hut & ele = *            {name "Wilderness Hut (${ele})"} [0x4806 resolution 23]
 #tourism = wilderness_hut                      {name "Wilderness Hut"}          [0x4806 resolution 23]
 
@@ -569,7 +569,7 @@ natural = scree & name = * {name "${name}"} [0x6600 resolution 24]
 natural = scrub & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Quelle. [point]
-natural = spring {name "${name}" | "泉水"} [0x6511 resolution 24]
+natural = spring {name "${name}" | "泉水"} [0x6511 resolution 23]
 
 # Großer Stein, Findling. [point]
 natural = stone & name = * {name "${name}"} [0x6614 resolution 24]
