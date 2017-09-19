@@ -3503,7 +3503,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#008800" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="node" k="natural" v="spring">
-      <rule e="any" k="*" v="*" zoom-max="16">
+      <rule e="any" k="*" v="*" zoom-max="13">
         <circle radius="1.0" scale-radius="true" fill="#0080FF"/>
         <rule e="any" k="*" v="*">
           <caption k="name" dy="-21" font-style="bold" font-size="10" fill="#0080FF" stroke="#E5FFFFFF" stroke-width="2"/>
