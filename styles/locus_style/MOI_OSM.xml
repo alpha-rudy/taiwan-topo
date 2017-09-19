@@ -3647,6 +3647,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- outdoor -->
   <rule cat="huts" e="any" k="*" v="*" zoom-min="14">
+    <rule e="any" k="tourism" v="camp_site">
+      <symbol id="s_camp_site" priority="90" src="file:moiosmlite_res/s_camp_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="any" k="*" v="*">
+        <caption k="name" symbol-id="s_camp_site" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <rule e="any" k="tourism" v="alpine_hut">
       <rule e="any" k="name" v="*">
         <rule e="any" k="access" v="~">
@@ -4018,12 +4024,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- accommodation -->
   <rule cat="accommodation" e="any" k="*" v="*" zoom-min="15">
-    <rule e="any" k="tourism" v="camp_site">
-      <symbol id="s_camp_site" priority="67" src="file:moiosm_res/s_camp_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="*" v="*">
-        <caption k="name" symbol-id="s_camp_site" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
     <rule e="any" k="tourism" v="caravan_site">
       <symbol id="s_caravan_site" priority="67" src="file:moiosm_res/s_caravan_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
