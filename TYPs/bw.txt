@@ -9269,3 +9269,26 @@ DayXpm="5 16 2 1"   Colormode=16
 "!! !!"
 ;12345
 [end]
+
+[_point]
+Type=0x066
+SubType=0x18
+String1=0x00,Summit/Peak
+String2=0x02,Gipfel
+String3=0x03,Bergtop
+String4=0x04,Summit/Peak
+ExtendedLabels=N
+DayXpm="9 9 2 1"   Colormode=16
+"!	c #000000"
+"  	c none"
+"!!     !!"
+" !!   !! "
+"  !! !!  "
+"   !!!   "
+"    !    "
+"   !!!   "
+"  !! !!  "
+" !!   !! "
+"!!     !!"
+;123456789
+[end]
