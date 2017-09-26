@@ -3624,8 +3624,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <caption k="ref" priority="-5" symbol-id="s_peak_small_l" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
         <rule e="any" k="zl" v="~|no">
-          <symbol id="s_peak_small" priority="200" src="file:moiosmhs_res/s_peak_small.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
-          <caption k="name" symbol-id="s_peak_small" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          <rule e="any" k="name" v="~|no">
+            <symbol id="s_peak_noname_s" priority="-5" src="file:moiosmhs_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="ele" symbol-id="s_peak_noname_s" priority="-5" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
+          <rule e="any" k="name" v="*">
+            <symbol id="s_peak_small" priority="200" src="file:moiosmhs_res/s_peak_small.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="name" symbol-id="s_peak_small" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
         </rule>
       </rule>
       <rule e="any" k="summit:cross" v="yes" zoom-min="14">
@@ -3645,8 +3651,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <caption k="ref" priority="-5" symbol-id="s_peak_l" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="node" k="zl" v="~|no">
-          <symbol id="s_peak" priority="200" src="file:moiosmhs_res/s_peak.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
-          <caption k="name" priority="200" symbol-id="s_peak" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          <rule e="any" k="name" v="~|no">
+            <symbol id="s_peak_noname" priority="-5" src="file:moiosmhs_res/s_peak_noname.svg" symbol-height="12" symbol-scaling="size" symbol-width="12"></symbol>
+            <caption fill="#000000" font-size="9" font-style="normal" k="ele" position="below" priority="-5" stroke="#E5FFFFFF" stroke-width="1.8" symbol-id="s_peak_noname"></caption>
+          </rule>
+          <rule e="any" k="name" v="*">
+            <symbol id="s_peak" priority="200" src="file:moiosmhs_res/s_peak.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="name" priority="200" symbol-id="s_peak" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
         </rule>
       </rule>
     </rule>
@@ -3654,7 +3666,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- outdoor -->
   <rule cat="huts" e="any" k="*" v="*" zoom-min="13">
     <rule e="any" k="tourism" v="camp_site">
-      <symbol id="s_camp_site" priority="90" src="file:moiosm_res/s_camp_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <symbol id="s_camp_site" priority="90" src="file:moiosmhs_res/s_camp_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_camp_site" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
@@ -4928,7 +4940,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- Power lines -->
   <rule e="any" k="power" v="tower" zoom-min="15">
-    <symbol id="s_power_tower" src="file:moiosm_res/s_power_tower.svg" symbol-scaling="size" symbol-height="6" symbol-width="6"/>
+    <symbol id="s_power_tower" src="file:moiosmhs_res/s_power_tower.svg" symbol-scaling="size" symbol-height="6" symbol-width="6"/>
   </rule>
   <rule e="way" k="power" v="line">
     <rule e="any" k="*" v="*" zoom-min="15" zoom-max="15">
