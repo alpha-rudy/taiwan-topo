@@ -3624,7 +3624,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule e="any" k="zl" v="~|no">
           <rule e="any" k="name" v="~|no">
-            <symbol id="s_peak_noname_s" priority="-5" src="file:moiosm_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <symbol id="s_peak_noname_s" priority="-5" src="file:moiosm_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="9" symbol-width="9"/>
             <caption k="ele" symbol-id="s_peak_noname_s" priority="-5" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
           </rule>
           <rule e="any" k="name" v="*">
@@ -3651,7 +3651,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule e="node" k="zl" v="~|no">
           <rule e="any" k="name" v="~|no">
-            <symbol id="s_peak_noname" priority="-5" src="file:moiosm_res/s_peak_noname.svg" symbol-height="12" symbol-scaling="size" symbol-width="12"></symbol>
+            <symbol id="s_peak_noname" priority="-5" src="file:moiosm_res/s_peak_noname.svg" symbol-height="9" symbol-scaling="size" symbol-width="9"></symbol>
             <caption fill="#000000" font-size="9" font-style="normal" k="ele" position="below" priority="-5" stroke="#E5FFFFFF" stroke-width="1.8" symbol-id="s_peak_noname"></caption>
           </rule>
           <rule e="any" k="name" v="*">
