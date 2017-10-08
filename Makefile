@@ -562,7 +562,7 @@ $(NSIS): $(MAP)
 		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
 		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(GMAPDEM_FILE) $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
 		cat $(ROOT_DIR)/docs/taiwan_topo.md | sed \
-			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT -o readme.txt && \
+			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi
 	cp "$(MAP_DIR)/Install_$(NAME_WORD).exe" $@
