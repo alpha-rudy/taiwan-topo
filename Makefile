@@ -504,6 +504,7 @@ drop:
 	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
 	cp -r docs/gts $(INSTALL_DIR) && \
 		cat docs/gts/index.html | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
+	cat docs/index.json | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 
 suites:
 	echo "make SUITE taiwan_bw taiwan_odc taiwan"
