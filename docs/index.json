@@ -1,0 +1,94 @@
+[
+  {
+    "name": "legend_V1R1.pdf",
+    "version": "V1R1"
+  },
+  {
+    "name": "moi-hgt-v3.zip",
+    "version": "v3"
+  },
+  {
+    "name": "moi-hgt-lite.zip",
+    "version": "v1"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Rudy.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Rudy.map.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
+    "version": "v2017.09.27"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Lite.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Lite.map.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Lite_style.zip",
+    "version": "v2017.09.27"
+  },
+  {
+    "name": "MOI_OSM_twmap_style.zip",
+    "version": "v2017.09.27"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Rudy.poi.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Rudy_style.zip",
+    "version": "v2017.09.27"
+  },
+  {
+    "name": "MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip",
+    "version": "v2017.09.27"
+  },
+  {
+    "name": "gmapsupp_Taiwan_moi_zh_bw.img.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "Install_MOI_Taiwan_TOPO_bw.exe",
+    "version": "v__version__"
+  },
+  {
+    "name": "Install_MOI_Taiwan_TOPO_bw3D.exe",
+    "version": "v__version__"
+  },
+  {
+    "name": "Taiwan_moi_zh_bw.gmap.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "Taiwan_moi_zh_bw3D.gmap.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "gmapsupp_Taiwan_moi_zh_odc.img.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "Install_MOI_Taiwan_TOPO_odc.exe",
+    "version": "v__version__"
+  },
+  {
+    "name": "Install_MOI_Taiwan_TOPO_odc3D.exe",
+    "version": "v__version__"
+  },
+  {
+    "name": "Taiwan_moi_zh_odc.gmap.zip",
+    "version": "v__version__"
+  },
+  {
+    "name": "Taiwan_moi_zh_odc3D.gmap.zip",
+    "version": "v__version__"
+  }
+]
