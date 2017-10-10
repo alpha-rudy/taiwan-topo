@@ -506,14 +506,15 @@ drop:
 		cat docs/gts/index.html | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cat docs/index.json | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 
+.PHONY: suites
 suites:
-	echo "make SUITE taiwan_bw taiwan_odc taiwan"
-	git pull --rebase
-	git status
-	make distclean
+	make SUITE=taiwan all
+	make SUITE=taiwan_gts all
+	make SUITE=taiwan_lite all
 	make SUITE=taiwan_bw all
 	make SUITE=taiwan_odc all
-	make SUITE=taiwan all
+	make SUITE=taiwan_bw_dem all
+	make SUITE=taiwan_odc_dem all
 
 .PHONY: license $(LICENSE)
 license: $(LICENSE)
