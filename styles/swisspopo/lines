@@ -841,11 +841,13 @@ highway = motorway & man_made = dyke             [0x011f02 resolution 24 continu
 # 0x010f0a = 3/1 (mittel, Label, SmallFont)
 # 0x010f0b = 1/1 (schmal, NoLabel)
 # 0x010e0a = 1 (sehr schmal, NoLabel)
-highway = motorway {set name = '(國道${ref}號)' | ''} [0x011f13 resolution 24 continue]
-highway = motorway {set name = '${name} (國道${ref}號)' | ''} [0x010f0a resolution 23-23 continue]
-highway = motorway {set name = '國道${ref}號' | ''} [0x010f0a resolution 22-22 continue]
-highway = motorway {set name = '國道${ref}號' | ''} [0x010f0b resolution 20-21 continue]
-highway = motorway {set name = '國道${ref}號' | ''} [0x010e0a resolution 18-19]
+highway = motorway {set name = '[國${ref}]' | ''} [0x011f13 resolution 24 continue]
+highway = motorway {set name = '${name}' | ''}    [0x010f0a resolution 22-23 continue with_actions]
+highway = motorway {set name = '[國${ref}]' | ''} [0x010f0a resolution 22-23 continue]
+highway = motorway {set name = '${name}' | ''}    [0x010f0b resolution 20-21 continue with_actions]
+highway = motorway {set name = '[國${ref}]' | ''} [0x010f0b resolution 20-21 continue]
+highway = motorway {set name = '${name}' | ''}    [0x010e0a resolution 18-19 continue with_actions]
+highway = motorway {set name = '[國${ref}]' | ''} [0x010e0a resolution 18-19]
 # starting at 14 for overviewmap
 
 
@@ -865,11 +867,15 @@ highway = trunk & man_made = dyke               [0x011f03 resolution 24 continue
 # 0x010f0c = 2/1 (mittel, NoLabel)
 # 0x010f0d = 1/1 (schmal, NoLabel)
 # 0x010e0b = 1 (sehr schmal, NoLabel)
-highway = trunk {set name = '(台${ref}線)' | ''} [0x011f14 resolution 24 continue]
-highway = trunk {set name = '${name} (台${ref}線)' | ''} [0x012100 resolution 23-23 continue]
-highway = trunk {set name = '台${ref}線' | ''}             [0x010f0c resolution 22-22 continue]
-highway = trunk {set name = '台${ref}線' | ''}             [0x010f0d resolution 21-21 continue]
-highway = trunk {set name = '台${ref}線' | ''}             [0x010e0b resolution 19-20]
+highway = trunk {set name = '[台${ref}]' | ''} [0x011f14 resolution 24 continue]
+highway = trunk {set name = '${name}' | ''}    [0x012100 resolution 23-23 continue with_actions]
+highway = trunk {set name = '[台${ref}]' | ''} [0x012100 resolution 23-23 continue]
+highway = trunk {set name = '${name}' | ''}    [0x010f0c resolution 22-22 continue with_actions]
+highway = trunk {set name = '[台${ref}]' | ''} [0x010f0c resolution 22-22 continue]
+highway = trunk {set name = '${name}' | ''}    [0x010f0d resolution 21-21 continue with_actions]
+highway = trunk {set name = '[台${ref}]' | ''} [0x010f0d resolution 21-21 continue]
+highway = trunk {set name = '${name}' | ''}    [0x010e0b resolution 19-20 continue with_actions]
+highway = trunk {set name = '[台${ref}]' | ''} [0x010e0b resolution 19-20]
 
 
 # Bundesstrasse:
@@ -888,10 +894,13 @@ highway = primary & man_made = dyke            [0x011f03 resolution 24 continue 
 # 0x012101 = 4/1 (breit, Label, SmallFont)
 # 0x010f0e = 2/1 (mittel, NoLabel)
 # 0x010f0f = 1/1 (schmal, NoLabel)
-highway = primary {set name = '(台${ref}線)' | ''} [0x011f15 resolution 24 continue]
-highway = primary {set name = '${name} (台${ref}線)' | ''} [0x012101 resolution 23-23 continue]
-highway = primary {set name = '台${ref}線' | ''}             [0x010f0e resolution 22-22 continue]
-highway = primary {set name = '台${ref}線' | ''}             [0x010f0f resolution 19-21]
+highway = primary {set name = '[台${ref}]' | ''} [0x011f15 resolution 24 continue]
+highway = primary {set name = '${name}' | ''}    [0x012101 resolution 23-23 continue with_actions]
+highway = primary {set name = '[台${ref}]' | ''} [0x012101 resolution 23-23 continue]
+highway = primary {set name = '${name}' | ''}    [0x010f0e resolution 22-22 continue with_actions]
+highway = primary {set name = '[台${ref}]' | ''} [0x010f0e resolution 22-22 continue]
+highway = primary {set name = '${name}' | ''}    [0x010f0f resolution 19-21 continue with_actions]
+highway = primary {set name = '[台${ref}]' | ''} [0x010f0f resolution 19-21]
 
 
 # Land- oder sehr gut ausgebaute Kreisstrasse:
@@ -910,10 +919,13 @@ highway = secondary & man_made = dyke           [0x01040c resolution 24 continue
 # 0x010e0d = 4/1 (breit, NoLabel)
 # 0x010f10 = 2/1 (mittel, NoLabel)
 # 0x010f11 = 1/1 (schmal, NoLabel)
-highway = secondary {set name = '(縣道${ref})' | ''} [0x011f16 resolution 24 continue]
-highway = secondary {set name = '${name} (縣道${ref})' | ''} [0x010e0d resolution 23-23 continue]
-highway = secondary {set name = '縣道${ref}' | ''} [0x010f10 resolution 22-22 continue]
-highway = secondary {set name = '縣道${ref}' | ''} [0x010f11 resolution 20-21]
+highway = secondary {set name = '[縣${ref}]' | ''} [0x011f16 resolution 24 continue]
+highway = secondary {set name = '${name}' | ''} [0x010e0d resolution 23-23 continue with_actions]
+highway = secondary {set name = '[縣${ref}]' | ''} [0x010e0d resolution 23-23 continue]
+highway = secondary {set name = '${name}' | ''} [0x010f10 resolution 22-22 continue with_actions]
+highway = secondary {set name = '[縣${ref}]' | ''} [0x010f10 resolution 22-22 continue]
+highway = secondary {set name = '${name}' | ''} [0x010f11 resolution 20-21 continue with_actions]
+highway = secondary {set name = '[縣${ref}]' | ''} [0x010f11 resolution 20-21]
 
 
 # Kreisstrasse:
@@ -931,9 +943,11 @@ highway = tertiary & man_made = dyke            [0x011f03 resolution 24 continue
 # 0x010e0e = 4/1 (breit, NoLabel)
 # 0x010f12 = 2/1 (mittel, NoLabel)
 # 0x010f13 = 1/1 (schmal, NoLabel)
-highway = tertiary {set name = '${name}' | '${ref}' | ''} [0x010e0e resolution 24 continue]
-highway = tertiary {set name = '${ref}' | ''}             [0x010f12 resolution 23-23 continue]
-highway = tertiary {set name = '${ref}' | ''}             [0x010f13 resolution 21-22]
+highway = tertiary {set name = '[${ref}]' | ''}  [0x010e0e resolution 24 continue]
+highway = tertiary {set name = '${name}' | ''} [0x010f12 resolution 23-23 continue with_actions]
+highway = tertiary {set name = '[${ref}]' | ''}  [0x010f12 resolution 23-23 continue]
+highway = tertiary {set name = '${name}' | ''} [0x010f13 resolution 21-22 continue with_actions]
+highway = tertiary {set name = '[${ref}]' | ''}  [0x010f13 resolution 21-22]
 
 
 # Strasse an und in Wohngebieten:
