@@ -554,7 +554,7 @@ natural = peak & ref ~ '^小百岳#.*' {name "${name|def:}"} [0x6616 resolution 
 natural = peak & ref ~ '.*百岳#.*' {name "${name|def:} (${ref|part:;:1})"} [0x6616 resolution 20-20 continue]
 natural = peak & name = * & ele = * {name "${name|def:}${ele|height:m=>ft|def:}"} [0x6616 resolution 21]
 natural = peak & name = *           {name "${name}"}                              [0x6616 resolution 21]
-natural = peak & ele = *            {name "${ele|height:m=>ft|def:}"}             [0x6618 resolution 22]
+natural = peak & ele = *            {name "${ele}"}                               [0x6618 resolution 22]
 #natural = peak                      {name "Peak"}                                 [0x6616 resolution 22]
 
 # natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 20-24]
