@@ -2,15 +2,15 @@ build=NG
 instance=ttb-hd
 
 ## start Google GCE for taiwan topo building
-gcloud compute instances start ${instance}
+gcloud compute instances start ${instance} && sleep 15
 
 for i in {1..5}; do 
   gcloud compute ssh --command="~/bin/build.sh" rudychung@${instance} && build=OK && break
   
   ## failed, let's retry
   gcloud compute instances stop ${instance}
-  sleep $((i*600))
-  gcloud compute instances start ${instance}
+  sleep $((i*1200))
+  gcloud compute instances start ${instance} && sleep 15
 done || echo "Failed after retry 5 times."
 
 gcloud compute instances stop ${instance}
