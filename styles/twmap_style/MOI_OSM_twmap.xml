@@ -2222,6 +2222,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
 -->
         <rule cat="h_routes" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
+         <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
           <rule e="way" k="highway" v="footway|path" zoom-min="13">
             <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
               <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="6,4" stroke-linecap="butt"/>
@@ -2254,6 +2255,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
               <line stroke="#FFFFFF" stroke-width="0.08" stroke-dasharray="6,4" stroke-linecap="butt"/>
             </rule>
             <!-- ;trail -->
+           </rule>
           </rule>
         </rule>
         <rule cat="h_routes" e="way" k="trail_visibility" v="excellent|good|intermediate|~">
