@@ -27,7 +27,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
-MF_WRITER_OPTS := bbox=23.226,120.822,23.578,121.249
+MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
 DEM_NAME := MOI
 TARGETS := mapsforge
 
@@ -95,7 +95,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
+MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_style
@@ -114,7 +114,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
+MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_hs
@@ -132,7 +132,7 @@ ELEVATION_FILE = ele_taiwan_20_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls_lite.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MF_WRITER_OPTS := bbox=21.55682,118.12141,26.44212,122.31377
+MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 MAPSFORGE_STYLE_DIR := mapsforge_lite
@@ -153,7 +153,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
-MF_WRITER_OPTS := bbox=24.6731646,121.2826336,25.2997353,122.0064049
+MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
 DEM_NAME := MOI
 TARGETS := mapsforge
 
@@ -165,7 +165,7 @@ ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
-MF_WRITER_OPTS := bbox=24.96034,121.4570,25.21024,121.6659
+MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
 DEM_NAME := MOI
 TARGETS := mapsforge
 
@@ -737,16 +737,20 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
 		cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/extrac_hknetwork.py > hknetworks.json && \
 	    cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/parse_osm.py | osmconvert - -o=$@
 
-# OSMOSIS_OPTS
+# OSMOSIS_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
 ifeq (Taiwan,$(REGION))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true)
+    OSMOSIS_BOUNDING := --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true
 else
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
+    OSMOSIS_BOUNDING := --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true
 endif
-else ifneq (,$(strip $(BOUNDING_BOX)))
-    OSMOSIS_OPTS := $(strip $(OSMOSIS_OPTS) --bounding-box top=$(TOP) bottom=$(BOTTOM) left=$(LEFT) right=$(RIGHT) completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true)
-    MF_WRITER_OPTS := bbox=$(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
+else 
+ifneq (,$(strip $(BOUNDING_BOX)))
+    OSMOSIS_BOUNDING := --bounding-box top=$(TOP) bottom=$(BOTTOM) left=$(LEFT) right=$(RIGHT) completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true
+    MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
+else
+	$(error Error: No POLY_FILE or BOUNDING_BOX specified.)
+endif
 endif
 
 $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
@@ -756,9 +760,10 @@ $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT).osm.pbf \
+		$(OSMOSIS_BOUNDING) \
 		--read-pbf $(ELEVATION) \
+		$(OSMOSIS_BOUNDING) \
 		--merge \
-		$(OSMOSIS_OPTS) \
 		--buffer --write-pbf $@ \
 		omitmetadata=true
 
@@ -769,11 +774,13 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT)-sed.osm.pbf \
+		$(OSMOSIS_BOUNDING) \
 		--read-pbf $(ELEVATION) --tag-transform file="$(ROOT_DIR)/osm_scripts/tt-ele.xml" \
+		$(OSMOSIS_BOUNDING) \
 		--read-pbf $(ELEVATION_MARKER) \
+		$(OSMOSIS_BOUNDING) \
 		--merge \
 		--merge \
-		$(OSMOSIS_OPTS) \
 		--buffer --write-pbf $@ \
 		omitmetadata=true
 
@@ -840,7 +847,8 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
-		    type=ram $(MF_WRITER_OPTS) \
+		    type=ram \
+		    bbox=$(MAPSFORGE_BBOX) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
 		    polygon-clipping=true way-clipping=true label-position=true \
