@@ -78,7 +78,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * 一次安裝
       * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://http/rudy.basecamp.tw/locus_all-rex.xml)：點選啟動地圖/風格/高程一次安裝
 
-* ![Cartograph](images/Cartograph.png =36x) Cartograph Pro 2 自動安裝 (測試階段)
+* ![Cartograph](images/Cartograph.png =36x) Cartograph Pro 2 自動安裝 (測試階段/Hillshading)
   * 安裝示範影片：
   > (尚無，歡迎山友提供)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
