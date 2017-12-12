@@ -748,8 +748,6 @@ else
 ifneq (,$(strip $(BOUNDING_BOX)))
     OSMOSIS_BOUNDING := --bounding-box top=$(TOP) bottom=$(BOTTOM) left=$(LEFT) right=$(RIGHT) completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true
     MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
-else
-	$(error Error: No POLY_FILE or BOUNDING_BOX specified.)
 endif
 endif
 
