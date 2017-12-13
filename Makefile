@@ -822,11 +822,11 @@ $(TWMAP_STYLE):
 
 .PHONY: mapsforge_zip
 mapsforge_zip: $(MAPSFORGE_ZIP)
-$(MAPSFORGE_ZIP): $(MAPSFORGE)
+$(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(MAPSFORGE))
+	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
 
 .PHONY: poi_zip
 poi_zip: $(POI_ZIP)

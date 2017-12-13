@@ -47,13 +47,11 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
   > (歡迎製作並取代我的不專業解說)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
-    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
-    * [![POI](images/OruxMaps_poi.jpeg =36x) POI](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選啟動興趣點自動安裝
+    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](./moi-hgt-v3.zip)：未支援。請點選下載，並手動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
-    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
-    * [![POI](images/OruxMaps_poi.jpeg =36x) POI](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選啟動興趣點自動安裝
+    * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
     * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM](./moi-hgt-v3.zip)：未支援。點選下載，並手動安裝
 
@@ -78,19 +76,19 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * 一次安裝
       * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://http/rudy.basecamp.tw/locus_all-rex.xml)：點選啟動地圖/風格/高程一次安裝
 
-* ![Cartograph](images/Cartograph.png =36x) Cartograph Pro 2 自動安裝 (測試階段/Hillshading)
+* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
   * 安裝示範影片：
   > (尚無，歡迎山友提供)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
-    * [![Map](images/Cartograph_map.png =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![Map](images/Cartograph_map.png =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝
     * [![DEM](images/Cartograph_dem.png =36x) DEM](./moi-hgt-v3.zip)：未支援。請點選下載，並透過 iTune 手動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
-    * [![Map](images/Cartograph_map.png =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝
+    * [![Map](images/Cartograph_map.png =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝
     * [![DEM](images/Cartograph_dem.png =36x) DEM](./moi-hgt-v3.zip)：未支援。點選下載，並透過 iTune 手動安裝
 
-* ![Android](images/Android.png =36x) Android 手動下載自行安裝
+* ![Android](images/Android.png =36x) Mapsforge 手動下載自行安裝
   * 安裝示範影片：
     * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
@@ -99,7 +97,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![POI](images/Android.png =36x) POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選下載興趣點，需手動安裝
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，需手動安裝
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，需手動安裝
-  * [![DEM](images/Android.png =36x) DEM](./moi-hgt-v3.zip)：點選下載高程檔，給綠野遊蹤-GTs、Orux 與 Locus 手動安裝
+  * [![Style](images/Android.png =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝
+  * [![DEM](images/Android.png =36x) DEM](./moi-hgt-v3.zip)：點選下載高程檔，給綠野遊蹤-GTs、Orux、Locus 與 Cartograph 手動安裝
 
 * ![Map](images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝示範影片：
@@ -145,6 +144,9 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2017, 12/14
+  * 支援 Cartograph Pro 2 自動安裝
+  * 合併 OruxMaps 與 Cartograph 地圖與 POI
 * 2017, 8/3
   * 感謝阿牛兄的圖例說明，增加圖例說明文件
 * 2017, 4/30
