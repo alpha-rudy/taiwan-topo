@@ -77,8 +77,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://http/rudy.basecamp.tw/locus_all-rex.xml)：點選啟動地圖/風格/高程一次安裝
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
-  * 安裝示範影片：
-  > (尚無，歡迎山友提供)
+  * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
+  > (歡迎製作並取代我的不專業解說)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝
