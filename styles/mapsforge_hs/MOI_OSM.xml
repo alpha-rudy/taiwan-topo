@@ -632,7 +632,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="障礙物"/>
       <cat id="barriers"/>
     </layer>
-    <layer id="elmt-buildings-h" enabled="false">
+    <layer id="elmt-buildings-h" enabled="true">
       <name lang="de" value="besondere Gebäude"/>
       <name lang="en" value="special buildings"/>
       <name lang="es" value="edificios especiales"/>
@@ -641,7 +641,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
-    <layer id="elmt-buildings-c" enabled="false">
+    <layer id="elmt-buildings-c" enabled="true">
       <name lang="de" value="besondere Gebäude"/>
       <name lang="en" value="special buildings"/>
       <name lang="es" value="edificios especiales"/>
@@ -650,7 +650,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
-    <layer id="elmt-buildings-b" enabled="false">
+    <layer id="elmt-buildings-b" enabled="true">
       <name lang="de" value="besondere Gebäude"/>
       <name lang="en" value="special buildings"/>
       <name lang="es" value="edificios especiales"/>
@@ -659,7 +659,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
-    <layer id="elmt-buildings-m" enabled="false">
+    <layer id="elmt-buildings-m" enabled="true">
       <name lang="de" value="besondere Gebäude"/>
       <name lang="en" value="special buildings"/>
       <name lang="es" value="edificios especiales"/>
