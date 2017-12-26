@@ -105,7 +105,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #E4E4E4"
+"1 c #FFFFFF"
 [end]
 
 
@@ -167,7 +167,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #F6EEB6"
+"1 c #FFFFFF"
 [end]
 
 
@@ -182,7 +182,7 @@ FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
-"# c #F0D9D9"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -230,7 +230,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
-"# c #F0F0D8"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -278,7 +278,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
-"# c #F0F0D8"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -326,7 +326,7 @@ FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F0D8A8"
-"# c #C8CCC8"
+"# c none"
 "!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
 "################################"
 "!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
@@ -388,7 +388,7 @@ FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
-"# c #CCFFF1"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -436,7 +436,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #78C800"
-"# c #F8FCC8"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -532,7 +532,7 @@ FontStyle=NoLabel
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F4F4F4"
-"# c #C5C3C3"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -579,7 +579,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #C8C9C7"
+"1 c #FFFFFF"
 [end]
 
 
@@ -594,7 +594,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #78C800"
-"# c #F8FCC8"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -656,7 +656,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #A0A4A0"
-"# c #D8DCD8"
+"# c none"
 "###!!!!#!!#####!!!###!###!!!####"
 "######!#!########!!#####!!#!!!!#"
 "!!######!##!!#####!!!#########!!"
@@ -717,7 +717,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #B5E3B5"
+"1 c #FFFFFF"
 [end]
 
 
@@ -731,7 +731,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #33CC99"
+"1 c #FFFFFF"
 [end]
 
 
@@ -746,7 +746,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #7B9520"
-"# c #B0D490"
+"# c none"
 "##!###############!#############"
 "##!###############!#############"
 "!!!!!###########!!!!!###########"
@@ -794,7 +794,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F89800"
-"# c #D8F8A8"
+"# c none"
 "#####!!!########################"
 "####!!!#########################"
 "#####!!##########!##############"
@@ -841,7 +841,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FF8F8F"
+"1 c #FFFFFF"
 [end]
 
 
@@ -855,7 +855,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #CDF6CA"
+"1 c #FFFFFF"
 [end]
 
 
@@ -918,7 +918,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #3BB551"
-"# c #A4F3A1"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -1013,7 +1013,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #E9D8BD"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1076,7 +1076,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
-"# c #EFC8C8"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -1124,7 +1124,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #838383"
-"# c #DFD1D6"
+"# c none"
 "!#######!#######!#######!#######"
 "################################"
 "################################"
@@ -1172,7 +1172,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #CCB29C"
-"# c #BFA793"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -1219,7 +1219,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #D6D99F"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1233,7 +1233,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #E9D1FF"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1247,7 +1247,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #EAE8E2"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1262,7 +1262,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
-"# c #FFF1BA"
+"# c none"
 "!#######!#######!#######!#######"
 "################################"
 "################################"
@@ -1310,7 +1310,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #AEA397"
-"# c #E6DCD1"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -1357,7 +1357,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #CCCCCC"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1400,7 +1400,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #999999"
-"# c #EDEDED"
+"# c none"
 "!!######!!######!!######!!######"
 "!!######!!######!!######!!######"
 "################################"
@@ -1447,7 +1447,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #F6CDD2"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1461,7 +1461,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #949494"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1475,7 +1475,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #74DCBA"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1489,7 +1489,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #CC99FF"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1503,7 +1503,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #F2EFE9"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1517,7 +1517,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #F1EEE9"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1545,7 +1545,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #BABABA"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1559,7 +1559,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #CC99FF"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1588,7 +1588,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #E0FCB8"
-"# c #E6E6E6"
+"# c none"
 "!!!####!!!!########!!!!###!!##!!"
 "!!!####!!!!!#######!!!!###!!##!!"
 "!!#####!!!!!!######!!!!###!!##!!"
@@ -1635,7 +1635,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #89D2AE"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1649,7 +1649,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #33CC99"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1711,7 +1711,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #F1EEE8"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1739,7 +1739,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FEDF88"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1753,7 +1753,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #DCBE91"
+"1 c #FFFFFF"
 [end]
 
 
@@ -1830,7 +1830,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #ABBFBF"
-"# c #C8FCF8"
+"# c none"
 "################################"
 "################################"
 "################################"
@@ -1878,7 +1878,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #F89800"
-"# c #D8F8A8"
+"# c none"
 "!!######!!######!!######!!######"
 "!!######!!######!!######!!######"
 "################################"
@@ -1926,7 +1926,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #98CC60"
-"# c #C0E898"
+"# c none"
 "!!!####!!!!########!!!!###!!##!!"
 "!!!####!!!!!#######!!!!###!!##!!"
 "!!#####!!!!!!######!!!!###!!##!!"
@@ -2050,7 +2050,7 @@ FontStyle=SmallFont
 CustomColor=No
 Xpm="32 32 2 1"
 "! c #000000"
-"# c #FFFFFF"
+"# c none"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
