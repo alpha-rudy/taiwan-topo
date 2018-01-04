@@ -372,7 +372,7 @@ STYLE := swisspopo
 STYLE_NAME := camp
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1016)
-TARGETS := gmap nsis
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc_dem)
 REGION := Taiwan
@@ -575,8 +575,10 @@ suites:
 	make SUITE=taiwan_lite all
 	make SUITE=taiwan_bw all
 	make SUITE=taiwan_odc all
+	make SUITE=taiwan_bc all
 	make SUITE=taiwan_bw_dem all
 	make SUITE=taiwan_odc_dem all
+	make SUITE=taiwan_bc_dem all
 
 .PHONY: license $(LICENSE)
 license: $(LICENSE)
