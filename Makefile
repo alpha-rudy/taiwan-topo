@@ -3,7 +3,7 @@
 # - 1st hex, dem    -> moi(1), srtm(2)
 # - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3), Yushan(4)
 # - 3rd hex, lang   -> en(0), zh(1),
-# - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5)
+# - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7)
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -360,6 +360,37 @@ GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmap nsis
 
+else ifeq ($(SUITE),taiwan_bc)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+TYP := basecamp
+STYLE := swisspopo
+STYLE_NAME := camp
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1016)
+TARGETS := gmap nsis
+
+else ifeq ($(SUITE),taiwan_bc_dem)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+TYP := basecamp
+STYLE := swisspopo
+STYLE_NAME := camp3D
+DEM_NAME := MOI
+GMAPDEM_ID := 05010000
+GMAPDEM_FILE := $(GMAPDEM_ID).img
+GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+MAPID := $(shell printf %d 0x1017)
+TARGETS := gmap nsis
+
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 LANG := zh
@@ -386,6 +417,37 @@ STYLE := swisspopo
 STYLE_NAME := bw
 DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2113)
+TARGETS := gmap
+
+else ifeq ($(SUITE),taipei_bc)
+REGION := Taipei
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taipei.poly
+TYP := basecamp
+STYLE := swisspopo
+STYLE_NAME := camp
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1116)
+TARGETS := gmap
+
+else ifeq ($(SUITE),taipei_bc_dem)
+REGION := Taipei
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taipei.poly
+TYP := basecamp
+STYLE := swisspopo
+STYLE_NAME := camp3D
+DEM_NAME := MOI
+GMAPDEM_ID := 05010000
+GMAPDEM_FILE := $(GMAPDEM_ID).img
+GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+MAPID := $(shell printf %d 0x1117)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taipei_en_bw)
