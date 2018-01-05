@@ -1960,8 +1960,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <!-- ;cycleway -->
           </rule>
         </rule>
-        <rule e="way" k="highway" v="service" zoom-min="13">
-          <line stroke="#222222" stroke-width="0.95"/>
+        <rule e="way" k="highway" v="service">
+          <rule e="any" k="service" v="alley" zoom-min="14">
+            <line stroke="#222222" stroke-width="0.63"/>
+          </rule>
+          <rule e="any" k="service" v="~" zoom-min="13">
+            <line stroke="#222222" stroke-width="0.95"/>
+          </rule>
         </rule>
         <rule e="way" k="highway" v="road|unclassified|residential|living_street|ford" zoom-min="13">
           <line stroke="#222222" stroke-width="1.3"/>
@@ -2525,8 +2530,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
  -->
       </rule>
-      <rule e="way" k="highway" v="service" zoom-min="13">
-        <line stroke="#E0E0E0" stroke-width="0.65"/>
+      <rule e="way" k="highway" v="service">
+        <rule e="any" k="service" v="alley" zoom-min="14">
+          <line stroke="#E0E0E0" stroke-width="0.43"/>
+        </rule>
+        <rule e="any" k="service" v="~" zoom-min="13">
+          <line stroke="#E0E0E0" stroke-width="0.65"/>
+        </rule>
       </rule>
       <rule e="way" k="highway" v="construction" zoom-min="13">
         <line stroke="#E5E0E0E0" stroke-width="0.9" stroke-dasharray="15,2" stroke-linecap="butt"/>
