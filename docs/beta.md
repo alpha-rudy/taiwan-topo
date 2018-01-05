@@ -6,23 +6,23 @@
   * [![Map](./images/Android.png =36x)Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![POI](./images/Android.png =36x)Orux POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
   * [![Style](./images/Android.png =36x)Orux Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
-  * [![Style](./images/Android.png =36x)GTs Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+  * [![Style](./images/Android.png =36x)GTs/Carto Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x)Locus Mapsforge Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
 
-* ![Map](./images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__
-  * [![Map](./images/Garmin_small.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_bw.img.zip)
-  * [![Map](./images/Windows.png =36x)exe](./Install_MOI_Taiwan_TOPO_bw.exe), [地形](./Install_MOI_Taiwan_TOPO_bw3D.exe)
-  * [![Map](./images/macOS.png =36x)gmap](./Taiwan_moi_zh_bw.gmap.zip), [地形](./Taiwan_moi_zh_bw3D.gmap.zip)
+* ![GMap](./images/Garmin.png =x36) GMAP, MOI.OSM.bw - Taiwan TOPO v__version__
+  * [![Garmin](./images/Garmin_small.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_bw.img.zip)
+  * ![Windows](./images/Windows.png =36x)[bw](./Install_MOI_Taiwan_TOPO_bw.exe), [bw3D](./Install_MOI_Taiwan_TOPO_bw3D.exe)
+  * ![macOS](./images/macOS.png =36x)[bw](./Taiwan_moi_zh_bw.gmap.zip), [bw3D](./Taiwan_moi_zh_bw3D.gmap.zip)
 
-* ![Map](./images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__
-  * [![Map](./images/Garmin_large.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_odc.img.zip)
-  * [![Map](./images/Windows.png =36x)exe](./Install_MOI_Taiwan_TOPO_odc.exe), [地形](./Install_MOI_Taiwan_TOPO_odc3D.exe)
-  * [![Map](./images/macOS.png =36x)gmap](./Taiwan_moi_zh_odc.gmap.zip), [地形](./Taiwan_moi_zh_odc3D.gmap.zip)
+* ![GMap](./images/Garmin.png =x36) GMAP, MOI.OSM.odc - Taiwan TOPO v__version__
+  * [![Garmin](./images/Garmin_large.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_odc.img.zip)
+  * ![Windows](./images/Windows.png =36x)[odc](./Install_MOI_Taiwan_TOPO_odc.exe), [odc3D](./Install_MOI_Taiwan_TOPO_odc3D.exe)
+  * ![macOS](./images/macOS.png =36x)[odc](./Taiwan_moi_zh_odc.gmap.zip), [odc3D](./Taiwan_moi_zh_odc3D.gmap.zip)
 
-* ![Map](./images/Garmin.png =x36) GMAP, MOI.OSM.camp - Taiwan TOPO v__version__
-  * [![Map](./images/Garmin_large.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_camp.img.zip)
-  * [![Map](./images/Windows.png =36x)exe](./Install_MOI_Taiwan_TOPO_camp.exe), [地形](./Install_MOI_Taiwan_TOPO_camp3D.exe)
-  * [![Map](./images/macOS.png =36x)gmap](./Taiwan_moi_zh_camp.gmap.zip), [地形](./Taiwan_moi_zh_camp3D.gmap.zip)
+* ![GMap](./images/Garmin.png =x36) GMAP, MOI.OSM.camp - Taiwan TOPO v__version__
+  * [![Garmin](./images/Garmin_large.jpeg =36x)gmapsupp](./gmapsupp_Taiwan_moi_zh_camp.img.zip)
+  * ![Windows](./images/Windows.png =36x)[camp](./Install_MOI_Taiwan_TOPO_camp.exe), [camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe)
+  * ![macOS](./images/macOS.png =36x)[camp](./Taiwan_moi_zh_camp.gmap.zip), [camp3D](./Taiwan_moi_zh_camp3D.gmap.zip)
 
 ### 版權宣告
 
