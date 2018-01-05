@@ -3,7 +3,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 每週四發行 MOI.OSM - Taiwan TOPO v__version__
 
-適合用在 Garmin / Android 上，拿來登山與尋寶 (hiking/geocaching)！
+適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！
 
 * 相關網頁
   * 說明網頁:
@@ -140,7 +140,7 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
 
-* Andoid Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps 與 Locus Map。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps，Locus Map，GTs 綠野遊蹤，與 iOS Cartograph。
 
 
 ## 重大修改歷程
