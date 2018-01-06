@@ -966,23 +966,23 @@ highway = residential & (area != * | area = no) & man_made = dyke           [0x0
 # 0x010105 = 1/1 (schmal, NoLabel)
 highway = residential & (area != * | area = no) & keinrouting = yes [0x010f16 resolution 24 continue]
 highway = residential & (area != * | area = no) & keinrouting = yes [0x010f17 resolution 23-23 continue]
-highway = residential & (area != * | area = no) & keinrouting = yes [0x010105 resolution 22-22]
+#highway = residential & (area != * | area = no) & keinrouting = yes [0x010105 resolution 22-22]
 
 # Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
 # 0x010f16 = 4/1 (breit, NoLabel)
 # 0x010f17 = 2/1 (mittel, NoLabel)
 # 0x010105 = 1/1 (schmal, NoLabel)
 highway = residential & (area != * | area = no) & auto = no [0x010f16 resolution 24 continue]
-highway = residential & (area != * | area = no) & auto = no [0x010f17 resolution 23-23 continue]
-highway = residential & (area != * | area = no) & auto = no [0x010105 resolution 22-22]
+highway = residential & (area != * | area = no) & auto = no [0x010f17 resolution 23-23]
+#highway = residential & (area != * | area = no) & auto = no [0x010105 resolution 22-22]
 
 # Allgemein oeffentlich
 # 0x011f17 = 4/1 (breit, NoLabel)
 # 0x010f14 = 2/1 (mittel, NoLabel)
 # 0x010f15 = 1/1 (schmal, NoLabel)
-highway = residential & (area != * | area = no) [0x011f17 resolution 24 continue continue]
-highway = residential & (area != * | area = no) [0x010f14 resolution 23-23 continue continue]
-highway = residential & (area != * | area = no) [0x010f15 resolution 22-22]
+highway = residential & (area != * | area = no) [0x011f17 resolution 24 continue]
+highway = residential & (area != * | area = no) [0x010f14 resolution 23-23]
+#highway = residential & (area != * | area = no) [0x010f15 resolution 22-22]
 
 
 # Oeffentlich befahrbare Nebenstrasse:
@@ -1072,24 +1072,24 @@ highway = living_street & (area != * | area = no) & man_made = dyke            [
 # 0x010f06 = 2/1 (mittel, NoLabel)
 # 0x010108 = 1/1 (schmal, NoLabel)
 highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f05 resolution 24 continue]
-highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f06 resolution 23-23 continue]
-highway = living_street & (area != * | area = no) & keinrouting = yes [0x010108 resolution 22-22]
+highway = living_street & (area != * | area = no) & keinrouting = yes [0x010f06 resolution 23-23]
+#highway = living_street & (area != * | area = no) & keinrouting = yes [0x010108 resolution 22-22]
 
 # Nicht allgemein oeffentlich (es duerfen keine Autos fahren)
 # 0x010f05 = 4/1 (breit, NoLabel)
 # 0x010f06 = 2/1 (mittel, NoLabel)
 # 0x010108 = 1/1 (schmal, NoLabel)
 highway = living_street & (area != * | area = no) & auto = no [0x010f05 resolution 24 continue]
-highway = living_street & (area != * | area = no) & auto = no [0x010f06 resolution 23-23 continue]
-highway = living_street & (area != * | area = no) & auto = no [0x010108 resolution 22-22]
+highway = living_street & (area != * | area = no) & auto = no [0x010f06 resolution 23-23]
+#highway = living_street & (area != * | area = no) & auto = no [0x010108 resolution 22-22]
 
 # Allgemein oeffentlich
 # 0x011f1a = 4/1 (breit, NoLabel)
 # 0x010f03 = 2/1 (mittel, NoLabel)
 # 0x010f04 = 1/1 (schmal, NoLabel)
 highway = living_street & (area != * | area = no) [0x011f1a resolution 24 continue]
-highway = living_street & (area != * | area = no) [0x010f03 resolution 23-23 continue]
-highway = living_street & (area != * | area = no) [0x010f04 resolution 22-22]
+highway = living_street & (area != * | area = no) [0x010f03 resolution 23-23]
+#highway = living_street & (area != * | area = no) [0x010f04 resolution 22-22]
 
 
 #======================================================================================
