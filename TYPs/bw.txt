@@ -2798,8 +2798,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #FFCFCF"
-"2 c #404040"
+"1 c #E0E0E0"
+"2 c #202020"
 String1=0x00,Residential Street (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
@@ -2834,8 +2834,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;service
+"2 c #202020"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -2852,8 +2852,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #FFFFFF"
+"1 c #E0E0E0"    ;living_street
+"2 c #202020"
 String1=0x00,Living Street (restricted) narrow
 String2=0x02,Spielstraße (Eingeschränkt)
 String3=0x03,Woonerf
@@ -3758,10 +3758,10 @@ CustomColor=No
 [_line]
 Type=0x10f03
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
+"1 c #F2CE68"  ;service, living street
 "2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
@@ -3779,7 +3779,7 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
+"1 c #F2CE68"  ;service, living_street
 "2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
@@ -3794,11 +3794,11 @@ CustomColor=No
 [_line]
 Type=0x10f05
 UseOrientation=Y
-LineWidth=4
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #FFFFFF"
+"1 c #E0E0E0"    ;living_street
+"2 c #202020"
 String1=0x00,Living Street (restricted)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
@@ -3812,11 +3812,11 @@ CustomColor=No
 [_line]
 Type=0x10f06
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #FFFFFF"
+"1 c #E0E0E0"    ;living_street
+"2 c #202020"
 String1=0x00,Living Street (restricted)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
@@ -4064,11 +4064,11 @@ CustomColor=No
 [_line]
 Type=0x10f14
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;residential
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;residential
+"2 c #202020"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
@@ -4085,8 +4085,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;residential
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;residential
+"2 c #202020"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
@@ -4100,11 +4100,11 @@ CustomColor=No
 [_line]
 Type=0x10f16
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #E0E0E0"
+"2 c #202020"
 String1=0x00,Residential Road (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
@@ -4118,11 +4118,11 @@ CustomColor=No
 [_line]
 Type=0x10f17
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #E0E0E0"
+"2 c #202020"
 String1=0x00,Residential Road (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
@@ -4208,11 +4208,11 @@ CustomColor=No
 [_line]
 Type=0x10f1c
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;service
+"2 c #202020"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -4229,8 +4229,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #E0E0E0"    ;service
+"2 c #202020"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
@@ -4244,11 +4244,11 @@ CustomColor=No
 [_line]
 Type=0x10f1e
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #E0E0E0"    ;service
+"2 c #202020"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
@@ -4262,11 +4262,11 @@ CustomColor=No
 [_line]
 Type=0x10f1f
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F6D4D4"
-"2 c #404040"
+"1 c #E0E0E0"    ;service
+"2 c #202020"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
@@ -4697,11 +4697,11 @@ CustomColor=No
 [_line]
 Type=0x11f17
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;residential
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;residential
+"2 c #202020"
 String1=0x00,Residential
 String2=0x02,Residential
 String3=0x03,Residential
@@ -4733,11 +4733,11 @@ CustomColor=No
 [_line]
 Type=0x11f19
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;service
+"2 c #202020"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -4751,10 +4751,10 @@ CustomColor=No
 [_line]
 Type=0x11f1a
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
+"1 c #F2CE68"  ;service, living_street
 "2 c #B0B0B0"
 String1=0x00,Living Street
 String2=0x02,Spielstraße
