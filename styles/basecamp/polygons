@@ -389,7 +389,7 @@ building = * [0x13 resolution 24]
 # sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
 # Aus Gruenden der besseren Uebersichtlichkeit, wird die Ausweisung der NSGs begrenzt.
 # continue wg. weiterer identischer Flächen
-leisure = nature_reserve & protect_class = 1 [0x17 resolution 17-24 continue]
+# leisure = nature_reserve & protect_class = 1 [0x0d resolution 17-24 continue]
 
 
 # ------------------------------------------------------------
