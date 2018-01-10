@@ -1002,7 +1002,7 @@ amenity = post_office {name "${name}" | "郵局"} [0x2f05 resolution 24]
 amenity = public_building & name = * {name "${name}"} [0x3007 resolution 24]
 
 # Ein Unterstand ist ein überdachter offener Platz als Schutz vor der Witterung. [point, closedway]
-amenity = shelter {name "${name}" | "涼亭"} [0x2b06 resolution 23]
+amenity = shelter {name "${name}" | "涼亭"} [0x2b06 resolution 22]
 
 # Öffentliche Toilette / public toilet (z.T. mit Gebühr). [point, closedway]
 amenity = toilets [0x2f0c resolution 24]
