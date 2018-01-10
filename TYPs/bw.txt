@@ -372,8 +372,12 @@ String4=0x04,Nature Reserve
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="0 0 1 0"
-"1 c #FFFFFF"
+Xpm="32 2 2 1"
+"! c #FF0000"
+"  c none"
+"                                "
+"                                "
+;12345678901234567890123456789012
 [end]
 
 
@@ -2513,22 +2517,38 @@ CustomColor=No
 
 
 [_line]
+Type=0x1c
+UseOrientation=Y
+Xpm="32 1 2  1"
+"! c #DC94E9"
+"  c none"
+"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
+;12345678901234567890123456789012
+String1=0x00,County Border
+String2=0x02,Staatsgrenze
+String3=0x03,Staatsgrens
+String4=0x04,County Border
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+[end]
+
+
+[_line]
 Type=0x1d
 UseOrientation=Y
-Xpm="32 4 2  1"
+Xpm="32 2 2  1"
 "! c #408000"
 "  c none"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
+"!!!!!!!!!!!!!!      !!      !!!!"
 ;12345678901234567890123456789012
-String1=0x00,National Park Boundary
-String2=0x02,Nationalparkgrenze
-String3=0x03,Nationaal Park grens
-String4=0x04,National Park Boundary
+String1=0x00,Nature Reserve
+String2=0x02,Naturreservat
+String3=0x03,Natuurgebied
+String4=0x04,Nature Reserve
 ExtendedLabels=Y
-FontStyle=Default
+FontStyle=SmallFont
 CustomColor=No
 [end]
 
@@ -2536,20 +2556,18 @@ CustomColor=No
 [_line]
 Type=0x1e
 UseOrientation=Y
-Xpm="32 4 2  1"
+Xpm="32 2 2  1"
 "! c #DC94E9"
 "  c none"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
-"!!!!!!!!!!!!!!!!    !!    !!!!!!"
+"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
+"!!!!!!  !!  !!!!!!  !!  !!!!!!  "
 ;12345678901234567890123456789012
 String1=0x00,National/State/County Border
 String2=0x02,Staatsgrenze
 String3=0x03,Staatsgrens
 String4=0x04,National/State/County Border
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
+FontStyle=SmallFont
 CustomColor=No
 [end]
 
@@ -5690,23 +5708,23 @@ CustomColor=No
 [end]
 
 
-[_line]
-Type=0x1210f
-UseOrientation=Y
-Xpm="32 2 2  1"
-"! c #408000"
-"  c none"
-"!!!!!!!!!!!!!!      !!      !!!!"
-"!!!!!!!!!!!!!!      !!      !!!!"
-;12345678901234567890123456789012
-String1=0x00,Nature Reserve
-String2=0x02,Naturreservat
-String3=0x03,Natuurgebied
-String4=0x04,Nature Reserve
-ExtendedLabels=Y
-FontStyle=SmallFont
-CustomColor=No
-[end]
+;[_line]
+;Type=0x1210f
+;UseOrientation=Y
+;Xpm="32 2 2  1"
+;"! c #408000"
+;"  c none"
+;"!!!!!!!!!!!!!!      !!      !!!!"
+;"!!!!!!!!!!!!!!      !!      !!!!"
+;;12345678901234567890123456789012
+;String1=0x00,Nature Reserve
+;String2=0x02,Naturreservat
+;String3=0x03,Natuurgebied
+;String4=0x04,Nature Reserve
+;ExtendedLabels=Y
+;FontStyle=SmallFont
+;CustomColor=No
+;[end]
 
 
 [_line]
