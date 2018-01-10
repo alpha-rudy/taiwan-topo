@@ -3761,8 +3761,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service, living street
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;service, living_street
+"2 c #202020"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
@@ -3779,8 +3779,8 @@ UseOrientation=Y
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service, living_street
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;service, living_street
+"2 c #202020"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
@@ -4754,8 +4754,8 @@ UseOrientation=Y
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service, living_street
-"2 c #B0B0B0"
+"1 c #E0E0E0"    ;service, living_street
+"2 c #202020"
 String1=0x00,Living Street
 String2=0x02,Spielstraße
 String3=0x03,Woonerf
