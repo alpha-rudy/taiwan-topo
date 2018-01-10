@@ -425,7 +425,7 @@ highway = *
 # sind von der rechtlichen Definition her und auch in der Praxis keine NSG. [point, closedway]
 # Aus Gruenden der besseren Uebersichtlichkeit, wird die Ausweisung der NSGs begrenzt.
 # siehe auch Style-File "polygons" - dort wird zusätzlich auch die Fläche dargestellt
-leisure = nature_reserve & protect_class = 1 [0x01210f resolution 17-24 continue]
+leisure = nature_reserve & protect_class = 1 [0x1d resolution 17-24 continue]
 
 # Jachthafen: Liegeplatz für Jachten und Motorboote (bzw. Boote allgemein). [point, closedway]
 # (New tagging includes land area also... therefore display of it needs to change: will be moved to 'lines')
@@ -1647,9 +1647,9 @@ boundary = administrative & admin_level = 2 [0x1e resolution 17]
 # Kantonsgrenze - admin_level=4
 boundary = administrative & admin_level = 4  [0x1e resolution 17]
 boundary = administrative & admin_level = 6  [0x1e resolution 17]
-boundary = administrative & admin_level = 5  [0x10000 resolution 19]
-boundary = administrative & admin_level = 7  [0x10000 resolution 19]
-boundary = administrative & admin_level = 8  [0x10000 resolution 19]
+boundary = administrative & admin_level = 5  [0x1c resolution 19]
+boundary = administrative & admin_level = 7  [0x1c resolution 19]
+boundary = administrative & admin_level = 8  [0x1c resolution 19]
 #boundary = administrative & admin_level = 9 [0x1e resolution 21]
 
 # Nationalparkgrenze
