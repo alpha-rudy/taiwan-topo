@@ -2799,7 +2799,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Residential Street (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
@@ -2835,7 +2835,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -2853,7 +2853,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;living_street
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Living Street (restricted) narrow
 String2=0x02,Spielstraße (Eingeschränkt)
 String3=0x03,Woonerf
@@ -3175,7 +3175,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Unknown Street
 String2=0x02,Straße unbekannter Art
 String3=0x03,Onbekende straat
@@ -3193,7 +3193,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Unknown Street (restricted)
 String2=0x02,Straße unbekannter Art (Eingeschränkt)
 String3=0x03,Onbekende straat (afgesloten)
@@ -3284,7 +3284,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3302,7 +3302,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde bosweg n.a/2/3
@@ -3320,7 +3320,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
 String3=0x03,Onverharde bosweg 1
@@ -3500,7 +3500,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3518,7 +3518,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
 String3=0x03,Onverharde weg 1 (afgesloten)
@@ -3536,7 +3536,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3554,7 +3554,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
 String3=0x03,Onverharde weg n.a/2/3 (afgesloten)
@@ -3592,7 +3592,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
 String3=0x03,Onverharde weg n.a/2/3
@@ -3762,7 +3762,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service, living_street
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
@@ -3780,7 +3780,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service, living_street
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
 String3=0x03,Woonerf
@@ -3798,7 +3798,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;living_street
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Living Street (restricted)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
@@ -3816,7 +3816,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;living_street
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Living Street (restricted)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
 String3=0x03,Woonerf (afgesloten)
@@ -4068,7 +4068,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;residential
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
@@ -4086,7 +4086,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;residential
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
 String3=0x03,Woonwijk
@@ -4104,7 +4104,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Residential Road (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
@@ -4122,7 +4122,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Residential Road (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
 String3=0x03,Woonwijk (afgesloten)
@@ -4212,7 +4212,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -4230,7 +4230,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
@@ -4248,7 +4248,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
@@ -4266,7 +4266,7 @@ LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
 String3=0x03,Ventweg (afgesloten)
@@ -4701,7 +4701,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;residential
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Residential
 String2=0x02,Residential
 String3=0x03,Residential
@@ -4737,7 +4737,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
 String3=0x03,Ventweg
@@ -4755,7 +4755,7 @@ LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service, living_street
-"2 c #202020"
+"2 c #404040"
 String1=0x00,Living Street
 String2=0x02,Spielstraße
 String3=0x03,Woonerf
