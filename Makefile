@@ -1,7 +1,7 @@
 # base (0x2000) + region x lang x style
 # where, ...
 # - 1st hex, dem    -> moi(1), srtm(2)
-# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3), Yushan(4)
+# - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3), Yushan(4), bbox(f)
 # - 3rd hex, lang   -> en(0), zh(1),
 # - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7)
 
@@ -85,6 +85,23 @@ GMAPDEM_ID := 05010000
 GMAPDEM_FILE := $(GMAPDEM_ID).img
 GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1f14)
+TARGETS := gmap
+
+else ifeq ($(SUITE),bbox_bc_dem)
+# REGION: specify your REGION name for bbox
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+TYP := basecamp
+STYLE := basecamp
+STYLE_NAME := camp3D
+DEM_NAME := MOI
+GMAPDEM_ID := 05010000
+GMAPDEM_FILE := $(GMAPDEM_ID).img
+GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan)
