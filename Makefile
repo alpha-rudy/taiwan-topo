@@ -231,6 +231,20 @@ GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
+else ifeq ($(SUITE),yushan_bc)
+REGION := Yushan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := YushanNationalPark.poly
+TYP := basecamp
+STYLE := basecamp
+STYLE_NAME := camp
+DEM_NAME := MOI
+MAPID := $(shell printf %d 0x1416)
+TARGETS := gmap
+
 else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
 LANG := zh
