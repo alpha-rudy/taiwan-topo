@@ -361,21 +361,21 @@ include "indexsearch";
 # Bahnhof.
 # TODO: Bahnhof nicht getennt ausweisen; Polygon 0x24 ist inkorrekt
 # building = station [0x24 resolution 20]
-building = station [0x24 resolution 24]
+building = station [0x24 resolution 23-24]
 
 # Supermarkt.
 # TODO: Supermark nicht getennt ausweisen; Polygon 0x35 kann dann anderweitig verwendet werden
 # building = supermarket [0x35 resolution 20]
-building = supermarket [0x35 resolution 24]
+building = supermarket [0x35 resolution 23-24]
 
 # TODO - Flughafen-Terminal nacharbeiten.
 
 # Special handling of worship places
-building = * & building != no & amenity = place_of_worship [0x36 resolution 24]
+building = * & building != no & amenity = place_of_worship [0x36 resolution 23-24]
 
 # Gebäude oder Bauwerk allgemein.
 # building = * [0x13 resolution 20]
-building = * [0x13 resolution 24]
+building = * [0x13 resolution 23-24]
 
 
 # ------------------------------------------------------------
