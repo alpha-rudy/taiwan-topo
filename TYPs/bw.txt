@@ -583,7 +583,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #D7D7D7"
 [end]
 
 
@@ -1017,7 +1017,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #D7D7D7"
 [end]
 
 
@@ -1451,7 +1451,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #D7D7D7"
 [end]
 
 
@@ -1465,7 +1465,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #D7D7D7"
 [end]
 
 
