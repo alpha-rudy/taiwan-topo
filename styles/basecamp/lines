@@ -1885,7 +1885,7 @@ contour = elevation & contour_ext = elevation_minor & ele ~ '.*[2|7]50$' { set n
 
 # medium
 contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x21 resolution 23-24 continue]
-contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 22-21 continue]
+contour = elevation & contour_ext = elevation_medium & ele > 0 { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 22-22 continue]
 contour = elevation & contour_ext = elevation_medium & (ele ~ '.*[2|4|6|8]00$') { set name = '${ele|conv:m=>ft}'; } [0x20 resolution 20-20]
 
 # major
