@@ -105,7 +105,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #F0F0F0"
 [end]
 
 
@@ -167,7 +167,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #F0F0F0"
 [end]
 
 
@@ -180,42 +180,8 @@ String4=0x04,Retail Area
 ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #999999"
-"# c none"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"##############!##!##############"
-"##############!##!##############"
-"##############!!!!##############"
-"##############!##!##############"
-"##############!##!##############"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -228,42 +194,8 @@ String4=0x04,School
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #999999"
-"# c none"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"##############!!!!##############"
-"##############!#################"
-"##############!!!!##############"
-"#################!##############"
-"##############!!!!##############"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -276,42 +208,8 @@ String4=0x04,Hospital
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #999999"
-"# c none"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"#############!##!###############"
-"#############!#!!###############"
-"#############!!!################"
-"#############!#!!###############"
-"#############!##!###############"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -324,42 +222,8 @@ String4=0x04,Industrial Area
 ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #F0D8A8"
-"# c none"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-"!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -390,42 +254,8 @@ String4=0x04,Playground
 ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #3BB551"
-"# c none"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -438,42 +268,8 @@ String4=0x04,Camping
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #78C800"
-"# c none"
-"################################"
-"################################"
-"################################"
-"################################"
-"########!###!###################"
-"#########!#!####################"
-"##########!#####################"
-"#########!!!####################"
-"#########!!!####################"
-"########!!#!!###################"
-"########!!#!!###################"
-"#######!!###!!##################"
-"#####!!!!!!!!!!!################"
-"################################"
-"################################"
-"################################"
-"########################!###!###"
-"#########################!#!####"
-"##########################!#####"
-"#########################!!!####"
-"#########################!!!####"
-"########################!!#!!###"
-"########################!!#!!###"
-"#######################!!###!!##"
-"#####################!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #BFEDAB"
 [end]
 
 
@@ -486,42 +282,8 @@ String4=0x04,Attraction
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #CC99FF"
-"  c none"
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"                                "
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #BFEDAB"
 [end]
 
 
@@ -596,42 +358,8 @@ String4=0x04,Picnic Area
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #78C800"
-"# c none"
-"################################"
-"################################"
-"################################"
-"################################"
-"########!###!###################"
-"#########!#!####################"
-"##########!#####################"
-"#########!!!####################"
-"#########!!!####################"
-"########!!#!!###################"
-"########!!#!!###################"
-"#######!!###!!##################"
-"#####!!!!!!!!!!!################"
-"################################"
-"################################"
-"################################"
-"########################!###!###"
-"#########################!#!####"
-"##########################!#####"
-"#########################!!!####"
-"#########################!!!####"
-"########################!!#!!###"
-"########################!!#!!###"
-"#######################!!###!!##"
-"#####################!!!!!!!!!!!"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #BFEDAB"
 [end]
 
 
@@ -644,8 +372,12 @@ String4=0x04,Deciduous Forest
 ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
-Xpm="0 0 1 0"
-"1 c #FFFFFF"
+Xpm="32 2 2 1"
+"! c #FF0000"
+"  c none"
+"                                "
+"                                "
+;12345678901234567890123456789012
 [end]
 
 
@@ -707,7 +439,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #BFEDAB"
 [end]
 
 
@@ -721,7 +453,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #BFEDAB"
 [end]
 
 
@@ -845,7 +577,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #D7D7D7"
 [end]
 
 
@@ -859,7 +591,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #BFEDAB"
 [end]
 
 
@@ -920,42 +652,8 @@ String4=0x04,Zoo
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #3BB551"
-"# c none"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"###############!!!!#############"
-"#################!!#############"
-"################!!##############"
-"###############!!###############"
-"###############!!!!#############"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #BFEDAB"
 [end]
 
 
@@ -1126,42 +824,8 @@ String4=0x04,Construction / Brownfield Site
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #838383"
-"# c none"
-"!#######!#######!#######!#######"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"####!#######!#######!#######!###"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"###############!!!!#############"
-"###############!##!#############"
-"!#######!######!!!!#####!#######"
-"###############!##!#############"
-"###############!!!!#############"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"####!#######!#######!#######!###"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -1361,7 +1025,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #F0F0F0"
 [end]
 
 
@@ -1375,7 +1039,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #F0F0F0"
 [end]
 
 
@@ -1402,42 +1066,8 @@ String4=0x04,Pedestrian Area
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 32 2 1"
-"! c #999999"
-"# c none"
-"!!######!!######!!######!!######"
-"!!######!!######!!######!!######"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"######!!######!!######!!######!!"
-"######!!######!!######!!######!!"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!######!!######!!######!!######"
-"!!######!!######!!######!!######"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"######!!######!!######!!######!!"
-"######!!######!!######!!######!!"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-"################################"
-;12345678901234567890123456789012
+Xpm="0 0 1 0"
+"1 c #F0F0F0"
 [end]
 
 
@@ -1479,7 +1109,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #BFEDAB"
 [end]
 
 
@@ -1563,7 +1193,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #FFFFFF"
+"1 c #D7D7D7"
 [end]
 
 
@@ -2796,9 +2426,7 @@ CustomColor=No
 Type=0x10105
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Residential Street (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
@@ -2814,9 +2442,7 @@ CustomColor=No
 Type=0x10106
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"  ;unclassified
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Unclassified Road (Narrow)
 String2=0x02,Nebenstraße
@@ -2832,9 +2458,7 @@ CustomColor=No
 Type=0x10107
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;service
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -2850,9 +2474,7 @@ CustomColor=No
 Type=0x10108
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;living_street
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Living Street (restricted) narrow
 String2=0x02,Spielstraße (Eingeschränkt)
@@ -3171,7 +2793,7 @@ CustomColor=No
 [_line]
 Type=0x10e01
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
@@ -3189,7 +2811,7 @@ CustomColor=No
 [_line]
 Type=0x10e02
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
@@ -3281,9 +2903,7 @@ CustomColor=No
 Type=0x10e07
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #FFC2DE"  ;track
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Track/Dirt Road 1
 String2=0x02,Feld-/Waldweg 1
@@ -3299,9 +2919,7 @@ CustomColor=No
 Type=0x10e08
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #FFC2DE"  ;track
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Track/Dirt Road n.a/2/3
 String2=0x02,Feld-/Waldweg -/2/3
@@ -3316,7 +2934,7 @@ CustomColor=No
 [_line]
 Type=0x10e09
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
@@ -3335,9 +2953,7 @@ CustomColor=No
 Type=0x10e0a
 UseOrientation=N
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #F4476B"  ;motorway
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,freeway
 String2=0x02,Autobahn
@@ -3353,9 +2969,7 @@ CustomColor=No
 Type=0x10e0b
 UseOrientation=N
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #F9827F"  ;trunk
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Highway
 String2=0x02,Bundesstraße
@@ -3389,7 +3003,7 @@ CustomColor=No
 [_line]
 Type=0x10e0d
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FCD116"  ;secondary
@@ -3407,7 +3021,7 @@ CustomColor=No
 [_line]
 Type=0x10e0e
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFD69B"  ;tertiary
@@ -3496,7 +3110,7 @@ CustomColor=No
 [_line]
 Type=0x10e13
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
@@ -3515,9 +3129,7 @@ CustomColor=No
 Type=0x10e14
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #FFC2DE"  ;track
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Track/Dirt Road 1 (restricted)
 String2=0x02,Feld-/Waldweg 1 (Eingeschränkt)
@@ -3532,7 +3144,7 @@ CustomColor=No
 [_line]
 Type=0x10e15
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
@@ -3551,9 +3163,7 @@ CustomColor=No
 Type=0x10e16
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #FFC2DE"  ;track
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Track/Dirt Road n.a/2/3 (restricted)
 String2=0x02,Feld-/Waldweg -/2/3 (Eingeschränkt)
@@ -3588,7 +3198,7 @@ CustomColor=No
 [_line]
 Type=0x10e18
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFC2DE"  ;track
@@ -3759,9 +3369,7 @@ CustomColor=No
 Type=0x10f03
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;service, living_street
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
@@ -3777,9 +3385,7 @@ CustomColor=No
 Type=0x10f04
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;service, living_street
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Living Street
 String2=0x02,Verkehrsberuhigter Bereich
@@ -3794,7 +3400,7 @@ CustomColor=No
 [_line]
 Type=0x10f05
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;living_street
@@ -3813,9 +3419,7 @@ CustomColor=No
 Type=0x10f06
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;living_street
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Living Street (restricted)
 String2=0x02,Verkehrsberuhigter Bereich (Eingeschränkt)
@@ -3848,7 +3452,7 @@ CustomColor=No
 [_line]
 Type=0x10f08
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2CE68"  ;service
@@ -3867,9 +3471,7 @@ CustomColor=No
 Type=0x10f09
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #F2CE68"  ;service
+Xpm="0 0 1 0"
 "2 c #B0B0B0"
 String1=0x00,Pedestrianised street
 String2=0x02,Fußgängerstraße
@@ -3884,7 +3486,7 @@ CustomColor=No
 [_line]
 Type=0x10f0a
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4476B"  ;motorway
@@ -3902,7 +3504,7 @@ CustomColor=No
 [_line]
 Type=0x10f0b
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4476B"  ;motorway
@@ -3920,7 +3522,7 @@ CustomColor=No
 [_line]
 Type=0x10f0c
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F9827F"  ;trunk
@@ -3938,7 +3540,7 @@ CustomColor=No
 [_line]
 Type=0x10f0d
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F9827F"  ;trunk
@@ -3956,7 +3558,7 @@ CustomColor=No
 [_line]
 Type=0x10f0e
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEDD00"  ;primary
@@ -3974,7 +3576,7 @@ CustomColor=No
 [_line]
 Type=0x10f0f
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEDD00"  ;primary
@@ -3992,7 +3594,7 @@ CustomColor=No
 [_line]
 Type=0x10f10
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FCD116"  ;secondary
@@ -4010,7 +3612,7 @@ CustomColor=No
 [_line]
 Type=0x10f11
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FCD116"  ;secondary
@@ -4028,7 +3630,7 @@ CustomColor=No
 [_line]
 Type=0x10f12
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFD69B"  ;tertiary
@@ -4046,7 +3648,7 @@ CustomColor=No
 [_line]
 Type=0x10f13
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FFD69B"  ;tertiary
@@ -4065,9 +3667,7 @@ CustomColor=No
 Type=0x10f14
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;residential
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4083,9 +3683,7 @@ CustomColor=No
 Type=0x10f15
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;residential
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Residential Road
 String2=0x02,Wohngebietsstraße
@@ -4100,7 +3698,7 @@ CustomColor=No
 [_line]
 Type=0x10f16
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"
@@ -4119,9 +3717,7 @@ CustomColor=No
 Type=0x10f17
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Residential Road (restricted)
 String2=0x02,Wohngebietsstraße (Eingeschränkt)
@@ -4136,7 +3732,7 @@ CustomColor=No
 [_line]
 Type=0x10f18
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"  ;unclassified
@@ -4155,9 +3751,7 @@ CustomColor=No
 Type=0x10f19
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"  ;unclassified
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Unclassified Road
 String2=0x02,Nebenstraße
@@ -4172,7 +3766,7 @@ CustomColor=No
 [_line]
 Type=0x10f1a
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"  ;unclassified
@@ -4190,7 +3784,7 @@ CustomColor=No
 [_line]
 Type=0x10f1b
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"  ;unclassified
@@ -4209,9 +3803,7 @@ CustomColor=No
 Type=0x10f1c
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;service
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Service Road
 String2=0x02,Erschließungsstraße
@@ -4227,9 +3819,7 @@ CustomColor=No
 Type=0x10f1d
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;service
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
@@ -4244,7 +3834,7 @@ CustomColor=No
 [_line]
 Type=0x10f1e
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
@@ -4263,9 +3853,7 @@ CustomColor=No
 Type=0x10f1f
 UseOrientation=Y
 LineWidth=1
-BorderWidth=1
-Xpm="0 0 2 0"
-"1 c #E0E0E0"    ;service
+Xpm="0 0 1 0"
 "2 c #404040"
 String1=0x00,Service Road (restricted)
 String2=0x02,Erschließungsstraße (Eingeschränkt)
@@ -4625,7 +4213,7 @@ CustomColor=No
 [_line]
 Type=0x11f13
 UseOrientation=Y
-LineWidth=5
+LineWidth=4
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F4476B"  ;motorway
@@ -4643,7 +4231,7 @@ CustomColor=No
 [_line]
 Type=0x11f14
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F9827F"  ;trunk
@@ -4661,7 +4249,7 @@ CustomColor=No
 [_line]
 Type=0x11f15
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEDD00"  ;primary
@@ -4679,7 +4267,7 @@ CustomColor=No
 [_line]
 Type=0x11f16
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FCD116"  ;secondary
@@ -4697,7 +4285,7 @@ CustomColor=No
 [_line]
 Type=0x11f17
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;residential
@@ -4715,7 +4303,7 @@ CustomColor=No
 [_line]
 Type=0x11f18
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"  ;unclassified
@@ -4733,7 +4321,7 @@ CustomColor=No
 [_line]
 Type=0x11f19
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service
@@ -4751,7 +4339,7 @@ CustomColor=No
 [_line]
 Type=0x11f1a
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #E0E0E0"    ;service, living_street
@@ -4769,7 +4357,7 @@ CustomColor=No
 [_line]
 Type=0x11f1b
 UseOrientation=Y
-LineWidth=3
+LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F2CE68"  ;service
@@ -5433,7 +5021,7 @@ CustomColor=No
 [_line]
 Type=0x12100
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #F9827F"  ;trunk
@@ -5451,7 +5039,7 @@ CustomColor=No
 [_line]
 Type=0x12101
 UseOrientation=Y
-LineWidth=4
+LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
 "1 c #FEDD00"  ;primary

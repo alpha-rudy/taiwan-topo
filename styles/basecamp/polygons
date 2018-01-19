@@ -397,31 +397,31 @@ building = * [0x13 resolution 23-24]
 # ------------------------------------------------------------
 
 # Kleingarten (Schrebergarten, Grabeland). [point, closedway]
-landuse = allotments [0x23 resolution 20]
+landuse = allotments [0x23 resolution 22-24]
 
 # Bassin, Wasserbecken (zusammen mit basin=* für Hoch-/Regenwassersicker-/-rückhaltebecken). [point, closedway]
-landuse = basin [0x3f resolution 20]
+landuse = basin [0x3f resolution 23-24]
 
 # Vorher bebautes Land (für Wiederbebauung vorgesehen), Industrie- und Gewerbebrache, Sanierungsgebiet, Altlast. [point, closedway]
-landuse = brownfield [0x27 resolution 20]
+landuse = brownfield [0x27 resolution 23-24]
 
 # Friedhof. [closedway]
-landuse = cemetery [0x1a resolution 20]
+landuse = cemetery [0x1a resolution 22-24]
 
 # Überwiegend Büros, Business Parks. [point, closedway]
-landuse = commercial [0x26 resolution 20]
+landuse = commercial [0x26 resolution 22-24]
 
 # Conservation land is land protected from development. [?]
 # Inkorrekt: Wird zunächst wie "0x50 = Wald" dargestellt.
-landuse = conservation [0x50 resolution 17]
+landuse = conservation [0x50 resolution 24]
 
 # Baugebiet. [point, closedway]
-landuse = construction [0x27 resolution 20]
+landuse = construction [0x27 resolution 23-24]
 
 
 # Landwirtschaftlich genutzte Flächen mit Gebäuden wie Häuser, Unterkünften, Ställen, Fahrzeughallen, Futterspeichern usw.
 # Ebenso die Flächen zwischen den Gebäuden, sowie nahe Bäume, Hecken und Grünflächen. [closedway]
-landuse = farmyard [0x49 resolution 20]
+landuse = farmyard [0x49 resolution 22-24]
 
 # Forst, landwirtschaftlich genutzter Wald (siehe auch natural=wood). [point, closedway]
 # Zur Unterscheidung der Baumarten kann zusätzlich das tag wood=coniferous/deciduous/mixed
@@ -439,66 +439,66 @@ natural = wood & ( wood = mixed | leaf_type = mixed) [0x52 resolution 17]
 landuse = forest | natural = wood [0x52 resolution 17]
 
 # Garagen auf größerer Fläche, Garagenhof (nicht für Einzelgarage) (s.a. amenity=parking). [closedway]
-landuse = garages [0x05 resolution 20]
+landuse = garages [0x13 resolution 23-24]
 
 # Rasenfläche (vorzugsweise innerorts). [point, closedway]
-landuse = grass [0x17 resolution 20]
+landuse = grass [0x17 resolution 22-24]
 
 # Bauerwartungsland, unerschlossenes, für Bebauung vorgesehenes Land (keine vorherige Bebauung). [point, closedway]
-landuse = greenfield [0x27 resolution 20]
+landuse = greenfield [0x27 resolution 22-24]
 
 # Gewächshausfläche. [closedway]
-landuse = greenhouse_horticulture [0x4e resolution 20]
+landuse = greenhouse_horticulture [0x4e resolution 22-24]
 
 # Großes Hafengebiet / -areal: The harbour site (land area, not area of water), mostly fenced or
 # outlined by hedge, barrier or access restriction is tagged on land using "landuse=harbour". [?]
-landuse = harbour [0x0c resolution 20]
+landuse = harbour [0x0c resolution 22-24]
 
 # Gewerbe-/Industriegebiet (überwiegend Werkstätten, Fabriken oder Lagerhallen). [point, closedway]
-landuse = industrial [0x0c resolution 17]
+landuse = industrial [0x0c resolution 22-24]
 
 # Deponie, Aufschüttung, Müllhalde. [point, closedway]
-landuse = landfill [0x2a resolution 20]
+landuse = landfill [0x2a resolution 22-24]
 
 # Wiese (meist außerorts; nicht für öffentliche Zwecke). [point, closedway]
-landuse = meadow [0x17 resolution 20 continue]
+landuse = meadow [0x17 resolution 22-24]
 
 # Militärisch genutztes Gebiet (Kasernen, Truppenübungsplätze, use.). [point, closedway]
-landuse = military [0x04 resolution 17]
+landuse = military [0x04 resolution 22-24]
 
 # Obstplantage, Obstgarten, Gemüseanbau, Anpflanzung von Bäumen oder Sträuchern zur Lebensmittelproduktion. [point, closedway]
-landuse = orchard [0x4e resolution 20]
+landuse = orchard [0x4e resolution 22-24]
 
 # Plfanzen- / Baumschule. [closedway]
-landuse = plant_nursery [0x4e resolution 20]
+landuse = plant_nursery [0x4e resolution 22-24]
 
 # Steinbruch, Grube (Kies, Ton, ...), oberflächlicher Abbau von Rohstoffen (Tagebau). [point, closedway]
-landuse = quarry [0x12 resolution 20]
+landuse = quarry [0x12 resolution 22-24]
 
 # Gebiet für Eisenbahnnutzung (meist für die Öffentlichkeit gesperrt). [closedway]
-landuse = railway [0x0c resolution 20]
+landuse = railway [0x0c resolution 22-24]
 
 # Erholungsgebiet. [point, closedway]
-landuse = recreation_ground [0x17 resolution 20]
+landuse = recreation_ground [0x17 resolution 22-24]
 
 # Speicherbecken (auch Talsperren; siehe auch landuse=basin). [point, closedway]
-landuse = reservoir [0x3f resolution 17]
+landuse = reservoir [0x3f resolution 22-24]
 
 # Wohngebiet. [point, closedway]
-landuse = residential [0x02 resolution 17]
+landuse = residential [0x02 resolution 22-24]
 
 # Einkaufszentrum oder überwiegend Einzelhandelsgeschäfte. [point, closedway]
-landuse = retail [0x08 resolution 20]
+landuse = retail [0x08 resolution 22-24]
 
 # Meerwassersaline, angelegter oder natürlicher Salzgarten, der das Salz durch Verdunstung von Meerwasser freigibt. [closedway]
 # Wird hier zunächst wie "0x3f = Wasser" gezeichnet; ggf. ist eine eigene Darstellung mit geringem Drawlevel sinnvoll.
-landuse = salt_pond [0x3f resolution 20]
+landuse = salt_pond [0x3f resolution 22-24]
 
 # Dorfanger/-wiese (innerorts). [point, closedway]
-landuse = village_green [0x17 resolution 20]
+landuse = village_green [0x17 resolution 22-24]
 
 # Weinberg, Wengert. [point, closedway]
-landuse = vineyard [0x1b resolution 20]
+landuse = vineyard [0x1b resolution 22-24]
 
 # "Schwarzer Fleck" (für Qualitätssicherung).
 # landuse = * {name '${name} - landuse'} [0x53 resolution 20]
@@ -587,7 +587,7 @@ waterway = riverbank [0x46 resolution 17]
 
 # Der Begriff "Dock" [point, closedway] hat mehrere Bedeutungen: Hafen / Trockendock, Schwimmdock
 # Als "Hafen" - wird analog zu "natural=water" behandelt.
-waterway = dock [0x3c resolution 17]
+waterway = dock [0x3c resolution 23-24]
 # Als "Trockendock, Schwimmdock" - wird derzeit nicht unterstützt.
 # waterway = dock [0x4c resolution 20]
 
@@ -684,13 +684,13 @@ power = generator & building != yes & length() <= 150 [0x25 resolution 24 contin
 # ------------------------------------------------------------
 
 # Bahnhof (mit mindestens einer Weiche). [point, closedway]
-railway = station [0x24 resolution 20]
+railway = station [0x24 resolution 23-24]
 
 # Eine Drehscheibe zum Wenden von Schienenfahrzeugen. [point, closedway]
 # railway = turntable (wird derzeit nicht unterstützt)
 
 # Bahnsteig: Der Bahnsteig verläuft parallel zu den Gleisen. [point, way, closedway]
-(railway = platform | public_transport = platform) & area = yes [0x3e resolution 20]
+(railway = platform | public_transport = platform) & area = yes [0x3e resolution 23-24]
 
 # "Schwarzer Fleck"  (für Qualitätssicherung).
 # Nur zusammen mit railway-Objekten in "lines" aktivieren.
@@ -716,7 +716,7 @@ leisure = dog_park [0x1e resolution 20]
 leisure = garden & garden:type!=residential [0x17 resolution 20]
 
 # Golfanlage. [point, closedway]
-leisure = golf_course [0x18 resolution 20]
+leisure = golf_course [0x18 resolution 22-24]
 
 # Angelstelle. [point, closedway]
 # leisure = fishing  (wird derzeit nicht unterstützt)
@@ -729,31 +729,31 @@ leisure = golf_course [0x18 resolution 20]
 #leisure = marina [0x09 resolution 23]
 
 # Minigolf (siehe auch Golfanlage). [point, closedway]
-leisure = miniature_golf [0x18 resolution 20]
+leisure = miniature_golf [0x18 resolution 22-24]
 
 # Park, Grünanlage. [point, closedway]
-leisure = park [0x1e resolution 20]
+leisure = park [0x1e resolution 22-24]
 
 # Spielfeld z.B. Fußball, Tennis, Handball, Hockey. [point, closedway]
-leisure = pitch [0x41 resolution 20]
+leisure = pitch [0x41 resolution 22-24]
 
 # Spielplatz für Kinder. [point, closedway]
-leisure = playground [0x0f resolution 20]
+leisure = playground [0x0f resolution 22-24]
 
 # Gibt es nur in den Commenwealth-Staaten - hier eher identisch mit landuse=village_green.
-leisure = recreation_ground [0x1e resolution 20]
+leisure = recreation_ground [0x1e resolution 22-24]
 
 # Sportzentrum, auch kommerzielle Freizeitsportanbieter, Fitnesscenter u.ä. [point, closedway]
-leisure = sports_centre [0x19 resolution 20]
+leisure = sports_centre [0x19 resolution 22-24]
 
 # Stadion: Eine größere Sportanlage mit permanenten, gestaffelten Sitzreihen. [point, closedway]
-leisure = stadium [0x42 resolution 20]
+leisure = stadium [0x42 resolution 22-24]
 
 # Laufbahn oder Rennbahn zum Beispiel für Wett-, Rad-, Hunde- oder Pferderennen. [point, way, closedway]
-leisure = track [0x37 resolution 20]
+leisure = track [0x37 resolution 22-24]
 
 # Schwimmbecken. [point, closedway]
-leisure = swimming_pool [0x3c resolution 20]
+leisure = swimming_pool [0x3c resolution 22-24]
 
 # Wasserpark: Vergnügnungsstätte mit Wasserrutschen, Schwimmbecken und Umkleiden. [point, closedway]
 # leisure = water_park (wird derzeit nicht unterstützt)
@@ -770,32 +770,32 @@ leisure = swimming_pool [0x3c resolution 20]
 # ------------------------------------------------------------
 
 # Hochschule (siehe auch amenity=university für Universität). [point, closedway]
-amenity = college [0x0a resolution 20]
+amenity = college [0x0a resolution 22-24]
 
 # Kleiner Friedhof (wenige Gräber z. B. direkt neben einer Kirche, Gräberfeld, Leihhof)
 # für größere Friedhöfe möglichst landuse=cemetery verwenden. [point, closedway]
-amenity = grave_yard [0x1a resolution 20 continue]
+amenity = grave_yard [0x1a resolution 22-24]
 
 # Krankenhaus. [point, closedway]
-amenity = hospital [0x0b resolution 20]
+amenity = hospital [0x0b resolution 22-24]
 
 # Kindergarten. [point, closedway]
-amenity = kindergarten [0x0a resolution 20]
+amenity = kindergarten [0x0a resolution 22-24]
 
 # Markt, Wochenmarkt. [way, closedway]
 # amenity = marketplace
 
 # Parkplatz. [point, closedway]
-amenity = parking [0x05 resolution 20]
+amenity = parking [0x05 resolution 22-24]
 
 # Anbetungsort (Kirche, Synagoge, Moschee, …). [point, closedway]
-amenity = place_of_worship [0x36 resolution 20]
+amenity = place_of_worship [0x36 resolution 22-24]
 
 # Schule. [point, closedway]
-amenity = school [0x0a resolution 20]
+amenity = school [0x0a resolution 22-24]
 
 # Universität (Campus oder Gebäude). [point, closedway]
-amenity = university [0x0a resolution 20]
+amenity = university [0x0a resolution 22-24]
 
 # "Schwarzer Fleck" (für Qualitätssicherung).
 # amenity = * {name '${name} - amenity'} [0x53 resolution 20]
@@ -813,24 +813,24 @@ amenity = university [0x0a resolution 20]
 # tourism = attraction [0x11 resolution 20]
 
 # Campingplatz. [point, closedway]
-tourism = camp_site [0x10 resolution 20]
+tourism = camp_site [0x10 resolution 22-24]
 
 # Stellplatz für Wohnmobile (Reisemobile). [point, closedway]
-tourism = caravan_site [0x10 resolution 20]
+tourism = caravan_site [0x10 resolution 22-24]
 
 # Museum. [point, closedway]
 # Basisfläche für Freilichtmuseen
 # tourism = museum (wird derzeit nicht unterstützt)
 
 # Rastplatz (Picknick). [point, closedway]
-tourism = picnic_site [0x14 resolution 20]
+tourism = picnic_site [0x14 resolution 22-24]
 
 # Freizeitpark, Themenpark. [point, closedway]
 # Diese Feature wird als nicht sinnvoll angesehen.
 # tourism = theme_park [0x11 resolution 20]
 
 # Zoologischer Garten (Zoo), Tierpark. [point, closedway]
-tourism = zoo [0x22 resolution 20]
+tourism = zoo [0x22 resolution 22-24]
 
 # "Schwarzer Fleck" (für Qualitätssicherung).
 # tourism = * {name '${name} - tourism'} [0x53 resolution 20]
@@ -844,21 +844,21 @@ tourism = zoo [0x22 resolution 20]
 # highway = services (wird derzeit nicht unterstützt)
 
 # Weg, Platz oder Straße auf der nur Fußgänger erlaubt sind (z.B. Fußgängerzone). Typisch für Einkaufspassagen.
-highway = pedestrian & area = yes [0x33 resolution 20]
+highway = pedestrian & area = yes [0x33 resolution 22-24]
 # Wird in "lines" derzeit nicht unterstützt.
-# highway = footway & area = yes [0x33 resolution 20]
+# highway = footway & area = yes [0x33 resolution 22-24]
 
 # Verkehrsberuhigter Bereich: Eine Strasse in der auf spielende Kinder aufgepaßt werden muß,
 # Fußgänger bevorzugt behandelt werden und nur Schrittgeschwindigkeit erlaubt ist.
-highway = living_street & area = yes [0x30 resolution 20]
+highway = living_street & area = yes [0x30 resolution 22-24]
 
 # Breitere Straßen die als Flächen getaggt sind.
-highway = residential  & area = yes [0x31 resolution 20]
-highway = unclassified & area = yes [0x31 resolution 20]
-highway = service      & area = yes [0x31 resolution 20]
+highway = residential  & area = yes [0x31 resolution 22-24]
+highway = unclassified & area = yes [0x31 resolution 22-24]
+highway = service      & area = yes [0x31 resolution 22-24]
 
 # Bussteig: Wird wie Bahnsteig dargestellt.
-highway = platform & area = yes [0x3e resolution 20]
+highway = platform & area = yes [0x3e resolution 22-24]
 
 # "Schwarzer Fleck" (für Qualitätssicherung)
 # highway = * {name '${name} - highway'} [0x53 resolution 20]
@@ -875,7 +875,7 @@ highway = platform & area = yes [0x3e resolution 20]
 # man_made = groyne & area = yes (wird derzeit nicht unterstützt)
 
 # Anleger / Pier. [way, closedway]
-man_made = pier [0x39 resolution 20]
+man_made = pier [0x39 resolution 22-24]
 
 # Überdecktes Speicherbecken. [point, closedway]
 # man_made = reservoir_covered (wird derzeit nicht unterstützt)
