@@ -195,7 +195,7 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 Xpm="0 0 1 0"
-"1 c #F0F0F0"
+"1 c #F0DFCE"
 [end]
 
 
