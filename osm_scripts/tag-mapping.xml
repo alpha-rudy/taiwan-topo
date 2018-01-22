@@ -497,7 +497,7 @@
 <osm-tag key='highway' value='unclassified' zoom-appear='9' />
 <osm-tag key='highway' value='road' zoom-appear='9' />
 <osm-tag key='highway' value='service' zoom-appear='9' />
-<osm-tag key='service' value='alley' zoom-appear='9' />
+<osm-tag key='service' value='alley' zoom-appear='12' />
 <osm-tag key='highway' value='services' zoom-appear='9' />
 <osm-tag key='highway' value='track' zoom-appear='9' />
 <osm-tag key='highway' value='cycleway' zoom-appear='9' />
