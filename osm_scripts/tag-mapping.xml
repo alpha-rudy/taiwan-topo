@@ -500,10 +500,10 @@
 <osm-tag key='service' value='alley' zoom-appear='12' />
 <osm-tag key='highway' value='services' zoom-appear='9' />
 <osm-tag key='highway' value='track' zoom-appear='9' />
-<osm-tag key='highway' value='cycleway' zoom-appear='9' />
-<osm-tag key='highway' value='footway' zoom-appear='9' />
-<osm-tag key='highway' value='path' zoom-appear='9' />
-<osm-tag key='highway' value='steps' zoom-appear='9' />
+<osm-tag key='highway' value='cycleway' zoom-appear='12' />
+<osm-tag key='highway' value='footway' zoom-appear='12' />
+<osm-tag key='highway' value='path' zoom-appear='12' />
+<osm-tag key='highway' value='steps' zoom-appear='12' />
 <osm-tag key='highway' value='bridleway' zoom-appear='10' />
 <osm-tag key='highway' value='pedestrian' zoom-appear='13' />
 <osm-tag key='area:highway' value='pedestrian' zoom-appear='13' />
