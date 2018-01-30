@@ -475,13 +475,13 @@
 <osm-tag key='highway' value='secondary_link' zoom-appear='12' />
 <osm-tag key='highway' value='tertiary' zoom-appear='12' />
 <osm-tag key='highway' value='tertiary_link' zoom-appear='12' />
-<osm-tag key='highway' value='living_street' zoom-appear='14' />
+<osm-tag key='highway' value='living_street' zoom-appear='13' />
 <osm-tag key='highway' value='residential' zoom-appear='13' />
 <osm-tag key='highway' value='unclassified' zoom-appear='13' />
 <osm-tag key='highway' value='road' zoom-appear='13' />
-<osm-tag key='highway' value='service' zoom-appear='14' />
+<osm-tag key='highway' value='service' zoom-appear='13' />
 <osm-tag key='service' value='alley' zoom-appear='14' />
-<osm-tag key='highway' value='services' zoom-appear='14' />
+<osm-tag key='highway' value='services' zoom-appear='13' />
 <osm-tag key='highway' value='track' zoom-appear='13' />
 <osm-tag key='highway' value='cycleway' zoom-appear='13' />
 <osm-tag key='highway' value='footway' zoom-appear='13' />
@@ -494,7 +494,7 @@
 <osm-tag key='highway' value='byway' zoom-appear='13' />
 <osm-tag key='highway' value='construction' zoom-appear='12' />
 <osm-tag key='highway' value='raceway' zoom-appear='13' />
-<osm-tag key='highway' value='ford' zoom-appear='12' />
+<osm-tag key='highway' value='ford' zoom-appear='13' />
 <osm-tag key='ford' value='fd_yes' equivalent-values='stepping_stones,yes' renderable='false' />
 <osm-tag key='toll' value='tl_yes' equivalent-values='true,yes' renderable='false' />
 <osm-tag key='tracktype' value='grade1' renderable='false' />
