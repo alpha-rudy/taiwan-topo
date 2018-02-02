@@ -4,12 +4,12 @@
     "version": "V1R1"
   },
   {
-    "name": "moi-hgt-v3.zip",
-    "version": "v3"
+    "name": "moi-hgt-v4.zip",
+    "version": "v4"
   },
   {
-    "name": "moi-hgt-lite.zip",
-    "version": "v1"
+    "name": "moi-hgt-lite-v2.zip",
+    "version": "v2"
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Rudy.zip",
@@ -21,7 +21,7 @@
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
-    "version": "v2017.09.27"
+    "version": "v2018.02.01"
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Lite.zip",
@@ -33,11 +33,11 @@
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Lite_style.zip",
-    "version": "v2017.09.27"
+    "version": "v2018.02.01"
   },
   {
     "name": "MOI_OSM_twmap_style.zip",
-    "version": "v2017.09.27"
+    "version": "v2018.02.01"
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Rudy.poi.zip",
@@ -45,11 +45,11 @@
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Rudy_style.zip",
-    "version": "v2017.09.27"
+    "version": "v2018.02.01"
   },
   {
     "name": "MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip",
-    "version": "v2017.09.27"
+    "version": "v2018.02.01"
   },
   {
     "name": "gmapsupp_Taiwan_moi_zh_bw.img.zip",
