@@ -137,7 +137,7 @@ NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_hs
 MAPSFORGE_STYLE_FILE := MOI_OSM.xml
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_hs_style.zip
-HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
+HGT := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
@@ -158,7 +158,7 @@ MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 LOCUS_STYLE_DIR := locus_lite
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
 LOCUS_STYLE_FILE := MOI_OSM_Lite.xml
-HGT := $(ROOT_DIR)/hgt/moi-hgt-lite.zip
+HGT := $(ROOT_DIR)/hgt/moi-hgt-lite-v2.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
