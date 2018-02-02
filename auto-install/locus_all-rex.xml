@@ -11,7 +11,7 @@
     <after>extract|deleteSource</after>
   </download>
   <download>
-    <source><![CDATA[http://rudy.basecamp.tw/moi-hgt-v3.zip]]></source>
+    <source><![CDATA[http://rudy.basecamp.tw/moi-hgt-v4.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
