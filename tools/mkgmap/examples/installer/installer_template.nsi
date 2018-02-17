@@ -8,7 +8,7 @@ SetCompressor /SOLID lzma
 ; Installer pages
 !define MUI_CUSTOMFUNCTION_GUIINIT myGuiInit
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE ${MAPNAME}_license.txt
+!insertmacro MUI_PAGE_LICENSE "${MAPNAME}_license.txt"
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH

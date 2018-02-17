@@ -16,15 +16,13 @@
 # and alphabetically by name first.
 # Currently, the matching relations will be processed and the names
 # appended to the boundary lines in an arbitrary order.
+
 (type=boundary | type=multipolygon) & boundary=administrative & name=*
 { apply
   {
     set mkgmap:boundary_name='$(mkgmap:boundary_name)/${name}' | '${name}';
   }
 }
-
-# European E-Road network
-route=road & network=e-road { apply { add ref='${ref}'; add int_ref='${int_ref}'; add network='e-road' } }
 
 # Public transportation routes.
 # We could want to sort the matching relations by ref first.
@@ -52,4 +50,81 @@ type=route
   }
   # We could want to copy the route relation name to unnamed route=ferry ways.
   # apply way { add name='${name}' }
+}
+
+# European E-Road network
+route=road & network=e-road {
+	apply {
+		add ref='${ref}';
+		add int_ref='${int_ref}';
+		add network='e-road';
+        add mkgmap:fast_road=yes;
+	}
+}
+
+#USA road network
+type=route & route=road & historic!=yes & network=US:I
+{
+    apply {
+        set mkgmap:us_interstate='$(mkgmap:us_interstate);${ref|not-contained:;:mkgmap:us_interstate}' | '$(mkgmap:us_interstate)' | '${ref}';
+        add network='US:I';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network~'US:I:.*'
+{
+    apply {
+        add network='US:I';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network=US:US
+{
+    apply {
+        set mkgmap:us_usroute='$(mkgmap:us_usroute);${ref|not-contained:;:mkgmap:us_usroute}' | '$(mkgmap:us_usroute)' | '${ref}';
+        add network='US:US';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network~'US:US:.*'
+{
+    apply {
+        add network='US:US';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network~'US:.*' & !(network=US:I | network=US:US | network~'US:.*:.*')
+{
+    apply {
+        add mkgmap:us_state='$(mkgmap:us_state);${ref|not-contained:;:mkgmap:us_state}' | '$(mkgmap:us_state)' | '${ref}';
+        add network='${network}';
+    }
+}
+
+#Trans African Highway
+type=route & route=road & historic!=yes & (network~'TAH.*' | ref~'TAH.*' | network~'Trans.African Highway')
+{
+    apply {
+        add network='TAH';
+        add int_ref='${ref}';
+        add mkgmap:fast_road=yes;
+    }
+}
+
+#Asian Highway
+type=route & route=road & historic!=yes & (network=AsianHighway | network=AH)
+{
+    apply {
+        add network='AsianHighway';
+        add int_ref='${ref}';
+        add mkgmap:fast_road=yes;
+    }
+}
+
+#any highway
+type=route & route=road & historic!=yes & ref=*
+{
+    apply {
+        add ref='${ref}';
+    }
 }

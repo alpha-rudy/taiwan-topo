@@ -27,6 +27,7 @@ mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level10=* { set mkgmap:city='
 
 
 # Austria = AUT
+mkgmap:country=AUT & mkgmap:city!=* & mkgmap:admin_level4=Wien {set mkgmap:city='${mkgmap:admin_level4}' }
 mkgmap:country=AUT & mkgmap:city!=* & mkgmap:admin_level10=* { set mkgmap:city='${mkgmap:admin_level10|subst:Gemeinde |subst:Stadt }' }
 mkgmap:country=AUT & mkgmap:city!=* & mkgmap:admin_level8=* { set mkgmap:city='${mkgmap:admin_level8|subst:Gemeinde |subst:Stadt }' }
 
