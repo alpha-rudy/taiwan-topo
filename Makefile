@@ -81,9 +81,8 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -98,9 +97,8 @@ TYP := basecamp
 STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -225,9 +223,8 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -368,9 +365,8 @@ TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw3D
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmap nsis
 
@@ -385,9 +381,8 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc3D
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmap nsis
 
@@ -416,9 +411,8 @@ TYP := basecamp
 STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmap nsis
 
@@ -475,9 +469,8 @@ TYP := basecamp
 STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM_ID := 05010000
-GMAPDEM_FILE := $(GMAPDEM_ID).img
-GMAPDEM := $(ELEVATIONS_DIR)/gmapdem/$(GMAPDEM_FILE)
+GMAPDEM_FILE := hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmap
 
@@ -644,11 +637,11 @@ $(NSIS): $(MAP)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_DIR) && \
 		rm -rf $@ && \
-		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img $(GMAPDEM_FILE)); do \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img ); do \
 			echo '  CopyFiles "$$MyTempDir\'"$${i}"'" "$$INSTDIR\'"$${i}"'"  '; \
 			echo '  Delete "$$MyTempDir\'"$${i}"'"  '; \
 		done > copy_tiles.txt && \
-		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img $(GMAPDEM_FILE)); do \
+		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img ); do \
 			echo '  Delete "$$INSTDIR\'"$${i}"'"  '; \
 		done > delete_tiles.txt && \
 		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | sed \
@@ -660,7 +653,7 @@ $(NSIS): $(MAP)
 			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi && \
 		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
 		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
-		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(GMAPDEM_FILE) $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
+		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
 		cat $(ROOT_DIR)/docs/taiwan_topo.md | sed \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
@@ -772,11 +765,9 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 	    cat $(DATA_DIR)/template.args | sed \
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    { [ -n "$(GMAPDEM)" ] && \
-		cp $(GMAPDEM) . && \
-	        cat $(ROOT_DIR)/mkgmaps/gmapdem.cfg | sed \
-	            -e "s|__gmapdem_id__|$(GMAPDEM_ID)|g" \
-	            -e "s|__map_dir__|$(MAP_DIR)|g" >> mkgmap.cfg || \
-		echo no gmapdem ; } && \
+		    cp $(GMAPDEM) ./moi-hgt.zip && \
+		    sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg || \
+			echo "no dem" ; } && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
 	        -c mkgmap.cfg \
@@ -800,15 +791,6 @@ $(ELEVATION_MARKER):
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE) -o $(ELEVATION_MARKER_FILE) && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE).md5 -o $(ELEVATION_MARKER_FILE).md5 && \
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MARKER_FILE).md5 | cut -d' ' -f1)" ] || \
-	    	( rm -rf $@ && false )
-
-$(GMAPDEM):
-	[ -n "$(REGION)" ]
-	mkdir -p $(ELEVATIONS_DIR)/gmapdem
-	cd $(ELEVATIONS_DIR)/gmapdem && \
-	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_FILE) -o $(GMAPDEM_FILE) && \
-	    curl -k $(ELEVATIONS_URL)/gmapdem/$(GMAPDEM_FILE).md5 -o $(GMAPDEM_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(GMAPDEM_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
