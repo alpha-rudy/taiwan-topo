@@ -35,7 +35,6 @@ REM Change back to the original directory
 cd /D %SAVEDIR%
 
 set MAINCLASS=org.codehaus.classworlds.Launcher
-REM Bugfix
 set PLEXUS_CP=%MYAPP_HOME%\lib\default\plexus-classworlds-2.5.2.jar
 SET EXEC="%JAVACMD%" %JAVACMD_OPTIONS% -cp "%PLEXUS_CP%" -Dapp.home="%MYAPP_HOME%" -Dclassworlds.conf="%MYAPP_HOME%\config\plexus.conf" %MAINCLASS%  %OSMOSIS_OPTIONS% %*
 
