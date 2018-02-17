@@ -2,10 +2,11 @@
 # name, brand, operator, ref
 
 # delete FIXME values (they should be better used in maintenance maps)
-ref=FIXME | ref=fixme           { delete ref; }
-operator=FIXME | operator=fixme { delete operator; }
-brand=FIXME | brand=fixme       { delete brand; }
-name=FIXME | name=fixme         { delete name; }
+# better use option --ignore-fixme-values
+ref ~ '(?i)fix[ _]?+me'		{ delete ref; } 
+operator ~ '(?i)fix[ _]?+me'	{ delete operator; }
+brand ~ '(?i)fix[ _]?+me'		{ delete brand; }
+name ~ '(?i)fix[ _]?+me'		{ delete name; }
 
 # delete duplicate names
 operator=${brand} { delete operator; }

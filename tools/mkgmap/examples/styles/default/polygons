@@ -17,6 +17,9 @@ include 'inc/name';
 
 aeroway=airport [0x07 resolution 20]
 aeroway=aerodrome [0x07 resolution 20]
+aeroway=runway {name '${ref}'} [0x0e resolution 20]
+(aeroway=taxiway | aeroway=taxilane) {name '${ref}'} [0x0e resolution 24]
+aeroway=heliport [0x07 resolution 20]
 aeroway=helipad [0x0e resolution 22]
 
 amenity=kindergarten [0x0a resolution 22]
@@ -49,15 +52,13 @@ leisure=track & area=yes [0x19 resolution 21]
 leisure=water_park [0x09 resolution 21]
 
 place=village [0x03 resolution 19]
-place=island & name=* [0x53 resolution 19]
-place=islet & name=* [0x53 resolution 20]
 
 shop=* [0x08 resolution 22]
 
 # squares and plazas
-highway=pedestrian & area=yes [0x17 resolution 22]
+highway=pedestrian & (area=yes | mkgmap:mp_created=true) [0x17 resolution 22]
 # other highways that have area=yes set must be parking lots
-highway=* & area=yes [0x05 resolution 22]
+highway=* & (area=yes | mkgmap:mp_created=true) [0x05 resolution 22]
 
 historic=museum | historic=memorial [0x1e resolution 21]
 historic=archaeological_site | historic=ruins [0x1e resolution 21]
@@ -78,6 +79,10 @@ man_made=* & area=yes
 
 include 'inc/water_polygons';
 include 'inc/landuse_polygons';
+
+# render small named islands 
+place=island & name=* & area_size() < 1000000 [0x53 resolution 19]
+place=islet & name=* [0x53 resolution 20]
 
 <finalize>
 # The finalizer section is executed for each element when a rule with an element type matches

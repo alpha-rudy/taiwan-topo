@@ -8,6 +8,6 @@ natural=mud [0x51 resolution 20]
 natural=wetland [0x51 resolution 20]
 natural=water [0x3c resolution 18]
 natural=waterfall | waterway=waterfall [0x47 resolution 21]
-natural=sea { add mkgmap:skipSizeFilter=true } [0x32 resolution 10]
+natural=sea { add mkgmap:skipSizeFilter=true; set mkgmap:drawLevel=2 } [0x32 resolution 10]
 
 waterway=riverbank [0x46 resolution 20]
