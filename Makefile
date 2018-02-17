@@ -83,6 +83,7 @@ STYLE_NAME := odc
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem.cfg
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -99,6 +100,7 @@ STYLE_NAME := camp3D
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem_camp.cfg
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -225,6 +227,7 @@ STYLE_NAME := odc
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem.cfg
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -367,8 +370,9 @@ STYLE_NAME := bw3D
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem.cfg
 MAPID := $(shell printf %d 0x1015)
-TARGETS := gmap nsis
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
@@ -383,8 +387,9 @@ STYLE_NAME := odc3D
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem.cfg
 MAPID := $(shell printf %d 0x1014)
-TARGETS := gmap nsis
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc)
 REGION := Taiwan
@@ -413,8 +418,9 @@ STYLE_NAME := camp3D
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem_camp.cfg
 MAPID := $(shell printf %d 0x1017)
-TARGETS := gmap nsis
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
@@ -471,6 +477,7 @@ STYLE_NAME := camp3D
 DEM_NAME := MOI
 GMAPDEM_FILE := hgt/moi-hgt-v4.zip
 GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
+GMAPDEM_CFG := gmapdem_camp.cfg
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmap
 
@@ -766,7 +773,7 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    { [ -n "$(GMAPDEM)" ] && \
 		    cp $(GMAPDEM) ./moi-hgt.zip && \
-		    sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg || \
+		    sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/$(GMAPDEM_CFG)" -i mkgmap.cfg || \
 			echo "no dem" ; } && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
