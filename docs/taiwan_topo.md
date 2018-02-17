@@ -100,30 +100,30 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM](./moi-hgt-v4.zip)：點選下載高程檔，給綠野遊蹤-GTs、Orux、Locus 與 Cartograph 手動安裝
 
-* ![Map](images/Garmin.png =x36) bw style, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
+* ![Map](images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
     > (歡迎製作並取代我的不專業解說)
-  * [![Map](images/Garmin_small.jpeg =36x) gmapsupp](./gmapsupp_Taiwan_moi_zh_bw.img.zip)：點選下載地圖檔
+  * [![Map](images/Garmin_small.jpeg =36x) bw](./gmapsupp_Taiwan_moi_zh_bw.img.zip), [bw3D](./gmapsupp_Taiwan_moi_zh_bw3D.img.zip)：點選下載地圖檔
   * [![Map](images/Windows.png =36x) bw](./Install_MOI_Taiwan_TOPO_bw.exe), [bw3D](./Install_MOI_Taiwan_TOPO_bw3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png =36x) bw](./Taiwan_moi_zh_bw.gmap.zip), [bw3D](./Taiwan_moi_zh_bw3D.gmap.zip)：點選下載安裝檔
 
-* ![Map](images/Garmin.png =x36) odc style, MOI.OSM.odc - Taiwan TOPO（適合較大螢幕）
+* ![Map](images/Garmin.png =x36) Garmin odc style, MOI.OSM.odc - Taiwan TOPO（適合較大螢幕）
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
     > (歡迎製作並取代我的不專業解說)
-  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](./gmapsupp_Taiwan_moi_zh_odc.img.zip)：點選下載地圖檔
+  * [![Map](images/Garmin_large.jpeg =36x) odc](./gmapsupp_Taiwan_moi_zh_odc.img.zip), [odc3D](./gmapsupp_Taiwan_moi_zh_odc3D.img.zip)：點選下載地圖檔
   * [![Map](images/Windows.png =36x) odc](./Install_MOI_Taiwan_TOPO_odc.exe), [odc3D](./Install_MOI_Taiwan_TOPO_odc3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png =36x) odc](./Taiwan_moi_zh_odc.gmap.zip), [odc3D](./Taiwan_moi_zh_odc3D.gmap.zip)：點選下載安裝檔
 
-* ![Map](images/Garmin.png =x36) comp style, MOI.OSM.camp - Taiwan TOPO（適合 PC/Mac BaseCamp）
+* ![Map](images/Garmin.png =x36) Garmin comp style, MOI.OSM.camp - Taiwan TOPO（適合 PC/Mac BaseCamp）
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
     > (歡迎製作並取代我的不專業解說)
-  * [![Map](images/Garmin_large.jpeg =36x) gmapsupp](./gmapsupp_Taiwan_moi_zh_camp.img.zip)：點選下載地圖檔
+  * [![Map](images/Garmin_large.jpeg =36x) camp](./gmapsupp_Taiwan_moi_zh_camp.img.zip), [camp3D](./gmapsupp_Taiwan_moi_zh_camp3D.img.zip) ：點選下載地圖檔
   * [![Map](images/Windows.png =36x) camp](./Install_MOI_Taiwan_TOPO_camp.exe), [camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png =36x) camp](./Taiwan_moi_zh_camp.gmap.zip), [camp3D](./Taiwan_moi_zh_camp3D.gmap.zip)：點選下載安裝檔
 
