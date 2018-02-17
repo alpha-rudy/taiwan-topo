@@ -680,7 +680,7 @@ $(POI): $(EXTRACT).osm.pbf
 			all-tags=false \
 			ways=true \
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
-		    file="$@"
+		    file="$@" > /dev/null 2> /dev/null
 
 .PHONY: gmap
 gmap: $(GMAP)
@@ -940,7 +940,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 		    map-start-zoom=12 \
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
-		    file="$@"
+		    file="$@" > /dev/null 2> /dev/null
 	
 $(TILES): $(PBF)
 	[ -n "$(MAPID)" ]
