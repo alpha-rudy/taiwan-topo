@@ -153,6 +153,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2018, 2/18
+  * 改用 mkgmap 來支援 GMAP DEM
 * 2018, 1/11
   * 增加 GMAP camp style 來給 PC/Mac 的 Garmin BaseCamp 使用
 * 2017, 12/14
