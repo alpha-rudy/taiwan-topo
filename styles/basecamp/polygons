@@ -482,7 +482,7 @@ landuse = railway [0x0c resolution 22-24]
 landuse = recreation_ground [0x17 resolution 22-24]
 
 # Speicherbecken (auch Talsperren; siehe auch landuse=basin). [point, closedway]
-landuse = reservoir [0x3f resolution 22-24]
+landuse = reservoir [0x3f resolution 16-24]
 
 # Wohngebiet. [point, closedway]
 landuse = residential [0x02 resolution 22-24]
