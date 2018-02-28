@@ -81,9 +81,7 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -98,9 +96,7 @@ TYP := basecamp
 STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem_camp.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -225,9 +221,7 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -368,9 +362,7 @@ TYP := bw
 STYLE := swisspopo
 STYLE_NAME := bw3D
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -385,9 +377,7 @@ TYP := outdoorc
 STYLE := swisspopo
 STYLE_NAME := odc3D
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -416,9 +406,7 @@ TYP := basecamp
 STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem_camp.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -475,9 +463,7 @@ TYP := basecamp
 STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM_FILE := hgt/moi-hgt-v4.zip
-GMAPDEM := $(ROOT_DIR)/$(GMAPDEM_FILE)
-GMAPDEM_CFG := gmapdem_camp.cfg
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmap
 
@@ -527,13 +513,29 @@ JAVACMD_OPTIONS := -Xmx72G -server
 
 DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
 MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
+MAP_HIDEM_DIR := $(MAP_DIR)_hidem
+MAP_LODEM_DIR := $(MAP_DIR)_lodem
+MAP_NODEM_DIR := $(MAP_DIR)_nodem
+MAP_HIDEM := $(MAP_HIDEM_DIR)/.done
+MAP_LODEM := $(MAP_LODEM_DIR)/.done
+MAP_NODEM := $(MAP_NODEM_DIR)/.done
+ifeq ($(GMAPDEM),)
+MAP_PC_DIR := $(MAP_NODEM_DIR)
+MAP_HAND_DIR := $(MAP_NODEM_DIR)
+MAP_PC := $(MAP_NODEM)
+MAP_HAND := $(MAP_NODEM)
+else
+MAP_PC_DIR := $(MAP_HIDEM_DIR)
+MAP_HAND_DIR := $(MAP_LODEM_DIR)
+MAP_PC := $(MAP_HIDEM)
+MAP_HAND := $(MAP_LODEM)
+endif
 
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 ELEVATION_MARKER := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MARKER_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 TILES := $(DATA_DIR)/.done
-MAP := $(MAP_DIR)/.done
 PBF := $(BUILD_DIR)/$(REGION).osm.pbf
 TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 STYLE_DIR := $(ROOT_DIR)/styles/$(STYLE)
@@ -638,17 +640,17 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
 
 .PHONY: nsis
 nsis: $(NSIS)
-$(NSIS): $(MAP)
+$(NSIS): $(MAP_PC)
 	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cd $(MAP_DIR) && \
+	cd $(MAP_PC_DIR) && \
 		rm -rf $@ && \
-		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img ); do \
+		for i in $(shell cd $(MAP_PC_DIR); ls $(MAPID)*.img ); do \
 			echo '  CopyFiles "$$MyTempDir\'"$${i}"'" "$$INSTDIR\'"$${i}"'"  '; \
 			echo '  Delete "$$MyTempDir\'"$${i}"'"  '; \
 		done > copy_tiles.txt && \
-		for i in $(shell cd $(MAP_DIR); ls $(MAPID)*.img ); do \
+		for i in $(shell cd $(MAP_PC_DIR); ls $(MAPID)*.img ); do \
 			echo '  Delete "$$INSTDIR\'"$${i}"'"  '; \
 		done > delete_tiles.txt && \
 		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | sed \
@@ -665,7 +667,7 @@ $(NSIS): $(MAP)
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi
-	cp "$(MAP_DIR)/Install_$(NAME_WORD).exe" $@
+	cp "$(MAP_PC_DIR)/Install_$(NAME_WORD).exe" $@
 
 .PHONY: poi
 poi: $(POI)
@@ -684,27 +686,27 @@ $(POI): $(EXTRACT).osm.pbf
 
 .PHONY: gmap
 gmap: $(GMAP)
-$(GMAP): $(MAP)
+$(GMAP): $(MAP_PC)
 	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cd $(MAP_DIR) && \
+	cd $(MAP_PC_DIR) && \
 	    rm -rf $@ && \
 	    cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | sed \
-	    	-e "s|__map_dir__|$(MAP_DIR)|g" \
+	    	-e "s|__map_dir__|$(MAP_PC_DIR)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
-	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_DIR)/jmc_cli.cfg" && \
+	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg" && \
 	    [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap" || true && \
 	    zip -r $@ "$(NAME_WORD).gmap"
 
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
-$(GMAPSUPP): $(MAP)
+$(GMAPSUPP): $(MAP_HAND)
 	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cd $(MAP_DIR) && \
+	cd $(MAP_HAND_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --license-file=$(ROOT_DIR)/docs/license.txt \
 	        --index \
@@ -717,7 +719,7 @@ $(GMAPSUPP): $(MAP)
 	        --overview-mapnumber=$(MAPID)0000 \
 	        --product-version=$(VERSION) \
 		$(MAPID)*.img $(MAPID).TYP
-	cp $(MAP_DIR)/gmapsupp.img $@
+	cp $(MAP_HAND_DIR)/gmapsupp.img $@
 
 .PHONY: gmapsupp_zip
 gmapsupp_zip: $(GMAPSUPP_ZIP)
@@ -735,13 +737,13 @@ NTL := name:en,name:zh,name
 MAPSFORGE_NTL := en
 endif
 
-.PHONY: map
-map: $(MAP)
-$(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
+.PHONY: map_hidem
+map_hidem: $(MAP_HIDEM)
+$(MAP_HIDEM): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 	[ -n "$(MAPID)" ]
-	rm -rf $(MAP_DIR)
-	mkdir -p $(MAP_DIR)
-	cd $(MAP_DIR) && \
+	rm -rf $(MAP_HIDEM_DIR)
+	mkdir -p $(MAP_HIDEM_DIR)
+	cd $(MAP_HIDEM_DIR) && \
 	    cat $(TYP_FILE) | sed \
 	    	-e "s|ä|a|g" \
 	    	-e "s|é|e|g" \
@@ -755,12 +757,12 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 		--family-id=$(MAPID) \
 		$(TYP).txt && \
 	    cp $(TYP).typ $(MAPID).TYP && \
-	    mkdir $(MAP_DIR)/style && \
-	    cp -a $(STYLE_DIR) $(MAP_DIR)/style/$(STYLE) && \
-	    cp $(ROOT_DIR)/styles/style-translations $(MAP_DIR)/ && \
+	    mkdir $(MAP_HIDEM_DIR)/style && \
+	    cp -a $(STYLE_DIR) $(MAP_HIDEM_DIR)/style/$(STYLE) && \
+	    cp $(ROOT_DIR)/styles/style-translations $(MAP_HIDEM_DIR)/ && \
 	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
-		-e "s|__map_dir__|$(MAP_DIR)|g" \
+		-e "s|__map_dir__|$(MAP_HIDEM_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
 		-e "s|__style__|$(STYLE)|g" \
 		-e "s|__name_tag_list__|$(NTL)|g" \
@@ -771,15 +773,99 @@ $(MAP): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(DATA_DIR)/template.args | sed \
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
-	    { [ -n "$(GMAPDEM)" ] && \
-		    cp $(GMAPDEM) ./moi-hgt.zip && \
-		    sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/$(GMAPDEM_CFG)" -i mkgmap.cfg || \
-			echo "no dem" ; } && \
+		cp $(GMAPDEM) ./moi-hgt.zip && \
+		sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
 	        -c mkgmap.cfg \
 		--check-styles
-	touch $(MAP)
+	touch $(MAP_HIDEM)
+
+.PHONY: map_lodem
+map_lodem: $(MAP_LODEM)
+$(MAP_LODEM): $(TILES) $(TYP_FILE) $(STYLE_DIR) $(GMAPDEM)
+	[ -n "$(MAPID)" ]
+	rm -rf $(MAP_LODEM_DIR)
+	mkdir -p $(MAP_LODEM_DIR)
+	cd $(MAP_LODEM_DIR) && \
+	    cat $(TYP_FILE) | sed \
+	    	-e "s|ä|a|g" \
+	    	-e "s|é|e|g" \
+	    	-e "s|ß|b|g" \
+	    	-e "s|ü|u|g" \
+	    	-e "s|ö|o|g" \
+	    	-e "s|FID=.*|FID=$(MAPID)|g" \
+		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
+	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+	    	--product-id=1 \
+		--family-id=$(MAPID) \
+		$(TYP).txt && \
+	    cp $(TYP).typ $(MAPID).TYP && \
+	    mkdir $(MAP_LODEM_DIR)/style && \
+	    cp -a $(STYLE_DIR) $(MAP_LODEM_DIR)/style/$(STYLE) && \
+	    cp $(ROOT_DIR)/styles/style-translations $(MAP_LODEM_DIR)/ && \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
+		-e "s|__root_dir__|$(ROOT_DIR)|g" \
+		-e "s|__map_dir__|$(MAP_LODEM_DIR)|g" \
+		-e "s|__version__|$(VERSION)|g" \
+		-e "s|__style__|$(STYLE)|g" \
+		-e "s|__name_tag_list__|$(NTL)|g" \
+		-e "s|__code_page__|$(CODE_PAGE)|g" \
+		-e "s|__name_long__|$(NAME_LONG)|g" \
+		-e "s|__name_short__|$(NAME_SHORT)|g" \
+		-e "s|__name_word__|$(NAME_WORD)|g" \
+		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+	    cat $(DATA_DIR)/template.args | sed \
+	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+		cp $(GMAPDEM) ./moi-hgt.zip && \
+		sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
+	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+	        --max-jobs=16 \
+	        -c mkgmap.cfg \
+		--check-styles
+	touch $(MAP_LODEM)
+
+.PHONY: map_nodem
+map_nodem: $(MAP_NODEM)
+$(MAP_NODEM): $(TILES) $(TYP_FILE) $(STYLE_DIR)
+	[ -n "$(MAPID)" ]
+	rm -rf $(MAP_NODEM_DIR)
+	mkdir -p $(MAP_NODEM_DIR)
+	cd $(MAP_NODEM_DIR) && \
+	    cat $(TYP_FILE) | sed \
+	    	-e "s|ä|a|g" \
+	    	-e "s|é|e|g" \
+	    	-e "s|ß|b|g" \
+	    	-e "s|ü|u|g" \
+	    	-e "s|ö|o|g" \
+	    	-e "s|FID=.*|FID=$(MAPID)|g" \
+		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
+	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+	    	--product-id=1 \
+		--family-id=$(MAPID) \
+		$(TYP).txt && \
+	    cp $(TYP).typ $(MAPID).TYP && \
+	    mkdir $(MAP_NODEM_DIR)/style && \
+	    cp -a $(STYLE_DIR) $(MAP_NODEM_DIR)/style/$(STYLE) && \
+	    cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_DIR)/ && \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
+		-e "s|__root_dir__|$(ROOT_DIR)|g" \
+		-e "s|__map_dir__|$(MAP_NODEM_DIR)|g" \
+		-e "s|__version__|$(VERSION)|g" \
+		-e "s|__style__|$(STYLE)|g" \
+		-e "s|__name_tag_list__|$(NTL)|g" \
+		-e "s|__code_page__|$(CODE_PAGE)|g" \
+		-e "s|__name_long__|$(NAME_LONG)|g" \
+		-e "s|__name_short__|$(NAME_SHORT)|g" \
+		-e "s|__name_word__|$(NAME_WORD)|g" \
+		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+	    cat $(DATA_DIR)/template.args | sed \
+	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+	        --max-jobs=16 \
+	        -c mkgmap.cfg \
+		--check-styles
+	touch $(MAP_NODEM)
 
 ELEVATIONS_URL := file://${HOME}/osm_elevations
 $(ELEVATION):
