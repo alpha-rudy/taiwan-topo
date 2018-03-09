@@ -400,7 +400,7 @@ building = * [0x13 resolution 23-24]
 landuse = allotments [0x23 resolution 22-24]
 
 # Bassin, Wasserbecken (zusammen mit basin=* für Hoch-/Regenwassersicker-/-rückhaltebecken). [point, closedway]
-landuse = basin [0x3f resolution 23-24]
+landuse = basin [0x3f resolution 16-24]
 
 # Vorher bebautes Land (für Wiederbebauung vorgesehen), Industrie- und Gewerbebrache, Sanierungsgebiet, Altlast. [point, closedway]
 landuse = brownfield [0x27 resolution 23-24]
