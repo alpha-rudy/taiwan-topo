@@ -564,6 +564,8 @@ MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
 JMC_CMD := jmc/linux/jmc_cli
 endif
 
+ZIP_CMD := 7z a -tzip -mx=9
+
 all: $(TARGETS)
 
 clean:
@@ -636,7 +638,7 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
 		unzip $(MAPSFORGE_ZIP) -d map && \
 		unzip $(MAPSFORGE_STYLE) -d mapthemes && \
 		unzip $(HGT) -d hgt && \
-		zip -r $(GTS_ALL).zip map/ mapthemes/ hgt/
+		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
 
 .PHONY: nsis
 nsis: $(NSIS)
@@ -662,7 +664,7 @@ $(NSIS): $(MAP_PC)
 			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi && \
 		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
 		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
-		zip -r "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
+		$(ZIP_CMD) "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
 		cat $(ROOT_DIR)/docs/taiwan_topo.md | sed \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
@@ -698,7 +700,7 @@ $(GMAP): $(MAP_PC)
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
 	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg" && \
 	    [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap" || true && \
-	    zip -r $@ "$(NAME_WORD).gmap"
+	    $(ZIP_CMD) $@ "$(NAME_WORD).gmap"
 
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
@@ -727,7 +729,7 @@ $(GMAPSUPP_ZIP): $(GMAPSUPP)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(GMAPSUPP)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(GMAPSUPP))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(GMAPSUPP))
 
 ifeq ($(LANG),zh) 
 NTL := name,name:zh,name:en
@@ -966,7 +968,7 @@ $(MAPSFORGE_STYLE):
 	cp -a styles/$(MAPSFORGE_STYLE_DIR) $(BUILD_DIR)
 	cat styles/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE) | \
 	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE)
-	cd $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR) && zip -r $@ *
+	cd $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR) && $(ZIP_CMD) $@ *
 
 .PHONY: locus_style $(LOCUS_STYLE)
 locus_style: $(LOCUS_STYLE)
@@ -979,7 +981,7 @@ $(LOCUS_STYLE):
 	cp -a styles/$(LOCUS_STYLE_DIR) $(BUILD_DIR)/$(LOCUS_STYLE_INST)
 	cat styles/$(LOCUS_STYLE_DIR)/$(LOCUS_STYLE_FILE) | \
 	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/$(LOCUS_STYLE_FILE)
-	cd $(BUILD_DIR) && zip -r $@ $(LOCUS_STYLE_INST)/
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
 .PHONY: twmap_style $(TWMAP_STYLE)
 twmap_style: $(TWMAP_STYLE)
@@ -991,7 +993,7 @@ $(TWMAP_STYLE):
 	cp -a styles/twmap_style $(BUILD_DIR)
 	cat styles/twmap_style/MOI_OSM_twmap.xml | \
 	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
-	cd $(BUILD_DIR)/twmap_style && zip -r $@ *
+	cd $(BUILD_DIR)/twmap_style && $(ZIP_CMD) $@ *
 
 .PHONY: mapsforge_zip
 mapsforge_zip: $(MAPSFORGE_ZIP)
@@ -999,7 +1001,7 @@ $(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
 
 .PHONY: poi_zip
 poi_zip: $(POI_ZIP)
@@ -1007,7 +1009,7 @@ $(POI_ZIP): $(POI)
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(POI)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && zip -r $@ $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
