@@ -267,6 +267,21 @@ DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1312)
 TARGETS := gmap
 
+else ifeq ($(SUITE),beibeiji_bc_dem)
+REGION := Beibeiji
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Beibeiji.poly
+TYP := basecamp
+STYLE := basecamp
+STYLE_NAME := camp3D
+DEM_NAME := MOI
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+MAPID := $(shell printf %d 0x1317)
+TARGETS := gmapsupp_zip gmap nsis
+
 else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
 LANG := zh
