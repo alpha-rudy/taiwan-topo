@@ -739,7 +739,7 @@ highway = motorway & fzkrouting != yes {set name = '${ref|highway-symbol:interst
 # trunk
 # --------------------------------------------
 # 0x02 = Bitmap 2 (transparent, nur fuer Routing, Label)
-highway = trunk & fzkrouting != yes {set name = '${ref|highway-symbol:shield}'; set fzkrouting=yes} [0x02 road_class=4 road_speed=6 resolution 24 continue with_actions]
+highway = trunk & fzkrouting != yes {set name = '${ref|highway-symbol:round}'; set fzkrouting=yes} [0x02 road_class=4 road_speed=6 resolution 24 continue with_actions]
 
 # --------------------------------------------
 # primary
@@ -751,13 +751,13 @@ highway = primary & fzkrouting != yes {set name = '${name}' | '${ref|highway-sym
 # secondary
 # --------------------------------------------
 # 0x04 = Bitmap 2 (transparent, nur fuer Routing, Label)
-highway = secondary & fzkrouting != yes {set name = '${name}' | '${ref|highway-symbol:oval}'; set fzkrouting=yes} [0x04 road_class=2 road_speed=4 resolution 24 continue with_actions]
+highway = secondary & fzkrouting != yes {set name = '${name}' | '${ref|highway-symbol:shield}'; set fzkrouting=yes} [0x04 road_class=2 road_speed=4 resolution 24 continue with_actions]
 
 # --------------------------------------------
 # tertiary
 # --------------------------------------------
 # 0x05 = Bitmap 2 (transparent, nur fuer Routing, Label)
-highway = tertiary & fzkrouting != yes {set name = '${name}' | '${ref|highway-symbol:oval}'; set fzkrouting=yes} [0x05 road_class=2 road_speed=3 resolution 24 continue with_actions]
+highway = tertiary & fzkrouting != yes {set name = '${name}' | '${ref|highway-symbol:shield}'; set fzkrouting=yes} [0x05 road_class=2 road_speed=3 resolution 24 continue with_actions]
 
 # --------------------------------------------
 # residential
@@ -864,11 +864,11 @@ highway = trunk & man_made = dyke               [0x011f03 resolution 24 continue
 # 0x010f0c = 2/1 (mittel, NoLabel)
 # 0x010f0d = 1/1 (schmal, NoLabel)
 # 0x010e0b = 1 (sehr schmal, NoLabel)
-highway = trunk {set name = '${ref|highway-symbol:shield}'} [0x011f14 resolution 24 continue with_actions]
-highway = trunk {set name = '${ref|highway-symbol:shield}'} [0x012100 resolution 23-23 continue with_actions]
-highway = trunk {set name = '${ref|highway-symbol:shield}'} [0x010f0c resolution 22-22 continue with_actions]
-highway = trunk {set name = '${ref|highway-symbol:shield}'} [0x010f0d resolution 21-21 continue with_actions]
-highway = trunk {set name = '${ref|highway-symbol:shield}'} [0x010e0b resolution 19-20 continue with_actions]
+highway = trunk {set name = '${ref|highway-symbol:round}'} [0x011f14 resolution 24 continue with_actions]
+highway = trunk {set name = '${ref|highway-symbol:round}'} [0x012100 resolution 23-23 continue with_actions]
+highway = trunk {set name = '${ref|highway-symbol:round}'} [0x010f0c resolution 22-22 continue with_actions]
+highway = trunk {set name = '${ref|highway-symbol:round}'} [0x010f0d resolution 21-21 continue with_actions]
+highway = trunk {set name = '${ref|highway-symbol:round}'} [0x010e0b resolution 19-20 continue with_actions]
 
 
 # Bundesstrasse:
@@ -909,10 +909,10 @@ highway = secondary & man_made = dyke           [0x01040c resolution 24 continue
 # 0x010e0d = 4/1 (breit, NoLabel)
 # 0x010f10 = 2/1 (mittel, NoLabel)
 # 0x010f11 = 1/1 (schmal, NoLabel)
-highway = secondary {set name = '${ref|highway-symbol:oval}'} [0x011f16 resolution 24 continue with_actions]
-highway = secondary {set name = '${ref|highway-symbol:oval}'} [0x010e0d resolution 23-23 continue with_actions]
-highway = secondary {set name = '${ref|highway-symbol:oval}'} [0x010f10 resolution 22-22 continue with_actions]
-highway = secondary {set name = '${ref|highway-symbol:oval}'} [0x010f11 resolution 20-21 continue with_actions]
+highway = secondary {set name = '${ref|highway-symbol:shield}'} [0x011f16 resolution 24 continue with_actions]
+highway = secondary {set name = '${ref|highway-symbol:shield}'} [0x010e0d resolution 23-23 continue with_actions]
+highway = secondary {set name = '${ref|highway-symbol:shield}'} [0x010f10 resolution 22-22 continue with_actions]
+highway = secondary {set name = '${ref|highway-symbol:shield}'} [0x010f11 resolution 20-21 continue with_actions]
 
 
 # Kreisstrasse:
@@ -930,9 +930,9 @@ highway = tertiary & man_made = dyke            [0x011f03 resolution 24 continue
 # 0x010e0e = 4/1 (breit, NoLabel)
 # 0x010f12 = 2/1 (mittel, NoLabel)
 # 0x010f13 = 1/1 (schmal, NoLabel)
-highway = tertiary {set name = '${ref|highway-symbol:oval}'}  [0x010e0e resolution 24 continue with_actions]
-highway = tertiary {set name = '${ref|highway-symbol:oval}'}  [0x010f12 resolution 23-23 continue with_actions]
-highway = tertiary {set name = '${ref|highway-symbol:oval}'}  [0x010f13 resolution 21-22 continue with_actions]
+highway = tertiary {set name = '${ref|highway-symbol:shield}'}  [0x010e0e resolution 24 continue with_actions]
+highway = tertiary {set name = '${ref|highway-symbol:shield}'}  [0x010f12 resolution 23-23 continue with_actions]
+highway = tertiary {set name = '${ref|highway-symbol:shield}'}  [0x010f13 resolution 21-22 continue with_actions]
 
 
 # Strasse an und in Wohngebieten:
