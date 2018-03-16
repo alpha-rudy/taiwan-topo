@@ -505,7 +505,7 @@ STYLE_NAME := camp3D
 DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
 MAPID := $(shell printf %d 0x1117)
-TARGETS := gmap
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
