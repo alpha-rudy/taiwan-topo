@@ -82,11 +82,11 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝
-    * [![DEM](images/Cartograph_dem.png =36x) DEM](./moi-hgt-v4.zip)：未支援。請點選下載，並透過 iTune 手動安裝
+    * [![DEM](images/Cartograph_dem.png =36x) DEM](./moi-hgt-v3.zip)：未支援。請點選下載，並透過 iTune 手動安裝
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝
-    * [![DEM](images/Cartograph_dem.png =36x) DEM](./moi-hgt-v4.zip)：未支援。點選下載，並透過 iTune 手動安裝
+    * [![DEM](images/Cartograph_dem.png =36x) DEM](./moi-hgt-v3.zip)：未支援。點選下載，並透過 iTune 手動安裝
 
 * ![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Mapsforge 手動下載自行安裝
   * 安裝示範影片：
@@ -98,7 +98,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，手動安裝
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，手動安裝
   * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝
-  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM](./moi-hgt-v4.zip)：點選下載高程檔，給綠野遊蹤-GTs、Orux、Locus 與 Cartograph 手動安裝
+  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM](./moi-hgt-v3.zip)：點選下載高程檔，給綠野遊蹤-GTs、Orux、Locus 與 Cartograph 手動安裝
 
 * ![Map](images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝示範影片：
