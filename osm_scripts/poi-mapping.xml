@@ -3,8 +3,76 @@
   xmlns="http://mapsforge.org/poi-mapping"
   xsi:schemaLocation="http://mapsforge.org/poi-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/poi-mapping.xsd">
 
+  <!-- Hiking -->
+  <category title="01 登山相關">
+    <category title="01 山頭">
+      <mapping tag="natural=peak" />
+      <mapping tag="natural=vulcano" />
+      <category title="01 百岳">
+        <mapping tag="zl=0" />
+        <mapping tag="zl=1" />
+      </category>
+      <category title="02 小百岳">
+        <mapping tag="zl=2" />
+      </category>
+    </category>
+    <category title="02 步道/山徑">
+      <mapping tag="highway=path" />
+      <mapping tag="highway=footway" />
+      <mapping tag="highway=steps" />
+      <mapping tag="hknetwork=lwn" />
+      <mapping tag="hknetwork=uwn" />
+      <mapping tag="hknetwork=rwn" />
+      <mapping tag="hknetwork=nwn" />
+      <mapping tag="hknetwork=iwn" />
+    </category>
+    <category title="03 登山口">
+      <mapping tag="highway=trailhead" />
+      <mapping tag="entrance=yes" />
+    </category>
+    <category title="04 山屋/營地">
+      <mapping tag="tourism=camp_site" />
+      <mapping tag="tourism=alpine_hut" />
+      <mapping tag="tourism=wilderness_hut" />
+      <mapping tag="shelter_type=basic_hut" />
+      <mapping tag="shelter_type=lean_to" />
+    </category>
+    <category title="05 溪流/水源/瀑布">
+      <mapping tag="waterway=river" />
+      <mapping tag="waterway=stream" />
+      <mapping tag="waterway=waterfall" />
+      <mapping tag="natural=water" />
+      <mapping tag="natural=pond" />
+      <mapping tag="amenity=drinking_water" />
+      <mapping tag="natural=hot_spring" />
+    </category>
+    <category title="06 保護區/景點/觀景台">
+      <mapping tag="tourism=information" />
+      <mapping tag="tourism=viewpoint" />
+      <mapping tag="tourism=attraction" />
+      <mapping tag="boundary=nature_reserve" />
+      <mapping tag="boundary=national_park" />
+    </category>
+  </category>
+
+  <!-- Bicycle / added  OAM -->
+  <category title="02 自行車相關">
+    <category title="01 自行車租借站">
+      <mapping tag="amenity=bicycle_rental" />
+    </category>
+    <category title="自行車停車場">
+      <mapping tag="amenity=bicycle_parking" />
+    </category>
+    <category title="自行車行">
+      <mapping tag="shop=bicycle" />
+    </category>
+    <category title="自行車修護">
+      <mapping tag="amenity=bicycle_repair_station" />
+    </category>
+  </category>
+
   <!-- Natural -->
-  <category title="01 自然">
+  <category title="03 自然">
     <category title="01 山/山峰">
       <mapping tag="natural=peak" />
     </category>
@@ -17,7 +85,7 @@
     </category>
   </category>
 
-  <category title="02 地點">
+  <category title="04 地點">
     <category title="01 城市">
       <mapping tag="place=city" />
     </category>
@@ -40,7 +108,7 @@
   </category>
 
   <!-- Tourism -->
-  <category title="03 觀光/旅遊">
+  <category title="05 觀光/旅遊">
     <category title="01 高山小屋">
       <mapping tag="tourism=alpine_hut" />
     </category>
@@ -97,7 +165,7 @@
   </category>
 
   <!-- Waterway / added OAM -->
-  <category title="04 水路">
+  <category title="06 水路">
     <category title="01 瀑布">
       <mapping tag="waterway=waterfall" />
       <mapping tag="natural=waterfall" />
@@ -109,22 +177,6 @@
     <category title="03 水區">
       <mapping tag="waterway=water_point" />
       <mapping tag="amenity=water_point" />
-    </category>
-  </category>
-
-  <!-- Bicycle / added  OAM -->
-  <category title="05 自行車相關">
-    <category title="01 自行車租借站">
-      <mapping tag="amenity=bicycle_rental" />
-    </category>
-    <category title="自行車停車場">
-      <mapping tag="amenity=bicycle_parking" />
-    </category>
-    <category title="自行車行">
-      <mapping tag="shop=bicycle" />
-    </category>
-    <category title="自行車修護">
-      <mapping tag="amenity=bicycle_repair_station" />
     </category>
   </category>
 
