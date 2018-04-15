@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="root"
+    xmlns="http://mapsforge.org/poi-mapping"
+    xsi:schemaLocation="http://mapsforge.org/poi-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/poi-mapping.xsd">
+
+    <!-- Natural -->
+    <category title="01 自然">
+        <category title="01 山/山峰">
+            <mapping tag="natural=peak" />
+        </category>
+        <category title="02 噴泉/泉水">
+            <mapping tag="natural=geyser" />
+            <mapping tag="natural=spring" />
+        </category>
+        <category title="03 火山">
+            <mapping tag="natural=vulcano" />
+        </category>
+    </category>
+
+    <category title="02 地點">
+        <category title="01 城市">
+            <mapping tag="place=city" />
+        </category>
+        <category title="02 鎮">
+            <mapping tag="place=town" />
+            <mapping tag="place=suburb" />
+            <mapping tag="place=neighbourhood" />
+            <mapping tag="place=neighborhood" />
+        </category>
+        <category title="03 村">
+            <mapping tag="place=village" />
+        </category>
+        <category title="04 聚落">
+            <mapping tag="place=hamlet" />
+        </category>
+        <category title="05 獨宅">
+            <mapping tag="place=isolated_dwelling" />
+            <mapping tag="place=farm" />
+        </category>
+    </category>
+
+    <!-- Tourism -->
+    <category title="03 觀光/旅遊">
+        <category title="01 高山小屋">
+            <mapping tag="tourism=alpine_hut" />
+        </category>
+        <category title="02 小屋">
+            <mapping tag="tourism=chalet" />
+        </category>
+        <category title="03 景點">
+            <mapping tag="tourism=attraction" />
+        </category>
+        <category title="04 營地">
+            <mapping tag="tourism=camp_site" />
+        </category>
+        <category title="05 展望點">
+            <mapping tag="tourism=viewpoint" />
+        </category>
+        <category title="藝術雕塑">
+            <mapping tag="tourism=artworks" />
+        </category>
+        <category title="汽車露營區">
+            <mapping tag="tourism=caravan_site" />
+        </category>
+        <category title="給水區">
+            <mapping tag="amenity=water_point" />
+        </category>
+        <category title="待客室">
+            <mapping tag="tourism=guest_house" />
+        </category>
+        <category title="背包旅館">
+            <mapping tag="tourism=hostel" />
+        </category>
+        <category title="旅館">
+            <mapping tag="tourism=hotel" />
+        </category>
+        <category title="遊客中心">
+            <mapping tag="tourism=information" />
+        </category>
+        <category title="汽車旅館">
+            <mapping tag="tourism=motel" />
+        </category>
+        <category title="博物館">
+            <mapping tag="tourism=museum" />
+            <!-- Added -->
+            <mapping tag="amenity=museum" />
+        </category>
+        <category title="野餐區">
+            <mapping tag="tourism=picnic_site" />
+        </category>
+        <category title="主題公園">
+            <mapping tag="tourism=theme park" />
+        </category>
+        <category title="動物園">
+            <mapping tag="tourism=zoo" />
+        </category>
+    </category>
+
+    <!-- Waterway / added OAM -->
+    <category title="04 水路">
+        <category title="01 瀑布">
+            <mapping tag="waterway=waterfall" />
+            <mapping tag="natural=waterfall" />
+        </category>
+        <category title="02 急流">
+            <mapping tag="waterway=rapids" />
+            <mapping tag="natural=rapids" />
+        </category>
+        <category title="03 水區">
+            <mapping tag="waterway=water_point" />
+            <mapping tag="amenity=water_point" />
+        </category>
+    </category>
+
+    <!-- Bicycle / added  OAM -->
+    <category title="05 自行車相關">
+        <category title="01 自行車租借站">
+            <mapping tag="amenity=bicycle_rental" />
+        </category>
+        <category title="自行車停車場">
+            <mapping tag="amenity=bicycle_parking" />
+        </category>
+        <category title="自行車行">
+            <mapping tag="shop=bicycle" />
+        </category>
+        <category title="自行車修護">
+            <mapping tag="amenity=bicycle_repair_station" />
+        </category>
+    </category>
+
+    <!-- Amenities -->
+    <category title="設施">
+        <category title="食物">
+            <category title="餐廳">
+                <mapping tag="amenity=restaurant" />
+            </category>
+            <category title="快餐/速食">
+                <mapping tag="amenity=fast_food" />
+            </category>
+            <category title="飲用水">
+                <mapping tag="amenity=drinking_water" />
+            </category>
+            <category title="酒館/酒吧">
+                <mapping tag="amenity=pub" />
+                <mapping tag="amenity=bar" />
+            </category>
+            <category title="咖啡">
+                <mapping tag="amenity=cafe" />
+            </category>
+        </category>
+        <category title="教育機構">
+            <category title="幼稚園">
+                <mapping tag="amenity=kindergarten" />
+            </category>
+            <category title="學校">
+                <mapping tag="amenity=school" />
+            </category>
+            <category title="大學校園">
+                <mapping tag="amenity=college" />
+                <mapping tag="amenity=university" />
+            </category>
+            <category title="圖書館">
+                <mapping tag="amenity=library" />
+            </category>
+        </category>
+        
+        <category title="交通運輸">
+            <category title="渡輪碼頭">
+                <mapping tag="amenity=ferry_terminal" />
+            </category>
+            <category title="自行車停車位">
+                <mapping tag="amenity=bicycle_parking" />
+            </category>
+            <category title="自行車租賃站">
+                <mapping tag="amenity=bicycle_rental" />
+            </category>
+            <category title="公車站">
+                <mapping tag="amenity=bus_station" />
+                <mapping tag="highway=bus_stop" />
+            </category>
+            <category title="租車站">
+                <mapping tag="amenity=car_rental" />
+            </category>
+            <category title="洗車站">
+                <mapping tag="amenity=car_wash" />
+            </category>
+            <category title="加油站">
+                <mapping tag="amenity=fuel" />
+                <mapping tag="shop=gas" />
+            </category>
+            <category title="停車場">
+                <mapping tag="amenity=parking" />
+            </category>
+            <category title="計程車站">
+                <mapping tag="amenity=taxi" />
+            </category>
+            <category title="電動車充電設施">
+                <mapping tag="amenity=charging_station" />
+            </category>
+        </category>
+        <category title="金融機構">
+            <category title="提款機">
+                <mapping tag="amenity=atm" />
+            </category>
+            <category title="銀行">
+                <mapping tag="amenity=bank" />
+            </category>
+        </category>
+        <category title="醫院/衛生保健">
+            <category title="藥房/藥店">
+                <mapping tag="amenity=pharmacy" />
+            </category>
+            <category title="醫院">
+                <mapping tag="amenity=hospital" />
+                <mapping tag="amenity=clinic" />
+            </category>
+            <category title="牙醫診所">
+                <mapping tag="amenity=dentist" />
+            </category>
+            <category title="私人診所">
+                <mapping tag="amenity=doctors" />
+            </category>
+            <category title="照護/護理中心">
+                <mapping tag="amenity=nursing_home" />
+            </category>
+            <category title="獸醫/動物診所">
+                <mapping tag="amenity=veterinary" />
+            </category>
+        </category>
+        <category title="娛樂/藝術/文化">
+            <category title="藝術中心">
+                <mapping tag="amenity=arts_centre" />
+            </category>
+            <category title="電影院">
+                <mapping tag="amenity=cinema" />
+            </category>
+            <category title="社區中心">
+                <mapping tag="amenity=community_centre" />
+            </category>
+            <category title="噴泉">
+                <mapping tag="amenity=fountain" />
+            </category>
+            <category title="夜總會">
+                <mapping tag="amenity=nightclub" />
+            </category>
+            <category title="劇場/歌劇">
+                <mapping tag="amenity=theatre" />
+            </category>
+        </category>
+        <category title="其他設施">
+            <category title="公共長椅">
+                <mapping tag="amenity=bench" />
+            </category>
+            <category title="法院的房子">
+                <mapping tag="amenity=court_house" />
+            </category>
+            <category title="火葬場">
+                <mapping tag="amenity=crematorium" />
+            </category>
+            <category title="消防站">
+                <mapping tag="amenity=fire_station" />
+            </category>
+            <category title="墓場">
+                <mapping tag="amenity=grave_yard" />
+            </category>
+            <category title="市場">
+                <mapping tag="amenity=market_place" />
+            </category>
+            <category title="教堂/清真寺/寺廟">
+                <mapping tag="amenity=place_of_worship" />
+            </category>
+            <category title="警察局">
+                <mapping tag="amenity=police" />
+            </category>
+            <category title="郵箱/郵筒">
+                <mapping tag="amenity=post_box" />
+            </category>
+            <category title="郵局">
+                <mapping tag="amenity=post_office" />
+            </category>
+            <category title="監獄">
+                <mapping tag="amenity=prison" />
+            </category>
+            <category title="回收設施">
+                <mapping tag="amenity=recycling" />
+            </category>
+            <category title="桑拿/按摩">
+                <mapping tag="amenity=sauna" />
+            </category>
+            <category title="涼亭">
+                <mapping tag="amenity=shelter" />
+            </category>
+            <category title="公共廁所">
+                <mapping tag="amenity=toilets" />
+            </category>
+            <category title="行政中心">
+                <mapping tag="amenity=townhall" />
+            </category>
+        </category>
+    </category>
+
+    <category title="機場設施">
+        <category title="機場">
+            <mapping tag="aeroway=aerodrome" />
+            <mapping tag="aeroway=airport" />
+        </category>
+        <category title="航站">
+            <mapping tag="aeroway=terminal" />
+        </category>
+        <category title="機場大門">
+            <mapping tag="aeroway=gate" />
+        </category>
+        <category title="直升機停機坪">
+            <mapping tag="aeroway=helipad" />
+        </category>
+    </category>
+
+    <!-- Emergency -->
+    <category title="緊急救護">
+        <category title="救護車站">
+            <mapping tag="emergency=ambulance_station" />
+        </category>
+        <category title="滅火器">
+            <mapping tag="emergency=fire_extinguisher" />
+        </category>
+        <category title="消防軟管">
+            <mapping tag="emergency=fire_hose" />
+        </category>
+        <category title="消防栓">
+            <mapping tag="emergency=fire_hydrant" />
+        </category>
+        <category title="緊急電話">
+            <mapping tag="emergency=phone" />
+        </category>
+        <category title="警報器">
+            <mapping tag="emergency=siren" />
+        </category>
+    </category>
+
+    <!-- Highway -->
+    <category title="公路">
+        <category title="交流道">
+            <mapping tag="highway=motorway_junction" />
+        </category>
+        <category title="服務區">
+            <mapping tag="highway=services" />
+        </category>
+    </category>
+
+    <!-- Historic -->
+    <category title="歷史遺跡">
+        <category title="考古遺址">
+            <mapping tag="historic=archaeological" />
+        </category>
+        <category title="戰場">
+            <mapping tag="historic=battlefield" />
+        </category>
+        <category title="城門">
+            <mapping tag="historic=city_gate" />
+        </category>
+        <category title="堡壘">
+            <mapping tag="historic=fort" />
+        </category>
+        <category title="紀念館">
+            <mapping tag="historic=memorial" />
+        </category>
+        <category title="紀念碑">
+            <mapping tag="historic=monument" />
+        </category>
+        <category title="遺跡">
+            <mapping tag="historic=ruins" />
+        </category>
+        <category title="路邊小廟">
+            <mapping tag="historic=wayside_shrine" />
+        </category>
+    </category>
+
+    <!-- Leisure -->
+    <category title="休閒設施">
+        <category title="舞蹈場地">
+            <mapping tag="leisure=dance" />
+        </category>
+        <category title="狗公園">
+            <mapping tag="leisure=dog_park" />
+        </category>
+        <category title="釣魚場">
+            <mapping tag="leisure=fishing" />
+        </category>
+        <category title="高爾夫球場">
+            <mapping tag="leisure=golf_course" />
+        </category>
+        <category title="溜冰場">
+            <mapping tag="leisure=ice_rink" />
+        </category>
+        <category title="碼頭">
+            <mapping tag="leisure=marina" />
+        </category>
+        <category title="迷你高爾夫球場">
+            <mapping tag="leisure=miniature_golf" />
+        </category>
+        <category title="自然保護/保留區">
+            <mapping tag="leisure=nature_reserve" />
+        </category>
+        <category title="公園">
+            <mapping tag="leisure=garden" />
+            <mapping tag="leisure=park" />
+        </category>
+        <category title="球場">
+            <mapping tag="leisure=pitch" />
+        </category>
+        <category title="遊戲場">
+            <mapping tag="leisure=playground" />
+        </category>
+        <category title="運動中心">
+            <mapping tag="leisure=sports_centre" />
+        </category>
+        <category title="體育館">
+            <mapping tag="leisure=stadium" />
+        </category>
+        <category title="游泳池">
+            <mapping tag="leisure=swimming_pool" />
+        </category>
+        <category title="運動場/跑道">
+            <mapping tag="leisure=track" />
+        </category>
+        <category title="親水公園">
+            <mapping tag="leisure=water_park" />
+        </category>
+    </category>
+
+    <!-- Man Made -->
+    <category title="人造物">
+        <category title="燈塔">
+            <mapping tag="man_made=lighthouse" />
+        </category>
+        <category title="基石">
+            <mapping tag="man_made=survey_point" />
+        </category>
+        <category title="電塔/塔台">
+            <mapping tag="man_made=tower" />
+            <mapping tag="tower=communication" />
+            <mapping tag="tower=observation" />
+        </category>
+        <category title="廢水場">
+            <mapping tag="man_made=wastewater_plant" />
+        </category>
+        <category title="水塔">
+            <mapping tag="man_made=water_tower" />
+        </category>
+        <category title="水場">
+            <mapping tag="man_made=water_works" />
+        </category>
+        <category title="水井">
+            <mapping tag="man_made=water_well" />
+        </category>
+        <category title="風車">
+            <mapping tag="man_made=windmill" />
+            <mapping tag="tower=windmill" />
+        </category>
+        <category title="工作坊">
+            <mapping tag="man_made=works" />
+        </category>
+    </category>
+
+    <!-- Military -->
+    <category title="軍事區">
+        <category title="軍用機場">
+            <mapping tag="military=airfields" />
+        </category>
+        <category title="防空洞/碉堡">
+            <mapping tag="military=bunker" />
+        </category>
+        <category title="軍營">
+            <mapping tag="military=barrack" />
+        </category>
+        <category title="危險區域">
+            <mapping tag="military=danger_area" />
+        </category>
+        <category title="海軍基地">
+            <mapping tag="military=naval_base" />
+        </category>
+        <category title="營區/靶場">
+            <mapping tag="military=range" />
+        </category>
+    </category>
+
+    <category title="行政設施">
+        <category title="行政區">
+            <mapping tag="office=administrative" />
+            <mapping tag="office=government" />
+        </category>
+        <category title="旅行社">
+            <mapping tag="office=travel_agent" />
+        </category>
+    </category>
+
+    <!-- Shop -->
+    <category title="商店">
+        <category title="酒類">
+            <mapping tag="shop=alcohol" />
+        </category>
+        <category title="動漫">
+            <mapping tag="shop=anime" />
+        </category>
+        <category title="嬰兒用品">
+            <mapping tag="shop=baby_goods" />
+        </category>
+        <category title="麵包店">
+            <mapping tag="shop=bakery" />
+        </category>
+        <category title="浴室家具">
+            <mapping tag="shop=bathroom_furnishing" />
+        </category>
+        <category title="美容">
+            <mapping tag="shop=beauty" />
+        </category>
+        <category title="床具">
+            <mapping tag="shop=bed" />
+        </category>
+        <category title="飲料">
+            <mapping tag="shop=beverages" />
+        </category>
+        <category title="自行車">
+            <mapping tag="shop=bicycle" />
+        </category>
+        <category title="書局">
+            <mapping tag="shop=books" />
+        </category>
+        <category title="精品店">
+            <mapping tag="shop=boutique" />
+        </category>
+        <category title="肉店">
+            <mapping tag="shop=butcher" />
+        </category>
+        <category title="售車展示中心">
+            <mapping tag="shop=car" />
+        </category>
+        <category title="汽車修理">
+            <mapping tag="shop=car_repair" />
+        </category>
+        <category title="汽車零件">
+            <mapping tag="shop=car_parts" />
+        </category>
+        <category title="地毯">
+            <mapping tag="shop=carpet" />
+        </category>
+        <category title="慈善機構">
+            <mapping tag="shop=charity" />
+        </category>
+        <category title="藥劑/藥妝店">
+            <mapping tag="shop=chemist" />
+            <mapping tag="shop=drugstore" />
+        </category>
+        <category title="服飾行">
+            <mapping tag="shop=clothes" />
+        </category>
+        <category title="電腦">
+            <mapping tag="shop=computer" />
+        </category>
+        <category title="糖果店">
+            <mapping tag="shop=confectionery" />
+        </category>
+        <category title="便利超商">
+            <mapping tag="shop=convenience" />
+        </category>
+        <category title="複印店">
+            <mapping tag="shop=copyshop" />
+        </category>
+        <category title="窗簾">
+            <mapping tag="shop=curtain" />
+        </category>
+        <category title="外食">
+            <mapping tag="shop=deli" />
+        </category>
+        <category title="百貨商店">
+            <mapping tag="shop=department_store" />
+        </category>
+        <category title="潛水用品">
+            <mapping tag="shop=dive" />
+        </category>
+        <category title="乾洗店">
+            <mapping tag="shop=dry_cleaning" />
+        </category>
+        <category title="DIY">
+            <mapping tag="shop=doityourself" />
+            <mapping tag="shop=trade" />
+        </category>
+        <category title="電子產品">
+            <mapping tag="shop=electronics" />
+        </category>
+        <category title="情趣用品">
+            <mapping tag="shop=erotic" />
+        </category>
+        <category title="布庄">
+            <mapping tag="shop=fabric" />
+        </category>
+        <category title="農場">
+            <mapping tag="shop=farm" />
+        </category>
+        <category title="花店">
+            <mapping tag="shop=florist" />
+        </category>
+        <category title="裝框">
+            <mapping tag="shop=frame" />
+        </category>
+        <category title="爐行">
+            <mapping tag="shop=furnace" />
+        </category>
+        <category title="喪葬">
+            <mapping tag="shop=funeral_directors" />
+        </category>
+        <category title="家具">
+            <mapping tag="shop=furniture" />
+        </category>
+        <category title="園藝中心">
+            <mapping tag="shop=garden_centre" />
+        </category>
+        <category title="一般">
+            <mapping tag="shop=general" />
+        </category>
+        <category title="禮品">
+            <mapping tag="shop=gift" />
+        </category>
+        <category title="玻璃">
+            <mapping tag="shop=glaziery" />
+        </category>
+        <category title="水果店">
+            <mapping tag="shop=greengrocer" />
+        </category>
+        <category title="理髮">
+            <mapping tag="shop=hairdresser" />
+        </category>
+        <category title="硬體">
+            <mapping tag="shop=hardware" />
+        </category>
+        <category title="助聽器">
+            <mapping tag="shop=hearing_aids" />
+        </category>
+        <category title="中醫">
+            <mapping tag="shop=herbalist" />
+        </category>
+        <category title="音響">
+            <mapping tag="shop=hifi" />
+        </category>
+        <category title="狩獵">
+            <mapping tag="shop=hunting" />
+        </category>
+        <category title="室內裝飾">
+            <mapping tag="shop=interior_decoration" />
+        </category>
+        <category title="首飾">
+            <mapping tag="shop=jewelery" />
+        </category>
+        <category title="售貨亭">
+            <mapping tag="shop=kiosk" />
+        </category>
+        <category title="廚房用品">
+            <mapping tag="shop=kitchen" />
+        </category>
+        <category title="洗衣店">
+            <mapping tag="shop=laundry" />
+        </category>
+        <category title="商場">
+            <mapping tag="shop=mall" />
+        </category>
+        <category title="按摩">
+            <mapping tag="shop=massage" />
+        </category>
+        <category title="手機/配件">
+            <mapping tag="shop=mobile_phone" />
+        </category>
+        <category title="放貸行">
+            <mapping tag="shop=money_lender" />
+        </category>
+        <category title="摩托車行">
+            <mapping tag="shop=motorcycle" />
+        </category>
+        <category title="樂器">
+            <mapping tag="shop=musical_instrument" />
+        </category>
+        <category title="報攤">
+            <mapping tag="shop=newsagent" />
+        </category>
+        <category title="眼鏡行">
+            <mapping tag="shop=optician" />
+        </category>
+        <category title="有機商店">
+            <mapping tag="shop=organic" />
+        </category>
+        <category title="戶外">
+            <mapping tag="shop=outdoor" />
+        </category>
+        <category title="植物">
+            <mapping tag="shop=paints" />
+        </category>
+        <category title="典當">
+            <mapping tag="shop=pawnbroker" />
+        </category>
+        <category title="寵物">
+            <mapping tag="shop=pet" />
+        </category>
+        <category title="無線電">
+            <mapping tag="shop=radiotechnics" />
+        </category>
+        <category title="海產">
+            <mapping tag="shop=seafood" />
+            <mapping tag="shop=fish" />
+        </category>
+        <category title="二手">
+            <mapping tag="shop=second_hand" />
+        </category>
+        <category title="鞋行">
+            <mapping tag="shop=shoes" />
+        </category>
+        <category title="運動用品">
+            <mapping tag="shop=sports" />
+        </category>
+        <category title="文具">
+            <mapping tag="shop=stationery" />
+        </category>
+        <category title="超級市場">
+            <mapping tag="shop=supermarket" />
+        </category>
+        <category title="刺青">
+            <mapping tag="shop=tattoo" />
+        </category>
+        <category title="售票">
+            <mapping tag="shop=ticket" />
+        </category>
+        <category title="煙草">
+            <mapping tag="shop=tobacco" />
+        </category>
+        <category title="玩具">
+            <mapping tag="shop=toys" />
+        </category>
+        <category title="吸塵清潔">
+            <mapping tag="shop=vacuum_cleaner" />
+        </category>
+        <category title="影片租借">
+            <mapping tag="shop=video" />
+        </category>
+        <category title="百葉窗">
+            <mapping tag="shop=window_blind" />
+        </category>
+    </category>
+
+    <!-- Sport -->
+    <category title="運動">
+        <category title="保齡球">
+            <mapping tag="sport=9-pin" />
+            <mapping tag="sport=10-pin" />
+        </category>
+        <category title="射箭場">
+            <mapping tag="sport=archery" />
+        </category>
+        <category title="競技場">
+            <mapping tag="sport=athletics" />
+        </category>
+        <category title="羽毛球場">
+            <mapping tag="sport=badminton" />
+        </category>
+        <category title="棒球">
+            <mapping tag="sport=baseball" />
+        </category>
+        <category title="籃球">
+            <mapping tag="sport=basketball" />
+        </category>
+        <category title="沙灘排球">
+            <mapping tag="sport=beachvolleyball" />
+        </category>
+        <category title="BMX">
+            <mapping tag="sport=bmx" />
+        </category>
+        <category title="獨木舟">
+            <mapping tag="sport=canoe" />
+        </category>
+        <category title="攀岩">
+            <mapping tag="sport=climbing" />
+        </category>
+        <category title="槌球">
+            <mapping tag="sport=croquet" />
+        </category>
+        <category title="競速單車">
+            <mapping tag="sport=cycling" />
+        </category>
+        <category title="潛水">
+            <mapping tag="sport=diving" />
+        </category>
+        <category title="賽狗">
+            <mapping tag="sport=dog_racing" />
+        </category>
+        <category title="擊劍">
+            <mapping tag="sport=fencing" />
+        </category>
+        <category title="馬技">
+            <mapping tag="sport=equestrian" />
+        </category>
+        <category title="高爾夫">
+            <mapping tag="sport=golf" />
+        </category>
+        <category title="體操">
+            <mapping tag="sport=gymnastics" />
+        </category>
+        <category title="曲棍球">
+            <mapping tag="sport=hockey" />
+        </category>
+        <category title="賽馬">
+            <mapping tag="sport=horse_racing" />
+        </category>
+        <category title="卡丁車">
+            <mapping tag="sport=karting" />
+        </category>
+        <category title="合球">
+            <mapping tag="sport=korfball" />
+        </category>
+        <category title="賽車場">
+            <mapping tag="sport=motor" />
+        </category>
+        <category title="多功能運動中心">
+            <mapping tag="sport=multi" />
+        </category>
+        <category title="定向越野">
+            <mapping tag="sport=orienteering" />
+        </category>
+        <category title="滑翔傘">
+            <mapping tag="sport=paragliding" />
+        </category>
+        <category title="自由飛行">
+            <mapping tag="sport=free_flying" />
+        </category>
+        <category title="回力球">
+            <mapping tag="sport=pelota" />
+        </category>
+        <category title="划船">
+            <mapping tag="sport=rowing" />
+        </category>
+        <category title="橄欖球">
+            <mapping tag="sport=rugby_league" />
+            <mapping tag="sport=rugby_union" />
+        </category>
+        <category title="射擊">
+            <mapping tag="sport=shooting" />
+        </category>
+        <category title="溜冰">
+            <mapping tag="sport=skating" />
+        </category>
+        <category title="滑板">
+            <mapping tag="sport=skateboard" />
+        </category>
+        <category title="滑雪">
+            <mapping tag="sport=skiing" />
+        </category>
+        <category title="足球">
+            <mapping tag="sport=soccer" />
+        </category>
+        <category title="衝浪">
+            <mapping tag="sport=surfing" />
+        </category>
+        <category title="游泳">
+            <mapping tag="sport=swimming" />
+        </category>
+        <category title="桌球">
+            <mapping tag="sport=table_tennis" />
+        </category>
+        <category title="手球">
+            <mapping tag="sport=team_handball" />
+        </category>
+        <category title="網球">
+            <mapping tag="sport=tennis" />
+        </category>
+        <category title="雪橇">
+            <mapping tag="sport=toboggan" />
+        </category>
+        <category title="排球">
+            <mapping tag="sport=volleyball" />
+        </category>
+        <category title="滑水">
+            <mapping tag="sport=water_ski" />
+        </category>
+    </category>
+  </category>
