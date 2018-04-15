@@ -585,6 +585,7 @@ TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
 LR_STYLE_DIR := $(ROOT_DIR)/styles/$(LR_STYLE)
 TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
+POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
@@ -723,13 +724,15 @@ $(POI): $(EXTRACT).osm.pbf
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+	    sh $(TOOLS_DIR)/osmosis-v0.44/bin/osmosis \
 		--rb file="$(EXTRACT).osm.pbf" \
 		--poi-writer \
-			all-tags=false \
+			all-tags=true \
+			bbox=$(MAPSFORGE_BBOX) \
 			ways=true \
+			tag-conf-file="$(POI_MAPPING)" \
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
-		    file="$@" > /dev/null 2> /dev/null
+			file="$@"
 
 .PHONY: gmap
 gmap: $(GMAP)
