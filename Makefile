@@ -719,13 +719,13 @@ $(NSIS): $(MAP_PC)
 
 .PHONY: poi
 poi: $(POI)
-$(POI): $(EXTRACT).osm.pbf
+$(POI): $(EXTRACT)-sed.osm.pbf
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 	    sh $(TOOLS_DIR)/osmosis-v0.44/bin/osmosis \
-		--rb file="$(EXTRACT).osm.pbf" \
+		--rb file="$(EXTRACT)-sed.osm.pbf" \
 		--poi-writer \
 			all-tags=true \
 			bbox=$(MAPSFORGE_BBOX) \
