@@ -3758,6 +3758,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_tower_observation" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
+    <rule e="any" k="highway" v="trailhead">
+      <symbol id="s_trailhead" priority="65" src="file:moiosm_res/s_trailhead.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="any" k="*" v="*">
+        <caption k="name" symbol-id="s_trailhead" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <rule e="any" k="information" v="guidepost">
       <symbol id="s_guidepost" priority="62" src="file:moiosmlite_res/s_guidepost.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
