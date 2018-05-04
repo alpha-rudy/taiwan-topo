@@ -16,7 +16,19 @@
         <mapping tag="zl=2" />
       </category>
     </category>
-    <category title="02 步道/山徑">
+    <category title="02 標石(基點)">
+      <mapping tag="man_made=survey_point" />
+      <category title="01 三角點">
+        <mapping tag="survey_point=trig_1st" />
+        <mapping tag="survey_point=trig_2nd" />
+        <mapping tag="survey_point=trig_3rd" />
+        <mapping tag="survey_point=trig_1st_IC" />
+        <mapping tag="survey_point=trig_2nd_IC" />
+        <mapping tag="survey_point=trig_3rd_IC" />
+        <mapping tag="survey_point=trig_3rd_MC" />
+      </category>
+    </category>
+    <category title="03 步道/山徑">
       <mapping tag="highway=path" />
       <mapping tag="highway=footway" />
       <mapping tag="highway=steps" />
@@ -26,18 +38,18 @@
       <mapping tag="hknetwork=nwn" />
       <mapping tag="hknetwork=iwn" />
     </category>
-    <category title="03 登山口">
+    <category title="04 登山口">
       <mapping tag="highway=trailhead" />
       <mapping tag="entrance=yes" />
     </category>
-    <category title="04 山屋/營地">
+    <category title="05 山屋/營地">
       <mapping tag="tourism=camp_site" />
       <mapping tag="tourism=alpine_hut" />
       <mapping tag="tourism=wilderness_hut" />
       <mapping tag="shelter_type=basic_hut" />
       <mapping tag="shelter_type=lean_to" />
     </category>
-    <category title="05 溪流/水源/瀑布">
+    <category title="06 溪流/水源/瀑布">
       <mapping tag="waterway=river" />
       <mapping tag="waterway=stream" />
       <mapping tag="waterway=waterfall" />
@@ -46,7 +58,7 @@
       <mapping tag="amenity=drinking_water" />
       <mapping tag="natural=hot_spring" />
     </category>
-    <category title="06 保護區/景點/觀景台">
+    <category title="07 保護區/景點/觀景台">
       <mapping tag="tourism=information" />
       <mapping tag="tourism=viewpoint" />
       <mapping tag="tourism=attraction" />
