@@ -146,6 +146,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="鄉鎮城市名稱"/>
       <cat id="settlements"/>
     </layer>
+    <layer id="elmt-surveypoint-h" enabled="false">
+      <name lang="de" value="survey point"/>
+      <name lang="en" value="survey point"/>
+      <name lang="es" value="survey point"/>
+      <name lang="fr" value="survey point"/>
+      <name lang="it" value="survey point"/>
+      <name lang="zh" value="標石 (基點)"/>
+      <cat id="surveypoint"/>
+    </layer>
     <layer id="elmt-landscapefeat-h" enabled="true">
       <name lang="de" value="Landschaftsmerkmale"/>
       <name lang="en" value="landscape features"/>
@@ -686,6 +695,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-waymarks"/>
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
+      <overlay id="elmt-surveypoint-h"/>
       <overlay id="elmt-borders-h"/>
       <overlay id="elmt-amenities-h"/>
       <overlay id="elmt-barriers-h"/>
@@ -3584,6 +3594,34 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
+  <rule cat="surveypoint" e="any" k="*" v="*">
+    <rule e="any" k="man_made" v="survey_point">
+      <rule e="node" k="survey_point" v="trig_1st" zoom-min="11">
+        <symbol id="s_sp_trig" priority="340" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="340" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_2nd" zoom-min="12">
+        <symbol id="s_sp_trig" priority="320" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="320" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_3rd" zoom-min="13">
+        <symbol id="s_sp_trig" priority="300" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="300" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_1st_IC" zoom-min="11">
+        <symbol id="s_sp_trig_C" priority="340" src="file:moiosm_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="340" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_2nd_IC|trig_2nd_MC|trig_2nd_CS|trig_2nd_RE" zoom-min="12">
+        <symbol id="s_sp_trig_C" priority="320" src="file:moiosm_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="320" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_3rd_IC|trig_3rd_MC|trig_3rd_CS|trig_3rd_RE" zoom-min="13">
+        <symbol id="s_sp_trig_C" priority="300" src="file:moiosm_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="300" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
+  </rule>
   <rule cat="landscapename" e="any" k="*" v="*">
     <rule e="node" k="natural" v="volcano">
       <rule cat="nocity" e="node" k="*" v="*" zoom-min="13" zoom-max="14">
@@ -3605,11 +3643,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_peak_small_m" priority="220" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
       </rule>
       <rule e="any" k="zl" v="1" zoom-min="11" zoom-max="12">
-        <symbol id="s_peak_small_m" priority="240" src="file:moiosm_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="15" symbol-width="15"/>
+        <symbol id="s_peak_small_m" priority="240" src="file:moiosm_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
         <caption k="name" symbol-id="s_peak_small_m" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
       </rule>
       <rule e="any" k="zl" v="2" zoom-min="11" zoom-max="12">
-        <symbol id="s_peak_small_l" priority="230" src="file:moiosm_res/s_peak_small_l.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_peak_small_l" priority="230" src="file:moiosm_res/s_peak_small_l.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
         <caption k="name" symbol-id="s_peak_small_l" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
       </rule>
       <rule e="any" k="*" v="*" zoom-min="13" zoom-max="14">
@@ -3619,7 +3657,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <caption k="ref" priority="-5" symbol-id="s_peak_small_m" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
         <rule e="any" k="zl" v="2">
-          <symbol id="s_peak_small_l" display="always" priority="210" src="file:moiosm_res/s_peak_small_l.svg" symbol-scaling="size" symbol-height="15" symbol-width="15"/>
+          <symbol id="s_peak_small_l" display="always" priority="210" src="file:moiosm_res/s_peak_small_l.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
           <caption k="name" symbol-id="s_peak_small_l" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
           <caption k="ref" priority="-5" symbol-id="s_peak_small_l" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
@@ -3646,7 +3684,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <caption k="ref" priority="-5" symbol-id="s_peak_m" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="node" k="zl" v="2">
-          <symbol id="s_peak_l" display="always" priority="210" src="file:moiosm_res/s_peak_l.svg" symbol-scaling="size" symbol-height="15" symbol-width="15"/>
+          <symbol id="s_peak_l" display="always" priority="210" src="file:moiosm_res/s_peak_l.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
           <caption k="name" priority="210" symbol-id="s_peak_l" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption k="ref" priority="-5" symbol-id="s_peak_l" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
