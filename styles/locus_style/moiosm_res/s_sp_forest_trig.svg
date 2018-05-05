@@ -7,10 +7,10 @@
     <g id="path31" serif:id="path3" transform="matrix(1,0,0,1,-1.485e-05,-25.7207)">
         <path d="M217.5,109.454L85.47,325.544L349.53,325.544L217.5,109.454Z" style="fill-opacity:0;fill-rule:nonzero;stroke:black;stroke-width:32px;"/>
     </g>
-    <g transform="matrix(4.585,0,0,4.585,-754.737,-894.882)">
-        <circle cx="212.047" cy="244.424" r="5.453" style="stroke:white;stroke-width:6.98px;stroke-linecap:round;stroke-miterlimit:1.5;"/>
+    <g transform="matrix(1,0,0,1,-32.0233,38.857)">
+        <text x="219.527px" y="217.866px" style="font-family:'TimesNewRomanPS-BoldItalicMT', 'Times New Roman', serif;font-weight:700;font-style:italic;font-size:144px;fill:white;">f</text>
     </g>
-    <g transform="matrix(4.585,0,0,4.585,-754.737,-894.882)">
-        <circle cx="212.047" cy="244.424" r="5.453"/>
+    <g transform="matrix(1,0,0,1,-38.0233,32.857)">
+        <text x="219.527px" y="217.866px" style="font-family:'TimesNewRomanPS-BoldItalicMT', 'Times New Roman', serif;font-weight:700;font-style:italic;font-size:144px;">f</text>
     </g>
 </svg>
