@@ -146,6 +146,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="鄉鎮城市名稱"/>
       <cat id="settlements"/>
     </layer>
+    <layer id="elmt-surveypoint-h" enabled="true">
+      <name lang="de" value="Survey Point"/>
+      <name lang="en" value="Survey Point"/>
+      <name lang="es" value="Survey Point"/>
+      <name lang="fr" value="Survey Point"/>
+      <name lang="it" value="Survey Point"/>
+      <name lang="zh" value="標石 (基點)"/>
+      <cat id="surveypoint"/>
+    </layer>
     <layer id="elmt-landscapefeat-h" enabled="true">
       <name lang="de" value="Landschaftsmerkmale"/>
       <name lang="en" value="landscape features"/>
@@ -686,6 +695,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-waymarks"/>
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
+      <overlay id="elmt-surveypoint-h"/>
       <overlay id="elmt-borders-h"/>
       <overlay id="elmt-amenities-h"/>
       <overlay id="elmt-barriers-h"/>
@@ -3586,6 +3596,34 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule e="any" k="*" v="*">
         <caption k="ele" priority="-5" symbol-id="s_cave_entrance" position="below" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
+  </rule>
+  <rule cat="surveypoint" e="any" k="*" v="*">
+    <rule e="any" k="man_made" v="survery_point">
+      <rule cat="nocity" e="node" k="survery_point" v="trig_1st" zoom-min="9" zoom-max="11">
+        <symbol id="s_sp_trig" priority="350" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="350" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      </rule>
+      <rule e="node" k="survery_point" v="trig_1st" zoom-min="12">
+        <symbol id="s_sp_trig" priority="340" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="340" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule cat="nocity" e="node" k="survery_point" v="trig_2nd" zoom-min="10" zoom-max="12">
+        <symbol id="s_sp_trig" priority="330" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="330" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      </rule>
+      <rule e="node" k="survery_point" v="trig_2nd" zoom-min="13">
+        <symbol id="s_sp_trig" priority="320" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="320" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule cat="nocity" e="node" k="survery_point" v="trig_3rd" zoom-min="12" zoom-max="14">
+        <symbol id="s_sp_trig" priority="310" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="310" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      </rule>
+      <rule e="node" k="survery_point" v="trig_3rd" zoom-min="15">
+        <symbol id="s_sp_trig" priority="300" src="file:moiosm_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="300" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
   </rule>
