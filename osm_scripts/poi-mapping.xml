@@ -24,8 +24,21 @@
         <mapping tag="survey_point=trig_3rd" />
         <mapping tag="survey_point=trig_1st_IC" />
         <mapping tag="survey_point=trig_2nd_IC" />
+        <mapping tag="survey_point=trig_2nd_MC" />
+        <mapping tag="survey_point=trig_2nd_CS" />
+        <mapping tag="survey_point=trig_2nd_RE" />
         <mapping tag="survey_point=trig_3rd_IC" />
         <mapping tag="survey_point=trig_3rd_MC" />
+        <mapping tag="survey_point=trig_3rd_CS" />
+        <mapping tag="survey_point=trig_3rd_RE" />
+      </category>
+      <category title="02 圖根點">
+        <mapping tag="survey_point=suppl" />
+        <mapping tag="survey_point=suppl_GO" />
+        <mapping tag="survey_point=suppl_IA" />
+        <mapping tag="survey_point=suppl_FB" />
+        <mapping tag="survey_point=suppl_TW" />
+        <mapping tag="survey_point=suppl_UN" />
       </category>
     </category>
     <category title="03 步道/山徑">
