@@ -912,6 +912,12 @@
 <osm-tag key='survey_point' value='trig_3rd_MC' zoom-appear='12' />
 <osm-tag key='survey_point' value='trig_3rd_CS' zoom-appear='12' />
 <osm-tag key='survey_point' value='trig_3rd_RE' zoom-appear='12' />
+<osm-tag key='survey_point' value='suppl' zoom-appear='13' />
+<osm-tag key='survey_point' value='suppl_GO' zoom-appear='13' />
+<osm-tag key='survey_point' value='suppl_IA' zoom-appear='13' />
+<osm-tag key='survey_point' value='suppl_FB' zoom-appear='13' />
+<osm-tag key='survey_point' value='suppl_TW' zoom-appear='13' />
+<osm-tag key='survey_point' value='suppl_UN' zoom-appear='13' />
 <osm-tag key='man_made' value='windmill' zoom-appear='14' />
 <osm-tag key='man_made' value='reservoir_covered' zoom-appear='15' />
 <osm-tag key='power' value='tower' zoom-appear='12' />

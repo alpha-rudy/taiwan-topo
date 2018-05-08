@@ -3626,6 +3626,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <symbol id="s_sp_trig_C" priority="300" src="file:moiosmhs_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
         <caption k="name" symbol-id="s_sp_trig_C" priority="300" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
+      <rule e="node" k="survey_point" v="suppl|suppl_GO|suppl_IA|suppl_FB|suppl_TW|suppl_UN" zoom-min="13">
+        <symbol id="s_sp_suppl" priority="280" src="file:moiosm_res/s_sp_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
     </rule>
   </rule>
   <rule cat="landscapename" e="any" k="*" v="*">
