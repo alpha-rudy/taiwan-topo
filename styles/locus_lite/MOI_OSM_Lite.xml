@@ -4419,7 +4419,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- public transport -->
   <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="15">
     <!-- stations -->
-    <rule cat="nocity" e="any" k="highway" v="bus_stop">
+    <rule cat="nocity" e="any" k="highway" v="bus_stop" zoom-min="16">
       <rule e="any" k="shelter" v="yes">
         <symbol id="s_pt_bus_stop_shelter" priority="76" src="file:moiosmlite_res/s_pt_bus_stop_shelter.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
         <rule e="any" k="*" v="*">
@@ -4433,7 +4433,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
       </rule>
     </rule>
-    <rule cat="city" e="any" k="highway" v="bus_stop">
+    <rule cat="city" e="any" k="highway" v="bus_stop" zoom-min="16">
       <symbol id="s_pt_bus" priority="76" src="file:moiosmlite_res/s_pt_bus.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_pt_bus" position="above" font-style="bold" font-size="9" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
