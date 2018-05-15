@@ -40,6 +40,40 @@
         <mapping tag="survey_point=suppl_TW" />
         <mapping tag="survey_point=suppl_UN" />
       </category>
+      <category title="03 鑛務點">
+        <mapping tag="survey_point=mine" />
+        <mapping tag="survey_point=mine_suppl" />
+      </category>
+      <category title="04 森林三角點/山字柱">
+        <mapping tag="survey_point=forest_trig" />
+        <mapping tag="survey_point=forest_trig_aero" />
+        <mapping tag="survey_point=forest_suppl" />
+        <mapping tag="survey_point=forest_monopoly" />
+        <mapping tag="survey_point=forest_boundary" />
+        <mapping tag="survey_point=forest_mountain" />
+        <mapping tag="survey_point=forest_exfo_JP" />
+        <mapping tag="survey_point=forest_exfo" />
+        <mapping tag="survey_point=forest_aero" />
+        <mapping tag="survey_point=farm_bureau" />
+        <mapping tag="survey_point=farm_hengchun" />
+      </category>
+      <category title="05 精密導線點">
+        <mapping tag="survey_point=polygon_IT" />
+        <mapping tag="survey_point=polygon_TW" />
+      </category>
+      <category title="06 地政三角點">
+        <mapping tag="survey_point=taiwanp" />
+        <mapping tag="survey_point=taipei_tax" />
+        <mapping tag="survey_point=taipei" />
+        <mapping tag="survey_point=taipeic" />
+        <mapping tag="survey_point=keelung" />
+        <mapping tag="survey_point=hsinchu_water" />
+        <mapping tag="survey_point=miaoli_old" />
+        <mapping tag="survey_point=miaoli" />
+        <mapping tag="survey_point=kaohsiung" />
+        <mapping tag="survey_point=penghu" />
+        <mapping tag="survey_point=kinmen" />
+      </category>
     </category>
     <category title="03 步道/山徑">
       <mapping tag="highway=path" />
