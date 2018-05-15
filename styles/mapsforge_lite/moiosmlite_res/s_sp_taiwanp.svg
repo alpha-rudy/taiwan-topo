@@ -7,13 +7,10 @@
     <g transform="matrix(1.0227,0,0,1.0227,21.3128,-49.7654)">
         <circle cx="191.832" cy="261.333" r="125.159" style="fill-opacity:0;stroke:black;stroke-width:31.29px;"/>
     </g>
-    <g transform="matrix(11.0002,0,0,11.0002,-2115.06,-2471.21)">
-        <circle cx="212.047" cy="244.424" r="5.453" style="fill-opacity:0;stroke:white;stroke-width:3.82px;"/>
-    </g>
-    <g transform="matrix(11.0002,0,0,11.0002,-2115.06,-2471.21)">
-        <circle cx="212.047" cy="244.424" r="5.453" style="fill-opacity:0;stroke:black;stroke-width:1.18px;"/>
+    <g transform="matrix(6.7887,0,0,6.7887,-1222.03,-1441.82)">
+        <circle cx="212.047" cy="244.424" r="5.453" style="fill-opacity:0;stroke:white;stroke-width:9.43px;"/>
     </g>
     <g transform="matrix(6.7887,0,0,6.7887,-1222.03,-1441.82)">
-        <circle cx="212.047" cy="244.424" r="5.453" style="fill-opacity:0;stroke:black;stroke-width:1.77px;"/>
+        <circle cx="212.047" cy="244.424" r="5.453" style="fill-opacity:0;stroke:black;stroke-width:3.54px;"/>
     </g>
 </svg>
