@@ -815,6 +815,12 @@
 <zoom-override key='railway' value='station' />
 </osm-tag>
 <osm-tag key='railway' value='tram_stop' zoom-appear='14' />
+<osm-tag key='network' value='台灣高鐵' zoom-appear='14' />
+<osm-tag key='network' value='桃園機場捷運' zoom-appear='14' />
+<osm-tag key='network' value='臺北捷運' zoom-appear='14' />
+<osm-tag key='network' value='臺灣鐵路' zoom-appear='14' />
+<osm-tag key='network' value='臺鐵' zoom-appear='14' />
+<osm-tag key='network' value='高雄捷運' zoom-appear='14' />
 <!-- tourism -->
 <osm-tag key='tourism' value='alpine_hut' zoom-appear='12' />
 <osm-tag key='tourism' value='attraction' zoom-appear='14' />
