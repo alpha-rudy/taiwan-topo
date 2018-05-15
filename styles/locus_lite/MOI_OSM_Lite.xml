@@ -3611,6 +3611,62 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <symbol id="s_sp_suppl" priority="280" src="file:moiosmlite_res/s_sp_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
         <caption k="name" symbol-id="s_sp_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
+      <rule e="node" k="survey_point" v="mine" zoom-min="14">
+        <symbol id="s_sp_mine" priority="280" src="file:moiosmlite_res/s_sp_mine.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_mine" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="mine_suppl" zoom-min="14">
+        <symbol id="s_sp_mine_suppl" priority="280" src="file:moiosmlite_res/s_sp_mine_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_mine_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="forest_trig|forest_trig_aero" zoom-min="14">
+        <symbol id="s_sp_forest_trig" priority="280" src="file:moiosmlite_res/s_sp_forest_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_forest_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="forest_suppl|forest_monopoly|forest_boundary|forest_mountain|forest_exfo_JP|forest_exfo|forest_aero|farm_bureau|farm_hengchun" zoom-min="14">
+        <symbol id="s_sp_forest_trig" priority="280" src="file:moiosmlite_res/s_sp_forest_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_forest_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="polygon_IT|polygon_TW" zoom-min="14">
+        <symbol id="s_sp_polygon" priority="280" src="file:moiosmlite_res/s_sp_polygon.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_polygon" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="taiwanp|taipei_tax|taipei|taipeic|keelung|hsinchu_water|miaoli_old|miaoli|kaohsiung|penghu|kinmen" zoom-min="14">
+        <symbol id="s_sp_taiwanp" priority="280" src="file:moiosmlite_res/s_sp_taiwanp.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_taiwanp" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="navy_trig_JP|navy_trig_TW" zoom-min="14">
+        <symbol id="s_sp_navy_trig" priority="280" src="file:moiosmlite_res/s_sp_navy_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_navy_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="navy_suppl_JP|navy_suppl_TW|sinica_trig|suppl_CS|suppl_taipower|suppl_eclipse|suppl_declination|suppl_port|military_zone|military_zone_A" zoom-min="14">
+        <symbol id="s_sp_navy_suppl" priority="280" src="file:moiosmlite_res/s_sp_navy_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_navy_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="water_trig" zoom-min="14">
+        <symbol id="s_sp_water_trig" priority="280" src="file:moiosmlite_res/s_sp_water_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_water_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="water_suppl|water_taipei|water_reservoir|water_boundary" zoom-min="14">
+        <symbol id="s_sp_water_suppl" priority="280" src="file:moiosmlite_res/s_sp_water_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_water_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="replica" zoom-min="14">
+        <symbol id="s_sp_replica" priority="280" src="file:moiosmlite_res/s_sp_replica.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_replica" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_japan1" zoom-min="14">
+        <symbol id="s_sp_bm_japan1" priority="280" src="file:moiosmlite_res/s_sp_bm_japan1.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_japan1" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_japan2|bm_old|bm_sinica|bm_port|bm_taipower|bm_aero|bm_tainan|bm_kaohsiung" zoom-min="14">
+        <symbol id="s_sp_bm_japan2" priority="280" src="file:moiosmlite_res/s_sp_bm_japan2.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_japan2" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_water|bm_reservoir|sectionstake|riverbank" zoom-min="14">
+        <symbol id="s_sp_bm_water" priority="280" src="file:moiosmlite_res/s_sp_bm_water.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_water" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
     </rule>
   </rule>
   <rule cat="landscapename" e="any" k="*" v="*">
