@@ -2272,28 +2272,28 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
         <rule cat="h_routes" e="way" k="trail_visibility" v="excellent|good|intermediate|~">
-         <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
-          <rule e="way" k="highway" v="footway|path" zoom-min="14">
-            <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-              <line stroke="#E10600" stroke-width="0.50" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
+            <rule e="way" k="highway" v="footway|path" zoom-min="14">
+              <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+                <line stroke="#E10600" stroke-width="0.50" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+                <line stroke="#E10600" stroke-width="0.38" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+                <line stroke="#E10600" stroke-width="0.28" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+                <line stroke="#E10600" stroke-width="0.20" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="18" zoom-max="18">
+                <line stroke="#E10600" stroke-width="0.18" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="19">
+                <line stroke="#E10600" stroke-width="0.16" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <!-- ;trail -->
             </rule>
-            <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
-              <line stroke="#E10600" stroke-width="0.38" stroke-dasharray="5,3" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
-              <line stroke="#E10600" stroke-width="0.28" stroke-dasharray="5,3" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
-              <line stroke="#E10600" stroke-width="0.20" stroke-dasharray="5,3" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="18" zoom-max="18">
-              <line stroke="#E10600" stroke-width="0.18" stroke-dasharray="5,3" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="19">
-              <line stroke="#E10600" stroke-width="0.16" stroke-dasharray="5,3" stroke-linecap="butt"/>
-            </rule>
-            <!-- ;trail -->
-           </rule>
           </rule>
         </rule>
         <rule e="way" k="bicycle" v="bic_yes|bic_permissive|bic_designated">
@@ -3750,8 +3750,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule e="node" k="zl" v="~|no">
           <rule e="any" k="name" v="~|no">
-            <symbol id="s_peak_noname" priority="-5" src="file:moiosm_res/s_peak_noname.svg" symbol-height="12" symbol-scaling="size" symbol-width="12"></symbol>
-            <caption fill="#000000" font-size="9" font-style="normal" k="ele" position="below" priority="-5" stroke="#E5FFFFFF" stroke-width="1.8" symbol-id="s_peak_noname"></caption>
+            <symbol id="s_peak_noname" priority="-5" src="file:moiosm_res/s_peak_noname.svg" symbol-height="12" symbol-scaling="size" symbol-width="12"/>
+            <caption fill="#000000" font-size="9" font-style="normal" k="ele" position="below" priority="-5" stroke="#E5FFFFFF" stroke-width="1.8" symbol-id="s_peak_noname"/>
           </rule>
           <rule e="any" k="name" v="*">
             <symbol id="s_peak" priority="200" src="file:moiosm_res/s_peak.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
