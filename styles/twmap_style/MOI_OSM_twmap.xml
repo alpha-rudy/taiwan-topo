@@ -4496,9 +4496,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="any" k="amenity" v="bus_station">
-      <symbol id="s_pt_bus_station" priority="79" src="file:moiosm_twmap/s_pt_bus_station.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+      <symbol id="s_pt_bus_station_a" priority="79" src="file:moiosm_twmap/s_pt_bus_station_a.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
       <rule e="any" k="*" v="*">
-        <caption k="name" symbol-id="s_pt_bus_station" position="above" font-style="bold" font-size="20" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" symbol-id="s_pt_bus_station_a" position="above" font-style="bold" font-size="20" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="station|railway" v="light_rail|tram_stop">
