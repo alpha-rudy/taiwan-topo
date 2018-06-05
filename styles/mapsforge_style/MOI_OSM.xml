@@ -3685,6 +3685,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <symbol id="s_sp_bm_water" priority="280" src="file:moiosm_res/s_sp_bm_water.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
         <caption k="name" symbol-id="s_sp_bm_water" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
+      <rule e="node" k="survey_point" v="satellite_gps|satellite_1st|satellite_2nd|satellite_3rd|satellite_4th" zoom-min="13">
+        <symbol id="s_sp_satellite" priority="280" src="file:moiosm_res/s_sp_satellite.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_satellite" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_new" zoom-min="13">
+        <symbol id="s_sp_bm_new" priority="280" src="file:moiosm_res/s_sp_bm_new.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_new" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
     </rule>
   </rule>
   <rule cat="landscapename" e="any" k="*" v="*">
