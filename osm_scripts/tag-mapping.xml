@@ -989,6 +989,7 @@
 <osm-tag key='survey_point' value='sectionstake' zoom-appear='13' />
 <osm-tag key='survey_point' value='riverbank' zoom-appear='13' />
 <osm-tag key='survey_point' value='bm_new' zoom-appear='13' />
+<osm-tag key='survey_point' value='bm_cgs' zoom-appear='13' />
 <osm-tag key='survey_point' value='satellite_gps' zoom-appear='13' />
 <osm-tag key='survey_point' value='satellite_1st' zoom-appear='13' />
 <osm-tag key='survey_point' value='satellite_2nd' zoom-appear='13' />

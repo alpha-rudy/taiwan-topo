@@ -3671,7 +3671,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <symbol id="s_sp_satellite" priority="280" src="file:moiosmlite_res/s_sp_satellite.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
         <caption k="name" symbol-id="s_sp_satellite" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
-      <rule e="node" k="survey_point" v="bm_new" zoom-min="14">
+      <rule e="node" k="survey_point" v="bm_new|bm_cgs" zoom-min="14">
         <symbol id="s_sp_bm_new" priority="280" src="file:moiosmlite_res/s_sp_bm_new.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
         <caption k="name" symbol-id="s_sp_bm_new" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
