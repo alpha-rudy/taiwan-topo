@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<locusActions>
+  <download>
+    <source><![CDATA[http://__local_ip__/moi-hgt-v4.zip]]></source>
+    <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
+    <after>extract|deleteSource|refreshMap</after>
+  </download>
+</locusActions>
