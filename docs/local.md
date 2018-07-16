@@ -46,13 +46,13 @@
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
   > (歡迎製作並取代我的不專業解說)
   * 分開安裝
-    * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://http/__local_ip__/locus_map-local.xml)：點選啟動地圖自動安裝
-    * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://http/__local_ip__/locus_style-local.xml)：點選啟動風格主題自動安裝
-    * [![DEM](images/Locus_dem.jpeg =36x) DEM](locus-actions://http/__local_ip__/locus_dem-local.xml)：點選啟動高程檔自動安裝
+    * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://http/__local_ip__/u_locus_map-local.xml)：點選啟動地圖自動安裝
+    * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://http/__local_ip__/u_locus_style-local.xml)：點選啟動風格主題自動安裝
+    * [![DEM](images/Locus_dem.jpeg =36x) DEM](locus-actions://http/__local_ip__/u_locus_dem-local.xml)：點選啟動高程檔自動安裝
   * 圖資更新
-    * [![Map](images/Locus.jpeg =36x) 更新](locus-actions://http/__local_ip__/locus_upgrade-local.xml)：點選啟動地圖/風格更新
+    * [![Map](images/Locus.jpeg =36x) 更新](locus-actions://http/__local_ip__/u_locus_upgrade-local.xml)：點選啟動地圖/風格更新
   * 一次安裝
-    * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://http/__local_ip__/locus_all-local.xml)：點選啟動地圖/風格/高程一次安裝
+    * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://http/__local_ip__/u_locus_all-local.xml)：點選啟動地圖/風格/高程一次安裝
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
