@@ -530,8 +530,8 @@
 <osm-tag key='man_made' value='embankment' zoom-appear='15' />
 <osm-tag key='man_made' value='dyke' equivalent-values='dike,levee' zoom-appear='15' />
 <osm-tag key='man_made' value='groyne' zoom-appear='15' />
-<osm-tag key='man_made' value='communications_tower' zoom-appear='12' />
-<osm-tag key='man_made' value='tower' zoom-appear='12' />
+<osm-tag key='man_made' value='communications_tower' zoom-appear='14' />
+<osm-tag key='man_made' value='tower' zoom-appear='14' />
 <osm-tag key='man_made' value='mast' zoom-appear='14' />
 <osm-tag key='tower' value='communication' zoom-appear='12' />
 <osm-tag key='tower' value='observation' zoom-appear='12' />

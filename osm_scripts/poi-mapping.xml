@@ -548,7 +548,9 @@
       <mapping tag="man_made=survey_point" />
     </category>
     <category title="電塔/塔台">
+      <mapping tag="man_made=communications_tower" />
       <mapping tag="man_made=tower" />
+      <mapping tag="man_made=mast" />
       <mapping tag="tower=communication" />
       <mapping tag="tower=observation" />
     </category>
