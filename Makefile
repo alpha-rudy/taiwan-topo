@@ -23,8 +23,8 @@ ifeq ($(SUITE),yushan)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
@@ -35,8 +35,8 @@ else ifeq ($(SUITE),bbox)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 DEM_NAME := MOI
@@ -46,7 +46,7 @@ else ifeq ($(SUITE),bbox_bw)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := bw
@@ -61,7 +61,7 @@ else ifeq ($(SUITE),bbox_odc)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := outdoorc
@@ -76,7 +76,7 @@ else ifeq ($(SUITE),bbox_odc_dem)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := outdoorc
@@ -84,7 +84,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -92,7 +92,7 @@ else ifeq ($(SUITE),bbox_bc_dem)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := basecamp
@@ -100,7 +100,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -108,8 +108,8 @@ else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -127,8 +127,8 @@ else ifeq ($(SUITE),taiwan_gts)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -137,7 +137,7 @@ NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_hs
 MAPSFORGE_STYLE_FILE := MOI_OSM.xml
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_hs_style.zip
-HGT := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+HGT := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
@@ -145,8 +145,8 @@ else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_20_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls_lite.osm.pbf
+ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -166,8 +166,8 @@ else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
@@ -178,8 +178,8 @@ else ifeq ($(SUITE),taipei)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
@@ -190,7 +190,7 @@ else ifeq ($(SUITE),yushan_bw)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := bw
@@ -205,7 +205,7 @@ else ifeq ($(SUITE),yushan_odc)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := outdoorc
@@ -220,7 +220,7 @@ else ifeq ($(SUITE),yushan_odc_dem)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := outdoorc
@@ -228,7 +228,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -236,7 +236,7 @@ else ifeq ($(SUITE),yushan_bc)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := basecamp
@@ -251,7 +251,7 @@ else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := bw
@@ -266,7 +266,7 @@ else ifeq ($(SUITE),beibeiji_odc)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := outdoorc
@@ -281,7 +281,7 @@ else ifeq ($(SUITE),beibeiji_bc_dem)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := basecamp
@@ -289,7 +289,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1317)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -297,7 +297,7 @@ else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := jing
@@ -357,7 +357,7 @@ else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := bw
@@ -372,7 +372,7 @@ else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoorc
@@ -387,7 +387,7 @@ else ifeq ($(SUITE),taiwan_bw_dem)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := bw
@@ -395,7 +395,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -403,7 +403,7 @@ else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoorc
@@ -411,7 +411,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -419,7 +419,7 @@ else ifeq ($(SUITE),taiwan_bc)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := basecamp
@@ -434,7 +434,7 @@ else ifeq ($(SUITE),taiwan_bc_dem)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := basecamp
@@ -442,7 +442,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -450,7 +450,7 @@ else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := outdoorc
@@ -465,7 +465,7 @@ else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := bw
@@ -480,7 +480,7 @@ else ifeq ($(SUITE),taipei_bc)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := basecamp
@@ -495,7 +495,7 @@ else ifeq ($(SUITE),taipei_bc_dem)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := basecamp
@@ -503,7 +503,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v4.zip
+GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -511,7 +511,7 @@ else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
 LANG := en
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := bw
@@ -605,9 +605,11 @@ LICENSE := $(BUILD_DIR)/taiwan_topo.html
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $$EXAM_FILE
 JMC_CMD := jmc/osx/jmc_cli
+SED_CMD := gsed
 else
 MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
 JMC_CMD := jmc/linux/jmc_cli
+SED_CMD := sed
 endif
 
 ZIP_CMD := 7z a -tzip -mx=9
@@ -642,12 +644,12 @@ drop:
 	cp -r images auto-install/* $(INSTALL_DIR)
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
-	cat docs/beta.md | sed -e "s|__version__|$(VERSION)|g" | \
+	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/beta.article
-	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
+	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
 	cp -r docs/gts $(INSTALL_DIR) && \
-		cat docs/gts/index.html | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
-	cat docs/index.json | sed -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
+		cat docs/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
+	cat docs/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 
 .PHONY: suites
 suites:
@@ -667,15 +669,15 @@ $(LICENSE):
 	[ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
 	cp -a images $(BUILD_DIR)
-	cat docs/beta.md | sed -e "s|__version__|$(VERSION)|g" | \
+	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/beta.article
-	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(BUILD_DIR)/beta.html
-	cat docs/local.md | sed -e "s|__version__|$(VERSION)|g" | \
+	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(BUILD_DIR)/beta.html
+	cat docs/local.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/local.article
-	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/local.article" > $(BUILD_DIR)/local.html
-	cat docs/taiwan_topo.md | sed -e "s|__version__|$(VERSION)|g" | \
+	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/local.article" > $(BUILD_DIR)/local.html
+	cat docs/taiwan_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
-	cat docs/github_flavor.html | sed "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
+	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
@@ -704,17 +706,17 @@ $(NSIS): $(MAP_PC)
 		for i in $(shell cd $(MAP_PC_DIR); ls $(MAPID)*.img ); do \
 			echo '  Delete "$$INSTDIR\'"$${i}"'"  '; \
 		done > delete_tiles.txt && \
-		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | sed \
+		cat $(ROOT_DIR)/mkgmaps/makensis.cfg | $(SED_CMD) \
 			-e "s|__root_dir__|$(ROOT_DIR)|g" \
 			-e "s|__name_word__|$(NAME_WORD)|g" \
 			-e "s|__version__|$(VERSION)|g" \
 			-e "s|__mapid_lo_hex__|$(MAPID_LO_HEX)|g" \
 			-e "s|__mapid_hi_hex__|$(MAPID_HI_HEX)|g" \
 			-e "s|__mapid__|$(MAPID)|g" > $(NAME_WORD).nsi && \
-		sed "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
-		sed "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
+		$(SED_CMD) "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
+		$(SED_CMD) "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
 		$(ZIP_CMD) "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
-		cat $(ROOT_DIR)/docs/taiwan_topo.md | sed \
+		cat $(ROOT_DIR)/docs/taiwan_topo.md | $(SED_CMD) \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi
@@ -745,7 +747,7 @@ $(GMAP): $(MAP_PC)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_PC_DIR) && \
 	    rm -rf $@ && \
-	    cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | $(SED_CMD) \
 	    	-e "s|__map_dir__|$(MAP_PC_DIR)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
@@ -797,7 +799,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 	rm -rf $(MAP_HIDEM_DIR)
 	mkdir -p $(MAP_HIDEM_DIR)
 	cd $(MAP_HIDEM_DIR) && \
-	    cat $(TYP_FILE) | sed \
+	    cat $(TYP_FILE) | $(SED_CMD) \
 	    	-e "s|ä|a|g" \
 	    	-e "s|é|e|g" \
 	    	-e "s|ß|b|g" \
@@ -813,7 +815,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 	    mkdir $(MAP_HIDEM_DIR)/style && \
 	    cp -a $(HR_STYLE_DIR) $(MAP_HIDEM_DIR)/style/$(HR_STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(MAP_HIDEM_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
 		-e "s|__map_dir__|$(MAP_HIDEM_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
@@ -824,10 +826,10 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | sed \
+	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 		cp $(GMAPDEM) ./moi-hgt.zip && \
-		sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
+		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
 	        -c mkgmap.cfg \
@@ -841,7 +843,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 	rm -rf $(MAP_LODEM_DIR)
 	mkdir -p $(MAP_LODEM_DIR)
 	cd $(MAP_LODEM_DIR) && \
-	    cat $(TYP_FILE) | sed \
+	    cat $(TYP_FILE) | $(SED_CMD) \
 	    	-e "s|ä|a|g" \
 	    	-e "s|é|e|g" \
 	    	-e "s|ß|b|g" \
@@ -857,7 +859,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 	    mkdir $(MAP_LODEM_DIR)/style && \
 	    cp -a $(LR_STYLE_DIR) $(MAP_LODEM_DIR)/style/$(LR_STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(MAP_LODEM_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
 		-e "s|__map_dir__|$(MAP_LODEM_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
@@ -868,10 +870,10 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | sed \
+	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 		cp $(GMAPDEM) ./moi-hgt.zip && \
-		sed "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
+		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
 	        -c mkgmap.cfg \
@@ -885,7 +887,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 	rm -rf $(MAP_NODEM_HR_DIR)
 	mkdir -p $(MAP_NODEM_HR_DIR)
 	cd $(MAP_NODEM_HR_DIR) && \
-	    cat $(TYP_FILE) | sed \
+	    cat $(TYP_FILE) | $(SED_CMD) \
 	    	-e "s|ä|a|g" \
 	    	-e "s|é|e|g" \
 	    	-e "s|ß|b|g" \
@@ -901,7 +903,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 	    mkdir $(MAP_NODEM_HR_DIR)/style && \
 	    cp -a $(HR_STYLE_DIR) $(MAP_NODEM_HR_DIR)/style/$(HR_STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_HR_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
 		-e "s|__map_dir__|$(MAP_NODEM_HR_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
@@ -912,7 +914,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | sed \
+	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
@@ -927,7 +929,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	rm -rf $(MAP_NODEM_LR_DIR)
 	mkdir -p $(MAP_NODEM_LR_DIR)
 	cd $(MAP_NODEM_LR_DIR) && \
-	    cat $(TYP_FILE) | sed \
+	    cat $(TYP_FILE) | $(SED_CMD) \
 	    	-e "s|ä|a|g" \
 	    	-e "s|é|e|g" \
 	    	-e "s|ß|b|g" \
@@ -943,7 +945,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	    mkdir $(MAP_NODEM_LR_DIR)/style && \
 	    cp -a $(LR_STYLE_DIR) $(MAP_NODEM_LR_DIR)/style/$(LR_STYLE) && \
 	    cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_LR_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | sed \
+	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
 		-e "s|__root_dir__|$(ROOT_DIR)|g" \
 		-e "s|__map_dir__|$(MAP_NODEM_LR_DIR)|g" \
 		-e "s|__version__|$(VERSION)|g" \
@@ -954,7 +956,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | sed \
+	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
@@ -988,7 +990,7 @@ $(EXTRACT).osm:
 	cd $(EXTRACT_DIR) && \
 	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m -o $(EXTRACT_FILE).o5m && \
 	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.md5 -o $(EXTRACT_FILE).o5m.md5 && \
-	    EXAM_FILE=$(EXTRACT_FILE).o5m; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.md5 | sed -e 's/^.* = //')" ] && \
+	    EXAM_FILE=$(EXTRACT_FILE).o5m; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 	    osmconvert $(EXTRACT_FILE).o5m -o=$(EXTRACT_FILE).osm || \
 	        ( rm -rf $(EXTRACT_FILE).o5m* && false )
 
@@ -1060,7 +1062,7 @@ $(MAPSFORGE_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/$(MAPSFORGE_STYLE_DIR) $(BUILD_DIR)
 	cat styles/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE) | \
-	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE)
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE)
 	cd $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR) && $(ZIP_CMD) $@ *
 
 .PHONY: locus_style $(LOCUS_STYLE)
@@ -1073,7 +1075,7 @@ $(LOCUS_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/$(LOCUS_STYLE_DIR) $(BUILD_DIR)/$(LOCUS_STYLE_INST)
 	cat styles/$(LOCUS_STYLE_DIR)/$(LOCUS_STYLE_FILE) | \
-	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/$(LOCUS_STYLE_FILE)
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/$(LOCUS_STYLE_FILE)
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
 .PHONY: twmap_style $(TWMAP_STYLE)
@@ -1085,7 +1087,7 @@ $(TWMAP_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/twmap_style $(BUILD_DIR)
 	cat styles/twmap_style/MOI_OSM_twmap.xml | \
-	    sed -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
 	cd $(BUILD_DIR)/twmap_style && $(ZIP_CMD) $@ *
 
 .PHONY: mapsforge_zip
