@@ -654,7 +654,7 @@ drop:
 .PHONY: suites
 suites:
 	make SUITE=taiwan all
-	make SUITE=taiwan_gts all
+	#make SUITE=taiwan_gts all
 	make SUITE=taiwan_lite all
 	#make SUITE=taiwan_bw all
 	#make SUITE=taiwan_odc all
