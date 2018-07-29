@@ -654,13 +654,13 @@ drop:
 .PHONY: suites
 suites:
 	make SUITE=taiwan all
-	#make SUITE=taiwan_gts all
+	make SUITE=taiwan_gts all
 	make SUITE=taiwan_lite all
-	#make SUITE=taiwan_bw all
-	#make SUITE=taiwan_odc all
+	make SUITE=taiwan_bw all
+	make SUITE=taiwan_odc all
 	make SUITE=taiwan_bc all
-	#make SUITE=taiwan_bw_dem all
-	#make SUITE=taiwan_odc_dem all
+	make SUITE=taiwan_bw_dem all
+	make SUITE=taiwan_odc_dem all
 	make SUITE=taiwan_bc_dem all
 
 .PHONY: license $(LICENSE)
