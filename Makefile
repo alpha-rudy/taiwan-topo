@@ -694,6 +694,9 @@ suites:
 	make SUITE=taiwan_bw_dem all
 	make SUITE=taiwan_odc_dem all
 	make SUITE=taiwan_bc_dem all
+
+.PHONY: exps
+exps:
 	-make SUITE=taiwan_exp all
 	-make SUITE=taiwan_exp2 all
 
