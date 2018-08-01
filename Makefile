@@ -3,7 +3,7 @@
 # - 1st hex, dem    -> moi(1), srtm(2)
 # - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3), Yushan(4), bbox(f)
 # - 3rd hex, lang   -> en(0), zh(1),
-# - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7)
+# - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -446,6 +446,38 @@ GMAPDEM := $(ROOT_DIR)/hgt/moi-hgt-v2018.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
+else ifeq ($(SUITE),taiwan_exp)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+TYP := basecamp
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := exp
+DEM_NAME := MOI
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+MAPID := $(shell printf %d 0x1018)
+TARGETS := gmap
+
+else ifeq ($(SUITE),taiwan_exp2)
+REGION := Taiwan
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+TYP := basecamp
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := exp2
+DEM_NAME := MOI
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix-v2018.2.zip
+MAPID := $(shell printf %d 0x1019)
+TARGETS := gmap
+
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 LANG := zh
@@ -662,6 +694,8 @@ suites:
 	make SUITE=taiwan_bw_dem all
 	make SUITE=taiwan_odc_dem all
 	make SUITE=taiwan_bc_dem all
+	-make SUITE=taiwan_exp all
+	-make SUITE=taiwan_exp2 all
 
 .PHONY: license $(LICENSE)
 license: $(LICENSE)
