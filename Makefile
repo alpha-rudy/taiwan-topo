@@ -137,7 +137,7 @@ NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_hs
 MAPSFORGE_STYLE_FILE := MOI_OSM.xml
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_hs_style.zip
-HGT := $(ROOT_DIR)/hgt/moimix-v2018.2.zip
+HGT := $(ROOT_DIR)/hgt/hgtmix-v2018.2.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
