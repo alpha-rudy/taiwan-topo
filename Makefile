@@ -84,7 +84,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -100,7 +100,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -228,7 +228,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -289,7 +289,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1317)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -395,7 +395,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -411,7 +411,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -442,7 +442,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -535,7 +535,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/moi30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmapsupp_zip gmap nsis
 
