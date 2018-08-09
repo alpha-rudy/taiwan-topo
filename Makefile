@@ -450,17 +450,20 @@ else ifeq ($(SUITE),taiwan_exp)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-TYP := basecamp
-LR_STYLE := swisspopo
-HR_STYLE := basecamp
-STYLE_NAME := exp
+MAPSFORGE_BBOX := 20.150,115.650,26.44212,122.31377
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
-MAPID := $(shell printf %d 0x1018)
-TARGETS := gmap
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Exp
+MAPSFORGE_STYLE_DIR := mapsforge_style
+MAPSFORGE_STYLE_FILE := MOI_OSM.xml
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+LOCUS_STYLE_DIR := locus_style
+LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
+LOCUS_STYLE_FILE := MOI_OSM.xml
+TARGETS := mapsforge_zip
 
 else ifeq ($(SUITE),taiwan_exp2)
 REGION := Taiwan
@@ -698,7 +701,6 @@ suites:
 .PHONY: exps
 exps:
 	-make SUITE=taiwan_exp all
-	-make SUITE=taiwan_exp2 all
 
 .PHONY: license $(LICENSE)
 license: $(LICENSE)
