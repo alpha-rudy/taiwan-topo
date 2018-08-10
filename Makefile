@@ -23,8 +23,8 @@ ifeq ($(SUITE),yushan)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
@@ -35,8 +35,8 @@ else ifeq ($(SUITE),bbox)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 DEM_NAME := MOI
@@ -46,7 +46,7 @@ else ifeq ($(SUITE),bbox_bw)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := bw
@@ -61,7 +61,7 @@ else ifeq ($(SUITE),bbox_odc)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := outdoorc
@@ -76,7 +76,7 @@ else ifeq ($(SUITE),bbox_odc_dem)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := outdoorc
@@ -84,7 +84,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -92,7 +92,7 @@ else ifeq ($(SUITE),bbox_bc_dem)
 # REGION: specify your REGION name for bbox
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := basecamp
@@ -100,7 +100,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -108,8 +108,8 @@ else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -127,8 +127,8 @@ else ifeq ($(SUITE),taiwan_gts)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -137,7 +137,7 @@ NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 MAPSFORGE_STYLE_DIR := mapsforge_hs
 MAPSFORGE_STYLE_FILE := MOI_OSM.xml
 MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_hs_style.zip
-HGT := $(ROOT_DIR)/hgt/hgtmix-v2018.2.zip
+HGT := $(ROOT_DIR)/hgt/hgtmix-v2018.3.zip
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
@@ -146,7 +146,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_20_100_500_moi.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -166,8 +166,8 @@ else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
@@ -178,8 +178,8 @@ else ifeq ($(SUITE),taipei)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
@@ -190,7 +190,7 @@ else ifeq ($(SUITE),yushan_bw)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := bw
@@ -205,7 +205,7 @@ else ifeq ($(SUITE),yushan_odc)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := outdoorc
@@ -220,7 +220,7 @@ else ifeq ($(SUITE),yushan_odc_dem)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := outdoorc
@@ -228,7 +228,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -236,7 +236,7 @@ else ifeq ($(SUITE),yushan_bc)
 REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 TYP := basecamp
@@ -251,7 +251,7 @@ else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := bw
@@ -266,7 +266,7 @@ else ifeq ($(SUITE),beibeiji_odc)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := outdoorc
@@ -281,7 +281,7 @@ else ifeq ($(SUITE),beibeiji_bc_dem)
 REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 TYP := basecamp
@@ -289,7 +289,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1317)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -297,7 +297,7 @@ else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := jing
@@ -357,7 +357,7 @@ else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := bw
@@ -372,7 +372,7 @@ else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoorc
@@ -387,7 +387,7 @@ else ifeq ($(SUITE),taiwan_bw_dem)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := bw
@@ -395,7 +395,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -403,7 +403,7 @@ else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := outdoorc
@@ -411,7 +411,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -419,7 +419,7 @@ else ifeq ($(SUITE),taiwan_bc)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := basecamp
@@ -434,7 +434,7 @@ else ifeq ($(SUITE),taiwan_bc_dem)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 TYP := basecamp
@@ -442,7 +442,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30-v2018.3.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -451,7 +451,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018_zls.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 20.150,115.650,26.44212,122.31377
@@ -469,17 +469,22 @@ else ifeq ($(SUITE),taiwan_exp2)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.3.osm.pbf
+ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-TYP := basecamp
-LR_STYLE := swisspopo
-HR_STYLE := basecamp
-STYLE_NAME := exp2
+MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgtmix-v2018.2.zip
-MAPID := $(shell printf %d 0x1019)
-TARGETS := gmap
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Exp2
+MAPSFORGE_STYLE_DIR := mapsforge_lite
+MAPSFORGE_STYLE_FILE := MOI_OSM_Lite.xml
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+LOCUS_STYLE_DIR := locus_lite
+LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
+LOCUS_STYLE_FILE := MOI_OSM_Lite.xml
+HGT := $(ROOT_DIR)/hgt/hgt90-v2018.3.zip
+GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
+TARGETS := mapsforge_zip mapsforge_style gts_all
 
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
