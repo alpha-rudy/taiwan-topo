@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <locusActions>
   <download>
-    <source><![CDATA[http://rudy.basecamp.tw/moi-hgt-v2018.zip]]></source>
+    <source><![CDATA[http://rudy.basecamp.tw/hgtmix-v2018.3.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
