@@ -145,7 +145,7 @@ else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_20_100_500_moi.osm.pbf
+ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.3.osm.pbf
 ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
