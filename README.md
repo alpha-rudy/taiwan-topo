@@ -1,5 +1,9 @@
 # *Taiwan TOPO* Taiwan Hiking/Geocaching Maps
 
+## Before getting start
+
+Since GitHub cannot host large data for pre-generated contour lines, please download all the files from [Dropbox](https://www.dropbox.com/sh/zek16veghjhs9d2/AAC3nfwMvilok9Fzaugjb0ZGa?dl=0) and put them into ```./osm_elevations```.
+
 ## Usage
 
     $ make SUITE=taiwan_bw gmapsupp   ### make a Garmin handheld map
