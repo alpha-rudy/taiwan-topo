@@ -5039,7 +5039,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="any" k="railway" v="station|halt" zoom-max="14">
       <rule e="any" k="station" v="~">
-        <symbol id="s_pt_rail_lz" display="always" priority="112" src="file:moiosmlite_res/s_pt_rail_lz.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <symbol id="s_pt_rail_lz" display="always" priority="112" src="file:moiosmlite_res/s_pt_rail_taiwan.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
         <caption priority="119" k="name" symbol-id="s_pt_rail_lz" position="above" font-style="bold" font-size="10" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
