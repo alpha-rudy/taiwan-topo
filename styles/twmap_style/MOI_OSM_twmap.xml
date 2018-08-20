@@ -4498,7 +4498,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule cat="city" e="any" k="highway" v="bus_stop" zoom-min="15">
-      <symbol id="s_pt_bus" priority="76" src="file:moiosm_twmap/s_pt_bus.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+      <symbol id="s_pt_bus" priority="76" src="file:moiosm_twmap/s_pt_bus_stop.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_pt_bus" position="above" font-style="bold" font-size="18" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
@@ -5017,11 +5017,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <!-- stations -->
     <rule e="any" k="highway" v="bus_stop">
-      <symbol id="s_pt_bus" display="always" priority="115" src="file:moiosm_twmap/s_pt_bus.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+      <symbol id="s_pt_bus" display="always" priority="115" src="file:moiosm_twmap/s_pt_bus_stop.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
       <caption priority="116" k="name" symbol-id="s_pt_bus" position="above" font-style="bold" font-size="18" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="any" k="amenity" v="bus_station">
-      <symbol id="s_pt_bus_station" priority="112" src="file:moiosm_twmap/s_pt_bus_station.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+      <symbol id="s_pt_bus_station" priority="112" src="file:moiosm_twmap/s_pt_bus_station_a.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
       <caption k="name" symbol-id="s_pt_bus_station" position="above" font-style="bold" font-size="20" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="any" k="station|railway" v="light_rail|tram_stop">
@@ -5036,12 +5036,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="any" k="railway" v="station|halt" zoom-min="14">
       <rule e="any" k="station" v="~">
-        <symbol id="s_pt_rail" display="always" priority="112" src="file:moiosm_twmap/s_pt_rail.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_rail" display="always" priority="112" src="file:moiosm_twmap/s_pt_rail_taiwan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="119" k="name" symbol-id="s_pt_rail" position="above" font-style="bold" font-size="20" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="station" v="subway">
-      <symbol id="s_pt_subway" display="always" priority="113" src="file:moiosm_twmap/s_pt_subway.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+      <symbol id="s_pt_subway" display="always" priority="113" src="file:moiosm_twmap/s_pt_subway_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
       <caption priority="118" k="name" symbol-id="s_pt_subway" position="above" font-style="bold" font-size="20" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="any" k="amenity" v="ferry_terminal">
