@@ -708,6 +708,16 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-pubtrans-h"/>
       <overlay id="elmt-car-h"/>
       <overlay id="elmt-buildings-h"/>
+      <overlay id="elmt-hiking-invisible"/>
+    </layer>
+    <layer id="elmt-hiking-invisible" visible="false">
+      <name lang="de" value="Wandern v__version__"/>
+      <name lang="en" value="Hiking v__version__"/>
+      <name lang="es" value="Excursionismo v__version__"/>
+      <name lang="fr" value="Randonnées v__version__"/>
+      <name lang="it" value="Escursioni v__version__"/>
+      <name lang="zh" value="登山 v__version__"/>
+      <cat id="hike-invisible"/>
     </layer>
     <layer id="elmt-city" visible="false">
       <name lang="de" value="Stadt"/>
@@ -2918,7 +2928,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <rule cat="bike" e="way" k="bicycle" v="bic_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.68"/>
             </rule>
-            <rule cat="hike" e="way" k="foot" v="ft_no|~">
+            <rule cat="hike-invisible" e="way" k="foot" v="ft_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.68"/>
             </rule>
             <rule cat="city" e="way" k="*" v="*">
@@ -2960,7 +2970,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <rule cat="bike" e="way" k="bicycle" v="bic_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.38"/>
             </rule>
-            <rule cat="hike" e="way" k="foot" v="ft_no|~">
+            <rule cat="hike-invisible" e="way" k="foot" v="ft_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.38"/>
             </rule>
             <rule cat="city" e="way" k="*" v="*">
