@@ -677,6 +677,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
+    <layer id="elmt-hiking-invisible" enabled="false">
+      <name lang="zh" value="封閉路線"/>
+      <cat id="hike-invisible"/>
+    </layer>
     <!-- mapstyles -->
     <layer id="elmt-hiking" visible="true">
       <name lang="de" value="Wandern v__version__"/>
@@ -708,6 +712,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-pubtrans-h"/>
       <overlay id="elmt-car-h"/>
       <overlay id="elmt-buildings-h"/>
+      <overlay id="elmt-hiking-invisible"/>
     </layer>
     <layer id="elmt-city" visible="false">
       <name lang="de" value="Stadt"/>
@@ -2242,58 +2247,85 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
 -->
-        <rule cat="h_routes" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
-          <rule e="way" k="highway" v="footway|path" zoom-min="13">
-            <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
-              <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.17" stroke-dasharray="2,2" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-              <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.13" stroke-dasharray="2,2" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
-              <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.09" stroke-dasharray="2,2" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
-              <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.07" stroke-dasharray="2,2" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
-              <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.06" stroke-dasharray="2,2" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="*" v="*" zoom-min="18">
-              <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.06" stroke-dasharray="2,2" stroke-linecap="butt"/>
-            </rule>
-            <!-- ;trail -->
-          </rule>
-        </rule>
-        <rule cat="h_routes" e="way" k="trail_visibility" v="excellent|good|intermediate|~">
-          <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
+        <rule cat="h_routes" e="way" k="access" v="destination|private|~">
+          <rule e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
             <rule e="way" k="highway" v="footway|path" zoom-min="13">
               <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
-                <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="2,2" stroke-linecap="butt"/>
+                <line stroke="#FFFFFF" stroke-width="0.17" stroke-dasharray="2,2" stroke-linecap="butt"/>
               </rule>
               <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-                <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="2,2" stroke-linecap="butt"/>
+                <line stroke="#FFFFFF" stroke-width="0.13" stroke-dasharray="2,2" stroke-linecap="butt"/>
               </rule>
               <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
-                <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="2,2" stroke-linecap="butt"/>
+                <line stroke="#FFFFFF" stroke-width="0.09" stroke-dasharray="2,2" stroke-linecap="butt"/>
               </rule>
               <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
-                <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="2,2" stroke-linecap="butt"/>
+                <line stroke="#FFFFFF" stroke-width="0.07" stroke-dasharray="2,2" stroke-linecap="butt"/>
               </rule>
               <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
-                <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="2,2" stroke-linecap="butt"/>
+                <line stroke="#FFFFFF" stroke-width="0.06" stroke-dasharray="2,2" stroke-linecap="butt"/>
               </rule>
               <rule e="way" k="*" v="*" zoom-min="18">
-                <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="2,2" stroke-linecap="butt"/>
+                <line stroke="#FFFFFF" stroke-width="0.06" stroke-dasharray="2,2" stroke-linecap="butt"/>
               </rule>
               <!-- ;trail -->
             </rule>
+          </rule>
+        </rule>
+        <rule cat="h_routes" e="way" k="access" v="destination|private|~">
+          <rule e="way" k="trail_visibility" v="excellent|good|intermediate|~">
+            <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
+              <rule e="way" k="highway" v="footway|path" zoom-min="13">
+                <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+                  <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+                  <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+                  <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+                  <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+                  <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="*" v="*" zoom-min="18">
+                  <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="5,3" stroke-linecap="butt"/>
+                </rule>
+                <!-- ;trail -->
+              </rule>
+            </rule>
+          </rule>
+        </rule>
+        <rule cat="hike-invisible" e="way" k="access" v="acc_no">
+          <rule e="way" k="highway" v="footway|path" zoom-min="13">
+            <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+              <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+              <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+              <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+              <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+              <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="18">
+              <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <!-- ;trail -->
           </rule>
         </rule>
         <rule e="way" k="bicycle" v="bic_yes|bic_permissive|bic_designated">
@@ -2918,7 +2950,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <rule cat="bike" e="way" k="bicycle" v="bic_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.9"/>
             </rule>
-            <rule cat="hike" e="way" k="foot" v="ft_no|~">
+            <rule cat="hike-invisible" e="way" k="foot" v="ft_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.9"/>
             </rule>
             <rule cat="city" e="way" k="*" v="*">
@@ -2960,7 +2992,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <rule cat="bike" e="way" k="bicycle" v="bic_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.5"/>
             </rule>
-            <rule cat="hike" e="way" k="foot" v="ft_no|~">
+            <rule cat="hike-invisible" e="way" k="foot" v="ft_no|~">
               <line src="file:moiosm_res/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.5"/>
             </rule>
             <rule cat="city" e="way" k="*" v="*">
