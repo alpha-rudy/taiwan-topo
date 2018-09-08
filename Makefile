@@ -674,14 +674,14 @@ install: $(LICENSE) $(GMAPSUPP)
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
-	cp -r $(BUILD_DIR)/images $(INSTALL_DIR)
+	cp -r $(BUILD_DIR)/docs/images $(INSTALL_DIR)
 	cp $(LICENSE) $(INSTALL_DIR)/taiwan_topo.html
 
 .PHONY: drop
 drop:
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
-	cp -r images auto-install/* $(INSTALL_DIR)
+	cp -r docs/images auto-install/* $(INSTALL_DIR)
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
@@ -713,7 +713,7 @@ license: $(LICENSE)
 $(LICENSE):
 	[ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
-	cp -a images $(BUILD_DIR)
+	cp -a docs/images $(BUILD_DIR)
 	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/beta.article
 	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(BUILD_DIR)/beta.html
