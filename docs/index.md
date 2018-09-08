@@ -102,7 +102,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![DEM](images/Android.png){:width="36px"}![iOS](images/iTunes.jpeg){:width="36px"} DEM 30m, v2018.3](./hgt30-v2018.3.zip)：全幅30m, 檔案最大, 手動安裝 (65MB)
   * [![DEM](images/Android.png){:width="36px"}![iOS](images/iTunes.jpeg){:width="36px"} DEM 90m, v2018.3](./hgt90-v2018.3.zip)：全幅90m, 檔案最小, 手動安裝 (8MB)
 
-* ![Map](images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
+* ![Map](images/Garmin.png){:width="36px"} Garmin bw style, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
@@ -111,7 +111,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Map](images/Windows.png){:width="36px"} bw (170MB)](./Install_MOI_Taiwan_TOPO_bw.exe), [bw3D (190MB)](./Install_MOI_Taiwan_TOPO_bw3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png){:width="36px"} bw (170MB)](./Taiwan_moi_zh_bw.gmap.zip), [bw3D  (190MB)](./Taiwan_moi_zh_bw3D.gmap.zip)：點選下載安裝檔
 
-* ![Map](images/Garmin.png =x36) Garmin odc style, MOI.OSM.odc - Taiwan TOPO（適合較大螢幕）
+* ![Map](images/Garmin.png){:width="36px"} Garmin odc style, MOI.OSM.odc - Taiwan TOPO（適合較大螢幕）
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
@@ -120,7 +120,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Map](images/Windows.png){:width="36px"} odc (170MB)](./Install_MOI_Taiwan_TOPO_odc.exe), [odc3D (190MB)](./Install_MOI_Taiwan_TOPO_odc3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png){:width="36px"} odc (170MB)](./Taiwan_moi_zh_odc.gmap.zip), [odc3D (190MB)](./Taiwan_moi_zh_odc3D.gmap.zip)：點選下載安裝檔
 
-* ![Map](images/Garmin.png =x36) Garmin comp style, MOI.OSM.camp - Taiwan TOPO（適合 PC/Mac BaseCamp）
+* ![Map](images/Garmin.png){:width="36px"} Garmin comp style, MOI.OSM.camp - Taiwan TOPO（適合 PC/Mac BaseCamp）
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
