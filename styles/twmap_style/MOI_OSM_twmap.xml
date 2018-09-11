@@ -677,9 +677,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
-    <layer id="elmt-hiking-invisible" enabled="false">
+    <layer id="elmt-hiking-no_access" enabled="false">
+      <name lang="de" value="Inaccess pathway"/>
+      <name lang="en" value="Inaccess pathway"/>
+      <name lang="es" value="Inaccess pathway"/>
+      <name lang="fr" value="Inaccess pathway"/>
+      <name lang="it" value="Inaccess pathway"/>
       <name lang="zh" value="封閉路線"/>
-      <cat id="hike-invisible"/>
+      <cat id="hike-no_access"/>
     </layer>
     <!-- mapstyles -->
     <layer id="elmt-hiking" visible="true">
@@ -696,6 +701,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-landcover"/>
       <overlay id="elmt-h_routes"/>
       <overlay id="elmt-h_s_routes"/>
+      <overlay id="elmt-hiking-no_access"/>
       <overlay id="elmt-waymarks"/>
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
@@ -712,7 +718,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-pubtrans-h"/>
       <overlay id="elmt-car-h"/>
       <overlay id="elmt-buildings-h"/>
-      <overlay id="elmt-hiking-invisible"/>
     </layer>
     <layer id="elmt-city" visible="false">
       <name lang="de" value="Stadt"/>
@@ -2299,7 +2304,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             </rule>
           </rule>
         </rule>
-        <rule cat="hike-invisible" e="way" k="access" v="acc_no">
+        <rule cat="hike-no_access" e="way" k="access" v="acc_no">
           <rule e="way" k="highway" v="footway|path" zoom-min="13">
             <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
               <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
@@ -2944,7 +2949,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <rule cat="bike" e="way" k="bicycle" v="bic_no|~">
               <line src="file:moiosm_twmap/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.9"/>
             </rule>
-            <rule cat="hike-invisible" e="way" k="foot" v="ft_no|~">
+            <rule cat="hike-no_access" e="way" k="foot" v="ft_no|~">
               <line src="file:moiosm_twmap/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.9"/>
             </rule>
             <rule cat="city" e="way" k="*" v="*">
@@ -2986,7 +2991,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             <rule cat="bike" e="way" k="bicycle" v="bic_no|~">
               <line src="file:moiosm_twmap/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.5"/>
             </rule>
-            <rule cat="hike-invisible" e="way" k="foot" v="ft_no|~">
+            <rule cat="hike-no_access" e="way" k="foot" v="ft_no|~">
               <line src="file:moiosm_twmap/p_access-no.svg" symbol-scaling="size" symbol-height="8" symbol-width="8" stroke-width="0.5"/>
             </rule>
             <rule cat="city" e="way" k="*" v="*">
