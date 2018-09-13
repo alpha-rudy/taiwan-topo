@@ -691,6 +691,13 @@ drop:
 		cat docs/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cat docs/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 
+.PHONY: daily
+daily:
+	make SUITE=taiwan mapsforge_zip mapsforge_style locus_style
+	make SUITE=taiwan_gts mapsforge_style
+	make SUITE=taiwan_bw gmapsupp_zip
+	make SUITE=taiwan_bc_dem gmap nsis
+
 .PHONY: suites
 suites:
 	make SUITE=taiwan all
