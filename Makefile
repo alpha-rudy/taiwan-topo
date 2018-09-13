@@ -591,7 +591,7 @@ NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 NAME_MAPSFORGE ?= $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx72G -server
+JAVACMD_OPTIONS := -Xmx30G -server
 
 DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
 MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
@@ -1163,7 +1163,7 @@ mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS="-Xmx64G -server" && \
+	export JAVACMD_OPTIONS="-Xmx30G -server" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
