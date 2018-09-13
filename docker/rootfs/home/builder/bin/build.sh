@@ -7,13 +7,15 @@ export INSTALL_DIR=v$(date +%Y.%m.%d)
 GS_FILENAME="dayofmonth_$(date +%d)"
 DAYOFWEEK="$(date +%w)"
 
-cd ~/taiwan-topo
+while sleep 60; do free -h >> log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
 
+cd ~/taiwan-topo
 git clean -fdx
 git pull --rebase
-
 make distclean
+
 make suites
+make exps || echo make exps failed
 make license
 
 rm -rf install/${INSTALL_DIR}
