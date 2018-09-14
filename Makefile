@@ -1197,6 +1197,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
 		    type=ram \
+		    threads=6 \
 		    bbox=$(MAPSFORGE_BBOX) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
