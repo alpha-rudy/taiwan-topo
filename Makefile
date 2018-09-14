@@ -657,14 +657,14 @@ ZIP_CMD := 7z a -tzip -mx=9
 all: $(TARGETS)
 
 clean:
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
 
 distclean:
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
@@ -673,7 +673,7 @@ distclean:
 
 .PHONY: install
 install: $(LICENSE) $(GMAPSUPP)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r $(GMAPSUPP) $(INSTALL_DIR)
@@ -682,7 +682,7 @@ install: $(LICENSE) $(GMAPSUPP)
 
 .PHONY: drop
 drop:
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r docs/images auto-install/* $(INSTALL_DIR)
@@ -716,14 +716,14 @@ suites:
 
 .PHONY: exps
 exps:
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	#-make SUITE=taiwan_exp all
 	echo No exps target needed
 
 .PHONY: license $(LICENSE)
 license: $(LICENSE)
 $(LICENSE):
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
 	cp -a docs/images $(BUILD_DIR)
@@ -740,7 +740,7 @@ $(LICENSE):
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
 $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
 	mkdir -p $(GTS_ALL)
@@ -753,7 +753,7 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
 .PHONY: nsis
 nsis: $(NSIS)
 $(NSIS): $(MAP_PC)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -785,7 +785,7 @@ $(NSIS): $(MAP_PC)
 .PHONY: poi
 poi: $(POI)
 $(POI): $(EXTRACT)-sed.osm.pbf
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
@@ -803,7 +803,7 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 .PHONY: gmap
 gmap: $(GMAP)
 $(GMAP): $(MAP_PC)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -820,7 +820,7 @@ $(GMAP): $(MAP_PC)
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
 $(GMAPSUPP): $(MAP_HAND)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -842,7 +842,7 @@ $(GMAPSUPP): $(MAP_HAND)
 .PHONY: gmapsupp_zip
 gmapsupp_zip: $(GMAPSUPP_ZIP)
 $(GMAPSUPP_ZIP): $(GMAPSUPP)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(GMAPSUPP)" ]
 	-rm -rf $@
@@ -859,7 +859,7 @@ endif
 .PHONY: map_hidem
 map_hidem: $(MAP_HIDEM)
 $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(MAP_HIDEM_DIR)
 	mkdir -p $(MAP_HIDEM_DIR)
@@ -904,7 +904,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 .PHONY: map_lodem
 map_lodem: $(MAP_LODEM)
 $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(MAP_LODEM_DIR)
 	mkdir -p $(MAP_LODEM_DIR)
@@ -949,7 +949,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 .PHONY: map_nodem_hr
 map_nodem_hr: $(MAP_NODEM_HR)
 $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(MAP_NODEM_HR_DIR)
 	mkdir -p $(MAP_NODEM_HR_DIR)
@@ -992,7 +992,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 .PHONY: map_nodem_lr
 map_nodem_lr: $(MAP_NODEM_LR)
 $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(MAP_NODEM_LR_DIR)
 	mkdir -p $(MAP_NODEM_LR_DIR)
@@ -1034,7 +1034,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 
 ELEVATIONS_URL := file://${HOME}/osm_elevations
 $(ELEVATION):
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)
 	cd $(ELEVATIONS_DIR) && \
@@ -1044,7 +1044,7 @@ $(ELEVATION):
 	    	( rm -rf $@ && false )
 
 $(ELEVATION_MARKER):
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)/marker
 	cd $(ELEVATIONS_DIR)/marker && \
@@ -1055,7 +1055,7 @@ $(ELEVATION_MARKER):
 
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).osm:
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
@@ -1066,14 +1066,14 @@ $(EXTRACT).osm:
 	        ( rm -rf $(EXTRACT_FILE).o5m* && false )
 
 $(EXTRACT).osm.pbf: $(EXTRACT).osm
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
 	    cat $(EXTRACT_FILE).osm | osmconvert - -o=$@
 
 $(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
@@ -1095,7 +1095,7 @@ endif
 endif
 
 $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -1110,7 +1110,7 @@ $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
 		omitmetadata=true
 
 $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
@@ -1130,7 +1130,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 .PHONY: mapsforge_style $(MAPSFORGE_STYLE)
 mapsforge_style: $(MAPSFORGE_STYLE)
 $(MAPSFORGE_STYLE):
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1144,7 +1144,7 @@ $(MAPSFORGE_STYLE):
 .PHONY: locus_style $(LOCUS_STYLE)
 locus_style: $(LOCUS_STYLE)
 $(LOCUS_STYLE):
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1158,7 +1158,7 @@ $(LOCUS_STYLE):
 .PHONY: twmap_style $(TWMAP_STYLE)
 twmap_style: $(TWMAP_STYLE)
 $(TWMAP_STYLE):
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1171,7 +1171,7 @@ $(TWMAP_STYLE):
 .PHONY: mapsforge_zip
 mapsforge_zip: $(MAPSFORGE_ZIP)
 $(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
@@ -1180,7 +1180,7 @@ $(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
 .PHONY: poi_zip
 poi_zip: $(POI_ZIP)
 $(POI_ZIP): $(POI)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(POI)" ]
 	-rm -rf $@
@@ -1189,7 +1189,7 @@ $(POI_ZIP): $(POI)
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="-Xmx30G -server" && \
@@ -1208,7 +1208,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    file="$@" > /dev/null 2> /dev/null
 	
 $(TILES): $(PBF)
-	date +'DS: $(shell basename $@) %H:%M:%S'
+	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(DATA_DIR)
 	mkdir -p $(DATA_DIR)
