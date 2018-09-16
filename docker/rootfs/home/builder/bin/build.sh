@@ -15,7 +15,11 @@ git clean -fdx
 git pull --rebase
 make distclean
 
-[ "${DAYOFWEEK}" -eq ${WEEKLY} ] && make suites || make daily
+if [ "${DAYOFWEEK}" -eq ${WEEKLY} ]; then
+    make suites
+else
+    make daily
+fi
 make exps || echo make exps failed
 make license
 
@@ -26,11 +30,10 @@ cd install/${INSTALL_DIR}
 tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
 
 ## rclone to dropbox
-[ "${DAYOFWEEK}" -eq ${WEEKLY} ] && {
+if [ "${DAYOFWEEK}" -eq ${WEEKLY} ]; then
     rclone copy --update . rudybox:Apps/share-mapdata/
     echo "Completed with weeekly drop."
-} || {
+else
     rclone copy --update . rudybox:Apps/share-mapdata/drops/
     echo "Completed with daily drop."
-}
-
+fi
