@@ -22,6 +22,7 @@ RUN dpkg --add-architecture i386 && \
         ssh \
         sudo \
         zip \
+        zstd \
     && rm -rf /var/lib/apt/lists/*
 RUN adduser --disabled-password --gecos '' builder && adduser builder sudo
 
