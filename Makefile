@@ -1054,7 +1054,7 @@ $(ELEVATION_MARKER):
 	    	( rm -rf $@ && false )
 
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
-$(EXTRACT).osm:
+$(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
@@ -1062,24 +1062,21 @@ $(EXTRACT).osm:
 	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst -o $(EXTRACT_FILE).o5m.zst && \
 	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 -o $(EXTRACT_FILE).o5m.zst.md5 && \
 	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
-		zstd --decompress $(EXTRACT_FILE).o5m.zst && \
-	    osmconvert $(EXTRACT_FILE).o5m -o=$(EXTRACT_FILE).osm || \
-	        ( rm -rf $(EXTRACT_FILE).o5m* && false )
+		zstd --decompress $(EXTRACT_FILE).o5m.zst || \
+	        ( rm -rf $(EXTRACT_FILE).o5m.zst && false )
 
-$(EXTRACT).osm.pbf: $(EXTRACT).osm
+$(EXTRACT).osm.pbf: $(EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    cat $(EXTRACT_FILE).osm | osmconvert - -o=$@
+	    cat $(EXTRACT_FILE).o5m | osmconvert - -o=$@
 
-$(EXTRACT)-sed.osm.pbf: $(EXTRACT).osm osm_scripts/parse_osm.py
+$(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/parse_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
-	cd $(EXTRACT_DIR) && \
-		cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/extrac_hknetwork.py > hknetworks.json && \
-	    cat $(EXTRACT_FILE).osm | python2.7 $(ROOT_DIR)/osm_scripts/parse_osm.py | osmconvert - -o=$@
+	cd $(EXTRACT_DIR) && $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE).o5m $@
 
 # OSMOSIS_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
