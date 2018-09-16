@@ -18,9 +18,6 @@
   * [![DEM](./images/iTunes.jpeg =36x) DEM 30m, v2018.3](./hgt30-v2018.3.zip) 全幅30m, 檔案最大
   * [![DEM](./images/iTunes.jpeg =36x) DEM 90m, v2018.3](./hgt90-v2018.3.zip) 全幅90m, 檔案最小
 
-* ![GMap](./images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw - Taiwan TOPO v__version__
-  * [![Garmin](./images/Garmin_small.jpeg =36x) bw](./gmapsupp_Taiwan_moi_zh_bw.img.zip)
-
 * ![GMap](./images/Garmin.png =x36) Garmin camp style, MOI.OSM.camp - Taiwan TOPO v__version__
   * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe)
   * [![macOS](./images/macOS.png =36x) camp3D](./Taiwan_moi_zh_camp3D.gmap.zip)
