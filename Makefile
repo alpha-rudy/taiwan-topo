@@ -653,6 +653,7 @@ SED_CMD := sed
 endif
 
 ZIP_CMD := 7z a -tzip -mx=9
+MAKE_CMD := make -j 9
 
 all: $(TARGETS)
 
@@ -697,22 +698,22 @@ drop:
 
 .PHONY: daily
 daily:
-	make SUITE=taiwan mapsforge_zip mapsforge_style locus_style
-	make SUITE=taiwan_gts mapsforge_style
-	make SUITE=taiwan_bw gmapsupp_zip
-	make SUITE=taiwan_bc_dem gmap nsis
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip mapsforge_style locus_style
+	$(MAKE_CMD) SUITE=taiwan_gts mapsforge_style
+	$(MAKE_CMD) SUITE=taiwan_bw gmapsupp_zip
+	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
 
 .PHONY: suites
 suites:
-	make SUITE=taiwan all
-	make SUITE=taiwan_gts all
-	make SUITE=taiwan_lite all
-	make SUITE=taiwan_bw all
-	make SUITE=taiwan_odc all
-	make SUITE=taiwan_bc all
-	make SUITE=taiwan_bw_dem all
-	make SUITE=taiwan_odc_dem all
-	make SUITE=taiwan_bc_dem all
+	$(MAKE_CMD) SUITE=taiwan all
+	$(MAKE_CMD) SUITE=taiwan_gts all
+	$(MAKE_CMD) SUITE=taiwan_lite all
+	$(MAKE_CMD) SUITE=taiwan_bw all
+	$(MAKE_CMD) SUITE=taiwan_odc all
+	$(MAKE_CMD) SUITE=taiwan_bc all
+	$(MAKE_CMD) SUITE=taiwan_bw_dem all
+	$(MAKE_CMD) SUITE=taiwan_odc_dem all
+	$(MAKE_CMD) SUITE=taiwan_bc_dem all
 
 .PHONY: exps
 exps:
@@ -1059,9 +1060,10 @@ $(EXTRACT).osm:
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m -o $(EXTRACT_FILE).o5m && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.md5 -o $(EXTRACT_FILE).o5m.md5 && \
-	    EXAM_FILE=$(EXTRACT_FILE).o5m; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst -o $(EXTRACT_FILE).o5m.zst && \
+	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 -o $(EXTRACT_FILE).o5m.zst.md5 && \
+	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
+		zstd --decompress $(EXTRACT_FILE).o5m.zst && \
 	    osmconvert $(EXTRACT_FILE).o5m -o=$(EXTRACT_FILE).osm || \
 	        ( rm -rf $(EXTRACT_FILE).o5m* && false )
 
@@ -1197,7 +1199,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
 		    type=ram \
-		    threads=6 \
+		    threads=16 \
 		    bbox=$(MAPSFORGE_BBOX) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
