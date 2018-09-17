@@ -35,7 +35,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="登山步道"/>
       <cat id="h_routes"/>
     </layer>
-    <layer id="elmt-h_s_routes" enabled="false">
+    <layer id="elmt-h_s_routes" enabled="true">
       <name lang="de" value="Betonte Routen"/>
       <name lang="en" value="emphasized routes"/>
       <name lang="es" value="rutas resaltadas"/>
@@ -72,7 +72,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="自行車道"/>
       <cat id="c_routes"/>
     </layer>
-    <layer id="elmt-c_s_routes" enabled="false">
+    <layer id="elmt-c_s_routes" enabled="true">
       <name lang="de" value="Betonte Routen"/>
       <name lang="en" value="emphasized routes"/>
       <name lang="es" value="rutas resaltadas"/>
@@ -90,7 +90,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="登山自行車道"/>
       <cat id="mtb_routes"/>
     </layer>
-    <layer id="elmt-mtb_c_routes" enabled="false">
+    <layer id="elmt-mtb_c_routes" enabled="true">
       <name lang="de" value="Fahrradrouten"/>
       <name lang="en" value="cycling routes"/>
       <name lang="es" value="rutas en bici"/>
@@ -99,7 +99,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="自行車道"/>
       <cat id="c_routes"/>
     </layer>
-    <layer id="elmt-mtb_s_routes" enabled="false">
+    <layer id="elmt-mtb_s_routes" enabled="true">
       <name lang="de" value="Betonte Routen"/>
       <name lang="en" value="emphasized routes"/>
       <name lang="es" value="rutas resaltadas"/>
@@ -677,7 +677,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
-    <layer id="elmt-hiking-no_access" enabled="false">
+    <layer id="elmt-hiking-no_access" enabled="true">
       <name lang="de" value="Inaccess pathway"/>
       <name lang="en" value="Inaccess pathway"/>
       <name lang="es" value="Inaccess pathway"/>
@@ -687,7 +687,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="hike-no_access"/>
     </layer>
     <!-- mapstyles -->
-    <layer id="elmt-hiking" visible="true">
+    <layer id="elmt-hiking" enabled="true" visible="true">
       <name lang="de" value="Wandern v__version__"/>
       <name lang="en" value="Hiking v__version__"/>
       <name lang="es" value="Excursionismo v__version__"/>
