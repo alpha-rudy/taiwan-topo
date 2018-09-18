@@ -1059,8 +1059,8 @@ $(EXTRACT).o5m:
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst -o $(EXTRACT_FILE).o5m.zst && \
-	    curl $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 -o $(EXTRACT_FILE).o5m.zst.md5 && \
+	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
+	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
 	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress $(EXTRACT_FILE).o5m.zst || \
 	        ( rm -rf $(EXTRACT_FILE).o5m.zst && false )
