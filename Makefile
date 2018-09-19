@@ -490,7 +490,7 @@ else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := outdoorc
@@ -505,7 +505,7 @@ else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := bw
@@ -520,7 +520,7 @@ else ifeq ($(SUITE),taipei_bc)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := basecamp
@@ -535,7 +535,7 @@ else ifeq ($(SUITE),taipei_bc_dem)
 REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := basecamp
@@ -543,7 +543,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 DEM_NAME := MOI
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.2.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -551,7 +551,7 @@ else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
 LANG := en
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.2.osm.pbf
+ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 TYP := bw
