@@ -24,7 +24,7 @@ REGION := Yushan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
@@ -36,7 +36,7 @@ else ifeq ($(SUITE),bbox)
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 DEM_NAME := MOI
@@ -109,7 +109,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -128,7 +128,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -146,7 +146,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_20_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -167,7 +167,7 @@ REGION := Beibeiji
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
@@ -179,7 +179,7 @@ REGION := Taipei
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
@@ -451,7 +451,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 20.150,115.650,26.44212,122.31377
@@ -470,7 +470,7 @@ REGION := Taiwan
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.3.osm.pbf
-ELEVATION_MARKER_FILE = lab_taiwan_100_500_1000_moi_v2018.3_zls.osm.pbf
+ELEVATION_MIX_FILE = ele_taiwan_20_100_500_moi_v2018.3_mix.osm.pbf
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
@@ -616,7 +616,7 @@ MAP_HAND := $(MAP_LODEM)
 endif
 
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
-ELEVATION_MARKER := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MARKER_FILE)
+ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 TILES := $(DATA_DIR)/.done
@@ -653,7 +653,7 @@ SED_CMD := sed
 endif
 
 ZIP_CMD := 7z a -tzip -mx=9
-MAKE_CMD := make -j 9
+MAKE_CMD := make
 
 all: $(TARGETS)
 
@@ -1043,14 +1043,14 @@ $(ELEVATION):
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
-$(ELEVATION_MARKER):
+$(ELEVATION_MIX):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)/marker
 	cd $(ELEVATIONS_DIR)/marker && \
-	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE) -o $(ELEVATION_MARKER_FILE) && \
-	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MARKER_FILE).md5 -o $(ELEVATION_MARKER_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MARKER_FILE).md5 | cut -d' ' -f1)" ] || \
+	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
+	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ] || \
 	    	( rm -rf $@ && false )
 
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
@@ -1081,7 +1081,7 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/parse_osm.py
 # OSMOSIS_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
 ifeq (Taiwan,$(REGION))
-    OSMOSIS_BOUNDING := --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=no completeRelations=no cascadingRelations=no clipIncompleteEntities=true
+    OSMOSIS_BOUNDING :=
 else
     OSMOSIS_BOUNDING := --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes cascadingRelations=yes clipIncompleteEntities=true
 endif
@@ -1107,7 +1107,7 @@ $(PBF): $(EXTRACT).osm.pbf $(ELEVATION)
 		--buffer --write-pbf $@ \
 		omitmetadata=true
 
-$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
+$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1116,11 +1116,8 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION) $(ELEVATION_MARKER)
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf $(EXTRACT)-sed.osm.pbf \
 		$(OSMOSIS_BOUNDING) \
-		--read-pbf $(ELEVATION) --tag-transform file="$(ROOT_DIR)/osm_scripts/tt-ele.xml" \
+		--read-pbf $(ELEVATION_MIX) \
 		$(OSMOSIS_BOUNDING) \
-		--read-pbf $(ELEVATION_MARKER) \
-		$(OSMOSIS_BOUNDING) \
-		--merge \
 		--merge \
 		--buffer --write-pbf $@ \
 		omitmetadata=true
