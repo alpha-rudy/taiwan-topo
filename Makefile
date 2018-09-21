@@ -622,7 +622,7 @@ ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
 TILES := $(DATA_DIR)/.done
-PBF := $(BUILD_DIR)/$(REGION).osm.pbf
+GMAP_INPUT := $(BUILD_DIR)/$(REGION).o5m
 TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
 LR_STYLE_DIR := $(ROOT_DIR)/styles/$(LR_STYLE)
@@ -1087,7 +1087,7 @@ ifneq (,$(strip $(BOUNDING_BOX)))
 endif
 endif
 
-$(PBF): $(EXTRACT).o5m $(ELEVATION)
+$(GMAP_INPUT): $(EXTRACT).o5m $(ELEVATION)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1191,7 +1191,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
 		    file="$@" > /dev/null 2> /dev/null
 	
-$(TILES): $(PBF)
+$(TILES): $(GMAP_INPUT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(DATA_DIR)
@@ -1209,5 +1209,5 @@ $(TILES): $(PBF)
 		--search-limit=1000000000 \
 		--output=o5m \
 		--output-dir=$(DATA_DIR) \
-		$(PBF)
+		$(GMAP_INPUT)
 	touch $@
