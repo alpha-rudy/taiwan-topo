@@ -753,6 +753,7 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
 		unzip $(MAPSFORGE_STYLE) -d mapthemes && \
 		unzip $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
+	rm -rf $(GTS_ALL)
 
 .PHONY: nsis
 nsis: $(NSIS)
@@ -1071,7 +1072,7 @@ $(EXTRACT).o5m:
 	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
 	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
 	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
-		zstd --decompress $(EXTRACT_FILE).o5m.zst
+		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 
 $(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
