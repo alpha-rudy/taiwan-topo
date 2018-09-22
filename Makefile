@@ -5,6 +5,8 @@
 # - 3rd hex, lang   -> en(0), zh(1),
 # - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
 
+SHELL := /usr/bin/env bash
+
 # directory variables
 ROOT_DIR := $(shell pwd)
 TOOLS_DIR := $(ROOT_DIR)/tools
@@ -815,9 +817,9 @@ $(GMAP): $(MAP_PC)
 	    	-e "s|__map_dir__|$(MAP_PC_DIR)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
-	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg" && \
-	    [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap" || true && \
-	    $(ZIP_CMD) $@ "$(NAME_WORD).gmap"
+	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg"
+	-cd $(MAP_PC_DIR) && [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap"
+	cd $(MAP_PC_DIR) && $(ZIP_CMD) $@ "$(NAME_WORD).gmap"
 
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
@@ -850,7 +852,7 @@ $(GMAPSUPP_ZIP): $(GMAPSUPP)
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(GMAPSUPP))
 
-ifeq ($(LANG),zh) 
+ifeq ($(LANG),zh)
 NTL := name,name:zh,name:en
 MAPSFORGE_NTL := zh,en
 else ifeq ($(LANG),en)
@@ -877,7 +879,8 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--product-id=1 \
 		--family-id=$(MAPID) \
-		$(TYP).txt && \
+		$(TYP).txt
+	cd $(MAP_HIDEM_DIR) && \
 	    cp $(TYP).typ $(MAPID).TYP && \
 	    mkdir $(MAP_HIDEM_DIR)/style && \
 	    cp -a $(HR_STYLE_DIR) $(MAP_HIDEM_DIR)/style/$(HR_STYLE) && \
@@ -922,7 +925,8 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--product-id=1 \
 		--family-id=$(MAPID) \
-		$(TYP).txt && \
+		$(TYP).txt
+	cd $(MAP_LODEM_DIR) && \
 	    cp $(TYP).typ $(MAPID).TYP && \
 	    mkdir $(MAP_LODEM_DIR)/style && \
 	    cp -a $(LR_STYLE_DIR) $(MAP_LODEM_DIR)/style/$(LR_STYLE) && \
@@ -967,7 +971,8 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--product-id=1 \
 		--family-id=$(MAPID) \
-		$(TYP).txt && \
+		$(TYP).txt
+	cd $(MAP_NODEM_HR_DIR) && \
 	    cp $(TYP).typ $(MAPID).TYP && \
 	    mkdir $(MAP_NODEM_HR_DIR)/style && \
 	    cp -a $(HR_STYLE_DIR) $(MAP_NODEM_HR_DIR)/style/$(HR_STYLE) && \
@@ -1010,7 +1015,8 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	    	--product-id=1 \
 		--family-id=$(MAPID) \
-		$(TYP).txt && \
+		$(TYP).txt
+	cd $(MAP_NODEM_LR_DIR) && \
 	    cp $(TYP).typ $(MAPID).TYP && \
 	    mkdir $(MAP_NODEM_LR_DIR)/style && \
 	    cp -a $(LR_STYLE_DIR) $(MAP_NODEM_LR_DIR)/style/$(LR_STYLE) && \
@@ -1034,6 +1040,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 		--check-styles
 	touch $(MAP_NODEM_LR)
 
+.DELETE_ON_ERROR: $(ELEVATION)
 ELEVATIONS_URL := file://${HOME}/osm_elevations
 $(ELEVATION):
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -1042,9 +1049,9 @@ $(ELEVATION):
 	cd $(ELEVATIONS_DIR) && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ] || \
-	    	( rm -rf $@ && false )
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ]
 
+.DELETE_ON_ERROR: $(ELEVATION_MIX)
 $(ELEVATION_MIX):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
@@ -1052,9 +1059,9 @@ $(ELEVATION_MIX):
 	cd $(ELEVATIONS_DIR)/marker && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
 	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ] || \
-	    	( rm -rf $@ && false )
+	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
 
+.DELETE_ON_ERROR: $(EXTRACT).o5m
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -1064,8 +1071,7 @@ $(EXTRACT).o5m:
 	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
 	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
 	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
-		zstd --decompress $(EXTRACT_FILE).o5m.zst || \
-	        ( rm -rf $(EXTRACT_FILE).o5m.zst && false )
+		zstd --decompress $(EXTRACT_FILE).o5m.zst
 
 $(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/parse_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -1080,7 +1086,7 @@ ifeq (Taiwan,$(REGION))
 else
     OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
 endif
-else 
+else
 ifneq (,$(strip $(BOUNDING_BOX)))
     OSMCONVERT_BOUNDING := -b=$(BOTTOM),$(LEFT),$(TOP),$(RIGHT) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
     MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
