@@ -7,6 +7,13 @@
 
 SHELL := /usr/bin/env bash
 
+# suggestion: no more than CPU*2
+MAPWITER_THREADS = 8
+# suggestion: doesn't matter
+SPLITTER_THREADS = 4
+# suggestion: CPU*1
+MKGMAP_JOBS = 4
+
 # directory variables
 ROOT_DIR := $(shell pwd)
 TOOLS_DIR := $(ROOT_DIR)/tools
@@ -905,7 +912,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 		cp $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=16 \
+	        --max-jobs=$(MKGMAP_JOBS) \
 	        -c mkgmap.cfg \
 		--check-styles
 	touch $(MAP_HIDEM)
@@ -951,7 +958,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 		cp $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=16 \
+	        --max-jobs=$(MKGMAP_JOBS) \
 	        -c mkgmap.cfg \
 		--check-styles
 	touch $(MAP_LODEM)
@@ -995,7 +1002,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=16 \
+	        --max-jobs=$(MKGMAP_JOBS) \
 	        -c mkgmap.cfg \
 		--check-styles
 	touch $(MAP_NODEM_HR)
@@ -1039,7 +1046,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=16 \
+	        --max-jobs=$(MKGMAP_JOBS) \
 	        -c mkgmap.cfg \
 		--check-styles
 	touch $(MAP_NODEM_LR)
@@ -1191,7 +1198,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
 		    type=ram \
-		    threads=16 \
+		    threads=$(MAPWITER_THREADS) \
 		    bbox=$(MAPSFORGE_BBOX) \
 		    preferred-languages="$(MAPSFORGE_NTL)" \
 		    tag-conf-file="$(TAG_MAPPING)" \
@@ -1208,7 +1215,7 @@ $(COMMON_TILES): $(GMAP_INPUT)
 	mkdir -p $(COMMON_TILES_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(COMMON_TILES_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
-	        --max-threads=16 \
+	        --max-threads=$(SPLITTER_THREADS) \
 	    	--geonames-file=$(CITY) \
 		--no-trim \
 		--precomp-sea=$(SEA_DIR) \
