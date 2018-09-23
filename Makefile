@@ -1073,7 +1073,7 @@ $(EXTRACT).o5m:
 	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress $(EXTRACT_FILE).o5m.zst
 
-$(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/parse_osm.py
+$(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
