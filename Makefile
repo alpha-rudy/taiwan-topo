@@ -794,8 +794,9 @@ $(NSIS): $(MAP_PC)
 		cat $(ROOT_DIR)/docs/taiwan_topo.md | $(SED_CMD) \
 			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
-		makensis $(NAME_WORD).nsi
-	cp "$(MAP_PC_DIR)/Install_$(NAME_WORD).exe" $@
+		makensis $(NAME_WORD).nsi && \
+		rm "$(NAME_WORD)_InstallFiles.zip"
+	mv "$(MAP_PC_DIR)/Install_$(NAME_WORD).exe" $@
 
 .PHONY: poi
 poi: $(POI)
@@ -830,7 +831,9 @@ $(GMAP): $(MAP_PC)
 		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
 	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg"
 	-cd $(MAP_PC_DIR) && [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap"
-	cd $(MAP_PC_DIR) && $(ZIP_CMD) $@ "$(NAME_WORD).gmap"
+	cd $(MAP_PC_DIR) && \
+		$(ZIP_CMD) $@ "$(NAME_WORD).gmap" && \
+		rm -rf "$(NAME_WORD).gmap"
 
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
@@ -852,7 +855,7 @@ $(GMAPSUPP): $(MAP_HAND)
 	        --overview-mapnumber=$(MAPID)0000 \
 	        --product-version=$(VERSION) \
 		$(MAPID)*.img $(MAPID).TYP
-	cp $(MAP_HAND_DIR)/gmapsupp.img $@
+	mv $(MAP_HAND_DIR)/gmapsupp.img $@
 
 .PHONY: gmapsupp_zip
 gmapsupp_zip: $(GMAPSUPP_ZIP)
@@ -909,7 +912,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
-		cp $(GMAPDEM) ./moi-hgt.zip && \
+		ln -s $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=$(MKGMAP_JOBS) \
@@ -955,7 +958,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
 	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
 	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
-		cp $(GMAPDEM) ./moi-hgt.zip && \
+		ln -s $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=$(MKGMAP_JOBS) \
