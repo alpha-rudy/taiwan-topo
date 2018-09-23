@@ -586,6 +586,7 @@ endif
 VERSION := $(shell date +%Y.%m.%d)
 MAPID_LO_HEX := $(shell printf '%x' $(MAPID) | cut -c3-4)
 MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
+DUMMYID = 9999
 
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
@@ -595,7 +596,8 @@ NAME_MAPSFORGE ?= $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 # finetune options
 JAVACMD_OPTIONS := -Xmx30G -server
 
-DATA_DIR := $(WORKS_DIR)/$(REGION)/data$(MAPID)
+COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
+TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
 MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
 MAP_HIDEM_DIR := $(MAP_DIR)_hidem
 MAP_LODEM_DIR := $(MAP_DIR)_lodem
@@ -623,7 +625,8 @@ ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 CITY := $(CITIES_DIR)/TW.zip
-TILES := $(DATA_DIR)/.TILES.done
+COMMON_TILES := $(COMMON_TILES_DIR)/.COMMON_TILES.done
+TILES := $(TILES_DIR)/.TILES.done
 GMAP_INPUT := $(BUILD_DIR)/$(REGION).o5m
 TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
@@ -897,8 +900,8 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
+	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		cp $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
@@ -943,8 +946,8 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
+	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		cp $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
@@ -989,8 +992,8 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
+	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
 	        -c mkgmap.cfg \
@@ -1033,8 +1036,8 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 		-e "s|__name_short__|$(NAME_SHORT)|g" \
 		-e "s|__name_word__|$(NAME_WORD)|g" \
 		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(DATA_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(DATA_DIR)/\\1|g" >> mkgmap.cfg && \
+	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
+	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
 	        --max-jobs=16 \
 	        -c mkgmap.cfg \
@@ -1198,23 +1201,37 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
 		    file="$@" > /dev/null 2> /dev/null
 	
-$(TILES): $(GMAP_INPUT)
+$(COMMON_TILES): $(GMAP_INPUT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
-	rm -rf $(DATA_DIR)
-	mkdir -p $(DATA_DIR)
-	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(DATA_DIR) && \
+	rm -rf $(COMMON_TILES_DIR)
+	mkdir -p $(COMMON_TILES_DIR)
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(COMMON_TILES_DIR) && \
 	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
 	        --max-threads=16 \
 	    	--geonames-file=$(CITY) \
 		--no-trim \
 		--precomp-sea=$(SEA_DIR) \
 	        --keep-complete=true \
-		--mapid=$(MAPID)0001 \
+		--mapid=$(DUMMYID)0001 \
 		--max-areas=4096 \
 		--max-nodes=800000 \
 		--search-limit=1000000000 \
 		--output=o5m \
-		--output-dir=$(DATA_DIR) \
+		--output-dir=$(COMMON_TILES_DIR) \
 		$(GMAP_INPUT)
+	touch $@
+
+$(TILES): $(COMMON_TILES)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	rm -rf $(TILES_DIR)
+	mkdir -p $(TILES_DIR)
+	cd $(TILES_DIR) && \
+		for p in $(COMMON_TILES_DIR)/*.o5m; do \
+			ln -s $$p $$(basename $$p | $(SED_CMD) -e 's/^$(DUMMYID)/$(MAPID)/'); \
+		done && \
+		cat $(COMMON_TILES_DIR)/template.args | $(SED_CMD) \
+			-e 's/mapname: $(DUMMYID)/mapname: $(MAPID)/' \
+			-e 's/input-file: $(DUMMYID)/input-file: $(MAPID)/' \
+			> template.args
 	touch $@
