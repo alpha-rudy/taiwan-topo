@@ -659,7 +659,7 @@ JMC_CMD := jmc/linux/jmc_cli
 SED_CMD := sed
 endif
 
-ZIP_CMD := 7z a -tzip -mx=9
+ZIP_CMD := 7z a -tzip -mx=6
 MAKE_CMD := make
 
 all: $(TARGETS)
