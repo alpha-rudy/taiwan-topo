@@ -40,6 +40,13 @@ MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
 DEM_NAME := MOI
 TARGETS := mapsforge
 
+else ifeq ($(SUITE),exp)
+NAME_MAPSFORGE := bright_overlay
+MAPSFORGE_STYLE_DIR := mapsforge_brig
+MAPSFORGE_STYLE_FILE := MOI_OSM_brig.xml
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
+TARGETS := mapsforge_style
+
 else ifeq ($(SUITE),bbox)
 # REGION: specify your REGION name for bbox
 LANG := zh
@@ -130,7 +137,7 @@ MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
 LOCUS_STYLE_DIR := locus_style
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
 LOCUS_STYLE_FILE := MOI_OSM.xml
-TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style
+TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style mapsforge_bn
 
 else ifeq ($(SUITE),taiwan_gts)
 REGION := Taiwan
@@ -652,6 +659,7 @@ POI_ZIP := $(POI).zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
+BN_STYLE := $(BUILD_DIR)/MOI_OSM_bn_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
@@ -1136,7 +1144,6 @@ mapsforge_style: $(MAPSFORGE_STYLE)
 $(MAPSFORGE_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(REGION)" ]
 	-rm -rf $@
 	-rm -rf $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)
 	mkdir -p $(BUILD_DIR)
@@ -1158,6 +1165,18 @@ $(LOCUS_STYLE):
 	cat styles/$(LOCUS_STYLE_DIR)/$(LOCUS_STYLE_FILE) | \
 	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/$(LOCUS_STYLE_FILE)
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
+
+.PHONY: mapsforge_bn $(BN_STYLE)
+mapsforge_bn: $(BN_STYLE)
+$(BN_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/mapsforge_bn $(BUILD_DIR)
+	cat styles/mapsforge_bn/MOI_OSM_BN.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_bn/MOI_OSM_BN.xml
+	cd $(BUILD_DIR)/mapsforge_bn && $(ZIP_CMD) $@ *
 
 .PHONY: twmap_style $(TWMAP_STYLE)
 twmap_style: $(TWMAP_STYLE)
