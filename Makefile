@@ -720,7 +720,7 @@ drop:
 
 .PHONY: daily
 daily:
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip mapsforge_style locus_style
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip mapsforge_style locus_style mapsforge_bn
 	$(MAKE_CMD) SUITE=taiwan_gts mapsforge_style
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
 
