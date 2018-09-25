@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 435 435" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="path3" transform="matrix(1,0,0,1,-1.485e-05,-25.7207)">
+        <path d="M217.5,109.454L85.47,325.544L349.53,325.544L217.5,109.454Z" style="fill-opacity:0;fill-rule:nonzero;stroke:black;stroke-width:64px;"/>
+    </g>
+    <g id="path31" serif:id="path3" transform="matrix(1,0,0,1,-1.485e-05,-25.7207)">
+        <path d="M217.5,109.454L85.47,325.544L349.53,325.544L217.5,109.454Z" style="fill-opacity:0;fill-rule:nonzero;stroke:white;stroke-width:32px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,173.754,266.106)">
+        <text x="0px" y="0px" style="font-family:'TimesNewRomanPS-BoldItalicMT', 'Times New Roman', serif;font-weight:700;font-style:italic;font-size:144px;">m</text>
+    </g>
+    <g transform="matrix(1,0,0,1,167.754,260.106)">
+        <text x="0px" y="0px" style="font-family:'TimesNewRomanPS-BoldItalicMT', 'Times New Roman', serif;font-weight:700;font-style:italic;font-size:144px;fill:white;">m</text>
+    </g>
+</svg>

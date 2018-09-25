@@ -26,6 +26,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="山頭"/>
       <cat id="peak"/>
     </layer>
+    <layer id="elmt-surveypoint-c" enabled="false">
+      <name lang="en" value="survey point"/>
+      <name lang="zh" value="標石 (基點)"/>
+      <cat id="surveypoint"/>
+    </layer>
     <layer id="elmt-trail-c" enabled="true">
       <name lang="en" value="Trail"/>
       <name lang="zh" value="山徑"/>
@@ -46,6 +51,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="登山 v__version__"/>
       <overlay id="elmt-contour-c"/>
       <overlay id="elmt-peak-c"/>
+      <overlay id="elmt-surveypoint-c"/>
       <overlay id="elmt-trail-c"/>
       <overlay id="elmt-h_routes-c"/>
       <overlay id="elmt-h_acc_no-c"/>
@@ -404,6 +410,102 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
+  <rule cat="surveypoint" e="any" k="*" v="*">
+    <rule e="any" k="man_made" v="survey_point">
+      <rule e="node" k="survey_point" v="trig_1st" zoom-min="10">
+        <symbol id="s_sp_trig" priority="340" src="file:bn_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="340" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_2nd" zoom-min="11">
+        <symbol id="s_sp_trig" priority="320" src="file:bn_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="320" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_3rd" zoom-min="12">
+        <symbol id="s_sp_trig" priority="300" src="file:bn_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="300" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_1st_IC" zoom-min="10">
+        <symbol id="s_sp_trig_C" priority="340" src="file:bn_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="340" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_2nd_IC|trig_2nd_MC|trig_2nd_CS|trig_2nd_RE" zoom-min="11">
+        <symbol id="s_sp_trig_C" priority="320" src="file:bn_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="320" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_3rd_IC|trig_3rd_MC|trig_3rd_CS|trig_3rd_RE" zoom-min="12">
+        <symbol id="s_sp_trig_C" priority="300" src="file:bn_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="300" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="suppl|suppl_GO|suppl_IA|suppl_FB|suppl_TW|suppl_UN" zoom-min="13">
+        <symbol id="s_sp_suppl" priority="280" src="file:bn_res/s_sp_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="mine" zoom-min="13">
+        <symbol id="s_sp_mine" priority="280" src="file:bn_res/s_sp_mine.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_mine" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="mine_suppl" zoom-min="13">
+        <symbol id="s_sp_mine_suppl" priority="280" src="file:bn_res/s_sp_mine_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_mine_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="forest_trig|forest_trig_aero" zoom-min="13">
+        <symbol id="s_sp_forest_trig" priority="280" src="file:bn_res/s_sp_forest_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_forest_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="forest_suppl|forest_monopoly|forest_boundary|forest_mountain|forest_exfo_JP|forest_exfo|forest_aero|farm_bureau|farm_hengchun" zoom-min="13">
+        <symbol id="s_sp_forest_trig" priority="280" src="file:bn_res/s_sp_forest_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_forest_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="polygon_IT|polygon_TW" zoom-min="13">
+        <symbol id="s_sp_polygon" priority="280" src="file:bn_res/s_sp_polygon.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_polygon" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="taiwanp|taipei_tax|taipei|taipeic|keelung|hsinchu_water|miaoli_old|miaoli|kaohsiung|penghu|kinmen" zoom-min="13">
+        <symbol id="s_sp_taiwanp" priority="280" src="file:bn_res/s_sp_taiwanp.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_taiwanp" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="navy_trig_JP|navy_trig_TW" zoom-min="13">
+        <symbol id="s_sp_navy_trig" priority="280" src="file:bn_res/s_sp_navy_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_navy_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="navy_suppl_JP|navy_suppl_TW|sinica_trig|suppl_CS|suppl_taipower|suppl_eclipse|suppl_declination|suppl_port|military_zone|military_zone_A" zoom-min="13">
+        <symbol id="s_sp_navy_suppl" priority="280" src="file:bn_res/s_sp_navy_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_navy_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="water_trig" zoom-min="13">
+        <symbol id="s_sp_water_trig" priority="280" src="file:bn_res/s_sp_water_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_water_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="water_suppl|water_taipei|water_reservoir|water_boundary" zoom-min="13">
+        <symbol id="s_sp_water_suppl" priority="280" src="file:bn_res/s_sp_water_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_water_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="replica" zoom-min="13">
+        <symbol id="s_sp_replica" priority="280" src="file:bn_res/s_sp_replica.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_replica" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_japan1" zoom-min="13">
+        <symbol id="s_sp_bm_japan1" priority="280" src="file:bn_res/s_sp_bm_japan1.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_japan1" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_japan2|bm_old|bm_sinica|bm_port|bm_taipower|bm_aero|bm_tainan|bm_kaohsiung" zoom-min="13">
+        <symbol id="s_sp_bm_japan2" priority="280" src="file:bn_res/s_sp_bm_japan2.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_japan2" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_water|bm_reservoir|sectionstake|riverbank" zoom-min="13">
+        <symbol id="s_sp_bm_water" priority="280" src="file:bn_res/s_sp_bm_water.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_water" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="satellite_gps|satellite_1st|satellite_2nd|satellite_3rd|satellite_4th" zoom-min="13">
+        <symbol id="s_sp_satellite" priority="280" src="file:bn_res/s_sp_satellite.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_satellite" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_new|bm_cgs" zoom-min="13">
+        <symbol id="s_sp_bm_new" priority="280" src="file:bn_res/s_sp_bm_new.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_new" priority="280" position="below" font-style="normal" font-size="8" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
+      </rule>
+    </rule>
+  </rule>  
   <!-- peak -->
   <rule cat="peak" e="any" k="*" v="*">
     <rule e="node" k="natural" v="volcano">
