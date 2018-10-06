@@ -45,7 +45,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
-  > (歡迎製作並取代我的不專業解說)
+  > 影片中的置頂貼文已改到社群公告
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI） (200MB)
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
@@ -57,7 +57,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
-  > (歡迎製作並取代我的不專業解說)
+  > 影片中的置頂貼文已改到社群公告
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * 分開安裝
       * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://http/moi.kcwu.csie.org/locus_map-kcwu.xml)：點選啟動地圖自動安裝 (200MB)
@@ -78,7 +78,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
-  > (歡迎製作並取代我的不專業解說)
+  > 影片中的置頂貼文已改到社群公告
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI） (200MB)
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝 (0.4MB)
@@ -92,7 +92,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 安裝示範影片：
     * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
-    > (歡迎製作並取代我的不專業解說)
+    > 影片中的置頂貼文已改到社群公告
   * [![Map](images/Android.png =36x) ![iOS](images/iTunes.jpeg =36x) Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選下載地圖檔，手動安裝 (200MB)
   * [![POI](images/Android.png =36x) POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選下載興趣點，手動安裝 (8MB)
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，手動安裝 (0.4MB)
@@ -107,7 +107,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > (歡迎製作並取代我的不專業解說)
+    > 影片中的置頂貼文已改到社群公告
   * [![Map](images/Garmin_small.jpeg =36x) bw (145MB)](./gmapsupp_Taiwan_moi_zh_bw.img.zip), [bw3D (180MB)](./gmapsupp_Taiwan_moi_zh_bw3D.img.zip)：點選下載地圖檔
   * [![Map](images/Windows.png =36x) bw (170MB)](./Install_MOI_Taiwan_TOPO_bw.exe), [bw3D (190MB)](./Install_MOI_Taiwan_TOPO_bw3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png =36x) bw (170MB)](./Taiwan_moi_zh_bw.gmap.zip), [bw3D  (190MB)](./Taiwan_moi_zh_bw3D.gmap.zip)：點選下載安裝檔
@@ -116,7 +116,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > (歡迎製作並取代我的不專業解說)
+    > 影片中的置頂貼文已改到社群公告
   * [![Map](images/Garmin_large.jpeg =36x) odc (145MB)](./gmapsupp_Taiwan_moi_zh_odc.img.zip), [odc3D (180MB)](./gmapsupp_Taiwan_moi_zh_odc3D.img.zip)：點選下載地圖檔
   * [![Map](images/Windows.png =36x) odc (170MB)](./Install_MOI_Taiwan_TOPO_odc.exe), [odc3D (190MB)](./Install_MOI_Taiwan_TOPO_odc3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png =36x) odc (170MB)](./Taiwan_moi_zh_odc.gmap.zip), [odc3D (190MB)](./Taiwan_moi_zh_odc3D.gmap.zip)：點選下載安裝檔
@@ -125,7 +125,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 安裝示範影片：
     * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > (歡迎製作並取代我的不專業解說)
+    > 影片中的置頂貼文已改到社群公告
   * [![Map](images/Garmin_large.jpeg =36x) camp (145MB)](./gmapsupp_Taiwan_moi_zh_camp.img.zip), [camp3D (180MB)](./gmapsupp_Taiwan_moi_zh_camp3D.img.zip) ：點選下載地圖檔
   * [![Map](images/Windows.png =36x) camp (170MB)](./Install_MOI_Taiwan_TOPO_camp.exe), [camp3D (190MB)](./Install_MOI_Taiwan_TOPO_camp3D.exe)：點選下載安裝檔
   * [![Map](images/macOS.png =36x) camp (170MB)](./Taiwan_moi_zh_camp.gmap.zip), [camp3D (190MB)](./Taiwan_moi_zh_camp3D.gmap.zip)：點選下載安裝檔
