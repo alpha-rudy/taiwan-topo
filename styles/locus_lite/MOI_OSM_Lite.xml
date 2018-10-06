@@ -203,7 +203,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="等高線"/>
       <cat id="contour"/>
     </layer>
-    <layer id="elmt-borders-h" enabled="true">
+    <layer id="elmt-borders-h" enabled="false">
       <name lang="de" value="Grenzen + besondere Gebiete"/>
       <name lang="en" value="borders + special areas"/>
       <name lang="es" value="fronteras y zonas especiales"/>
