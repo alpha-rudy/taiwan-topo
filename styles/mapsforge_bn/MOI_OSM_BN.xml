@@ -66,6 +66,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <line stroke="#30000000" dy="-0.23" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
       <line stroke="#80FFFFFF" dy="-0.23" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
     </rule>
+    <rule e="way" k="highway" v="track|cycleway" zoom-min="13">
+      <line stroke="#30000000" dy="0.35" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
+      <line stroke="#80FFFFFF" dy="0.35" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
+      <line stroke="#30000000" dy="-0.35" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
+      <line stroke="#80FFFFFF" dy="-0.35" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
+    </rule>
   </rule>
   <!-- contour lines -->
   <rule cat="contour" e="any" k="*" v="*">
@@ -269,8 +275,19 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="any" k="area" v="~">
         <rule cat="trail" e="way" k="highway" v="steps|footway|path|bridleway" zoom-min="13">
           <line stroke="#333333" stroke-width="1.35" stroke-linecap="butt"/>
-          <line stroke="#F8F8F8" stroke-width="1.05" stroke-linecap="butt"/>
+          <line stroke="#CCF8F8F8" stroke-width="1.05" stroke-linecap="butt"/>
         </rule>
+      </rule>
+    </rule>
+    <rule e="way" k="highway" v="track" zoom-min="13">
+      <line stroke="#333333" stroke-width="1.6" stroke-linecap="butt"/>
+      <line stroke="#CCF8F8F8" stroke-width="1.2" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="highway" v="cycleway" zoom-min="13">
+      <line stroke="#333333" stroke-width="1.45" stroke-linecap="butt"/>
+      <line stroke="#CCF8F8F8" stroke-width="1.05" stroke-linecap="butt"/>
+      <rule e="any" k="foot" v="ft_no|~">
+        <line stroke="#3366FF" stroke-width="0.8" stroke-linecap="butt"/>
       </rule>
     </rule>
   </rule>
@@ -279,7 +296,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="way" k="tunnel" v="~|no">
       <rule cat="trail" e="way" k="access" v="destination|private|~">
         <rule e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
-          <rule e="way" k="highway" v="footway|path" zoom-min="13">
+          <rule e="way" k="highway" v="footway|path|bridleway" zoom-min="13">
             <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
               <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="2,2" stroke-linecap="butt"/>
               <line stroke="#FFFFFF" stroke-width="0.17" stroke-dasharray="2,2" stroke-linecap="butt"/>
@@ -309,7 +326,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule e="way" k="trail_visibility" v="excellent|good|intermediate|~">
           <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
-            <rule e="way" k="highway" v="footway|path" zoom-min="13">
+            <rule e="way" k="highway" v="footway|path|bridleway" zoom-min="13">
               <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
                 <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
               </rule>
@@ -333,7 +350,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
         <rule cat="h_acc_no" e="way" k="access" v="acc_no">
-          <rule e="way" k="highway" v="footway|path" zoom-min="13">
+          <rule e="way" k="highway" v="footway|path|bridleway" zoom-min="13">
             <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
               <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
             </rule>
@@ -362,6 +379,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <line stroke="#E10600" stroke-width="0.55" stroke-dasharray="1,1" stroke-linecap="butt"/>
           <!-- ;trail -->
         </rule>
+        <rule cat="hike" e="way" k="highway" v="cycleway" zoom-min="13">
+          <line stroke="#0080FF" stroke-width="0.4" stroke-dasharray="5,3" stroke-linecap="butt"/>
+        </rule>
+        <rule e="way" k="highway" v="track">
+          <line stroke="#FF81BB" stroke-width="0.65"/>
+        </rule>
         <!-- hiking routes -->
         <rule cat="h_routes" e="any" k="*" v="*">
           <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
@@ -388,6 +411,16 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             </rule>
           </rule>
           <!-- captions -->
+          <rule e="way" k="tunnel" v="~|no" zoom-min="9">
+            <rule e="any" k="area" v="~">
+              <rule e="way" k="highway" v="footway|path|track|bridleway|steps|cycleway" zoom-max="14">
+                <pathText display="always" k="name" font-style="bold" font-size="7" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+              </rule>
+              <rule e="way" k="highway" v="footway|path|track|bridleway|steps|cycleway" zoom-min="15">
+                <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+              </rule>
+            </rule>
+          </rule>
           <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="12">
             <caption k="ref" font-style="normal" font-size="8" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
@@ -397,7 +430,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
               <circle radius="6.4" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="1.5"/>
               <caption k="name" display="always" priority="-14" font-style="bold" font-size="9" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
             </rule>
-            <rule e="any" k="*" v="*" zoom-max="14" zoom-min="13">
+            <rule e="any" k="*" v="*" zoom-min="13" zoom-max="14">
               <circle radius="8.0" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="2"/>
               <caption k="name" display="always" priority="-14" font-style="bold" font-size="10" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
             </rule>
