@@ -660,6 +660,7 @@ MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
 BN_STYLE := $(BUILD_DIR)/MOI_OSM_bn_style.zip
+DN_STYLE := $(BUILD_DIR)/MOI_OSM_dn_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
 LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
@@ -1177,6 +1178,18 @@ $(BN_STYLE):
 	cat styles/mapsforge_bn/MOI_OSM_BN.xml | \
 	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_bn/MOI_OSM_BN.xml
 	cd $(BUILD_DIR)/mapsforge_bn && $(ZIP_CMD) $@ *
+
+.PHONY: mapsforge_dn $(DN_STYLE)
+mapsforge_dn: $(DN_STYLE)
+$(DN_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/mapsforge_dn $(BUILD_DIR)
+	cat styles/mapsforge_dn/MOI_OSM_DN.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_dn/MOI_OSM_BN.xml
+	cd $(BUILD_DIR)/mapsforge_dn && $(ZIP_CMD) $@ *
 
 .PHONY: twmap_style $(TWMAP_STYLE)
 twmap_style: $(TWMAP_STYLE)

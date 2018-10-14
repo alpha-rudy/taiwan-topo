@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+MOI.OSM Brighter theme
+**************************
+
+Mapsforge map style for MOI.OSM Taiwan TOPO by Rudy
+
+Symbols/patterns/code based on Elevate theme by Tobias Kühn, http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme.
+
+License:
+********
+This map style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+Please have a look at read_me_elevate.txt for reuse and licenses of resources used in this theme.
+
+-->
+<rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme-v4.xsd" version="4" map-background-outside="#00FFFFFF" map-background="#00FFFFFF">
+  <stylemenu id="elmt-menu" defaultvalue="elmt-hiking" defaultlang="zh">
+    <layer id="elmt-contour-c" enabled="true">
+      <name lang="en" value="Contour Lines"/>
+      <name lang="zh" value="等高線"/>
+      <cat id="contour"/>
+    </layer>
+    <layer id="elmt-peak-c" enabled="true">
+      <name lang="en" value="Peak"/>
+      <name lang="zh" value="山頭"/>
+      <cat id="peak"/>
+    </layer>
+    <layer id="elmt-surveypoint-c" enabled="false">
+      <name lang="en" value="survey point"/>
+      <name lang="zh" value="標石 (基點)"/>
+      <cat id="surveypoint"/>
+    </layer>
+    <layer id="elmt-trail-c" enabled="true">
+      <name lang="en" value="Trail"/>
+      <name lang="zh" value="山徑"/>
+      <cat id="trail"/>
+    </layer>
+    <layer id="elmt-h_routes-c" enabled="true">
+      <name lang="en" value="Hiking Routes"/>
+      <name lang="zh" value="大眾路線"/>
+      <cat id="h_routes"/>
+    </layer>
+    <layer id="elmt-h_acc_no-c" enabled="false">
+      <name lang="en" value="Inaccess pathway"/>
+      <name lang="zh" value="封閉路線"/>
+      <cat id="h_acc_no"/>
+    </layer>
+    <layer id="elmt-hiking" visible="true">
+      <name lang="en" value="Hiking v__version__"/>
+      <name lang="zh" value="登山 v__version__"/>
+      <overlay id="elmt-contour-c"/>
+      <overlay id="elmt-peak-c"/>
+      <overlay id="elmt-surveypoint-c"/>
+      <overlay id="elmt-trail-c"/>
+      <overlay id="elmt-h_routes-c"/>
+      <overlay id="elmt-h_acc_no-c"/>
+    </layer>
+  </stylemenu>
+  <!-- tunnels -->
+  <rule e="way" k="tunnel" v="yes">
+    <!-- highway tunnels -->
+    <rule cat="footway" e="way" k="highway" v="steps|footway|path|bridleway" zoom-min="13">
+      <line stroke="#30000000" dy="0.23" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
+      <line stroke="#80FFFFFF" dy="0.23" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
+      <line stroke="#30000000" dy="-0.23" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
+      <line stroke="#80FFFFFF" dy="-0.23" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="highway" v="track|cycleway" zoom-min="13">
+      <line stroke="#30000000" dy="0.35" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
+      <line stroke="#80FFFFFF" dy="0.35" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
+      <line stroke="#30000000" dy="-0.35" stroke-width="0.2" stroke-dasharray="16,3" stroke-linecap="butt"/>
+      <line stroke="#80FFFFFF" dy="-0.35" stroke-width="0.2" stroke-dasharray="0,16,3,0" stroke-linecap="butt"/>
+    </rule>
+  </rule>
+  <!-- contour lines -->
+  <rule cat="contour" e="any" k="*" v="*">
+    <rule e="way" k="contour_ext" v="elevation_major" zoom-min="9" zoom-max="11">
+      <rule e="way" k="ele" v="3000">
+        <line stroke="#FF000000" stroke-width="0.8"/>
+      </rule>
+      <rule e="way" k="ele" v="2000">
+        <line stroke="#EE111111" stroke-width="0.6"/>
+      </rule>
+      <rule e="way" k="ele" v="1000">
+        <line stroke="#DD222222" stroke-width="0.4"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="*" zoom-min="12" zoom-max="12">
+      <rule e="way" k="ele" v="3000">
+        <line stroke="#FF000000" stroke-width="0.8"/>
+      </rule>
+      <rule e="way" k="ele" v="2000">
+        <line stroke="#EE111111" stroke-width="0.6"/>
+      </rule>
+      <rule e="way" k="ele" v="1000">
+        <line stroke="#DD222222" stroke-width="0.6"/>
+      </rule>
+      <rule e="way" k="ele" v="3500">
+        <line stroke="#FF000000" stroke-width="0.4"/>
+      </rule>
+      <rule e="way" k="ele" v="2500">
+        <line stroke="#EE111111" stroke-width="0.4"/>
+      </rule>
+      <rule e="way" k="ele" v="1500">
+        <line stroke="#DD222222" stroke-width="0.4"/>
+      </rule>
+      <rule e="way" k="ele" v="500">
+        <line stroke="#CC333333" stroke-width="0.4"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="elevation_major" zoom-min="13" zoom-max="13">
+      <rule e="way" k="ele" v="3000">
+        <line stroke="#FF000000" stroke-width="0.57"/>
+      </rule>
+      <rule e="way" k="ele" v="2000">
+        <line stroke="#EE111111" stroke-width="0.43"/>
+      </rule>
+      <rule e="way" k="ele" v="1000">
+        <line stroke="#DD222222" stroke-width="0.43"/>
+      </rule>
+      <rule e="way" k="ele" v="3500">
+        <line stroke="#FF000000" stroke-width="0.29"/>
+      </rule>
+      <rule e="way" k="ele" v="2500">
+        <line stroke="#EE111111" stroke-width="0.29"/>
+      </rule>
+      <rule e="way" k="ele" v="1500">
+        <line stroke="#DD222222" stroke-width="0.29"/>
+      </rule>
+      <rule e="way" k="ele" v="500">
+        <line stroke="#CC333333" stroke-width="0.29"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="*" zoom-min="14" zoom-max="14">
+      <rule e="way" k="contour_ext" v="elevation_major">
+        <rule e="way" k="ele" v="3000">
+          <line stroke="#FF000000" stroke-width="0.41"/>
+        </rule>
+        <rule e="way" k="ele" v="2000">
+          <line stroke="#EE111111" stroke-width="0.41"/>
+        </rule>
+        <rule e="way" k="ele" v="1000">
+          <line stroke="#DD222222" stroke-width="0.41"/>
+        </rule>
+        <rule e="way" k="ele" v="3500">
+          <line stroke="#FF000000" stroke-width="0.31"/>
+        </rule>
+        <rule e="way" k="ele" v="2500">
+          <line stroke="#EE111111" stroke-width="0.31"/>
+        </rule>
+        <rule e="way" k="ele" v="1500">
+          <line stroke="#DD222222" stroke-width="0.31"/>
+        </rule>
+        <rule e="way" k="ele" v="500">
+          <line stroke="#CC333333" stroke-width="0.31"/>
+        </rule>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <rule e="way" k="ele" v="3250|3750">
+          <line stroke="#FF000000" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="2250|2750">
+          <line stroke="#EE111111" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="1250|1750">
+          <line stroke="#DD222222" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="250|750">
+          <line stroke="#CC333333" stroke-width="0.20"/>
+        </rule>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="*" zoom-min="15" zoom-max="15">
+      <rule e="way" k="contour_ext" v="elevation_major">
+        <rule e="way" k="ele" v="3000|2000|1000">
+          <line stroke="#FF000000" stroke-width="0.29"/>
+        </rule>
+        <rule e="way" k="ele" v="*">
+          <line stroke="#EE111111" stroke-width="0.22"/>
+        </rule>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_medium">
+        <line stroke="#DD222222" stroke-width="0.15"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="*" zoom-min="16" zoom-max="16">
+      <rule e="way" k="contour_ext" v="elevation_major">
+        <line stroke="#FF000000" stroke-width="0.21"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_medium">
+        <line stroke="#EE111111" stroke-width="0.16"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <line stroke="#DD222222" stroke-width="0.10"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="*" zoom-min="17">
+      <rule e="way" k="contour_ext" v="elevation_major">
+        <line stroke="#FF000000" stroke-width="0.15"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_medium">
+        <line stroke="#EE111111" stroke-width="0.11"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <line stroke="#DD222222" stroke-width="0.07"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_minor">
+        <line stroke="#CC333333" stroke-width="0.05"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_1280m" v="*" zoom-min="11" zoom-max="12">
+      <rule e="way" k="contour_1280m" v="elevation_major">
+        <pathText k="ele" font-size="9" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_640m" v="*" zoom-min="13" zoom-max="13">
+      <rule e="way" k="contour_640m" v="elevation_major">
+        <pathText k="ele" font-size="11" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_320m" v="*" zoom-min="14" zoom-max="14">
+      <rule e="way" k="contour_320m" v="elevation_medium">
+        <pathText k="ele" font-size="9" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_320m" v="elevation_major">
+        <pathText k="ele" font-size="11" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_320m" v="*" zoom-min="15" zoom-max="15">
+      <rule e="way" k="contour_320m" v="elevation_medium">
+        <pathText k="ele" font-size="11" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_320m" v="elevation_major">
+        <pathText k="ele" font-size="11" font-style="bold" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_160m" v="*" zoom-min="16" zoom-max="16">
+      <rule e="way" k="contour_160m" v="elevation_minor">
+        <pathText k="ele" font-size="9" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_160m" v="elevation_medium">
+        <pathText k="ele" font-size="11" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_160m" v="elevation_major">
+        <pathText k="ele" font-size="11" font-style="bold" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_80m" v="*" zoom-min="17" zoom-max="17">
+      <rule e="way" k="contour_80m" v="elevation_minor">
+        <pathText k="ele" font-size="9" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_80m" v="elevation_medium">
+        <pathText k="ele" font-size="11" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_80m" v="elevation_major">
+        <pathText k="ele" font-size="11" font-style="bold" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+    <rule e="way" k="contour_ext" v="*" zoom-min="18">
+      <rule e="way" k="contour_ext" v="elevation_sub">
+        <pathText k="ele" font-size="9" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_medium">
+        <pathText k="ele" font-size="11" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+      <rule e="way" k="contour_ext" v="elevation_major">
+        <pathText k="ele" font-size="11" font-style="bold" fill="#222222" stroke="#DDDDDD" stroke-width="1"/>
+      </rule>
+    </rule>
+  </rule>
+  <!-- bridges -->
+  <rule e="way" k="bridge" v="yes|movable">
+    <rule e="way" k="tunnel" v="no|~">
+      <rule e="any" k="area" v="~">
+        <rule cat="trail" e="way" k="highway" v="steps|footway|path|bridleway" zoom-min="13">
+          <line stroke="#333333" stroke-width="1.35" stroke-linecap="butt"/>
+          <line stroke="#CCF8F8F8" stroke-width="1.05" stroke-linecap="butt"/>
+        </rule>
+      </rule>
+    </rule>
+    <rule e="way" k="highway" v="track" zoom-min="13">
+      <line stroke="#333333" stroke-width="1.6" stroke-linecap="butt"/>
+      <line stroke="#CCF8F8F8" stroke-width="1.2" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="highway" v="cycleway" zoom-min="13">
+      <line stroke="#333333" stroke-width="1.45" stroke-linecap="butt"/>
+      <line stroke="#CCF8F8F8" stroke-width="1.05" stroke-linecap="butt"/>
+      <rule e="any" k="foot" v="ft_no|~">
+        <line stroke="#3366FF" stroke-width="0.8" stroke-linecap="butt"/>
+      </rule>
+    </rule>
+  </rule>
+  <!-- highway cores -->
+  <rule e="way" k="area" v="~|no">
+    <rule e="way" k="tunnel" v="~|no">
+      <rule cat="trail" e="way" k="access" v="destination|private|~">
+        <rule e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
+          <rule e="way" k="highway" v="footway|path|bridleway" zoom-min="13">
+            <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+              <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#FFFFFF" stroke-width="0.17" stroke-dasharray="2,2" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+              <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#FFFFFF" stroke-width="0.13" stroke-dasharray="2,2" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+              <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#FFFFFF" stroke-width="0.09" stroke-dasharray="2,2" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+              <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#FFFFFF" stroke-width="0.07" stroke-dasharray="2,2" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+              <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#FFFFFF" stroke-width="0.06" stroke-dasharray="2,2" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="18">
+              <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#FFFFFF" stroke-width="0.06" stroke-dasharray="2,2" stroke-linecap="butt"/>
+            </rule>
+            <!-- ;trail -->
+          </rule>
+        </rule>
+        <rule e="way" k="trail_visibility" v="excellent|good|intermediate|~">
+          <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
+            <rule e="way" k="highway" v="footway|path|bridleway" zoom-min="13">
+              <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+                <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+                <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+                <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+                <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+                <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <rule e="way" k="*" v="*" zoom-min="18">
+                <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="5,3" stroke-linecap="butt"/>
+              </rule>
+              <!-- ;trail -->
+            </rule>
+          </rule>
+        </rule>
+        <rule cat="h_acc_no" e="way" k="access" v="acc_no">
+          <rule e="way" k="highway" v="footway|path|bridleway" zoom-min="13">
+            <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+              <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+              <line stroke="#E10600" stroke-width="0.51" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+              <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+              <line stroke="#E10600" stroke-width="0.27" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+              <line stroke="#E10600" stroke-width="0.24" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="18">
+              <line stroke="#E10600" stroke-width="0.22" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <!-- ;trail -->
+          </rule>
+        </rule>
+        <rule e="way" k="bicycle" v="bic_yes|bic_permissive|bic_designated">
+          <line stroke="#0080FF" stroke-width="0.1" stroke-dasharray="0,1,8,2.5" stroke-linecap="butt"/>
+        </rule>
+        <rule e="way" k="highway" v="steps" zoom-min="13">
+          <line stroke="#E10600" stroke-width="0.55" stroke-dasharray="1,1" stroke-linecap="butt"/>
+          <!-- ;trail -->
+        </rule>
+        <rule cat="hike" e="way" k="highway" v="cycleway" zoom-min="13">
+          <line stroke="#0080FF" stroke-width="0.4" stroke-dasharray="5,3" stroke-linecap="butt"/>
+        </rule>
+        <rule e="way" k="highway" v="track">
+          <line stroke="#FF81BB" stroke-width="0.65"/>
+        </rule>
+        <!-- hiking routes -->
+        <rule cat="h_routes" e="any" k="*" v="*">
+          <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
+            <rule e="way" k="*" v="*" zoom-min="11" zoom-max="12">
+              <line stroke="#E10600" stroke-width="1.0" stroke-dasharray="5,3" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+              <line stroke="#80E13D38" stroke-width="2.00"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+              <line stroke="#80E15854" stroke-width="1.52"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+              <line stroke="#80E1726F" stroke-width="1.12"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+              <line stroke="#80E1726F" stroke-width="0.80"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+              <line stroke="#80E1726F" stroke-width="0.72"/>
+            </rule>
+            <rule e="way" k="*" v="*" zoom-min="18">
+              <line stroke="#80E1726F" stroke-width="0.64"/>
+            </rule>
+          </rule>
+          <!-- captions -->
+          <rule e="way" k="tunnel" v="~|no" zoom-min="9">
+            <rule e="any" k="area" v="~">
+              <rule e="way" k="highway" v="footway|path|track|bridleway|steps|cycleway" zoom-max="14">
+                <pathText display="always" k="name" font-style="bold" font-size="7" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+              </rule>
+              <rule e="way" k="highway" v="footway|path|track|bridleway|steps|cycleway" zoom-min="15">
+                <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+              </rule>
+            </rule>
+          </rule>
+          <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="12">
+            <caption k="ref" font-style="normal" font-size="8" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
+          <!-- hiking nodes -->
+          <rule e="node" k="hike_node" v="*">
+            <rule e="any" k="*" v="*" zoom-max="12">
+              <circle radius="6.4" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="1.5"/>
+              <caption k="name" display="always" priority="-14" font-style="bold" font-size="9" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
+            </rule>
+            <rule e="any" k="*" v="*" zoom-min="13" zoom-max="14">
+              <circle radius="8.0" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="2"/>
+              <caption k="name" display="always" priority="-14" font-style="bold" font-size="10" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
+            </rule>
+            <rule e="any" k="*" v="*" zoom-min="15">
+              <circle radius="10.4" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="2"/>
+              <caption k="name" display="always" priority="-14" font-style="bold" font-size="14" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </rule>
+  <rule cat="surveypoint" e="any" k="*" v="*">
+    <rule e="any" k="man_made" v="survey_point">
+      <rule e="node" k="survey_point" v="trig_1st" zoom-min="10">
+        <symbol id="s_sp_trig" priority="340" src="file:dn_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="340" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_2nd" zoom-min="11">
+        <symbol id="s_sp_trig" priority="320" src="file:dn_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="320" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_3rd" zoom-min="12">
+        <symbol id="s_sp_trig" priority="300" src="file:dn_res/s_sp_trig.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig" priority="300" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_1st_IC" zoom-min="10">
+        <symbol id="s_sp_trig_C" priority="340" src="file:dn_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="340" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_2nd_IC|trig_2nd_MC|trig_2nd_CS|trig_2nd_RE" zoom-min="11">
+        <symbol id="s_sp_trig_C" priority="320" src="file:dn_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="320" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="trig_3rd_IC|trig_3rd_MC|trig_3rd_CS|trig_3rd_RE" zoom-min="12">
+        <symbol id="s_sp_trig_C" priority="300" src="file:dn_res/s_sp_trig_C.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_sp_trig_C" priority="300" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="suppl|suppl_GO|suppl_IA|suppl_FB|suppl_TW|suppl_UN" zoom-min="13">
+        <symbol id="s_sp_suppl" priority="280" src="file:dn_res/s_sp_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="mine" zoom-min="13">
+        <symbol id="s_sp_mine" priority="280" src="file:dn_res/s_sp_mine.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_mine" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="mine_suppl" zoom-min="13">
+        <symbol id="s_sp_mine_suppl" priority="280" src="file:dn_res/s_sp_mine_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_mine_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="forest_trig|forest_trig_aero" zoom-min="13">
+        <symbol id="s_sp_forest_trig" priority="280" src="file:dn_res/s_sp_forest_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_forest_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="forest_suppl|forest_monopoly|forest_boundary|forest_mountain|forest_exfo_JP|forest_exfo|forest_aero|farm_bureau|farm_hengchun" zoom-min="13">
+        <symbol id="s_sp_forest_trig" priority="280" src="file:dn_res/s_sp_forest_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_forest_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="polygon_IT|polygon_TW" zoom-min="13">
+        <symbol id="s_sp_polygon" priority="280" src="file:dn_res/s_sp_polygon.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_polygon" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="taiwanp|taipei_tax|taipei|taipeic|keelung|hsinchu_water|miaoli_old|miaoli|kaohsiung|penghu|kinmen" zoom-min="13">
+        <symbol id="s_sp_taiwanp" priority="280" src="file:dn_res/s_sp_taiwanp.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_taiwanp" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="navy_trig_JP|navy_trig_TW" zoom-min="13">
+        <symbol id="s_sp_navy_trig" priority="280" src="file:dn_res/s_sp_navy_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_navy_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="navy_suppl_JP|navy_suppl_TW|sinica_trig|suppl_CS|suppl_taipower|suppl_eclipse|suppl_declination|suppl_port|military_zone|military_zone_A" zoom-min="13">
+        <symbol id="s_sp_navy_suppl" priority="280" src="file:dn_res/s_sp_navy_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_navy_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="water_trig" zoom-min="13">
+        <symbol id="s_sp_water_trig" priority="280" src="file:dn_res/s_sp_water_trig.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_water_trig" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="water_suppl|water_taipei|water_reservoir|water_boundary" zoom-min="13">
+        <symbol id="s_sp_water_suppl" priority="280" src="file:dn_res/s_sp_water_suppl.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_water_suppl" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="replica" zoom-min="13">
+        <symbol id="s_sp_replica" priority="280" src="file:dn_res/s_sp_replica.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_replica" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_japan1" zoom-min="13">
+        <symbol id="s_sp_bm_japan1" priority="280" src="file:dn_res/s_sp_bm_japan1.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_japan1" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_japan2|bm_old|bm_sinica|bm_port|bm_taipower|bm_aero|bm_tainan|bm_kaohsiung" zoom-min="13">
+        <symbol id="s_sp_bm_japan2" priority="280" src="file:dn_res/s_sp_bm_japan2.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_japan2" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_water|bm_reservoir|sectionstake|riverbank" zoom-min="13">
+        <symbol id="s_sp_bm_water" priority="280" src="file:dn_res/s_sp_bm_water.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_water" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="satellite_gps|satellite_1st|satellite_2nd|satellite_3rd|satellite_4th" zoom-min="13">
+        <symbol id="s_sp_satellite" priority="280" src="file:dn_res/s_sp_satellite.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_satellite" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="survey_point" v="bm_new|bm_cgs" zoom-min="13">
+        <symbol id="s_sp_bm_new" priority="280" src="file:dn_res/s_sp_bm_new.svg" symbol-scaling="size" symbol-height="14" symbol-width="14"/>
+        <caption k="name" symbol-id="s_sp_bm_new" priority="280" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
+  </rule>  
+  <!-- peak -->
+  <rule cat="peak" e="any" k="*" v="*">
+    <rule e="node" k="natural" v="volcano">
+      <rule e="node" k="*" v="*" zoom-min="13" zoom-max="14">
+        <symbol id="s_volcano_small" priority="88" src="file:dn_res/s_volcano_small.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
+        <caption k="name" symbol-id="s_volcano_small" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+        <rule e="any" k="*" v="*">
+          <caption k="ele" priority="-5" symbol-id="s_peak_small" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+        </rule>
+      </rule>
+      <rule e="node" k="*" v="*" zoom-min="15">
+        <symbol id="s_volcano" priority="88" src="file:dn_res/s_volcano.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <caption k="name" symbol-id="s_volcano" priority="88" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="ele" priority="-5" symbol-id="s_volcano" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
+    <rule e="node" k="natural" v="peak">
+      <rule e="any" k="zl" v="0" zoom-min="8" zoom-max="12">
+        <symbol id="s_peak_small_m" display="always" priority="250" src="file:dn_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_peak_small_m" priority="220" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      </rule>
+      <rule e="any" k="zl" v="1" zoom-min="11" zoom-max="12">
+        <symbol id="s_peak_small_m" priority="240" src="file:dn_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_peak_small_m" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      </rule>
+      <rule e="any" k="zl" v="2" zoom-min="11" zoom-max="12">
+        <symbol id="s_peak_small_l" priority="230" src="file:dn_res/s_peak_small_l.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <caption k="name" symbol-id="s_peak_small_l" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      </rule>
+      <rule e="any" k="*" v="*" zoom-min="13" zoom-max="14">
+        <rule e="any" k="zl" v="0|1">
+          <symbol id="s_peak_small_m" display="always" priority="210" src="file:dn_res/s_peak_small_m.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+          <caption k="name" symbol-id="s_peak_small_m" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          <caption k="ref" priority="-5" symbol-id="s_peak_small_m" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+        </rule>
+        <rule e="any" k="zl" v="2">
+          <symbol id="s_peak_small_l" display="always" priority="210" src="file:dn_res/s_peak_small_l.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+          <caption k="name" symbol-id="s_peak_small_l" priority="210" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          <caption k="ref" priority="-5" symbol-id="s_peak_small_l" position="below" font-style="normal" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+        </rule>
+        <rule e="any" k="zl" v="~|no">
+          <rule e="any" k="name" v="~|no">
+            <symbol id="s_peak_noname_s" priority="-5" src="file:dn_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="ele" symbol-id="s_peak_noname_s" priority="-5" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
+          <rule e="any" k="name" v="*">
+            <symbol id="s_peak_small" priority="200" src="file:dn_res/s_peak_small.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="name" symbol-id="s_peak_small" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
+        </rule>
+      </rule>
+      <rule e="any" k="summit:cross" v="yes" zoom-min="15">
+        <symbol id="s_peak_cross" priority="190" src="file:dn_res/s_peak_cross.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <caption k="name" priority="190" symbol-id="s_peak_cross" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="ref" priority="-5" symbol-id="s_peak_cross" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="any" k="summit:cross" v="~|no" zoom-min="15">
+        <rule e="node" k="zl" v="0|1">
+          <symbol id="s_peak_m" display="always" priority="210" src="file:dn_res/s_peak_m.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+          <caption k="name" priority="210" symbol-id="s_peak_m" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="ref" priority="-5" symbol-id="s_peak_m" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+        </rule>
+        <rule e="node" k="zl" v="2">
+          <symbol id="s_peak_l" display="always" priority="210" src="file:dn_res/s_peak_l.svg" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+          <caption k="name" priority="210" symbol-id="s_peak_l" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="ref" priority="-5" symbol-id="s_peak_l" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+        </rule>
+        <rule e="node" k="zl" v="~|no">
+          <rule e="any" k="name" v="~|no">
+            <symbol id="s_peak_noname" priority="-5" src="file:dn_res/s_peak_noname.svg" symbol-height="12" symbol-scaling="size" symbol-width="12"/>
+            <caption font-size="9" font-style="normal" k="ele" position="below" priority="-5" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8" symbol-id="s_peak_noname"/>
+          </rule>
+          <rule e="any" k="name" v="*">
+            <symbol id="s_peak" priority="200" src="file:dn_res/s_peak.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="name" priority="200" symbol-id="s_peak" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </rule>
+</rendertheme>
