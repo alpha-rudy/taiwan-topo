@@ -155,7 +155,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="標石 (基點)"/>
       <cat id="surveypoint"/>
     </layer>
-    <layer id="elmt-landscapefeat-h" enabled="false">
+    <layer id="elmt-landscapefeat-h" enabled="true">
       <name lang="de" value="Landschaftsmerkmale"/>
       <name lang="en" value="landscape features"/>
       <name lang="es" value="características del paisaje"/>
