@@ -27,6 +27,7 @@ DOWNLOAD_DIR := $(ROOT_DIR)/download
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
 
+
 # target SUITE, no default
 ifeq ($(SUITE),yushan)
 REGION := Yushan
@@ -41,11 +42,7 @@ DEM_NAME := MOI
 TARGETS := mapsforge
 
 else ifeq ($(SUITE),exp)
-NAME_MAPSFORGE := bright_overlay
-MAPSFORGE_STYLE_DIR := mapsforge_brig
-MAPSFORGE_STYLE_FILE := MOI_OSM_brig.xml
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
-TARGETS := mapsforge_style
+# none
 
 else ifeq ($(SUITE),bbox)
 # REGION: specify your REGION name for bbox
@@ -130,32 +127,9 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
-MAPSFORGE_STYLE_DIR := mapsforge_style
-MAPSFORGE_STYLE_FILE := MOI_OSM.xml
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
-LOCUS_STYLE_DIR := locus_style
-LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
-LOCUS_STYLE_FILE := MOI_OSM.xml
-TARGETS := mapsforge_zip poi_zip mapsforge_style locus_style twmap_style mapsforge_bn
-
-else ifeq ($(SUITE),taiwan_gts)
-REGION := Taiwan
-LANG := zh
-CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
-ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
-EXTRACT_FILE := taiwan-latest
-POLY_FILE := Taiwan.poly
-MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
-DEM_NAME := MOI
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
-MAPSFORGE_STYLE_DIR := mapsforge_hs
-MAPSFORGE_STYLE_FILE := MOI_OSM.xml
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_hs_style.zip
-HGT := $(ROOT_DIR)/hgt/hgtmix-v2018.3.zip
-GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
-TARGETS := mapsforge_zip mapsforge_style gts_all
+HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
+GTS_ALL := $(BUILD_DIR)/$(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+TARGETS := mapsforge_zip poi_zip gts_all
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
@@ -167,16 +141,9 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
-MAPSFORGE_STYLE_DIR := mapsforge_lite
-MAPSFORGE_STYLE_FILE := MOI_OSM_Lite.xml
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
-LOCUS_STYLE_DIR := locus_lite
-LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
-LOCUS_STYLE_FILE := MOI_OSM_Lite.xml
 HGT := $(ROOT_DIR)/hgt/moi-hgt-lite-v2.zip
-GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
-TARGETS := mapsforge_zip mapsforge_style gts_all
+GTS_ALL := $(BUILD_DIR)/$(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy_Lite
+TARGETS := mapsforge_zip gts_all
 
 else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
@@ -472,13 +439,6 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 20.150,115.650,26.44212,122.31377
 DEM_NAME := MOI
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Exp
-MAPSFORGE_STYLE_DIR := mapsforge_style
-MAPSFORGE_STYLE_FILE := MOI_OSM.xml
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
-LOCUS_STYLE_DIR := locus_style
-LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
-LOCUS_STYLE_FILE := MOI_OSM.xml
 TARGETS := mapsforge_zip
 
 else ifeq ($(SUITE),taiwan_exp2)
@@ -491,15 +451,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 DEM_NAME := MOI
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Exp2
-MAPSFORGE_STYLE_DIR := mapsforge_lite
-MAPSFORGE_STYLE_FILE := MOI_OSM_Lite.xml
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_style.zip
-LOCUS_STYLE_DIR := locus_lite
-LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_lite
-LOCUS_STYLE_FILE := MOI_OSM_Lite.xml
 HGT := $(ROOT_DIR)/hgt/hgt90-v2018.3.zip
-GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
 else ifeq ($(SUITE),taipei_odc)
@@ -605,7 +557,7 @@ DUMMYID = 9999
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
-NAME_MAPSFORGE ?= $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx30G -server
@@ -662,7 +614,6 @@ TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
 BN_STYLE := $(BUILD_DIR)/MOI_OSM_bn_style.zip
 DN_STYLE := $(BUILD_DIR)/MOI_OSM_dn_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
-LOCUS_STYLE := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus_style.zip
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 ifeq ($(shell uname),Darwin)
@@ -719,16 +670,21 @@ drop:
 		cat docs/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cat docs/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 
+.PHONY: styles
+styles:
+	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style
+
+
 .PHONY: daily
 daily:
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip mapsforge_style locus_style mapsforge_bn
-	$(MAKE_CMD) SUITE=taiwan_gts mapsforge_style
+	$(MAKE_CMD) styles
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
 
 .PHONY: suites
 suites:
+	$(MAKE_CMD) styles
 	$(MAKE_CMD) SUITE=taiwan all
-	$(MAKE_CMD) SUITE=taiwan_gts all
 	$(MAKE_CMD) SUITE=taiwan_lite all
 	$(MAKE_CMD) SUITE=taiwan_bw all
 	$(MAKE_CMD) SUITE=taiwan_odc all
@@ -762,14 +718,14 @@ $(LICENSE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(MAPSFORGE_STYLE) $(HGT)
+$(GTS_ALL).zip: $(MAPSFORGE_ZIP) hs_style $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
 	mkdir -p $(GTS_ALL)
 	cd $(GTS_ALL) && \
 		unzip $(MAPSFORGE_ZIP) -d map && \
-		unzip $(MAPSFORGE_STYLE) -d mapthemes && \
+		unzip $(HS_STYLE) -d mapthemes && \
 		unzip $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
 	rm -rf $(GTS_ALL)
@@ -841,8 +797,7 @@ $(GMAP): $(MAP_PC)
 	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg"
 	-cd $(MAP_PC_DIR) && [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap"
 	cd $(MAP_PC_DIR) && \
-		$(ZIP_CMD) $@ "$(NAME_WORD).gmap" && \
-		rm -rf "$(NAME_WORD).gmap"
+		$(ZIP_CMD) $@ "$(NAME_WORD).gmap"
 
 .PHONY: gmapsupp
 gmapsupp: $(GMAPSUPP)
@@ -1140,35 +1095,75 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	    $(ELEVATION_MIX) \
 	    -o=$@
 
+
+MAPSFORGE_STYLE_PREFIX := MOI_OSM_Taiwan_TOPO_Rudy
+MAPSFORGE_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_style.zip
+
 .PHONY: mapsforge_style $(MAPSFORGE_STYLE)
 mapsforge_style: $(MAPSFORGE_STYLE)
 $(MAPSFORGE_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $@
-	-rm -rf $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_style
 	mkdir -p $(BUILD_DIR)
-	cp -a styles/$(MAPSFORGE_STYLE_DIR) $(BUILD_DIR)
-	cat styles/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE) | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR)/$(MAPSFORGE_STYLE_FILE)
-	cd $(BUILD_DIR)/$(MAPSFORGE_STYLE_DIR) && $(ZIP_CMD) $@ *
+	cp -a styles/mapsforge_style $(BUILD_DIR)
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
+	cd $(BUILD_DIR)/mapsforge_style && $(ZIP_CMD) $@ *
+
+
+LOCUS_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_locus_style.zip
+LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
 
 .PHONY: locus_style $(LOCUS_STYLE)
 locus_style: $(LOCUS_STYLE)
 $(LOCUS_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(REGION)" ]
-	-rm -rf $@
+	-rm -f $@
 	-rm -rf $(BUILD_DIR)/$(LOCUS_STYLE_INST)
 	mkdir -p $(BUILD_DIR)
-	cp -a styles/$(LOCUS_STYLE_DIR) $(BUILD_DIR)/$(LOCUS_STYLE_INST)
-	cat styles/$(LOCUS_STYLE_DIR)/$(LOCUS_STYLE_FILE) | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/$(LOCUS_STYLE_FILE)
+	cp -a styles/locus_style $(BUILD_DIR)/$(LOCUS_STYLE_INST)
+	cat styles/locus_style/MOI_OSM.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.xml
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
-.PHONY: mapsforge_bn $(BN_STYLE)
-mapsforge_bn: $(BN_STYLE)
+
+LITE_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_Lite_style.zip
+
+.PHONY: lite_style $(LITE_STYLE)
+lite_style: $(LITE_STYLE)
+$(LITE_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_lite
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/mapsforge_lite $(BUILD_DIR)
+	cat styles/mapsforge_lite/MOI_OSM_Lite.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
+	cd $(BUILD_DIR)/mapsforge_lite && $(ZIP_CMD) $@ *
+
+
+HS_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_hs_style.zip
+
+.PHONY: hs_style $(HS_STYLE)
+lite_style: $(HS_STYLE)
+$(HS_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_hs
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/mapsforge_hs $(BUILD_DIR)
+	cat styles/mapsforge_hs/MOI_OSM.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_hs/MOI_OSM.xml
+	cd $(BUILD_DIR)/mapsforge_hs && $(ZIP_CMD) $@ *
+
+
+.PHONY: bn_style $(BN_STYLE)
+bn_style: $(BN_STYLE)
 $(BN_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
@@ -1179,8 +1174,8 @@ $(BN_STYLE):
 	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_bn/MOI_OSM_BN.xml
 	cd $(BUILD_DIR)/mapsforge_bn && $(ZIP_CMD) $@ *
 
-.PHONY: mapsforge_dn $(DN_STYLE)
-mapsforge_dn: $(DN_STYLE)
+.PHONY: dn_style $(DN_STYLE)
+dn_style: $(DN_STYLE)
 $(DN_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
@@ -1196,7 +1191,6 @@ twmap_style: $(TWMAP_STYLE)
 $(TWMAP_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/twmap_style $(BUILD_DIR)
