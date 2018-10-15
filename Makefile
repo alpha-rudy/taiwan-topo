@@ -610,9 +610,6 @@ POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 POI_ZIP := $(POI).zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
-TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
-BN_STYLE := $(BUILD_DIR)/MOI_OSM_bn_style.zip
-DN_STYLE := $(BUILD_DIR)/MOI_OSM_dn_style.zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
@@ -672,7 +669,7 @@ drop:
 
 .PHONY: styles
 styles:
-	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style
+	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style
 
 
 .PHONY: daily
@@ -1162,6 +1159,8 @@ $(HS_STYLE):
 	cd $(BUILD_DIR)/mapsforge_hs && $(ZIP_CMD) $@ *
 
 
+BN_STYLE := $(BUILD_DIR)/MOI_OSM_bn_style.zip
+
 .PHONY: bn_style $(BN_STYLE)
 bn_style: $(BN_STYLE)
 $(BN_STYLE):
@@ -1173,6 +1172,9 @@ $(BN_STYLE):
 	cat styles/mapsforge_bn/MOI_OSM_BN.xml | \
 	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_bn/MOI_OSM_BN.xml
 	cd $(BUILD_DIR)/mapsforge_bn && $(ZIP_CMD) $@ *
+
+
+DN_STYLE := $(BUILD_DIR)/MOI_OSM_dn_style.zip
 
 .PHONY: dn_style $(DN_STYLE)
 dn_style: $(DN_STYLE)
@@ -1186,6 +1188,9 @@ $(DN_STYLE):
 	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_dn/MOI_OSM_BN.xml
 	cd $(BUILD_DIR)/mapsforge_dn && $(ZIP_CMD) $@ *
 
+
+TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
+
 .PHONY: twmap_style $(TWMAP_STYLE)
 twmap_style: $(TWMAP_STYLE)
 $(TWMAP_STYLE):
@@ -1197,6 +1202,29 @@ $(TWMAP_STYLE):
 	cat styles/twmap_style/MOI_OSM_twmap.xml | \
 	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
 	cd $(BUILD_DIR)/twmap_style && $(ZIP_CMD) $@ *
+
+
+TN_STYLE := $(BUILD_DIR)/MOI_OSM_tn_style.zip
+
+.PHONY: tn_style $(TN_STYLE)
+tn_style: $(TN_STYLE)
+$(TN_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -rf $@
+	mkdir -p $(BUILD_DIR)/mapsforge_tn
+	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+	    $(SED_CMD) \
+			-e "s/__version__/$(VERSION)/g" \
+			-e "s/file:moiosm_res/file:tn_res/g" \
+			-e 's/outside="#FFFFFF" map-background="#FFFFFF"/outside="#00FFFFFF" map-background="#00FFFFFF"/g' \
+			-e "s,<!-- hillshading -->,<hillshading />,g" \
+			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
+		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
+	cd $(BUILD_DIR)/mapsforge_tn && \
+		$(ZIP_CMD) $@ *
+
 
 .PHONY: mapsforge_zip
 mapsforge_zip: $(MAPSFORGE_ZIP)
