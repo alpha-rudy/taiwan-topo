@@ -1166,7 +1166,8 @@ bn_style: $(BN_STYLE)
 $(BN_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $@
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_bn
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_bn $(BUILD_DIR)
 	cat styles/mapsforge_bn/MOI_OSM_BN.xml | \
@@ -1181,11 +1182,12 @@ dn_style: $(DN_STYLE)
 $(DN_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $@
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_dn
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_dn $(BUILD_DIR)
 	cat styles/mapsforge_dn/MOI_OSM_DN.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_dn/MOI_OSM_BN.xml
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_dn/MOI_OSM_DN.xml
 	cd $(BUILD_DIR)/mapsforge_dn && $(ZIP_CMD) $@ *
 
 
@@ -1196,7 +1198,8 @@ twmap_style: $(TWMAP_STYLE)
 $(TWMAP_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $@
+	-rm -r $@
+	-rm -rf $(BUILD_DIR)/twmap_style
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/twmap_style $(BUILD_DIR)
 	cat styles/twmap_style/MOI_OSM_twmap.xml | \
@@ -1211,7 +1214,8 @@ tn_style: $(TN_STYLE)
 $(TN_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $@
+	-rm -f $@
+	-rf -rf $(BUILD_DIR)/mapsforge_tn
 	mkdir -p $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
