@@ -98,10 +98,13 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，手動安裝 (0.4MB)
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，手動安裝 (0.4MB)
   * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝 (0.4MB)
-  * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) BN Style 衛星空照疊圖](./MOI_OSM_bn_style.zip)：點選下載風格主題，需手動安裝 (0.4MB)
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝 (50MB)
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 30m, v2018.3](./hgt30-v2018.3.zip)：全幅30m, 檔案最大, 手動安裝 (65MB)
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 90m, v2018.3](./hgt90-v2018.3.zip)：全幅90m, 檔案最小, 手動安裝 (8MB)
+  * 疊圖專用 Styles
+    * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖), 手動安裝 (0.4MB)
+    * [DN Style](./MOI_OSM_dn_style.zip) 給淡色地圖疊圖 (例：通用電子地圖), 手動安裝 (0.4MB)
+    * [TN Style](./MOI_OSM_tn_style.zip) 給高度圖疊圖 (例：Relief Map), 手動安裝 (0.4MB)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝示範影片：

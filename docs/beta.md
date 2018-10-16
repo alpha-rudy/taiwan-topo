@@ -15,10 +15,14 @@
 * ![iTunes](./images/iTunes.jpeg =36x) iTunes, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/iTunes.jpeg =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![Style](./images/iTunes.jpeg =36x) Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * [![Style](./images/iTunes.jpeg =36x) BN Style](./MOI_OSM_bn_style.zip) 衛星疊圖
   * [![DEM](./images/iTunes.jpeg =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip) 台灣本島30m, 離島90m, 適當大小
   * [![DEM](./images/iTunes.jpeg =36x) DEM 30m, v2018.3](./hgt30-v2018.3.zip) 全幅30m, 檔案最大
   * [![DEM](./images/iTunes.jpeg =36x) DEM 90m, v2018.3](./hgt90-v2018.3.zip) 全幅90m, 檔案最小
+
+* 疊圖專用 Styles
+  * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖)
+  * [DN Style](./MOI_OSM_dn_style.zip) 給淡色地圖疊圖 (例：通用電子地圖)
+  * [TN Style](./MOI_OSM_tn_style.zip) 給高度圖疊圖 (例：Relief Map)
 
 * ![GMap](./images/Garmin.png =x36) Garmin camp style, MOI.OSM.camp - Taiwan TOPO v__version__
   * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe)
