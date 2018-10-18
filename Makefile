@@ -31,6 +31,7 @@ EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
 # target SUITE, no default
 ifeq ($(SUITE),yushan)
 REGION := Yushan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -38,7 +39,7 @@ ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
 MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge
 
 else ifeq ($(SUITE),exp)
@@ -46,17 +47,18 @@ else ifeq ($(SUITE),exp)
 
 else ifeq ($(SUITE),bbox)
 # REGION: specify your REGION name for bbox
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
-DEM_NAME := MOI
 TARGETS := mapsforge
 
 else ifeq ($(SUITE),bbox_bw)
 # REGION: specify your REGION name for bbox
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -66,12 +68,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1f13)
 TARGETS := gmap
 
 else ifeq ($(SUITE),bbox_odc)
 # REGION: specify your REGION name for bbox
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -81,12 +83,12 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1f12)
 TARGETS := gmap
 
 else ifeq ($(SUITE),bbox_odc_dem)
 # REGION: specify your REGION name for bbox
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -96,13 +98,13 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
 else ifeq ($(SUITE),bbox_bc_dem)
 # REGION: specify your REGION name for bbox
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -112,13 +114,13 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -126,13 +128,14 @@ ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
-GTS_ALL := $(BUILD_DIR)/$(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip poi_zip gts_all
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.3.o5m
@@ -140,13 +143,14 @@ ELEVATION_MIX_FILE = ele_taiwan_20_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy_Lite
 HGT := $(ROOT_DIR)/hgt/moi-hgt-lite-v2.zip
-GTS_ALL := $(BUILD_DIR)/$(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy_Lite
+GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip gts_all
 
 else ifeq ($(SUITE),beibeiji)
 REGION := Beibeiji
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -154,11 +158,12 @@ ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
 MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge
 
 else ifeq ($(SUITE),taipei)
 REGION := Taipei
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -166,11 +171,12 @@ ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge
 
 else ifeq ($(SUITE),yushan_bw)
 REGION := Yushan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -180,12 +186,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1413)
 TARGETS := gmap
 
 else ifeq ($(SUITE),yushan_odc)
 REGION := Yushan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -195,12 +201,12 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1412)
 TARGETS := gmap
 
 else ifeq ($(SUITE),yushan_odc_dem)
 REGION := Yushan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -210,13 +216,13 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
 else ifeq ($(SUITE),yushan_bc)
 REGION := Yushan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -226,12 +232,12 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1416)
 TARGETS := gmap
 
 else ifeq ($(SUITE),beibeiji_bw)
 REGION := Beibeiji
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -241,12 +247,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1313)
 TARGETS := gmap
 
 else ifeq ($(SUITE),beibeiji_odc)
 REGION := Beibeiji
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -256,12 +262,12 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1312)
 TARGETS := gmap
 
 else ifeq ($(SUITE),beibeiji_bc_dem)
 REGION := Beibeiji
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -271,13 +277,13 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1317)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_jing)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -287,12 +293,12 @@ TYP := jing
 HR_STYLE := jing
 LR_STYLE := jing
 STYLE_NAME := jing
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2010)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_srtm3_odr)
 REGION := Taiwan
+DEM_NAME := SRTM3
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.o5m
@@ -302,12 +308,12 @@ TYP := outdoor
 HR_STYLE := fzk
 LR_STYLE := fzk
 STYLE_NAME := odr
-DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2011)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_srtm3_odc)
 REGION := Taiwan
+DEM_NAME := SRTM3
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.o5m
@@ -317,12 +323,12 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2012)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_srtm3_bw)
 REGION := Taiwan
+DEM_NAME := SRTM3
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.o5m
@@ -332,12 +338,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2013)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taiwan_bw)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -347,12 +353,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1013)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -362,12 +368,12 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1012)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bw_dem)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -377,13 +383,13 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw3D
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -393,13 +399,13 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc3D
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -409,12 +415,12 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1016)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc_dem)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -424,13 +430,13 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_exp)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -438,11 +444,12 @@ ELEVATION_MIX_FILE = ele_taiwan_10_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 20.150,115.650,26.44212,122.31377
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge_zip
 
 else ifeq ($(SUITE),taiwan_exp2)
 REGION := Taiwan
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_20_100_500_moi_v2018.3.o5m
@@ -450,12 +457,13 @@ ELEVATION_MIX_FILE = ele_taiwan_20_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
-DEM_NAME := MOI
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgt90-v2018.3.zip
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
 else ifeq ($(SUITE),taipei_odc)
 REGION := Taipei
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -465,12 +473,12 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2112)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taipei_bw)
 REGION := Taipei
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -480,12 +488,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2113)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taipei_bc)
 REGION := Taipei
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -495,12 +503,12 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x1116)
 TARGETS := gmap
 
 else ifeq ($(SUITE),taipei_bc_dem)
 REGION := Taipei
+DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -510,13 +518,13 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-DEM_NAME := MOI
 GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taipei_en_bw)
 REGION := Taipei
+DEM_NAME := MOI
 LANG := en
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_moi_v2018.3.o5m
@@ -526,12 +534,12 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := MOI
 MAPID := $(shell printf %d 0x2103)
 TARGETS := gmap
 
 else ifeq ($(SUITE),kyushu_srtm3_en_bw)
 REGION := Kyushu
+DEM_NAME := SRTM3
 LANG := en
 CODE_PAGE := 950
 #CODE_PAGE := 1252
@@ -542,7 +550,6 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-DEM_NAME := SRTM3
 MAPID := $(shell printf %d 0x2313)
 TARGETS := gmap
 
@@ -557,7 +564,6 @@ DUMMYID = 9999
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 
 # finetune options
 JAVACMD_OPTIONS := -Xmx30G -server
