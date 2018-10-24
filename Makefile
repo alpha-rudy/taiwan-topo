@@ -1152,7 +1152,7 @@ $(LITE_STYLE):
 HS_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_hs_style.zip
 
 .PHONY: hs_style $(HS_STYLE)
-lite_style: $(HS_STYLE)
+hs_style: $(HS_STYLE)
 $(HS_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
