@@ -130,6 +130,7 @@ POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
+GTS_STYLE = $(HS_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip poi_zip gts_all
 
@@ -145,6 +146,7 @@ POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy_Lite
 HGT := $(ROOT_DIR)/hgt/moi-hgt-lite-v2.zip
+GTS_STYLE = $(LITE_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip gts_all
 
@@ -721,14 +723,14 @@ $(LICENSE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE_ZIP) hs_style $(HGT)
+$(GTS_ALL).zip: $(MAPSFORGE_ZIP) lite_style hs_style $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
 	mkdir -p $(GTS_ALL)
 	cd $(GTS_ALL) && \
 		unzip $(MAPSFORGE_ZIP) -d map && \
-		unzip $(HS_STYLE) -d mapthemes && \
+		unzip $(GTS_STYLE) -d mapthemes && \
 		unzip $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
 	rm -rf $(GTS_ALL)
