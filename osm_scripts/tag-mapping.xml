@@ -13,6 +13,7 @@
 <osm-tag key='network' value='ucn' zoom-appear='12' />
 <osm-tag key='network' value='mtb' zoom-appear='12' />
 <!-- hiking_relations -->
+<osm-tag key='highlight' value='yes' zoom-appear='11' />
 <osm-tag key='hknetwork' value='iwn' zoom-appear='11' />
 <osm-tag key='hknetwork' value='nwn' zoom-appear='11' />
 <osm-tag key='hknetwork' value='rwn' zoom-appear='11' />

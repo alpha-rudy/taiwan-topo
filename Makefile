@@ -172,7 +172,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
 MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
-TARGETS := mapsforge
+TARGETS := mapsforge_zip
 
 else ifeq ($(SUITE),yushan_bw)
 REGION := Yushan
