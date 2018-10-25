@@ -17,9 +17,11 @@ class HknetworkLoader(osmium.SimpleHandler):
     def relation(self, r):
         if not r.members:
             return
-        network = dict(name=r.tags['name'], network=r.tags['network'])
+        network = dict(name=r.tags['name'], network=r.tags['network'], ref=r.tags.get('ref',''))
         for m in r.members:
-            hknetworks[m.ref] = network
+            if not hknetworks.get(m.ref):
+                hknetworks[m.ref] = []
+            hknetworks[m.ref].append(network)
 
 
 class PeakHandler(osmium.SimpleHandler):
@@ -47,7 +49,7 @@ class PeakHandler(osmium.SimpleHandler):
                         tags['zl'] = '0'
                     else:
                         tags['zl'] = '1'
-                
+
                 tags['ref'] = '(%s)' % ref
 
         ele = tags.get('ele')
@@ -58,19 +60,24 @@ class PeakHandler(osmium.SimpleHandler):
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
-            
+
     def way(self, w):
         if w.id not in hknetworks:
             self.writer.add_way(w)
             return
 
-        hknetwork = hknetworks[w.id]
+        networks = hknetworks[w.id]
 
         tags = dict((tag.k, tag.v) for tag in w.tags)
 
-        if hknetwork['name']:
-            tags['ref'] = hknetwork['name']
-        tags['hknetwork'] = hknetwork['network']
+        for network in networks:
+            if network.get('ref','') == 'twn:taipei_grand_hike':
+                tags['highlight'] = 'yes'
+                if not tags.get('hknetwork'):
+                    tags['ref'] = network['name']
+            else:
+                tags['hknetwork'] = network['network']
+                tags['ref'] = network['name']
 
         w = w.replace(tags=tags)
         self.writer.add_way(w)
