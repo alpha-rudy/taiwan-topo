@@ -1142,12 +1142,20 @@ $(LITE_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	-rm -f $@
-	-rm -rf $(BUILD_DIR)/mapsforge_lite
-	mkdir -p $(BUILD_DIR)
-	cp -a styles/mapsforge_lite $(BUILD_DIR)
-	cat styles/mapsforge_lite/MOI_OSM_Lite.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
-	cd $(BUILD_DIR)/mapsforge_lite && $(ZIP_CMD) $@ *
+	-rf -rf $(BUILD_DIR)/mapsforge_lite
+	mkdir -p $(BUILD_DIR)/mapsforge_lite
+	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_lite/moiosmlite_res
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+	    $(SED_CMD) \
+			-e "s/__version__/$(VERSION)/g" \
+			-e "s/file:moiosm_res/file:moiosmlite_res/g" \
+			-e "s,file:/moiosm_res,file:/moiosmlite_res,g" \
+			-e "s,<!-- hillshading -->,<hillshading />,g" \
+			-e "/-- contours-begin --/,/-- contours-end --/d" \
+			-e "/-- contours --/ r styles/mapsforge_lite/Lite_contours.part" \
+		> $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
+	cd $(BUILD_DIR)/mapsforge_lite && \
+		$(ZIP_CMD) $@ *
 
 
 HS_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
