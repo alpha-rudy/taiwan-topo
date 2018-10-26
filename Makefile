@@ -1144,6 +1144,7 @@ $(LITE_STYLE):
 	-rm -f $@
 	-rf -rf $(BUILD_DIR)/mapsforge_lite
 	mkdir -p $(BUILD_DIR)/mapsforge_lite
+	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_lite
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_lite/moiosmlite_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
 	    $(SED_CMD) \
@@ -1168,6 +1169,7 @@ $(HS_STYLE):
 	-rm -f $@
 	-rf -rf $(BUILD_DIR)/mapsforge_hs
 	mkdir -p $(BUILD_DIR)/mapsforge_hs
+	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_hs
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_hs/moiosmhs_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
 	    $(SED_CMD) \
@@ -1238,6 +1240,7 @@ $(TN_STYLE):
 	-rm -f $@
 	-rf -rf $(BUILD_DIR)/mapsforge_tn
 	mkdir -p $(BUILD_DIR)/mapsforge_tn
+	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
 	    $(SED_CMD) \
