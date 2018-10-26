@@ -1158,12 +1158,18 @@ $(HS_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	-rm -f $@
-	-rm -rf $(BUILD_DIR)/mapsforge_hs
-	mkdir -p $(BUILD_DIR)
-	cp -a styles/mapsforge_hs $(BUILD_DIR)
-	cat styles/mapsforge_hs/MOI_OSM.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_hs/MOI_OSM.xml
-	cd $(BUILD_DIR)/mapsforge_hs && $(ZIP_CMD) $@ *
+	-rf -rf $(BUILD_DIR)/mapsforge_hs
+	mkdir -p $(BUILD_DIR)/mapsforge_hs
+	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_hs/moiosmhs_res
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+	    $(SED_CMD) \
+			-e "s/__version__/$(VERSION)/g" \
+			-e "s/file:moiosm_res/file:moiosmhs_res/g" \
+			-e "s,file:/moiosm_res,file:/moiosmhs_res,g" \
+			-e "s,<!-- hillshading -->,<hillshading />,g" \
+		> $(BUILD_DIR)/mapsforge_hs/MOI_OSM.xml
+	cd $(BUILD_DIR)/mapsforge_hs && \
+		$(ZIP_CMD) $@ *
 
 
 BN_STYLE := $(BUILD_DIR)/MOI_OSM_bn_style.zip
@@ -1229,6 +1235,7 @@ $(TN_STYLE):
 	    $(SED_CMD) \
 			-e "s/__version__/$(VERSION)/g" \
 			-e "s/file:moiosm_res/file:tn_res/g" \
+			-e "s,file:/moiosm_res,file:/tn_res,g" \
 			-e 's/outside="#FFFFFF" map-background="#FFFFFF"/outside="#00FFFFFF" map-background="#00FFFFFF"/g' \
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
