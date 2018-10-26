@@ -130,6 +130,7 @@ POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
+GTS_STYLE = $(HS_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip poi_zip gts_all
 
@@ -143,8 +144,9 @@ ELEVATION_MIX_FILE = ele_taiwan_20_100_500_moi_v2018.3_mix.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy_Lite
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 HGT := $(ROOT_DIR)/hgt/moi-hgt-lite-v2.zip
+GTS_STYLE = $(LITE_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip gts_all
 
@@ -721,14 +723,14 @@ $(LICENSE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE_ZIP) hs_style $(HGT)
+$(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
 	mkdir -p $(GTS_ALL)
 	cd $(GTS_ALL) && \
 		unzip $(MAPSFORGE_ZIP) -d map && \
-		unzip $(HS_STYLE) -d mapthemes && \
+		unzip $(GTS_STYLE) -d mapthemes && \
 		unzip $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
 	rm -rf $(GTS_ALL)
@@ -1099,8 +1101,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	    -o=$@
 
 
-MAPSFORGE_STYLE_PREFIX := MOI_OSM_Taiwan_TOPO_Rudy
-MAPSFORGE_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_style.zip
+MAPSFORGE_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style.zip
 
 .PHONY: mapsforge_style $(MAPSFORGE_STYLE)
 mapsforge_style: $(MAPSFORGE_STYLE)
@@ -1116,7 +1117,7 @@ $(MAPSFORGE_STYLE):
 	cd $(BUILD_DIR)/mapsforge_style && $(ZIP_CMD) $@ *
 
 
-LOCUS_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_locus_style.zip
+LOCUS_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip
 LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
 
 .PHONY: locus_style $(LOCUS_STYLE)
@@ -1133,7 +1134,7 @@ $(LOCUS_STYLE):
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
 
-LITE_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_Lite_style.zip
+LITE_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Lite_style.zip
 
 .PHONY: lite_style $(LITE_STYLE)
 lite_style: $(LITE_STYLE)
@@ -1149,7 +1150,7 @@ $(LITE_STYLE):
 	cd $(BUILD_DIR)/mapsforge_lite && $(ZIP_CMD) $@ *
 
 
-HS_STYLE := $(BUILD_DIR)/$(MAPSFORGE_STYLE_PREFIX)_hs_style.zip
+HS_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
 
 .PHONY: hs_style $(HS_STYLE)
 hs_style: $(HS_STYLE)
