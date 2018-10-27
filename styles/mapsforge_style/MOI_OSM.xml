@@ -2520,10 +2520,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <!-- hiking-routes ;hknetwork -->
       <rule cat="h_s_routes" e="any" k="*" v="*">
-        <rule e="way" k="highlight" v="yes" zoom-min="11">
-          <rule e="way" k="*" v="*" zoom-min="11" zoom-max="12">
-            <line stroke="#0000E1" stroke-width="1.5" stroke-dasharray="5,3" stroke-linecap="butt"/>
-          </rule>
+        <rule e="way" k="highlight" v="yes" zoom-min="13">
           <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
             <line stroke="#803838E1" stroke-width="6.00"/>
           </rule>
@@ -2544,8 +2541,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
         <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
-          <rule e="way" k="*" v="*" zoom-min="11" zoom-max="12">
-            <line stroke="#E10600" stroke-width="1.5" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          <rule e="way" k="*" v="*" zoom-min="11" zoom-max="11">
+            <line stroke="#E10600" stroke-width="1.17" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="12" zoom-max="12">
+            <line stroke="#E10600" stroke-width="0.88" stroke-dasharray="5,3" stroke-linecap="butt"/>
           </rule>
           <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
             <line stroke="#80E13D38" stroke-width="3.00"/>
@@ -2564,6 +2564,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
           <rule e="way" k="*" v="*" zoom-min="18">
             <line stroke="#80E1726F" stroke-width="0.71"/>
+          </rule>
+        </rule>
+        <rule e="way" k="highlight" v="yes" zoom-min="11" zoom-max="12">
+          <rule e="way" k="*" v="*" zoom-min="11" zoom-max="11">
+            <line stroke="#0000E1" stroke-width="1.17" stroke-dasharray="5,3" stroke-linecap="butt"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="12" zoom-max="12">
+            <line stroke="#0000E1" stroke-width="0.88" stroke-dasharray="5,3" stroke-linecap="butt"/>
           </rule>
         </rule>
         <!-- captions -->
