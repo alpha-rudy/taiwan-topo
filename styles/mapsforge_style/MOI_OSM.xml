@@ -2631,8 +2631,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
               <!-- ;trail -->
             </rule>
           </rule>
-        </rule>
-        <rule cat="h_routes" e="way" k="access" v="destination|private|~">
           <rule e="way" k="trail_visibility" v="excellent|good|intermediate|~">
             <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
               <rule e="way" k="highway" v="footway|path" zoom-min="13">
