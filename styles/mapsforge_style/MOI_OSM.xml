@@ -2522,22 +2522,22 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule cat="h_s_routes" e="any" k="*" v="*">
         <rule e="way" k="highlight" v="yes" zoom-min="13">
           <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
-            <line stroke="#803838E1" stroke-width="6.00"/>
+            <line stroke="#803838E1" stroke-width="4.50"/>
           </rule>
           <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-            <line stroke="#805454E1" stroke-width="4.50"/>
-          </rule>
-          <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
             <line stroke="#805454E1" stroke-width="3.38"/>
           </rule>
-          <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+          <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
             <line stroke="#805454E1" stroke-width="2.53"/>
           </rule>
-          <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+          <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
             <line stroke="#805454E1" stroke-width="1.90"/>
           </rule>
-          <rule e="way" k="*" v="*" zoom-min="18">
+          <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
             <line stroke="#805454E1" stroke-width="1.42"/>
+          </rule>
+          <rule e="way" k="*" v="*" zoom-min="18">
+            <line stroke="#805454E1" stroke-width="1.07"/>
           </rule>
         </rule>
         <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
