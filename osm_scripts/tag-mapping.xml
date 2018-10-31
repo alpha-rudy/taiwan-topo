@@ -627,7 +627,12 @@
 <!-- cycle_relations -->
 <osm-tag key='cycle_node' value='NLBE' zoom-appear='12' />
 <!-- hiking_relations -->
+<osm-tag key='highlight' value='yes' zoom-appear='13' />
+<osm-tag key='hike_node' value='iwn' zoom-appear='13' />
+<osm-tag key='hike_node' value='nwn' zoom-appear='13' />
 <osm-tag key='hike_node' value='rwn' zoom-appear='13' />
+<osm-tag key='hike_node' value='lwn' zoom-appear='13' />
+<osm-tag key='hike_node' value='uwn' zoom-appear='13' />
 <!-- Contourlines -->
 <!-- poly_labels -->
 <osm-tag key='natural' value='water' zoom-appear='10' />
@@ -833,6 +838,7 @@
 <osm-tag key='tourism' value='hostel' zoom-appear='14' />
 <osm-tag key='tourism' value='hotel' equivalent-values='guest_house,motel' zoom-appear='14' />
 <osm-tag key='tourism' value='information' zoom-appear='14' />
+<osm-tag key='checkpoint:type' value='stamp' zoom-appear='14' />
 <osm-tag key='tourism' value='museum' zoom-appear='17' />
 <osm-tag key='tourism' value='picnic_site' zoom-appear='14' />
 <osm-tag key='tourism' value='viewpoint' zoom-appear='14' />
