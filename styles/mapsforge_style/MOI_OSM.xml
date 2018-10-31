@@ -2053,8 +2053,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <circle radius="0.8" scale-radius="true" fill="#FFFFFF"/>
   </rule>
   <!-- highway cores -->
-  <rule e="way" k="area" v="~|no">
-    <rule e="way" k="tunnel" v="~|no">
+  <rule e="any" k="area" v="~|no">
+    <rule e="any" k="tunnel" v="~|no">
       <rule e="way" k="highway" v="bridleway" zoom-max="15" zoom-min="13">
         <line stroke="#AB7846" stroke-width="0.5" stroke-dasharray="0.5,4" stroke-linecap="round"/>
       </rule>
@@ -2584,18 +2584,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
         <!-- hiking nodes -->
-        <rule e="node" k="hike_node" v="*">
-          <rule e="any" k="*" v="*" zoom-max="12">
-            <circle radius="6.4" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="1.5"/>
-            <caption k="name" display="always" priority="-14" font-style="bold" font-size="9" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
-          </rule>
-          <rule e="any" k="*" v="*" zoom-min="13" zoom-max="14">
-            <circle radius="8.0" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="2"/>
-            <caption k="name" display="always" priority="-14" font-style="bold" font-size="10" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
-          </rule>
-          <rule e="any" k="*" v="*" zoom-min="15">
-            <circle radius="10.4" scale-radius="false" fill="#ffffff" stroke="#009900" stroke-width="2"/>
-            <caption k="name" display="always" priority="-14" font-style="bold" font-size="14" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
+        <rule e="node" k="highlight" v="yes">
+          <rule e="any" k="*" v="*" zoom-min="14">
+            <circle radius="10.4" scale-radius="false" fill="#80ffffff" stroke="#80009900" stroke-width="2" />
           </rule>
         </rule>
       </rule>
@@ -4367,10 +4358,28 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="any" k="tourism" v="information">
-      <rule e="any" k="information" v="~">
-        <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        <rule e="any" k="*" v="*">
-          <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+      <rule e="any" k="highlight" v="yes">
+        <rule e="any" k="checkpoint:type" v="stamp">
+          <symbol id="s_stamp" priority="64" src="file:moiosm_res/s_stamp.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+          <rule e="any" k="*" v="*">
+            <caption k="ref" symbol-id="s_stamp" position="above" font-style="bold" font-size="10" fill="#009900" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
+        </rule>
+        <rule e="any" k="checkpoint:type" v="~">
+          <rule e="any" k="information" v="~">
+            <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+            <rule e="any" k="*" v="*">
+              <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+      <rule e="any" k="highlight" v="~">
+        <rule e="any" k="information" v="~">
+          <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+          <rule e="any" k="*" v="*">
+            <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
         </rule>
       </rule>
     </rule>

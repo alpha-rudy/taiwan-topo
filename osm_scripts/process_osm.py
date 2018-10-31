@@ -29,11 +29,28 @@ class PeakHandler(osmium.SimpleHandler):
         super(PeakHandler, self).__init__()
         self.writer = writer
 
-    def node(self, n):
-        if 'natural' not in n.tags or n.tags['natural'] != 'peak':
-            self.writer.add_node(n)
-            return
 
+    def node(self, n):
+        if 'natural' in n.tags and n.tags['natural'] == 'peak':
+            self.add_peak_node(n)
+        if n.id in hknetworks:
+            self.add_hike_node(n)
+        self.writer.add_node(n)
+
+
+    def add_hike_node(self, n):
+        tags = dict((tag.k, tag.v) for tag in n.tags)
+
+        for network in hknetworks[n.id]:
+            if network.get('ref','') == 'twn:taipei_grand_hike':
+                tags['highlight'] = 'yes'
+            tags['hike_node'] = network['network']
+
+        n = n.replace(tags=tags)
+        self.writer.add_node(n)
+
+
+    def add_peak_node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         ref = tags.get('ref')
