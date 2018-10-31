@@ -44,6 +44,7 @@ class PeakHandler(osmium.SimpleHandler):
         for network in hknetworks[n.id]:
             if network.get('ref','') == 'twn:taipei_grand_hike':
                 tags['highlight'] = 'yes'
+                tags['name'] = tags['ref']
             tags['hike_node'] = network['network']
 
         n = n.replace(tags=tags)
