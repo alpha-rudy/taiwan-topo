@@ -2584,11 +2584,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
         <!-- hiking nodes -->
-        <rule e="node" k="highlight" v="yes">
+        <!-- <rule e="node" k="highlight" v="yes">
           <rule e="any" k="*" v="*" zoom-min="14">
             <circle radius="10.4" scale-radius="false" fill="#80ffffff" stroke="#C05454E1" stroke-width="2" />
           </rule>
-        </rule>
+        </rule> -->
       </rule>
       <!-- paths/footways -->
       <rule cat="hike" e="any" k="*" v="*">
@@ -4270,6 +4270,32 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- tourism -->
   <rule cat="tourism" e="any" k="*" v="*" zoom-min="14">
+    <rule e="any" k="tourism" v="information">
+      <rule e="any" k="highlight" v="yes">
+        <rule e="any" k="checkpoint:type" v="stamp">
+          <symbol id="s_stamp" priority="70" src="file:moiosm_res/s_stamp.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+          <rule e="any" k="*" v="*">
+            <caption k="name" symbol-id="s_stamp" position="above" font-style="bold" font-size="10" fill="#0000CC" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
+        </rule>
+        <rule e="any" k="checkpoint:type" v="~">
+          <rule e="any" k="information" v="~">
+            <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+            <rule e="any" k="*" v="*">
+              <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+      <rule e="any" k="highlight" v="~">
+        <rule e="any" k="information" v="~">
+          <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+          <rule e="any" k="*" v="*">
+            <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
     <rule e="any" k="historic|building" v="castle">
       <symbol id="s_castle" priority="59" src="file:moiosm_res/s_castle.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4355,32 +4381,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <symbol id="s_info_terminal" priority="55" src="file:moiosm_res/s_info_terminal.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_info_terminal" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
-    <rule e="any" k="tourism" v="information">
-      <rule e="any" k="highlight" v="yes">
-        <rule e="any" k="checkpoint:type" v="stamp">
-          <symbol id="s_stamp" priority="64" src="file:moiosm_res/s_stamp.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-          <rule e="any" k="*" v="*">
-            <caption k="name" symbol-id="s_stamp" position="above" font-style="bold" font-size="10" fill="#0000CC" stroke="#E5FFFFFF" stroke-width="2"/>
-          </rule>
-        </rule>
-        <rule e="any" k="checkpoint:type" v="~">
-          <rule e="any" k="information" v="~">
-            <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-            <rule e="any" k="*" v="*">
-              <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
-            </rule>
-          </rule>
-        </rule>
-      </rule>
-      <rule e="any" k="highlight" v="~">
-        <rule e="any" k="information" v="~">
-          <symbol id="s_information" priority="54" src="file:moiosm_res/s_information.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-          <rule e="any" k="*" v="*">
-            <caption k="name" symbol-id="s_information" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
-          </rule>
-        </rule>
       </rule>
     </rule>
     <rule e="any" k="historic" v="wayside_shrine">
