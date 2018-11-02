@@ -12,6 +12,7 @@ while sleep 60; do free -h >> log/mem_$(date +%d).log; done > /dev/null 2> /dev/
 
 cd ~/taiwan-topo
 git clean -fdx
+git checkout -- .
 git pull --rebase
 make distclean
 
