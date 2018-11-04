@@ -650,6 +650,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="特殊建築物"/>
       <cat id="buildings"/>
     </layer>
+    <layer id="elmt-mast-h" enabled="false">
+      <name lang="de" value="base station"/>
+      <name lang="en" value="base station"/>
+      <name lang="es" value="base station"/>
+      <name lang="fr" value="base station"/>
+      <name lang="it" value="base station"/>
+      <name lang="zh" value="基地台"/>
+      <cat id="mast"/>
+    </layer>
     <layer id="elmt-buildings-c" enabled="true">
       <name lang="de" value="besondere Gebäude"/>
       <name lang="en" value="special buildings"/>
@@ -718,6 +727,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-pubtrans-h"/>
       <overlay id="elmt-car-h"/>
       <overlay id="elmt-buildings-h"/>
+      <overlay id="elmt-mast-h"/>
     </layer>
     <layer id="elmt-city" visible="false">
       <name lang="de" value="Stadt"/>
@@ -4758,8 +4768,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_tower_communication" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="man_made" v="mast">
+    <rule cat="mast" e="any" k="man_made" v="mast">
       <symbol id="s_tower_mast" src="file:moiosm_res/s_tower_mast.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="any" k="*" v="*">
+        <caption k="name" symbol-id="s_tower_mast" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
     </rule>
     <rule e="any" k="waterway" v="weir">
       <symbol id="s_weir" src="file:moiosm_res/s_weir.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>

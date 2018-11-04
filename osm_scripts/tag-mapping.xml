@@ -786,6 +786,9 @@
 <osm-tag key='amenity' value='university' zoom-appear='17' />
 <osm-tag key='amenity' value='ferry_terminal' zoom-appear='13' />
 <osm-tag key='amenity' value='charging_station' equivalent-values='ev_charging' zoom-appear='14' />
+<osm-tag key='man_made' value='communications_tower' zoom-appear='14' />
+<osm-tag key='man_made' value='tower' zoom-appear='14' />
+<osm-tag key='man_made' value='mast' zoom-appear='14' />
 <!-- leisure -->
 <osm-tag key='leisure' value='playground' zoom-appear='15' />
 <osm-tag key='leisure' value='slipway' zoom-appear='15' />
