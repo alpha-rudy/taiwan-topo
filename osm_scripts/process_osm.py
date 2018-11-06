@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import json
 import sys
-
 import osmium
 
 hknetworks = {}
+
 
 def round_float(value):
     try:
@@ -17,18 +16,17 @@ class HknetworkLoader(osmium.SimpleHandler):
     def relation(self, r):
         if not r.members:
             return
-        network = dict(name=r.tags['name'], network=r.tags['network'], ref=r.tags.get('ref',''))
+        network = dict(name=r.tags['name'], network=r.tags['network'], ref=r.tags.get('ref', ''))
         for m in r.members:
             if not hknetworks.get(m.ref):
                 hknetworks[m.ref] = []
             hknetworks[m.ref].append(network)
 
 
-class PeakHandler(osmium.SimpleHandler):
+class MapsforgeHandler(osmium.SimpleHandler):
     def __init__(self, writer):
-        super(PeakHandler, self).__init__()
+        osmium.SimpleHandler.__init__(self)
         self.writer = writer
-
 
     def node(self, n):
         if 'natural' in n.tags and n.tags['natural'] == 'peak':
@@ -37,19 +35,17 @@ class PeakHandler(osmium.SimpleHandler):
             self.add_hike_node(n)
         self.writer.add_node(n)
 
-
     def add_hike_node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         for network in hknetworks[n.id]:
-            if network.get('ref','') == 'twn:taipei_grand_hike':
+            if network.get('ref', '') == 'twn:taipei_grand_hike':
                 tags['highlight'] = 'yes'
                 tags['name'] = tags['ref']
             tags['hike_node'] = network['network']
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
-
 
     def add_peak_node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
@@ -74,7 +70,7 @@ class PeakHandler(osmium.SimpleHandler):
         if ele is not None and name is not None:
             ele = round_float(ele)
             if ele is not None:
-              tags['name'] = '%s, %sm' % (name, ele)
+                tags['name'] = '%s, %sm' % (name, ele)
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
@@ -89,7 +85,7 @@ class PeakHandler(osmium.SimpleHandler):
         tags = dict((tag.k, tag.v) for tag in w.tags)
 
         for network in networks:
-            if network.get('ref','') == 'twn:taipei_grand_hike':
+            if network.get('ref', '') == 'twn:taipei_grand_hike':
                 tags['highlight'] = 'yes'
                 if not tags.get('hknetwork'):
                     tags['ref'] = network['name']
@@ -111,11 +107,12 @@ def main():
     infile = sys.argv[1]
     outfile = sys.argv[2]
 
-    HknetworkLoader().apply_file('hknetworks.osm')
+    nknetwork_loader = HknetworkLoader()
+    nknetwork_loader.apply_file('hknetworks.osm')
 
     writer = osmium.SimpleWriter(outfile)
-    handler = PeakHandler(writer)
-    handler.apply_file(infile)
+    mapsforge_handler = MapsforgeHandler(writer)
+    mapsforge_handler.apply_file(infile)
     writer.close()
 
 
