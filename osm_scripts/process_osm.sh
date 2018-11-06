@@ -26,4 +26,4 @@ osmfilter \
     "$infile" --out-o5m | osmconvert - -o="$temp_pbf"
 
 script_dir="$(dirname $0)"
-python2.7 "$script_dir/process_osm.py" "$temp_pbf" "$outfile"
+python3 "$script_dir/process_osm.py" "$temp_pbf" "$outfile"
