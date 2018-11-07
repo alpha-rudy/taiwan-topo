@@ -29,13 +29,17 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
-        if 'natural' in n.tags and n.tags['natural'] == 'peak':
-            self.add_peak_node(n)
+        if n.tags.get('natural', '') == 'peak':
+            self.handle_peak(n)
+        elif n.tags.get('information', '') == 'mobile':
+            self.handle_mobile_sign(n)
+
         if n.id in hknetworks:
-            self.add_hike_node(n)
+            self.handle_hknetwork_node(n)
+
         self.writer.add_node(n)
 
-    def add_hike_node(self, n):
+    def handle_hknetwork_node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         for network in hknetworks[n.id]:
@@ -47,7 +51,16 @@ class MapsforgeHandler(osmium.SimpleHandler):
         n = n.replace(tags=tags)
         self.writer.add_node(n)
 
-    def add_peak_node(self, n):
+    def handle_mobile_sign(self, n):
+        tags = dict((tag.k, tag.v) for tag in n.tags)
+
+        if tags.get('name') is None and tags.get('operator'):
+            tags['name'] = "通訊點 ({})".format(tags.get('operator'))
+
+        n = n.replace(tags=tags)
+        self.writer.add_node(n)
+
+    def handle_peak(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         ref = tags.get('ref')
