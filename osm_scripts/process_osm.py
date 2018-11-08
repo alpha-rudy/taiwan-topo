@@ -31,13 +31,17 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def node(self, n):
         if n.tags.get('natural', '') == 'peak':
             self.handle_peak(n)
+            return
         elif n.tags.get('information', '') == 'mobile':
             self.handle_mobile_sign(n)
+            return
 
         if n.id in hknetworks:
             self.handle_hknetwork_node(n)
+            return
 
         self.writer.add_node(n)
+        return
 
     def handle_hknetwork_node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
@@ -108,9 +112,11 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         w = w.replace(tags=tags)
         self.writer.add_way(w)
+        return
 
     def relation(self, r):
         self.writer.add_relation(r)
+        return
 
 
 def main():
