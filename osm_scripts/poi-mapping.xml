@@ -107,6 +107,7 @@
     </category>
     <category title="07 保護區/景點/觀景台">
       <mapping tag="tourism=information" />
+      <mapping tag="information=mobile" />
       <mapping tag="tourism=viewpoint" />
       <mapping tag="tourism=attraction" />
       <mapping tag="boundary=nature_reserve" />
