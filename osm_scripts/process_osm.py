@@ -76,11 +76,16 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags.pop('tourism')
         tags['information'] = 'trail_milestone'
 
-        if tags.get('name') is None and tags.get('distance'):
-            try:
-                tags['name'] = "{:.2g}K".format(float(tags.get('distance')))
-            except ValueError:
-                tags['name'] = tags.get('distance')
+        if tags.get('name') is None:
+            name = ''
+            name += tags.get('network', '')
+            if tags.get('distance'):
+                try:
+                    name += "{:.2g}K".format(float(tags.get('distance')))
+                except ValueError:
+                    name += tags.get('distance')
+            if name:
+                tags['name'] = name
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
