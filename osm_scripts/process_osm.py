@@ -35,6 +35,11 @@ class MapsforgeHandler(osmium.SimpleHandler):
         elif n.tags.get('information', '') == 'mobile':
             self.handle_mobile_sign(n)
             return
+        elif n.tags.get('highway', '') == 'milestone' and \
+                n.tags.get('tourism', '') == 'information' and \
+                n.tags.get('information', '') == 'route_marker':
+            self.handle_trail_milestone(n)
+            return
 
         if n.id in hknetworks:
             self.handle_hknetwork_node(n)
@@ -60,6 +65,22 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         if tags.get('name') is None and tags.get('operator'):
             tags['name'] = "通訊點 ({})".format(tags.get('operator'))
+
+        n = n.replace(tags=tags)
+        self.writer.add_node(n)
+
+    def handle_trail_milestone(self, n):
+        tags = dict((tag.k, tag.v) for tag in n.tags)
+
+        tags.pop('highway')
+        tags.pop('tourism')
+        tags['information'] = 'trail_milestone'
+
+        if tags.get('name') is None and tags.get('distance'):
+            try:
+                tags['name'] = "{:.2g}K".format(float(tags.get('distance')))
+            except ValueError:
+                tags['name'] = tags.get('distance')
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)

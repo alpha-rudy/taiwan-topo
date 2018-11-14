@@ -850,6 +850,7 @@
 <!-- information -->
 <osm-tag key='information' value='office' zoom-appear='14' />
 <osm-tag key='information' value='guidepost' zoom-appear='15' />
+<osm-tag key='information' value='trail_milestone' zoom-appear='15' />
 <osm-tag key='information' value='mobile' zoom-appear='15' />
 <osm-tag key='highway' value='trailhead' zoom-appear='15' />
 <osm-tag key='information' value='board' equivalent-values='map' zoom-appear='15' />
