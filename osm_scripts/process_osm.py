@@ -78,7 +78,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         if tags.get('name') is None:
             name = ''
-            name += tags.get('network', '')
+            # name += tags.get('network', '')  default removed network
             if tags.get('distance'):
                 try:
                     name += "{:.2g}K".format(float(tags.get('distance')))
