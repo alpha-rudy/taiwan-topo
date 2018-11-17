@@ -64,7 +64,20 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         if tags.get('name') is None and tags.get('operator'):
-            tags['name'] = "通訊點 ({})".format(tags.get('operator'))
+            operator = tags.get('operator')
+            name = "通訊點 ("
+            if '中華' in operator:
+                name += '中華,'
+            if '遠傳' in operator:
+                name += '遠傳,'
+            if '星' in operator:
+                name += '台灣之星,'
+            if '哥' in operator:
+                name += '台哥大,'
+            if '亞太' in operator:
+                name += '亞太,'
+            name += ")"
+            tags['name'] = name
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
