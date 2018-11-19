@@ -4314,7 +4314,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="any" k="information" v="mobile">
         <symbol id="s_mobile" priority="84" src="file:moiosm_res/s_mobile.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule e="any" k="*" v="*">
-          <caption k="name" symbol-id="s_mobile" position="above" font-style="bold" font-size="10" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" symbol-id="s_mobile" position="above" font-style="bold" font-size="10" fill="#734a08" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
     </rule>
