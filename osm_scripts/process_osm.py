@@ -23,6 +23,10 @@ class HknetworkLoader(osmium.SimpleHandler):
             hknetworks[m.ref].append(network)
 
 
+def my_g_format(the_float):
+    return "{:.1f}".format(the_float).rstrip('0').rstrip('.')
+
+
 class MapsforgeHandler(osmium.SimpleHandler):
     def __init__(self, writer):
         osmium.SimpleHandler.__init__(self)
@@ -65,18 +69,21 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         if tags.get('name') is None and tags.get('operator'):
             operator = tags.get('operator')
-            name = "通訊點 ("
+            name = '通訊點 ('
+
             if '中華' in operator:
                 name += '中華,'
             if '遠傳' in operator:
                 name += '遠傳,'
             if '星' in operator:
-                name += '台灣之星,'
+                name += '台星,'
             if '哥' in operator:
                 name += '台哥大,'
             if '亞太' in operator:
                 name += '亞太,'
-            name += ")"
+
+            name.rstrip(',')  # get rid the last ','
+            name += ')'
             tags['name'] = name
 
         n = n.replace(tags=tags)
@@ -94,7 +101,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
             # name += tags.get('network', '')  default removed network
             if tags.get('distance'):
                 try:
-                    name += "{:.2g}K".format(float(tags.get('distance')))
+                    distance = float(tags.get('distance'))
+                    name += my_g_format(distance) + 'K'
                 except ValueError:
                     name += tags.get('distance')
             if name:
