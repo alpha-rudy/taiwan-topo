@@ -82,7 +82,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             if '亞太' in operator:
                 name += '亞太,'
 
-            name.rstrip(',')  # get rid the last ','
+            name = name.rstrip(',')  # get rid the last ','
             name += ')'
             tags['name'] = name
 
