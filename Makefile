@@ -643,6 +643,25 @@ clean:
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
 
+.PHONY: clean-elevations
+clean-elevations:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(WORKS_DIR)" ]
+	-rm -rf $(BUILD_DIR)
+	-rm -rf $(WORKS_DIR)
+	-rm -rf $(ELEVATIONS_DIR)
+
+.PHONY: clean-extracts
+clean-extracts:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	[ -n "$(WORKS_DIR)" ]
+	-rm -rf $(BUILD_DIR)
+	-rm -rf $(WORKS_DIR)
+	-rm -rf $(EXTRACTS_DIR)
+
+.PHONY: distclean
 distclean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
@@ -1024,14 +1043,14 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	touch $(MAP_NODEM_LR)
 
 .DELETE_ON_ERROR: $(ELEVATION)
-ELEVATIONS_URL := file://${HOME}/osm_elevations
+ELEVATIONS_URL := http://rudy.basecamp.tw/osm_elevations
 $(ELEVATION):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)
 	cd $(ELEVATIONS_DIR) && \
-	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
-	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
+	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
+	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ]
 
 .DELETE_ON_ERROR: $(ELEVATION_MIX)
@@ -1040,8 +1059,8 @@ $(ELEVATION_MIX):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)/marker
 	cd $(ELEVATIONS_DIR)/marker && \
-	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
-	    curl -k $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
+	    curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
+	    curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
 	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
 
 .DELETE_ON_ERROR: $(EXTRACT).o5m
