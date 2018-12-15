@@ -11,10 +11,10 @@ WEEKLY=4
 while sleep 60; do free -h >> log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
 
 cd ~/taiwan-topo
-git clean -fdx
+git clean -fd
 git checkout -- .
 git pull --rebase
-make distclean
+make clean-extracts
 
 if [ "${DAYOFWEEK}" -eq ${WEEKLY} ]; then
     make suites
