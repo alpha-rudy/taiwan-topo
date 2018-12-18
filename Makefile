@@ -659,7 +659,7 @@ clean-extracts:
 	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
-	-rm -rf $(EXTRACTS_DIR)
+	-rm -rf $(EXTRACT_DIR)
 
 .PHONY: distclean
 distclean:
