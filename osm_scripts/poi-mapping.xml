@@ -39,6 +39,17 @@
         <mapping tag="survey_point=suppl_FB" />
         <mapping tag="survey_point=suppl_TW" />
         <mapping tag="survey_point=suppl_UN" />
+        <mapping tag="survey_point=suppl_noname" />
+        <mapping tag="survey_point=suppl_GO2" />
+        <mapping tag="survey_point=suppl_IA2" />
+        <mapping tag="survey_point=suppl_FB2" />
+        <mapping tag="survey_point=suppl_CE" />
+        <mapping tag="survey_point=suppl_taisho" />
+        <mapping tag="survey_point=suppl_CS" />
+        <mapping tag="survey_point=suppl_taipower" />
+        <mapping tag="survey_point=suppl_eclipse" />
+        <mapping tag="survey_point=suppl_declination" />
+        <mapping tag="survey_point=suppl_port" />
       </category>
       <category title="03 鑛務點">
         <mapping tag="survey_point=mine" />
@@ -73,6 +84,41 @@
         <mapping tag="survey_point=kaohsiung" />
         <mapping tag="survey_point=penghu" />
         <mapping tag="survey_point=kinmen" />
+      </category>
+      <category title="07 其他">
+        <mapping tag="survey_point=navy_trig_JP" />
+        <mapping tag="survey_point=navy_trig_TW" />
+        <mapping tag="survey_point=navy_suppl_JP" />
+        <mapping tag="survey_point=navy_suppl_TW" />
+        <mapping tag="survey_point=sinica_trig" />
+        <mapping tag="survey_point=military_zone" />
+        <mapping tag="survey_point=military_zone_A" />
+        <mapping tag="survey_point=water_trig" />
+        <mapping tag="survey_point=water_suppl" />
+        <mapping tag="survey_point=water_taipei" />
+        <mapping tag="survey_point=water_reservoir" />
+        <mapping tag="survey_point=water_boundary" />
+        <mapping tag="survey_point=replica" />
+        <mapping tag="survey_point=bm_japan1" />
+        <mapping tag="survey_point=bm_japan2" />
+        <mapping tag="survey_point=bm_old" />
+        <mapping tag="survey_point=bm_sinica" />
+        <mapping tag="survey_point=bm_port" />
+        <mapping tag="survey_point=bm_taipower" />
+        <mapping tag="survey_point=bm_aero" />
+        <mapping tag="survey_point=bm_tainan" />
+        <mapping tag="survey_point=bm_kaohsiung" />
+        <mapping tag="survey_point=bm_water" />
+        <mapping tag="survey_point=bm_reservoir" />
+        <mapping tag="survey_point=sectionstake" />
+        <mapping tag="survey_point=riverbank" />
+        <mapping tag="survey_point=bm_new" />
+        <mapping tag="survey_point=bm_cgs" />
+        <mapping tag="survey_point=satellite_gps" />
+        <mapping tag="survey_point=satellite_1st" />
+        <mapping tag="survey_point=satellite_2nd" />
+        <mapping tag="survey_point=satellite_3rd" />
+        <mapping tag="survey_point=satellite_4th" />
       </category>
     </category>
     <category title="03 步道/山徑">
