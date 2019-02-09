@@ -4502,12 +4502,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_pt_bus_station_a" position="above" font-style="bold" font-size="10" fill="#95276E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="station|railway" v="light_rail|tram_stop">
-      <symbol id="s_pt_tram" priority="77" src="file:moiosm_res/s_pt_tram.svg" symbol-scaling="size" symbol-height="8" symbol-width="8"/>
-      <rule e="any" k="*" v="*">
-        <caption priority="77" k="name" symbol-id="s_pt_tram" position="above" font-style="bold" font-size="10" fill="#BE1414" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
     <rule e="any" k="railway" v="station|halt">
       <rule e="any" k="network" v="台灣高鐵">
         <symbol id="s_pt_rail_thsr" priority="79" src="file:moiosm_res/s_pt_rail_thsr.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
@@ -4518,7 +4512,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption priority="79" k="name" symbol-id="s_pt_rail_taiwan" position="above" font-style="bold" font-size="10" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="station" v="subway">
+    <rule e="any" k="station" v="subway|light_rail">
+      <rule e="any" k="network" v="新北捷運">
+        <symbol id="s_pt_subway_new_taipei" priority="78" src="file:moiosm_res/s_pt_subway_new_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <caption priority="78" k="name" symbol-id="s_pt_subway_new_taipei" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
       <rule e="any" k="network" v="桃園機場捷運">
         <symbol id="s_pt_subway_taoyuan" priority="78" src="file:moiosm_res/s_pt_subway_taoyuan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_taoyuan" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
