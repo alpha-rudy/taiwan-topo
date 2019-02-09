@@ -45,7 +45,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_trail_milestone(n)
             return
         elif n.tags.get('amenity', '') == 'bicycle_rental':
-            self.handle_bicycle_rental(n)
+            self.handle_bicycle_rental_node(n)
             return
 
         if n.id in hknetworks:
@@ -55,18 +55,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_node(n)
         return
 
-    def handle_bicycle_rental(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
-
-        # use network:en
-        if tags.get('network:en') is not None:
-            tags['network'] = tags['network:en']
-
-        # keep only YouBike (as iBike is also YouBike)
-        if tags.get('network', '') in ('iBike', 'YouBike'):
-            tags['network'] = 'YouBike'
-
-        n = n.replace(tags=tags)
+    def handle_bicycle_rental_node(self, n):
+        n = n.replace(tags=self.handle_bicycle_rental_tags(n))
         self.writer.add_node(n)
 
     def handle_hknetwork_node(self, n):
@@ -157,14 +147,20 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_node(n)
 
     def way(self, w):
-        if w.id not in hknetworks:
-            self.writer.add_way(w)
+        if w.id in hknetworks:
+            self.handle_hknetwork(w)
             return
 
+        if w.tags.get('amenity', '') == 'bicycle_rental':
+            self.handle_bicycle_rental_way(w)
+            return
+
+        self.writer.add_way(w)
+        return
+
+    def handle_hknetwork(self, w):
         networks = hknetworks[w.id]
-
         tags = dict((tag.k, tag.v) for tag in w.tags)
-
         for network in networks:
             if network.get('ref', '') == 'twn:taipei_grand_hike':
                 tags['highlight'] = 'yes'
@@ -173,14 +169,35 @@ class MapsforgeHandler(osmium.SimpleHandler):
             else:
                 tags['hknetwork'] = network['network']
                 tags['ref'] = network['name']
-
         w = w.replace(tags=tags)
         self.writer.add_way(w)
         return
 
+    def handle_bicycle_rental_way(self, w):
+        w = w.replace(tags=self.handle_bicycle_rental_tags(w))
+        self.writer.add_way(w)
+
     def relation(self, r):
+        if r.tags.get('amenity', '') == 'bicycle_rental':
+            self.handle_bicycle_rental_relation(r)
+            return
+
         self.writer.add_relation(r)
         return
+
+    def handle_bicycle_rental_relation(self, r):
+        r = r.replace(tags=self.handle_bicycle_rental_tags(r))
+        self.writer.add_relation(r)
+
+    def handle_bicycle_rental_tags(self, o):
+        tags = dict((tag.k, tag.v) for tag in o.tags)
+        # use network:en
+        if tags.get('network:en') is not None:
+            tags['network'] = tags['network:en']
+        # keep only YouBike (as iBike is also YouBike)
+        if tags.get('network', '') in ('iBike', 'YouBike'):
+            tags['network'] = 'YouBike'
+        return tags
 
 
 def main():
