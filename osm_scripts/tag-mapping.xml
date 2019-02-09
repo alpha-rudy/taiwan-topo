@@ -750,6 +750,7 @@
 <osm-tag key='amenity' value='bench' zoom-appear='17' />
 <osm-tag key='leisure' value='picnic_table' zoom-appear='15' />
 <osm-tag key='amenity' value='bicycle_rental' zoom-appear='14' />
+<osm-tag key='network' value='YouBike' zoom-appear='14' />
 <osm-tag key='amenity' value='biergarten' zoom-appear='15' />
 <osm-tag key='amenity' value='bus_station' zoom-appear='13' />
 <osm-tag key='amenity' value='cafe' zoom-appear='16' />
