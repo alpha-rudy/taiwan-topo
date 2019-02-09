@@ -772,6 +772,7 @@
 <osm-tag key='amenity' value='pharmacy' zoom-appear='13' />
 <osm-tag key='emergency' value='phone' zoom-appear='16' />
 <osm-tag key='emergency' value='defibrillator' zoom-appear='14' />
+<osm-tag key='emergency' value='portable_altitude_chamber' zoom-appear='14' />
 <osm-tag key='amenity' value='place_of_worship' zoom-appear='14' />
 <osm-tag key='amenity' value='police' zoom-appear='15' />
 <osm-tag key='amenity' value='post_box' zoom-appear='16' />

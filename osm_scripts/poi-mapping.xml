@@ -483,6 +483,10 @@
 
   <!-- Emergency -->
   <category title="緊急救護">
+    <category title="急救器材">
+      <mapping tag="emergency=defibrillator" />
+      <mapping tag="emergency=portable_altitude_chamber" />
+    </category>
     <category title="救護車站">
       <mapping tag="emergency=ambulance_station" />
     </category>

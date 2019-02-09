@@ -3957,6 +3957,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_defibrillator" position="above" font-style="bold" font-size="10" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
+    <rule e="any" k="emergency" v="portable_altitude_chamber">
+      <symbol id="s_pac" priority="82" src="file:moiosm_res/s_pac.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="any" k="*" v="*">
+        <caption k="name" symbol-id="s_pac" position="above" font-style="bold" font-size="10" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <rule e="any" k="amenity|building" v="embassy">
       <symbol id="s_embassy" priority="81" src="file:moiosm_res/s_embassy.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <caption k="name" symbol-id="s_embassy" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
