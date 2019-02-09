@@ -44,6 +44,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 n.tags.get('information', '') == 'route_marker':
             self.handle_trail_milestone(n)
             return
+        elif n.tags.get('amenity', '') == 'bicycle_rental':
+            self.handle_bicycle_rental(n)
+            return
 
         if n.id in hknetworks:
             self.handle_hknetwork_node(n)
@@ -51,6 +54,20 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         self.writer.add_node(n)
         return
+
+    def handle_bicycle_rental(self, n):
+        tags = dict((tag.k, tag.v) for tag in n.tags)
+
+        # use network:en
+        if tags.get('network:en') is not None:
+            tags['network'] = tags['network:en']
+
+        # keep only YouBike (as iBike is also YouBike)
+        if tags.get('network', '') in ('iBike', 'YouBike'):
+            tags['network'] = 'YouBike'
+
+        n = n.replace(tags=tags)
+        self.writer.add_node(n)
 
     def handle_hknetwork_node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)

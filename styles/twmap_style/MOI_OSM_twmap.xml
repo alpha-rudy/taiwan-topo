@@ -4131,7 +4131,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- restaurants -->
-  <rule cat="restaurants" e="any" k="*" v="*" zoom-min="14">
+  <rule cat="restaurants" e="any" k="*" v="*" zoom-min="16">
     <rule cat="nocity" e="any" k="amenity" v="restaurant">
       <symbol id="s_restaurant" priority="69" src="file:moiosm_twmap/s_restaurant.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4219,18 +4219,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- shops -->
   <rule cat="shops" e="any" k="*" v="*" zoom-min="14">
-    <rule cat="bike" e="any" k="shop|vending" v="bicycle|bicycle_tube">
-      <symbol id="s_bicycle_shop" priority="69" src="file:moiosm_twmap/s_bicycle_shop.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="*" v="*">
-        <caption k="name" symbol-id="s_bicycle_shop" position="above" font-style="bold" font-size="20" fill="#AC39AC" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
-    <rule cat="bike" e="any" k="amenity" v="bicycle_rental">
-      <symbol id="s_bicycle_rental" priority="69" src="file:moiosm_twmap/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="amenity" v="bicycle_rental">
-        <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="20" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
     <rule e="any" k="shop" v="supermarket">
       <symbol id="s_supermarket" priority="69" src="file:moiosm_twmap/s_supermarket.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4310,9 +4298,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule cat="nobike" e="any" k="amenity" v="bicycle_rental">
-      <symbol id="s_bicycle_rental" priority="66" src="file:moiosm_twmap/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="amenity" v="bicycle_rental">
-        <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="20" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      <rule e="any" k="network" v="~"> 
+        <symbol id="s_bicycle_rental" priority="66" src="file:moiosm_twmap/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule cat="nobike" e="any" k="shop|vending" v="bicycle|bicycle_tube">
@@ -4455,7 +4443,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
       </rule>
       <rule e="any" k="information" v="mobile">
-        <symbol id="s_mobile" priority="84" src="file:moiosm_res/s_mobile.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <symbol id="s_mobile" priority="84" src="file:moiosm_twmap/s_mobile.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule e="any" k="*" v="*">
           <caption k="name" symbol-id="s_mobile" position="above" font-style="bold" font-size="10" fill="#734a08" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
@@ -4531,6 +4519,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- public transport -->
   <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="14">
+    <rule cat="nobike" e="any" k="amenity" v="bicycle_rental" zoom-min="15">
+      <rule e="any" k="network" v="YouBike"> 
+        <symbol id="s_you_bike" priority="75" src="file:moiosm_twmap/s_you_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_you_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <!-- stations -->
     <rule cat="nocity" e="any" k="highway" v="bus_stop" zoom-min="15">
       <rule e="any" k="shelter" v="yes">
@@ -4560,29 +4554,29 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="any" k="railway" v="station|halt">
       <rule e="any" k="network" v="台灣高鐵">
-        <symbol id="s_pt_rail_thsr" priority="79" src="file:moiosm_res/s_pt_rail_thsr.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <symbol id="s_pt_rail_thsr" priority="79" src="file:moiosm_twmap/s_pt_rail_thsr.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="79" k="name" symbol-id="s_pt_rail_thsr" position="above" font-style="bold" font-size="20" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="~|臺灣鐵路|臺鐵">
-        <symbol id="s_pt_rail_taiwan" priority="79" src="file:moiosm_res/s_pt_rail_taiwan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_rail_taiwan" priority="79" src="file:moiosm_twmap/s_pt_rail_taiwan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="79" k="name" symbol-id="s_pt_rail_taiwan" position="above" font-style="bold" font-size="20" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="station" v="subway|light_rail">
       <rule e="any" k="network" v="新北捷運">
-        <symbol id="s_pt_subway_new_taipei" priority="78" src="file:moiosm_res/s_pt_subway_new_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_new_taipei" priority="78" src="file:moiosm_twmap/s_pt_subway_new_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_new_taipei" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="桃園機場捷運">
-        <symbol id="s_pt_subway_taoyuan" priority="78" src="file:moiosm_res/s_pt_subway_taoyuan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_taoyuan" priority="78" src="file:moiosm_twmap/s_pt_subway_taoyuan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_taoyuan" position="above" font-style="bold" font-size="20" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="高雄捷運">
-        <symbol id="s_pt_subway_kaohsiung" priority="78" src="file:moiosm_res/s_pt_subway_kaohsiung.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_kaohsiung" priority="78" src="file:moiosm_twmap/s_pt_subway_kaohsiung.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_kaohsiung" position="above" font-style="bold" font-size="20" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="臺北捷運|~">
-        <symbol id="s_pt_subway_taipei" priority="78" src="file:moiosm_res/s_pt_subway_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_taipei" priority="78" src="file:moiosm_twmap/s_pt_subway_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_taipei" position="above" font-style="bold" font-size="20" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>

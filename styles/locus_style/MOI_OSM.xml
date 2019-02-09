@@ -4136,19 +4136,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- shops -->
-  <rule cat="shops" e="any" k="*" v="*" zoom-min="15">
-    <rule cat="bike" e="any" k="shop|vending" v="bicycle|bicycle_tube">
-      <symbol id="s_bicycle_shop" priority="69" src="file:moiosm_res/s_bicycle_shop.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="*" v="*">
-        <caption k="name" symbol-id="s_bicycle_shop" position="above" font-style="bold" font-size="10" fill="#AC39AC" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
-    <rule cat="bike" e="any" k="amenity" v="bicycle_rental">
-      <symbol id="s_bicycle_rental" priority="69" src="file:moiosm_res/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="amenity" v="bicycle_rental">
-        <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
+  <rule cat="shops" e="any" k="*" v="*" zoom-min="17">
     <rule e="any" k="shop" v="supermarket">
       <symbol id="s_supermarket" priority="69" src="file:moiosm_res/s_supermarket.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
@@ -4228,8 +4216,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule cat="nobike" e="any" k="amenity" v="bicycle_rental">
-      <symbol id="s_bicycle_rental" priority="66" src="file:moiosm_res/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="amenity" v="bicycle_rental">
+      <rule e="any" k="network" v="~"> 
+        <symbol id="s_bicycle_rental" priority="66" src="file:moiosm_res/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
@@ -4467,6 +4455,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- public transport -->
   <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="15">
+    <rule cat="nobike" e="any" k="amenity" v="bicycle_rental" zoom-min="16">
+      <rule e="any" k="network" v="YouBike"> 
+        <symbol id="s_you_bike" priority="75" src="file:moiosm_res/s_you_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_you_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <!-- stations -->
     <rule cat="nocity" e="any" k="highway" v="bus_stop" zoom-min="16">
       <rule e="any" k="shelter" v="yes">
