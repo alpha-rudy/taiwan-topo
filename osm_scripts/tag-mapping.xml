@@ -827,6 +827,7 @@
 <osm-tag key='railway' value='tram_stop' zoom-appear='14' />
 <osm-tag key='network' value='台灣高鐵' zoom-appear='14' />
 <osm-tag key='network' value='桃園機場捷運' zoom-appear='14' />
+<osm-tag key='network' value='新北捷運' zoom-appear='14' />
 <osm-tag key='network' value='臺北捷運' zoom-appear='14' />
 <osm-tag key='network' value='臺灣鐵路' zoom-appear='14' />
 <osm-tag key='network' value='臺鐵' zoom-appear='14' />

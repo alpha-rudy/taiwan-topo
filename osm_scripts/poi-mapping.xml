@@ -323,6 +323,14 @@
     </category>
 
     <category title="交通運輸">
+      <category title="火車站, 高鐵站">
+        <mapping tag="railway=station" />
+        <mapping tag="railway=halt" />
+      </category>
+      <category title="捷運站">
+        <mapping tag="station=subway" />
+        <mapping tag="station=light_rail" />
+      </category>
       <category title="渡輪碼頭">
         <mapping tag="amenity=ferry_terminal" />
       </category>
