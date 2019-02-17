@@ -4500,25 +4500,25 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption priority="79" k="name" symbol-id="s_pt_rail_thsr" position="above" font-style="bold" font-size="10" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="~|臺灣鐵路|臺鐵">
-        <symbol id="s_pt_rail_taiwan" priority="79" src="file:moiosm_res/s_pt_rail_taiwan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_rail_taiwan" priority="79" src="file:moiosm_res/s_pt_rail_taiwan.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="79" k="name" symbol-id="s_pt_rail_taiwan" position="above" font-style="bold" font-size="10" fill="#38732E" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="station" v="subway|light_rail">
       <rule e="any" k="network" v="新北捷運">
-        <symbol id="s_pt_subway_new_taipei" priority="78" src="file:moiosm_res/s_pt_subway_new_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_new_taipei" priority="78" src="file:moiosm_res/s_pt_subway_new_taipei.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_new_taipei" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="桃園機場捷運">
-        <symbol id="s_pt_subway_taoyuan" priority="78" src="file:moiosm_res/s_pt_subway_taoyuan.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_taoyuan" priority="78" src="file:moiosm_res/s_pt_subway_taoyuan.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_taoyuan" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="高雄捷運">
-        <symbol id="s_pt_subway_kaohsiung" priority="78" src="file:moiosm_res/s_pt_subway_kaohsiung.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_kaohsiung" priority="78" src="file:moiosm_res/s_pt_subway_kaohsiung.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_kaohsiung" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="any" k="network" v="臺北捷運|~">
-        <symbol id="s_pt_subway_taipei" priority="78" src="file:moiosm_res/s_pt_subway_taipei.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <symbol id="s_pt_subway_taipei" priority="78" src="file:moiosm_res/s_pt_subway_taipei.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_taipei" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
