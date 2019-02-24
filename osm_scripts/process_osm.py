@@ -24,7 +24,7 @@ class HknetworkLoader(osmium.SimpleHandler):
 
 
 def my_g_format(the_float):
-    return "{:.1f}".format(the_float).rstrip('0').rstrip('.')
+    return "{:.2f}".format(the_float).rstrip('0').rstrip('.')
 
 
 class MapsforgeHandler(osmium.SimpleHandler):
