@@ -293,7 +293,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="huts"/>
       <cat id="viewpoint"/>
     </layer>
-    <layer id="elmt-emergency-h" enabled="false">
+    <layer id="elmt-emergency-h" enabled="true">
       <name lang="de" value="Notfall"/>
       <name lang="en" value="emergency"/>
       <name lang="es" value="emergencia"/>
