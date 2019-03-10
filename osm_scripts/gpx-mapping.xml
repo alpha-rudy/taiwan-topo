@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tag-mapping xmlns='http://mapsforge.org/tag-mapping' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://mapsforge.org/tag-mapping ../resources/tag-mapping.xsd' default-zoom-appear='16' profile-name='default-profile'>
+<ways>
+<osm-tag key='gpx' value='trk' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='gpx' value='rte' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='zl' value='1' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='zl' value='2' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='zl' value='3' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Black' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkRed' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkGreen' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkYellow' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkBlue' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkMagenta' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkCyan' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='LightGray' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='DarkGray' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Red' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Green' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Yellow' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Blue' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Magenta' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Cyan' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='White' force-polygon-line='true' zoom-appear='9' />
+<osm-tag key='color' value='Transparent' force-polygon-line='true' zoom-appear='9' />
+</ways>
+<pois>
+<osm-tag key='gpx' value='wpt' zoom-appear='12' />
+<osm-tag key='sym' value='ATV' zoom-appear='13' />
+<osm-tag key='sym' value='Airport' zoom-appear='13' />
+<osm-tag key='sym' value='AmusementPark' zoom-appear='13' />
+<osm-tag key='sym' value='Anchor' zoom-appear='13' />
+<osm-tag key='sym' value='AnchorProhibited' zoom-appear='13' />
+<osm-tag key='sym' value='AnimalTracks' zoom-appear='13' />
+<osm-tag key='sym' value='BaitandTackle' zoom-appear='13' />
+<osm-tag key='sym' value='BallPark' zoom-appear='13' />
+<osm-tag key='sym' value='Bank' zoom-appear='13' />
+<osm-tag key='sym' value='Bar' zoom-appear='13' />
+<osm-tag key='sym' value='Beach' zoom-appear='13' />
+<osm-tag key='sym' value='Beacon' zoom-appear='13' />
+<osm-tag key='sym' value='Bell' zoom-appear='13' />
+<osm-tag key='sym' value='BigGame' zoom-appear='13' />
+<osm-tag key='sym' value='BikeTrail' zoom-appear='13' />
+<osm-tag key='sym' value='Blind' zoom-appear='13' />
+<osm-tag key='sym' value='BlockBlue' zoom-appear='13' />
+<osm-tag key='sym' value='BlockGreen' zoom-appear='13' />
+<osm-tag key='sym' value='BlockRed' zoom-appear='13' />
+<osm-tag key='sym' value='BloodTrail' zoom-appear='13' />
+<osm-tag key='sym' value='BoatRamp' zoom-appear='13' />
+<osm-tag key='sym' value='Bowling' zoom-appear='13' />
+<osm-tag key='sym' value='Bridge' zoom-appear='13' />
+<osm-tag key='sym' value='Building' zoom-appear='13' />
+<osm-tag key='sym' value='BuoyWhite' zoom-appear='13' />
+<osm-tag key='sym' value='Campground' zoom-appear='13' />
+<osm-tag key='sym' value='Car' zoom-appear='13' />
+<osm-tag key='sym' value='CarRental' zoom-appear='13' />
+<osm-tag key='sym' value='CarRepair' zoom-appear='13' />
+<osm-tag key='sym' value='Cemetery' zoom-appear='13' />
+<osm-tag key='sym' value='Church' zoom-appear='13' />
+<osm-tag key='sym' value='CircleBlue' zoom-appear='13' />
+<osm-tag key='sym' value='CircleGreen' zoom-appear='13' />
+<osm-tag key='sym' value='CircleRed' zoom-appear='13' />
+<osm-tag key='sym' value='CirclewithX' zoom-appear='13' />
+<osm-tag key='sym' value='CityCapitol' zoom-appear='13' />
+<osm-tag key='sym' value='CityHall' zoom-appear='13' />
+<osm-tag key='sym' value='CityLarge' zoom-appear='13' />
+<osm-tag key='sym' value='CityMedium' zoom-appear='13' />
+<osm-tag key='sym' value='CitySmall' zoom-appear='13' />
+<osm-tag key='sym' value='Civil' zoom-appear='13' />
+<osm-tag key='sym' value='CoastGuard' zoom-appear='13' />
+<osm-tag key='sym' value='ContactAfro' zoom-appear='13' />
+<osm-tag key='sym' value='ContactBallCap' zoom-appear='13' />
+<osm-tag key='sym' value='ContactBigEars' zoom-appear='13' />
+<osm-tag key='sym' value='ContactBiker' zoom-appear='13' />
+<osm-tag key='sym' value='ContactBlonde' zoom-appear='13' />
+<osm-tag key='sym' value='ContactBug' zoom-appear='13' />
+<osm-tag key='sym' value='ContactFemale1' zoom-appear='13' />
+<osm-tag key='sym' value='ContactGlasses' zoom-appear='13' />
+<osm-tag key='sym' value='ContactGoatee' zoom-appear='13' />
+<osm-tag key='sym' value='ContactKungFu' zoom-appear='13' />
+<osm-tag key='sym' value='ContactPanda' zoom-appear='13' />
+<osm-tag key='sym' value='ContactPig' zoom-appear='13' />
+<osm-tag key='sym' value='ContactSmiley' zoom-appear='13' />
+<osm-tag key='sym' value='ContactSumo' zoom-appear='13' />
+<osm-tag key='sym' value='ControlledArea' zoom-appear='13' />
+<osm-tag key='sym' value='ConvenienceStore' zoom-appear='13' />
+<osm-tag key='sym' value='Cover' zoom-appear='13' />
+<osm-tag key='sym' value='Covey' zoom-appear='13' />
+<osm-tag key='sym' value='Crossing' zoom-appear='13' />
+<osm-tag key='sym' value='Custom0' zoom-appear='13' />
+<osm-tag key='sym' value='Custom1' zoom-appear='13' />
+<osm-tag key='sym' value='Custom10' zoom-appear='13' />
+<osm-tag key='sym' value='Custom11' zoom-appear='13' />
+<osm-tag key='sym' value='Custom12' zoom-appear='13' />
+<osm-tag key='sym' value='Custom13' zoom-appear='13' />
+<osm-tag key='sym' value='Custom14' zoom-appear='13' />
+<osm-tag key='sym' value='Custom15' zoom-appear='13' />
+<osm-tag key='sym' value='Custom16' zoom-appear='13' />
+<osm-tag key='sym' value='Custom17' zoom-appear='13' />
+<osm-tag key='sym' value='Custom18' zoom-appear='13' />
+<osm-tag key='sym' value='Custom19' zoom-appear='13' />
+<osm-tag key='sym' value='Custom2' zoom-appear='13' />
+<osm-tag key='sym' value='Custom20' zoom-appear='13' />
+<osm-tag key='sym' value='Custom21' zoom-appear='13' />
+<osm-tag key='sym' value='Custom22' zoom-appear='13' />
+<osm-tag key='sym' value='Custom23' zoom-appear='13' />
+<osm-tag key='sym' value='Custom25' zoom-appear='13' />
+<osm-tag key='sym' value='Custom27' zoom-appear='13' />
+<osm-tag key='sym' value='Custom3' zoom-appear='13' />
+<osm-tag key='sym' value='Custom4' zoom-appear='13' />
+<osm-tag key='sym' value='Custom5' zoom-appear='13' />
+<osm-tag key='sym' value='Custom6' zoom-appear='13' />
+<osm-tag key='sym' value='Custom7' zoom-appear='13' />
+<osm-tag key='sym' value='Custom8' zoom-appear='13' />
+<osm-tag key='sym' value='Custom9' zoom-appear='13' />
+<osm-tag key='sym' value='Customd' zoom-appear='13' />
+<osm-tag key='sym' value='Dam' zoom-appear='13' />
+<osm-tag key='sym' value='DangerArea' zoom-appear='13' />
+<osm-tag key='sym' value='DepartmentStore' zoom-appear='13' />
+<osm-tag key='sym' value='DiamondBlue' zoom-appear='13' />
+<osm-tag key='sym' value='DiamondGreen' zoom-appear='13' />
+<osm-tag key='sym' value='DiamondRed' zoom-appear='13' />
+<osm-tag key='sym' value='DiverDownFlag1' zoom-appear='13' />
+<osm-tag key='sym' value='DiverDownFlag2' zoom-appear='13' />
+<osm-tag key='sym' value='Dock' zoom-appear='13' />
+<osm-tag key='sym' value='DogTreed' zoom-appear='13' />
+<osm-tag key='sym' value='DotWhite' zoom-appear='13' />
+<osm-tag key='sym' value='DrinkingWater' zoom-appear='13' />
+<osm-tag key='sym' value='Dropoff' zoom-appear='13' />
+<osm-tag key='sym' value='Exit' zoom-appear='13' />
+<osm-tag key='sym' value='FastFood' zoom-appear='13' />
+<osm-tag key='sym' value='FishingArea' zoom-appear='13' />
+<osm-tag key='sym' value='FishingHotSpotFacility' zoom-appear='13' />
+<osm-tag key='sym' value='FitnessCenter' zoom-appear='13' />
+<osm-tag key='sym' value='Flag' zoom-appear='13' />
+<osm-tag key='sym' value='FlagBlue' zoom-appear='13' />
+<osm-tag key='sym' value='FlagGreen' zoom-appear='13' />
+<osm-tag key='sym' value='FlagRed' zoom-appear='13' />
+<osm-tag key='sym' value='FoodSource' zoom-appear='13' />
+<osm-tag key='sym' value='Forest' zoom-appear='13' />
+<osm-tag key='sym' value='Furbearer' zoom-appear='13' />
+<osm-tag key='sym' value='GasStation' zoom-appear='13' />
+<osm-tag key='sym' value='Geocache' zoom-appear='13' />
+<osm-tag key='sym' value='GeocacheFound' zoom-appear='13' />
+<osm-tag key='sym' value='GhostTown' zoom-appear='13' />
+<osm-tag key='sym' value='GliderArea' zoom-appear='13' />
+<osm-tag key='sym' value='GolfCourse' zoom-appear='13' />
+<osm-tag key='sym' value='GroundTransportation' zoom-appear='13' />
+<osm-tag key='sym' value='Heliport' zoom-appear='13' />
+<osm-tag key='sym' value='Horn' zoom-appear='13' />
+<osm-tag key='sym' value='HospitalEuro' zoom-appear='13' />
+<osm-tag key='sym' value='HuntingArea' zoom-appear='13' />
+<osm-tag key='sym' value='Information' zoom-appear='13' />
+<osm-tag key='sym' value='LetterAGreen' zoom-appear='13' />
+<osm-tag key='sym' value='LetterARed' zoom-appear='13' />
+<osm-tag key='sym' value='LetterBRed' zoom-appear='13' />
+<osm-tag key='sym' value='LetterCBlue' zoom-appear='13' />
+<osm-tag key='sym' value='LetterCRed' zoom-appear='13' />
+<osm-tag key='sym' value='LetterDRed' zoom-appear='13' />
+<osm-tag key='sym' value='LetterboxCache' zoom-appear='13' />
+<osm-tag key='sym' value='Levee' zoom-appear='13' />
+<osm-tag key='sym' value='Library' zoom-appear='13' />
+<osm-tag key='sym' value='Light' zoom-appear='13' />
+<osm-tag key='sym' value='LiveTheater' zoom-appear='13' />
+<osm-tag key='sym' value='Lodge' zoom-appear='13' />
+<osm-tag key='sym' value='Lodging' zoom-appear='13' />
+<osm-tag key='sym' value='ManOverboard' zoom-appear='13' />
+<osm-tag key='sym' value='MedicalFacility' zoom-appear='13' />
+<osm-tag key='sym' value='MileMarker' zoom-appear='13' />
+<osm-tag key='sym' value='Military' zoom-appear='13' />
+<osm-tag key='sym' value='Mine' zoom-appear='13' />
+<osm-tag key='sym' value='MovieTheater' zoom-appear='13' />
+<osm-tag key='sym' value='MultiCache' zoom-appear='13' />
+<osm-tag key='sym' value='Museum' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidAmber' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidBlack' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidBlue' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidGreen' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidGreenRed' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidGreenWhite' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidOrange' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidRed' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidRedGreen' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidRedWhite' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidViolet' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidWhite' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidWhiteGreen' zoom-appear='13' />
+<osm-tag key='sym' value='NavaidWhiteRed' zoom-appear='13' />
+<osm-tag key='sym' value='Number0Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number0Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number0Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number1Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number1Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number1Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number2Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number2Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number2Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number3Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number3Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number3Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number4Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number4Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number4Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number5Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number5Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number5Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number6Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number6Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number6Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number7Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number7Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number7Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number8Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number8Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number8Red' zoom-appear='13' />
+<osm-tag key='sym' value='Number9Blue' zoom-appear='13' />
+<osm-tag key='sym' value='Number9Green' zoom-appear='13' />
+<osm-tag key='sym' value='Number9Red' zoom-appear='13' />
+<osm-tag key='sym' value='OilField' zoom-appear='13' />
+<osm-tag key='sym' value='OvalBlue' zoom-appear='13' />
+<osm-tag key='sym' value='OvalGreen' zoom-appear='13' />
+<osm-tag key='sym' value='OvalRed' zoom-appear='13' />
+<osm-tag key='sym' value='ParachuteArea' zoom-appear='13' />
+<osm-tag key='sym' value='Park' zoom-appear='13' />
+<osm-tag key='sym' value='ParkingArea' zoom-appear='13' />
+<osm-tag key='sym' value='ParkingPay' zoom-appear='13' />
+<osm-tag key='sym' value='Pharmacy' zoom-appear='13' />
+<osm-tag key='sym' value='PicnicArea' zoom-appear='13' />
+<osm-tag key='sym' value='PinBlue' zoom-appear='13' />
+<osm-tag key='sym' value='PinGreen' zoom-appear='13' />
+<osm-tag key='sym' value='PinRed' zoom-appear='13' />
+<osm-tag key='sym' value='Pizza' zoom-appear='13' />
+<osm-tag key='sym' value='PoliceStation' zoom-appear='13' />
+<osm-tag key='sym' value='PostOffice' zoom-appear='13' />
+<osm-tag key='sym' value='PrivateField' zoom-appear='13' />
+<osm-tag key='sym' value='PuzzleCache' zoom-appear='13' />
+<osm-tag key='sym' value='RVPark' zoom-appear='13' />
+<osm-tag key='sym' value='RadioBeacon' zoom-appear='13' />
+<osm-tag key='sym' value='Railway' zoom-appear='13' />
+<osm-tag key='sym' value='RectangleBlue' zoom-appear='13' />
+<osm-tag key='sym' value='RectangleGreen' zoom-appear='13' />
+<osm-tag key='sym' value='RectangleRed' zoom-appear='13' />
+<osm-tag key='sym' value='Reef' zoom-appear='13' />
+<osm-tag key='sym' value='Residence' zoom-appear='13' />
+<osm-tag key='sym' value='Restaurant' zoom-appear='13' />
+<osm-tag key='sym' value='RestrictedArea' zoom-appear='13' />
+<osm-tag key='sym' value='Restroom' zoom-appear='13' />
+<osm-tag key='sym' value='Saddle' zoom-appear='13' />
+<osm-tag key='sym' value='Scales' zoom-appear='13' />
+<osm-tag key='sym' value='ScenicArea' zoom-appear='13' />
+<osm-tag key='sym' value='School' zoom-appear='13' />
+<osm-tag key='sym' value='SeaplaneBase' zoom-appear='13' />
+<osm-tag key='sym' value='Shipwreck' zoom-appear='13' />
+<osm-tag key='sym' value='ShoppingCenter' zoom-appear='13' />
+<osm-tag key='sym' value='ShortTower' zoom-appear='13' />
+<osm-tag key='sym' value='Shower' zoom-appear='13' />
+<osm-tag key='sym' value='SkiResort' zoom-appear='13' />
+<osm-tag key='sym' value='SkiingArea' zoom-appear='13' />
+<osm-tag key='sym' value='SkullandCrossbones' zoom-appear='13' />
+<osm-tag key='sym' value='SoftField' zoom-appear='13' />
+<osm-tag key='sym' value='SquareBlue' zoom-appear='13' />
+<osm-tag key='sym' value='SquareGreen' zoom-appear='13' />
+<osm-tag key='sym' value='SquareRed' zoom-appear='13' />
+<osm-tag key='sym' value='Stadium' zoom-appear='13' />
+<osm-tag key='sym' value='Stump' zoom-appear='13' />
+<osm-tag key='sym' value='Summit' zoom-appear='12' />
+<osm-tag key='sym' value='SwimmingArea' zoom-appear='13' />
+<osm-tag key='sym' value='TallTower' zoom-appear='13' />
+<osm-tag key='sym' value='Telephone' zoom-appear='13' />
+<osm-tag key='sym' value='TollBooth' zoom-appear='13' />
+<osm-tag key='sym' value='TracBackPoint' zoom-appear='13' />
+<osm-tag key='sym' value='TrailHead' zoom-appear='13' />
+<osm-tag key='sym' value='TreeStand' zoom-appear='13' />
+<osm-tag key='sym' value='TreedQuarry' zoom-appear='13' />
+<osm-tag key='sym' value='TriangleBlue' zoom-appear='13' />
+<osm-tag key='sym' value='TriangleGreen' zoom-appear='13' />
+<osm-tag key='sym' value='TriangleRed' zoom-appear='13' />
+<osm-tag key='sym' value='Truck' zoom-appear='13' />
+<osm-tag key='sym' value='TruckStop' zoom-appear='13' />
+<osm-tag key='sym' value='Tunnel' zoom-appear='13' />
+<osm-tag key='sym' value='UltralightArea' zoom-appear='13' />
+<osm-tag key='sym' value='UplandGame' zoom-appear='13' />
+<osm-tag key='sym' value='WaterHydrant' zoom-appear='13' />
+<osm-tag key='sym' value='WaterSource' zoom-appear='13' />
+<osm-tag key='sym' value='Waterfowl' zoom-appear='13' />
+<osm-tag key='sym' value='Waypoint' zoom-appear='13' />
+<osm-tag key='sym' value='WeedBed' zoom-appear='13' />
+<osm-tag key='sym' value='Winery' zoom-appear='13' />
+<osm-tag key='sym' value='Wrecker' zoom-appear='13' />
+<osm-tag key='sym' value='Zoo' zoom-appear='13' />
+</pois>
+</tag-mapping>
