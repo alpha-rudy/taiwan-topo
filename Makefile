@@ -1308,6 +1308,35 @@ $(POI_ZIP): $(POI)
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
 
+GPX_MAPSFORGE=$(BUILD_DIR)/gpx_overlay.map
+TAIWAN_BBOX=21.55682,118.12141,26.44212,122.31377
+
+.PHONY: gpx
+gpx: $(GPX_MAPSFORGE)
+$(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
+	rm -f $(BUILD_DIR)/track-sed.pbf $(BUILD_DIR)/waypoint-sed.pbf
+	python3 osm_scripts/gpx_handler.py $(BUILD_DIR)/track.pbf $(BUILD_DIR)/track-sed.pbf
+	python3 osm_scripts/gpx_handler.py $(BUILD_DIR)/waypoint.pbf $(BUILD_DIR)/waypoint-sed.pbf
+	osmium renumber \
+		-s 1,1,0 \
+		$(BUILD_DIR)/track-sed.pbf \
+		-Oo $(@:.map=.pbf)
+	osm_scripts/osium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
+	export JAVACMD_OPTIONS="-Xmx30G -server" && \
+	sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+	  --read-pbf $(@:.map=.pbf) \
+	  --buffer --mapfile-writer \
+	    type=ram \
+	    threads=$(MAPWITER_THREADS) \
+	    bbox=$(TAIWAN_BBOX) \
+	    preferred-languages="zh,en" \
+	    tag-conf-file=osm_scripts/gpx-mapping.xml \
+	    polygon-clipping=true way-clipping=true label-position=true \
+	    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+	    map-start-zoom=12 \
+	    comment="$(VERSION) / (c) Map: Happyman" \
+	    file="$@"
+
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
