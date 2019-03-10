@@ -14,7 +14,7 @@ This map style is licensed under a Creative Commons Attribution-NonCommercial-Sh
 Please have a look at read_me_elevate.txt for reuse and licenses of resources used in this theme.
 
 -->
-<rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme-v4.xsd" version="4" map-background-outside="#FFFFFF" map-background="#FFFFFF">
+<rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme-v4.xsd" version="4" map-background-outside="#FFFFFF" map-background="#00FFFFFF">
   <stylemenu id="elmt-menu" defaultvalue="elmt-hiking" defaultlang="en">
     <!-- overlays special -->
     <layer id="elmt-landcover" enabled="true">
