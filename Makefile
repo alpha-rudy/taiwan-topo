@@ -1233,6 +1233,22 @@ $(DN_STYLE):
 	cd $(BUILD_DIR)/mapsforge_dn && $(ZIP_CMD) $@ *
 
 
+GPX_STYLE := $(BUILD_DIR)/MOI_OSM_gpx_style.zip
+
+.PHONY: gpx_style $(GPX_STYLE)
+gpx_style: $(GPX_STYLE)
+$(GPX_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/carto_gpx
+	mkdir -p $(BUILD_DIR)
+	cp -a styles/carto_gpx $(BUILD_DIR)
+	cat styles/carto_gpx/MOI_OSM_GPX.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/carto_gpx/MOI_OSM_GPX.xml
+	cd $(BUILD_DIR)/carto_gpx && $(ZIP_CMD) $@ *
+
+
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
 
 .PHONY: twmap_style $(TWMAP_STYLE)
