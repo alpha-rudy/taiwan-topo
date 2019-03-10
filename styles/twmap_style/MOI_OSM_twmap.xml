@@ -839,15 +839,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </layer>
   </stylemenu>
   <!-- render land above sea -->
-  <rule e="way" k="natural" v="sea">
-    <rule e="any" k="*" v="*" zoom-max="13">
-      <area fill="#0a2676"/>
-    </rule>
-    <rule e="any" k="*" v="*" zoom-min="14">
-      <area fill="#0a2678"/>
-    </rule>
+  <rule e="way" k="natural" v="sea" zoom-min="7">
+    <area fill="#B3DDFF"/>
   </rule>
-  <rule e="way" k="natural" v="nosea">
+  <rule e="way" k="natural" v="nosea" zoom-min="7">
     <area fill="#F8F8F8" stroke="#F8F8F8" stroke-width="1"/>
   </rule>
   <!-- underground pipelines -->
