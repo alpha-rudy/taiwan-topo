@@ -1308,7 +1308,7 @@ $(POI_ZIP): $(POI)
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
 
-GPX_MAPSFORGE=$(BUILD_DIR)/gpx_overlay.map
+GPX_MAPSFORGE=$(BUILD_DIR)/Happyman.map
 TAIWAN_BBOX=21.55682,118.12141,26.44212,122.31377
 
 .PHONY: gpx
