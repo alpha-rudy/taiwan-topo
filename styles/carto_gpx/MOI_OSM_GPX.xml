@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-MOI.OSM Brighter theme
+MOI.OSM GPX theme
 **************************
 
 Mapsforge map style for MOI.OSM Taiwan TOPO by Rudy
 
 Symbols/patterns/code based on Elevate theme by Tobias Kühn, http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme.
+Garmin Waypoint Symbols from https://freegeographytools.com/2008/garmin-gps-unit-waypoint-icons-table
+
 
 License:
 ********
@@ -15,14 +17,32 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
 
 -->
 <rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme-v4.xsd" version="4" map-background-outside="#00FFFFFF" map-background="#00FFFFFF">
-  <stylemenu id="elmt-menu" defaultvalue="elmt-hiking" defaultlang="zh">
-    <layer id="elmt-hiking" visible="true">
+  <stylemenu id="elmt-menu" defaultvalue="elmt-gpx" defaultlang="zh">
+    <layer id="elmt-track" enabled="true">
+      <name lang="en" value="Tracks"/>
+      <name lang="zh" value="航跡"/>
+      <cat id="track"/>
+    </layer>
+    <layer id="elmt-track-label" enabled="false">
+      <name lang="en" value="Track Labels"/>
+      <name lang="zh" value="航跡名稱"/>
+      <cat id="track-label"/>
+    </layer>
+    <layer id="elmt-waypoint" enabled="true">
+      <name lang="en" value="Waypoints"/>
+      <name lang="zh" value="航點"/>
+      <cat id="waypoint"/>
+    </layer>
+    <layer id="elmt-gpx" visible="true">
       <name lang="en" value="GPX v__version__"/>
       <name lang="zh" value="GPX v__version__"/>
+      <overlay id="elmt-track"/>
+      <overlay id="elmt-track-label"/>
+      <overlay id="elmt-waypoint"/>
     </layer>
   </stylemenu>
-  <!-- highway cores -->
-  <rule e="way" k="gpx" v="trk">
+  <!-- tracks -->
+  <rule cat="track" e="way" k="gpx" v="trk">
     <rule e="way" k="*" v="*" zoom-min="9" zoom-max="11">
       <line stroke="#00FCFF" stroke-width="1.17" stroke-dasharray="5,3" stroke-linecap="butt"/>
     </rule>
@@ -47,13 +67,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="way" k="*" v="*" zoom-min="18">
       <line stroke="#8000FCFF" stroke-width="0.71"/>
     </rule>
+    <rule cat="track-label" e="way" k="*" v="*" zoom-min="15">
+      <caption k="name" font-style="normal" font-size="8" fill="#00FCFF" stroke="#E5000000" stroke-width="3"/>
+    </rule>
   </rule>
-  <!-- 
-  <rule e="way" k="gpx" v="trk" zoom-min="11">
-    <caption k="name" font-style="normal" font-size="8" fill="#00FCFF" stroke="#E5000000" stroke-width="3"/>
-  </rule> -->
-  <!-- peak -->
-  <rule e="node" k="gpx" v="wpt">
+  <!-- waypoints -->
+  <rule cat="waypoint" e="node" k="gpx" v="wpt">
     <rule e="node" k="sym" v="Airport" zoom-min="13">
       <symbol id="s_gpx_airport" display="always" priority="210" src="file:bn_res/s_gpx_airport.png" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
       <caption symbol-id="s_gpx_airport" k="name" priority="210" position="below" font-style="normal" font-size="9" fill="#00FCFF" stroke="#E5000000" stroke-width="1.8"/>
