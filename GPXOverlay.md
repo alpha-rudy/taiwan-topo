@@ -58,27 +58,27 @@ Useful combination:
 
 2. 作一次重編號，並透過 osm_scripts/osium-append.sh 結合兩個檔案。
 
-			$ osmium renumber \
-				-s 1,1,0 \
-				$(BUILD_DIR)/track-sed.pbf \
-				-Oo Happyman.pbf
-			$ osm_scripts/osium-append.sh Happyman.pbf $(BUILD_DIR)/waypoint-sed.pbf
+        $ osmium renumber \
+            -s 1,1,0 \
+            $(BUILD_DIR)/track-sed.pbf \
+            -Oo Happyman.pbf
+        $ osm_scripts/osium-append.sh Happyman.pbf $(BUILD_DIR)/waypoint-sed.pbf
 
 3. 透過 osm_scripts/gpx-mapping.xml 轉成 mapsforge 圖資檔
-
-			$ export JAVACMD_OPTIONS="-Xmx30G -server" && \
-				sh ./osmosis/bin/osmosis \
-				  --read-pbf Happyman.pbf \
-				  --buffer --mapfile-writer \
-				    type=ram \
-				    threads=8 \
-				    bbox=21.55682,118.12141,26.44212,122.31377 \
-				    preferred-languages="zh,en" \
-				    tag-conf-file=osm_scripts/gpx-mapping.xml \
-				    polygon-clipping=true way-clipping=true label-position=true \
-				    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
-				    map-start-zoom=12 \
-				    comment="$(VERSION) / (c) Map: Happyman" \
-				    file="Happyman.map"
+            
+        $ export JAVACMD_OPTIONS="-Xmx30G -server" && \
+        sh ./osmosis/bin/osmosis \
+            --read-pbf Happyman.pbf \
+            --buffer --mapfile-writer \
+            type=ram \
+            threads=8 \
+            bbox=21.55682,118.12141,26.44212,122.31377 \
+            preferred-languages="zh,en" \
+            tag-conf-file=osm_scripts/gpx-mapping.xml \
+            polygon-clipping=true way-clipping=true label-position=true \
+            zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+            map-start-zoom=12 \
+            comment="$(VERSION) / (c) Map: Happyman" \
+            file="Happyman.map"
 
 大功告成！
