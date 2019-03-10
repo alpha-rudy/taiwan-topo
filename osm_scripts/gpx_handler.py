@@ -17,7 +17,7 @@ class GPXHandler(osmium.SimpleHandler):
         return
 
     def way(self, w):
-        if w.tags.get('gpx','') is 'trk' and n.tags.get('color', ''):
+        if w.tags.get('gpx','') is 'trk' and w.tags.get('color', ''):
             self.handle_color_track(w)
             return
 
