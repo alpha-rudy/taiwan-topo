@@ -4525,9 +4525,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- public transport -->
   <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="14">
     <rule cat="nobike" e="any" k="amenity" v="bicycle_rental" zoom-min="15">
-      <rule e="any" k="network" v="YouBike"> 
+      <rule e="any" k="network" v="YouBike|iBike">
         <symbol id="s_you_bike" priority="75" src="file:moiosm_res/s_you_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption k="name" symbol-id="s_you_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="any" k="network" v="City_Bike">
+        <symbol id="s_city_bike" priority="75" src="file:moiosm_res/s_city_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_city_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="any" k="network" v="TBike">
+        <symbol id="s_tbike" priority="75" src="file:moiosm_res/s_tbike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_tbike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="any" k="network" v="Pbike">
+        <symbol id="s_pbike" priority="75" src="file:moiosm_res/s_pbike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_pbike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <!-- stations -->
