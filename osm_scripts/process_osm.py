@@ -191,12 +191,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
     def handle_bicycle_rental_tags(self, o):
         tags = dict((tag.k, tag.v) for tag in o.tags)
-        # use network:en
-        if tags.get('network:en') is not None:
+        # YouBike and iBike use network:en
+        if tags.get('network:en', '') in ('iBike', 'YouBike'):
             tags['network'] = tags['network:en']
-        # keep only YouBike (as iBike is also YouBike)
-        if tags.get('network', '') in ('iBike', 'YouBike'):
-            tags['network'] = 'YouBike'
         return tags
 
 
