@@ -459,6 +459,9 @@
       <category title="公共廁所">
         <mapping tag="amenity=toilets" />
       </category>
+      <category title="沖澡">
+        <mapping tag="amenity=shower" />
+      </category>
       <category title="行政中心">
         <mapping tag="amenity=townhall" />
       </category>
