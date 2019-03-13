@@ -5519,7 +5519,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <caption symbol-id="s_gpx_water_skiing_area" k="name" priority="210" position="below" font-style="normal" font-size="9" fill="#00FCFF" stroke="#E5000000" stroke-width="1.8"/>
     </rule>
     <rule e="node" k="sym" v="WaterSource" zoom-min="13">
-      <symbol id="s_gpx_water_source" display="always" priority="210" src="file:gpx_res/s_gpx_water_source.png" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+      <symbol id="s_gpx_water_source" display="always" priority="210" src="file:moiosm_res/s_gpx_water_source.png" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
       <caption symbol-id="s_gpx_water_source" k="name" priority="210" position="below" font-style="normal" font-size="9" fill="#00FCFF" stroke="#E5000000" stroke-width="1.8"/>
     </rule>
     <rule e="node" k="sym" v="BWhiteBuoy" zoom-min="13">
