@@ -4043,6 +4043,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_toilets" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
+    <rule e="any" k="amenity" v="shower">
+      <symbol id="s_shower" priority="75" src="file:moiosm_res/s_shower.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <rule e="any" k="*" v="*">
+        <caption k="name" symbol-id="s_shower" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <rule e="any" k="amenity|waterway" v="drinking_water|water_point">
       <rule e="any" k="drinking_water" v="yes|~">
         <symbol id="s_drinking_water" priority="74" src="file:moiosm_res/s_drinking_water.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>

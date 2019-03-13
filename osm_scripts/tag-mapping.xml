@@ -338,6 +338,7 @@
 <osm-tag key='amenity' value='shelter' zoom-appear='13' />
 <osm-tag key='amenity' value='theatre' zoom-appear='17' />
 <osm-tag key='amenity' value='toilets' zoom-appear='14' />
+<osm-tag key='amenity' value='shower' zoom-appear='14' />
 <osm-tag key='amenity' value='university' zoom-appear='15' />
 <osm-tag key='amenity' value='ferry_terminal' zoom-appear='13' />
 <!-- leisure -->
@@ -794,6 +795,7 @@
 <osm-tag key='amenity' value='telephone' zoom-appear='17' />
 <osm-tag key='amenity' value='theatre' zoom-appear='17' />
 <osm-tag key='amenity' value='toilets' zoom-appear='14' />
+<osm-tag key='amenity' value='shower' zoom-appear='14' />
 <osm-tag key='amenity' value='university' zoom-appear='17' />
 <osm-tag key='amenity' value='ferry_terminal' zoom-appear='13' />
 <osm-tag key='amenity' value='charging_station' equivalent-values='ev_charging' zoom-appear='14' />
