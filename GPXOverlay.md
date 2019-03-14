@@ -1,6 +1,8 @@
 # GPX Overlay
 
-## OSM tagging
+## Tagging Rule
+
+這 tagging rule 並不是 OSM 官方的 rules，請勿在 OSM 上使用。
 
 ### Tag:gpx=trk 
 
