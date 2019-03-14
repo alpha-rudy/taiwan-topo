@@ -90,7 +90,7 @@ else ifeq ($(SUITE),bbox_odc_dem)
 # REGION: specify your REGION name for bbox
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
@@ -106,7 +106,7 @@ else ifeq ($(SUITE),bbox_bc_dem)
 # REGION: specify your REGION name for bbox
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
@@ -210,7 +210,7 @@ else ifeq ($(SUITE),yushan_odc_dem)
 REGION := Yushan
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
@@ -271,7 +271,7 @@ else ifeq ($(SUITE),beibeiji_bc_dem)
 REGION := Beibeiji
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
@@ -393,7 +393,7 @@ else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
@@ -409,7 +409,7 @@ else ifeq ($(SUITE),taiwan_bc)
 REGION := Taiwan
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
@@ -424,7 +424,7 @@ else ifeq ($(SUITE),taiwan_bc_dem)
 REGION := Taiwan
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
@@ -497,7 +497,7 @@ else ifeq ($(SUITE),taipei_bc)
 REGION := Taipei
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
@@ -512,7 +512,7 @@ else ifeq ($(SUITE),taipei_bc_dem)
 REGION := Taipei
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 950
+CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
