@@ -696,7 +696,7 @@ drop:
 
 .PHONY: styles
 styles:
-	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style
+	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style gpx_style
 
 
 .PHONY: daily
