@@ -87,8 +87,16 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）(200MB)
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝 (0.4MB)
     * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：未支援。點選下載，並透過 iTune 手動安裝 (50MB)
+
+* GPX 離線圖層專區
+  * 圖資下載
+    * Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
+      > 所有地圖產生器所蒐集之行跡檔，以離線圖資產出
+    * ...
+      > (期待將來有更多的 GPX 離線圖層可以使用)
   * GPX 圖層專用 Style
     * [![Style](images/Cartograph_style.png =36x) GPX Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_gpx_style.zip)：點選啟動 GPX 風格主題自動安裝 (0.4MB)
+      > 只有 Cartograph 需要，OruxMaps 與 Locus 可直接使用原來的 Style
 
 * ![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Mapsforge 手動下載自行安裝
   * 安裝示範影片：
