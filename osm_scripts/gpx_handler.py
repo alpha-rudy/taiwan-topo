@@ -9,7 +9,7 @@ class GPXHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
-        if n.tags.get('gpx','') is 'wpt' and n.tags.get('sym', ''):
+        if n.tags.get('gpx','') == 'wpt' and n.tags.get('sym', ''):
             self.handle_sym_waypoint(n)
             return
 
@@ -17,7 +17,7 @@ class GPXHandler(osmium.SimpleHandler):
         return
 
     def way(self, w):
-        if w.tags.get('gpx','') is 'trk' and w.tags.get('color', ''):
+        if w.tags.get('gpx','') == 'trk' and w.tags.get('color', ''):
             self.handle_color_track(w)
             return
 
