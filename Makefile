@@ -1335,8 +1335,37 @@ $(GPX_BASE).map: $(GPX_BASE).osm
 	    polygon-clipping=true way-clipping=true label-position=true \
 	    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 	    map-start-zoom=12 \
-	    comment="$(VERSION) / (c) Map: $(notdir $(GPX_BASE))" \
+	    comment="$(VERSION) / (c) GPX: $(notdir $(GPX_BASE))" \
 	    file="$@"
+
+
+WITH_GPX = $(dir $(GPX_OSM))MOI_OSM_$(basename $(notdir $(GPX_OSM)))
+
+.PHONY: with_gpx
+with_gpx: $(WITH_GPX).map
+$(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE).osm
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	[ -f $(GPX_BASE).osm ]
+	mkdir -p $(BUILD_DIR)
+	rm -rf $(GPX_BASE)-sed.pbf $(WITH_GPX)-add.pbf
+	python3 osm_scripts/gpx_handler.py $(GPX_BASE).osm $(GPX_BASE)-sed.pbf
+	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
+	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
+	export JAVACMD_OPTIONS="-Xmx30G -server" && \
+	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+		--read-pbf "$(WITH_GPX)-add.pbf" \
+		--buffer --mapfile-writer \
+		    type=ram \
+		    threads=$(MAPWITER_THREADS) \
+		    bbox=$(MAPSFORGE_BBOX) \
+		    preferred-languages="$(MAPSFORGE_NTL)" \
+		    tag-conf-file="$(TAG_MAPPING)" \
+		    polygon-clipping=true way-clipping=true label-position=true \
+		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+		    map-start-zoom=12 \
+			comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI; GPX: $(notdir $(WITH_GPX))" \
+		    file="$@" > /dev/null 2> /dev/null
 
 
 GPX_MAPSFORGE ?= $(BUILD_DIR)/Happyman.map
