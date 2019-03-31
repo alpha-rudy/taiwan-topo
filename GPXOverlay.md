@@ -12,13 +12,13 @@ Useful combination:
 
 	* name=*: 名稱, ex: 雪山主東線
 
+	* color=*: 航跡顏色
+		Garmin display colors, ex: DarkBlue
+		參考: http://www.tic2.org/Ignacio/GPS/Practica/UsoAvanzado/Varios/GpxExtensionsv3.htm#h421429051
+
 	* zl=1/2: 顯示相關，用來提示高低 zoom level (尚未支援)
 		* z1=1: 長天數 track zoom level 10 ~ max
 		* zl=2: 短天數 track zoom level 13 ~ max (default) 
-
-	* color=*: 航跡顏色 (尚未支援)
-		Garmin display colors, ex: DarkBlue
-		參考: http://www.tic2.org/Ignacio/GPS/Practica/UsoAvanzado/Varios/GpxExtensionsv3.htm#h421429051
 
 
 ### Tag:gpx=wpt 
