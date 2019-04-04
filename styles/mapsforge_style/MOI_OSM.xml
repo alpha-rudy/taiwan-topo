@@ -2327,28 +2327,28 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule e="way" k="color" v="DarkCyan">
         <rule e="way" k="*" v="*" zoom-min="9" zoom-max="12">
-          <line stroke="#751773" stroke-width="1.56"/>
+          <line stroke="#009193" stroke-width="1.56"/>
         </rule>
         <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
-          <line stroke="#A0751773" stroke-width="4.50"/>
+          <line stroke="#A0009193" stroke-width="4.50"/>
         </rule>
         <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-          <line stroke="#A0751773" stroke-width="3.38"/>
+          <line stroke="#A0009193" stroke-width="3.38"/>
         </rule>
         <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
-          <line stroke="#A0751773" stroke-width="2.53"/>
+          <line stroke="#A0009193" stroke-width="2.53"/>
         </rule>
         <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
-          <line stroke="#A0751773" stroke-width="1.90"/>
+          <line stroke="#A0009193" stroke-width="1.90"/>
         </rule>
         <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
-          <line stroke="#A0751773" stroke-width="1.42"/>
+          <line stroke="#A0009193" stroke-width="1.42"/>
         </rule>
         <rule e="way" k="*" v="*" zoom-min="18">
-          <line stroke="#A0751773" stroke-width="1.07"/>
+          <line stroke="#A0009193" stroke-width="1.07"/>
         </rule>
         <rule cat="track-label" e="way" k="*" v="*" zoom-min="9">
-          <caption k="name" font-style="bold" font-size="10" fill="#751773" stroke="#E5FFFFFF" stroke-width="2"/>
+          <caption k="name" font-style="bold" font-size="10" fill="#009193" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
       <rule e="way" k="color" v="LightGray">
