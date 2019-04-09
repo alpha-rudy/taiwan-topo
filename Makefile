@@ -8,7 +8,7 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWITER_THREADS = 8
+MAPWITER_THREADS = 6
 # suggestion: doesn't matter
 SPLITTER_THREADS = 4
 # suggestion: CPU*1
@@ -568,7 +568,7 @@ NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rud
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx30G -server
+JAVACMD_OPTIONS := -Xmx25G -server
 
 COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
 TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
@@ -1323,7 +1323,7 @@ $(GPX_BASE).map: $(GPX_BASE).osm
 		-s 1,1,0 \
 		$(GPX_BASE)-sed.pbf \
 		-Oo $(GPX_BASE)-ren.pbf
-	export JAVACMD_OPTIONS="-Xmx30G -server" && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 	  --read-pbf $(GPX_BASE)-ren.pbf \
 	  --buffer --mapfile-writer \
@@ -1352,7 +1352,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE).osm
 	python3 osm_scripts/gpx_handler.py $(GPX_BASE).osm $(GPX_BASE)-sed.pbf
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
 	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
-	export JAVACMD_OPTIONS="-Xmx30G -server" && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(WITH_GPX)-add.pbf" \
 		--buffer --mapfile-writer \
@@ -1381,7 +1381,7 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 		$(BUILD_DIR)/track-sed.pbf \
 		-Oo $(@:.map=.pbf)
 	osm_scripts/osium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
-	export JAVACMD_OPTIONS="-Xmx30G -server" && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 	  --read-pbf $(@:.map=.pbf) \
 	  --buffer --mapfile-writer \
@@ -1402,7 +1402,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	export JAVACMD_OPTIONS="-Xmx30G -server" && \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
