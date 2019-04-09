@@ -8,7 +8,7 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWITER_THREADS = 6
+MAPWITER_THREADS = 4
 # suggestion: doesn't matter
 SPLITTER_THREADS = 4
 # suggestion: CPU*1
