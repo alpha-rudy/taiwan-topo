@@ -8,7 +8,7 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWITER_THREADS = 1
+MAPWITER_THREADS = 8
 # suggestion: doesn't matter
 SPLITTER_THREADS = 4
 # suggestion: CPU*1
@@ -123,8 +123,8 @@ REGION := Taiwan
 DEM_NAME := MOI
 LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500_v2019.3.o5m
-ELEVATION_MIX_FILE = ele_taiwan_10_100_500_mix_v2019.3.o5m
+ELEVATION_FILE = ele_taiwan_10_100_500_v2019.1.o5m
+ELEVATION_MIX_FILE = ele_taiwan_10_100_500_mix_v2019.1.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
