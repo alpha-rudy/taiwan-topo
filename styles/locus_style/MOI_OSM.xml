@@ -1160,15 +1160,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <!-- railway tunnels -->
     <rule e="way" k="railway|highway" v="tram|subway|light_rail|narrow_gauge|preserved|funicular|miniature|bus_guideway|disused|abandoned" zoom-min="14">
-      <line stroke="#60999999" stroke-width="0.19" stroke-dasharray="4,6" stroke-linecap="butt"/>
+      <line stroke="#99999999" stroke-width="0.19" stroke-dasharray="4,6" stroke-linecap="butt"/>
     </rule>
     <rule e="way" k="railway" v="rail" zoom-min="8">
       <rule e="way" k="gauge" v="1435">
-        <line stroke="#60FF6900" stroke-width="0.57" stroke-dasharray="6,6" stroke-linecap="butt"/>
+        <line stroke="#99FF6900" stroke-width="0.57" stroke-dasharray="6,6" stroke-linecap="butt"/>
         <!-- ;highspeed_rail -->
       </rule>
       <rule e="way" k="gauge" v="1067|~">
-        <line stroke="#60101820" stroke-width="0.57" stroke-dasharray="6,6" stroke-linecap="butt"/>
+        <line stroke="#99101820" stroke-width="0.57" stroke-dasharray="6,6" stroke-linecap="butt"/>
         <!-- ;rail -->
       </rule>
     </rule>
