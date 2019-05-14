@@ -25,23 +25,23 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       * [三合一](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.zip)：點選啟動三合一自動安裝 (250MB)
       * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動離線地圖自動安裝 (200MB)
       * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-      * [高程檔](gts-hgt://moi.kcwu.csie.org/hgtmix-v2018.3.zip)：點選啟動高程檔自動安裝 (50MB)
+      * [高程檔](gts-hgt://moi.kcwu.csie.org/hgtmix-2019.1.zip)：點選啟動高程檔自動安裝 (50MB)
     * 輕量版
       * [三合一](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.zip)：點選啟動三合一自動安裝 (90MB)
       * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.map.zip)：點選啟動離線地圖自動安裝 (85MB)
       * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-      * [高程檔](gts-hgt://moi.kcwu.csie.org/hgt90-v2018.3.zip)：點選啟動高程檔自動安裝 (8MB)
+      * [高程檔](gts-hgt://moi.kcwu.csie.org/hgtmix-2019.1.zip)：點選啟動高程檔自動安裝 (8MB)
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
     * 傳統版
       * [三合一](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.zip)：點選啟動三合一自動安裝 (250MB)
       * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝 (200MB)
       * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動風格主題自動安裝
-      * [高程檔](gts-hgt://rudy.basecamp.tw/hgtmix-v2018.3.zip)：點選啟動高程檔自動安裝 (50MB)
+      * [高程檔](gts-hgt://rudy.basecamp.tw/hgtmix-2019.1.zip)：點選啟動高程檔自動安裝 (50MB)
     * 輕量版
       * [三合一](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite.zip)：點選啟動三合一自動安裝 (90MB)
       * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite.map.zip)：點選啟動地圖自動安裝 (85MB)
       * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-      * [高程檔](gts-hgt://rudy.basecamp.tw/hgt90-v2018.3.zip)：點選啟動高程檔自動安裝 (8MB)
+      * [高程檔](gts-hgt://rudy.basecamp.tw/hgtmix-2019.1.zip)：點選啟動高程檔自動安裝 (8MB)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
@@ -49,11 +49,11 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI） (200MB)
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-    * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：未支援。請點選下載，並手動安裝 (50MB)
+    * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip)：未支援。請點選下載，並手動安裝 (50MB)
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
     * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI） (200MB)
     * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-    * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：未支援。點選下載，並手動安裝 (50MB)
+    * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip)：未支援。點選下載，並手動安裝 (50MB)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
@@ -62,7 +62,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * 分開安裝
       * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://http/moi.kcwu.csie.org/locus_map-kcwu.xml)：點選啟動地圖自動安裝 (200MB)
       * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml)：點選啟動風格主題自動安裝 (0.4MB)
-      * [![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2018.3](locus-actions://http/moi.kcwu.csie.org/locus_dem-kcwu.xml)：點選啟動高程檔自動安裝 (50MB)
+      * [![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2019.1](locus-actions://http/moi.kcwu.csie.org/locus_dem-kcwu.xml)：點選啟動高程檔自動安裝 (50MB)
     * 圖資更新
       * [![Map](images/Locus.jpeg =36x) 更新](locus-actions://http/moi.kcwu.csie.org/locus_upgrade-kcwu.xml)：點選啟動地圖/風格更新 (200MB)
     * 一次安裝
@@ -70,7 +70,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
       * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://http/rudy.basecamp.tw/locus_map-rex.xml)：點選啟動地圖自動安裝 (200MB)
       * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://http/rudy.basecamp.tw/locus_style-rex.xml)：點選啟動風格主題自動安裝 (0.4MB)
-      * [![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2018.3](locus-actions://http/rudy.basecamp.tw/locus_dem-rex.xml)：點選啟動高程檔自動安裝 (50MB)
+      * [![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2019.1](locus-actions://http/rudy.basecamp.tw/locus_dem-rex.xml)：點選啟動高程檔自動安裝 (50MB)
     * 圖資更新
       * [![Map](images/Locus.jpeg =36x) 更新](locus-actions://http/rudy.basecamp.tw/locus_upgrade-rex.xml)：點選啟動地圖/風格更新 (200MB)
     * 一次安裝
@@ -82,11 +82,11 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 適合中華電信用戶（下載頻寬由 KC Wu 兄提供）
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI） (200MB)
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝 (0.4MB)
-    * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：未支援。請點選下載，並透過 iTune 手動安裝 (50MB)
+    * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip)：未支援。請點選下載，並透過 iTune 手動安裝 (50MB)
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
     * [![Map](images/Cartograph_map.png =36x) Map](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）(200MB)
     * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝 (0.4MB)
-    * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：未支援。點選下載，並透過 iTune 手動安裝 (50MB)
+    * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip)：未支援。點選下載，並透過 iTune 手動安裝 (50MB)
 
 * GPX 離線圖層專區
   * 圖資下載
@@ -108,9 +108,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，手動安裝 (0.4MB)
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，手動安裝 (0.4MB)
   * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝 (0.4MB)
-  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2018.3](./hgtmix-v2018.3.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝 (50MB)
-  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 30m, v2018.3](./hgt30-v2018.3.zip)：全幅30m, 檔案最大, 手動安裝 (65MB)
-  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 90m, v2018.3](./hgt90-v2018.3.zip)：全幅90m, 檔案最小, 手動安裝 (8MB)
+  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝 (50MB)
   * 疊圖專用 Styles
     * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖), 手動安裝 (0.4MB)
     * [DN Style](./MOI_OSM_dn_style.zip) 給淡色地圖疊圖 (例：通用電子地圖), 手動安裝 (0.4MB)
@@ -189,14 +187,16 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 ## 注意事項
 
-* 已知 Windows BaseCamp v4.6.2 有問題，無法正確顯示地圖，請改用 v4.5.2。
+* 已知 macOS BaseCamp v4.8.2 描繪地圖顯示結果較差，請改用 v4.7.0。
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
 
-* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps，Locus Map，GTs 綠野遊蹤，與 iOS Cartograph。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps，Locus Map，GTs 綠野遊蹤，與 iOS Cartograph，山林日誌。
 
 
 ## 重大修改歷程
+* 2019, 5/12
+  * DTM 改用內政部 Taiwan DEM 20m v2019 (3/28)
 * 2018, 9/27
   * 增加衛星空照疊圖專用 BN Style
 * 2018, 8/2
