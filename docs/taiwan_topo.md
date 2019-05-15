@@ -30,7 +30,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       * [三合一](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.zip)：點選啟動三合一自動安裝 (90MB)
       * [離線地圖](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.map.zip)：點選啟動離線地圖自動安裝 (85MB)
       * [風格主題](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-      * [高程檔](gts-hgt://moi.kcwu.csie.org/hgtmix-2019.1.zip)：點選啟動高程檔自動安裝 (8MB)
+      * [高程檔](gts-hgt://moi.kcwu.csie.org/hgt90-2019.1.zip)：點選啟動高程檔自動安裝 (8MB)
   * 適合非中華電信用戶（下載頻寬由 Rex Tsai 兄提供）
     * 傳統版
       * [三合一](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.zip)：點選啟動三合一自動安裝 (250MB)
@@ -41,7 +41,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       * [三合一](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite.zip)：點選啟動三合一自動安裝 (90MB)
       * [離線地圖](gts-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite.map.zip)：點選啟動地圖自動安裝 (85MB)
       * [風格主題](gts-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite_style.zip)：點選啟動風格主題自動安裝 (0.4MB)
-      * [高程檔](gts-hgt://rudy.basecamp.tw/hgtmix-2019.1.zip)：點選啟動高程檔自動安裝 (8MB)
+      * [高程檔](gts-hgt://rudy.basecamp.tw/hgt90-2019.1.zip)：點選啟動高程檔自動安裝 (8MB)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
@@ -109,6 +109,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，手動安裝 (0.4MB)
   * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝 (0.4MB)
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝 (50MB)
+  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 90m, v2019.1](./hgt90-2019.1.zip)：全部90m, 解析度低，檔案最小, 手動安裝 (8MB)
   * 疊圖專用 Styles
     * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖), 手動安裝 (0.4MB)
     * [DN Style](./MOI_OSM_dn_style.zip) 給淡色地圖疊圖 (例：通用電子地圖), 手動安裝 (0.4MB)

@@ -98,7 +98,7 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1f14)
 TARGETS := gmap
 
@@ -114,7 +114,7 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1f17)
 TARGETS := gmap
 
@@ -129,7 +129,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
-HGT := $(ROOT_DIR)/hgt/moi-hgt-v3.zip
+HGT := $(ROOT_DIR)/hgt/hgtmix-2019.1.zip
 GTS_STYLE = $(HS_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip poi_zip gts_all
@@ -145,7 +145,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
-HGT := $(ROOT_DIR)/hgt/moi-hgt-lite-v2.zip
+HGT := $(ROOT_DIR)/hgt/hgt90-2019.1.zip
 GTS_STYLE = $(LITE_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip gts_all
@@ -218,7 +218,7 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1414)
 TARGETS := gmap
 
@@ -279,7 +279,7 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1317)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -385,7 +385,7 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw3D
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1015)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -401,7 +401,7 @@ TYP := outdoorc
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc3D
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1014)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -432,7 +432,7 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
@@ -460,7 +460,7 @@ EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
 MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
-HGT := $(ROOT_DIR)/hgt/hgt90-v2018.3.zip
+HGT := $(ROOT_DIR)/hgt/hgt90-2019.1.zip
 TARGETS := mapsforge_zip mapsforge_style gts_all
 
 else ifeq ($(SUITE),taipei_odc)
@@ -520,7 +520,7 @@ TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
-GMAPDEM := $(ROOT_DIR)/hgt/hgt30_gmap-v2018.3.zip
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix_gmap-2019.1.zip
 MAPID := $(shell printf %d 0x1117)
 TARGETS := gmapsupp_zip gmap nsis
 

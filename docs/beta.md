@@ -8,11 +8,13 @@
   * [![Style](./images/Android.png =36x) GTs Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * [![DEM](./images/Android.png =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip) 台灣本島30m, 離島90m, 適當大小
+  * [![DEM](./images/Android.png =36x) DEM 90m, v2019.1](./hgt90-2019.1.zip) 全部90m, 解析度低, 檔案最小
 
 * ![iTunes](./images/iTunes.jpeg =36x) iTunes, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/iTunes.jpeg =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![Style](./images/iTunes.jpeg =36x) Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![DEM](./images/iTunes.jpeg =36x) DEM mix, v2019.1](./hgtmix-2019.1.zip) 台灣本島30m, 離島90m, 適當大小
+  * [![DEM](./images/iTunes.jpeg =36x) DEM 90m, v2019.1](./hgt90-2019.1.zip) 全部90m, 解析度低, 檔案最小
 
 * 疊圖專用 Styles
   * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖)
