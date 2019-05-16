@@ -11,7 +11,7 @@
     <after>extract|deleteSource</after>
   </download>
   <download>
-    <source><![CDATA[http://__local_ip__:__local_port__/hgtmix-v2018.3.zip]]></source>
+    <source><![CDATA[http://__local_ip__:__local_port__/hgtmix-2019.1.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
