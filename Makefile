@@ -1308,7 +1308,7 @@ $(POI_ZIP): $(POI)
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
 
 
-GPX_OSM ?= $(BUILD_DIR)/Happyman.osm
+GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm
 GPX_BASE = $(basename $(GPX_OSM))
 TAIWAN_BBOX=21.55682,118.12141,26.44212,122.31377
 
@@ -1367,7 +1367,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE).osm
 		    file="$@" > /dev/null 2> /dev/null
 
 
-GPX_MAPSFORGE ?= $(BUILD_DIR)/Happyman.map
+GPX_MAPSFORGE ?= $(BUILD_DIR)/Happyman-wptgpx.map
 
 .PHONY: gpx-2
 gpx-2: $(GPX_MAPSFORGE)
