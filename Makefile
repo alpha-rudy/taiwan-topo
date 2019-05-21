@@ -1281,7 +1281,7 @@ $(TN_STYLE):
 			-e "s/__version__/$(VERSION)/g" \
 			-e "s/file:moiosm_res/file:tn_res/g" \
 			-e "s,file:/moiosm_res,file:/tn_res,g" \
-			-e 's/outside="#FFFFFF" map-background="#FFFFFF"/outside="#00FFFFFF" map-background="#00FFFFFF"/g' \
+			-e 's/outside="#FFFFFF"/outside="#00FFFFFF"/g' \
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
 		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
