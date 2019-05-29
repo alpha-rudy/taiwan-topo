@@ -849,12 +849,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </layer>
   </stylemenu>
   <!-- render land above sea -->
-  <rule cat="landcover" e="way" k="natural" v="sea" zoom-min="7">
+  <!-- TN-REMOVED-FROM -->
+  <rule e="way" k="natural" v="sea" zoom-min="7">
     <area fill="#B3DDFF"/>
   </rule>
-  <rule cat="landcover" e="way" k="natural" v="nosea" zoom-min="7">
+  <rule e="way" k="natural" v="nosea" zoom-min="7">
     <area fill="#F8F8F8" stroke="#F8F8F8" stroke-width="1"/>
   </rule>
+  <!-- TN-REMOVED-TO -->
   <!-- underground pipelines -->
   <rule e="way" k="man_made" v="pipeline">
     <rule e="way" k="tunnel|location" v="yes|underground">
