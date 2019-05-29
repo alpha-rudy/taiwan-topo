@@ -1283,6 +1283,7 @@ $(TN_STYLE):
 			-e "s,file:/moiosm_res,file:/tn_res,g" \
 			-e 's/outside="#FFFFFF"/outside="#00FFFFFF"/g' \
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
+			-e "/TN-REMOVED-FROM/,/TN-REMOVED-TO/d" \
 			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
 		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
 	cd $(BUILD_DIR)/mapsforge_tn && \
