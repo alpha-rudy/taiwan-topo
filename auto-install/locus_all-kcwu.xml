@@ -11,7 +11,7 @@
     <after>extract|deleteSource</after>
   </download>
   <download>
-    <source><![CDATA[http://moi.kcwu.csie.org/hgtmix-2019.1.zip]]></source>
+    <source><![CDATA[http://moi.kcwu.csie.org/hgtmix.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
