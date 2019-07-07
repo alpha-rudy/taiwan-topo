@@ -1042,7 +1042,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	touch $(MAP_NODEM_LR)
 
 .DELETE_ON_ERROR: $(ELEVATION)
-ELEVATIONS_URL := http://osm.kcwu.csie.org/osm_elevations
+ELEVATIONS_URL := http://moi.kcwu.csie.org/osm_elevations
 $(ELEVATION):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
