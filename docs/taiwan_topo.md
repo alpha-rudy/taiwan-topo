@@ -78,27 +78,27 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   > 影片中的置頂貼文已改到社群公告
   * 分開安裝
     * ![Map](images/Locus_map.jpeg =36x) Map (200MB)
-      > [[mirror Rex]](locus-actions://rudy.basecamp.tw/locus_map-rex.xml) /
-      > [[mirror KCWu]](locus-actions://moi.kcwu.csie.org/locus_map-kcwu.xml) / 
-      > [[mirror Happyman]](locus-actions://map.happyman.idv.tw/rudy/locus_map-happyman.xml)
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_map-rex.xml) /
+      > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_map-kcwu.xml) / 
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_map-happyman.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[mirror Rex]](locus-actions://rudy.basecamp.tw/locus_style-rex.xml) /
-      > [[mirror KCWu]](locus-actions://moi.kcwu.csie.org/locus_style-kcwu.xml) / 
-      > [[mirror Happyman]](locus-actions://map.happyman.idv.tw/rudy/locus_style-happyman.xml)
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_style-rex.xml) /
+      > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) / 
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
     * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2019.3 (50MB)
-      > [[mirror Rex]](locus-actions://rudy.basecamp.tw/locus_dem-rex.xml) /
-      > [[mirror KCWu]](locus-actions://moi.kcwu.csie.org/locus_dem-kcwu.xml) / 
-      > [[mirror Happyman]](locus-actions://map.happyman.idv.tw/rudy/locus_dem-happyman.xml)
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_dem-rex.xml) /
+      > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_dem-kcwu.xml) / 
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_dem-happyman.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新 (200MB)
-      > [[mirror Rex]](locus-actions://rudy.basecamp.tw/locus_upgrade-rex.xml) /
-      > [[mirror KCWu]](locus-actions://moi.kcwu.csie.org/locus_upgrade-kcwu.xml) / 
-      > [[mirror Happyman]](locus-actions://map.happyman.idv.tw/rudy/locus_upgrade-happyman.xml)
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_upgrade-rex.xml) /
+      > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_upgrade-kcwu.xml) / 
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_upgrade-happyman.xml)
   * 一次安裝
     * ![Map](images/Locus.jpeg =36x) ALL (250MB)
-      > [[mirror Rex]](locus-actions://rudy.basecamp.tw/locus_all-rex.xml) /
-      > [[mirror KCWu]](locus-actions://moi.kcwu.csie.org/locus_all-kcwu.xml) / 
-      > [[mirror Happyman]](locus-actions://map.happyman.idv.tw/rudy/locus_all-happyman.xml)
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_all-rex.xml) /
+      > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_all-kcwu.xml) / 
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
