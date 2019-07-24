@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<locusActions>
+  <download>
+    <source><![CDATA[http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
+    <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
+    <after>extract|deleteSource</after>
+  </download>
+  <download>
+    <source><![CDATA[http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></source>
+    <dest><![CDATA[/mapsVector/MOI_OSM_Taiwan_TOPO_Rudy.map.zip]]></dest>
+    <after>extract|deleteSource|refreshMap</after>
+  </download>
+</locusActions>
