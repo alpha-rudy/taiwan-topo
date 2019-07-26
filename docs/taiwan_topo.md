@@ -59,7 +59,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
-    > 舊版安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
+    > 安裝示範影片：https://youtu.be/HnlyPl6nI3o
   * ![Map](images/OruxMaps_map.jpeg =36x) Map (200MB)
     > [[mirror Rex]](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
