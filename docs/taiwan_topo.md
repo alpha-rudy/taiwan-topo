@@ -20,8 +20,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 阿牛兄的圖例說明: [圖例](./legend_V1R1.pdf)
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
-  * 安裝示範影片：
-  > (尚無，歡迎山友提供)
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > 安裝示範影片：(尚無，歡迎山友提供)
   * 傳統版
     * 三合一 (250MB)
       > [[mirror Rex]](gts-all://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.zip) /
@@ -58,8 +58,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Happyman]](gts-hgt://map.happyman.idv.tw/rudy/hgt90.zip)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 自動安裝
-  * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
-  > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > 舊版安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706755306146752
   * ![Map](images/OruxMaps_map.jpeg =36x) Map (200MB)
     > [[mirror Rex]](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
@@ -74,8 +74,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/hgtmix.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
-  * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
-  > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > 舊版安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
   * 分開安裝
     * ![Map](images/Locus_map.jpeg =36x) Map (200MB)
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_map-rex.xml) /
@@ -101,8 +101,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
-  * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
-  > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > 舊版安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
   * ![Map](images/Cartograph_map.png =36x) Map (200MB)
     > [[mirror Rex]](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
@@ -129,10 +129,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_gpx_style.zip)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge 手動下載自行安裝
-  * 安裝示範影片：
-    * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
-    * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
+    > * 舊版手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map (200MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
@@ -180,10 +179,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_gpx_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
-  * 安裝示範影片：
-    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_small.jpeg =36x) bw (145MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_bw.img.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_bw.img.zip) / 
@@ -198,10 +196,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_zh_bw.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw3D - Taiwan TOPO（適合較小螢幕）
-  * 安裝示範影片：
-    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_small.jpeg =36x) bw3D (180MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_bw3D.img.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_bw3D.img.zip) / 
@@ -216,10 +213,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_zh_bw3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.odc - Taiwan TOPO（適合較大螢幕）
-  * 安裝示範影片：
-    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) odc (145MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_odc.img.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_odc.img.zip) / 
@@ -234,10 +230,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_zh_odc.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.odc3D - Taiwan TOPO（適合較大螢幕）
-  * 安裝示範影片：
-    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) odc3D (180MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_odc3D.img.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_odc3D.img.zip) / 
@@ -252,10 +247,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_zh_odc3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp - Taiwan TOPO（適合 PC/Mac BaseCamp）
-  * 安裝示範影片：
-    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp (145MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_camp.img.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_camp.img.zip) / 
@@ -270,10 +264,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_zh_camp.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Taiwan TOPO（適合 PC/Mac BaseCamp）
-  * 安裝示範影片：
-    * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-    > 影片中的置頂貼文已改到社群公告
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D (180MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_camp3D.img.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_camp3D.img.zip) / 
