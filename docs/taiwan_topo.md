@@ -75,7 +75,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
-    > 舊版安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
+    > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
   * 分開安裝
     * ![Map](images/Locus_map.jpeg =36x) Map (200MB)
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_map-rex.xml) /
