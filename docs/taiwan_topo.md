@@ -94,8 +94,8 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_upgrade-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_upgrade-kcwu.xml) / 
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_upgrade-happyman.xml)
-  * 一次安裝
-    * ![Map](images/Locus.jpeg =36x) ALL (250MB)
+  * 三合一
+    * ![Map](images/Locus.jpeg =36x) 首次安裝 (250MB)
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_all-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_all-kcwu.xml) / 
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
@@ -103,18 +103,29 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > 舊版安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
-  * ![Map](images/Cartograph_map.png =36x) Map (200MB)
-    > [[mirror Rex]](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-    > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
-    > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) / 
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
-  * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2019.3, 請點選下載，並手動安裝 (50MB)
-    > [[mirror Rex]](http://rudy.basecamp.tw/hgtmix.zip) /
-    > [[mirror KCWu]](http://moi.kcwu.csie.org/hgtmix.zip) / 
-    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/hgtmix.zip)
+  * 分開安裝
+    * ![Map](images/Cartograph_map.png =36x) Map (200MB)
+      > [[mirror Rex]](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
+      > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
+      > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+    * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
+      > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
+      > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) / 
+      > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2019.3, 請點選下載，並手動安裝 (50MB)
+      > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_dem.cpkg) /
+      > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_dem.cpkg) / 
+      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_dem.cpkg)
+  * 圖資更新
+    * ![Map](images/Cartograph.png =36x) 更新 (245MB)
+      > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_upgrade.cpkg) /
+      > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_upgrade.cpkg) / 
+      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_upgrade.cpkg)
+  * 三合一
+    * ![Map](images/Cartograph.png =36x) 首次安裝 (295MB)
+      > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_all.cpkg) /
+      > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_all.cpkg) / 
+      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_all.cpkg)
 
 * GPX 離線圖層專區
   * 圖資下載
