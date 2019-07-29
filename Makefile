@@ -132,6 +132,7 @@ NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
+CARTO_ALL := $(BUILD_DIR)/carto_all
 TARGETS := mapsforge_zip poi_zip gts_all
 
 else ifeq ($(SUITE),taiwan_lite)
@@ -684,8 +685,9 @@ drop:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
-	cp -r docs/images auto-install/* $(INSTALL_DIR)
+	cp -r docs/images auto-install/*.xml $(INSTALL_DIR)
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
+	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 	    markdown -f +autolink > $(BUILD_DIR)/beta.article
@@ -752,6 +754,17 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 		unzip $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
 	rm -rf $(GTS_ALL)
+
+.PHONY: carto_all
+carto_all: $(CARTO_ALL).zip
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(HS_STYLE) $(HGT)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(CARTO_ALL)" ]
+	unzip $(HGT) -d $(BUILD_DIR)
+	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
 
 .PHONY: nsis
 nsis: $(NSIS)
