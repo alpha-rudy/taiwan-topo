@@ -133,7 +133,7 @@ HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 CARTO_ALL := $(BUILD_DIR)/carto_all
-TARGETS := mapsforge_zip poi_zip gts_all
+TARGETS := mapsforge_zip poi_zip gts_all carto_all
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
