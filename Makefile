@@ -757,14 +757,14 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 
 .PHONY: carto_all
 carto_all: $(CARTO_ALL).zip
-$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(HS_STYLE) $(HGT)
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
 	unzip $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
 
 .PHONY: nsis
 nsis: $(NSIS)
