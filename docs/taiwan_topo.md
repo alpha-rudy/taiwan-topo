@@ -105,13 +105,13 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
   * 分開安裝
     * ![Map](images/Cartograph_map.png =36x) Map (200MB)
-      > [[mirror Rex]](orux-map://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-      > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) / 
-      > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+      > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_map.cpkg) /
+      > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_map.cpkg) / 
+      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
-      > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-      > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) / 
-      > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+      > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_style.cpkg) /
+      > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_style.cpkg) / 
+      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_style.cpkg)
     * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2019.3, 請點選下載，並手動安裝 (50MB)
       > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_dem.cpkg) /
       > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_dem.cpkg) / 
