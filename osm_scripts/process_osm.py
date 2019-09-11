@@ -63,9 +63,11 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         for network in hknetworks[n.id]:
+            ''' disable highlight
             if network.get('ref', '') == 'twn:taipei_grand_hike':
                 tags['highlight'] = 'yes'
                 tags['name'] = tags['ref']
+            '''
             tags['hike_node'] = network['network']
 
         n = n.replace(tags=tags)
@@ -162,13 +164,15 @@ class MapsforgeHandler(osmium.SimpleHandler):
         networks = hknetworks[w.id]
         tags = dict((tag.k, tag.v) for tag in w.tags)
         for network in networks:
+            ''' disable highlight
             if network.get('ref', '') == 'twn:taipei_grand_hike':
                 tags['highlight'] = 'yes'
                 if not tags.get('hknetwork'):
                     tags['ref'] = network['name']
             else:
-                tags['hknetwork'] = network['network']
-                tags['ref'] = network['name']
+            '''
+            tags['hknetwork'] = network['network']
+            tags['ref'] = network['name']
         w = w.replace(tags=tags)
         self.writer.add_way(w)
         return
