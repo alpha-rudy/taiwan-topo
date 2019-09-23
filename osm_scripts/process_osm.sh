@@ -18,6 +18,14 @@ osmfilter \
     --keep-relations='type=route and route=hiking and name= and network=' \
     "$infile" -o=hknetworks.osm
 
+osmfilter \
+    --drop-nodes \
+    --drop-ways \
+    --drop-version \
+    --ignore-dependencies \
+    --keep-relations='type=boundary and boundary=national_park and name=' \
+    "$infile" -o=national_park.osm
+
 temp_pbf=temp.osm.pbf
 osmfilter \
     --drop-version \

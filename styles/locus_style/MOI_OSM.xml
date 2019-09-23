@@ -1673,20 +1673,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
 -->
-  <rule cat="borders" e="way" k="boundary" v="national_park">
-    <rule e="any" k="*" v="*" zoom-min="8" zoom-max="9">
-      <line stroke="#408000" stroke-width="1.50" stroke-linecap="butt"/>
-      <!-- ;national_park -->
-    </rule>
-    <rule e="any" k="*" v="*" zoom-min="10" zoom-max="14">
-      <line stroke="#80408000" stroke-width="2.25" stroke-linecap="butt"/>
-      <!-- ;national_park -->
-    </rule>
-    <rule e="any" k="*" v="*" zoom-min="15">
-      <line stroke="#80408000" stroke-width="1.12" stroke-linecap="butt"/>
-      <!-- ;national_park -->
-    </rule>
-  </rule>
   <!-- special areas -->
   <rule cat="borders" e="way" k="landuse" v="~">
     <rule e="way" k="military" v="*">
@@ -1716,6 +1702,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <line stroke="#48A82622" stroke-width="0.52" stroke-dasharray="15, 5, 5, 5" stroke-linecap="butt"/>
         <area src="file:moiosm_res/p_military.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
       </rule>
+    </rule>
+  </rule>
+  <!-- national park -->
+  <rule cat="borders" e="way" k="boundary" v="national_park">
+    <rule e="any" k="*" v="*" zoom-min="8" zoom-max="9">
+      <line stroke="#408000" stroke-width="1.50" stroke-linecap="butt"/>
+      <!-- ;national_park -->
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="10" zoom-max="14">
+      <line stroke="#C0408000" stroke-width="2.25" stroke-linecap="butt"/>
+      <!-- ;national_park -->
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="15">
+      <line stroke="#A0408000" stroke-width="1.12" stroke-linecap="butt"/>
+      <!-- ;national_park -->
     </rule>
   </rule>
   <!--
