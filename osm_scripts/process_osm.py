@@ -3,6 +3,18 @@ import sys
 import osmium
 
 hknetworks = {}
+national_park = {}
+
+
+class NationalParkLoader(osmium.SimpleHandler):
+    def relation(self, r):
+        if not r.members:
+            return
+        if r.tags['boundary'] == 'national_park':
+            parks = dict(name=r.tags['name'])
+            for m in r.members:
+                if m.role == 'outer' and m.type == 'w':
+                    national_park[m.ref] = parks
 
 
 def round_float(value):
@@ -152,6 +164,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if w.id in hknetworks:
             self.handle_hknetwork(w)
             return
+        
+        if w.id in national_park:
+            self.handle_national_park(w)
+            return
 
         if w.tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental_way(w)
@@ -176,6 +192,17 @@ class MapsforgeHandler(osmium.SimpleHandler):
         w = w.replace(tags=tags)
         self.writer.add_way(w)
         return
+
+    def handle_national_park(self, w):
+        w = w.replace(tags=self.handle_national_park_tags(w))
+        self.writer.add_way(w)
+
+    def handle_national_park_tags(self, o):
+        tags = dict((tag.k, tag.v) for tag in o.tags)
+        tags['name'] = national_park[o.id]['name']
+        tags['type'] = 'boundary'
+        tags['boundary'] = 'national_park'
+        return tags
 
     def handle_bicycle_rental_way(self, w):
         w = w.replace(tags=self.handle_bicycle_rental_tags(w))
@@ -210,6 +237,9 @@ def main():
 
     nknetwork_loader = HknetworkLoader()
     nknetwork_loader.apply_file('hknetworks.osm')
+
+    national_park_loader = NationalParkLoader()
+    national_park_loader.apply_file('national_park.osm')
 
     writer = osmium.SimpleWriter(outfile)
     mapsforge_handler = MapsforgeHandler(writer)

@@ -1667,7 +1667,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <!-- ;admin -->
     </rule>
   </rule>
-  <!--
+<!--
   <rule cat="borders" e="way" k="admin_level" v="9">
     <rule e="any" k="*" v="*" zoom-min="13" zoom-max="13">
       <line stroke="#80DC94E9" stroke-width="0.75" stroke-linecap="butt"/>
@@ -1677,20 +1677,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
 -->
-  <rule cat="borders" e="way" k="boundary" v="national_park">
-    <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-      <line stroke="#408000" stroke-width="2.0" stroke-linecap="butt"/>
-      <!-- ;national_park -->
-    </rule>
-    <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-      <line stroke="#80408000" stroke-width="3" stroke-linecap="butt"/>
-      <!-- ;national_park -->
-    </rule>
-    <rule e="any" k="*" v="*" zoom-min="14">
-      <line stroke="#80408000" stroke-width="1.5" stroke-linecap="butt"/>
-      <!-- ;national_park -->
-    </rule>
-  </rule>
   <!-- special areas -->
   <rule cat="borders" e="way" k="landuse" v="~">
     <rule e="way" k="military" v="*">
@@ -1720,6 +1706,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <line stroke="#48A82622" stroke-width="0.7" stroke-dasharray="15, 5, 5, 5" stroke-linecap="butt"/>
         <area src="file:moiosm_res/p_military.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
       </rule>
+    </rule>
+  </rule>
+  <!-- national park -->
+  <rule cat="borders" e="way" k="boundary" v="national_park">
+    <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
+      <line stroke="#408000" stroke-width="2.0" stroke-linecap="butt"/>
+      <!-- ;national_park -->
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
+      <line stroke="#C0408000" stroke-width="3" stroke-linecap="butt"/>
+      <!-- ;national_park -->
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="14">
+      <line stroke="#A0408000" stroke-width="1.5" stroke-linecap="butt"/>
+      <!-- ;national_park -->
     </rule>
   </rule>
   <!--
