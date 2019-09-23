@@ -724,7 +724,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="hike"/>
       <cat id="nobike"/>
       <cat id="nocity"/>
-      <cat id="contour"/>
       <overlay id="elmt-landcover"/>
       <overlay id="elmt-h_routes"/>
       <overlay id="elmt-h_s_routes"/>
@@ -733,6 +732,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
       <overlay id="elmt-surveypoint-h"/>
+      <overlay id="elmt-contour-c"/>
       <overlay id="elmt-borders-h"/>
       <overlay id="elmt-amenities-h"/>
       <overlay id="elmt-barriers-h"/>
