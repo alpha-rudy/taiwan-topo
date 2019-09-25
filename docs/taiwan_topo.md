@@ -127,17 +127,21 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_all.cpkg) / 
       > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_all.cpkg)
 
-* GPX 離線圖層專區
+* Extra 離線圖層專區
   * 圖資下載
     * Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
       > 所有地圖產生器所蒐集之行跡檔，以離線圖資產出
+    * 林務局林班地 Compartment.map: 
+      > [[mirror Rex]](http://rudy.basecamp.tw/Compartment.map.zip) /
+      > [[mirror KCWu]](http://moi.kcwu.csie.org/Compartment.map.zip) / 
+      > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Compartment.map.zip)
     * ...
-      > (期待將來有更多的 GPX 離線圖層可以使用)
-  * GPX 圖層專用 Style
-    * ![Style](images/Cartograph_style.png =36x) GPX Style (只有 Cartograph 需要，OruxMaps 與 Locus 可直接使用原來的 Style)
-      > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_gpx_style.zip) /
-      > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_gpx_style.zip) / 
-      > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_gpx_style.zip)
+      > (期待將來有更多的離線圖層可以使用)
+  * Extra 圖層專用 Style
+    * ![Style](images/Cartograph_style.png =36x) Extra Style (只有 Cartograph 需要，OruxMaps 與 Locus 可直接使用原來的 Style)
+      > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_extra_style.zip) /
+      > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) / 
+      > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge 手動下載自行安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
@@ -184,10 +188,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_tn_style.zip) /
       > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_tn_style.zip) / 
       > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_tn_style.zip)
-    * GPX Style, 給 Cartograph GPX 圖層疊圖 (0.4MB)
-      > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_gpx_style.zip) /
-      > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_gpx_style.zip) / 
-      > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_gpx_style.zip)
+    * Extra Style, 給 Cartograph Extra 圖層疊圖 (0.4MB)
+      > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_extra_style.zip) /
+      > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) / 
+      > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
@@ -317,6 +321,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2019, 9/25
+  * 增加 Compartment 林務局林班地圖層
 * 2019, 7/25
   * 增加 Happyman 第三個 Mirror Site
 * 2019, 7/11

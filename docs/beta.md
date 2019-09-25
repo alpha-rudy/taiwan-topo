@@ -20,7 +20,7 @@
   * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖)
   * [DN Style](./MOI_OSM_dn_style.zip) 給淡色地圖疊圖 (例：通用電子地圖)
   * [TN Style](./MOI_OSM_tn_style.zip) 給高度圖疊圖 (例：Relief Map)
-  * [GPX Style](./MOI_OSM_gpx_style.zip) 給 Cartograph GPX 圖層疊圖, 手動安裝 (0.4MB)
+  * [EXTRA Style](./MOI_OSM_extra_style.zip) 給 Cartograph EXTRA 圖層疊圖, 手動安裝 (0.4MB)
 
 * ![GMap](./images/Garmin.png =x36) Garmin camp style, MOI.OSM.camp - Taiwan TOPO v__version__
   * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe)

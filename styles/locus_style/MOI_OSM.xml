@@ -212,6 +212,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
+    <layer id="elmt-compartments-h" enabled="false">
+      <name lang="de" value="compartments"/>
+      <name lang="en" value="forest compartments"/>
+      <name lang="es" value="compartments"/>
+      <name lang="fr" value="compartments"/>
+      <name lang="it" value="compartments"/>
+      <name lang="zh" value="林務局林班地"/>
+      <cat id="compartments"/>
+    </layer>
     <layer id="elmt-borders-c" enabled="true">
       <name lang="de" value="Grenzen + besondere Gebiete"/>
       <name lang="en" value="borders + special areas"/>
@@ -743,6 +752,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-surveypoint-h"/>
       <overlay id="elmt-contour-c"/>
       <overlay id="elmt-borders-h"/>
+      <overlay id="elmt-compartments-h"/>
       <overlay id="elmt-amenities-h"/>
       <overlay id="elmt-barriers-h"/>
       <overlay id="elmt-outdoorsports-h"/>
@@ -1717,6 +1727,40 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="any" k="*" v="*" zoom-min="15">
       <line stroke="#A0408000" stroke-width="1.12" stroke-linecap="butt"/>
       <!-- ;national_park -->
+    </rule>
+  </rule>
+  <!-- compartment boundaries -->
+  <rule cat="compartments" e="any" k="*" v="*">
+    <rule e="way" k="boundary" v="forest_compartment">
+      <rule e="way" k="*" v="*" zoom-min="9" zoom-max="12">
+        <line stroke="#525EFF" stroke-width="0.65"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+        <line stroke="#A0525EFF" stroke-width="0.49"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+        <line stroke="#A0525EFF" stroke-width="0.37"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+        <line stroke="#A0525EFF" stroke-width="0.27"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
+        <line stroke="#A0525EFF" stroke-width="0.21"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
+        <line stroke="#A0525EFF" stroke-width="0.15"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="18">
+        <line stroke="#A0525EFF" stroke-width="0.11"/>
+      </rule>
+    </rule>
+    <rule e="node" k="place" v="compartment">
+      <rule e="node" k="*" v="*" zoom-min="12" zoom-max="13">
+        <caption k="compartment" priority="150" font-style="bold" font-size="12" fill="#0000FF" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="node" k="*" v="*" zoom-min="14">
+        <caption k="name" priority="150" font-style="bold" font-size="12" fill="#0000FF" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
     </rule>
   </rule>
   <!--
