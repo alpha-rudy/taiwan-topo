@@ -697,7 +697,7 @@ drop:
 
 .PHONY: styles
 styles:
-	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style gpx_style
+	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style extra_style
 
 
 .PHONY: daily
@@ -1247,20 +1247,20 @@ $(DN_STYLE):
 	cd $(BUILD_DIR)/mapsforge_dn && $(ZIP_CMD) $@ *
 
 
-GPX_STYLE := $(BUILD_DIR)/MOI_OSM_gpx_style.zip
+EXTRA_STYLE := $(BUILD_DIR)/MOI_OSM_extra_style.zip
 
-.PHONY: gpx_style $(GPX_STYLE)
-gpx_style: $(GPX_STYLE)
-$(GPX_STYLE):
+.PHONY: extra_style $(EXTRA_STYLE)
+extra_style: $(EXTRA_STYLE)
+$(EXTRA_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	-rm -f $@
-	-rm -rf $(BUILD_DIR)/carto_gpx
+	-rm -rf $(BUILD_DIR)/extra
 	mkdir -p $(BUILD_DIR)
-	cp -a styles/carto_gpx $(BUILD_DIR)
-	cat styles/carto_gpx/MOI_OSM_GPX.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/carto_gpx/MOI_OSM_GPX.xml
-	cd $(BUILD_DIR)/carto_gpx && $(ZIP_CMD) $@ *
+	cp -a styles/extra $(BUILD_DIR)
+	cat styles/extra/MOI_OSM_EXTRA.xml | \
+	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/extra/MOI_OSM_EXTRA.xml
+	cd $(BUILD_DIR)/extra && $(ZIP_CMD) $@ *
 
 
 TWMAP_STYLE := $(BUILD_DIR)/MOI_OSM_twmap_style.zip
