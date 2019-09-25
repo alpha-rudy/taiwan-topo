@@ -51,25 +51,25 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <rule cat="compartments" e="any" k="*" v="*">
     <rule e="way" k="boundary" v="forest_compartment">
       <rule e="way" k="*" v="*" zoom-min="9" zoom-max="12">
-        <line stroke="#525EFF" stroke-width="0.87"/>
+        <line stroke="#FF40FE" stroke-width="0.87"/>
       </rule>
       <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
-        <line stroke="#A0525EFF" stroke-width="0.65"/>
+        <line stroke="#A0FF40FE" stroke-width="0.65"/>
       </rule>
       <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-        <line stroke="#A0525EFF" stroke-width="0.49"/>
+        <line stroke="#A0FF40FE" stroke-width="0.49"/>
       </rule>
       <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
-        <line stroke="#A0525EFF" stroke-width="0.37"/>
+        <line stroke="#A0FF40FE" stroke-width="0.37"/>
       </rule>
       <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
-        <line stroke="#A0525EFF" stroke-width="0.27"/>
+        <line stroke="#A0FF40FE" stroke-width="0.27"/>
       </rule>
       <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
-        <line stroke="#A0525EFF" stroke-width="0.21"/>
+        <line stroke="#A0FF40FE" stroke-width="0.21"/>
       </rule>
       <rule e="way" k="*" v="*" zoom-min="18">
-        <line stroke="#A0525EFF" stroke-width="0.15"/>
+        <line stroke="#A0FF40FE" stroke-width="0.15"/>
       </rule>
     </rule>
     <rule e="node" k="place" v="compartment">
