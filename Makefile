@@ -686,6 +686,7 @@ drop:
 	[ -n "$(INSTALL_DIR)" ]
 	[ -d "$(INSTALL_DIR)" ]
 	cp -r docs/images auto-install/*.xml $(INSTALL_DIR)
+	cat docs/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 	cp -r $(BUILD_DIR)/{*.zip,*.exe,*.html} $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
