@@ -161,7 +161,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_node(n)
 
     def way(self, w):
-        if w.id in hknetworks:
+        if w.id in hknetworks and 'highway' in w.tags:
             self.handle_hknetwork(w)
             return
         
@@ -177,8 +177,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
         return
 
     def handle_hknetwork(self, w):
-        if 'highway' not in w.tags:
-            return
         networks = hknetworks[w.id]
         tags = dict((tag.k, tag.v) for tag in w.tags)
         for network in networks:
