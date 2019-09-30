@@ -177,6 +177,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
         return
 
     def handle_hknetwork(self, w):
+        if 'highway' not in w.tags:
+            return
         networks = hknetworks[w.id]
         tags = dict((tag.k, tag.v) for tag in w.tags)
         for network in networks:
