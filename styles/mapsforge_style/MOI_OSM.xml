@@ -1760,7 +1760,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="node" k="place" v="compartment">
       <rule e="node" k="*" v="*" zoom-min="12" zoom-max="13">
-        <caption k="compartment" priority="150" font-style="bold" font-size="12" fill="#0000FF" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="ref" priority="150" font-style="bold" font-size="12" fill="#0000FF" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="node" k="*" v="*" zoom-min="14">
         <caption k="name" priority="150" font-style="bold" font-size="12" fill="#0000FF" stroke="#E5FFFFFF" stroke-width="2"/>
