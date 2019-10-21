@@ -131,10 +131,14 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 圖資下載
     * Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
       > 所有地圖產生器所蒐集之行跡檔，以離線圖資產出
-    * 林務局林班地 Compartment.map: 
-      > [[mirror Rex]](http://rudy.basecamp.tw/Compartment.map.zip) /
-      > [[mirror KCWu]](http://moi.kcwu.csie.org/Compartment.map.zip) / 
-      > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Compartment.map.zip)
+    * Markchoo.map: 馬克褚的大小百岳合輯
+      > [[mirror Rex]](http://rudy.basecamp.tw/extra/Markchoo.map.zip) /
+      > [[mirror KCWu]](http://moi.kcwu.csie.org/extra/Markchoo.map.zip) / 
+      > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/extra/Markchoo.map.zip)
+    * Compartment.map: 林務局林班地
+      > [[mirror Rex]](http://rudy.basecamp.tw/extra/Compartment.map.zip) /
+      > [[mirror KCWu]](http://moi.kcwu.csie.org/extra/Compartment.map.zip) / 
+      > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/extra/Compartment.map.zip)
     * ...
       > (期待將來有更多的離線圖層可以使用)
   * Extra 圖層專用 Style
@@ -321,6 +325,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2019, 10/24
+  * 增加 Markchoo 馬克褚大小百岳合輯
 * 2019, 9/25
   * 增加 Compartment 林務局林班地圖層
 * 2019, 7/25
