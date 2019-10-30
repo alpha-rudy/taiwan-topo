@@ -4421,10 +4421,24 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="ele" priority="-5" symbol-id="s_guidepost" position="below" font-size="20" font-style="bold" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="information" v="trail_milestone" zoom-min="16">
-      <symbol id="s_trail_milestone" priority="62" src="file:moiosm_twmap/s_trail_milestone.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-      <rule e="any" k="*" v="*">
-        <caption k="name" symbol-id="s_trail_milestone" position="below" font-size="10" font-style="bold" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+    <rule e="any" k="information" v="trail_milestone" zoom-min="15">
+      <rule e="any" k="zl" v="0" zoom-min="15">
+        <symbol id="s_trail_milestone" priority="62" src="file:moiosm_twmap/s_trail_milestone.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <rule e="any" k="*" v="*">
+          <caption k="name" symbol-id="s_trail_milestone" position="below" font-size="11" font-style="bold" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+        </rule>
+      </rule>
+      <rule e="any" k="zl" v="1|~" zoom-min="16">
+        <symbol id="s_trail_milestone" priority="63" src="file:moiosm_twmap/s_trail_milestone.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <rule e="any" k="*" v="*">
+          <caption k="name" symbol-id="s_trail_milestone" position="below" font-size="10" font-style="bold" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+        </rule>
+      </rule>
+      <rule e="any" k="zl" v="2" zoom-min="17">
+        <symbol id="s_trail_milestone" priority="65" src="file:moiosm_twmap/s_trail_milestone.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <rule e="any" k="*" v="*">
+          <caption k="name" symbol-id="s_trail_milestone" position="below" font-size="10" font-style="normal" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
+        </rule>
       </rule>
     </rule>
     <rule e="any" k="sport|climbing" v="climbing|cl_yes">

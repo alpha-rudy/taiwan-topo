@@ -124,8 +124,18 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 try:
                     distance = float(tags.get('distance'))
                     name += my_g_format(distance) + 'K'
+                    distance_n = int(round(distance, 1) * 10.0)
+                    if distance_n % 10 == 0:
+                        tags['zl'] = '0'
+                    elif distance_n % 5 == 0:
+                        tags['zl'] = '1'
+                    else:
+                        tags['zl'] = '2'
                 except ValueError:
                     name += tags.get('distance')
+            else:
+                tags['zl'] = '1'
+
             if name:
                 tags['name'] = name
 
