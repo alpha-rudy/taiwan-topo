@@ -46,6 +46,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="封閉路線"/>
       <cat id="h_acc_no"/>
     </layer>
+    <layer id="elmt-h_tough" enabled="false">
+      <name lang="de" value="Tough pathway"/>
+      <name lang="zh" value="艱難路線"/>
+      <cat id="h_tough"/>
+    </layer>
     <layer id="elmt-hiking" visible="true">
       <name lang="en" value="Hiking v__version__"/>
       <name lang="zh" value="登山 v__version__"/>
@@ -55,6 +60,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-trail-c"/>
       <overlay id="elmt-h_routes-c"/>
       <overlay id="elmt-h_acc_no-c"/>
+      <overlay id="elmt-h_tough"/>
     </layer>
   </stylemenu>
   <!-- tunnels -->
@@ -375,7 +381,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
       </rule>
       <rule e="way" k="access" v="destination|private|~">
-        <rule e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
+        <rule cat="h_tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
           <rule e="way" k="highway" v="footway|path" zoom-min="13">
             <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
               <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="2,2" stroke-linecap="butt"/>
