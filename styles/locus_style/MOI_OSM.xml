@@ -731,6 +731,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="封閉路線"/>
       <cat id="hike-no_access"/>
     </layer>
+    <layer id="elmt-hiking-tough" enabled="false">
+      <name lang="de" value="Tough pathway"/>
+      <name lang="en" value="Tough pathway"/>
+      <name lang="es" value="Tough pathway"/>
+      <name lang="fr" value="Tough pathway"/>
+      <name lang="it" value="Tough pathway"/>
+      <name lang="zh" value="艱難路線"/>
+      <cat id="hike-tough"/>
+    </layer>
     <!-- mapstyles -->
     <layer id="elmt-hiking" visible="true">
       <name lang="de" value="Wandern v__version__"/>
@@ -746,6 +755,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-h_routes"/>
       <overlay id="elmt-h_s_routes"/>
       <overlay id="elmt-hiking-no_access"/>
+      <overlay id="elmt-hiking-tough"/>
       <overlay id="elmt-waymarks"/>
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
@@ -3112,7 +3122,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <!-- paths/footways -->
       <rule cat="hike" e="any" k="*" v="*">
         <rule cat="h_routes" e="way" k="access" v="destination|private|~">
-          <rule e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
+          <rule cat="hike-tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
             <rule e="way" k="highway" v="footway|path" zoom-min="14">
               <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
                 <line stroke="#E10600" stroke-width="0.50" stroke-dasharray="2,2" stroke-linecap="butt"/>
