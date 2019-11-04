@@ -168,9 +168,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) / 
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph 2 Pro Style (0.4MB)
-    > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) / 
-    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
+    > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
+    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
   * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2019.3, 台灣本島30m, 離島90m, 適當大小 (50MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/hgtmix.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/hgtmix.zip) / 
