@@ -1,0 +1,1799 @@
+﻿<?xml version="1.0"?>
+<!--  DateTime: 28.02.2019 15:16:56 -->
+<translations>
+	<translation>
+		<name>remove unec. Tags</name>
+		<description>remove values from to reduce effects of "common value bug" in mapsforge and confusing information in POIs-DB</description>
+		<match mode="or">
+			<tag k="oneway" v="no"/>
+			<tag k="one" v="no"/>
+			<tag k="bridge" v="no"/>
+			<tag k="tunnel" v="no"/>
+			<tag k="noexit" v=".*"/>	
+			<tag k="access" v="yes"/>
+			<tag k="building" v="no"/>
+			<tag k="ladder" v="no"/>			
+			<tag k="lockable" v="no"/>	
+			<tag k="lockable" v="yes"/>	
+			<tag k="raised" v="no"/>
+			<tag k="raised" v="yes"/>		
+			<tag k="fixme|FIXME" v=".*"/>
+			<tag k="source" v=".*"/>
+			<tag k="source(:.*)" v=".*"/>
+			<tag k="width" v=".*"/>
+			<tag k="smoothness" v=".*"/>
+			<tag k="created_by" v=".*"/>
+			<tag k="wikipedia" v=".*"/>
+			<tag k="wikidata" v=".*"/>
+			<tag k="official_name" v=".*"/>
+			<tag k="alt_name" v=".*"/>
+			<tag k="alt_name(:.*)" v=".*"/>			
+			<tag k="note(.*)" v=".*"/>
+			<tag k="is_in" v=".*"/>
+			<tag k="is_in(:.*)" v=".*"/>
+			<tag k="gnis(:.*)" v=".*"/>
+			<tag k="ideewfs(:.*)" v=".*"/>			
+			<tag k="gns(:.*)" v=".*"/>
+			<tag k="ngbe(:.*)" v=".*"/>	
+			<tag k="iemv(:.*)" v=".*"/>		
+			<tag k="ele(:.*)" v=".*"/>	
+			<tag k="seamark(:.*)" v=".*"/>		
+			<tag k="munro" v="no"/>
+			<!--tag k="opengeodb(:lat|:lon)" v=".*" /-->
+			<tag k="uic_(.*)" v=".*" />
+			<tag k="uic(:.*)" v=".*" />
+		</match>
+		<output>
+			<copy-unmatched/>
+		</output>
+	</translation>	
+
+
+	<!-- Cleanup silly Monster-Relations -->
+	<translation>
+		<name>remove silly monster relations</name>
+		<description>remove silly monster relations</description>
+		<match type="relation" mode="and">
+			<tag k="type" v="multipolygon"/>
+			<match mode="or">
+				<tag k="place" v="sea"/>
+				<tag k="dummy" v="here"/>
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="cleaned_by" v="kech61"/>
+		</output>
+	</translation>		
+	
+
+	<!-- Cleanup for better offline search in POIs -->
+	<translation>
+		<name>move opengeodb:*  to OSM tags</name>
+		<description>move opengeodb:*  to OSM tags</description>
+		<match type="any" mode="and">
+			<tag k="place" match_id="_place" v="(.*)"/>
+			<match mode="or">
+				<tag k="openGeoDB:population" match_id="_population" v="(.*)"/>
+				<tag k="openGeoDB:postal_codes" match_id="_valplz" v="(.*)"/>	
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="population" from_match="_population" v="{1}"/>
+			<tag k="postal_code" v="{1}" from_match="_valplz" />
+			<tag k="place" from_match="_place" v="{1}"/>			
+		</output>
+	</translation>		
+
+	<translation>
+		<name>del all other opengeodb</name>
+		<description>del all other opengeodb</description>
+		<match>
+			<tag k="openGeoDB(.*)" v=".*" />
+		</match>
+		<output>
+			<copy-unmatched/>
+		</output>
+	</translation>	
+
+
+	<!-- clear ele data -->
+	<translation>
+		<name>clear ele tags from misstagging, reduce to full meters (for POIS) </name>
+		<description>clear ele tags from misstagging, reduce to full meters DOES NOT CATCH ELE with ".|," as thousand seperator</description>
+		<match mode="or" type="node">
+			<tag k="ele" v="(^[0-9]*)(.*)" match_id="ele"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="ele" from_match="ele" v="{1}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>set peak_dist to at least pd_2 if munro=yes </name>
+		<description>set peak_dist to at least pd_2 if munro=yes</description>
+		<match type="node" mode="and">
+			<tag k="natural" v="peak|volcano"/>
+			<tag k="peak_dist" v="pd_3|pd_4|pd_5"/>
+			<tag k="munro" v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="peak_dist" v="pd_2"/>
+		</output>
+	</translation>
+
+
+	<!--translation>
+		<name>clear peaks from add. tags </name>
+		<description>clear ele tags </description>
+		<match type="node" mode="and">
+			<tag k="natural" v="peak"/>
+			<match mode="or">
+				<tag k="place" v="locality"/>
+				<tag k="man_made" v="survey_point"/>
+				<tag k="tourism" v="viewpoint"/>
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="natural" v="peak"/>
+		</output>
+	</translation-->
+
+	<translation>
+		<name>unify summit cross </name>
+		<description>.</description>
+		<match type="node" mode="and">
+			<tag k="natural" v="peak"/>
+			<match type="node" mode="or">
+				<tag k="man_made" v="cross"/>
+				<tag k="man_made" v="summit_cross"/>
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="natural" v="peak"/>
+			<tag k="summit:cross" v="yes"/>
+		</output>
+	</translation>	
+
+
+
+	<!-- Abandoned YEAHH we have a new tag combination in the Sandbox -->
+	<!-- 20170907 -->
+	<translation>
+		<name>bring abandoned landuses like quarrys and cemetrys back to map</name>
+		<description>bring abandoned landuses like quarrys and cemetrys back to map</description>
+		<match type="way">
+			<tag k="abandoned:landuse" v="(.*)" match_id="aban_landuse"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="landuse" from_match="aban_landuse" v="{1}"/>
+			<tag k="abandoned" v="yes"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>bring disused buildings back to map</name>
+		<description>bring disused buildings back to map</description>
+		<match type="way">
+			<tag k="disused:building" v=".*" />
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="building" v="yes"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>Adjust tunnel Layers</name>
+		<description>Adjust tunnel Layers</description>
+		<match type="way" mode="or">
+			<match>
+				<tag k="highway" v=".*"/>
+				<tag k="tunnel" v="yes"/>
+				<!--tag k="layer" v=".*"/-->
+			</match>
+			<match>
+				<tag k="railway" v=".*"/>
+				<tag k="tunnel" v="yes"/>
+				<!--tag k="layer" v=".*"/-->
+			</match>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="layer" v="2"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>unify mtb_scale</name>
+		<description>unify mtb_scale</description>
+		<match mode="or" type="way">
+			<tag k="mtb:scale" match_id="mtbs0" v="0|-0|0-|\+0|0\+"/>		
+			<tag k="mtb:scale" match_id="mtbs1" v="1|-1|1-|\+1|1\+"/>
+			<tag k="mtb:scale" match_id="mtbs2" v="2|-2|2-|\+2|2\+"/>
+			<tag k="mtb:scale" match_id="mtbs3" v="3|-3|3-|\+3|3\+"/>
+			<tag k="mtb:scale" match_id="mtbs4" v="4|-4|4-|\+4|4\+"/>
+			<tag k="mtb:scale" match_id="mtbs5" v="5|-5|5-|\+5|5\+"/>
+			<tag k="mtb:scale" match_id="mtbs6" v="6|-6|6-|\+6|6\+"/>			
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="mtb_scale" from_match="mtbs0" v="mtbs_0"/>
+			<tag k="mtb_scale" from_match="mtbs1" v="mtbs_1"/>
+			<tag k="mtb_scale" from_match="mtbs2" v="mtbs_2"/>
+			<tag k="mtb_scale" from_match="mtbs3" v="mtbs_3"/>
+			<tag k="mtb_scale" from_match="mtbs4" v="mtbs_4"/>
+			<tag k="mtb_scale" from_match="mtbs5" v="mtbs_5"/>
+			<tag k="mtb_scale" from_match="mtbs6" v="mtbs_6"/>			
+		</output>
+	</translation>
+
+	<translation>
+		<name>unify mtb_scale_uphill</name>
+		<description>unify mtb_scale_uphill</description>
+		<match mode="or" type="way">
+			<tag k="mtb:scale:uphill" match_id="mtbu0" v="0|-0|0-|\+0|0\+"/>		
+			<tag k="mtb:scale:uphill" match_id="mtbu1" v="1|-1|1-|\+1|1\+"/>
+			<tag k="mtb:scale:uphill" match_id="mtbu2" v="2|-2|2-|\+2|2\+"/>
+			<tag k="mtb:scale:uphill" match_id="mtbu3" v="3|-3|3-|\+3|3\+"/>
+			<tag k="mtb:scale:uphill" match_id="mtbu4" v="4|-4|4-|\+4|4\+"/>
+			<tag k="mtb:scale:uphill" match_id="mtbu5" v="5|-5|5-|\+5|5\+"/>
+			<tag k="mtb:scale:uphill" match_id="mtbu6" v="6|-6|6-|\+6|6\+"/>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="mtb_scale_uphill" from_match="mtbu0" v="mtbu_0"/>
+			<tag k="mtb_scale_uphill" from_match="mtbu1" v="mtbu_1"/>
+			<tag k="mtb_scale_uphill" from_match="mtbu2" v="mtbu_2"/>
+			<tag k="mtb_scale_uphill" from_match="mtbu3" v="mtbu_3"/>
+			<tag k="mtb_scale_uphill" from_match="mtbu4" v="mtbu_4"/>
+			<tag k="mtb_scale_uphill" from_match="mtbu5" v="mtbu_5"/>
+			<tag k="mtb_scale_uphill" from_match="mtbu6" v="mtbu_6"/>			
+		</output>
+	</translation>
+
+	<translation>
+		<name>dav to sac</name>
+		<description>dav blue=T2 red=T3 black=T4 only if there is no sac_scale</description>
+		<match>
+			<match mode="or" type="way">
+				<tag k="dav_scale" match_id="T1" v="T1|yellow"/>
+				<tag k="dav_scale" match_id="T2" v="T2|blue"/>
+				<tag k="dav_scale" match_id="T3" v="red"/>
+				<tag k="dav_scale" match_id="T4" v="black"/>
+			</match>
+			<notag k="sac_scale" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="sac_scale" from_match="T1" v="T1"/>
+			<tag k="sac_scale" from_match="T2" v="T2"/>
+			<tag k="sac_scale" from_match="T3" v="T3"/>
+			<tag k="sac_scale" from_match="T4" v="T5"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>unify sac_scale</name>
+		<description>unify sac_scale</description>
+		<match mode="or" type="way">
+			<tag k="sac_scale" match_id="T1" v="T1|hiking|T1 - hiking|T1-hiking"/>
+			<tag k="sac_scale" match_id="T2" v="T2|mountain_hiking|T2-mountain_hiking"/>
+			<tag k="sac_scale" match_id="T3" v="T3|demanding_mountain_hiking"/>
+			<tag k="sac_scale" match_id="T4" v="T4|alpine_hiking"/>
+			<tag k="sac_scale" match_id="T5" v="T5|demanding_alpine_hiking"/>
+			<tag k="sac_scale" match_id="T6" v="T6|difficult_alpine_hiking"/>			
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="sac_scale" from_match="T1" v="T1"/>
+			<tag k="sac_scale" from_match="T2" v="T2"/>
+			<tag k="sac_scale" from_match="T3" v="T3"/>
+			<tag k="sac_scale" from_match="T4" v="T4"/>
+			<tag k="sac_scale" from_match="T5" v="T5"/>
+			<tag k="sac_scale" from_match="T6" v="T6"/>			
+		</output>
+	</translation>
+
+	<translation>
+		<name>set via_ferrata_flag</name>
+		<description>set via_ferrata_flag </description>
+		<match mode="or" type="way">
+			<tag k="via_ferrata" v=".*"/>
+			<tag k="via_ferrata_scale" v="1-|1|1\+|2-|2|2\+|3-|3|3\+|4-|4|4\+|5-|5|5\+|6-|6|6\+"/>
+			<tag k="sport" v="via_ferrata"/>
+			<tag k="highway" v="via_ferrata"/>
+		</match>
+		<output>
+			<copy-all/>
+			<!--tag k="highway" v="path"/>
+			<tag k="mtb_scale" v="mtbs_6"/>
+			<tag k="sac_scale" v="T6"/-->
+			<tag k="via_ferrata_flag" v="set"/>
+		</output>
+	</translation>	
+
+
+	<translation>
+		<name>Filter Cycle+Hike Nodes</name>
+		<description>Filter Cycle+Hike Nodes allowed is 1*A-Z and Numbers, remove all other tags from nodes</description>
+		<match mode="or" type="node">
+			<tag k="rwn_ref" match_id="h_node" v="(^[A-Z,a-z,0-9]{1,3})"/>
+			<tag k="rcn_ref" match_id="c_node" v="(^[A-Z,a-z,0-9]{1,3})"/>
+		</match>
+		<output>
+			<copy-matched/>
+			<tag k="hike_node" from_match="h_node" v="rwn"/>
+			<tag k="cycle_node" from_match="c_node" v="NLBE"/>
+			<tag k="name" from_match="h_node" v="{1}"/>
+			<tag k="addr:housenumber" from_match="h_node" v="{1}"/>
+			<tag k="name" from_match="c_node" v="{1}"/>
+			<tag k="layer" v="2"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>remove ladders from hunting_stands, these ladders are intend for use with hiking/climbin routes</name>
+		<description>remove ladders from hunting_stands, these ladders are intend for use with hiking/climbin routes</description>
+		<match type="node" mode="and">
+			<tag k="amenity" v="hunting_stand"/>
+			<tag k="ladder" v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="ladder" v="dummy"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>ladders with numeric values to yes</name>
+		<description>ladders with numeric values to yes</description>
+		<match>
+			<tag k="ladder" v="(^[1-9].*)"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="ladder" v="yes"/>
+		</output>
+	</translation>
+	<translation>
+		<name>ropes with numeric values to yes</name>
+		<description>ropes with numeric values to yes</description>
+		<match>
+			<tag k="safety_rope" v="(^[1-9].*)"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="safety_rope" v="yes"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>rungs with numeric values to yes</name>
+		<description>runges with numeric values to yes</description>
+		<match>
+			<tag k="rungs" v="(^[1-9].*)"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="rungs" v="yes"/>
+		</output>
+	</translation>		
+
+
+	<translation>
+		<name>remove area=yes from campsites</name>
+		<description>remove area=yes from campsites</description>
+		<match type="way" mode="and">
+			<tag k="area" v="yes"/>
+			<tag k="tourism" v="camp_site"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="tourism" v="camp_site"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>Transform Towers</name>
+		<description>Mapsforge cannot rendert tower:type for some reasons so we have to transform into tower=tower:type, Tower without a type stay untouched</description>
+		<match mode="or">
+			<tag k="tower:type" match_id="type" v="(.*)"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="tower" from_match="type" v="{1}"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>Transform man_made=communications_tower to tower=communication</name>
+		<description>Transform man_made=communications_tower to tower=communication</description>
+		<match mode="or">
+			<tag k="man_made" v="communications_tower"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="tower" v="communication"/>
+		</output>
+	</translation>	
+
+
+	<translation>
+		<name>filter out trees with denotation=landmark|natural_monument, create intermediate tag</name>
+		<description>filter trees</description>
+		<match type="node" mode="and">
+			<tag k="natural" v="tree"/>
+			<match type="node" mode="or">
+				<tag k="denotation" v="natural_monument|landmark"/>
+				<tag k="name" v=".*"/>		
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="natural" v="tree_m"/>
+		</output>
+	</translation>
+	<translation>
+		<name>delete trees without denotation=landmark|natural_monument</name>
+		<description>filter trees</description>
+		<match type="node">
+			<tag k="natural" v="tree"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+		</output>		
+	</translation>
+	<translation>
+		<name>rename trees with denotation=landmark|natural_monument back to tree to ensure compatibility</name>
+		<description>filter trees</description>
+		<match type="node">
+			<tag k="natural" v="tree_m"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="natural" v="tree"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>motorway_junctions ref2name</name>
+		<description>mapsforge doesnt address "ref" so ref is transformed to "addr:housenumber"</description>
+		<match mode="and" type="node">
+			<tag k="highway" v="motorway_junction"/>
+			<tag k="ref" match_id="j_ref" v="(^[a-zA-Z0-9]{1,3})"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="highway" v="motorway_junction"/>
+			<tag k="addr:housenumber" from_match="j_ref" v="{1}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>eliminate motorway_junctions without ref-tag</name>
+		<description>eliminate motorway_junctions without ref-tag</description>
+		<match>
+			<match type="node">
+				<tag k="highway" v="motorway_junction"/>
+			</match>
+			<notag k="ref" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="highway" v="motorway_junction_noref"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>amenity=swimming_pool zu leisure</name>
+		<description>amenity=swimming_pool zu leisure</description>
+		<match>
+			<tag k="amenity" v="swimming_pool"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="leisure" v="swimming_pool"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>landuse=wood to natural=wood</name>
+		<description>landuse=wood to natural=wood</description>
+		<match>
+			<tag k="landuse" v="wood"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="natural" v="wood"/>
+		</output>
+	</translation>
+
+	<!--translation>
+		<name>retagging winter_room=yes to winter_room=wr_yes to work around CommonValueBug</name>
+		<description>retagging winter_room=yes to winter_room=wr_yes</description>
+		<match>
+			<tag k="winter_room" v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="winter_room" v="wr_yes"/>
+		</output>
+	</translation-->
+
+	<translation>
+		<name>set incline up</name>
+		<description>first char have to be numeric for incline up</description>
+		<match mode="or" type="way">
+			<tag k="incline" v="(^[1-9].*|up)"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="incline_dir" v="up"/>
+		</output>
+	</translation>		
+
+	<translation>
+		<name>set incline down</name>
+		<description>first char have to be - for incline down</description>
+		<match mode="or" type="way">
+			<tag k="incline" v="(^[\-][1-9].*|down)"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="incline_dir" v="down"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>remove landuses from highways</name>
+		<description>remove landuses from highways</description>
+		<match mode="and" type="way">
+			<tag k="highway" v=".*"/>
+			<tag k="landuse" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="landuse" v="delete_me"/>
+		</output>
+	</translation>
+
+	<!--translation>
+		<name>unify and retag class:bicycle</name>
+		<description>unify and retag class:bicycle for road use</description>
+		<match mode="or" type="way">
+			<tag k="class:bicycle" match_id="cbrm3" v="-3"/>
+			<tag k="class:bicycle" match_id="cbrm2" v="-2"/>
+			<tag k="class:bicycle" match_id="cbrm1" v="-1"/>
+			<tag k="class:bicycle" match_id="cbrp0" v="-0|0|\+0"/>
+			<tag k="class:bicycle" match_id="cbrp1" v="1|\+1"/>			
+			<tag k="class:bicycle" match_id="cbrp2" v="2|\+2"/>			
+			<tag k="class:bicycle" match_id="cbrp3" v="3|\+3"/>		
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="class_bicycle_road" from_match="cbrm3" v="cbr-3"/>
+			<tag k="class_bicycle_road" from_match="cbrm2" v="cbr-2"/>
+			<tag k="class_bicycle_road" from_match="cbrm1" v="cbr-1"/>			
+			<tag k="class_bicycle_road" from_match="cbrp0" v="cbr+0"/>			
+			<tag k="class_bicycle_road" from_match="cbrp1" v="cbr+1"/>			
+			<tag k="class_bicycle_road" from_match="cbrp2" v="cbr+2"/>	
+			<tag k="class_bicycle_road" from_match="cbrp3" v="cbr+3"/>			
+		</output>
+	</translation-->	
+
+	<!--translation>
+		<name>unify and retag class:bicycle:*</name>
+		<description>unify and retag class:bicycle:* for road use</description>
+		<match>
+			<match mode="or" type="way">
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrm3" v="-3"/>
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrm2" v="-2"/>
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrm1" v="-1"/>
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrp0" v="-0|0|\+0"/>
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrp1" v="1|\+1"/>			
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrp2" v="2|\+2"/>			
+				<tag k="class:bicycle:(roadcycling|roadbike|touring|commute)" match_id="cbrp3" v="3|\+3"/>		
+			</match>
+			<notag k="class_bicycle_road" v=".*"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="class_bicycle_road" from_match="cbrm3" v="cbr-3"/>
+			<tag k="class_bicycle_road" from_match="cbrm2" v="cbr-2"/>
+			<tag k="class_bicycle_road" from_match="cbrm1" v="cbr-1"/>			
+			<tag k="class_bicycle_road" from_match="cbrp0" v="cbr+0"/>			
+			<tag k="class_bicycle_road" from_match="cbrp1" v="cbr+1"/>			
+			<tag k="class_bicycle_road" from_match="cbrp2" v="cbr+2"/>	
+			<tag k="class_bicycle_road" from_match="cbrp3" v="cbr+3"/>			
+		</output>
+	</translation-->	
+
+	<!--translation>
+		<name>unify and retag class:bicycle:mtb</name>
+		<description>unify and retag class:bicycle for road use</description>
+		<match mode="or" type="way">
+			<tag k="class:bicycle:mtb" match_id="cbmm3" v="-3"/>
+			<tag k="class:bicycle:mtb" match_id="cbmm2" v="-2"/>
+			<tag k="class:bicycle:mtb" match_id="cbmm1" v="-1"/>
+			<tag k="class:bicycle:mtb" match_id="cbmp0" v="-0|0|\+0"/>
+			<tag k="class:bicycle:mtb" match_id="cbmp1" v="1|\+1"/>			
+			<tag k="class:bicycle:mtb" match_id="cbmp2" v="2|\+2"/>			
+			<tag k="class:bicycle:mtb" match_id="cbmp3" v="3|\+3"/>		
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="class_bicycle_mtb" from_match="cbmm3" v="cbmtb-3"/>
+			<tag k="class_bicycle_mtb" from_match="cbmm2" v="cbmtb-2"/>
+			<tag k="class_bicycle_mtb" from_match="cbmm1" v="cbmtb-1"/>			
+			<tag k="class_bicycle_mtb" from_match="cbmp0" v="cbmtb+0"/>			
+			<tag k="class_bicycle_mtb" from_match="cbmp1" v="cbmtb+1"/>			
+			<tag k="class_bicycle_mtb" from_match="cbmp2" v="cbmtb+2"/>	
+			<tag k="class_bicycle_mtb" from_match="cbmp3" v="cbmtb+3"/>			
+		</output>
+	</translation-->	
+
+	<translation>
+		<name>unify cycleways to network=hcw (previously done by perl a script) 112014 kech61</name>
+		<description>unify cycleways to network=hcw (previously done by perl a script) 112014 kech61</description>
+		<match mode="or" type="way">
+			<tag k="highway" v="cycleway"/>
+			<tag k="bicycle" v="designated|official"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="network" v="hcw"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>unify cycleways to network=hcw (previously done by perl a script) 112014 kech61</name>
+		<description>unify cycleways to network=hcw (previously done by perl a script) 112014 kech61</description>
+		<match mode="and" type="way">
+			<tag k="highway" v="footway|path"/>
+			<tag k="bicycle" v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="network" v="hcw"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>remove network=hcw from Mountain paths</name>
+		<description>remove network=hcw from Mountain paths</description>
+		<match mode="and">
+			<match mode="and" type="way">
+				<tag k="network" v="hcw"/>
+				<tag k="highway" v="footway|path"/>
+			</match>
+			<match mode="or">
+				<tag k="sac_scale" v=".*"/>
+				<tag k="mtb_scale" v=".*"/>
+				<tag k="sac:scale" v=".*"/>
+				<tag k="mtb:scale" v=".*"/>
+				<tag k="mtb_scale_uphill" v=".*"/>
+				<tag k="trail_visibility" v="intermediate|bad|horrible|no" />
+				<tag k="surface" v="bad|raw|ground|dirt|grass|sand|wood|earth|mud|clay|winter|ice|snow" />
+			</match>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="network" v="dummy"/>
+		</output>
+	</translation>	
+
+
+	<translation>
+		<name>add old pseudo relations to approbriate network </name>
+		<description>add old pseudo relations to approbriate network </description>
+		<match mode="or" type="way">
+			<tag k="(icn)" v="yes"/>
+		</match>
+		<find>
+			<tag k="(.?)cn_ref" v="^[A-Z,a-z,0-9]{1,6}" match_id="ref"/>
+		</find>
+		<output>
+			<copy-all/>
+			<tag from_match="ref" k="ref"/>
+			<tag k="network" v="icn"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>add old pseudo relations to approbriate network </name>
+		<description>add old pseudo relations to approbriate network </description>
+		<match mode="or" type="way">
+			<tag k="(ncn)" v="yes"/>
+		</match>
+		<find>
+			<tag k="(.?)cn_ref" v="^[A-Z,a-z,0-9]{1,6}" match_id="ref"/>
+		</find>
+		<output>
+			<copy-all/>
+			<tag from_match="ref" k="ref"/>
+			<tag k="network" v="ncn"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>add old pseudo relations to approbriate network </name>
+		<description>add old pseudo relations to approbriate network </description>
+		<match mode="or" type="way">
+			<tag k="(rcn)" v="yes"/>
+		</match>
+		<find>
+			<tag k="(.?)cn_ref" v="^[A-Z,a-z,0-9]{1,6}" match_id="ref"/>
+		</find>
+		<output>
+			<copy-all/>
+			<tag from_match="ref" k="ref"/>
+			<tag k="network" v="rcn"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>add old pseudo relations to approbriate network </name>
+		<description>add old pseudo relations to approbriate network </description>
+		<match mode="or" type="way">
+			<tag k="(lcn)" v="yes"/>
+		</match>
+		<find>
+			<tag k="(.?)cn_ref" v="^[A-Z,a-z,0-9]{1,6}" match_id="ref"/>
+		</find>
+		<output>
+			<copy-all/>
+			<tag from_match="ref" k="ref"/>
+			<tag k="network" v="lcn"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>emergency_access_point ref2name</name>
+		<description>mapsforge doesnt address "ref" so ref is transformed to "addr:housenumber"</description>
+		<match mode="and" type="node">
+			<tag k="highway" v="emergency_access_point"/>
+			<tag k="ref" match_id="eap_ref" v="(.*)"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="highway" v="emergency_access_point"/>
+			<tag k="addr:housenumber" from_match="eap_ref" v="{1}"/>
+		</output>
+	</translation>	
+
+	<!--translation>
+		<name>access only with permit</name>
+		<description>access only with permit</description>
+		<match mode="or" >
+			<tag k="access" v="permit|license|fee|toll"/>
+			<tag k="foot" v="permit|license|fee|toll"/>			
+			<tag k="bicycle" v="permit|license|fee|toll"/>		
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="access" v="permit"/>
+		</output>
+	</translation-->	
+
+	<translation>
+		<name>vehicle no|private 2 bicycle</name>
+		<description>vehicle no|private 2 bicycle</description>
+		<match>
+			<match mode="or" >
+				<tag k="vehicle" match_id="v2b" v="(.*)"/>
+			</match>
+			<notag k="bicycle" v=".*"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="bicycle" from_match="v2b" v="{1}"/>
+		</output>
+	</translation>	
+
+
+	<translation>
+		<name>railway=station and subway=yes 2 station=subway</name>
+		<description>railway=station and subway=yes 2 station=subway</description>
+		<match mode="and">
+			<tag k="railway" v="station"/>
+			<tag k="subway"  v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="station" v="subway"/>
+		</output>
+	</translation>	
+
+
+
+	<translation>
+		<name>national parks type=boundary to type=multipolygon</name>
+		<description>national parks to multipolygons</description>
+		<match type="relation" mode="and">
+			<match mode="or" type="relation">
+				<tag k="boundary" v="national_park"/>
+				<tag k="boundary" v="protected_area"/>
+				<tag k="boundary" v="nature_reserve"/>
+				<tag k="boundary" v="aboriginal_lands"/>				
+				<tag k="leisure" v="national_park"/>
+				<tag k="leisure" v="nature_reserve"/>
+			</match>
+			<match mode="or" type="relation">
+				<tag k="type"  v="boundary"/>
+			</match>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="type" v="multipolygon"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>Administrative borders to multipolygon to force resolving of these rekations in Mapsforge</name>
+		<description>Administrative borders to multipolygon to force resolving of these rekations in Mapsforge</description>
+		<match>
+		<match mode="and" type="relation">
+			<tag k="type" v="boundary"/>
+			<tag k="admin_level" v="1|2"/>
+			<tag k="boundary" v="administrative"/>
+		</match>
+		<notag k="place" v="island|islet|archipelago"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="layer" v="1"/>
+			<tag k="type" v="multipolygon"/>
+			<tag k="area" v="no"/>
+		</output>
+	</translation>
+
+
+	<translation>
+		<name>Transform memorial:type=.* to memorial=.*</name>
+		<description>Transform memorial:type=.* to memorial=.*</description>
+		<match mode="or">
+			<tag k="memorial:type" match_id="mem_type" v="(.*)"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="memorial" from_match="mem_type" v="{1}"/>
+		</output>
+	</translation>		
+
+	<translation>
+		<name>unify moutain_area</name>
+		<description>unify moutain_area</description>
+		<match mode="and">
+			<tag k="region:type" v="mountain_area"/>
+			<tag k="place" v="region"/>			
+		</match>		
+		<output>
+			<copy-all/>
+			<tag k="natural" v="mountain_area"/>
+		</output>
+	</translation>		
+	<translation>
+		<name>unify moutain_range</name>
+		<description>unify moutain_range</description>
+		<match mode="and">
+			<tag k="region:type" v="mountain_range"/>
+			<tag k="place" v="region"/>			
+		</match>		
+		<output>
+			<copy-all/>
+			<tag k="natural" v="mountain_range"/>
+		</output>
+	</translation>			
+
+
+
+
+
+
+
+	<!-- cycleway lanes/tracks -->
+	<translation>
+		<name>unify oneway:bicycle=no and transfor to oneway:bicycle=ow_bic_no</name>
+		<description>unify oneway:bicycle=no</description>
+		<match type="way" mode="and">
+			<match mode="or" type="way">
+				<tag k="oneway" v="yes"/>
+			</match>	
+			<match mode="or" type="way">
+				<tag k="cycleway" v="opposite"/>
+				<tag k="cycleway" v="opposite_track"/>
+				<tag k="cycleway" v="opposite_lane"/>
+				<tag k="cycleway(:left|:right)" v="opposite_track"/>
+				<tag k="cycleway(:left|:right)" v="opposite_lane"/>
+				<tag k="oneway:bicycle" v="no"/>
+			</match>
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="oneway:bicycle" v="ow_bic_no"/>
+		</output>
+	</translation>	
+
+
+	<translation>
+		<name>unify cycleway:.*:oneway=no and transfor to cycleway:oneway=cw_ow_no</name>
+		<description>unify cycleway:.*:oneway=no</description>
+		<match type="way" mode="or">
+			<tag k="cycleway:oneway" v="no"/>
+			<tag k="cycleway:left:oneway" v="no"/>
+			<tag k="cycleway:right:oneway" v="no"/>
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="cycleway:oneway" v="cw_ow_no"/>
+		</output>
+	</translation>	
+
+
+
+	<!-- handle cycle lanes and tracks on oneway=yes -->
+	<!-- oneway=yes and oneway:bicycle=no will still result in cw_lane_both -->
+	<!-- oneway=yes w/o oneway:bicycle=no will result in cw_lane_oneway/cw_track_oneway = NEW TAGS -->
+
+	<translation>
+		<name>cycleway lanes oneway</name>
+		<description>cycleway lanes oneway</description>
+		<match mode="and" type="way">
+			<tag k="cycleway" v="lane"/>
+			<tag k="oneway" v="yes"/>
+		</match>			
+		<notag k="oneway:bicycle" v="ow_bic_no"/>
+		<output>
+			<copy-all/>
+			<tag k="cycleway" v="dummy"/>
+			<tag k="cycleway_lane" v="cw_lane_oneway"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway tracks oneway</name>
+		<description>cycleway tracks oneway</description>
+		<match mode="and" type="way">
+			<tag k="cycleway" v="track"/>
+			<tag k="oneway" v="yes"/>
+		</match>			
+		<notag k="oneway:bicycle" v="ow_bic_no"/>
+		<output>
+			<copy-all/>
+			<tag k="cycleway" v="dummy"/>			
+			<tag k="cycleway_track" v="cw_track_oneway"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway lanes oneway</name>
+		<description>cycleway lanes oneway</description>
+		<match mode="and" type="way">
+			<tag k="cycleway" v="lane"/>
+			<tag k="oneway" v="-1"/>
+		</match>			
+		<notag k="oneway:bicycle" v="ow_bic_no"/>
+		<output>
+			<copy-all/>
+			<tag k="cycleway" v="dummy"/>
+			<tag k="cycleway_lane" v="cw_lane_oneway_rev"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway tracks oneway</name>
+		<description>cycleway tracks oneway</description>
+		<match mode="and" type="way">
+			<tag k="cycleway" v="track"/>
+			<tag k="oneway" v="-1"/>
+		</match>			
+		<notag k="oneway:bicycle" v="ow_bic_no"/>
+		<output>
+			<copy-all/>
+			<tag k="cycleway" v="dummy"/>	
+			<tag k="cycleway_track" v="cw_track_oneway_rev"/>
+		</output>
+	</translation>	
+
+
+
+	<translation>
+		<name>cycleway lanes</name>
+		<description>cycleway lanes</description>
+		<match mode="or" type="way">
+			<match mode="and" type="way">
+				<tag k="cycleway:left" v="lane"/>
+				<tag k="cycleway:right" v="lane"/>
+			</match>			
+			<match mode="and" type="way">
+				<tag k="cycleway:left" v="opposite_lane"/>
+				<tag k="cycleway:right" v="opposite_lane"/>
+			</match>			
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="cycleway_lane" v="cw_lane_both"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway tracks</name>
+		<description>cycleway lanes</description>
+		<match mode="or" type="way">
+			<match mode="and" type="way">
+				<tag k="cycleway:left" v="track"/>
+				<tag k="cycleway:right" v="track"/>
+			</match>
+			<match mode="and" type="way">
+				<tag k="cycleway:left" v="opposite_track"/>
+				<tag k="cycleway:right" v="opposite_track"/>
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="cycleway_track" v="cw_track_both"/>
+		</output>
+	</translation>			
+
+	<translation>
+		<name>cycleway lanes</name>
+		<description>cycleway lanes</description>
+		<match type="way">
+			<tag k="cycleway" v="lane"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="cycleway_lane" v="cw_lane_both"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway lanes</name>
+		<description>cycleway lanes</description>
+		<match type="way">
+			<tag k="cycleway:right" v="lane"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="cycleway_lane" v="cw_lane_right"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway lanes</name>
+		<description>cycleway lanes</description>
+		<match type="way">
+			<tag k="cycleway:left" v="lane"/>
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="cycleway_lane" v="cw_lane_left"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway tracks</name>
+		<description>cycleway tracks</description>
+		<match type="way">
+			<tag k="cycleway" v="track"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="cycleway_track" v="cw_track_both"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway tracks</name>
+		<description>cycleway tracks</description>
+		<match type="way">
+			<tag k="cycleway:right" v="track"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="cycleway_track" v="cw_track_right"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>cycleway tracks</name>
+		<description>cycleway tracks</description>
+		<match type="way">
+			<tag k="cycleway:left" v="track"/>
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="cycleway_track" v="cw_track_left"/>
+		</output>
+	</translation>	
+
+
+
+	<translation>
+		<name>unify highway=bus_stop</name>
+		<description>unify highway=bus_stop</description>
+		<match mode="and" type="node">
+			<tag k="public_transport"  v="stop_position"/>
+			<tag k="bus" v="yes"/>				
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="highway" v="bus_stop"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>rename leisure=track to leisure=ls_track doe to common value bug</name>
+		<description>leisure=track to leisure=ls_track</description>
+		<match type="way">
+			<tag k="leisure" v="track"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="leisure" v="ls_track"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>unify natural/place for labels</name>
+		<description>unify natural/place for labels</description>
+		<match>
+			<tag k="place" match_id="_val" v="bay|cape|fjord|canyon|crater|peninsula|valley"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="natural" from_match="_val" v="{1}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>unify natural/place for labels</name>
+		<description>unify natural/place for labels</description>
+		<match>
+			<tag k="natural" match_id="_val" v="ocean|sea|archipelago"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="place" from_match="_val" v="{1}"/>
+		</output>
+	</translation>
+
+	<!-- springs -->
+
+	<translation>
+		<name>seperate spring  / hot_spring </name>
+		<description>seperate spring  / hot_spring</description>
+		<match mode="and">
+			<match>
+				<tag k="natural" v="spring"/>
+			</match>
+			<match mode="or">
+				<tag k="spring:type" v="hot"/>
+				<tag k="temperature" v="hot"/>				
+				<tag k="spring" v="hot_spring"/>
+				<tag k="type" v="hot"/>			
+				<tag k="hot_spring" v="yes"/>			
+				<tag k="type" v="hot_water"/>					
+			</match>			
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="natural" v="hot_spring"/>
+		</output>
+	</translation>	
+
+	<translation>
+		<name>retag leisure=hot_spring  / natural=hot_spring </name>
+		<description>retag leisure=hot_spring  / natural=hot_spring</description>
+		<match>
+			<tag k="leisure" v="hot_spring"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="natural" v="hot_spring"/>
+		</output>
+	</translation>	
+
+
+	<translation>
+		<name>natural=cairn, historic=cairn, landmark=cairn to man_made=cairn</name>
+		<description>natural=cairn, man_made=cairn, landmark=cairn to man_made=cairn</description>
+		<match mode="or">
+			<tag k="natural" v="cairn"/>
+			<tag k="landmark" v="cairn"/>
+			<tag k="historic" v="cairn"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="man_made" v="cairn"/>
+		</output>
+	</translation>	
+
+	<!-- mines and bunkers -->
+	<!-- mines == man_made=adit -->
+	<translation>
+		<name>check abandoned and disused mines/adit</name>
+		<description>check abandoned and disused mines/adit</description>
+		<match mode="and">
+			<match>		
+				<tag k="man_made" v="adit"/>
+			</match>
+			<match mode="or">
+				<tag k="abandoned" v="yes"/>
+				<tag k="historic" v="yes"/>
+				<tag k="ruins" v="yes"/>
+				<tag k="disused" v="yes"/>
+				<tag k="historic" v="ruins"/>			
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="man_made" v="adit_disused"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>check abandoned and disused mines/adit</name>
+		<description>check abandoned and disused mines/adit</description>
+		<match mode="or">
+			<tag k="abandoned:man_made" v="adit"/>
+			<tag k="disused:man_made" v="adit"/>
+			<tag k="historic:man_made" v="adit"/>	
+			<tag k="historic" v="adit"/>		
+			<tag k="historic" v="mine_adit"/>				
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="man_made" v="adit_disused"/>
+		</output>
+	</translation>		
+	<!-- Bunkers -->
+	<translation>
+		<name>check abandoned and disused for military = bunker</name>
+		<description>check abandoned and disused for military = bunker</description>
+		<match mode="and">
+			<match>		
+				<tag k="military" v="bunker"/>
+			</match>
+			<match mode="or">
+				<tag k="abandoned" v="yes"/>
+				<tag k="historic" v="yes"/>
+				<tag k="ruins" v="yes"/>
+				<tag k="disused" v="yes"/>
+				<tag k="historic" v="ruins"/>			
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="military" v="bunker_disused"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>check abandoned and disused for military = bunker</name>
+		<description>check abandoned and disused for military = bunker</description>
+		<match mode="or">
+			<tag k="abandoned:building" v="bunker"/>
+			<tag k="abandoned:military" v="bunker"/>
+			<tag k="disused:military" v="bunker"/>
+			<tag k="historic" v="bunker"/>			
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="military" v="bunker_disused"/>
+		</output>
+	</translation>	
+
+	<!--translation>
+		<name>add bboxweight=tiny to ponds and other tiny water_areas</name>
+		<description>add bboxweight=tiny </description>
+		<match mode="and">
+			<match mode="or">
+				<tag k="natural" v="water"/>
+				<tag k="landuse" v="reservoir"/>
+				<tag k="landuse" v="basin"/>				
+			</match>
+			<match mode="or">
+				<tag k="emergency" v="fire_water_pond"/>
+				<tag k="fire_hydrant:type" v="pond"/>				
+				<tag k="water" v="pond"/>	
+				<tag k="water" v="fish_pass"/>	
+				<tag k="water" v="lock"/>
+				<tag k="water" v="moat"/>
+			</match>			
+		</match>			
+		<output>
+			<copy-all/>
+			<tag k="bBoxWeight" v="tiny"/>
+		</output>
+	</translation-->	
+
+	<!-- English abr. -->
+	<translation>
+		<name>one string name abreviation [en]</name>
+		<description>one string name abreviation [en]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(.*)( W)est$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)( W)est$"/>
+				<tag k="name" match_id="_name" v="(.*)( S)outh$"/>	
+				<tag k="name:en" match_id="_name_lang" v="(.*)( S)outh$"/>	
+				<tag k="name" match_id="_name" v="(.*)( N)orth$"/>	
+				<tag k="name:en" match_id="_name_lang" v="(.*)( N)orth$"/>	
+				<tag k="name" match_id="_name" v="(.*)( E)ast$"/>	
+				<tag k="name:en" match_id="_name_lang" v="(.*)( E)ast$"/>	
+				<tag k="name" match_id="_name" v="(.*)([s|S]t)reet$"/>				
+				<tag k="name:en" match_id="_name_lang" v="(.*)([s|S]t)reet$"/>	
+				<tag k="name" match_id="_name" v="(.*)(Sq)uare$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(Sq)uare$"/>
+				<tag k="name" match_id="_name" v="(.*)(Dr)ive$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(Dr)ive$"/>
+				<tag k="name" match_id="_name" v="(.*)(Cl)ose$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(Cl)ose$"/>	
+				<tag k="name" match_id="_name" v="(.*)(Av)enue$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(Av)enue$"/>	
+				<tag k="name" match_id="_name" v="(.*)(Pl)ace$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(Pl)ace$"/>					
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}"/>
+			<tag k="name:en" from_match="_name_lang" v="{1}{2}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>two string name abreviation [en]</name>
+		<description>two string name abreviation [en]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(.*)(R)oa(d)$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(R)oa(d)$"/>
+				<tag k="name" match_id="_name" v="(.*)(C)our(t)$"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(C)our(t)$"/>				
+				<tag k="name" match_id="_name" v="(.*)(L)a(n)e$"/>	
+				<tag k="name:en" match_id="_name_lang" v="(.*)(L)a(n)e$"/>	
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}{3}"/>
+			<tag k="name:en" from_match="_name_lang" v="{1}{2}{3}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>three string name abreviation [en]</name>
+		<description>three string name abreviation [en]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(.*)(H)igh(w)a(y)"/>
+				<tag k="name:en" match_id="_name_lang" v="(.*)(H)igh(w)a(y)"/>
+				<tag k="name" match_id="_name" v="(.*)(B)oule(v)ar(d)$"/>	
+				<tag k="name:en" match_id="_name_lang" v="(.*)(B)oule(v)ar(d)$"/>	
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}{3}{4}"/>
+			<tag k="name:en" from_match="_name_lang" v="{1}{2}{3}{4}"/>
+		</output>
+	</translation>
+
+
+	<!-- German abr. -->
+	<translation>
+		<name>one string name abreviation [de]</name>
+		<description>one string name abreviation [de]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(.*)([s|S]tr)a(ss|ß)e"/>
+				<tag k="name:de" match_id="_name_lang" v="(.*)([s|S]tr)a(ss|ß)e"/>
+				<tag k="name" match_id="_name" v="(.*)(g)asse"/>
+				<tag k="name:de" match_id="_name_lang" v="(.*)(g)asse"/>
+				<tag k="name" match_id="_name" v="(.*)([p|P]l)atz"/>
+				<tag k="name:de" match_id="_name_lang" v="(.*)([p|P]l)atz"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}."/>
+			<tag k="name:de" from_match="_name_lang" v="{1}{2}."/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>one string name abreviation [de]</name>
+		<description>one string name abreviation [de]</description>
+		<match type="leisure" mode="nature_reserve">
+			<match mode="or">
+				<tag k="name" match_id="_name_nsg" v="Naturschutzgebiet(.*)"/>
+				<tag k="name" match_id="_name_np" v="Nationalpark(.*)"/>
+				<tag k="name" match_id="_name_sg" v="(.*)Schutzgebiet(.*)"/>
+			</match>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name_nsg" v="NSG{1}"/>
+			<tag k="name" from_match="_name_np" v="NP{1}"/>
+			<tag k="name" from_match="_name_sg" v="{1}SG{2}"/>
+		</output>
+	</translation>
+
+
+	<!-- Spanish abr. -->
+	<translation>
+		<name>name abreviation [es]</name>
+		<description>name abreviation [es]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="Calle (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="Calle (.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="C/{1}"/>
+			<tag k="name:es" from_match="_name_lang" v="C/{1}"/>
+		</output>
+	</translation>
+	<translation>
+		<name>name abreviation [es]</name>
+		<description>name abreviation [es]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="Carrer (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="Carrer (.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="c/{1}"/>
+			<tag k="name:es" from_match="_name_lang" v="c/{1}"/>
+		</output>
+	</translation>
+	<translation>
+		<name>name abreviation [es]</name>
+		<description>name abreviation [es]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="Carretera (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="Carretera (.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="Ctra.{1}"/>
+			<tag k="name:es" from_match="_name_lang" v="Ctra.{1}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>name abreviation [es]</name>
+		<description>name abreviation [es]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(Av)enida (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="(Av)enida (.*)"/>
+				<tag k="name" match_id="_name" v="(Pl)aza (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="(Pl)aza (.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}.{2}"/>
+			<tag k="name:es" from_match="_name_lang" v="{1}.{2}"/>
+		</output>
+	</translation>
+
+	<translation>
+		<name>name abreviation [es]</name>
+		<description>name abreviation [es]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(C)ami(no) (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="(C)ami(no) (.*)"/>
+				<tag k="name" match_id="_name" v="(Pl)aza (.*)"/>
+				<tag k="name:es" match_id="_name_lang" v="(Pl)aza (.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}.{3}"/>
+			<tag k="name:es" from_match="_name_lang" v="{1}{2}.{3}"/>
+		</output>
+	</translation>
+
+
+	<!-- French abr. -->
+	<translation>
+		<name>name abreviation [fr]</name>
+		<description>name abreviation [fr]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(A)(v)enue (.*)"/>
+				<tag k="name:fr" match_id="_name_lang" v="(A)(v)enue (.*)"/>
+				<tag k="name" match_id="_name" v="(A)(ll)ée (.*)"/>
+				<tag k="name:fr" match_id="_name_lang" v="(A)(ll)ée (.*)"/>
+				<tag k="name" match_id="_name" v="(B)oulevar(d) (.*)"/>
+				<tag k="name:fr" match_id="_name_lang" v="(B)oulevar(d) (.*)"/>
+				<tag k="name" match_id="_name" v="(P)(l)ace (.*)"/>
+				<tag k="name:fr" match_id="_name_lang" v="(P)(l)ace (.*)"/>
+				<tag k="name" match_id="_name" v="(R)uel(le) (.*)"/>
+				<tag k="name:fr" match_id="_name_lang" v="(R)uel(le) (.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}.{3}"/>
+			<tag k="name:fr" from_match="_name_lang" v="{1}{2}.{3}"/>
+		</output>
+	</translation>
+
+	<!-- NL  abr. -->
+	<translation>
+		<name>one string name abreviation [nl]</name>
+		<description>one string name abreviation [nl]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(.*)([s|S]tr)aat"/>
+				<tag k="name:nl" match_id="_name_lang" v="(.*)([s|S]tr)aat"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}{2}."/>
+			<tag k="name:nl" from_match="_name_lang" v="{1}{2}."/>
+		</output>
+	</translation>
+
+	<!-- RU  abr. -->
+	<translation>
+		<name>one string name abreviation [ru]</name>
+		<description>one string name abreviation [ru]</description>
+		<match type="way" mode="and">
+			<tag k="highway" v=".*"/>
+			<match mode="or">
+				<tag k="name" match_id="_name" v="(.*)улица(.*)"/>
+				<tag k="name:ru" match_id="_name_lang" v="(.*)улица(.*)"/>
+			</match>		
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="name" from_match="_name" v="{1}ул.{2}"/>
+			<tag k="name:ru" from_match="_name_lang" v="{1}ул.{2}"/>
+		</output>
+	</translation>	
+
+
+	<!-- zh_pinyin does'nt work in language switcher -->
+	<translation>
+		<name>retag zh_pinyin</name>
+		<description>retag zh_pinyin</description>
+		<match>
+			<tag k="name:zh_pinyin" v="(.*)" match_id="pinyin"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="name:zhp" from_match="pinyin" v="{1}"/>
+		</output>
+	</translation>
+
+
+	<!-- EMERGANCY TRANSFORM to reduce tags down to 16 -->
+	<translation>
+		<name>remove *sac_scale from tracks</name>
+		<description>remove *sac_scale from tracks</description>
+		<match type="way" mode="and">
+			<tag k="highway" v="track"/>
+			<match mode="or">
+				<tag k="sac_scale" v=".*"/>
+				<tag k="raw_sac_scale" v=".*"/>
+			</match>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="highway" v="track"/>
+		</output>
+	</translation>	
+
+	<!-- relations blocking rendering -->
+	<translation>
+		<name>remove area=yes from place/MP</name>
+		<description>remove area=yes from place/MP</description>
+		<match type="relation" mode="and">
+			<match type="relation" mode="or">
+				<tag k="type" v="multipolygon"/>
+				<tag k="type" v="boundary"/>
+			</match>
+			<tag k="place" v=".*"/>
+			<tag k="area" v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="area" v="no"/>
+		</output>
+	</translation>		
+
+	<translation>
+		<name>copy lock_name to name</name>
+		<description>copy lock_name to name</description>
+		<match type="way" mode="and">
+			<tag k="lock_name" match_id="_lock_name" v="(.*)"/>
+			<tag k="lock" v="yes"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="name" from_match="_lock_name" v="{1}"/>
+			<tag k="lock" v="yes"/>
+		</output>
+	</translation>
+
+	<!-- https://www.openandromaps.org/oam-forums/topic/uk-bridleway-rendering-for-bikes__trashed/page/2/#post-27254 -->
+	<!-- designation=public_footpath -->
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="public_footpath"/>
+			</match>
+			<notag k="bicycle" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="bicycle" v="no"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="public_footpath"/>
+			</match>
+			<notag k="foot" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="foot" v="designated"/>
+		</output>
+	</translation>
+	<!-- designation=public_bridleway -->	
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="public_bridleway"/>
+				<tag k="designation" v="byway_open_to_all_traffic"/>
+				<tag k="designation" v="restricted_byway"/>
+				</match>
+			<notag k="bicycle" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="bicycle" v="designated"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="public_bridleway"/>
+				<tag k="designation" v="byway_open_to_all_traffic"/>
+				<tag k="designation" v="restricted_byway"/>
+			</match>
+			<notag k="foot" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="foot" v="designated"/>
+		</output>
+	</translation>
+	<!-- designation=permissive_footpath -->
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="permissive_footpath"/>
+			</match>
+			<notag k="bicycle" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="bicycle" v="no"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="permissive_footpath"/>
+			</match>
+			<notag k="foot" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="foot" v="permissive"/>
+		</output>
+	</translation>	
+	<!-- designation=permissive_bridleway -->
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="permissive_bridleway"/>
+			</match>
+			<notag k="bicycle" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="bicycle" v="permissive"/>
+		</output>
+	</translation>	
+	<translation>
+		<name>permissions GB</name>
+		<description>permissions GB</description>
+		<match type="way">
+			<match type="way" mode="or">
+				<tag k="designation" v="permissive_bridleway"/>
+			</match>
+			<notag k="foot" v=".*"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="foot" v="permissive"/>
+		</output>
+	</translation>		
+	
+	<translation>
+		<name>another kind of drinking_water....</name>
+		<description>another kind of drinking_water....</description>
+		<match mode="and">
+			<tag k="man_made" v="water_tap"/>
+			<tag k="drinking_water" v="yes"/>
+		</match>
+		<output>
+			<copy-all/>
+			<tag k="amenity" v="drinking_water"/>
+		</output>
+	</translation>		
+	
+
+	<translation>
+		<name>delete names from sidepaths</name>
+		<description>delete names from sidepaths</description>
+		<match type="way" mode="and">
+			<match type="way" mode="or">
+				<tag k="cycleway" v="sidepath|sidewalk"/>
+				<tag k="footway" v="sidepath|sidewalk"/>
+			</match>
+			<tag k="name" v=".*"/>
+		</match>
+		<output>
+			<copy-unmatched/>
+			<tag k="sidepath" v="sp_yes"/>
+		</output>
+	</translation>	
+</translations>
