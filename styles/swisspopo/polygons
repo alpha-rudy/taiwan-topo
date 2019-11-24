@@ -452,7 +452,7 @@ landuse = greenhouse_horticulture [0x4e resolution 23-24]
 
 # Großes Hafengebiet / -areal: The harbour site (land area, not area of water), mostly fenced or
 # outlined by hedge, barrier or access restriction is tagged on land using "landuse=harbour". [?]
-landuse = harbour [0x0c resolution 23-24]
+landuse = harbour & natural != water [0x0c resolution 23-24]
 
 # Gewerbe-/Industriegebiet (überwiegend Werkstätten, Fabriken oder Lagerhallen). [point, closedway]
 landuse = industrial [0x0c resolution 23-24]
@@ -552,7 +552,7 @@ natural = scrub [0x4f resolution 20]
 # Wasser - Seen, Teiche usw. [point, closedway]
 #natural = water [0x3c resolution 17]
 # Starting at 16 for overviewmap
-natural = water [0x3c resolution 16]
+natural = water & landuse != harbour [0x3c resolution 16]
 
 # Watt, Priele
 natural = wetland & wetland = tidalflat {set name = ''} [0x56 resolution 20]
