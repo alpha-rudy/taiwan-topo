@@ -1115,24 +1115,28 @@ $(GMAP_INPUT): $(EXTRACT).o5m $(ELEVATION)
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
+	cp $(EXTRACT).o5m $@.o5m
+	sh $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
 	osmconvert \
 	    --drop-version \
 	    $(OSMCONVERT_BOUNDING) \
-	    $(EXTRACT).o5m \
-	    $(ELEVATION) \
+	    $@.o5m \
 	    -o=$@
+	-rm -f $@.o5m
 
 $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
+	cp $(EXTRACT)-sed.osm.pbf $@.pbf
+	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
 	osmconvert \
 	    --drop-version \
 	    $(OSMCONVERT_BOUNDING) \
-	    $(EXTRACT)-sed.osm.pbf \
-	    $(ELEVATION_MIX) \
+	    $@.pbf \
 	    -o=$@
+	-rm -f $@.pbf
 
 
 MAPSFORGE_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style.zip
