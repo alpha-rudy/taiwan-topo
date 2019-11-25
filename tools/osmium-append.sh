@@ -33,5 +33,5 @@ osmium merge \
 	${REN_FILE} \
 	-Oo ${MGR_FILE} || exit $?
 
-[ "${EXT}" == pbf ] && mv ${MGR_FILE} ${taret} || osmconvert ${MGR_FILE} -o=${target}
+[ "${EXT}" == pbf ] && mv ${MGR_FILE} ${target} || osmconvert ${MGR_FILE} -o=${target}
 rm -f ${REN_FILE} ${MGR_FILE}
