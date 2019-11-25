@@ -795,8 +795,8 @@ $(NSIS): $(MAP_PC)
 		$(SED_CMD) "/__copy_tiles__/ r copy_tiles.txt" -i $(NAME_WORD).nsi && \
 		$(SED_CMD) "/__delete_tiles__/ r delete_tiles.txt" -i $(NAME_WORD).nsi && \
 		$(ZIP_CMD) "$(NAME_WORD)_InstallFiles.zip" $(MAPID)*.img $(MAPID).TYP $(NAME_WORD){.img,_mdr.img,.tdb,.mdx} && \
-		cat $(ROOT_DIR)/docs/taiwan_topo.md | $(SED_CMD) \
-			-e "s|__version__|$(VERSION)|g" | iconv -f UTF-8 -t BIG-5//TRANSLIT > readme.txt && \
+		cat $(ROOT_DIR)/docs/nsis-readme.txt | $(SED_CMD) \
+			-e "s|__version__|$(VERSION)|g" > readme.txt && \
 		cp $(ROOT_DIR)/nsis/{Install.bmp,Deinstall.bmp} . && \
 		makensis $(NAME_WORD).nsi && \
 		rm "$(NAME_WORD)_InstallFiles.zip"
