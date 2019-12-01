@@ -1116,7 +1116,7 @@ $(GMAP_INPUT): $(EXTRACT).o5m $(ELEVATION)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp $(EXTRACT).o5m $@.o5m
-	sh $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
+	bash $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
 	osmconvert \
 	    --drop-version \
 	    $(OSMCONVERT_BOUNDING) \
@@ -1130,7 +1130,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp $(EXTRACT)-sed.osm.pbf $@.pbf
-	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
+	bash $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
 	osmconvert \
 	    --drop-version \
 	    $(OSMCONVERT_BOUNDING) \
@@ -1423,7 +1423,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+	    bash $(TOOLS_DIR)/osmosis/bin/osmosis \
 		--read-pbf "$(MAPSFORGE_PBF)" \
 		--buffer --mapfile-writer \
 		    type=ram \
