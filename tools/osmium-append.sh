@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 target=$1
 add=$2
@@ -8,7 +8,8 @@ end=$3
 [ -z ${end} ] || exit 1
 
 if [ $(uname) != 'Darwin' ]; then
-alias gsed='sed'
+    shopt -s expand_aliases
+    alias gsed='sed'
 fi
 
 let $(osmium fileinfo -e ${target} | \
