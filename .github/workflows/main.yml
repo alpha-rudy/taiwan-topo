@@ -1,0 +1,12 @@
+name: test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+        image: osmtw/rudymap:tmp
+    steps:
+      - name: foo
+        run: osmconvert --help

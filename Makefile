@@ -8,7 +8,7 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWITER_THREADS = 8
+MAPWITER_THREADS = 6
 # suggestion: doesn't matter
 SPLITTER_THREADS = 4
 # suggestion: CPU*1
@@ -569,7 +569,7 @@ NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rud
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx25G -server
+JAVACMD_OPTIONS := -Xmx12G -server
 
 COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
 TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
@@ -1085,8 +1085,8 @@ $(EXTRACT).o5m:
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
-	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
+	    curl  $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst -o $(EXTRACT_FILE).o5m.zst && \
+	    curl  $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 -o $(EXTRACT_FILE).o5m.zst.md5 && \
 	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 
@@ -1435,7 +1435,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 		    map-start-zoom=12 \
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
-		    file="$@" > /dev/null 2> /dev/null
+		    file="$@"
 	
 $(COMMON_TILES): $(GMAP_INPUT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
