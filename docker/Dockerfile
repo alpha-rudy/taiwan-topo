@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 MAINTAINER Rudy Chung <rudyboy.tw@gmail.com>
 
 RUN sed -i 's/archive.ubuntu.com/free.nchc.org.tw/g' /etc/apt/sources.list
@@ -25,9 +25,10 @@ RUN dpkg --add-architecture i386 && \
         make \
         nsis \
         osmctools \
+        osmium-tool \
         p7zip-full \
         python-lxml \
-        python-pyosmium \
+        python3-pyosmium \
         ssh \
         sudo \
         tree \
