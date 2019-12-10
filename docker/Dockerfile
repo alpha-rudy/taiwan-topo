@@ -28,7 +28,7 @@ RUN dpkg --add-architecture i386 && \
         osmium-tool \
         p7zip-full \
         python-lxml \
-        python3-pyosmium \
+        pyosmium \
         ssh \
         sudo \
         tree \
