@@ -46,7 +46,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="封閉路線"/>
       <cat id="h_acc_no"/>
     </layer>
-    <layer id="elmt-h_tough" enabled="false">
+    <layer id="elmt-h_tough" enabled="true">
       <name lang="de" value="Tough pathway"/>
       <name lang="zh" value="艱難路線"/>
       <cat id="h_tough"/>
@@ -384,28 +384,22 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <rule cat="h_tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
           <rule e="way" k="highway" v="footway|path" zoom-min="13">
             <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
-              <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.17" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#700300" stroke-width="0.50" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
             </rule>
             <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
-              <line stroke="#E10600" stroke-width="0.50" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.13" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#700300" stroke-width="0.38" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
             </rule>
             <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
-              <line stroke="#E10600" stroke-width="0.37" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.10" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#700300" stroke-width="0.28" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
             </rule>
             <rule e="way" k="*" v="*" zoom-min="16" zoom-max="16">
-              <line stroke="#E10600" stroke-width="0.28" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.07" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#700300" stroke-width="0.21" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
             </rule>
             <rule e="way" k="*" v="*" zoom-min="17" zoom-max="17">
-              <line stroke="#E10600" stroke-width="0.21" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.05" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#700300" stroke-width="0.16" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
             </rule>
             <rule e="way" k="*" v="*" zoom-min="18">
-              <line stroke="#E10600" stroke-width="0.16" stroke-dasharray="2,2" stroke-linecap="butt"/>
-              <line stroke="#FFFFFF" stroke-width="0.04" stroke-dasharray="2,2" stroke-linecap="butt"/>
+              <line stroke="#700300" stroke-width="0.12" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
             </rule>
             <!-- ;trail -->
           </rule>
