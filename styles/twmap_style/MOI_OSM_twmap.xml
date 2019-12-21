@@ -3309,10 +3309,16 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- highway captions etc. -->
   <rule e="way" k="tunnel" v="~|no" zoom-min="9">
     <rule e="any" k="area" v="~">
-      <rule e="way" k="highway" v="footway|path|track|bridleway|steps|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-max="16">
+      <rule cat="h_routes" e="way" k="highway" v="footway|path" zoom-max="16">
         <pathText display="always" k="name" font-style="bold" font-size="14" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
-      <rule e="way" k="highway" v="footway|path|track|bridleway|steps|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-min="17">
+      <rule cat="h_routes" e="way" k="highway" v="footway|path" zoom-min="17">
+        <pathText display="always" k="name" font-style="bold" font-size="16" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="way" k="highway" v="track|bridleway|steps|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-max="16">
+        <pathText display="always" k="name" font-style="bold" font-size="14" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="way" k="highway" v="track|bridleway|steps|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-min="17">
         <pathText display="always" k="name" font-style="bold" font-size="16" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="highway" v="secondary_link|primary_link|trunk_link|motorway_link|secondary|primary|trunk">
