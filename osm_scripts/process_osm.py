@@ -183,10 +183,13 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_bicycle_rental_way(w)
             return
 
-        if w.tags.get('highway', '') in ['footway', 'path'] and \
-          (w.tags.get('trail_visibility', '') in ['bad', 'horrible', 'no'] or w.tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']):
-            self.handle_tough_trail(w)
-            return
+        if w.tags.get('highway', '') in ['footway', 'path']:
+            if w.tags.get('access', '') == 'no':
+                self.handle_no_access_trail(w)
+                return
+            if w.tags.get('trail_visibility', '') in ['bad', 'horrible', 'no'] or w.tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']:
+                self.handle_tough_trail(w)
+                return
 
         self.writer.add_way(w)
         return
@@ -227,6 +230,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
         w = w.replace(tags=self.handle_tough_trail_tags(w))
         self.writer.add_way(w)
 
+    def handle_no_access_trail(self, w):
+        w = w.replace(tags=self.handle_no_access_trail_tags(w))
+        self.writer.add_way(w)
+
     def relation(self, r):
         if r.tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental_relation(r)
@@ -253,6 +260,15 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['name'] = tags['name'] + ' (艱難路線)'
         else:
             tags['name'] = '(艱難路線)'
+        return tags
+
+    def handle_no_access_trail_tags(self, o):
+        tags = dict((tag.k, tag.v) for tag in o.tags)
+        # YouBike and iBike use network:en
+        if 'name' in tags:
+            tags['name'] = tags['name'] + ' (已封閉)'
+        else:
+            tags['name'] = '(已封閉)'
         return tags
 
 
