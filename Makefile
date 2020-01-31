@@ -1180,7 +1180,7 @@ $(LITE_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	-rm -f $@
-	-rf -rf $(BUILD_DIR)/mapsforge_lite
+	-rm -rf $(BUILD_DIR)/mapsforge_lite
 	mkdir -p $(BUILD_DIR)/mapsforge_lite
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_lite
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_lite/moiosmlite_res
@@ -1205,7 +1205,7 @@ $(HS_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	-rm -f $@
-	-rf -rf $(BUILD_DIR)/mapsforge_hs
+	-rm -rf $(BUILD_DIR)/mapsforge_hs
 	mkdir -p $(BUILD_DIR)/mapsforge_hs
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_hs
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_hs/moiosmhs_res
@@ -1292,7 +1292,7 @@ $(TN_STYLE):
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	-rm -f $@
-	-rf -rf $(BUILD_DIR)/mapsforge_tn
+	-rm -rf $(BUILD_DIR)/mapsforge_tn
 	mkdir -p $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
