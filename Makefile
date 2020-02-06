@@ -1436,7 +1436,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 		    map-start-zoom=12 \
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
-		    file="$@" > "$(HOME)/log/mapsforge_$(shell date +\%d).log" 2>&1
+		    file="$@" > "$(HOME)/log/$(shell basename $@)_$(shell date +\%d).log" 2>&1
 	
 $(COMMON_TILES): $(GMAP_INPUT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
