@@ -10,9 +10,9 @@ SHELL := /usr/bin/env bash
 # suggestion: no more than CPU*2
 MAPWITER_THREADS = 6
 # suggestion: doesn't matter
-SPLITTER_THREADS = 6
+SPLITTER_THREADS = 4
 # suggestion: CPU*1
-MKGMAP_JOBS = 6
+MKGMAP_JOBS = 4
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -569,7 +569,7 @@ NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rud
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 
 # finetune options
-JAVACMD_OPTIONS := -Xmx44G -server
+JAVACMD_OPTIONS := -Xmx60G -server
 
 COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
 TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
