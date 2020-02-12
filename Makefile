@@ -13,6 +13,8 @@ MAPWITER_THREADS = 8
 SPLITTER_THREADS = 8
 # suggestion: CPU*1
 MKGMAP_JOBS = 8
+# finetune options
+JAVACMD_OPTIONS ?= -Xmx68G -server
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -568,8 +570,6 @@ NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 
-# finetune options
-JAVACMD_OPTIONS := -Xmx60G -server
 
 COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
 TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
@@ -1436,7 +1436,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 		    map-start-zoom=12 \
 		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
-		    file="$@" > /dev/null 2>&1
+		    file="$@" &> /dev/null
 	
 $(COMMON_TILES): $(GMAP_INPUT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
