@@ -48,6 +48,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if n.tags.get('natural', '') == 'peak':
             self.handle_peak(n)
             return
+        elif n.tags.get('natural', '') == 'spring' and \
+                n.tags.get('drinking_water', '') == 'yes':
+            self.handle_drinking_spring(n)
+            return
         elif n.tags.get('information', '') == 'mobile':
             self.handle_mobile_sign(n)
             return
@@ -106,6 +110,15 @@ class MapsforgeHandler(osmium.SimpleHandler):
             name = name.rstrip(',')  # get rid the last ','
             name += ')'
             tags['name'] = name
+
+        n = n.replace(tags=tags)
+        self.writer.add_node(n)
+
+    def handle_drinking_spring(self, n):
+        tags = dict((tag.k, tag.v) for tag in n.tags)
+
+        if tags.get('name') is None:
+            tags['name'] = '取水點'
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
