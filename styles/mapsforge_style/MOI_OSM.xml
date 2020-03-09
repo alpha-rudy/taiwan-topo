@@ -4000,29 +4000,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <caption dy="-21" k="name" font-style="bold" font-size="10" fill="#008800" stroke="#E5FFFFFF" stroke-width="2"/>
       <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#008800" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
-    <rule e="node" k="natural" v="spring">
-      <rule e="any" k="*" v="*" zoom-max="13">
-        <circle radius="1.0" scale-radius="true" fill="#0080FF"/>
-        <rule e="any" k="*" v="*">
-          <caption k="name" dy="-21" font-style="bold" font-size="10" fill="#0080FF" stroke="#E5FFFFFF" stroke-width="2"/>
-        </rule>
-        <rule e="node" k="drinking_water" v="no">
-          <circle radius="0.3" scale-radius="true" fill="#CC0000"/>
-        </rule>
-        <rule e="node" k="drinking_water" v="yes">
-          <circle radius="0.3" scale-radius="true" fill="#00CC00"/>
-        </rule>
-      </rule>
-      <rule e="any" k="*" v="*" zoom-min="17">
-        <circle radius="0.6" scale-radius="true" fill="#0080FF"/>
-        <caption k="name" dy="-21" font-style="bold" font-size="10" fill="#0080FF" stroke="#E5FFFFFF" stroke-width="2"/>
-        <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="10" fill="#0080FF" stroke="#E5FFFFFF" stroke-width="2"/>
-        <rule e="node" k="drinking_water" v="no">
-          <circle radius="0.2" scale-radius="true" fill="#CC0000"/>
-        </rule>
-        <rule e="node" k="drinking_water" v="yes">
-          <circle radius="0.2" scale-radius="true" fill="#00CC00"/>
-        </rule>
+    <rule e="node" k="natural" v="spring" zoom-min="14">
+      <rule e="any" k="drinking_water" v="yes">
+        <symbol id="s_spring" priority="68" src="file:moiosm_res/s_spring.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_spring" position="above" font-style="bold" font-size="10" fill="#0080FF" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="mountain_pass" v="yes">
