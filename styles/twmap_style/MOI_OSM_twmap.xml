@@ -4093,6 +4093,12 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
       </rule>
     </rule>
+    <rule e="node" k="natural" v="spring" zoom-min="14">
+      <rule e="any" k="drinking_water" v="yes">
+        <symbol id="s_spring" priority="68" src="file:moiosm_twmap/s_spring.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption k="name" symbol-id="s_spring" position="above" font-style="bold" font-size="20" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+    </rule>
     <rule e="any" k="mountain_pass" v="yes">
       <circle radius="0.8" scale-radius="true" fill="#CCCCCC" stroke="#666666" stroke-width="0.4"/>
       <caption k="name" dy="-21" font-style="bold" font-size="20" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
