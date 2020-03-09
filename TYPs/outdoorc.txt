@@ -8843,6 +8843,31 @@ DayXpm="9 15 2 1"   Colormode=16
 
 
 [_point]
+Type=0x065
+SubType=0x15
+String1=0x00,Spring
+String2=0x02,Quelle
+String3=0x03,Bron
+String4=0x04,Spring
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+DayXpm="7 7 3 1"   Colormode=16
+"!  c #B9E4EA"
+"#  c #000000"
+"   c none"
+"       "
+"   #   "
+"  #!#  "
+" #!!!# "
+" #!!!# "
+"  ###  "
+"       "
+;1234567
+[end]
+
+
+[_point]
 Type=0x066
 SubType=0x00
 String1=0x00,Identified Area (Land)

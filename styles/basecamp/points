@@ -117,6 +117,7 @@
 # 0x2E0a          Special Retail                        0x6511          Spring
 # 0x2E0b          Computer/Software                     0x6512          Stream
 # 0x2F00          generic service                       0x6513          Swamp
+# 0x2F00          Drinking Spring                       0x6515          Drinking Spring
 # 0x2F01          Fuel/Gas                              0x6600          Land Feature
 # 0x2F02          Car Rental                            0x6601          Arch (Bogen)
 # 0x2F03          Car Repair                            0x6602          Area
@@ -569,6 +570,7 @@ natural = scree & name = * {name "${name}"} [0x6600 resolution 24]
 natural = scrub & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Quelle. [point]
+natural = spring & drinking_water = yes {name "${name}" | "取水點"} [0x6515 resolution 23]
 natural = spring {name "${name}" | "泉水"} [0x6511 resolution 23]
 
 # Großer Stein, Findling. [point]

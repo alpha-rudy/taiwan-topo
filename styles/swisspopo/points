@@ -569,6 +569,7 @@ natural = scree & name = * {name "${name}"} [0x6600 resolution 24]
 natural = scrub & name = * {name "${name}"} [0x6600 resolution 24]
 
 # Quelle. [point]
+natural = spring & drinking_water = yes {name "${name}" | "取水點"} [0x6515 resolution 23]
 natural = spring {name "${name}" | "泉水"} [0x6511 resolution 23]
 
 # Großer Stein, Findling. [point]
