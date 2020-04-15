@@ -17,7 +17,7 @@
     <match mode="and" type="node">
       <tag k="natural" v="peak" />
       <tag k="ref" v="^百岳#" />
-      <tag k="name" v="^(玉山|雪山|北大武山)$"/>
+      <tag k="name" v="^(玉山|雪山主峰|北大武山)$"/>
     </match>
     <output>
       <copy-all/>
@@ -30,7 +30,7 @@
     <match mode="and" type="node">
       <tag k="natural" v="peak" />
       <tag k="ref" v="^百岳#" />
-      <notag k="name" v="^(玉山|雪山|北大武山)$"/>
+      <notag k="name" v="^(玉山|雪山主峰|北大武山)$"/>
     </match>
     <output>
       <copy-all/>

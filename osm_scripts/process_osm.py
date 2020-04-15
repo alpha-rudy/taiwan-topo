@@ -167,7 +167,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 if '小百岳#' in ref:
                     tags['zl'] = '2'
                 else:
-                    if name in ['玉山', '北大武山', '雪山']:
+                    if name in ['玉山', '北大武山', '雪山主峰']:
                         tags['zl'] = '0'
                     else:
                         tags['zl'] = '1'
