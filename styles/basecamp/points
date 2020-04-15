@@ -549,7 +549,7 @@ natural = marsh & name = * {name "${name}"} [0x6513 resolution 24]
 natural = mud & name = * {name "${name}"} [0x6500 resolution 24]
 
 # Bergspitze. [point]
-natural = peak & ref ~ '^百岳#.*' & (name = '玉山' | name = '雪山' | name = '北大武山') {name "${name|def:}"} [0x6616 resolution 17-19 continue]
+natural = peak & ref ~ '^百岳#.*' & (name = '玉山' | name = '雪山主峰' | name = '北大武山') {name "${name|def:}"} [0x6616 resolution 17-19 continue]
 natural = peak & ref ~ '^百岳#.*' {name "${name|def:}"} [0x6616 resolution 18-19 continue]
 natural = peak & ref ~ '^小百岳#.*' {name "${name|def:}"} [0x6616 resolution 19-19 continue]
 natural = peak & ref ~ '.*百岳#.*' {name "${name|def:} (${ref|part:;:1})"} [0x6616 resolution 20-20 continue]
