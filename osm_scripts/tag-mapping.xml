@@ -5,6 +5,7 @@
 <!-- land_sea -->
 <osm-tag key='natural' value='sea' zoom-appear='7' />
 <osm-tag key='natural' value='nosea' zoom-appear='7' />
+<osm-tag key='natural' value='coastline' zoom-appear='7' />
 <!-- cycle_relations -->
 <osm-tag key='network' value='icn' zoom-appear='12' />
 <osm-tag key='network' value='ncn' zoom-appear='12' />
