@@ -81,6 +81,26 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- contour lines -->
   <rule cat="contour" e="any" k="*" v="*">
+    <rule e="way" k="natural" v="coastline">
+      <rule e="way" k="*" v="*" zoom-min="7" zoom-max="11">
+        <line stroke="#FFFFFFFF" stroke-width="0.8"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="12" zoom-max="12">
+        <line stroke="#FFFFFFFF" stroke-width="0.57"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
+        <line stroke="#FFFFFFFF" stroke-width="0.41"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="14" zoom-max="14">
+        <line stroke="#FFFFFFFF" stroke-width="0.29"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="15" zoom-max="15">
+        <line stroke="#FFFFFFFF" stroke-width="0.21"/>
+      </rule>
+      <rule e="way" k="*" v="*" zoom-min="16">
+        <line stroke="#FFFFFFFF" stroke-width="0.15"/>
+      </rule>
+    </rule>
     <rule e="way" k="contour_ext" v="elevation_major" zoom-min="9" zoom-max="10">
       <rule e="way" k="ele" v="3000">
         <line stroke="#FFFFFFFF" stroke-width="0.8"/>
