@@ -1365,7 +1365,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- waterways -->
-  <rule e="way" k="bridge" v="yes|viaduct|movable">
+  <rule e="way" k="waterway" v="*" zoom-min="11" zoom-max="15">
+    <caption k="name" font-style="bold" font-size="9" fill="#E577A5FC" stroke="#E5FFFFFF" stroke-width="1"/>
+  </rule>
+  <rule e="way" k="bridge" v="yes|viaduct|movable" zoom-min="9">
     <rule e="way" k="tunnel" v="no|~">
       <rule e="way" k="waterway" v="ditch|drain|stream">
         <line stroke="#333333" stroke-width="1.6" stroke-linecap="butt"/>
@@ -1377,45 +1380,45 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
-  <rule e="way" k="waterway" v="ditch">
+  <rule e="way" k="waterway" v="ditch" zoom-min="9">
     <line stroke="#0a2676" stroke-width="0.6"/>
   </rule>
-  <rule e="way" k="waterway" v="drain">
+  <rule e="way" k="waterway" v="drain" zoom-min="9">
     <line stroke="#A69D9D" stroke-width="0.7" stroke-linecap="butt"/>
     <line stroke="#0a2676" stroke-width="0.5" stroke-linecap="butt"/>
   </rule>
-  <rule e="way" k="waterway" v="canal">
+  <rule e="way" k="waterway" v="canal" zoom-min="9">
     <line stroke="#A69D9D" stroke-width="1.1" stroke-linecap="butt"/>
     <line stroke="#0a2676" stroke-width="0.9" stroke-linecap="butt"/>
   </rule>
-  <rule e="way" k="waterway" v="stream">
-    <line stroke="#0a2676" stroke-width="0.6"/>
+  <rule e="way" k="waterway" v="stream" zoom-min="9">
+    <line stroke="#0a2676" stroke-width="0.9"/>
   </rule>
   <rule e="way" k="waterway" v="river">
-    <line stroke="#0a2676" stroke-width="1.1"/>
+    <line stroke="#0a2676" stroke-width="1.4"/>
   </rule>
-  <rule e="way" k="waterway" v="riverbank" closed="yes">
-    <area fill="#0a2676" stroke="#0a2676" stroke-width="0.2"/>
+  <rule e="way" k="waterway" v="riverbank" closed="yes" zoom-min="9">
+    <area fill="#0a2676" stroke="#0a2676" stroke-width="0.6"/>
   </rule>
-  <rule e="way" k="waterway" v="riverbank" closed="no">
+  <rule e="way" k="waterway" v="riverbank" closed="no" zoom-min="9">
     <line stroke="#0a2676" stroke-width="1"/>
   </rule>
   <rule e="way" k="natural" v="water" closed="yes">
-    <rule e="any" k="*" v="*" zoom-max="13">
-      <area fill="#0a2676" stroke="#0a2676" stroke-width="0.2"/>
+    <rule e="any" k="*" v="*" zoom-max="11">
+      <area fill="#0a2676" stroke="#0a2676" stroke-width="0.6"/>
     </rule>
-    <rule e="any" k="*" v="*" zoom-min="14">
-      <area fill="#0a2678" stroke="#0a2678" stroke-width="0.2"/>
+    <rule e="any" k="*" v="*" zoom-min="12">
+      <area fill="#0a2678" stroke="#0a2678" stroke-width="0.6"/>
     </rule>
   </rule>
   <rule e="way" k="natural" v="water" closed="no">
     <line stroke="#0a2676" stroke-width="1"/>
   </rule>
-  <rule e="way" k="landuse" v="reservoir|basin" closed="yes">
+  <rule e="way" k="landuse" v="reservoir|basin" closed="yes" zoom-min="9">
     <line stroke="#A69D9D" stroke-width="0.3"/>
     <area fill="#0a2676"/>
   </rule>
-  <rule e="way" k="landuse" v="reservoir|basin" closed="no">
+  <rule e="way" k="landuse" v="reservoir|basin" closed="no" zoom-min="9">
     <line stroke="#A69D9D" stroke-width="1"/>
     <line stroke="#0a2676" stroke-width="0.2"/>
   </rule>
