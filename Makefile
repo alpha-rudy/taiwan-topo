@@ -1,9 +1,9 @@
 # base (0x2000) + region x lang x style
 # where, ...
-# - 1st hex, dem    -> moi(1), srtm(2)
+# - 1st hex, dem -> moi(1), srtm(2)
 # - 2nd hex, region -> taiwan(0), taipei(1), kyushu(2), Beibeiji(3), Yushan(4), bbox(f)
-# - 3rd hex, lang   -> en(0), zh(1),
-# - 4th hex, style  -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
+# - 3rd hex, lang -> en(0), zh(1),
+# - 4th hex, style -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
 
 SHELL := /usr/bin/env bash
 
@@ -691,7 +691,7 @@ drop:
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-	    markdown -f +autolink > $(BUILD_DIR)/beta.article
+		markdown -f +autolink > $(BUILD_DIR)/beta.article
 	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
 	cp -r docs/gts $(INSTALL_DIR) && \
 		cat docs/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
@@ -733,13 +733,13 @@ $(LICENSE):
 	mkdir -p $(BUILD_DIR)
 	cp -a docs/images $(BUILD_DIR)
 	cat docs/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-	    markdown -f +autolink > $(BUILD_DIR)/beta.article
+		markdown -f +autolink > $(BUILD_DIR)/beta.article
 	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(BUILD_DIR)/beta.html
 	cat docs/local.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-	    markdown -f +autolink > $(BUILD_DIR)/local.article
+		markdown -f +autolink > $(BUILD_DIR)/local.article
 	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/local.article" > $(BUILD_DIR)/local.html
 	cat docs/taiwan_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-	    markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
+		markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
 	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
 
 .PHONY: gts_all
@@ -810,9 +810,9 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
-	    sh $(TOOLS_DIR)/osmosis-v0.44/bin/osmosis \
-		--rb file="$(EXTRACT)-sed.osm.pbf" \
-		--poi-writer \
+		sh $(TOOLS_DIR)/osmosis-v0.44/bin/osmosis \
+			--rb file="$(EXTRACT)-sed.osm.pbf" \
+			--poi-writer \
 			all-tags=true \
 			bbox=$(MAPSFORGE_BBOX) \
 			ways=true \
@@ -828,12 +828,12 @@ $(GMAP): $(MAP_PC)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_PC_DIR) && \
-	    rm -rf $@ && \
-	    cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | $(SED_CMD) \
-	    	-e "s|__map_dir__|$(MAP_PC_DIR)|g" \
-		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
-	    $(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg"
+		rm -rf $@ && \
+		cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | $(SED_CMD) \
+			-e "s|__map_dir__|$(MAP_PC_DIR)|g" \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > jmc_cli.cfg && \
+		$(TOOLS_DIR)/$(JMC_CMD) -v -config="$(MAP_PC_DIR)/jmc_cli.cfg"
 	-cd $(MAP_PC_DIR) && [ -d "$(NAME_SHORT).gmap" ] && mv "$(NAME_SHORT).gmap" "$(NAME_WORD).gmap"
 	cd $(MAP_PC_DIR) && \
 		$(ZIP_CMD) $@ "$(NAME_WORD).gmap"
@@ -846,17 +846,17 @@ $(GMAPSUPP): $(MAP_HAND)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_HAND_DIR) && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --license-file=$(ROOT_DIR)/docs/license.txt \
-	        --index \
-	        --gmapsupp \
-	        --product-id=1 \
-	        --family-id=$(MAPID) \
-	        --series-name="$(NAME_WORD)" \
-	        --family-name="$(NAME_SHORT)" \
-	        --description="$(NAME_SHORT)" \
-	        --overview-mapnumber=$(MAPID)0000 \
-	        --product-version=$(VERSION) \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--license-file=$(ROOT_DIR)/docs/license.txt \
+			--index \
+			--gmapsupp \
+			--product-id=1 \
+			--family-id=$(MAPID) \
+			--series-name="$(NAME_WORD)" \
+			--family-name="$(NAME_SHORT)" \
+			--description="$(NAME_SHORT)" \
+			--overview-mapnumber=$(MAPID)0000 \
+			--product-version=$(VERSION) \
 		$(MAPID)*.img $(MAPID).TYP
 	mv $(MAP_HAND_DIR)/gmapsupp.img $@
 
@@ -885,42 +885,42 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 	rm -rf $(MAP_HIDEM_DIR)
 	mkdir -p $(MAP_HIDEM_DIR)
 	cd $(MAP_HIDEM_DIR) && \
-	    cat $(TYP_FILE) | $(SED_CMD) \
-	    	-e "s|ä|a|g" \
-	    	-e "s|é|e|g" \
-	    	-e "s|ß|b|g" \
-	    	-e "s|ü|u|g" \
-	    	-e "s|ö|o|g" \
-	    	-e "s|FID=.*|FID=$(MAPID)|g" \
-		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--product-id=1 \
-		--family-id=$(MAPID) \
-		$(TYP).txt
+		cat $(TYP_FILE) | $(SED_CMD) \
+			-e "s|ä|a|g" \
+			-e "s|é|e|g" \
+			-e "s|ß|b|g" \
+			-e "s|ü|u|g" \
+			-e "s|ö|o|g" \
+			-e "s|FID=.*|FID=$(MAPID)|g" \
+			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--product-id=1 \
+			--family-id=$(MAPID) \
+			$(TYP).txt
 	cd $(MAP_HIDEM_DIR) && \
-	    cp $(TYP).typ $(MAPID).TYP && \
-	    mkdir $(MAP_HIDEM_DIR)/style && \
-	    cp -a $(HR_STYLE_DIR) $(MAP_HIDEM_DIR)/style/$(HR_STYLE) && \
-	    cp $(ROOT_DIR)/styles/style-translations $(MAP_HIDEM_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
-		-e "s|__root_dir__|$(ROOT_DIR)|g" \
-		-e "s|__map_dir__|$(MAP_HIDEM_DIR)|g" \
-		-e "s|__version__|$(VERSION)|g" \
-		-e "s|__style__|$(HR_STYLE)|g" \
-		-e "s|__name_tag_list__|$(NTL)|g" \
-		-e "s|__code_page__|$(CODE_PAGE)|g" \
-		-e "s|__name_long__|$(NAME_LONG)|g" \
-		-e "s|__name_short__|$(NAME_SHORT)|g" \
-		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
+		cp $(TYP).typ $(MAPID).TYP && \
+		mkdir $(MAP_HIDEM_DIR)/style && \
+		cp -a $(HR_STYLE_DIR) $(MAP_HIDEM_DIR)/style/$(HR_STYLE) && \
+		cp $(ROOT_DIR)/styles/style-translations $(MAP_HIDEM_DIR)/ && \
+		cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
+			-e "s|__root_dir__|$(ROOT_DIR)|g" \
+			-e "s|__map_dir__|$(MAP_HIDEM_DIR)|g" \
+			-e "s|__version__|$(VERSION)|g" \
+			-e "s|__style__|$(HR_STYLE)|g" \
+			-e "s|__name_tag_list__|$(NTL)|g" \
+			-e "s|__code_page__|$(CODE_PAGE)|g" \
+			-e "s|__name_long__|$(NAME_LONG)|g" \
+			-e "s|__name_short__|$(NAME_SHORT)|g" \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+		cat $(TILES_DIR)/template.args | $(SED_CMD) \
+			-e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		ln -s $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=$(MKGMAP_JOBS) \
-	        -c mkgmap.cfg \
-		--check-styles
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--max-jobs=$(MKGMAP_JOBS) \
+			-c mkgmap.cfg \
+			--check-styles
 	touch $(MAP_HIDEM)
 
 .PHONY: map_lodem
@@ -931,42 +931,42 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 	rm -rf $(MAP_LODEM_DIR)
 	mkdir -p $(MAP_LODEM_DIR)
 	cd $(MAP_LODEM_DIR) && \
-	    cat $(TYP_FILE) | $(SED_CMD) \
-	    	-e "s|ä|a|g" \
-	    	-e "s|é|e|g" \
-	    	-e "s|ß|b|g" \
-	    	-e "s|ü|u|g" \
-	    	-e "s|ö|o|g" \
-	    	-e "s|FID=.*|FID=$(MAPID)|g" \
-		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--product-id=1 \
-		--family-id=$(MAPID) \
-		$(TYP).txt
+		cat $(TYP_FILE) | $(SED_CMD) \
+			-e "s|ä|a|g" \
+			-e "s|é|e|g" \
+			-e "s|ß|b|g" \
+			-e "s|ü|u|g" \
+			-e "s|ö|o|g" \
+			-e "s|FID=.*|FID=$(MAPID)|g" \
+			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--product-id=1 \
+			--family-id=$(MAPID) \
+			$(TYP).txt
 	cd $(MAP_LODEM_DIR) && \
-	    cp $(TYP).typ $(MAPID).TYP && \
-	    mkdir $(MAP_LODEM_DIR)/style && \
-	    cp -a $(LR_STYLE_DIR) $(MAP_LODEM_DIR)/style/$(LR_STYLE) && \
-	    cp $(ROOT_DIR)/styles/style-translations $(MAP_LODEM_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
-		-e "s|__root_dir__|$(ROOT_DIR)|g" \
-		-e "s|__map_dir__|$(MAP_LODEM_DIR)|g" \
-		-e "s|__version__|$(VERSION)|g" \
-		-e "s|__style__|$(LR_STYLE)|g" \
-		-e "s|__name_tag_list__|$(NTL)|g" \
-		-e "s|__code_page__|$(CODE_PAGE)|g" \
-		-e "s|__name_long__|$(NAME_LONG)|g" \
-		-e "s|__name_short__|$(NAME_SHORT)|g" \
-		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
+		cp $(TYP).typ $(MAPID).TYP && \
+		mkdir $(MAP_LODEM_DIR)/style && \
+		cp -a $(LR_STYLE_DIR) $(MAP_LODEM_DIR)/style/$(LR_STYLE) && \
+		cp $(ROOT_DIR)/styles/style-translations $(MAP_LODEM_DIR)/ && \
+		cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
+			-e "s|__root_dir__|$(ROOT_DIR)|g" \
+			-e "s|__map_dir__|$(MAP_LODEM_DIR)|g" \
+			-e "s|__version__|$(VERSION)|g" \
+			-e "s|__style__|$(LR_STYLE)|g" \
+			-e "s|__name_tag_list__|$(NTL)|g" \
+			-e "s|__code_page__|$(CODE_PAGE)|g" \
+			-e "s|__name_long__|$(NAME_LONG)|g" \
+			-e "s|__name_short__|$(NAME_SHORT)|g" \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+		cat $(TILES_DIR)/template.args | $(SED_CMD) \
+			-e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		ln -s $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=$(MKGMAP_JOBS) \
-	        -c mkgmap.cfg \
-		--check-styles
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--max-jobs=$(MKGMAP_JOBS) \
+			-c mkgmap.cfg \
+			--check-styles
 	touch $(MAP_LODEM)
 
 .PHONY: map_nodem_hr
@@ -977,40 +977,40 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 	rm -rf $(MAP_NODEM_HR_DIR)
 	mkdir -p $(MAP_NODEM_HR_DIR)
 	cd $(MAP_NODEM_HR_DIR) && \
-	    cat $(TYP_FILE) | $(SED_CMD) \
-	    	-e "s|ä|a|g" \
-	    	-e "s|é|e|g" \
-	    	-e "s|ß|b|g" \
-	    	-e "s|ü|u|g" \
-	    	-e "s|ö|o|g" \
-	    	-e "s|FID=.*|FID=$(MAPID)|g" \
-		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--product-id=1 \
-		--family-id=$(MAPID) \
-		$(TYP).txt
+		cat $(TYP_FILE) | $(SED_CMD) \
+			-e "s|ä|a|g" \
+			-e "s|é|e|g" \
+			-e "s|ß|b|g" \
+			-e "s|ü|u|g" \
+			-e "s|ö|o|g" \
+			-e "s|FID=.*|FID=$(MAPID)|g" \
+			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--product-id=1 \
+			--family-id=$(MAPID) \
+			$(TYP).txt
 	cd $(MAP_NODEM_HR_DIR) && \
-	    cp $(TYP).typ $(MAPID).TYP && \
-	    mkdir $(MAP_NODEM_HR_DIR)/style && \
-	    cp -a $(HR_STYLE_DIR) $(MAP_NODEM_HR_DIR)/style/$(HR_STYLE) && \
-	    cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_HR_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
-		-e "s|__root_dir__|$(ROOT_DIR)|g" \
-		-e "s|__map_dir__|$(MAP_NODEM_HR_DIR)|g" \
-		-e "s|__version__|$(VERSION)|g" \
-		-e "s|__style__|$(HR_STYLE)|g" \
-		-e "s|__name_tag_list__|$(NTL)|g" \
-		-e "s|__code_page__|$(CODE_PAGE)|g" \
-		-e "s|__name_long__|$(NAME_LONG)|g" \
-		-e "s|__name_short__|$(NAME_SHORT)|g" \
-		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=$(MKGMAP_JOBS) \
-	        -c mkgmap.cfg \
-		--check-styles
+		cp $(TYP).typ $(MAPID).TYP && \
+		mkdir $(MAP_NODEM_HR_DIR)/style && \
+		cp -a $(HR_STYLE_DIR) $(MAP_NODEM_HR_DIR)/style/$(HR_STYLE) && \
+		cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_HR_DIR)/ && \
+		cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
+			-e "s|__root_dir__|$(ROOT_DIR)|g" \
+			-e "s|__map_dir__|$(MAP_NODEM_HR_DIR)|g" \
+			-e "s|__version__|$(VERSION)|g" \
+			-e "s|__style__|$(HR_STYLE)|g" \
+			-e "s|__name_tag_list__|$(NTL)|g" \
+			-e "s|__code_page__|$(CODE_PAGE)|g" \
+			-e "s|__name_long__|$(NAME_LONG)|g" \
+			-e "s|__name_short__|$(NAME_SHORT)|g" \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+		cat $(TILES_DIR)/template.args | $(SED_CMD) \
+			-e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--max-jobs=$(MKGMAP_JOBS) \
+			-c mkgmap.cfg \
+			--check-styles
 	touch $(MAP_NODEM_HR)
 
 .PHONY: map_nodem_lr
@@ -1021,40 +1021,40 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 	rm -rf $(MAP_NODEM_LR_DIR)
 	mkdir -p $(MAP_NODEM_LR_DIR)
 	cd $(MAP_NODEM_LR_DIR) && \
-	    cat $(TYP_FILE) | $(SED_CMD) \
-	    	-e "s|ä|a|g" \
-	    	-e "s|é|e|g" \
-	    	-e "s|ß|b|g" \
-	    	-e "s|ü|u|g" \
-	    	-e "s|ö|o|g" \
-	    	-e "s|FID=.*|FID=$(MAPID)|g" \
-		-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	    	--product-id=1 \
-		--family-id=$(MAPID) \
-		$(TYP).txt
+		cat $(TYP_FILE) | $(SED_CMD) \
+			-e "s|ä|a|g" \
+			-e "s|é|e|g" \
+			-e "s|ß|b|g" \
+			-e "s|ü|u|g" \
+			-e "s|ö|o|g" \
+			-e "s|FID=.*|FID=$(MAPID)|g" \
+			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--product-id=1 \
+			--family-id=$(MAPID) \
+			$(TYP).txt
 	cd $(MAP_NODEM_LR_DIR) && \
-	    cp $(TYP).typ $(MAPID).TYP && \
-	    mkdir $(MAP_NODEM_LR_DIR)/style && \
-	    cp -a $(LR_STYLE_DIR) $(MAP_NODEM_LR_DIR)/style/$(LR_STYLE) && \
-	    cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_LR_DIR)/ && \
-	    cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
-		-e "s|__root_dir__|$(ROOT_DIR)|g" \
-		-e "s|__map_dir__|$(MAP_NODEM_LR_DIR)|g" \
-		-e "s|__version__|$(VERSION)|g" \
-		-e "s|__style__|$(LR_STYLE)|g" \
-		-e "s|__name_tag_list__|$(NTL)|g" \
-		-e "s|__code_page__|$(CODE_PAGE)|g" \
-		-e "s|__name_long__|$(NAME_LONG)|g" \
-		-e "s|__name_short__|$(NAME_SHORT)|g" \
-		-e "s|__name_word__|$(NAME_WORD)|g" \
-		-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
-	    cat $(TILES_DIR)/template.args | $(SED_CMD) \
-	        -e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
-	        --max-jobs=$(MKGMAP_JOBS) \
-	        -c mkgmap.cfg \
-		--check-styles
+		cp $(TYP).typ $(MAPID).TYP && \
+		mkdir $(MAP_NODEM_LR_DIR)/style && \
+		cp -a $(LR_STYLE_DIR) $(MAP_NODEM_LR_DIR)/style/$(LR_STYLE) && \
+		cp $(ROOT_DIR)/styles/style-translations $(MAP_NODEM_LR_DIR)/ && \
+		cat $(ROOT_DIR)/mkgmaps/mkgmap.cfg | $(SED_CMD) \
+			-e "s|__root_dir__|$(ROOT_DIR)|g" \
+			-e "s|__map_dir__|$(MAP_NODEM_LR_DIR)|g" \
+			-e "s|__version__|$(VERSION)|g" \
+			-e "s|__style__|$(LR_STYLE)|g" \
+			-e "s|__name_tag_list__|$(NTL)|g" \
+			-e "s|__code_page__|$(CODE_PAGE)|g" \
+			-e "s|__name_long__|$(NAME_LONG)|g" \
+			-e "s|__name_short__|$(NAME_SHORT)|g" \
+			-e "s|__name_word__|$(NAME_WORD)|g" \
+			-e "s|__mapid__|$(MAPID)|g" > mkgmap.cfg && \
+		cat $(TILES_DIR)/template.args | $(SED_CMD) \
+			-e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/mkgmap/mkgmap.jar \
+			--max-jobs=$(MKGMAP_JOBS) \
+			-c mkgmap.cfg \
+			--check-styles
 	touch $(MAP_NODEM_LR)
 
 .DELETE_ON_ERROR: $(ELEVATION)
@@ -1064,9 +1064,9 @@ $(ELEVATION):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)
 	cd $(ELEVATIONS_DIR) && \
-	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
-	    curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ]
+		curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
+		curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
+		EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ]
 
 .DELETE_ON_ERROR: $(ELEVATION_MIX)
 $(ELEVATION_MIX):
@@ -1074,9 +1074,9 @@ $(ELEVATION_MIX):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)/marker
 	cd $(ELEVATIONS_DIR)/marker && \
-	    curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
-	    curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
-	    EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
+		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
+		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
+		EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
 
 .DELETE_ON_ERROR: $(EXTRACT).o5m
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
@@ -1085,9 +1085,9 @@ $(EXTRACT).o5m:
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
-	    aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
-	    EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
+		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
+		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
+		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 
 $(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
@@ -1099,14 +1099,14 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/process_osm.sh osm_scripts/pr
 # OSMCONVERT_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
 ifeq (Taiwan,$(REGION))
-    OSMCONVERT_BOUNDING :=
+OSMCONVERT_BOUNDING :=
 else
-    OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
 endif
 else
 ifneq (,$(strip $(BOUNDING_BOX)))
-    OSMCONVERT_BOUNDING := -b=$(BOTTOM),$(LEFT),$(TOP),$(RIGHT) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
-    MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
+OSMCONVERT_BOUNDING := -b=$(BOTTOM),$(LEFT),$(TOP),$(RIGHT) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
 endif
 endif
 
@@ -1118,10 +1118,10 @@ $(GMAP_INPUT): $(EXTRACT).o5m $(ELEVATION)
 	cp $(EXTRACT).o5m $@.o5m
 	sh $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
 	osmconvert \
-	    --drop-version \
-	    $(OSMCONVERT_BOUNDING) \
-	    $@.o5m \
-	    -o=$@
+		--drop-version \
+		$(OSMCONVERT_BOUNDING) \
+		$@.o5m \
+		-o=$@
 	-rm -f $@.o5m
 
 $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
@@ -1132,10 +1132,10 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	cp $(EXTRACT)-sed.osm.pbf $@.pbf
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
 	osmconvert \
-	    --drop-version \
-	    $(OSMCONVERT_BOUNDING) \
-	    $@.pbf \
-	    -o=$@
+		--drop-version \
+		$(OSMCONVERT_BOUNDING) \
+		$@.pbf \
+		-o=$@
 	-rm -f $@.pbf
 
 
@@ -1151,7 +1151,7 @@ $(MAPSFORGE_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_style $(BUILD_DIR)
 	cat styles/mapsforge_style/MOI_OSM.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
+		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
 	cd $(BUILD_DIR)/mapsforge_style && $(ZIP_CMD) $@ *
 
 
@@ -1168,7 +1168,7 @@ $(LOCUS_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/locus_style $(BUILD_DIR)/$(LOCUS_STYLE_INST)
 	cat styles/locus_style/MOI_OSM.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.xml
+		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.xml
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
 
@@ -1185,7 +1185,7 @@ $(LITE_STYLE):
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_lite
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_lite/moiosmlite_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
-	    $(SED_CMD) \
+		$(SED_CMD) \
 			-e "s/__version__/$(VERSION)/g" \
 			-e "s/file:moiosm_res/file:moiosmlite_res/g" \
 			-e "s,file:/moiosm_res,file:/moiosmlite_res,g" \
@@ -1210,7 +1210,7 @@ $(HS_STYLE):
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_hs
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_hs/moiosmhs_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
-	    $(SED_CMD) \
+		$(SED_CMD) \
 			-e "s/__version__/$(VERSION)/g" \
 			-e "s/file:moiosm_res/file:moiosmhs_res/g" \
 			-e "s,file:/moiosm_res,file:/moiosmhs_res,g" \
@@ -1232,7 +1232,7 @@ $(BN_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_bn $(BUILD_DIR)
 	cat styles/mapsforge_bn/MOI_OSM_BN.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_bn/MOI_OSM_BN.xml
+		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_bn/MOI_OSM_BN.xml
 	cd $(BUILD_DIR)/mapsforge_bn && $(ZIP_CMD) $@ *
 
 
@@ -1248,7 +1248,7 @@ $(DN_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/mapsforge_dn $(BUILD_DIR)
 	cat styles/mapsforge_dn/MOI_OSM_DN.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_dn/MOI_OSM_DN.xml
+		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_dn/MOI_OSM_DN.xml
 	cd $(BUILD_DIR)/mapsforge_dn && $(ZIP_CMD) $@ *
 
 
@@ -1264,7 +1264,7 @@ $(EXTRA_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/extra $(BUILD_DIR)
 	cat styles/extra/MOI_OSM_EXTRA.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/extra/MOI_OSM_EXTRA.xml
+		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/extra/MOI_OSM_EXTRA.xml
 	cd $(BUILD_DIR)/extra && $(ZIP_CMD) $@ *
 
 
@@ -1280,7 +1280,7 @@ $(TWMAP_STYLE):
 	mkdir -p $(BUILD_DIR)
 	cp -a styles/twmap_style $(BUILD_DIR)
 	cat styles/twmap_style/MOI_OSM_twmap.xml | \
-	    $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
+		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/twmap_style/MOI_OSM_twmap.xml
 	cd $(BUILD_DIR)/twmap_style && $(ZIP_CMD) $@ *
 
 
@@ -1297,7 +1297,7 @@ $(TN_STYLE):
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
 	cat styles/mapsforge_style/MOI_OSM.xml | \
-	    $(SED_CMD) \
+		$(SED_CMD) \
 			-e "s/__version__/$(VERSION)/g" \
 			-e "s/file:moiosm_res/file:tn_res/g" \
 			-e "s,file:/moiosm_res,file:/tn_res,g" \
@@ -1346,18 +1346,19 @@ $(GPX_BASE).map: $(GPX_BASE).osm
 		-Oo $(GPX_BASE)-ren.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-	  --read-pbf $(GPX_BASE)-ren.pbf \
-	  --buffer --mapfile-writer \
-	    type=ram \
-	    threads=$(MAPWITER_THREADS) \
-	    bbox=$(TAIWAN_BBOX) \
-	    preferred-languages="zh,en" \
-	    tag-conf-file=osm_scripts/gpx-mapping.xml \
-	    polygon-clipping=true way-clipping=true label-position=true \
-	    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
-	    map-start-zoom=12 \
-	    comment="$(VERSION) / (c) GPX: $(notdir $(GPX_BASE))" \
-	    file="$@"
+		--read-pbf $(GPX_BASE)-ren.pbf \
+		--buffer \
+		--mapfile-writer \
+			type=ram \
+			threads=$(MAPWITER_THREADS) \
+			bbox=$(TAIWAN_BBOX) \
+			preferred-languages="zh,en" \
+			tag-conf-file=osm_scripts/gpx-mapping.xml \
+			polygon-clipping=true way-clipping=true label-position=true \
+			zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+			map-start-zoom=12 \
+			comment="$(VERSION) / (c) GPX: $(notdir $(GPX_BASE))" \
+			file="$@"
 
 
 WITH_GPX = $(dir $(GPX_OSM))MOI_OSM_$(basename $(notdir $(GPX_OSM)))
@@ -1374,19 +1375,20 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE).osm
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
 	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf "$(WITH_GPX)-add.pbf" \
-		--buffer --mapfile-writer \
-		    type=ram \
-		    threads=$(MAPWITER_THREADS) \
-		    bbox=$(MAPSFORGE_BBOX) \
-		    preferred-languages="$(MAPSFORGE_NTL)" \
-		    tag-conf-file="$(TAG_MAPPING)" \
-		    polygon-clipping=true way-clipping=true label-position=true \
-		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
-		    map-start-zoom=12 \
-			comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI; GPX: $(notdir $(WITH_GPX))" \
-		    file="$@" > /dev/null 2> /dev/null
+		sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+			--read-pbf "$(WITH_GPX)-add.pbf" \
+			--buffer \
+			--mapfile-writer \
+				type=ram \
+				threads=$(MAPWITER_THREADS) \
+				bbox=$(MAPSFORGE_BBOX) \
+				preferred-languages="$(MAPSFORGE_NTL)" \
+				tag-conf-file="$(TAG_MAPPING)" \
+				polygon-clipping=true way-clipping=true label-position=true \
+				zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+				map-start-zoom=12 \
+				comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI; GPX: $(notdir $(WITH_GPX))" \
+				file="$@" > /dev/null 2> /dev/null
 
 
 GPX_MAPSFORGE ?= $(BUILD_DIR)/Happyman-wptgpx.map
@@ -1404,18 +1406,19 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 	osm_scripts/osium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-	  --read-pbf $(@:.map=.pbf) \
-	  --buffer --mapfile-writer \
-	    type=ram \
-	    threads=$(MAPWITER_THREADS) \
-	    bbox=$(TAIWAN_BBOX) \
-	    preferred-languages="zh,en" \
-	    tag-conf-file=osm_scripts/gpx-mapping.xml \
-	    polygon-clipping=true way-clipping=true label-position=true \
-	    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
-	    map-start-zoom=12 \
-	    comment="$(VERSION) / (c) Map: Happyman" \
-	    file="$@"
+		--read-pbf $(@:.map=.pbf) \
+		--buffer \
+		--mapfile-writer \
+			type=ram \
+			threads=$(MAPWITER_THREADS) \
+			bbox=$(TAIWAN_BBOX) \
+			preferred-languages="zh,en" \
+			tag-conf-file=osm_scripts/gpx-mapping.xml \
+			polygon-clipping=true way-clipping=true label-position=true \
+			zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+			map-start-zoom=12 \
+			comment="$(VERSION) / (c) Map: Happyman" \
+			file="$@"
 
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
@@ -1425,19 +1428,20 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(HOME)/log
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-	    sh $(TOOLS_DIR)/osmosis/bin/osmosis \
-		--read-pbf "$(MAPSFORGE_PBF)" \
-		--buffer --mapfile-writer \
-		    type=ram \
-		    threads=$(MAPWITER_THREADS) \
-		    bbox=$(MAPSFORGE_BBOX) \
-		    preferred-languages="$(MAPSFORGE_NTL)" \
-		    tag-conf-file="$(TAG_MAPPING)" \
-		    polygon-clipping=true way-clipping=true label-position=true \
-		    zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
-		    map-start-zoom=12 \
-		    comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
-		    file="$@" &> /dev/null
+		sh $(TOOLS_DIR)/osmosis/bin/osmosis \
+			--read-pbf "$(MAPSFORGE_PBF)" \
+			--buffer \
+			--mapfile-writer \
+				type=ram \
+				threads=$(MAPWITER_THREADS) \
+				bbox=$(MAPSFORGE_BBOX) \
+				preferred-languages="$(MAPSFORGE_NTL)" \
+				tag-conf-file="$(TAG_MAPPING)" \
+				polygon-clipping=true way-clipping=true label-position=true \
+				zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
+				map-start-zoom=12 \
+				comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
+				file="$@" &> /dev/null
 	
 $(COMMON_TILES): $(GMAP_INPUT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -1445,19 +1449,19 @@ $(COMMON_TILES): $(GMAP_INPUT)
 	rm -rf $(COMMON_TILES_DIR)
 	mkdir -p $(COMMON_TILES_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(COMMON_TILES_DIR) && \
-	    java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
-	        --max-threads=$(SPLITTER_THREADS) \
-	    	--geonames-file=$(CITY) \
-		--no-trim \
-		--precomp-sea=$(SEA_DIR) \
-	        --keep-complete=true \
-		--mapid=$(DUMMYID)0001 \
-		--max-areas=4096 \
-		--max-nodes=800000 \
-		--search-limit=1000000000 \
-		--output=o5m \
-		--output-dir=$(COMMON_TILES_DIR) \
-		$(GMAP_INPUT)
+		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
+			--max-threads=$(SPLITTER_THREADS) \
+			--geonames-file=$(CITY) \
+			--no-trim \
+			--precomp-sea=$(SEA_DIR) \
+			--keep-complete=true \
+			--mapid=$(DUMMYID)0001 \
+			--max-areas=4096 \
+			--max-nodes=800000 \
+			--search-limit=1000000000 \
+			--output=o5m \
+			--output-dir=$(COMMON_TILES_DIR) \
+			$(GMAP_INPUT)
 	touch $@
 
 $(TILES): $(COMMON_TILES)
