@@ -255,6 +255,21 @@ STYLE_NAME := bw
 MAPID := $(shell printf %d 0x1313)
 TARGETS := gmap
 
+else ifeq ($(SUITE),beibeiji_bw_en)
+REGION := Beibeiji
+DEM_NAME := MOI
+LANG := en
+CODE_PAGE := 1252
+ELEVATION_FILE = ele_taiwan_10_100_500-2019.7.o5m
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Beibeiji.poly
+TYP := bw
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := bw
+MAPID := $(shell printf %d 0x1303)
+TARGETS := gmap
+
 else ifeq ($(SUITE),beibeiji_odc)
 REGION := Beibeiji
 DEM_NAME := MOI
@@ -361,6 +376,21 @@ STYLE_NAME := bw
 MAPID := $(shell printf %d 0x1013)
 TARGETS := gmapsupp_zip gmap nsis
 
+else ifeq ($(SUITE),taiwan_bw_en)
+REGION := Taiwan
+DEM_NAME := MOI
+LANG := en
+CODE_PAGE := 1252
+ELEVATION_FILE = ele_taiwan_10_100_500-2019.7.o5m
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+TYP := bw
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := bw
+MAPID := $(shell printf %d 0x1003)
+TARGETS := gmapsupp_zip gmap nsis
+
 else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
 DEM_NAME := MOI
@@ -437,6 +467,22 @@ HR_STYLE := basecamp
 STYLE_NAME := camp3D
 GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1017)
+TARGETS := gmapsupp_zip gmap nsis
+
+else ifeq ($(SUITE),taiwan_bc_dem_en)
+REGION := Taiwan
+DEM_NAME := MOI
+LANG := en
+CODE_PAGE := 1252
+ELEVATION_FILE = ele_taiwan_10_100_500-2019.7.o5m
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Taiwan.poly
+TYP := basecamp
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := camp3D
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
+MAPID := $(shell printf %d 0x1007)
 TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_exp)
@@ -566,10 +612,15 @@ MAPID_LO_HEX := $(shell printf '%x' $(MAPID) | cut -c3-4)
 MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 DUMMYID = 9999
 
+ifeq ($(LANG),zh)
 NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION) (by Rudy)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
-
+else
+NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) TOPO v$(VERSION) (by Rudy)
+NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) TOPO v$(VERSION) (by Rudy)
+NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(LANG)
+endif
 
 COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
 TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
@@ -706,6 +757,8 @@ daily:
 	$(MAKE_CMD) styles
 	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
+	$(MAKE_CMD) SUITE=taiwan_bc_dem_en gmap nsis
+	$(MAKE_CMD) SUITE=taiwan_bw_en gmapsupp_zip
 
 .PHONY: suites
 suites:
@@ -869,12 +922,11 @@ $(GMAPSUPP_ZIP): $(GMAPSUPP)
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(GMAPSUPP))
 
+MAPSFORGE_NTL := zh,en
 ifeq ($(LANG),zh)
 NTL := name,name:zh,name:en
-MAPSFORGE_NTL := zh,en
 else ifeq ($(LANG),en)
-NTL := name:en,name:zh,name
-MAPSFORGE_NTL := en
+NTL := name:en,name:zh_pinyin
 endif
 
 .PHONY: map_hidem
@@ -1090,11 +1142,21 @@ $(EXTRACT).o5m:
 		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 
-$(EXTRACT)-sed.osm.pbf: $(EXTRACT).o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
+$(EXTRACT)_name.o5m: $(EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
-	cd $(EXTRACT_DIR) && $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE).o5m $@
+	-rm -rf $@
+	python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT).o5m $(EXTRACT)_name.pbf
+	osmconvert $(EXTRACT)_name.pbf --out-o5m -o=$(EXTRACT)_name.o5m
+	-rm -rf $(EXTRACT)_name.pbf
+
+$(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(EXTRACT_DIR)
+	-rm -rf $@
+	cd $(EXTRACT_DIR) && $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
 
 # OSMCONVERT_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
@@ -1110,12 +1172,12 @@ MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
 endif
 endif
 
-$(GMAP_INPUT): $(EXTRACT).o5m $(ELEVATION)
+$(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cp $(EXTRACT).o5m $@.o5m
+	cp $< $@.o5m
 	sh $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
 	osmconvert \
 		--drop-version \
@@ -1129,7 +1191,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
-	cp $(EXTRACT)-sed.osm.pbf $@.pbf
+	cp $< $@.pbf
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
 	osmconvert \
 		--drop-version \
