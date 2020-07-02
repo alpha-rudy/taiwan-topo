@@ -1,7 +1,8 @@
-work/
-drops/
-download
+/work
+/drops
+/download
 .DS_Store
-.idea
-install/
-.idea/
+/.idea
+/install
+/.idea
+/.vscode
