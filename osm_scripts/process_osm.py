@@ -11,7 +11,7 @@ class NationalParkLoader(osmium.SimpleHandler):
         if not r.members:
             return
         if r.tags['boundary'] == 'national_park':
-            parks = dict(name=r.tags['name'])
+            parks = dict([('name', r.tags['name']), ('name:en', r.tags['name:en'])])
             for m in r.members:
                 if m.role == 'outer' and m.type == 'w':
                     national_park[m.ref] = parks
@@ -28,7 +28,7 @@ class HknetworkLoader(osmium.SimpleHandler):
     def relation(self, r):
         if not r.members:
             return
-        network = dict(name=r.tags['name'], network=r.tags['network'], ref=r.tags.get('ref', ''))
+        network = dict([('name', r.tags['name']), ('name:en', r.tags['name:en']), ('network', r.tags['network']), ('ref', r.tags.get('ref', ''))])
         for m in r.members:
             if not hknetworks.get(m.ref):
                 hknetworks[m.ref] = []
@@ -111,6 +111,23 @@ class MapsforgeHandler(osmium.SimpleHandler):
             name += ')'
             tags['name'] = name
 
+        if tags.get('name:en') is None and tags.get('operator'):
+            operator = tags.get('operator')
+            name = 'mobile ('
+            if '中華' in operator:
+                name += 'CHT,'
+            if '遠傳' in operator:
+                name += 'FET,'
+            if '星' in operator:
+                name += 'T STAR,'
+            if '哥' in operator:
+                name += 'TWM,'
+            if '亞太' in operator:
+                name += 'A+,'
+            name = name.rstrip(',')
+            name += ')'
+            tags['name:en'] = name
+
         n = n.replace(tags=tags)
         self.writer.add_node(n)
 
@@ -119,6 +136,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         if tags.get('name') is None:
             tags['name'] = '取水點'
+        if tags.get('name:en') is None:
+            tags['name'] = 'water'
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
@@ -130,27 +149,29 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags.pop('tourism')
         tags['information'] = 'trail_milestone'
 
-        if tags.get('name') is None:
-            name = ''
-            # name += tags.get('network', '')  default removed network
-            if tags.get('distance'):
-                try:
-                    distance = float(tags.get('distance'))
-                    name += my_g_format(distance) + 'K'
-                    distance_n = int(round(distance, 1) * 10.0)
-                    if distance_n % 10 == 0:
-                        tags['zl'] = '0'
-                    elif distance_n % 5 == 0:
-                        tags['zl'] = '1'
-                    else:
-                        tags['zl'] = '2'
-                except ValueError:
-                    name += tags.get('distance')
-            else:
-                tags['zl'] = '1'
+        name = ''
+        # name += tags.get('network', '')  default removed network
+        if tags.get('distance'):
+            try:
+                distance = float(tags.get('distance'))
+                name += my_g_format(distance) + 'K'
+                distance_n = int(round(distance, 1) * 10.0)
+                if distance_n % 10 == 0:
+                    tags['zl'] = '0'
+                elif distance_n % 5 == 0:
+                    tags['zl'] = '1'
+                else:
+                    tags['zl'] = '2'
+            except ValueError:
+                name += tags.get('distance')
+        else:
+            tags['zl'] = '1'
 
-            if name:
+        if name:
+            if not tags.get('name'):
                 tags['name'] = name
+            if not tags.get('name:en'):
+                tags['name:en'] = name
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
@@ -160,6 +181,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         ref = tags.get('ref')
         name = tags.get('name')
+        name_en = tags.get('name:en')
         if ref is not None:
             if name is None or '百岳#' not in ref:
                 del tags['ref']
@@ -179,6 +201,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             ele = round_float(ele)
             if ele is not None:
                 tags['name'] = '%s, %sm' % (name, ele)
+                tags['name:en'] = '%s, %sm' % (name_en, ele)
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
@@ -220,6 +243,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             '''
             tags['hknetwork'] = network['network']
             tags['ref'] = network['name']
+            tags['ref:en'] = network['name:en']
         w = w.replace(tags=tags)
         self.writer.add_way(w)
         return
@@ -231,6 +255,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def handle_national_park_tags(self, o):
         tags = dict((tag.k, tag.v) for tag in o.tags)
         tags['name'] = national_park[o.id]['name']
+        tags['name:en'] = national_park[o.id]['name:en']
         tags['type'] = 'boundary'
         tags['boundary'] = 'national_park'
         return tags
@@ -271,8 +296,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
         # YouBike and iBike use network:en
         if 'name' in tags:
             tags['name'] = tags['name'] + ' (艱難路線)'
+            tags['name:en'] = tags['name:en'] + ' (tough)'
         else:
             tags['name'] = '(艱難路線)'
+            tags['name:en'] = '(tough)'
         return tags
 
     def handle_no_access_trail_tags(self, o):
@@ -280,8 +307,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
         # YouBike and iBike use network:en
         if 'name' in tags:
             tags['name'] = tags['name'] + ' (已封閉)'
+            tags['name:en'] = tags['name:en'] + ' (closed)'
         else:
             tags['name'] = '(已封閉)'
+            tags['name:en'] = '(closed)'
         return tags
 
 
