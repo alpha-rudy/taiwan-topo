@@ -1,6 +1,7 @@
 import osmium
 import sys
-from hanzi2reading import Reading
+from hanzi2reading.reading import Reading
+from hanzi2reading.pinyin import get as pinyin
 
 reading = Reading()
 
@@ -11,7 +12,7 @@ def annotate(obj):
         if 'name:zh_pinyin' in obj.tags:
             d['name:en'] = d['name:zh_pinyin']
         else:
-            d['name:en'] = reading.get(d['name'])
+            d['name:en'] =' '.join(pinyin(s) for s in reading.get(d['name']))
         new_obj.tags = d
         return new_obj
     else:
