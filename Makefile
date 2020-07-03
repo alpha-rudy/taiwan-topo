@@ -268,7 +268,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
 MAPID := $(shell printf %d 0x1303)
-TARGETS := gmap
+TARGETS := gmapsupp_zip
 
 else ifeq ($(SUITE),beibeiji_odc)
 REGION := Beibeiji
@@ -483,7 +483,7 @@ HR_STYLE := basecamp
 STYLE_NAME := camp3D
 GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1007)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmap nsis
 
 else ifeq ($(SUITE),taiwan_exp)
 REGION := Taiwan
@@ -771,6 +771,8 @@ suites:
 	$(MAKE_CMD) SUITE=taiwan_bw_dem all
 	$(MAKE_CMD) SUITE=taiwan_odc_dem all
 	$(MAKE_CMD) SUITE=taiwan_bc_dem all
+	$(MAKE_CMD) SUITE=taiwan_bc_dem_en all
+	$(MAKE_CMD) SUITE=taiwan_bw_en all
 
 .PHONY: exps
 exps:
