@@ -299,6 +299,23 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror KCWu]](http://moi.kcwu.csie.org/Taiwan_moi_zh_camp3D.gmap.zip) / 
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_zh_camp3D.gmap.zip)
 
+* ![Map](images/Garmin.png =x36) Garmin English Maps - Taiwan TOPO
+  * Clip on one of mirrors to download
+    > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+    > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
+  * ![Map](images/Garmin_small.jpeg =36x) en_bw (180MB)
+    > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_en_bw.img.zip) /
+    > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_en_bw.img.zip) / 
+    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_en_bw.img.zip)
+  * ![Map](images/Windows.png =36x) en_camp3D (190MB)
+    > [[mirror Rex]](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_camp3D_en.exe) /
+    > [[mirror KCWu]](http://moi.kcwu.csie.org/Install_MOI_Taiwan_TOPO_camp3D_en.exe) / 
+    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
+  * ![Map](images/macOS.png =36x) en_camp3D (190MB)
+    > [[mirror Rex]](http://rudy.basecamp.tw/Taiwan_moi_en_camp3D.gmap.zip) /
+    > [[mirror KCWu]](http://moi.kcwu.csie.org/Taiwan_moi_en_camp3D.gmap.zip) / 
+    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/Taiwan_moi_en_camp3D.gmap.zip)
+
 
 ## 說明
 
@@ -325,6 +342,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2020, 7/3
+  * added English maps
 * 2019, 10/24
   * 增加 Markchoo 馬克褚大小百岳合輯
 * 2019, 9/25
