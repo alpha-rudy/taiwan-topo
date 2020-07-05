@@ -12,7 +12,7 @@ def annotate(obj):
         if 'name:zh_pinyin' in obj.tags:
             d['name:en'] = d['name:zh_pinyin']
         else:
-            d['name:en'] =' '.join(pinyin(s) for s in reading.get(d['name']))
+            d['name:en'] = ' '.join(pinyin(s).capitalize() for s in reading.get(d['name']))
         new_obj.tags = d
         return new_obj
     else:
