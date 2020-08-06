@@ -20,6 +20,11 @@ JAVACMD_OPTIONS ?= -Xmx68G -server
 ROOT_DIR := $(shell pwd)
 TOOLS_DIR := $(ROOT_DIR)/tools
 OSMOSIS_CMD := $(TOOLS_DIR)/osmosis-0.48.2/bin/osmosis
+ifeq ($(shell uname),Darwin)
+OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/osx/osmconvert
+else
+OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/linux/osmconvert64
+endif
 SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
@@ -1149,7 +1154,10 @@ $(EXTRACT)_name.o5m: $(EXTRACT).o5m
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
 	python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT).o5m $(EXTRACT)_name.pbf
-	osmconvert $(EXTRACT)_name.pbf --out-o5m -o=$(EXTRACT)_name.o5m
+	$(OSMCONVERT_CMD) \
+		$(EXTRACT)_name.pbf \
+		--out-o5m \
+		-o=$(EXTRACT)_name.o5m
 	-rm -rf $(EXTRACT)_name.pbf
 
 $(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
@@ -1180,7 +1188,7 @@ $(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
 	mkdir -p $(BUILD_DIR)
 	cp $< $@.o5m
 	sh $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
-	osmconvert \
+	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
 		$@.o5m \
@@ -1194,7 +1202,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
 	mkdir -p $(BUILD_DIR)
 	cp $< $@.pbf
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
-	osmconvert \
+	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
 		$@.pbf \
