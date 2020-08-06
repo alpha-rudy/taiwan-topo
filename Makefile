@@ -19,7 +19,7 @@ JAVACMD_OPTIONS ?= -Xmx68G -server
 # directory variables
 ROOT_DIR := $(shell pwd)
 TOOLS_DIR := $(ROOT_DIR)/tools
-OSMOSIS_BIN := $(TOOLS_DIR)/osmosis/bin/osmosis
+OSMOSIS_CMD := $(TOOLS_DIR)/osmosis-0.48.2/bin/osmosis
 SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
@@ -864,7 +864,7 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
-		sh $(OSMOSIS_BIN) \
+		sh $(OSMOSIS_CMD) \
 			--rb file="$(EXTRACT)-sed.osm.pbf" \
 			--poi-writer \
 			all-tags=true \
@@ -1408,7 +1408,7 @@ $(GPX_BASE).map: $(GPX_BASE).osm
 		$(GPX_BASE)-sed.pbf \
 		-Oo $(GPX_BASE)-ren.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-	sh $(OSMOSIS_BIN) \
+	sh $(OSMOSIS_CMD) \
 		--read-pbf $(GPX_BASE)-ren.pbf \
 		--buffer \
 		--mapfile-writer \
@@ -1438,7 +1438,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE).osm
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
 	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-		sh $(OSMOSIS_BIN) \
+		sh $(OSMOSIS_CMD) \
 			--read-pbf "$(WITH_GPX)-add.pbf" \
 			--buffer \
 			--mapfile-writer \
@@ -1468,7 +1468,7 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 		-Oo $(@:.map=.pbf)
 	osm_scripts/osium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-	sh $(OSMOSIS_BIN) \
+	sh $(OSMOSIS_CMD) \
 		--read-pbf $(@:.map=.pbf) \
 		--buffer \
 		--mapfile-writer \
@@ -1491,7 +1491,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(HOME)/log
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-		sh $(OSMOSIS_BIN) \
+		sh $(OSMOSIS_CMD) \
 			--read-pbf "$(MAPSFORGE_PBF)" \
 			--buffer \
 			--mapfile-writer \
