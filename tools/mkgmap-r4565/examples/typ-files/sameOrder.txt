@@ -1,0 +1,119 @@
+;-------------------------------------------------------------------------------
+; This is an example TYP file.
+; A TYP file controls how the Garmin device renders polygons, lines and points.
+;  See https://wiki.openstreetmap.org/wiki/Mkgmap/help/typ_compile
+; for more information.
+;
+; This example sets most polygons to have the same drawOrder
+;  See https://wiki.openstreetmap.org/wiki/Editing_OSM_Map_On_Garmin/Area_Types
+; so that mkgmap option --order-by-decreasing-area works in an optimum manner.
+; It exposes all the known non-extended Garmin polygon representations, eg
+; 0x01-0x03=City and provides some hidden polygons for naming large areas such
+; as Counties, Islands...
+;-------------------------------------------------------------------------------
+;
+[_drawOrder]
+; nothing shows, even with: Type=0x00,2
+Type=0x01,2
+Type=0x02,2
+Type=0x03,2
+Type=0x04,2
+Type=0x05,2
+Type=0x06,2
+; 0x07/Airport default drawOrder is lower that most other polygons on some Garmin devices; make it the same.
+Type=0x07,2
+Type=0x08,2
+Type=0x09,2
+Type=0x0a,2
+Type=0x0b,2
+Type=0x0c,2
+Type=0x0d,2
+Type=0x0e,2
+Type=0x0f,2
+Type=0x10,2
+Type=0x11,2
+Type=0x12,2
+Type=0x13,2
+; the following Greens default drawOrder is lower than most on some Garmin devices; make them the same.
+Type=0x14,2
+Type=0x15,2
+Type=0x16,2
+Type=0x17,2
+Type=0x18,2
+Type=0x19,2
+Type=0x1a,2
+Type=0x1b,2
+Type=0x1c,2
+Type=0x1d,2
+Type=0x1e,2
+Type=0x1f,2
+Type=0x20,2
+; to here
+Type=0x21,2
+Type=0x22,2
+Type=0x23,2
+Type=0x24,2
+Type=0x25,2
+Type=0x26,2
+Type=0x27,2
+Type=0x28,2
+Type=0x29,2
+Type=0x2a,2
+Type=0x2b,2
+Type=0x2c,2
+Type=0x2d,2
+Type=0x2e,2
+Type=0x2f,2
+Type=0x30,2
+Type=0x31,2
+Type=0x32,2
+Type=0x33,2
+Type=0x34,2
+Type=0x35,2
+Type=0x36,2
+Type=0x37,2
+Type=0x38,2
+Type=0x39,2
+Type=0x3a,2
+Type=0x3b,2
+Type=0x3c,2
+Type=0x3d,2
+Type=0x3e,2
+Type=0x3f,2
+Type=0x40,2
+Type=0x41,2
+Type=0x42,2
+Type=0x43,2
+Type=0x44,2
+Type=0x45,2
+Type=0x46,2
+Type=0x47,2
+Type=0x48,2
+Type=0x49,2
+; The following two are overview/main background. Give them a lower drawOrder.
+Type=0x4a,1
+Type=0x4b,1
+Type=0x4c,2
+Type=0x4d,2
+Type=0x4e,2
+Type=0x4f,2
+Type=0x50,2
+Type=0x51,2
+Type=0x52,2
+Type=0x53,2
+Type=0x54,2
+Type=0x55,2
+; The following don't seem to have any known pre-defined meaning to Garmin
+; devices and can be used to give a 'hover' or 'select' name and details without
+; other representation, being hidden with a lower drawOrder than the background.
+Type=0x56,0
+Type=0x57,0
+Type=0x58,0
+Type=0x59,0
+Type=0x5a,0
+Type=0x5b,0
+Type=0x5c,0
+Type=0x5d,0
+Type=0x5e,0
+Type=0x5f,0
+[end]

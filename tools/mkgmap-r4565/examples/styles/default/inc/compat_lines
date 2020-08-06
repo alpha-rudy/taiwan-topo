@@ -121,5 +121,5 @@ goods=private | goods=no { set mkgmap:delivery=no; }
 goods=yes | goods=permissive | goods=official | goods=designated { set mkgmap:delivery=yes; }
 
 # Reintroduce the old carpool handling which allows access only for bus and emergency plus setting the carpool bit
-mkgmap:carpool_compat=yes  { setaccess=no; set mkgmap:bus=yes; set mkgmap:emergency=yes; set mkgmap:carpool=yes }
+mkgmap:carpool_compat=yes  { setaccess no; set mkgmap:bus=yes; set mkgmap:emergency=yes; set mkgmap:carpool=yes }
 

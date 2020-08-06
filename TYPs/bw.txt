@@ -1,7 +1,7 @@
 ; POPOGPS.TYP
 ; Longueur: 38688 octets
 ; Fichier TYP compilé     06.07.2014     10:54:13
-; Décompilé le 04.08.2014 à 20:58:24
+; Compile 04.08.2014 at 20:58:24
 
 [_id]
 ProductCode=1
@@ -236,9 +236,39 @@ String4=0x04,Nature Reserve
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-Xpm="32 2 2 1"
+Xpm="32 32 2 1"
 "! c #FF0000"
 "  c none"
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
 "                                "
 "                                "
 ;12345678901234567890123456789012
@@ -372,9 +402,39 @@ String4=0x04,Deciduous Forest
 ExtendedLabels=Y
 FontStyle=NoLabel
 CustomColor=No
-Xpm="32 2 2 1"
+Xpm="32 32 2 1"
 "! c #FF0000"
 "  c none"
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
 "                                "
 "                                "
 ;12345678901234567890123456789012

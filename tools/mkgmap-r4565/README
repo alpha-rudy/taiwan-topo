@@ -13,7 +13,7 @@ but now the maps are becoming useful in their own right.
 Using
 =====
 
-This program requires Java 1.6 or above to run.
+This program requires Java 1.8 or above to run.
 
 Producing a map is simple.  Save OpenStreetMap data from JOSM 
 or by any other method to a file and copy it to the mkgmap
@@ -59,6 +59,8 @@ by suitable options.  Run
  java -jar mkgmap.jar --help=options
 
 to obtain an up to date and complete listing of options.
+
+Also consider examples/sample.cfg as a starting point for your options package 
 
 Processing more than one file at a time
 ---------------------------------------

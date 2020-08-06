@@ -19,11 +19,11 @@ mkgmap:country=NLD & mkgmap:city!=* & mkgmap:admin_level8=* { set mkgmap:city='$
 mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level4=Hamburg {set mkgmap:city='${mkgmap:admin_level4}' }
 mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level4=Berlin {set mkgmap:city='${mkgmap:admin_level4}' }
 mkgmap:country=DEU & mkgmap:region!=* & mkgmap:admin_level4=* { set mkgmap:region='${mkgmap:admin_level4}' }
-mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level8=* { set mkgmap:city='${mkgmap:admin_level8|subst:Gemeinde |subst:Stadt}' }
-mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level7=* { set mkgmap:city='${mkgmap:admin_level7|subst:Gemeinde |subst:Stadt}' }
-mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level6=* { set mkgmap:city='${mkgmap:admin_level6|subst:Gemeinde |subst:Stadt}' }
-mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level9=* { set mkgmap:city='${mkgmap:admin_level9|subst:Gemeinde |subst:Stadt}' }
-mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level10=* { set mkgmap:city='${mkgmap:admin_level10|subst:Gemeinde |subst:Stadt}' }
+mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level8=* { set mkgmap:city='${mkgmap:admin_level8|subst:Gemeinde |subst:Stadt }' }
+mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level7=* { set mkgmap:city='${mkgmap:admin_level7|subst:Gemeinde |subst:Stadt }' }
+mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level6=* { set mkgmap:city='${mkgmap:admin_level6|subst:Gemeinde |subst:Stadt }' }
+mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level9=* { set mkgmap:city='${mkgmap:admin_level9|subst:Gemeinde |subst:Stadt }' }
+mkgmap:country=DEU & mkgmap:city!=* & mkgmap:admin_level10=* { set mkgmap:city='${mkgmap:admin_level10|subst:Gemeinde |subst:Stadt }' }
 
 
 # Austria = AUT
