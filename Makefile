@@ -26,6 +26,7 @@ else
 OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/linux/osmconvert64
 endif
 MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4565/mkgmap.jar
+SPLITTER_JAR := $(TOOLS_DIR)/splitter-r597/splitter.jar
 SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
@@ -1521,7 +1522,7 @@ $(COMMON_TILES): $(GMAP_INPUT)
 	rm -rf $(COMMON_TILES_DIR)
 	mkdir -p $(COMMON_TILES_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(COMMON_TILES_DIR) && \
-		java $(JAVACMD_OPTIONS) -jar $(TOOLS_DIR)/splitter/splitter.jar \
+		java $(JAVACMD_OPTIONS) -jar $(SPLITTER_JAR) \
 			--max-threads=$(SPLITTER_THREADS) \
 			--geonames-file=$(CITY) \
 			--no-trim \
