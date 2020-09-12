@@ -1167,7 +1167,7 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scrip
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
-	cd $(EXTRACT_DIR) && $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
+	cd $(EXTRACT_DIR) && OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
 
 # OSMCONVERT_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
