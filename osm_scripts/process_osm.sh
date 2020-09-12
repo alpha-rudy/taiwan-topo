@@ -31,7 +31,7 @@ osmfilter \
     --drop-version \
     --ignore-dependencies \
     --drop-tags='name:zh= ref:zh=' \
-    "$infile" --out-o5m | osmconvert - -o="$temp_pbf"
+    "$infile" --out-o5m | ${OSMCONVERT_CMD} - -o="$temp_pbf"
 
 script_dir="$(dirname $0)"
 python3 "$script_dir/process_osm.py" "$temp_pbf" "$outfile"
