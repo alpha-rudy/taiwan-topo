@@ -1369,6 +1369,7 @@ $(TN_STYLE):
 	mkdir -p $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_tn
 	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
+	cp styles/mapsforge_tn/tn_res/* $(BUILD_DIR)/mapsforge_tn/tn_res/
 	cat styles/mapsforge_style/MOI_OSM.xml | \
 		$(SED_CMD) \
 			-e "s/__version__/$(VERSION)/g" \
