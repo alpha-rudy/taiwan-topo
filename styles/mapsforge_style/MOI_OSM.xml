@@ -2058,10 +2058,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <line stroke="#664329" stroke-width="1.2" stroke-linecap="butt"/>
       </rule>
       <rule e="way" k="highway" v="track|byway" zoom-min="14">
-        <rule e="way" k="tracktype" v="grade1|grade2">
+        <rule e="way" k="tracktype|surface" v="grade1|grade2|paved">
           <line stroke="#664329" stroke-width="0.95" stroke-linecap="butt"/>
         </rule>
-        <rule e="way" k="tracktype" v="grade3">
+        <rule e="way" k="tracktype" v="grade3|~">
           <line stroke="#664329" stroke-width="0.95" stroke-dasharray="21,5" stroke-linecap="butt"/>
         </rule>
         <rule e="way" k="tracktype" v="grade4">
@@ -2069,9 +2069,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule e="way" k="tracktype" v="grade5">
           <line stroke="#664329" stroke-width="0.95" stroke-dasharray="8,5" stroke-linecap="butt"/>
-        </rule>
-        <rule e="way" k="tracktype" v="~">
-          <line stroke="#664329" stroke-width="0.95" stroke-dasharray="4,1,11,1,4,5" stroke-linecap="butt"/>
         </rule>
       </rule>
       <rule e="way" k="bridge" v="~">
