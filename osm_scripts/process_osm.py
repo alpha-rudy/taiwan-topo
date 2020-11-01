@@ -91,9 +91,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
     def handle_mobile_sign(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
+        operator_tag = 'internet_access:operator'
 
-        if tags.get('name') is None and tags.get('operator'):
-            operator = tags.get('operator')
+        if tags.get('name') is None and tags.get(operator_tag):
+            operator = tags.get(operator_tag)
             name = '通訊點 ('
 
             if '中華' in operator:
@@ -111,8 +112,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
             name += ')'
             tags['name'] = name
 
-        if tags.get('name:en') is None and tags.get('operator'):
-            operator = tags.get('operator')
+        if tags.get('name:en') is None and tags.get(operator_tag):
+            operator = tags.get(operator_tag)
             name = 'mobile ('
             if '中華' in operator:
                 name += 'CHT,'
@@ -210,7 +211,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if w.id in hknetworks and 'highway' in w.tags:
             self.handle_hknetwork(w)
             return
-        
+
         if w.id in national_park:
             self.handle_national_park(w)
             return
