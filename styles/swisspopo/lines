@@ -585,9 +585,9 @@ highway = footway | highway = elevator | highway = steps | highway = pedestrian 
 # T4
 (highway = footway | highway = path) & sac_scale = alpine_hiking              {set highway = sacscalet2t3;    set name = '${name}' | '步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 # bad trail visibility
-(highway = footway | highway = path) & (trail_visibility = bad | trail_visibility = horrible | trail_visibility = no)    {set highway = difficult_trail;    set name = '${name}' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+(highway = footway | highway = path) & (trail_visibility = bad | trail_visibility = horrible | trail_visibility = no)    {set highway = difficult_trail;    set name = '${name} (艱難路線)' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 # T5 and T6
-(highway = footway | highway = path) & (sac_scale = demanding_alpine_hiking | sac_scale = difficult_alpine_hiking)    {set highway = difficult_trail;    set name = '${name}' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+(highway = footway | highway = path) & (sac_scale = demanding_alpine_hiking | sac_scale = difficult_alpine_hiking)    {set highway = difficult_trail;    set name = '${name}  (艱難路線)' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 
 
 # access
@@ -1269,7 +1269,7 @@ highway = sacscalet2t3 [0x011f0a resolution 21-22]
 #highway = bergweg56 [0x011f08 resolution 24 continue]
 #highway = bergweg56 [0x011f0b resolution 23-23]
 highway = difficult_trail [0x011f08 resolution 23-24 continue]
-highway = difficult_trail [0x011f0b resolution 21-22]
+highway = difficult_trail [0x011f0b resolution 22-22]
 
 
 # Allgemeiner Weg oder Pfad:
