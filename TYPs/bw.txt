@@ -4105,9 +4105,10 @@ CustomColor=No
 [_line]
 Type=0x11f08
 UseOrientation=Y
-Xpm="32 1 2  1"
+Xpm="32 2 2  1"
 "! c #700300"  ;trail difficult
 "  c none"
+"!!!!!   !!!   !!    !!!   !!    "
 "!!!!!   !!!   !!    !!!   !!    "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T4/T5/T6
