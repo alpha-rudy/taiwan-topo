@@ -4147,11 +4147,10 @@ CustomColor=No
 [_line]
 Type=0x11f08
 UseOrientation=Y
-Xpm="32 2 2  1"
-"! c #E10600"  ;trail difficult
+Xpm="32 1 2  1"
+"! c #700300"  ;trail difficult
 "  c none"
-"    !!   !!   !!    !!   !!   !!"
-"    !!   !!   !!    !!   !!   !!"
+"!!!!!   !!!   !!    !!!   !!    "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T4/T5/T6
 String2=0x02,Bergweg T4/T5/T6
@@ -4204,9 +4203,9 @@ CustomColor=No
 Type=0x11f0b
 UseOrientation=Y
 Xpm="32 1 2  1"
-"! c #E10600"  ;trail difficult
+"! c #700300"  ;trail difficult
 "  c none"
-"    !!   !!   !!    !!   !!   !!"
+"!!!!!   !!!   !!    !!!   !!    "
 ;12345678901234567890123456789012
 String1=0x00,Alpine Trail T4/T5/T6
 String2=0x02,Bergweg T4/T5/T6
