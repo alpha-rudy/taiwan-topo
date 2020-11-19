@@ -5053,6 +5053,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <symbol id="s_pt_subway_kaohsiung" priority="78" src="file:moiosm_res/s_pt_subway_kaohsiung.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_kaohsiung" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
+      <rule e="any" k="network" v="臺中捷運">
+        <symbol id="s_pt_subway_taichung" priority="78" src="file:moiosm_res/s_pt_subway_taichung.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <caption priority="78" k="name" symbol-id="s_pt_subway_taichung" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
       <rule e="any" k="network" v="臺北捷運|~">
         <symbol id="s_pt_subway_taipei" priority="78" src="file:moiosm_res/s_pt_subway_taipei.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <caption priority="78" k="name" symbol-id="s_pt_subway_taipei" position="above" font-style="bold" font-size="10" fill="#115D91" stroke="#E5FFFFFF" stroke-width="2"/>
