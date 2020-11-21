@@ -40,7 +40,7 @@
   > (歡迎製作並取代我的不專業解說)
   * [![Map](images/OruxMaps_map.jpeg =36x) Map](orux-map://__local_ip__:__local_port__/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
   * [![Style](images/OruxMaps_style.jpeg =36x) Style](orux-mf-theme://__local_ip__:__local_port__/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選啟動風格主題自動安裝
-  * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2019.2](./hgtmix.zip)：未支援。請點選下載，並手動安裝
+  * [![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2020](./hgtmix.zip)：未支援。請點選下載，並手動安裝
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/706762142812735
@@ -48,7 +48,7 @@
   * 分開安裝
     * [![Map](images/Locus_map.jpeg =36x) Map](locus-actions://http/__local_ip__:__local_port__/u_locus_map-local.xml)：點選啟動地圖自動安裝
     * [![Style](images/Locus_style.jpeg =36x) Style](locus-actions://http/__local_ip__:__local_port__/u_locus_style-local.xml)：點選啟動風格主題自動安裝
-    * [![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2019.2](locus-actions://http/__local_ip__:__local_port__/u_locus_dem-local.xml)：點選啟動高程檔自動安裝
+    * [![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2020](locus-actions://http/__local_ip__:__local_port__/u_locus_dem-local.xml)：點選啟動高程檔自動安裝
   * 圖資更新
     * [![Map](images/Locus.jpeg =36x) 更新](locus-actions://http/__local_ip__:__local_port__/u_locus_upgrade-local.xml)：點選啟動地圖/風格更新
   * 一次安裝
@@ -59,7 +59,7 @@
   > (歡迎製作並取代我的不專業解說)
   * [![Map](images/Cartograph_map.png =36x) Map](orux-map://__local_ip__:__local_port__/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
   * [![Style](images/Cartograph_style.png =36x) Style](orux-mf-theme://__local_ip__:__local_port__/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選啟動動風格主題自動安裝
-  * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2019.2](./hgtmix.zip)：未支援。請點選下載，並透過 iTune 手動安裝
+  * [![DEM](images/Cartograph_dem.png =36x) DEM mix, v2020](./hgtmix.zip)：未支援。請點選下載，並透過 iTune 手動安裝
 
 * ![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Mapsforge 手動下載自行安裝
   * 安裝示範影片：
@@ -71,8 +71,8 @@
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，手動安裝
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，手動安裝
   * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph 2 Pro Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝
-  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2019.2](./hgtmix.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝
-  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 90m, v2019.2](./hgt90.zip)：全幅90m, 檔案最小, 手動安裝
+  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2020](./hgtmix.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝
+  * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 90m, v2020](./hgt90.zip)：全幅90m, 檔案最小, 手動安裝
 
 * ![Map](images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
   * 安裝示範影片：
@@ -150,7 +150,7 @@
 
 
 ## 地圖版權與散佈說明
-    Copyright (c) 2016-2019 Rudy Chung
+    Copyright (c) 2016-2020 Rudy Chung
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
