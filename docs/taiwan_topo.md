@@ -342,6 +342,8 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 重大修改歷程
+* 2020, 11/21
+  * DTM 套用內政部地政司 Taiwan DTM 20m v2020
 * 2020, 7/3
   * added English maps
 * 2019, 10/24
@@ -351,15 +353,15 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 * 2019, 7/25
   * 增加 Happyman 第三個 Mirror Site
 * 2019, 7/11
-  * DTM 套用內政部 Taiwan DEM 20m v2019
+  * DTM 套用內政部地政司 Taiwan DTM 20m v2019
 * 2019, 5/30
-  * DTM 改用內政部 Taiwan DEM 20m v2018
+  * DTM 改用內政部地政司 Taiwan DTM 20m v2018
 * 2019, 5/12
-  * DTM 改用內政部 Taiwan DEM 20m v2019 (3/28)
+  * DTM 改用內政部地政司 Taiwan DTM 20m v2019 (3/28)
 * 2018, 9/27
   * 增加衛星空照疊圖專用 BN Style
 * 2018, 8/2
-  * DEM 改用內政部 Taiwan DEM 20m v2018
+  * DEM 改用內政部地政司 Taiwan DTM 20m v2018
 * 2018, 5/7
   * 感謝 Wayne Su 兄，增加標石（基點）標示
 * 2018, 2/18
