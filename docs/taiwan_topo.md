@@ -68,7 +68,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) / 
     > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
-  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2019.3, 請點選下載，並手動安裝 (50MB)
+  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2020, 請點選下載，並手動安裝 (50MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/hgtmix.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/hgtmix.zip) / 
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/hgtmix.zip)
@@ -85,7 +85,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_style-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) / 
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2019.3 (50MB)
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2020 (50MB)
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_dem-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_dem-kcwu.xml) / 
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_dem-happyman.xml)
@@ -112,7 +112,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_style.cpkg) /
       > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_style.cpkg) / 
       > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2019.3, 請點選下載，並手動安裝 (50MB)
+    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2020, 請點選下載，並手動安裝 (50MB)
       > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_dem.cpkg) /
       > [[mirror KCWu]](cartograph-map://moi.kcwu.csie.org/carto_dem.cpkg) / 
       > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_dem.cpkg)
@@ -171,11 +171,11 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Rex]](http://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2019.3, 台灣本島30m, 離島90m, 適當大小 (50MB)
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2020, 台灣本島30m, 離島90m, 適當大小 (50MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/hgtmix.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/hgtmix.zip) / 
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/hgtmix.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2019.3, 全部90m, 解析度低，檔案最小 (8MB)
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2020, 全部90m, 解析度低，檔案最小 (8MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/hgt90.zip) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/hgt90.zip) / 
     > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/hgt90.zip)
@@ -500,7 +500,7 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 
 ## 地圖版權與散佈說明
-    Copyright (c) 2016-2019 Rudy Chung
+    Copyright (c) 2016-2020 Rudy Chung
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
