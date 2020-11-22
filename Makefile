@@ -27,6 +27,7 @@ OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/linux/osmconvert64
 endif
 MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4565/mkgmap.jar
 SPLITTER_JAR := $(TOOLS_DIR)/splitter-r597/splitter.jar
+LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
 SEA_DIR := $(ROOT_DIR)/sea
 BOUNDS_DIR := $(ROOT_DIR)/bounds
 CITIES_DIR := $(ROOT_DIR)/cities
@@ -141,8 +142,6 @@ MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
-GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
-CARTO_ALL := $(BUILD_DIR)/carto_all
 TARGETS := mapsforge_zip poi_zip gts_all carto_all
 
 else ifeq ($(SUITE),taiwan_lite)
@@ -158,7 +157,6 @@ MAPSFORGE_BBOX := 21.55682,118.12141,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 HGT := $(ROOT_DIR)/hgt/hgt90.zip
 GTS_STYLE = $(LITE_STYLE)
-GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 TARGETS := mapsforge_zip gts_all
 
 else ifeq ($(SUITE),beibeiji)
@@ -173,6 +171,21 @@ POLY_FILE := Beibeiji.poly
 MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge
+
+else ifeq ($(SUITE),taiwan_lite)
+REGION := Beibeiji
+DEM_NAME := MOI
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_20_100_500-2020.o5m
+ELEVATION_MIX_FILE = ele_taiwan_20_100_500_marker-2020.o5m
+EXTRACT_FILE := taiwan-latest
+POLY_FILE := Beibeiji.poly
+MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
+HGT := $(ROOT_DIR)/hgt/hgt90.zip
+GTS_STYLE = $(LITE_STYLE)
+TARGETS := mapsforge_zip gts_all
 
 else ifeq ($(SUITE),taipei)
 REGION := Taipei
@@ -676,10 +689,19 @@ GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 POI_ZIP := $(POI).zip
+LOCUS_POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).db
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
+
+GTS_ALL ?= $(BUILD_DIR)/gts-no_defined
+CARTO_ALL ?= $(BUILD_DIR)/carto-no_defined
+LOCUS_MAP ?= $(BUILD_DIR)/locus-no_defined
+
+GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
+CARTO_ALL := $(BUILD_DIR)/carto_all
+LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $$EXAM_FILE
@@ -703,8 +725,8 @@ clean:
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
 
-.PHONY: clean-elevations
-clean-elevations:
+.PHONY: distclean-elevations
+distclean-elevations:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(WORKS_DIR)" ]
@@ -712,8 +734,8 @@ clean-elevations:
 	-rm -rf $(WORKS_DIR)
 	-rm -rf $(ELEVATIONS_DIR)
 
-.PHONY: clean-extracts
-clean-extracts:
+.PHONY: distclean-extracts
+distclean-extracts:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(WORKS_DIR)" ]
@@ -764,7 +786,7 @@ styles:
 daily:
 	$(MAKE_CMD) styles
 	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
-	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
+	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis 
 
 .PHONY: suites
 suites:
@@ -819,16 +841,28 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 
 .PHONY: carto_all
 carto_all: $(CARTO_ALL).zip
-$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Rudy_style.zip $(HGT)
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(MAPSFORGE_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
 	unzip $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg MOI_OSM_Taiwan_TOPO_Rudy_style.zip
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg $(shell basename $(MAPSFORGE_STYLE))
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) MOI_OSM_Taiwan_TOPO_Rudy_style.zip
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) MOI_OSM_Taiwan_TOPO_Rudy_style.zip
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(MAPSFORGE_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(MAPSFORGE_STYLE))
+
+.PHONY: locus_map
+locus_map: $(LOCUS_MAP).zip
+$(LOCUS_MAP).zip: $(MAPSFORGE) $(POI) $(LOCUS_POI) 
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(LOCUS_MAP)" ]
+	@rm -rf $(LOCUS_MAP) $(LOCUS_MAP).zip
+	mkdir -p $(LOCUS_MAP)
+	cp $(MAPSFORGE) $(LOCUS_MAP)/$(shell basename $(MAPSFORGE:%.map=%.osm.map))
+	cp $(POI) $(LOCUS_MAP)/$(shell basename $(POI:%.poi=%.osm.poi))
+	cp $(LOCUS_POI) $(LOCUS_MAP)/$(shell basename $(LOCUS_POI:%.db=%.osm.db))
+	cd $(LOCUS_MAP) && $(ZIP_CMD) $(LOCUS_MAP).zip *
 
 .PHONY: nsis
 nsis: $(NSIS)
@@ -880,6 +914,15 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 			tag-conf-file="$(POI_MAPPING)" \
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
 			file="$@"
+
+.PHONY: locus_poi
+locus_poi: $(LOCUS_POI)
+$(LOCUS_POI):  $(POI)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(EXTRACT)" ]
+	mkdir -p $(BUILD_DIR)
+	-rm -rf $@
+	$(LOCUS_POI_CONVERTER) -if poi -om create '$<' '$@'
 
 .PHONY: gmap
 gmap: $(GMAP)
