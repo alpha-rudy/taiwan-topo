@@ -21,6 +21,7 @@ RUN dpkg --add-architecture i386 && \
         discount \
         git \
         libc6:i386 libncurses5:i386 libstdc++6:i386 \
+        libsqlite3-mod-spatialite \
         locales \
         make \
         nsis \
@@ -28,6 +29,7 @@ RUN dpkg --add-architecture i386 && \
         osmium-tool \
         p7zip-full \
         python-lxml \
+        python3-pip \
         pyosmium \
         ssh \
         sudo \
@@ -35,6 +37,15 @@ RUN dpkg --add-architecture i386 && \
         zip \
         zstd \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade bs4 matplotlib numpy setuptools
+RUN pip3 install \
+                osmium \
+                pygdal=="`gdal-config --version`.*" \
+                spatialite \
+                tqdm \
+                wheel 
 
 RUN locale-gen en_US.UTF-8
 RUN adduser --disabled-password --gecos '' builder && adduser builder sudo
