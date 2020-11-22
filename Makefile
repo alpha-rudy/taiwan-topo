@@ -785,7 +785,7 @@ styles:
 .PHONY: daily
 daily:
 	$(MAKE_CMD) styles
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip locus_map
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis 
 
 .PHONY: suites
