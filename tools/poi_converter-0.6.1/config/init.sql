@@ -57,11 +57,12 @@ INSERT INTO 'MetaData' VALUES ('versiondbpoi', '1');
 INSERT INTO 'MetaData' VALUES ('versiondbaddress', '1');
 
 -- fill in root and sub folder values 
+INSERT INTO FoldersRoot (name) VALUES ('hiking');
 INSERT INTO FoldersRoot (name) VALUES ('accommodation');
 INSERT INTO FoldersRoot (name) VALUES ('financial_post_services');
 INSERT INTO FoldersRoot (name) VALUES ('culture_tourism');
 INSERT INTO FoldersRoot (name) VALUES ('public_services');
-INSERT INTO FoldersRoot (name) VALUES ('hiking_cycling');
+INSERT INTO FoldersRoot (name) VALUES ('cycling');
 INSERT INTO FoldersRoot (name) VALUES ('nature');
 INSERT INTO FoldersRoot (name) VALUES ('emergency_health');
 INSERT INTO FoldersRoot (name) VALUES ('place_of_worship');
@@ -73,6 +74,8 @@ INSERT INTO FoldersRoot (name) VALUES ('transportation');
 
 
 INSERT INTO FoldersSub (name)  VALUES ('alpine_hut');
+INSERT INTO FoldersSub (name)  VALUES ('wilderness_hut');
+INSERT INTO FoldersSub (name)  VALUES ('basic_hut');
 INSERT INTO FoldersSub (name)  VALUES ('camp_caravan');
 INSERT INTO FoldersSub (name)  VALUES ('motel');
 INSERT INTO FoldersSub (name)  VALUES ('hostel');
@@ -96,6 +99,7 @@ INSERT INTO FoldersSub (name)  VALUES ('embassy');
 INSERT INTO FoldersSub (name)  VALUES ('telephone');
 INSERT INTO FoldersSub (name)  VALUES ('grave_yard');
 INSERT INTO FoldersSub (name)  VALUES ('parking');
+INSERT INTO FoldersSub (name)  VALUES ('bicycle_rental');
 INSERT INTO FoldersSub (name)  VALUES ('bicycle_parking');
 INSERT INTO FoldersSub (name)  VALUES ('guidepost');
 INSERT INTO FoldersSub (name)  VALUES ('map');
@@ -104,6 +108,9 @@ INSERT INTO FoldersSub (name)  VALUES ('shelter');
 INSERT INTO FoldersSub (name)  VALUES ('viewpoint');
 INSERT INTO FoldersSub (name)  VALUES ('protected_area');
 INSERT INTO FoldersSub (name)  VALUES ('peak');
+INSERT INTO FoldersSub (name)  VALUES ('survey_point');
+INSERT INTO FoldersSub (name)  VALUES ('trailhead');
+INSERT INTO FoldersSub (name)  VALUES ('camp_site');
 INSERT INTO FoldersSub (name)  VALUES ('spring');
 INSERT INTO FoldersSub (name)  VALUES ('mine_cave');
 INSERT INTO FoldersSub (name)  VALUES ('glacier');
@@ -152,6 +159,7 @@ INSERT INTO FoldersSub (name)  VALUES ('ferries');
 
 -- fill in tag keys (used in Poi detailed view)
 INSERT INTO TagKeys (name) VALUES ('tourism');
+INSERT INTO TagKeys (name) VALUES ('shelter_type');
 INSERT INTO TagKeys (name) VALUES ('amenity');
 INSERT INTO TagKeys (name) VALUES ('information');
 INSERT INTO TagKeys (name) VALUES ('historic');
@@ -201,7 +209,9 @@ INSERT INTO TagKeys (name) VALUES ('fee');
 -- Table not in official database, but used for folder mapping
 CREATE TABLE RootSubMapping (id INTEGER NOT NULL PRIMARY KEY, subname TEXT NOT NULL, rootname TEXT NOT NULL);
 
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('alpine_hut','accommodation');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('alpine_hut','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('wilderness_hut','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('basic_hut','hiking');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('camp_caravan','accommodation');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('motel','accommodation');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('hostel','accommodation');
@@ -224,14 +234,18 @@ INSERT INTO RootSubMapping (subname, rootname)  VALUES ('education','public_serv
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('embassy','public_services');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('telephone','public_services');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('grave_yard','public_services');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_parking','hiking_cycling');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('guidepost','hiking_cycling');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('map','hiking_cycling');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('picnic_site','hiking_cycling');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('shelter','hiking_cycling');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_parking','cycling');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_rental','cycling');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('guidepost','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('map','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('picnic_site','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('shelter','hiking');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('viewpoint','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('protected_area','nature');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('peak','nature');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('peak','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('survey_point','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('trailhead','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('camp_site','hiking');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('spring','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('mine_cave','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('glacier','nature');

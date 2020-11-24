@@ -4,6 +4,8 @@
 
 information=guidepost
 tourism=alpine_hut
+tourism=wilderness_hut
+shelter_type=basic_hut
 tourism=attraction
 tourism=hotel
 tourism=motel
@@ -24,7 +26,9 @@ amenity=bank
 amenity=atm
 railway=tram_stop
 highway=bus_stop
+highway=trailhead
 natural=peak
+man_made=survey_point
 historic=castle
 historic=ruins
 historic=memorial
@@ -62,6 +66,7 @@ shop=supermarket
 shop=convenience
 shop=department_store
 amenity=grave_yard
+amenity=bicycle_rental
 amenity=bicycle_parking
 sport=swimming
 religion=christian
