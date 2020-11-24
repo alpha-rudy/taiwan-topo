@@ -917,12 +917,12 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 
 .PHONY: locus_poi
 locus_poi: $(LOCUS_POI)
-$(LOCUS_POI):  $(POI)
+$(LOCUS_POI):  $(EXTRACT)-sed.osm.pbf
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
-	$(LOCUS_POI_CONVERTER) -if poi -om create '$<' '$@'
+	$(LOCUS_POI_CONVERTER) -if pbf -om create '$<' '$@'
 
 .PHONY: gmap
 gmap: $(GMAP)
