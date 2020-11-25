@@ -55,9 +55,11 @@ CREATE INDEX idx_streets_namenorm ON Streets (namenorm);
 -- fill in metadata, seems not used in Locus
 INSERT INTO 'MetaData' VALUES ('versiondbpoi', '1');
 INSERT INTO 'MetaData' VALUES ('versiondbaddress', '1');
+INSERT INTO 'MetaData' VALUES ('country', 'Taiwan');
+INSERT INTO 'MetaData' VALUES ('regionid', 'wo.as.taiwan');
 
 -- fill in root and sub folder values 
-INSERT INTO FoldersRoot (name) VALUES ('hiking');
+INSERT INTO FoldersRoot (name) VALUES ('登山');
 INSERT INTO FoldersRoot (name) VALUES ('accommodation');
 INSERT INTO FoldersRoot (name) VALUES ('financial_post_services');
 INSERT INTO FoldersRoot (name) VALUES ('culture_tourism');
@@ -209,9 +211,9 @@ INSERT INTO TagKeys (name) VALUES ('fee');
 -- Table not in official database, but used for folder mapping
 CREATE TABLE RootSubMapping (id INTEGER NOT NULL PRIMARY KEY, subname TEXT NOT NULL, rootname TEXT NOT NULL);
 
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('alpine_hut','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('wilderness_hut','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('basic_hut','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('alpine_hut','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('wilderness_hut','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('basic_hut','登山');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('camp_caravan','accommodation');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('motel','accommodation');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('hostel','accommodation');
@@ -236,16 +238,16 @@ INSERT INTO RootSubMapping (subname, rootname)  VALUES ('telephone','public_serv
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('grave_yard','public_services');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_parking','cycling');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_rental','cycling');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('guidepost','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('map','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('picnic_site','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('shelter','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('guidepost','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('map','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('picnic_site','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('shelter','登山');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('viewpoint','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('protected_area','nature');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('peak','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('survey_point','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('trailhead','hiking');
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('camp_site','hiking');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('peak','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('survey_point','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('trailhead','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('camp_site','登山');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('spring','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('mine_cave','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('glacier','nature');
