@@ -3,7 +3,7 @@
 # First tag will be used, so tags further down have lower priority.
 
 information=guidepost
-information=route_marker
+information=trail_milestone
 information=mobile
 tourism=alpine_hut
 tourism=wilderness_hut
