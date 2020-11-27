@@ -131,9 +131,20 @@
       <mapping tag="hknetwork=nwn" />
       <mapping tag="hknetwork=iwn" />
     </category>
-    <category title="04 登山口">
-      <mapping tag="highway=trailhead" />
-      <mapping tag="entrance=yes" />
+    <category title="04 登山標誌">
+      <category title="01 登山口">
+        <mapping tag="highway=trailhead" />
+        <mapping tag="entrance=yes" />
+      </category>
+      <category title="02 登山指示牌">
+        <mapping tag="information=guidepost" />
+      </category>
+      <category title="03 步道里程碑">
+        <mapping tag="information=trail_milestone" />
+      </category>
+      <category title="04 通訊點">
+        <mapping tag="information=mobile" />
+      </category>
     </category>
     <category title="05 山屋/營地">
       <mapping tag="tourism=camp_site" />
@@ -153,7 +164,6 @@
     </category>
     <category title="07 保護區/景點/觀景台">
       <mapping tag="tourism=information" />
-      <mapping tag="information=mobile" />
       <mapping tag="tourism=viewpoint" />
       <mapping tag="tourism=attraction" />
       <mapping tag="boundary=nature_reserve" />
@@ -330,6 +340,7 @@
       <category title="捷運站">
         <mapping tag="station=subway" />
         <mapping tag="station=light_rail" />
+        <mapping tag="station=tram_stop" />
       </category>
       <category title="渡輪碼頭">
         <mapping tag="amenity=ferry_terminal" />
@@ -517,6 +528,7 @@
     </category>
     <category title="服務區">
       <mapping tag="highway=services" />
+      <mapping tag="highway=rest_area" />
     </category>
   </category>
 
@@ -542,6 +554,10 @@
     </category>
     <category title="遺跡">
       <mapping tag="historic=ruins" />
+      <mapping tag="historic=castle" />
+    </category>
+    <category title="礦坑">
+      <mapping tag="historic=mine" />
     </category>
     <category title="路邊小廟">
       <mapping tag="historic=wayside_shrine" />

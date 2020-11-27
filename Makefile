@@ -785,7 +785,7 @@ styles:
 .PHONY: daily
 daily:
 	$(MAKE_CMD) styles
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip locus_map
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis 
 
 .PHONY: suites
@@ -909,6 +909,7 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 			--rb file="$(EXTRACT)-sed.osm.pbf" \
 			--poi-writer \
 			all-tags=true \
+			geo-tags=true \
 			bbox=$(MAPSFORGE_BBOX) \
 			ways=true \
 			tag-conf-file="$(POI_MAPPING)" \
@@ -917,12 +918,12 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 
 .PHONY: locus_poi
 locus_poi: $(LOCUS_POI)
-$(LOCUS_POI):  $(EXTRACT)-sed.osm.pbf
+$(LOCUS_POI): $(POI)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
-	$(LOCUS_POI_CONVERTER) -if pbf -om create '$<' '$@'
+	$(LOCUS_POI_CONVERTER) -if poi -om create '$<' '$@'
 
 .PHONY: gmap
 gmap: $(GMAP)
