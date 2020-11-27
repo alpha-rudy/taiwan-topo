@@ -171,7 +171,6 @@ INSERT INTO TagKeys (name) VALUES ('landuse');
 INSERT INTO TagKeys (name) VALUES ('boundary');
 INSERT INTO TagKeys (name) VALUES ('natural');
 INSERT INTO TagKeys (name) VALUES ('man_made');
-INSERT INTO TagKeys (name) VALUES ('religion');
 INSERT INTO TagKeys (name) VALUES ('shop');
 INSERT INTO TagKeys (name) VALUES ('diet:vegetarian');
 INSERT INTO TagKeys (name) VALUES ('diet:lacto_vegetarian');
