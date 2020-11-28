@@ -2,6 +2,13 @@
 
 (目前版本：Taiwan TOPO v__version__)
 
+* ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝 (每日測試版)
+  * 地圖安裝
+    * ![Map](images/Locus_map.jpeg =36x) Map (200MB)
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/drops/locus_map-rex.xml) /
+      > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/drops/locus_map-kcwu.xml) / 
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/drops/locus_map-happyman.xml)
+
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![Style](./images/Android.png =36x) OruxMaps Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
