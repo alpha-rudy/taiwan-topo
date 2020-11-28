@@ -45,52 +45,72 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
-        if n.tags.get('natural', '') == 'peak':
-            self.handle_peak(n)
+        if len(n.tags) == 0:
+            self.writer.add_node(n)
             return
-        elif n.tags.get('natural', '') == 'spring' and \
-                n.tags.get('drinking_water', '') == 'yes':
-            self.handle_drinking_spring(n)
-            return
-        elif n.tags.get('information', '') == 'mobile':
-            self.handle_mobile_sign(n)
-            return
-        elif n.tags.get('highway', '') == 'milestone' and \
-                n.tags.get('tourism', '') == 'information' and \
-                n.tags.get('information', '') == 'route_marker':
-            self.handle_trail_milestone(n)
-            return
-        elif n.tags.get('amenity', '') == 'bicycle_rental':
-            self.handle_bicycle_rental_node(n)
-            return
+
+        tags = dict((tag.k, tag.v) for tag in n.tags)
+        tags['osm_id'] = "P/{}".format(n.id)
+
+        if tags.get('natural', '') == 'peak':
+            self.handle_peak(tags)
+        elif tags.get('natural', '') == 'spring' and \
+                tags.get('drinking_water', '') == 'yes':
+            self.handle_drinking_spring(tags)
+        elif tags.get('information', '') == 'mobile':
+            self.handle_mobile_sign(tags)
+        elif tags.get('highway', '') == 'milestone' and \
+                tags.get('tourism', '') == 'information' and \
+                tags.get('information', '') == 'route_marker':
+            self.handle_trail_milestone(tags)
+        elif tags.get('amenity', '') == 'bicycle_rental':
+            self.handle_bicycle_rental(tags)
 
         if n.id in hknetworks:
-            self.handle_hknetwork_node(n)
-            return
-
-        self.writer.add_node(n)
-        return
-
-    def handle_bicycle_rental_node(self, n):
-        n = n.replace(tags=self.handle_bicycle_rental_tags(n))
-        self.writer.add_node(n)
-
-    def handle_hknetwork_node(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
-
-        for network in hknetworks[n.id]:
-            ''' disable highlight
-            if network.get('ref', '') == 'twn:taipei_grand_hike':
-                tags['highlight'] = 'yes'
-                tags['name'] = tags['ref']
-            '''
-            tags['hike_node'] = network['network']
+            self.handle_hknetwork_node(n.id, tags)
 
         n = n.replace(tags=tags)
         self.writer.add_node(n)
 
-    def handle_mobile_sign(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
+    def way(self, w):
+        if len(w.tags) == 0:
+            self.writer.add_way(w)
+            return
+
+        tags = dict((tag.k, tag.v) for tag in w.tags)
+        tags['osm_id'] = "W/{}".format(w.id)
+
+        if w.id in hknetworks and 'highway' in tags:
+            self.handle_hknetwork_way(w.id, tags)
+        elif w.id in national_park:
+            self.handle_national_park(w.id, tags)
+        elif tags.get('amenity', '') == 'bicycle_rental':
+            self.handle_bicycle_rental(tags)
+        elif tags.get('highway', '') in ['footway', 'path']:
+            if tags.get('access', '') == 'no':
+                self.handle_no_access_trail(tags)
+            elif tags.get('trail_visibility', '') in ['bad', 'horrible', 'no'] or \
+              tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']:
+                self.handle_tough_trail(tags)
+
+        w = w.replace(tags=tags)
+        self.writer.add_way(w)
+
+    def relation(self, r):
+        if len(r.tags) == 0:
+            self.writer.add_relation(r)
+            return
+
+        tags = dict((tag.k, tag.v) for tag in r.tags)
+        tags['osm_id'] = "R/{}".format(r.id)
+
+        if tags.get('amenity', '') == 'bicycle_rental':
+            self.handle_bicycle_rental(tags)
+
+        r = r.replace(tags=tags)
+        self.writer.add_relation(r)
+
+    def handle_mobile_sign(self, tags):
         operator_tag = 'internet_access:operator'
 
         if tags.get('name') is None and tags.get(operator_tag):
@@ -129,23 +149,13 @@ class MapsforgeHandler(osmium.SimpleHandler):
             name += ')'
             tags['name:en'] = name
 
-        n = n.replace(tags=tags)
-        self.writer.add_node(n)
-
-    def handle_drinking_spring(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
-
+    def handle_drinking_spring(self, tags):
         if tags.get('name') is None:
             tags['name'] = '取水點'
         if tags.get('name:en') is None:
             tags['name'] = 'water'
 
-        n = n.replace(tags=tags)
-        self.writer.add_node(n)
-
-    def handle_trail_milestone(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
-
+    def handle_trail_milestone(self, tags):
         tags.pop('highway')
         tags.pop('tourism')
         tags['information'] = 'trail_milestone'
@@ -174,12 +184,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             if not tags.get('name:en'):
                 tags['name:en'] = name
 
-        n = n.replace(tags=tags)
-        self.writer.add_node(n)
-
-    def handle_peak(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
-
+    def handle_peak(self, tags):
         ref = tags.get('ref')
         name = tags.get('name')
         name_en = tags.get('name:en')
@@ -204,115 +209,42 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 tags['name'] = '%s, %sm' % (name, ele)
                 tags['name:en'] = '%s, %sm' % (name_en, ele)
 
-        n = n.replace(tags=tags)
-        self.writer.add_node(n)
+    def handle_hknetwork_node(self, id, tags):
+        for network in hknetworks[id]:
+            tags['hike_node'] = network['network']
 
-    def way(self, w):
-        if w.id in hknetworks and 'highway' in w.tags:
-            self.handle_hknetwork(w)
-            return
-
-        if w.id in national_park:
-            self.handle_national_park(w)
-            return
-
-        if w.tags.get('amenity', '') == 'bicycle_rental':
-            self.handle_bicycle_rental_way(w)
-            return
-
-        if w.tags.get('highway', '') in ['footway', 'path']:
-            if w.tags.get('access', '') == 'no':
-                self.handle_no_access_trail(w)
-                return
-            if w.tags.get('trail_visibility', '') in ['bad', 'horrible', 'no'] or w.tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']:
-                self.handle_tough_trail(w)
-                return
-
-        self.writer.add_way(w)
-        return
-
-    def handle_hknetwork(self, w):
-        networks = hknetworks[w.id]
-        tags = dict((tag.k, tag.v) for tag in w.tags)
-        for network in networks:
-            ''' disable highlight
-            if network.get('ref', '') == 'twn:taipei_grand_hike':
-                tags['highlight'] = 'yes'
-                if not tags.get('hknetwork'):
-                    tags['ref'] = network['name']
-            else:
-            '''
+    def handle_hknetwork_way(self, id, tags):
+        for network in hknetworks[id]:
             tags['hknetwork'] = network['network']
             tags['ref'] = network['name']
             tags['ref:en'] = network['name:en']
-        w = w.replace(tags=tags)
-        self.writer.add_way(w)
-        return
 
-    def handle_national_park(self, w):
-        w = w.replace(tags=self.handle_national_park_tags(w))
-        self.writer.add_way(w)
-
-    def handle_national_park_tags(self, o):
-        tags = dict((tag.k, tag.v) for tag in o.tags)
-        tags['name'] = national_park[o.id]['name']
-        tags['name:en'] = national_park[o.id]['name:en']
+    def handle_national_park(self, id, tags):
+        tags['name'] = national_park[id]['name']
+        tags['name:en'] = national_park[id]['name:en']
         tags['type'] = 'boundary'
         tags['boundary'] = 'national_park'
-        return tags
 
-    def handle_bicycle_rental_way(self, w):
-        w = w.replace(tags=self.handle_bicycle_rental_tags(w))
-        self.writer.add_way(w)
-
-    def handle_tough_trail(self, w):
-        w = w.replace(tags=self.handle_tough_trail_tags(w))
-        self.writer.add_way(w)
-
-    def handle_no_access_trail(self, w):
-        w = w.replace(tags=self.handle_no_access_trail_tags(w))
-        self.writer.add_way(w)
-
-    def relation(self, r):
-        if r.tags.get('amenity', '') == 'bicycle_rental':
-            self.handle_bicycle_rental_relation(r)
-            return
-
-        self.writer.add_relation(r)
-        return
-
-    def handle_bicycle_rental_relation(self, r):
-        r = r.replace(tags=self.handle_bicycle_rental_tags(r))
-        self.writer.add_relation(r)
-
-    def handle_bicycle_rental_tags(self, o):
-        tags = dict((tag.k, tag.v) for tag in o.tags)
+    def handle_bicycle_rental(self, tags):
         # YouBike and iBike use network:en
         if tags.get('network:en', '') in ('iBike', 'YouBike'):
             tags['network'] = tags['network:en']
-        return tags
 
-    def handle_tough_trail_tags(self, o):
-        tags = dict((tag.k, tag.v) for tag in o.tags)
-        # YouBike and iBike use network:en
+    def handle_tough_trail(self, tags):
         if 'name' in tags:
             tags['name'] = tags['name'] + ' (艱難路線)'
             tags['name:en'] = tags['name:en'] + ' (tough)'
         else:
             tags['name'] = '(艱難路線)'
             tags['name:en'] = '(tough)'
-        return tags
 
-    def handle_no_access_trail_tags(self, o):
-        tags = dict((tag.k, tag.v) for tag in o.tags)
-        # YouBike and iBike use network:en
+    def handle_no_access_trail(self, tags):
         if 'name' in tags:
             tags['name'] = tags['name'] + ' (已封閉)'
             tags['name:en'] = tags['name:en'] + ' (closed)'
         else:
             tags['name'] = '(已封閉)'
             tags['name:en'] = '(closed)'
-        return tags
 
 
 def main():

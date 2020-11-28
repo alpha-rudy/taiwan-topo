@@ -23,10 +23,10 @@ class PoiImporter():
         self.tag_filter = tag_filter
 
     def osm_get_info(self, osm_data):
-        result = re.search( r'openstreetmap\.org\/(node|way)\/(\d+)', osm_data)
+        result = re.search( r'(P|W)\/(\d+)', osm_data)
         if result:
             osm_id = result.group(2)
-            if 'way' == result.group(1):
+            if 'W' == result.group(1):
                 osm_type = 'W'
             else:
                 osm_type = 'P'
@@ -48,7 +48,7 @@ class PoiImporter():
         node_type = self.tag_filter.tag_matched(tags)
         if node_type:
             name = tags.get('name', None)
-            osm_id, osm_type = self.osm_get_info(tags.get('osm_id_link', ''))
+            osm_id, osm_type = self.osm_get_info(tags.get('osm_id', ''))
             poi = Poi(osm_id, name, lat, lon)
             poi.set_type(node_type)
             poi.set_osm_type(osm_type)
