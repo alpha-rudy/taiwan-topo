@@ -23,7 +23,6 @@ class PoiImporter():
         self.tag_filter = tag_filter
 
     def osm_get_info(self, osm_data):
-        # print("osm_data: {}".format(osm_data))
         result = re.search( r'openstreetmap\.org\/(node|way)\/(\d+)', osm_data)
         if result:
             osm_id = result.group(2)
@@ -37,7 +36,6 @@ class PoiImporter():
         return osm_id, osm_type
 
     def handle_result(self, result):  # result is tuple of all database columns
-        # print(result)
         lat = (result[0] + result[1]) / 2  # use arithmetic mean to calculate location
         lon = (result[2] + result[3]) / 2
         tags = dict()
@@ -47,13 +45,10 @@ class PoiImporter():
                 tags[matches[0]] = matches[1]
             except IndexError:
                 print("Improper tag: {}".format(matches))
-        # print(tags)
         node_type = self.tag_filter.tag_matched(tags)
         if node_type:
             name = tags.get('name', None)
-            # osm_id, osm_type = self.osm_get_info(tags.get('osm_id_link', ''))
-            osm_id = result[5]
-            osm_type = 'P'
+            osm_id, osm_type = self.osm_get_info(tags.get('osm_id_link', ''))
             poi = Poi(osm_id, name, lat, lon)
             poi.set_type(node_type)
             poi.set_osm_type(osm_type)
@@ -64,7 +59,7 @@ class PoiImporter():
         with sqlite3.connect(file) as connection:
             cursor = connection.cursor()
             result = cursor.execute("SELECT DISTINCT poi_index.minLat,poi_index.maxLat,poi_index.minLon,\
-                poi_index.maxLon,poi_data.data,poi_data.id FROM poi_index, poi_data WHERE poi_data.id = poi_index.id;")
+                poi_index.maxLon,poi_data.data FROM poi_index, poi_data WHERE poi_data.id = poi_index.id;")
 
             for row in tqdm(result, unit=' entries', smoothing=0.1):
                 self.handle_result(row)
