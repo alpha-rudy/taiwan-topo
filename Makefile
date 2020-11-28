@@ -910,6 +910,7 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 			--poi-writer \
 			all-tags=true \
 			geo-tags=true \
+			names=false \
 			bbox=$(MAPSFORGE_BBOX) \
 			ways=true \
 			tag-conf-file="$(POI_MAPPING)" \
