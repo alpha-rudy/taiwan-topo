@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <locusActions>
   <download>
-    <source><![CDATA[http://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus.zip ]]></source>
+    <source><![CDATA[http://map.happyman.idv.tw/rudy/drops/MOI_OSM_Taiwan_TOPO_Rudy_locus.zip ]]></source>
     <dest><![CDATA[/mapsVector/MOI_OSM_Taiwan_TOPO_Rudy_locus.zip ]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
