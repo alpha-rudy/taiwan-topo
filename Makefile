@@ -1207,6 +1207,8 @@ $(EXTRACT)_name.o5m: $(EXTRACT).o5m
 		-o=$(EXTRACT)_name.o5m
 	-rm -rf $(EXTRACT)_name.pbf
 
+.PHONY: sed
+sed: $(EXTRACT)-sed.osm.pbf
 $(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
