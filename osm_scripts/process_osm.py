@@ -45,12 +45,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
-        if len(n.tags) == 0:
-            self.writer.add_node(n)
-            return
-
         tags = dict((tag.k, tag.v) for tag in n.tags)
-        tags['osm_id'] = "P/{}".format(n.id)
 
         if tags.get('natural', '') == 'peak':
             self.handle_peak(tags)
@@ -65,20 +60,17 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_trail_milestone(tags)
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
-
+            
         if n.id in hknetworks:
             self.handle_hknetwork_node(n.id, tags)
 
-        n = n.replace(tags=tags)
+        if len(tags) != 0:
+            tags['osm_id'] = "P/{}".format(n.id)
+            n = n.replace(tags=tags)
         self.writer.add_node(n)
 
     def way(self, w):
-        if len(w.tags) == 0:
-            self.writer.add_way(w)
-            return
-
         tags = dict((tag.k, tag.v) for tag in w.tags)
-        tags['osm_id'] = "W/{}".format(w.id)
 
         if w.id in hknetworks and 'highway' in tags:
             self.handle_hknetwork_way(w.id, tags)
@@ -93,21 +85,20 @@ class MapsforgeHandler(osmium.SimpleHandler):
               tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']:
                 self.handle_tough_trail(tags)
 
-        w = w.replace(tags=tags)
+        if len(tags) != 0:
+            tags['osm_id'] = "W/{}".format(w.id)
+            w = w.replace(tags=tags)
         self.writer.add_way(w)
 
     def relation(self, r):
-        if len(r.tags) == 0:
-            self.writer.add_relation(r)
-            return
-
         tags = dict((tag.k, tag.v) for tag in r.tags)
-        tags['osm_id'] = "R/{}".format(r.id)
 
         if tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
 
-        r = r.replace(tags=tags)
+        if len(tags) != 0:
+            tags['osm_id'] = "R/{}".format(r.id)
+            r = r.replace(tags=tags)
         self.writer.add_relation(r)
 
     def handle_mobile_sign(self, tags):
