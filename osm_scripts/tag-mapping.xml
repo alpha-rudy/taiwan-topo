@@ -1247,6 +1247,7 @@
 <osm-tag key='osmc_background' value='wmbg_yellow' zoom-appear='13' />
 <osm-tag key='osmc_background' value='wmbg_yellow_circle' zoom-appear='13' />
 <osm-tag key='osmc_background' value='wmbg_yellow_frame' zoom-appear='13' />
+<osm-tag key='meta' value='map_version' zoom-appear='7' />
 </pois>
 
 </tag-mapping>
