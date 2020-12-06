@@ -37,6 +37,7 @@ BUILD_DIR := $(ROOT_DIR)/install
 DOWNLOAD_DIR := $(ROOT_DIR)/download
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
+META := $(EXTRACT_DIR)/meta.osm
 
 
 # target SUITE, no default
@@ -1216,6 +1217,15 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scrip
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
 
+.PHONY: meta
+meta: $(META)
+$(META): meta/meta.osm
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(VERSION)" ]
+	mkdir -p $(EXTRACT_DIR)
+	-rm -rf $@
+	cd $(EXTRACT_DIR) && cat $(ROOT_DIR)/meta/meta.osm | $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $@
+
 # OSMCONVERT_BOUNDING
 ifneq (,$(strip $(POLY_FILE)))
 ifeq (Taiwan,$(REGION))
@@ -1244,12 +1254,13 @@ $(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
 		-o=$@
 	-rm -f $@.o5m
 
-$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(ELEVATION_MIX)
+$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp $< $@.pbf
+	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(META)
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
 	$(OSMCONVERT_CMD) \
 		--drop-version \

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-1' action='modify' visible='true' lat='22.056918' lon='119.123829'>
+    <tag k='meta' v='map_version' />
+    <tag k='name' v='台灣魯地圖 v__version__' />
+    <tag k='name:en' v='Taiwan RuMAP v__version__' />
+    <tag k='zl' v='0' />
+  </node>
+</osm>
