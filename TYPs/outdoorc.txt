@@ -9366,3 +9366,51 @@ DayXpm="9 9 2 1"   Colormode=16
 "!!     !!"
 ;123456789
 [end]
+
+
+[_point]
+Type=0x066
+SubType=0x10
+String1=0x00,Trail Milestone
+String2=0x02,Trail Milestone
+String3=0x03,Trail Milestone
+String4=0x04,Trail Milestone
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+DayXpm="3 6 2 1"   Colormode=16
+"!  c #0065FF"
+"   c none"
+"!!!"
+"!!!"
+"!! "
+"!! "
+"!! "
+"!! "
+;123
+[end]
+
+
+[_point]
+Type=0x066
+SubType=0x11
+String1=0x00,Mobile
+String2=0x02,Mobile
+String3=0x03,Mobile
+String4=0x04,Mobile
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+DayXpm="4 7 2 1"   Colormode=16
+"!  c #0065FF"
+"   c none"
+"   !"
+"  !!"
+"!!!!"
+"!  !"
+"!  !"
+"!! !"
+"!!!!"
+;123
+[end]
+
