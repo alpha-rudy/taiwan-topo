@@ -47,6 +47,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
+        if n.id in hknetworks:
+            self.handle_hknetwork_node(n.id, tags)
+
         if tags.get('natural', '') == 'peak':
             self.handle_peak(tags)
         elif tags.get('natural', '') == 'spring' and \
@@ -60,9 +63,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_trail_milestone(tags)
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
-            
-        if n.id in hknetworks:
-            self.handle_hknetwork_node(n.id, tags)
 
         if len(tags) != 0:
             tags['osm_id'] = "P/{}".format(n.id)
@@ -74,9 +74,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         if w.id in hknetworks and 'highway' in tags:
             self.handle_hknetwork_way(w.id, tags)
-        elif w.id in national_park:
+        if w.id in national_park:
             self.handle_national_park(w.id, tags)
-        elif tags.get('amenity', '') == 'bicycle_rental':
+
+        if tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
         elif tags.get('highway', '') in ['footway', 'path']:
             if tags.get('access', '') == 'no':
