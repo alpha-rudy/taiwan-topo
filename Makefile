@@ -788,6 +788,7 @@ daily:
 	$(MAKE_CMD) styles
 	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis 
+	$(MAKE_CMD) SUITE=taiwan_bw gmapsupp_zip
 
 .PHONY: suites
 suites:
