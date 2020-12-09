@@ -110,15 +110,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <cat id="c_s_routes"/>
     </layer>
     <!-- overlays base -->
-    <layer id="elmt-meta-h" enabled="true">
-      <name lang="de" value="Meta"/>
-      <name lang="en" value="Meta"/>
-      <name lang="es" value="Meta"/>
-      <name lang="fr" value="Meta"/>
-      <name lang="it" value="Meta"/>
-      <name lang="zh" value="地圖資訊"/>
-      <cat id="meta"/>
-    </layer>
     <layer id="elmt-settlements-h" enabled="true">
       <name lang="de" value="Ortsnamen"/>
       <name lang="en" value="settlement names"/>
@@ -766,7 +757,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-hiking-no_access"/>
       <overlay id="elmt-hiking-tough"/>
       <overlay id="elmt-waymarks"/>
-      <overlay id="elmt-meta-h"/>
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
       <overlay id="elmt-surveypoint-h"/>
@@ -3622,7 +3612,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- POIS -->
   <!-- meta -->
-  <rule cat="meta" e="any" k="*" v="*">
+  <rule e="any" k="*" v="*">
     <rule e="node" k="meta" v="map_version">
       <rule e="any" k="zl" v="0" zoom-min="7" zoom-max="8">
         <caption k="name" priority="300" display="always" position="center" font-size="12" font-style="bold" fill="#193480" stroke="#E5FFFFFF" stroke-width="2"/>
