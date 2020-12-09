@@ -296,7 +296,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- meta -->
-  <rule cat="meta" e="any" k="*" v="*">
+  <rule e="any" k="*" v="*">
     <rule e="node" k="meta" v="map_version">
       <rule e="any" k="zl" v="0" zoom-min="7" zoom-max="7">
         <caption k="name" priority="300" display="always" position="center" font-size="12" font-style="bold" fill="#FFFFFF" stroke="#22000000" stroke-width="2"/>
