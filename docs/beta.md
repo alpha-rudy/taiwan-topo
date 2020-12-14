@@ -26,9 +26,6 @@
   * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe) 用在 Garmin Windows BaseCamp 
   * [![macOS](./images/macOS.png =36x) camp3D](./Taiwan_moi_zh_camp3D.gmap.zip) 用在 Garmin BaseCamp for Mac
 
-* ![GMap](./images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw v__version__
-  * [![small](./images/Garmin_small.jpeg =36x) bw](./gmapsupp_Taiwan_moi_zh_bw.img.zip) 合適用在 Garmin 小螢幕手持機
-
 
 ### 版權宣告
 
