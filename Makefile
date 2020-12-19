@@ -1236,7 +1236,7 @@ OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complet
 endif
 else
 ifneq (,$(strip $(BOUNDING_BOX)))
-OSMCONVERT_BOUNDING := -b=$(BOTTOM),$(LEFT),$(TOP),$(RIGHT) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
 MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
 endif
 endif
