@@ -460,8 +460,13 @@ tourism = information & ( information = office | information = terminal ) [0x651
 # Other types
 #tourism = information & ( information = board | information = map ) [0x661a resolution 24]
 tourism = information & information = map  [0x661a resolution 24]
-tourism = information & information = route_marker & highway = milestone {name "${distance}K" | "里程碑"} [0x6610 resolution 24]
-tourism = information & information = mobile {name "通訊點"} [0x6611 resolution 24]
+tourism = information & information = route_marker & highway = milestone & distance ~ '^[0-9]+(\.0)?$' {name "${distance}K"} [0x6610 resolution 21-21 continue]
+tourism = information & information = route_marker & highway = milestone & distance ~ '^[0-9]+(\.0)?$' {name "${distance}K"} [0x6611 resolution 22-24]
+tourism = information & information = route_marker & highway = milestone & distance ~ '^[0-9]+\.5$' {name "${distance}K"} [0x6610 resolution 22-23 continue]
+tourism = information & information = route_marker & highway = milestone & distance ~ '^[0-9]+\.5$' {name "${distance}K"} [0x6611 resolution 24]
+tourism = information & information = route_marker & highway = milestone & distance ~ '^[0-9]+\.[12346789]$' {name "${distance}K"} [0x6610 resolution 24]
+tourism = information & information = mobile {name "通訊點"} [0x6613 resolution 24]
+tourism = information & information = guidepost {name "${name}"} [0x6615 resolution 24]
 
 # Lean-to (Schutzhütte, Berghütte). [point, closedway]
 # A lean-to is a building located in the mountains or into the wild intended to provide shelter against rain.

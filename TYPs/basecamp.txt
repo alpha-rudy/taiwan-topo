@@ -9043,11 +9043,11 @@ DayXpm="3 6 2 1"   Colormode=16
 "!  c #0065FF"
 "   c none"
 "!!!"
+"! !"
 "!!!"
-"!! "
-"!! "
-"!! "
-"!! "
+"!!!"
+"!!!"
+"!!!"
 ;123
 [end]
 
@@ -9055,6 +9055,31 @@ DayXpm="3 6 2 1"   Colormode=16
 [_point]
 Type=0x066
 SubType=0x11
+String1=0x00,Trail Milestone
+String2=0x02,Trail Milestone
+String3=0x03,Trail Milestone
+String4=0x04,Trail Milestone
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+DayXpm="4 8 2 1"   Colormode=16
+"!  c #0033FF"
+"   c none"
+"!!!!"
+"!  !"
+"!!!!"
+"!!!!"
+"!!!!"
+"!!!!"
+"!!!!"
+"!!!!"
+;1234
+[end]
+
+
+[_point]
+Type=0x066
+SubType=0x13
 String1=0x00,Mobile
 String2=0x02,Mobile
 String3=0x03,Mobile
@@ -9062,16 +9087,50 @@ String4=0x04,Mobile
 ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
-DayXpm="4 7 2 1"   Colormode=16
+DayXpm="12 12 2 1"   Colormode=16
 "!  c #0065FF"
 "   c none"
-"   !"
-"  !!"
-"!!!!"
-"!  !"
-"!  !"
-"!! !"
-"!!!!"
-;123
+"            "
+"            "
+"            "
+"            "
+"            "
+"           !"
+"          !!"
+"        !!!!"
+"        !  !"
+"        !  !"
+"        !! !"
+"        !!!!"
+;123456789ABC
+[end]
+
+
+[_point]
+Type=0x066
+SubType=0x15
+String1=0x00,Guidepost
+String2=0x02,Guidepost
+String3=0x03,Guidepost
+String4=0x04,Guidepost
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+DayXpm="8 12 2 1"   Colormode=16
+"!  c #0065FF"
+"   c none"
+"!! !!!  "
+"!!!!!!! "
+"!! !!   "
+"!!      "
+"!!      "
+"!!      "
+"!!      "
+"!!      "
+"!!      "
+"!!      "
+"!!      "
+"!!      "
+;12345678
 [end]
 
