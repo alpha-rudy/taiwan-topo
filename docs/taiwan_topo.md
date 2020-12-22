@@ -17,7 +17,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     * http://moi.kcwu.csie.org/drops/beta.html (mirror KCWu)
     * http://map.happyman.idv.tw/rudy/drops/beta.html (mirror Happyman)
   * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
-  * 阿牛兄的圖例說明: [圖例](./legend_V1R1.pdf)
+  * 阿牛兄的圖例說明: [圖例 V1R3版](./legend_V1R3.pdf)
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
