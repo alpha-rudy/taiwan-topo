@@ -334,11 +334,9 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 ## 注意事項
 
-* 已知 macOS BaseCamp v4.8.2 描繪地圖顯示結果較差，請改用 v4.7.0。
-
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
 
-* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過 Oruxmaps，Locus Map，GTs 綠野遊蹤，與 iOS Cartograph，山林日誌。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph 2 Map‪s‬、山林日誌。
 
 
 ## 重大修改歷程
