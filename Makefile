@@ -396,7 +396,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
 MAPID := $(shell printf %d 0x1013)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmapsupp_zip
 
 else ifeq ($(SUITE),taiwan_bw_en)
 REGION := Taiwan
@@ -411,7 +411,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
 MAPID := $(shell printf %d 0x1003)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmapsupp_zip
 
 else ifeq ($(SUITE),taiwan_odc)
 REGION := Taiwan
@@ -426,7 +426,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := odc
 MAPID := $(shell printf %d 0x1012)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmapsupp_zip
 
 else ifeq ($(SUITE),taiwan_bw_dem)
 REGION := Taiwan
@@ -442,7 +442,7 @@ HR_STYLE := basecamp
 STYLE_NAME := bw3D
 GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1015)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmapsupp_zip
 
 else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
@@ -473,7 +473,7 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp
 MAPID := $(shell printf %d 0x1016)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc_dem)
 REGION := Taiwan
@@ -489,7 +489,7 @@ HR_STYLE := basecamp
 STYLE_NAME := camp3D
 GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1017)
-TARGETS := gmapsupp_zip gmap nsis
+TARGETS := gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc_dem_en)
 REGION := Taiwan
