@@ -489,7 +489,7 @@ HR_STYLE := basecamp
 STYLE_NAME := camp3D
 GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1017)
-TARGETS := gmap nsis
+TARGETS := gmapsupp_zip gmap nsis
 
 else ifeq ($(SUITE),taiwan_bc_dem_en)
 REGION := Taiwan

@@ -258,6 +258,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > * 舊版 Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * 舊版 macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
+  * ![Map](images/Garmin_large.jpeg =36x) camp3D (180MB)
+    > [[mirror Rex]](http://rudy.basecamp.tw/gmapsupp_Taiwan_moi_zh_camp3D.img.zip) /
+    > [[mirror KCWu]](http://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_camp3D.img.zip) / 
+    > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_zh_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) camp3D (190MB)
     > [[mirror Rex]](http://rudy.basecamp.tw/Install_MOI_Taiwan_TOPO_camp3D.exe) /
     > [[mirror KCWu]](http://moi.kcwu.csie.org/Install_MOI_Taiwan_TOPO_camp3D.exe) / 
