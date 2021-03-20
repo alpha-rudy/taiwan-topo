@@ -2,7 +2,7 @@
 <category xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="root"
   xmlns="http://mapsforge.org/poi-mapping"
   xsi:schemaLocation="http://mapsforge.org/poi-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/poi-mapping.xsd">
-
+  <mapping tag="place=address_holder" />
   <category title="66 台中市">
     <mapping tag="addr:city=臺中市" />
 	<category title="6600100 中區">

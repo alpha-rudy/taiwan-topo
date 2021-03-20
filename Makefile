@@ -692,6 +692,7 @@ NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 ADDR := $(BUILD_DIR)/$(NAME_MAPSFORGE)-addr.poi
 POI_ZIP := $(POI).zip
+ADDR_ZIP := $(ADDR).zip
 LOCUS_POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).db
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
@@ -788,7 +789,7 @@ styles:
 .PHONY: daily
 daily:
 	$(MAKE_CMD) styles
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip poi_zip addr_zip
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis 
 	# $(MAKE_CMD) SUITE=taiwan_bw gmapsupp_zip
 
@@ -903,7 +904,7 @@ $(NSIS): $(MAP_PC)
 
 .PHONY: poi
 poi: $(POI)
-$(POI): $(EXTRACT)-sed.osm.pbf
+$(POI): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-mapping.xml
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
@@ -923,7 +924,7 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 
 .PHONY: addr
 addr: $(ADDR)
-$(ADDR): $(EXTRACT)-sed.osm.pbf
+$(ADDR): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
@@ -1475,6 +1476,7 @@ $(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
 
+
 .PHONY: poi_zip
 poi_zip: $(POI_ZIP)
 $(POI_ZIP): $(POI)
@@ -1483,6 +1485,16 @@ $(POI_ZIP): $(POI)
 	[ -f "$(POI)" ]
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
+
+
+.PHONY: addr_zip
+addr_zip: $(ADDR_ZIP)
+$(ADDR_ZIP): $(ADDR)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -d "$(BUILD_DIR)" ]
+	[ -f "$(ADDR)" ]
+	-rm -rf $@
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(ADDR))
 
 
 GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm

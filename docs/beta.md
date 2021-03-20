@@ -4,6 +4,8 @@
 
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+  * [![POI](./images/Android.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![Addr](./images/Android.png =36x) Address](./MOI_OSM_Taiwan_TOPO_Rudy-addr.poi.zip)
   * [![Style](./images/Android.png =36x) OruxMaps Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
   * [![Style](./images/Android.png =36x) GTs Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
@@ -12,6 +14,8 @@
 
 * ![iTunes](./images/iTunes.jpeg =36x) iTunes, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/iTunes.jpeg =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+  * [![POI](./images/iTunes.jpeg =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![Addr](./images/iTunes.jpeg =36x) Address](./MOI_OSM_Taiwan_TOPO_Rudy-addr.poi.zip)
   * [![Style](./images/iTunes.jpeg =36x) Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
   * [![DEM](./images/iTunes.jpeg =36x) DEM mix, v2020](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
   * [![DEM](./images/iTunes.jpeg =36x) DEM 90m, v2020](./hgt90.zip) 全部90m, 解析度低, 檔案最小

@@ -63,6 +63,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_trail_milestone(tags)
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
+        elif tags.get('addr:TW:dataset', '') == '137998':
+            self.handle_address_dataset(tags)
 
         if len(tags) != 0:
             tags['osm_id'] = "P/{}".format(n.id)
@@ -221,6 +223,21 @@ class MapsforgeHandler(osmium.SimpleHandler):
         # YouBike and iBike use network:en
         if tags.get('network:en', '') in ('iBike', 'YouBike'):
             tags['network'] = tags['network:en']
+
+    def handle_address_dataset(self, tags):
+        # these dataset come from city government
+        tags['place'] = 'address_holder'
+        full =  tags['addr:city'].replace('臺', '台') + \
+                    tags.get('addr:place', '') + \
+                    tags.get('addr:street', '') + \
+                    tags.get('addr:housenumber', '') + \
+                    tags.get('addr:floor', '') + \
+                    tags.get('addr:unit', '')
+                    
+        if tags.get('name') == None:
+            tags['name'] = full
+        else:
+            tags['ref'] = full
 
     def handle_tough_trail(self, tags):
         if 'name' in tags:
