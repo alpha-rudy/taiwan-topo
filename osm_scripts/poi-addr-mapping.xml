@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="root"
+  xmlns="http://mapsforge.org/poi-mapping"
+  xsi:schemaLocation="http://mapsforge.org/poi-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/poi-mapping.xsd">
+
+  <category title="66 台中市">
+    <mapping tag="addr:city=臺中市" />
+	<category title="6600100 中區">
+	  <mapping tag="addr:district=中區" />
+	</category>
+	<category title="6600200 東區">
+	  <mapping tag="addr:district=東區" />
+	</category>
+	<category title="6600300 南區 ">
+	  <mapping tag="addr:district=南區" />
+	</category>
+	<category title="6600400 西區">
+	  <mapping tag="addr:district=西區" />
+	</category>
+	<category title="6600500 北區">
+	  <mapping tag="addr:district=北區" />
+	</category>
+	<category title="6600600 西屯區">
+	  <mapping tag="addr:district=西屯區" />
+	</category>
+	<category title="6600700 南屯區">
+	  <mapping tag="addr:district=南屯區" />
+	</category>
+	<category title="6600800 北屯區">
+	  <mapping tag="addr:district=北屯區" />
+	</category>
+	<category title="6600900 豐原區">
+	  <mapping tag="addr:district=豐原區" />
+	</category>
+	<category title="6601000 東勢區">
+	  <mapping tag="addr:district=東勢區" />
+	</category>
+	<category title="6601100 大甲區">
+	  <mapping tag="addr:district=大甲區" />
+	</category>
+	<category title="6601200 清水區">
+	  <mapping tag="addr:district=清水區" />
+	</category>
+	<category title="6601300 沙鹿區">
+	  <mapping tag="addr:district=沙鹿區" />
+	</category>
+	<category title="6601400 梧棲區">
+	  <mapping tag="addr:district=梧棲區" />
+	</category>
+	<category title="6601500 后里區">
+	  <mapping tag="addr:district=后里區" />
+	</category>
+	<category title="6601600 神岡區">
+	  <mapping tag="addr:district=神岡區" />
+	</category>
+	<category title="6601700 潭子區">
+	  <mapping tag="addr:district=潭子區" />
+	</category>
+	<category title="6601800 大雅區">
+	  <mapping tag="addr:district=大雅區" />
+	</category>
+	<category title="6601900 新社區">
+	  <mapping tag="addr:district=新社區" />
+	</category>
+	<category title="6602000 石岡區">
+	  <mapping tag="addr:district=石岡區" />
+	</category>
+	<category title="6602100 外埔區">
+	  <mapping tag="addr:district=外埔區" />
+	</category>
+	<category title="6602200 大安區">
+	  <mapping tag="addr:district=大安區" />
+	</category>
+	<category title="6602300 烏日區">
+	  <mapping tag="addr:district=烏日區" />
+	</category>
+	<category title="6602400 大肚區">
+	  <mapping tag="addr:district=大肚區" />
+	</category>
+	<category title="6602500 龍井區">
+	  <mapping tag="addr:district=龍井區" />
+	</category>
+	<category title="6602600 霧峰區">
+	  <mapping tag="addr:district=霧峰區" />
+	</category>
+	<category title="6602700 太平區">
+	  <mapping tag="addr:district=太平區" />
+	</category>
+	<category title="6602800 大里區">
+	  <mapping tag="addr:district=大里區" />
+	</category>
+	<category title="6602900 和平區">
+	  <mapping tag="addr:district=和平區" />
+	</category>
+  </category>
+</category>
