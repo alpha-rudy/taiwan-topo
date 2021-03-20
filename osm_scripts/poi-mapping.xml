@@ -221,6 +221,9 @@
       <mapping tag="place=isolated_dwelling" />
       <mapping tag="place=farm" />
     </category>
+    <category title="06 住址">
+      <mapping tag="place=address_holder" />
+    </category>
   </category>
 
   <!-- Tourism -->
