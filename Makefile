@@ -681,6 +681,7 @@ HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
 LR_STYLE_DIR := $(ROOT_DIR)/styles/$(LR_STYLE)
 TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
 POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping.xml
+ADDR_MAPPING := $(ROOT_DIR)/osm_scripts/poi-addr-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
@@ -689,6 +690,7 @@ GMAPSUPP_ZIP := $(GMAPSUPP).zip
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
+ADDR := $(BUILD_DIR)/$(NAME_MAPSFORGE)-addr.poi
 POI_ZIP := $(POI).zip
 LOCUS_POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).db
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
@@ -916,6 +918,26 @@ $(POI): $(EXTRACT)-sed.osm.pbf
 			bbox=$(MAPSFORGE_BBOX) \
 			ways=true \
 			tag-conf-file="$(POI_MAPPING)" \
+			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
+			file="$@"
+
+.PHONY: addr
+addr: $(ADDR)
+$(ADDR): $(EXTRACT)-sed.osm.pbf
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(EXTRACT)" ]
+	mkdir -p $(BUILD_DIR)
+	-rm -rf $@
+	export JAVACMD_OPTIONS="-server" && \
+		sh $(OSMOSIS_CMD) \
+			--rb file="$(EXTRACT)-sed.osm.pbf" \
+			--poi-writer \
+			all-tags=true \
+			geo-tags=true \
+			names=false \
+			bbox=$(MAPSFORGE_BBOX) \
+			ways=true \
+			tag-conf-file="$(ADDR_MAPPING)" \
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
 			file="$@"
 
