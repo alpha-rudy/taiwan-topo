@@ -233,7 +233,16 @@ class MapsforgeHandler(osmium.SimpleHandler):
                     tags.get('addr:housenumber', '') + \
                     tags.get('addr:floor', '') + \
                     tags.get('addr:unit', '')
-                    
+
+        # removes rest
+        tags.pop('addr:hamlet', None)
+        tags.pop('addr:neighbourhood', None)
+        tags.pop('addr:place', None)
+        tags.pop('addr:street', None)
+        tags.pop('addr:housenumber', None)
+        tags.pop('addr:floor', None)
+        tags.pop('addr:unit', None)
+
         if tags.get('name') == None:
             tags['name'] = full
         else:
