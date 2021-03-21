@@ -63,8 +63,12 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_trail_milestone(tags)
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
-        elif tags.get('addr:TW:dataset', '') == '137998':
+        
+        if tags.get('addr:TW:dataset', '') == '137998':
             self.handle_address_dataset(tags)
+
+        if tags.get('addr:housenumber') != None:
+            self.handle_house_number(tags)
 
         if len(tags) != 0:
             tags['osm_id'] = "P/{}".format(n.id)
@@ -88,6 +92,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
               tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']:
                 self.handle_tough_trail(tags)
 
+        if tags.get('addr:housenumber') != None:
+            self.handle_house_number(tags)
+
         if len(tags) != 0:
             tags['osm_id'] = "W/{}".format(w.id)
             w = w.replace(tags=tags)
@@ -98,6 +105,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         if tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
+
+        if tags.get('addr:housenumber') != None:
+            self.handle_house_number(tags)
 
         if len(tags) != 0:
             tags['osm_id'] = "R/{}".format(r.id)
@@ -227,26 +237,40 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def handle_address_dataset(self, tags):
         # these dataset come from city government
         tags['place'] = 'address_holder'
-        full =  tags['addr:city'].replace('臺', '台') + \
+        tags.pop('addr:tw:dataset', None)
+
+    def handle_house_number(self, tags):
+        full =  tags.get('addr:city', '').replace('臺', '台') + \
+                    tags.get('addr:district', '') + \
                     tags.get('addr:place', '') + \
                     tags.get('addr:street', '') + \
                     tags.get('addr:housenumber', '') + \
                     tags.get('addr:floor', '') + \
                     tags.get('addr:unit', '')
 
+        if tags.get('place', '') == 'address_holder':
+            if tags.get('name') == None:
+                tags['name'] = full
+            elif tags.get('ref') == None:
+                tags['ref'] = full
+            elif tags.get('addr:full') == None:
+                tags['addr:full'] = full
+        elif tags.get('addr:full') == None:
+                tags['addr:full'] = full
+
         # removes rest
-        tags.pop('addr:hamlet', None)
-        tags.pop('addr:neighbourhood', None)
+        tags.pop('addr:country', None)
+        tags.pop('addr:province', None)
+        tags.pop('addr:city', None)
+        tags.pop('addr:district', None)
+        tags.pop('addr:postcode', None)
+        # tags.pop('addr:hamlet', None)  # keep as not in part of full
+        # tags.pop('addr:neighbourhood', None)  # keep as not in part of full 
         tags.pop('addr:place', None)
         tags.pop('addr:street', None)
         tags.pop('addr:housenumber', None)
         tags.pop('addr:floor', None)
         tags.pop('addr:unit', None)
-
-        if tags.get('name') == None:
-            tags['name'] = full
-        else:
-            tags['ref'] = full
 
     def handle_tough_trail(self, tags):
         if 'name' in tags:
