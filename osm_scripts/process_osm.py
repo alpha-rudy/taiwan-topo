@@ -45,6 +45,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
+        if self.is_only_addr_tags(n.tags):
+            return  # drop pure address node
+
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         if n.id in hknetworks:
@@ -64,9 +67,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
         
-        if tags.get('addr:TW:dataset', '') == '137998':
-            self.handle_address_dataset(tags)
-
         if tags.get('addr:housenumber') != None:
             self.handle_house_number(tags)
 
@@ -76,6 +76,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_node(n)
 
     def way(self, w):
+        if self.is_only_addr_tags(w.tags):
+            return  # drop pure address node
+
         tags = dict((tag.k, tag.v) for tag in w.tags)
 
         if w.id in hknetworks and 'highway' in tags:
@@ -101,6 +104,9 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_way(w)
 
     def relation(self, r):
+        if self.is_only_addr_tags(r.tags):
+            return  # drop pure address node
+
         tags = dict((tag.k, tag.v) for tag in r.tags)
 
         if tags.get('amenity', '') == 'bicycle_rental':
@@ -234,41 +240,40 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if tags.get('network:en', '') in ('iBike', 'YouBike'):
             tags['network'] = tags['network:en']
 
-    def handle_address_dataset(self, tags):
+    def is_only_addr_tags(self, tags):
+        for tag in tags:
+            if tag.k.startswith('addr:'):
+                continue
+            return False
+        return True
+
         # these dataset come from city government
         tags['place'] = 'address_holder'
         tags.pop('addr:tw:dataset', None)
 
     def handle_house_number(self, tags):
-        full =  tags.get('addr:city', '').replace('臺', '台') + \
-                    tags.get('addr:district', '') + \
-                    tags.get('addr:place', '') + \
-                    tags.get('addr:street', '') + \
-                    tags.get('addr:housenumber', '') + \
-                    tags.get('addr:floor', '') + \
-                    tags.get('addr:unit', '')
-
-        if tags.get('place', '') == 'address_holder':
-            if tags.get('name') == None:
-                tags['name'] = full
-            elif tags.get('ref') == None:
-                tags['ref'] = full
-            elif tags.get('addr:full') == None:
-                tags['addr:full'] = full
-        elif tags.get('addr:full') == None:
-                tags['addr:full'] = full
+        if tags.get('addr:full') == None:
+            tags['addr:full'] =  tags.get('addr:city', '').replace('臺', '台') + \
+                tags.get('addr:district', '') + \
+                tags.get('addr:place', '') + \
+                tags.get('addr:street', '') + \
+                tags.get('addr:housenumber', '') + \
+                tags.get('addr:floor', '') + \
+                tags.get('addr:unit', '')
 
         # removes rest
+        tags.pop('addr:TW:dataset', None)
         tags.pop('addr:country', None)
         tags.pop('addr:province', None)
         tags.pop('addr:city', None)
         tags.pop('addr:district', None)
         tags.pop('addr:postcode', None)
-        # tags.pop('addr:hamlet', None)  # keep as not in part of full
-        # tags.pop('addr:neighbourhood', None)  # keep as not in part of full 
+        tags.pop('addr:hamlet', None)
+        tags.pop('addr:neighbourhood', None)
         tags.pop('addr:place', None)
         tags.pop('addr:street', None)
         tags.pop('addr:housenumber', None)
+        tags.pop('addr:housenumber_1', None)
         tags.pop('addr:floor', None)
         tags.pop('addr:unit', None)
 
