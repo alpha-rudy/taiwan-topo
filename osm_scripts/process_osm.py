@@ -241,11 +241,15 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['network'] = tags['network:en']
 
     def is_only_addr_tags(self, tags):
+        only_addr = False  ## no tags mean no addr (False)
         for tag in tags:
             if tag.k.startswith('addr:'):
+                only_addr = True  ## accumulating in True
                 continue
-            return False
-        return True
+            else:       
+                only_addr = False  ## one other tags, no needd to go on
+                break
+        return only_addr
 
         # these dataset come from city government
         tags['place'] = 'address_holder'
