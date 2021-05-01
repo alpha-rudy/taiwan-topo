@@ -1346,7 +1346,7 @@ $(LITE_STYLE):
 			-e "s,file:/moiosm_res,file:/moiosmlite_res,g" \
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 			-e "/-- contours-begin --/,/-- contours-end --/d" \
-			-e "/-- contours --/ r styles/mapsforge_lite/Lite_contours.part" \
+			-e "/-- contours-body --/ r styles/mapsforge_lite/Lite_contours.part" \
 		> $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
 	cd $(BUILD_DIR)/mapsforge_lite && \
 		$(ZIP_CMD) $@ *
@@ -1460,7 +1460,9 @@ $(TN_STYLE):
 			-e 's/outside="#FFFFFF"/outside="#00FFFFFF"/g' \
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 			-e "/TN-REMOVED-FROM/,/TN-REMOVED-TO/d" \
-			-e "/-- coastlines --/ r styles/mapsforge_tn/coastlines.part" \
+			-e "/-- coastlines-body --/ r styles/mapsforge_tn/coastlines.part" \
+			-e "/-- contours-begin --/,/-- contours-end --/d" \
+			-e "/-- contours-body --/ r styles/mapsforge_tn/contours.part" \
 			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
 		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
 	cd $(BUILD_DIR)/mapsforge_tn && \
