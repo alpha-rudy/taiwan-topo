@@ -1195,7 +1195,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
   </rule>
-  <!-- coastlines -->
+  <!-- coastlines-body -->
   <!-- contours-begin -->
   <rule e="any" k="*" v="*" cat="contour">
     <rule e="way" k="ele" v="1000|2000|3000" zoom-min="9" zoom-max="10">
@@ -1336,7 +1336,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- contours-end -->
-  <!-- contours -->
+  <!-- contours-body -->
   <!-- highway areas -->
   <rule e="way" k="tunnel" v="~|no">
     <rule e="way" k="area" v="no|~">
