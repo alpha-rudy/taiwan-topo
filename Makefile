@@ -1461,8 +1461,6 @@ $(TN_STYLE):
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 			-e "/TN-REMOVED-FROM/,/TN-REMOVED-TO/d" \
 			-e "/-- coastlines-body --/ r styles/mapsforge_tn/coastlines.part" \
-			-e "/-- contours-begin --/,/-- contours-end --/d" \
-			-e "/-- contours-body --/ r styles/mapsforge_tn/contours.part" \
 			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
 		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
 	cd $(BUILD_DIR)/mapsforge_tn && \
