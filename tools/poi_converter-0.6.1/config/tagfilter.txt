@@ -8,6 +8,7 @@ information=mobile
 tourism=alpine_hut
 tourism=wilderness_hut
 shelter_type=basic_hut
+amenity=shelter
 tourism=attraction
 tourism=hotel
 tourism=motel

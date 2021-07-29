@@ -83,3 +83,4 @@ convenience=便利店
 department_store=百貨行
 camp_site=營地
 caravan_site=車營地
+shelter=涼亭
