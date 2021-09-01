@@ -19,6 +19,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
   * 阿牛兄的圖例說明: [圖例 V1R3版](./legend_V1R3.pdf)
 
+* ![山林日誌](images/hj.png =36x) 山林日誌自動安裝
+  * 請於 APP 內直接安裝地圖
+    > 安裝示範影片：https://youtu.be/HP6BXKdBUvg
+
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > 安裝示範影片：https://youtu.be/JsvP61CErYY
