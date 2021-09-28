@@ -621,6 +621,7 @@ aeroway = terminal [0x38 resolution 20]
 
 # Hubschrauberlandeplatz. [point, closedway]
 aeroway = helipad [0x2d resolution 20]
+emergency = landing_site [0x2d resolution 20]
 
 # Gebäude: Tower (Kontrollturm). [?]
 aeroway = tower [0x38 resolution 20]

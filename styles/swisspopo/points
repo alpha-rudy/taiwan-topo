@@ -727,6 +727,7 @@ aeroway = aerodrome | aeroway = airport & name = * {name "${name}"} [0x5905 reso
 
 # Hubschrauberlandeplatz. [point, closedway]
 aeroway = helipad {name "${name}" | "停機坪"} [0x5904 resolution 24]
+emergency = landing_site {name "${name}" | "緊急停機坪"} [0x5904 resolution 24]
 
 # Gate: Dient der Markierung der einzelnen Gates auf einem Vorfeld. [point]
 # aeroway = gate (wird derzeit nicht unterstützt)

@@ -504,6 +504,9 @@
     <category title="救護車站">
       <mapping tag="emergency=ambulance_station" />
     </category>
+    <category title="緊急停機坪/吊掛">
+      <mapping tag="emergency=landing_site" />
+    </category>
     <category title="滅火器">
       <mapping tag="emergency=fire_extinguisher" />
     </category>
