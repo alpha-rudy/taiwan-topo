@@ -3592,6 +3592,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <rule e="way" k="aeroway" v="runway|apron" closed="yes" zoom-min="13">
     <area fill="#FFFCF0"/>
   </rule>
+  <rule e="way" k="emergency" v="landing_site">
+    <area fill="#FFFCF0" stroke-width="0.2" stroke="#9EA199"/>
+  </rule>
   <rule e="way" k="aeroway" v="helipad">
     <area fill="#FFFCF0" stroke-width="0.2" stroke="#9EA199"/>
   </rule>
@@ -4591,6 +4594,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_defibrillator" position="above" font-style="bold" font-size="20" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
+    </rule>
+    <rule e="any" k="emergency" v="landing_site">
+      <symbol id="s_landing_site" src="file:moiosm_twmap/s_landing_site.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <caption k="name" symbol-id="s_landing_site" position="above" font-style="bold" font-size="20" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="any" k="emergency" v="portable_altitude_chamber">
       <symbol id="s_pac" priority="82" src="file:moiosm_twmap/s_pac.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>

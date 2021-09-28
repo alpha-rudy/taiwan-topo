@@ -567,6 +567,7 @@
 <!-- air traffic -->
 <osm-tag key='aeroway' value='aerodrome' zoom-appear='11' />
 <osm-tag key='aeroway' value='helipad' zoom-appear='12' />
+<osm-tag key='emergency' value='landing_site' zoom-appear='12' />
 <osm-tag key='aeroway' value='apron' zoom-appear='12' />
 <osm-tag key='aeroway' value='runway' zoom-appear='10' />
 <osm-tag key='aeroway' value='taxiway' zoom-appear='10' />
@@ -1044,6 +1045,7 @@
 <osm-tag key='aeroway' value='airport' zoom-appear='11' />
 <osm-tag key='aeroway' value='gate' zoom-appear='17' />
 <osm-tag key='aeroway' value='helipad' zoom-appear='12' />
+<osm-tag key='emergency' value='landing_site' zoom-appear='12' />
 <!-- power -->
 <osm-tag key='power' value='generator' zoom-appear='16' />
 <osm-tag key='generator:source' value='wind' zoom-appear='14' />
