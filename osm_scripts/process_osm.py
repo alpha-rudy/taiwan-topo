@@ -123,10 +123,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def handle_mobile_sign(self, tags):
         operator_tag = 'internet_access:operator'
 
-        if tags.get('name') is None and tags.get(operator_tag):
+        if tags.get(operator_tag):
             operator = tags.get(operator_tag)
-            name = '通訊點 ('
 
+            name = '通訊點 ('
             if '中華' in operator:
                 name += '中華,'
             if '遠傳' in operator:
@@ -137,27 +137,24 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 name += '台哥大,'
             if '亞太' in operator:
                 name += '亞太,'
-
             name = name.rstrip(',')  # get rid the last ','
             name += ')'
             tags['name'] = name
 
-        if tags.get('name:en') is None and tags.get(operator_tag):
-            operator = tags.get(operator_tag)
-            name = 'mobile ('
+            en_name = 'mobile ('
             if '中華' in operator:
-                name += 'CHT,'
+                en_name += 'CHT,'
             if '遠傳' in operator:
-                name += 'FET,'
+                en_name += 'FET,'
             if '星' in operator:
-                name += 'T STAR,'
+                en_name += 'T STAR,'
             if '哥' in operator:
-                name += 'TWM,'
+                en_name += 'TWM,'
             if '亞太' in operator:
-                name += 'A+,'
-            name = name.rstrip(',')
-            name += ')'
-            tags['name:en'] = name
+                en_name += 'A+,'
+            en_name = en_name.rstrip(',')
+            en_name += ')'
+            tags['name:en'] = en_name
 
     def handle_drinking_spring(self, tags):
         if tags.get('name') is None:
