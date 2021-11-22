@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu
 MAINTAINER Rudy Chung <rudyboy.tw@gmail.com>
 
 RUN sed -i 's/archive.ubuntu.com/free.nchc.org.tw/g' /etc/apt/sources.list
@@ -42,7 +42,6 @@ RUN pip3 install --upgrade pip
 RUN pip3 install --upgrade bs4 matplotlib numpy setuptools
 RUN pip3 install \
                 osmium \
-                pygdal=="`gdal-config --version`.*" \
                 spatialite \
                 tqdm \
                 wheel 
