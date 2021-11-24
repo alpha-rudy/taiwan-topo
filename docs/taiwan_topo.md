@@ -312,10 +312,12 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
 
-* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph 2 Map‪s‬、山林日誌。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph 2 Maps、山林日誌。
 
 
 ## 重大修改歷程
+* 2021, 11/24
+  * DTM 套用 AW3D30 v3.1
 * 2020, 11/24
   * 增加 Locus LoPoints 支援
 * 2020, 11/21
@@ -440,11 +442,13 @@ Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hikin
 > MOI Link: https://tgos.nat.gov.tw <br />
 > 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
 > Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
-> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884
+> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884 <br />
+> 範圍包含：台灣本島、澎湖、金門
 
-* JAXA ALOS World 3D - 30m (AW3D30) Version 2.1.
-> 部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v2.1。 <br /> 
-> 範圍包含：N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E12. <br />
+* JAXA ALOS World 3D - 30m (AW3D30) Version 3.1.
+> 部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v3.1。 <br /> 
+> 使用檔案：N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E120. <br />
+> 範圍包含：馬祖、烏坵、北方三島 <br />
 > Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
 
 * GMAP Styles and TYP
