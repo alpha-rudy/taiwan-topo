@@ -859,13 +859,12 @@ $(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(MAPSFORGE_STYLE) $(HGT)
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
-$(LOCUS_MAP).zip: $(MAPSFORGE) $(POI) $(LOCUS_POI) 
+$(LOCUS_MAP).zip: $(MAPSFORGE) $(LOCUS_POI) 
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(LOCUS_MAP)" ]
 	@rm -rf $(LOCUS_MAP) $(LOCUS_MAP).zip
 	mkdir -p $(LOCUS_MAP)
 	cp $(MAPSFORGE) $(LOCUS_MAP)/$(shell basename $(MAPSFORGE:%.map=%.osm.map))
-	cp $(POI) $(LOCUS_MAP)/$(shell basename $(POI:%.poi=%.osm.poi))
 	cp $(LOCUS_POI) $(LOCUS_MAP)/$(shell basename $(LOCUS_POI:%.db=%.osm.db))
 	cd $(LOCUS_MAP) && $(ZIP_CMD) $(LOCUS_MAP).zip *
 
