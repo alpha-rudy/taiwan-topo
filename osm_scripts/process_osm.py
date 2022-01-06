@@ -138,7 +138,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             if '亞太' in operator:
                 name += '亞太,'
             name = name.rstrip(',')  # get rid the last ','
-            name += ')'
+            name += ',112)'
             tags['name'] = name
 
             en_name = 'mobile ('
@@ -153,7 +153,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
             if '亞太' in operator:
                 en_name += 'A+,'
             en_name = en_name.rstrip(',')
-            en_name += ')'
+            en_name += ',112)'
             tags['name:en'] = en_name
 
     def handle_drinking_spring(self, tags):
