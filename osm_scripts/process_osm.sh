@@ -31,6 +31,7 @@ osmfilter \
     --drop-version \
     --ignore-dependencies \
     --drop-tags='name:zh= ref:zh=' \
+    --drop-tags='disused:*=' \
     "$infile" --out-o5m | ${OSMCONVERT_CMD} - -o="$temp_pbf"
 
 script_dir="$(dirname $0)"
