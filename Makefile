@@ -19,7 +19,7 @@ JAVACMD_OPTIONS ?= -Xmx68G -server
 # directory variables
 ROOT_DIR := $(shell pwd)
 TOOLS_DIR := $(ROOT_DIR)/tools
-OSMOSIS_CMD := $(TOOLS_DIR)/osmosis-0.48.2/bin/osmosis
+OSMOSIS_CMD := $(TOOLS_DIR)/osmosis-0.48.3/bin/osmosis
 ifeq ($(shell uname),Darwin)
 OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/osx/osmconvert
 else
@@ -789,8 +789,8 @@ styles:
 .PHONY: daily
 daily:
 	$(MAKE_CMD) styles
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip poi_zip
-	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis 
+	$(MAKE_CMD) SUITE=taipei mapsforge_zip poi_zip
+	$(MAKE_CMD) SUITE=taipei_bc_dem gmapsupp_zip
 	# $(MAKE_CMD) SUITE=taiwan_bw gmapsupp_zip
 
 .PHONY: suites
