@@ -1620,7 +1620,6 @@ $(COMMON_TILES): $(GMAP_INPUT)
 			--geonames-file=$(CITY) \
 			--no-trim \
 			--precomp-sea=$(SEA_DIR) \
-			--x-check-precomp-sea=0 \
 			--keep-complete=true \
 			--mapid=$(DUMMYID)0001 \
 			--max-areas=4096 \
