@@ -25,11 +25,11 @@ OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/osx/osmconvert
 else
 OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/linux/osmconvert64
 endif
-MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4565/mkgmap.jar
-SPLITTER_JAR := $(TOOLS_DIR)/splitter-r597/splitter.jar
+MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4890/mkgmap.jar
+SPLITTER_JAR := $(TOOLS_DIR)/splitter-r645/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
-SEA_DIR := $(ROOT_DIR)/sea
-BOUNDS_DIR := $(ROOT_DIR)/bounds
+SEA_DIR := $(ROOT_DIR)/sea-20220202001507
+BOUNDS_DIR := $(ROOT_DIR)/bounds-20220128
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 WORKS_DIR := $(ROOT_DIR)/work
@@ -1620,6 +1620,7 @@ $(COMMON_TILES): $(GMAP_INPUT)
 			--geonames-file=$(CITY) \
 			--no-trim \
 			--precomp-sea=$(SEA_DIR) \
+			--x-check-precomp-sea=0 \
 			--keep-complete=true \
 			--mapid=$(DUMMYID)0001 \
 			--max-areas=4096 \

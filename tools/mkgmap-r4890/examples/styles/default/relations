@@ -1,0 +1,130 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for applying rules on
+# OSM relations.  Usually you will set tags on the
+# elements that make up the relation, and the tags will be
+# processed by the rules defined in the "points" or "lines" files.
+#
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more information.
+
+# Names of administrative boundaries.
+# We could want to sort the relations in ascending order of admin_level
+# and alphabetically by name first.
+# Currently, the matching relations will be processed and the names
+# appended to the boundary lines in an arbitrary order.
+
+(type=boundary | type=multipolygon) & boundary=administrative & name=*
+{ apply
+  {
+    set mkgmap:boundary_name='$(mkgmap:boundary_name)/${name}' | '${name}';
+  }
+}
+
+# Public transportation routes.
+# We could want to sort the matching relations by ref first.
+type=route
+& (route=bus|route=trolleybus|route=ferry|route=subway|route=train|route=tram)
+& (ref=* | name=*)
+{
+  add ref='${name}'; # if ref is missing, use name
+  # Append the ref of the route relation to the route_ref attribute of
+  # the member nodes recursively (even to members of subrelations).
+  # Stops can be grouped within subrelations comprising the vehicle
+  # stop node and the passenger wait node.
+  apply { # node role ~ '(start_|end_)stop'
+		set route_ref='$(route_ref);${ref|not-contained:;:route_ref}' | '$(route_ref)' | '${ref}';
+    # In route relations, stops may be defined as relations that group
+    # the passenger wait area and the vehicle stop area.  If such
+    # subrelations exist, copy the ref to them too.
+    set mkgmap:relref='${ref}';
+
+    apply role=passengers {
+      set route_ref='$(route_ref),${mkgmap:relref}' | '${mkgmap:relref}';
+    }
+
+    delete mkgmap:relref;
+  }
+  # We could want to copy the route relation name to unnamed route=ferry ways.
+  # apply way { add name='${name}' }
+}
+
+# European E-Road network
+route=road & network=e-road {
+	apply {
+		add ref='${ref}';
+		add int_ref='${int_ref}';
+		add network='e-road';
+        add mkgmap:fast_road=yes;
+	}
+}
+
+#USA road network
+type=route & route=road & historic!=yes & network=US:I
+{
+    apply {
+        set mkgmap:us_interstate='$(mkgmap:us_interstate);${ref|not-contained:;:mkgmap:us_interstate}' | '$(mkgmap:us_interstate)' | '${ref}';
+        add network='US:I';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network~'US:I:.*'
+{
+    apply {
+        add network='US:I';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network=US:US
+{
+    apply {
+        set mkgmap:us_usroute='$(mkgmap:us_usroute);${ref|not-contained:;:mkgmap:us_usroute}' | '$(mkgmap:us_usroute)' | '${ref}';
+        add network='US:US';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network~'US:US:.*'
+{
+    apply {
+        add network='US:US';
+        add mkgmap:fast_road=yes;
+    }
+}
+type=route & route=road & historic!=yes & network~'US:.*' & !(network=US:I | network=US:US | network~'US:.*:.*')
+{
+    apply {
+        add mkgmap:us_state='$(mkgmap:us_state);${ref|not-contained:;:mkgmap:us_state}' | '$(mkgmap:us_state)' | '${ref}';
+        add network='${network}';
+    }
+}
+
+#Trans African Highway
+type=route & route=road & historic!=yes & (network~'TAH.*' | ref~'TAH.*' | network~'Trans.African Highway')
+{
+    apply {
+        add network='TAH';
+        add int_ref='${ref}';
+        add mkgmap:fast_road=yes;
+    }
+}
+
+#Asian Highway
+type=route & route=road & historic!=yes & (network=AsianHighway | network=AH)
+{
+    apply {
+        add network='AsianHighway';
+        add int_ref='${ref}';
+        add mkgmap:fast_road=yes;
+    }
+}
+
+#any highway
+type=route & route=road & historic!=yes & ref=*
+{
+    apply {
+        add ref='${ref}';
+    }
+}
