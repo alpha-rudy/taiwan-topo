@@ -139,9 +139,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Rex]](http://rudy.basecamp.tw/extra/Markchoo.map.zip) /
       > [[mirror KCWu]](http://moi.kcwu.csie.org/extra/Markchoo.map.zip) / 
       > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/extra/Markchoo.map.zip)
-    * Compartment.map: 林務局林班地
+    * Compartment.map: 林務局林班地 v2022.04.17
       > [[mirror Rex]](http://rudy.basecamp.tw/extra/Compartment.map.zip) /
-      > [[mirror KCWu]](http://moi.kcwu.csie.org/extra/Compartment.map.zip) / 
+      > [[mirror KCWu]](http://moi.kcwu.csie.org/extra/Compartment.map.zip) /
       > [[mirror Happyman]](http://map.happyman.idv.tw/rudy/extra/Compartment.map.zip)
     * ...
       > (期待將來有更多的離線圖層可以使用)
