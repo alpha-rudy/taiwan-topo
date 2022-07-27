@@ -14,7 +14,6 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
   * Beta 版（每日建置）:
-    * https://rudy.outdoors.tw/drops/beta.html (自動分流)
     * http://rudy.basecamp.tw/drops/beta.html (mirror Rex)
     * http://moi.kcwu.csie.org/drops/beta.html (mirror KCWu)
     * http://map.happyman.idv.tw/rudy/drops/beta.html (mirror Happyman)
@@ -100,29 +99,29 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
   * 分開安裝
     * ![Map](images/Locus_map.jpeg =36x) Map (200MB)
-      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/v1/locus_map-cedric.xml) /
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/locus_map-cedric.xml) /
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_map-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_map-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_map-happyman.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/v1/locus_style-cedric.xml) /
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/locus_style-cedric.xml) /
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_style-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
     * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2021 (50MB)
-      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/v1/locus_dem-cedric.xml) /
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/locus_dem-cedric.xml) /
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_dem-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_dem-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_dem-happyman.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新 (200MB)
-      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/v1/locus_upgrade-cedric.xml) /
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/locus_upgrade-cedric.xml) /
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_upgrade-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_upgrade-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_upgrade-happyman.xml)
   * 三合一
     * ![Map](images/Locus.jpeg =36x) 首次安裝 (250MB)
-      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/v1/locus_all-cedric.xml) /
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/locus_all-cedric.xml) /
       > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/locus_all-rex.xml) /
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_all-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
