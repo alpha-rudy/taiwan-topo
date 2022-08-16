@@ -846,16 +846,16 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 
 .PHONY: carto_all
 carto_all: $(CARTO_ALL).zip
-$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(MAPSFORGE_STYLE) $(HGT)
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
 	unzip $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg $(shell basename $(MAPSFORGE_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg $(shell basename $(HS_STYLE))
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(MAPSFORGE_STYLE))
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(MAPSFORGE_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
