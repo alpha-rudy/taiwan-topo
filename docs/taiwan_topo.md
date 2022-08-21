@@ -6,8 +6,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！
 
 * 相關網頁
+  * 魯地圖分流器 (Cedric Shih)
+    * https://rudy.outdoors.tw/
+    * https://rudy.outdoors.tw/app (手機離線 APP 專用)
   * 說明網頁:
-    * https://rudy.outdoors.tw (自動分流)
     * http://rudy.basecamp.tw/taiwan_topo.html (mirror Rex)
     * http://moi.kcwu.csie.org/taiwan_topo.html (mirror KCWu)
     * http://map.happyman.idv.tw/rudy/taiwan_topo.html (mirror Happyman)
