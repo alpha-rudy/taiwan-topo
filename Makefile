@@ -1592,7 +1592,6 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	mkdir -p $(HOME)/log
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		sh $(OSMOSIS_CMD) \
 			--read-pbf "$(MAPSFORGE_PBF)" \
