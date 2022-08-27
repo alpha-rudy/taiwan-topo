@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.04
 MAINTAINER Rudy Chung <rudyboy.tw@gmail.com>
 
 RUN sed -i 's/archive.ubuntu.com/free.nchc.org.tw/g' /etc/apt/sources.list
@@ -38,13 +38,14 @@ RUN dpkg --add-architecture i386 && \
         zstd \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --upgrade pip
-RUN pip3 install --upgrade bs4 matplotlib numpy setuptools
+RUN pip3 install --upgrade pip setuptools
+RUN pip3 install --upgrade bs4 matplotlib numpy
 RUN pip3 install \
                 osmium \
                 spatialite \
                 tqdm \
-                wheel 
+                wheel \
+                hanzi2reading
 
 RUN locale-gen en_US.UTF-8
 RUN adduser --disabled-password --gecos '' builder && adduser builder sudo
