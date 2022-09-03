@@ -1,0 +1,65 @@
+
+Logging
+=======
+You can configure logging by using the Java -Dlog.config=filename option. This
+option uses a logging configuration file that allows you to enable and disable
+specific logging messages. This is useful if you want to see certain types of
+message that are not logged by default or choose where the messages should be
+written. The configuration file contains details of the handler(s) used to write
+the messages, parameters used to format the messages and the severity of messages
+that should be logged at Java package or class level, plus a default value. An
+example file is:
+
+
+# The default level FINE, WARNING, INFO, SEVERE 
+.level=SEVERE
+handlers: java.util.logging.FileHandler java.util.logging.ConsoleHandler 
+# package or class name with .level appended and then the level
+uk.me.parabola.imgfmt.level=INFO
+uk.me.parabola.mkgmap.build.level=INFO
+uk.me.parabola.mkgmap.main.Main.level=INFO
+uk.me.parabola.mkgmap.main.MapMaker.level=INFO
+uk.me.parabola.mkgmap.general.RoadNetwork.level=INFO
+uk.me.parabola.mkgmap.general.MapLine.level=INFO
+uk.me.parabola.mkgmap.osmstyle.level=INFO
+uk.me.parabola.mkgmap.reader.osm.level=INFO
+uk.me.parabola.mkgmap.reader.osm.xml.level=INFO
+uk.me.parabola.mkgmap.reader.osm.RestrictionRelation.level=FINE
+uk.me.parabola.mkgmap.reader.osm.Restriction.level=FINE
+# For ConsoleHandler
+java.util.logging.ConsoleHandler.level=WARNING
+java.util.logging.ConsoleHandler.formatter=uk.me.parabola.log.UsefulFormatter
+# For FileHandler
+java.util.logging.FileHandler.level=FINE
+java.util.logging.FileHandler.encoding=UTF-8
+java.util.logging.FileHandler.formatter=uk.me.parabola.log.UsefulFormatter
+java.util.logging.FileHandler.limit=20000000
+java.util.logging.FileHandler.count=4
+java.util.logging.FileHandler.pattern=mkgmap.log
+java.util.logging.FileHandler.append=false
+
+The above example enables certain informational messages and uses FileHandler to
+send them to a log file, with warning and error messages being also sent to
+stderr via ConsoleHandler.
+
+Mkgmap provides UsefulFormatter to help format messages, but you can use the
+standard Java SimpleFormatter if you prefer.
+
+In addition to the standard Java levels, mkgmap uses three additional levels
+DIAGNOSTIC (1100), ECHO (1200) and OVERRIDE (1300) for messages from its
+diagnostic options, echo/echotags style compiler actions and to display mkgmap
+startup and completion information. You can use the numeric values but not the
+names to specify these levels in a logging configuration file.
+
+Further information can be found at
+https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html[1]
+--
+[1] https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html
+
+If you see messages that contain non-ASCII characters which are not displaying
+properly in the console, you may need to use the Java -Dfile.encoding=<codepage>
+option and/or precede the mkgmap command line with a chcp command to make sure
+that the Java environment has the same code page as the shell it is being run
+from. This is especially likely on the Windows platform where the Java
+environment uses the Windows default code page, but the Windows command shell
+normally uses a different code page.

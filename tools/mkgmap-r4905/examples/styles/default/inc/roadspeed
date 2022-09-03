@@ -1,0 +1,53 @@
+#
+# Sets the maximum road speed based on the maxspeed tag.
+# In case mkgmap:road-speed-max is set the element road_speed is limited.
+#
+# road_speed classification:
+# road_speed | highest speed
+#  7         | No speed limit
+#  6         | 70 mph / 110 km/h
+#  5         | 60 mph /  90 km/h
+#  4         | 50 mph /  80 km/h
+#  3         | 35 mph /  60 km/h
+#  2         | 25 mph /  40 km/h
+#  1         | 15 mph /  20 km/h
+#  0         |  3 mph /   5 km/h
+#
+
+maxspeed:advisory=* {set maxspeed='${maxspeed:advisory}'}
+#maxspeed:practial=* {set maxspeed='${maxspeed:practial}'}
+# maxspeed:practial is disabled here in the default style because verifiability of it is disputed.
+# see: https://wiki.openstreetmap.org/wiki/Key:maxspeed:practical
+
+maxspeed=walk                   { set maxspeed=10 }
+maxspeed~'.*:living_street'     { set maxspeed=10 }
+
+maxspeed=RU:urban               { set maxspeed=60 }
+maxspeed=UA:urban               { set maxspeed=60 }
+maxspeed~'.*:urban'             { set maxspeed=50 }
+
+maxspeed=AT:rural               { set maxspeed=100 }
+maxspeed=DE:rural               { set maxspeed=100 }
+maxspeed~'.*:rural'             { set maxspeed=90 }
+
+maxspeed~'.*:trunk'             { set maxspeed=100 }
+maxspeed~'.*:motorway'          { set maxspeed=130 }
+
+# delete maxspeed if we still cannot convert it to km/h
+maxspeed=* & maxspeedkmh()!=* { delete maxspeed }
+
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <=  10 { set mkgmap:road-speed-max = 0 }
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <=  25 { set mkgmap:road-speed-max = 1 }
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <=  45 { set mkgmap:road-speed-max = 2 }
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <=  60 { set mkgmap:road-speed-max = 3 }
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <=  85 { set mkgmap:road-speed-max = 4 }
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <= 100 { set mkgmap:road-speed-max = 5 }
+maxspeed=* & mkgmap:road-speed-max!=* & maxspeedkmh() <= 120 { set mkgmap:road-speed-max = 6 }
+# mkgmap:road-speed-max = 7 has no effect 
+#maxspeed=* & mkgmap:road-speed-max!=* { set mkgmap:road-speed-max = 7 }
+
+# Experiments with Garmin devices have deduced 7/unlimited speed to be device dependent; values of 112 &
+# 132 km/h (70, 82 mph) seen: http://www.mkgmap.org.uk/pipermail/mkgmap-dev/2014q3/021620.html
+# The following rule limits it for all countries except Germany. A few other roads elsewhere are unlimited
+# and they would be expected to have a maxspeed:* tag that will override this.
+highway=motorway & maxspeed!=* & mkgmap:road-speed-max!=* & mkgmap:country!=DEU {set mkgmap:road-speed-max=6}
