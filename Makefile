@@ -28,7 +28,7 @@ endif
 MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4905/mkgmap.jar
 SPLITTER_JAR := $(TOOLS_DIR)/splitter-r652/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
-SEA_DIR := $(ROOT_DIR)/sea-20220202001507
+SEA_DIR := $(ROOT_DIR)/sea-20220816001514
 BOUNDS_DIR := $(ROOT_DIR)/bounds-20220128
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
