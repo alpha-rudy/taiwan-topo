@@ -709,11 +709,11 @@ LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
 
 ifeq ($(shell uname),Darwin)
 MD5_CMD := md5 -q $$EXAM_FILE
-JMC_CMD := jmc/macos-0.8/jmc_cli
+JMC_CMD := jmc-0.8/macos/jmc_cli
 SED_CMD := gsed
 else
 MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
-JMC_CMD := jmc/linux-0.8/jmc_cli
+JMC_CMD := jmc-0.8/linux/jmc_cli
 SED_CMD := sed
 endif
 
