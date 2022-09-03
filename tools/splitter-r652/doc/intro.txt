@@ -1,0 +1,66 @@
+
+* The size of each tile is modified depending on the density of features.  So tiles can remain large for the most part but shrink down in areas of high density.
+* Tiles meet exactly and do not overlap.
+* Tiles are split on boundries that are exact at a low zoom level in Garmin units, ensuring that the tiles do not overlap or have gaps in the overview map.
+* Lines crossing the boundry are cut into two pieces exactly on the boundry.  Part of the line will be in one tile, the rest in the other tile.  There is no overlap.
+* The same is true for polygons.  They are cut with a straight line.
+* If a line crosses a corner of a tile but does not have a node inside the tile it will still appear.
+* Includes relations.
+
+* The size of each tile is modified depending on the density of features.  So tiles can remain large for the most part but shrink down in areas of high density.
+* Tiles meet exactly and - using the saved boundng box - do not overlap.
+* The overlap (in garmin units) determines how many  
+* Tiles are split on boundaries that are exact at a low zoom level in Garmin units, ensuring that the tiles do not overlap or have gaps in the overview map.
+* Lines crossing the boundary are cut into two pieces exactly on the boundary.
+* 
+*
+* Algorithm with default parms (r 200):
+* Pass 1:
+  - For all nodes in the OSM data: calculate the desensity
+  - For all ways and relations: do nothing (just read and count them)
+  - Calculate the split areas so that none contains more than max-nodes (default: 1.600.000)
+* Pass 2:   
+  - For all nodes: calculate the area(s) that the node has to be written to. Since the default value for overlap is 2000, some nodes are written into up to 4 different areas (tiles).
+    Write the node to the calculated areas.  
+  - For all ways: lookup the areas of the all nodes. Write the way (id, tags, and node ids) to all areas found and save the information to which areas the way was written to.
+  - For all relations: lookup the areas of the all nodes and ways (sub-relations are ignored). Write the relation (id, tags, and member ids) to all these areas.
+  
+* New Algorithm with default parms (r > 200):
+* - Read user defined list of ways and relations that are known
+    to cause trouble ("problem rels" and "problem ways"). Copy the
+    "problem way" list to the "needed way" list 
+* Pass 1:
+  - For all nodes in the OSM data: calculate the desensity
+  - For all ways and relations: do nothing (if reader allows it: ignore them)
+  - Calculate the split areas so that none contains more than max-nodes (default: 1.600.000)
+* Pass 2a: 
+  - Read and save all relations
+  - Recursively add all sub relations of the user given problem relations to the 
+    list of problem relations
+  - Forget relations that are not in the problem list
+  - For all way members in the problem relation list: add the ids to the list of "needed ways"
+  - For all node members in the problem relation list: add the ids to the list of "needed nodes"
+* Pass 2b: 
+  - For all ways, if the way is in the "needed way" list: add the nodes to the list of "needed nodes"
+* Pass 2c: 
+  - For all nodes: if the node is in the "needed nodes" list: save the coords
+  - For all ways:  if the way is in the "needed way" list: 
+    Use the coords of the nodes to calculate the bounding box of the way and find 
+    all tile areas that are intersecting with it. Save those areas. 
+    Save also the way nodes for pass 2d 
+* Pass 2d: 
+  - For all relations in the "problem rel" list: 
+    Calculate the bounding box of the relation and find the tile areas that intersect 
+    with it. For each member of the relation: Merge the list of the members' tile areas
+    with the list of the relations' tile area.
+       
+* Pass 3:
+  - For all nodes: calculate the area(s) that the node has to be written to. Since the default value for overlap is 2000, some nodes are written into up to 4 different areas (tiles).
+    Write the node to the calculated areas.
+    If the node is in the "needed nodes" list: Write the node also to the areas only calculated in pass 2d   
+  - For all ways: If the way is in the "needed way" list: Write the way to the areas calculated in pass 2d, 
+      else lookup the areas of the all nodes and write the way (id, tags, and node ids) to all areas found and save the information to which areas the way was written to.   
+  - For all relations: if the relation is in "problem rel" list: Write the rel to the areas calculated in pass 2d,
+    else lookup the areas of the all nodes and ways (sub-relations are ignored). Write the relation (id, tags, and member ids) to all these areas.
+
+  

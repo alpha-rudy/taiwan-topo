@@ -1,0 +1,290 @@
+=Tile splitter for mkgmap=
+
+The format used for Garmin maps has, in effect, a maximum size, meaning that
+you have to split an .osm file that contains large well mapped regions into a
+number of smaller tiles. This program does that.  There are at least two
+stages of processing required. The first stage is to calculate what area each
+tile should cover, based on the distribution of nodes. The second stage writes
+out the nodes, ways and relations from the original .osm file into separate
+smaller .osm files, one for each area that was calculated in stage one. With
+option keep-complete=true, two additional stages are used to avoid broken ways
+and polygons. 
+
+The two most important features are:
+
+* Variable sized tiles so that you don't get a large number of tiny files.
+* Tiles join exactly with no overlap or gaps.
+
+== First ==
+
+You will need a lot of memory on your computer if you intend to split a large
+area. A few options allow configuring how much memory you need.  With the
+default parameters, you need about 2 bytes for every node and way. This
+doesn't sound a lot but there are about 4300 million nodes in the whole planet
+file (Jan 2018) and so you cannot process the whole planet in one pass on 
+a 32 bit machine using this utility, as the maximum java heap space is 2G. It is
+possible with 64 bit java and about 10GB of heap or with multiple passes.
+
+On the other hand a single country, even a well mapped one such as Germany or
+the UK, will be possible on a modest machine, even a netbook.
+
+== Download ==
+
+Download from the [http://www.mkgmap.org.uk/download/splitter.html splitter download directory]
+
+The source code is available from subversion: at http://svn.mkgmap.org.uk/splitter/trunk
+
+== Usage ==
+
+Splitter requires java 1.6 or higher. Run the following. If you have less than
+2G of memory on your computer you should reduce the -Xmx argument
+
+ java -Xmx2000m -jar splitter.jar file.osm > splitter.log
+
+This will produce a number of .osm.pbf files that can be read by mkgmap.
+There are also other files produced:
+
+The ''template.args'' file is a file that can be used with the -c option of
+mkgmap that will compile all the files. You can use it as is or you can 
+edit it to include your own options. For example instead of each
+description being "OSM Map" it could be "NW Scotland" as appropriate.
+
+The ''areas.list'' file is the list of bounding boxes that were calculated. If
+you want, you can use this on subsequent calls of splitter using the
+--split-file option to use exactly the same areas as last time. This might be
+useful if you produce a map regularly and want to keep the tile areas the same
+from month to month. It is also useful to avoid the time it takes to
+regenerate the file each time (currently about a third of the overall time
+taken to perform the split). Of course if the map grows enough that one of the
+tiles overflows, you will have to re-calculate the areas again.
+
+The ''areas.poly'' file contains the bounding polygon of the calculated areas.
+
+The ''densities-out.txt'' file is written when no split-file is given and
+contains debugging information only. 
+
+You can also use a gzip'ed or bz2'ed compressed .osm file as the input file.
+Note that this can slow down the splitter considerably (particularly true for
+bz2) because decompressing the .osm file can take quite a lot of CPU power. If
+you are likely to be processing a file several times you're probably better
+off converting the file to one of the binary formats pbf or o5m. The o5m
+format is faster to read, but requires more space on the disk.
+
+== Options ==
+
+There are a number of options to fine tune things that you might want to try.
+
+; --boundary-tags=use-exclude-list
+:   A comma separated list of tag values for relations.
+Used to filter multipolygon and boundary relations for
+problem-list processing. See also option --wanted-admin-level.
+Default: use-exclude-list
+
+; --cache=
+:   Deprecated, now does nothing.
+
+;--description=OSM Map
+:  Sets the desciption to be written in to the template.args file.
+
+;--geonames-file=
+:  The name of a GeoNames file to use for determining tile names.
+Typically cities15000.zip from
+[http://download.geonames.org/export/dump geonames]
+
+;--keep-complete=true
+:  Use keep-complete=false to disable two additional program phases between
+the split and the final distribution phase (not recommended). The first phase,
+called gen-problem-list, detects all ways and relations that are crossing the
+borders of one or more output files. The second phase, called
+handle-problem-list, collects the coordinates of these ways and relations and
+calculates all output files that are crossed or enclosed. The information is
+passed to the final dist-phase in three temporary files. This avoids broken
+polygons, but be aware that it requires to read the input files at least two
+additional times.
+<p>
+Do not specify it with --overlap unless you have a good reason to do so.
+
+;--mapid=63240001
+:  Set the filename for the split files. In the example the first file will be
+called 63240001.osm.pbf and the next one will be 63240002.osm.pbf and so on.
+
+;--max-areas=2048
+:  The maximum number of areas that can be processed in a single pass during
+the second stage of processing. This must be a number from 1 to 9999. Higher
+numbers mean fewer passes over the source file and hence quicker overall
+processing, but also require more memory. If you find you are running out of
+memory but don't want to increase your --max-nodes value, try reducing this
+instead. Changing this will have no effect on the result of the split, it's
+purely to let you trade off memory for performance. Note that the first stage
+of the processing has a fixed memory overhead regardless of what this is set
+to so if you are running out of memory before the areas.list file is
+generated, you need to either increase your -Xmx value or reduce the size of
+the input file you're trying to split.
+
+;--max-nodes=1600000
+:  The maximum number of nodes that can be in any of the resultant files. The
+default is fairly conservative, I think you could increase it quite a lot
+before getting any 'map too big' messages.  I've not experimented much. Also
+the bigger this value, the less memory is required during the splitting stage.
+
+;--max-threads
+:  The maximum number of threads used by splitter. Default is auto.
+
+;--mixed
+:  Specify this if the input osm file has nodes, ways and relations
+intermingled or the ids are not strictly sorted. To increase performance, use
+the osmosis sort function.
+
+;--no-trim
+:  Don't trim empty space off the edges of tiles. This option is ignored when
+--polygon-file is used.
+
+;--output=pbf
+:  The format in which the output files are written. Possible values are xml,
+pbf, o5m, and simulate. The default is pbf, which produces the smallest file
+sizes. The o5m format is faster to write, but creates around 40% larger files.
+The simulate option is for debugging purposes.
+
+;--output-dir=.
+:  The directory to which splitter should write the output files. If the
+specified path to a directory doesn't exist, splitter tries to create it.
+Defaults to the current working directory.
+
+;--overlap=
+:  Deprecated since r279. With keep-complete=false, splitter should include
+nodes outside the bounding box, so that mkgmap can neatly crop exactly at the
+border. This parameter controls the size of that overlap. It is in map units,
+a default of 2000 is used which means about 0.04 degrees of latitude or
+longitude. If --keep-complete=true is active and --overlap is given, a warning
+will be printed because this combination rarely makes sense.
+
+;--polygon-file
+:  The name of a file containing a bounding polygon in the
+[http://wiki.openstreetmap.org/wiki/Osmosis/Polygon_Filter_File_Format osmosis polygon file format].
+Splitter uses this file when calculating the areas. It first calculates a grid
+using the given --resolution. The input file is read and for each node, a
+counter is increased for the related grid area. If the input file contains a
+bounding box, this is applied to the grid so that nodes outside of the
+bounding box are ignored. Next, if specified, the bounding polygon is used to
+zero those grid elements outside of the bounding polygon area. If the polygon-file
+describes one or more rectilinear areas with no more than 40 vertices, splitter
+will try to create output files that fit exactly into each area, otherwise it
+will approximate the polygon area with rectangles. 
+
+;--precomp-sea
+:  The name of a directory containing precompiled sea tiles. If given,
+splitter will use the precompiled sea tiles in the same way as mkgmap does.
+Use this if you want to use a polygon-file or --no-trim=true and mkgmap
+creates empty *.img files combined with a message starting "There is not
+enough room in a single garmin map for all the input data".
+
+;--problem-file
+:  The name of a file containing ways and relations that are known to cause
+problems in the split process. Use this option if --keep-complete requires too
+much time or memory and --overlap doesn't solve your problem. 
+:  Syntax of problem file:
+     way:<id> # comment...
+     rel:<id> # comment...
+example:
+     way:2784765 # Ferry Guernsey - Jersey
+
+;--problem-report
+:  The name of a file to write the generated problem list created
+with --keep-complete. The parameter is ignored if --keep-complete=false. You can
+reuse this file with the --problem-file parameter, but do this only if you use
+the same values for max-nodes and resolution. 
+
+;--resolution=13
+:  The resolution of the density map produced during the first phase. A value
+between 1 and 24.  Default is 13. Increasing the value to 14 requires four
+times more memory in the split phase. The value is ignored if a --split-file
+is given. 
+
+;--split-file=areas.list
+:  Use the previously calculated tile areas instead of calculating them from
+scratch. The file can also be in *.kml format.
+
+;--status-freq
+:  Displays the amount of memory used by the JVM every --status-freq seconds.
+Set =0 to disable.  Default is 120.
+
+;--stop-after
+:  Debugging: stop after a given program phase. Can be split,
+gen-problem-list, or handle-problem-list Default is dist which means execute
+all phases.
+
+; --wanted-admin-level
+:   Specifies the lowest admin_level value of boundary relations that 
+should be kept complete. Used to filter boundary relations for
+problem-list processing. The default value 5 means that 
+boundary relations are kept complete when the admin_level is
+5 or higher (5..11).
+The parameter is ignored if --keep-complete=false. 
+Default: 5
+
+;--write-kml
+:  The name of a kml file to write out the areas to. This is in addition to
+areas.list (which is always written out).
+
+== Special options ==
+
+;--version
+
+:  If the parameter --version is found somewhere in the options, splitter will
+just print the version info and exit. Version info looks like this:
+ splitter 279 compiled 2013-01-12T01:45:02+0000
+
+;--help
+:  If the parameter --help is found somewhere in the options, splitter will
+print a list of all known normal options together with a short help and exit.
+
+== Tuning ==
+=== Tuning for best performance ===
+
+A few hints for those that are using splitter to split large files.
+
+* For faster processing with --keep-complete=true, convert the input file to
+o5m format using:
+ osmconvert --drop-version file.osm -o=file.o5m
+
+* The option --drop-version is optional, it reduces the file to that data
+that is needed by splitter and mkgmap.
+
+* If you still experience poor performance, look into splitter.log. Search
+for the word Distributing.  You may find something like this in the next line:
+ Processing 1502 areas in 3 passes, 501 areas at a time
+<p>
+This means splitter has to read the input file input three times because the
+max-areas parameter was much smaller than the number of areas. If you have
+enough heap, set max-areas value to a value that is higher than the number of
+areas, e.g. --max-areas=2048. Execute splitter again and you should find
+ Processing 1502 areas in a single pass
+
+* More areas require more memory. Make sure that splitter has enough heap
+(increase the -Xmx parameter) so that it doesn't waste much time in the
+garbage collector (GC), but keep as much memory as possible for the systems
+I/O caches.
+
+* If available, use two different disks for input file and output directory,
+esp. when you use o5m format for input and output.
+
+* If you use mkgmap r2415 or later and disk space is no concern, consider to
+use --output=o5m to speed up processing.
+
+=== Tuning for low memory requirements ===
+
+If your machine has less than 1GB free memory (eg. a netbook), you can still
+use splitter, but you might have to be patient if you use the
+parameter --keep-complete and want to split a file like germany.osm.pbf or a
+larger one.  If needed, reduce the number of parallel processed areas to 50
+with the max-areas parameter. You have to use --keep-complete=false when
+splitting an area like Europe. 
+
+== Notes ==
+
+* There is no longer an upper limit on the number of areas that can be output
+(previously it was 255). More areas just mean potentially more passes being
+required over the .osm file, and hence the splitter will take longer to run.
+
+* There is no longer a limit on how many areas a way or relation can belong
+to (previously it was 4).
