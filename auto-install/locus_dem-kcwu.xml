@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <locusActions>
   <download>
-    <source><![CDATA[http://moi.kcwu.csie.org/hgtmix.zip]]></source>
+    <source><![CDATA[https://moi.kcwu.csie.org/hgtmix.zip]]></source>
     <dest><![CDATA[/data/srtm/moi-hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
