@@ -576,6 +576,10 @@ highway = footway | highway = elevator | highway = steps | highway = pedestrian 
 
 # Bergwege; T4 - T6 für routing aus Sicherheitsgründen gesperrt; Ausnahme: EXTENDEDROUTING ist explizit definiert
 # Alpine Trails; T4 - T6 expluded from routing for security reasons; Exception: EXTENDEDROUTING set
+# bad trail visibility
+(highway = footway | highway = path) & (trail_visibility = bad | trail_visibility = horrible | trail_visibility = no)    {set highway = difficult_trail;    set name = '${name} (艱難路線)' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
+# T5 and T6
+(highway = footway | highway = path) & (sac_scale = demanding_alpine_hiking | sac_scale = difficult_alpine_hiking)    {set highway = difficult_trail;    set name = '${name}  (艱難路線)' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 # T1
 (highway = footway | highway = path) & sac_scale = hiking                     {set highway = sacscalet1;        set name = '${name}' | '步道' }
 # T2
@@ -584,10 +588,6 @@ highway = footway | highway = elevator | highway = steps | highway = pedestrian 
 (highway = footway | highway = path) & sac_scale = demanding_mountain_hiking  {set highway = sacscalet2t3;      set name = '${name}' | '步道' }
 # T4
 (highway = footway | highway = path) & sac_scale = alpine_hiking              {set highway = sacscalet2t3;    set name = '${name}' | '步道'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
-# bad trail visibility
-(highway = footway | highway = path) & (trail_visibility = bad | trail_visibility = horrible | trail_visibility = no)    {set highway = difficult_trail;    set name = '${name} (艱難路線)' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
-# T5 and T6
-(highway = footway | highway = path) & (sac_scale = demanding_alpine_hiking | sac_scale = difficult_alpine_hiking)    {set highway = difficult_trail;    set name = '${name}  (艱難路線)' | '艱難路線'; set access = no; set motorcar = no; set bicycle = no; set foot = no}
 
 
 # access
