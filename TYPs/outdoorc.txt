@@ -7630,6 +7630,32 @@ DayXpm="3 3 2 1"   Colormode=16
 
 [_point]
 Type=0x02f
+SubType=0x04
+String1=0x00,Emergency
+String2=0x02,Emergency
+String3=0x03,Emergency
+String4=0x04,Emergency
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=No
+DayXpm="11 9 2 1"   Colormode=0
+"#	c #F82C00"
+" 	c none"
+"   #   #   "
+"    ###    "
+"#    #    #"
+" #       # "
+" ##  #  ## "
+" #       # "
+"#    #    #"
+"    ###    "
+"   #   #   "
+;12345678901
+[end]
+
+
+[_point]
+Type=0x02f
 SubType=0x05
 String1=0x00,Post Office
 String2=0x02,Postamt

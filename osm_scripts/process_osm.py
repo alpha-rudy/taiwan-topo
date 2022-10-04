@@ -64,6 +64,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 tags.get('tourism', '') == 'information' and \
                 tags.get('information', '') == 'route_marker':
             self.handle_trail_milestone(tags)
+        elif tags.get('highway', '') == 'emergency_access_point':
+            self.handle_eap(tags)
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
         
@@ -119,6 +121,18 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['osm_id'] = "R/{}".format(r.id)
             r = r.replace(tags=tags)
         self.writer.add_relation(r)
+
+    def handle_eap(self, tags):
+        if tags.get('name') is None:
+            if tags.get('ref') is None:
+                tags['name'] = '救援樁'
+            else:
+                tags['name'] = tags['ref'] + ' 號救援樁'
+        if tags.get('name:en') is None:
+            if tags.get('ref') is None:
+                tags['name:en'] = 'emergency'
+            else:
+                tags['name:en'] = 'emergency #' + tags['ref']
 
     def handle_mobile_sign(self, tags):
         operator_tag = 'internet_access:operator'
