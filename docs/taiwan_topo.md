@@ -353,24 +353,22 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 ## 說明
 
-MOI.OSM 每週（週四）發行，使用當日 OSM 的圖資。山友只需登山前下載使用就好，不用週週更新。
+魯地圖 (MOI.OSM) 每週四發行，使用當日 OSM 圖資。山友只需登山前下載，或每季更新一次，不用週週更新。
 
-OSM 是自由且開源的圖資，由默默耕耘的 OSM Taiwan ([openstreetmap.tw](http://openstreetmap.tw)) mappers 們辛苦繪製而成。圖資的正確性可以（也需要）由山友們一起來維護。有興趣請上 OSM Taiwan 網站來瞭解如何回報或更新地圖的錯誤。
+OSM 是自由且開源的圖資，由默默耕耘的 [OpenStreetMap 台灣](http://openstreetmap.tw) 圖客辛苦共筆繪製而成。圖資的正確性需要由山友們一起來維護，有興趣請上 OSM Taiwan 網站來瞭解如何回報或更新地圖的錯誤。
 
-MOI 來自 Rex ([http://blog.nutsfactory.net](http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm/)) 轉換 "內政部 20 公尺網格數值地形模型資料" ([tgos.nat.gov.tw](https://tgos.nat.gov.tw/tgos/web/tgos_home.aspx)) 而成的等高線，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應錯誤的地方，以提供大家討論與參考。探勘式登山建議仍搭配經建三版地形圖 ([地圖產生器](https://map.happyman.idv.tw/~happyman/twmap3))。
+等高線的製作主要基於 "內政部 20 公尺網格數值地形模型資料" ([data.moi.gov.tw](https://data.moi.gov.tw/))，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應勘誤，以提供大家討論與參考。本電子地圖適用各式台灣登山活動，但長天數山林活動仍建議列印出紙本地圖來備用 ([地圖產生器](https://map.happyman.idv.tw/~happyman/twmap3))。
 
-Style 由綬草北三兄與我共同設定，作為合適登山與尋寶（hiking/geocaching）風格樣式。若有建議，歡迎在臉書社團 ([facebook.groups/taiwan.topo](https://www.facebook.com/groups/taiwan.topo)) 上反應。
+Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocaching) 風格樣式。若有建議，歡迎在 [魯地圖臉書社團](https://www.facebook.com/groups/taiwan.topo) 上反應。
 
-手機GPS登山網頁，由曾耕暉先生編輯製作。
-
-讀者可以隨意下載或拿給別人使用（請用本頁連結來散佈）。並請特別注意，這地圖有錯誤的地方，作者無法保證其正確性。你藉由使用這地圖，你願意自行負責所有可能因為使用此地圖所發生的損失（包括受傷）。
+魯地圖可以隨意下載或提供給他人使用 (請用本頁連結來散佈)。並請特別注意，地圖可能有錯誤的地方，作者無法保證其正確性。任何使用者應自行負責所有可能因為使用此地圖所發生的損失 (包括受傷)。
 
 
 ## 注意事項
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
 
-* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph 2 Maps、山林日誌。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph Maps 2/3、山林日誌。
 
 
 ## 重大修改歷程
