@@ -7299,14 +7299,14 @@ ExtendedLabels=Y
 FontStyle=SmallFont
 CustomColor=No
 DayXpm="11 9 2 1"   Colormode=0
-"#	c #F82C00"
+"#	c #0065FF"
 " 	c none"
 "   #   #   "
 "    ###    "
 "#    #    #"
-" #       # "
-" ##  #  ## "
-" #       # "
+" #  ###  # "
+" ## ### ## "
+" #  ###  # "
 "#    #    #"
 "    ###    "
 "   #   #   "
