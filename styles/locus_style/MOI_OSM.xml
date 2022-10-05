@@ -4553,7 +4553,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="any" k="highway" v="emergency_access_point">
       <symbol id="s_emergency_access_point" priority="82" src="file:moiosm_res/s_emergency_access_point.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
-        <caption k="name" symbol-id="s_emergency_access_point" position="above" font-style="bold" font-size="10" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
+        <caption k="name" symbol-id="s_emergency_access_point" position="above" font-style="bold" font-size="10" fill="#734a08" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="emergency" v="defibrillator">
