@@ -485,7 +485,7 @@ landuse = recreation_ground [0x17 resolution 22-24]
 landuse = reservoir [0x3f resolution 16-24]
 
 # Wohngebiet. [point, closedway]
-landuse = residential [0x02 resolution 22-24]
+landuse = residential & residential != university [0x02 resolution 22-24]
 
 # Einkaufszentrum oder überwiegend Einzelhandelsgeschäfte. [point, closedway]
 landuse = retail [0x08 resolution 22-24]
@@ -796,7 +796,7 @@ amenity = place_of_worship [0x36 resolution 22-24]
 amenity = school [0x0a resolution 22-24]
 
 # Universität (Campus oder Gebäude). [point, closedway]
-amenity = university [0x0a resolution 22-24]
+amenity = university | residential = university [0x0a resolution 22-24]
 
 # "Schwarzer Fleck" (für Qualitätssicherung).
 # amenity = * {name '${name} - amenity'} [0x53 resolution 20]
