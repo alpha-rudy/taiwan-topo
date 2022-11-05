@@ -45,9 +45,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
-        if self.is_only_addr_tags(n.tags):
-            return  # drop pure address node
-
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
         if n.id in hknetworks:
@@ -78,9 +75,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_node(n)
 
     def way(self, w):
-        if self.is_only_addr_tags(w.tags):
-            return  # drop pure address node
-
         tags = dict((tag.k, tag.v) for tag in w.tags)
 
         if w.id in hknetworks and 'highway' in tags:
@@ -106,9 +100,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_way(w)
 
     def relation(self, r):
-        if self.is_only_addr_tags(r.tags):
-            return  # drop pure address node
-
         tags = dict((tag.k, tag.v) for tag in r.tags)
 
         if tags.get('amenity', '') == 'bicycle_rental':
