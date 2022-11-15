@@ -1292,6 +1292,8 @@ highway = bus_stop {name "${name}" | "公車站"} [0x2f08 resolution 24]
 # highway = crossing (wird derzeit nicht unterstützt)
 
 # Rettungspunkt (auch Notfallpunkt oder Forstrettungspunkt): Ermöglicht bei einem Notruf die genaue Angabe der eigenen Position. [point]
+highway = emergency_access_point & ref ~ '^[0-9]*[50]$' {name "${name}" | "${ref}救援樁" } [0x2f04 resolution 21-21]
+highway = emergency_access_point & ref ~ '^[0-9]*[24680]$' {name "${name}" | "${ref}救援樁" } [0x2f04 resolution 22-23]
 highway = emergency_access_point {name "${name}" | "${ref}救援樁" } [0x2f04 resolution 24]
 
 # Furt: Eine Untiefe in einem Bach- oder Flusslauf, an der das Gewässer zu Fuß oder mit Fahrzeugen durchquert werden kann. [point, way]
