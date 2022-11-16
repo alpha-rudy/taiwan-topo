@@ -114,16 +114,31 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer.add_relation(r)
 
     def handle_eap(self, tags):
+        ## handle zl tag
+        if tags.get('ref'):
+            try:
+                ref = int(tags.get('ref'))
+                if ref % 4 == 1:
+                    tags['zl'] = '0'
+                elif ref % 2 == 1:
+                    tags['zl'] = '1'
+                else:
+                    tags['zl'] = '2'
+            except ValueError:
+                tags['zl'] = '1'
+        else:
+            tags['zl'] = '1'
+
         if tags.get('name') is None:
             if tags.get('ref') is None:
                 tags['name'] = '救援樁'
             else:
-                tags['name'] = tags['ref'] + ' 號救援樁'
+                tags['name'] = '樁' + tags['ref']
         if tags.get('name:en') is None:
             if tags.get('ref') is None:
                 tags['name:en'] = 'emergency'
             else:
-                tags['name:en'] = 'emergency #' + tags['ref']
+                tags['name:en'] = '#' + tags['ref']
 
     def handle_mobile_sign(self, tags):
         operator_tag = 'internet_access:operator'
