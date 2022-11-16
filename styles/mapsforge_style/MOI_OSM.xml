@@ -4432,14 +4432,14 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_trailhead" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="information" v="guidepost" zoom-min="14">
+    <rule cat="waymarks" e="any" k="information" v="guidepost" zoom-min="14">
       <symbol id="s_guidepost" priority="62" src="file:moiosm_res/s_guidepost.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_guidepost" position="above" font-size="10" font-style="bold" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
         <caption k="ele" priority="-5" symbol-id="s_guidepost" position="below" font-size="10" font-style="bold" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="information" v="trail_milestone" zoom-min="15">
+    <rule cat="waymarks" e="any" k="information" v="trail_milestone" zoom-min="15">
       <rule e="any" k="zl" v="0" zoom-min="15">
         <symbol id="s_trail_milestone" priority="62" src="file:moiosm_res/s_trail_milestone.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule e="any" k="*" v="*">
@@ -4570,7 +4570,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_doctors" position="above" font-style="bold" font-size="10" fill="#DA0092" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="highway" v="emergency_access_point" zoom-min="14">
+    <rule cat="waymarks" e="any" k="highway" v="emergency_access_point" zoom-min="14">
       <rule e="any" k="zl" v="0" zoom-min="14">
         <symbol id="s_emergency_access_point" priority="82" src="file:moiosm_res/s_emergency_access_point.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule e="any" k="*" v="*">
@@ -4943,7 +4943,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
       </rule>
-      <rule e="any" k="information" v="mobile">
+      <rule cat="waymarks" e="any" k="information" v="mobile">
         <symbol id="s_mobile" priority="84" src="file:moiosm_res/s_mobile.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule e="any" k="*" v="*">
           <caption k="name" symbol-id="s_mobile" position="above" font-style="bold" font-size="10" fill="#734a08" stroke="#E5FFFFFF" stroke-width="2"/>
