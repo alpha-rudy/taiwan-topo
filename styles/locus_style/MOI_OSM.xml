@@ -44,6 +44,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="建議路線"/>
       <cat id="h_s_routes"/>
     </layer>
+    <layer id="elmt-trail-label" enabled="true">
+      <name lang="de" value="Trail Labels"/>
+      <name lang="en" value="Trail Labels"/>
+      <name lang="es" value="Trail Labels"/>
+      <name lang="fr" value="Trail Labels"/>
+      <name lang="it" value="Trail Labels"/>
+      <name lang="zh" value="山徑名稱"/>
+      <cat id="trail-label"/>
+    </layer>
     <layer id="elmt-waymarks" enabled="true">
       <name lang="de" value="Wegzeichen"/>
       <name lang="en" value="waymarks"/>
@@ -759,6 +768,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-waymarks"/>
       <overlay id="elmt-settlements-h"/>
       <overlay id="elmt-landscapefeat-h"/>
+      <overlay id="elmt-trail-label"/>
       <overlay id="elmt-surveypoint-h"/>
       <overlay id="elmt-contour-c"/>
       <overlay id="elmt-borders-h"/>
@@ -3170,11 +3180,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           </rule>
         </rule>
         <!-- captions -->
-        <rule e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
+        <rule cat="trail-label" e="way" k="hknetwork" v="lwn|uwn|rwn|nwn|iwn" zoom-min="11">
           <caption k="ref" font-style="normal" font-size="8" fill="#CC0048" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
         <rule e="way" k="highlight" v="yes" zoom-min="11">
-          <rule e="way" k="hknetwork" v="~|no">
+          <rule cat="trail-label" e="way" k="hknetwork" v="~|no">
             <caption k="ref" font-style="normal" font-size="9" fill="#0000CC" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
@@ -3293,20 +3303,30 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <rule cat="h_routes" e="way" k="highway" v="footway|path">
         <rule e="way" k="access" v="destination|private|~">
           <rule cat="hike-tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
-            <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+            <rule cat="trail-label" e="way" k="*" v="*">
+              <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+            </rule>
           </rule>
-          <rule e="way" k="trail_visibility" v="excellent|good|intermediate|~">
+          <rule cat="trail-label" e="way" k="trail_visibility" v="excellent|good|intermediate|~">
             <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule cat="hike-no_access" e="way" k="access" v="acc_no">
-          <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          <rule cat="trail-label" e="way" k="*" v="*">
+            <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
         </rule>
       </rule>
-      <rule e="way" k="highway" v="track|bridleway|steps|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-max="16">
+      <rule cat="trail-label" e="way" k="highway" v="steps" zoom-max="16">
         <pathText display="always" k="name" font-style="bold" font-size="7" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
-      <rule e="way" k="highway" v="track|bridleway|steps|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-min="17">
+      <rule cat="trail-label" e="way" k="highway" v="steps" zoom-min="17">
+        <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="way" k="highway" v="track|bridleway|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-max="16">
+        <pathText display="always" k="name" font-style="bold" font-size="7" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
+      <rule e="way" k="highway" v="track|bridleway|byway|cycleway|service|construction|road|pedestrian|unclassified|residential|living_street|tertiary|tertiary_link" zoom-min="17">
         <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
       <rule e="way" k="highway" v="secondary_link|primary_link|trunk_link|motorway_link|secondary|primary|trunk">
@@ -3317,10 +3337,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule cat="car" e="any" k="highway" v="tertiary" zoom-min="12">
         <rule cat="hike" e="way" k="hknetwork|name" v="~">
-          <rule e="way" k="*" v="*" zoom-max="14">
+          <rule cat="trail-label" e="way" k="*" v="*" zoom-max="14">
             <caption k="ref" font-style="bold" font-size="8" stroke="#404040" fill="#FFFFFF" stroke-width="2"/>
           </rule>
-          <rule e="way" k="*" v="*" zoom-min="15">
+          <rule cat="trail-label" e="way" k="*" v="*" zoom-min="15">
             <pathText k="ref" font-style="bold" font-size="10" stroke="#404040" fill="#FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
