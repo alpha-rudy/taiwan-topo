@@ -1307,6 +1307,7 @@ $(MAPSFORGE_STYLE):
 	cp -a styles/mapsforge_style $(BUILD_DIR)
 	cat styles/mapsforge_style/MOI_OSM.xml | \
 		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
+	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_style/MOI_OSM.pdf
 	cd $(BUILD_DIR)/mapsforge_style && $(ZIP_CMD) $@ *
 
 
@@ -1324,6 +1325,7 @@ $(LOCUS_STYLE):
 	cp -a styles/locus_style $(BUILD_DIR)/$(LOCUS_STYLE_INST)
 	cat styles/locus_style/MOI_OSM.xml | \
 		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.xml
+	cp docs/legend_V1R3.pdf $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.pdf
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
 
@@ -1348,6 +1350,7 @@ $(LITE_STYLE):
 			-e "/-- contours-begin --/,/-- contours-end --/d" \
 			-e "/-- contours-body --/ r styles/mapsforge_lite/Lite_contours.part" \
 		> $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
+	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.pdf
 	cd $(BUILD_DIR)/mapsforge_lite && \
 		$(ZIP_CMD) $@ *
 
@@ -1371,6 +1374,7 @@ $(HS_STYLE):
 			-e "s,file:/moiosm_res,file:/moiosmhs_res,g" \
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 		> $(BUILD_DIR)/mapsforge_hs/MOI_OSM.xml
+	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_hs/MOI_OSM.pdf
 	cd $(BUILD_DIR)/mapsforge_hs && \
 		$(ZIP_CMD) $@ *
 
