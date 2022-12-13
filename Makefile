@@ -1308,6 +1308,7 @@ $(MAPSFORGE_STYLE):
 	cat styles/mapsforge_style/MOI_OSM.xml | \
 		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/mapsforge_style/MOI_OSM.xml
 	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_style/MOI_OSM.pdf
+	cp docs/MOI_OSM.png $(BUILD_DIR)/mapsforge_style/MOI_OSM.png
 	cd $(BUILD_DIR)/mapsforge_style && $(ZIP_CMD) $@ *
 
 
@@ -1326,6 +1327,7 @@ $(LOCUS_STYLE):
 	cat styles/locus_style/MOI_OSM.xml | \
 		$(SED_CMD) -e "s/__version__/$(VERSION)/g" > $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.xml
 	cp docs/legend_V1R3.pdf $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.pdf
+	cp docs/MOI_OSM.png $(BUILD_DIR)/$(LOCUS_STYLE_INST)/MOI_OSM.png
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(LOCUS_STYLE_INST)/
 
 
@@ -1375,6 +1377,7 @@ $(HS_STYLE):
 			-e "s,<!-- hillshading -->,<hillshading />,g" \
 		> $(BUILD_DIR)/mapsforge_hs/MOI_OSM.xml
 	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_hs/MOI_OSM.pdf
+	cp docs/MOI_OSM.png $(BUILD_DIR)/mapsforge_hs/MOI_OSM.png
 	cd $(BUILD_DIR)/mapsforge_hs && \
 		$(ZIP_CMD) $@ *
 
