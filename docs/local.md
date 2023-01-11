@@ -9,12 +9,12 @@
 ## 相關網頁
   * 說明網頁:
     * https://rudy.outdoors.tw/
-    * http://rudy.basecamp.tw/taiwan_topo.html
+    * https://rudy.basecamp.tw/taiwan_topo.html
     * https://moi.kcwu.csie.org/taiwan_topo.html
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
   * Beta 版（每日建置）:
-    * http://rudy.basecamp.tw/drops/beta.html
+    * https://rudy.basecamp.tw/drops/beta.html
     * https://moi.kcwu.csie.org/drops/beta.html
   * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
   * 阿牛兄的圖例說明: [圖例](./legend_V1R1.pdf)
