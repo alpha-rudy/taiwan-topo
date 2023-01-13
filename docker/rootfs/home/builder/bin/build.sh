@@ -9,13 +9,13 @@ PATH=~/bin:$PATH
 export INSTALL_DIR=v$(date +%Y.%m.%d)
 GS_FILENAME="dayofmonth_$(date +%d)"
 
-while sleep 10; do { date +'DS: %H:%M:%S'; free -h; } >> log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
+while sleep 2.5; do { date +'DS: %H:%M:%S'; free -h; df -h /; } > log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
 
 cd ~/taiwan-topo
 git clean -fd
 git checkout -- .
 git pull --rebase
-make clean-extracts
+make distclean-extracts
 
 make ${TARGET}
 make exps || echo make exps failed
