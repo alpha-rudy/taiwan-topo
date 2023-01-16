@@ -7,7 +7,9 @@ MOI.OSM - Taiwan TOPO (by Rudy)
 
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
+    * https://rudymap.tw/
     * https://rudy.outdoors.tw/
+    * https://rudymap.tw/app (手機離線 APP 專用)
     * https://rudy.outdoors.tw/app (手機離線 APP 專用)
   * 說明網頁:
     * https://rudy.basecamp.tw/taiwan_topo.html (mirror Rex)
@@ -372,6 +374,10 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 重大修改歷程
+* 2023, 1/19
+  * DTM 套用內政部地政司 Taiwan DTM 20m v2022
+* 2023, 1/12
+  * 感謝謝晉凡兄，增加 rudymap.tw 網域
 * 2022, 7/26
   * 感謝 Cedric 兄，增加 mirrors 分流機制
 * 2021, 11/24
