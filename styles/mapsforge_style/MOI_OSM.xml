@@ -969,17 +969,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <area src="file:moiosm_res/p_marsh.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
         </rule>
       </rule>
-      <rule e="way" k="natural" v="rock" closed="yes">
-        <rule e="any" k="*" v="*" zoom-max="14">
-          <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        </rule>
-        <rule e="any" k="*" v="*" zoom-min="15" zoom-max="16">
-          <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
-        </rule>
-        <rule e="any" k="*" v="*" zoom-min="17">
-          <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
-        </rule>
-      </rule>
       <rule e="way" k="natural" v="heath" closed="yes">
         <rule e="any" k="*" v="*" zoom-max="14">
           <area src="file:moiosm_res/p_heath.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
@@ -1086,6 +1075,17 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule e="way" k="natural" v="crater" closed="yes">
         <area fill="#306E5050"/>
+      </rule>
+    </rule>
+    <rule e="way" k="natural" v="rock" closed="yes">
+      <rule e="any" k="*" v="*" zoom-max="14">
+        <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      </rule>
+      <rule e="any" k="*" v="*" zoom-min="15" zoom-max="16">
+        <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="32" symbol-width="32"/>
+      </rule>
+      <rule e="any" k="*" v="*" zoom-min="17">
+        <area src="file:moiosm_res/p_rock.svg" symbol-scaling="size" symbol-height="64" symbol-width="64"/>
       </rule>
     </rule>
     <rule e="way" k="natural" v="scree|shingle" closed="yes">
