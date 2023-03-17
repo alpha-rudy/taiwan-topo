@@ -132,7 +132,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_all-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
 
-* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Pro 2 自動安裝
+* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 2/3 自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
   * 分開安裝
@@ -211,7 +211,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-  * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph 2 Pro Style (0.4MB)
+  * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps 2/3 Style (0.4MB)
     > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
