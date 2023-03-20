@@ -55,7 +55,7 @@
   * 一次安裝
     * [![Map](images/Locus.jpeg =36x) ALL](locus-actions://http/__local_ip__:__local_port__/u_locus_all-local.xml)：點選啟動地圖/風格/高程一次安裝
 
-* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 2/3 自動安裝
+* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 自動安裝
   * 安裝示範影片：https://www.facebook.com/groups/taiwan.topo/permalink/912932732195674
   > (歡迎製作並取代我的不專業解說)
   * [![Map](images/Cartograph_map.png =36x) Map](orux-map://__local_ip__:__local_port__/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)：點選啟動地圖自動安裝（含POI）
@@ -71,7 +71,7 @@
   * [![POI](images/Android.png =36x) POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)：點選下載興趣點，手動安裝
   * [![Style](images/Android.png =36x) Orux Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)：點選下載風格主題，手動安裝
   * [![Style](images/Android.png =36x) Locus Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)：點選下載風格主題，手動安裝
-  * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph Maps 2/3 Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝
+  * [![Android](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) Cartograph Maps Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)：點選下載風格主題，需手動安裝
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM mix, v2020](./hgtmix.zip)：台灣本島30m, 離島90m, 適當大小, 手動安裝
   * [![DEM](images/Android.png =36x)![iOS](images/iTunes.jpeg =36x) DEM 90m, v2020](./hgt90.zip)：全幅90m, 檔案最小, 手動安裝
 

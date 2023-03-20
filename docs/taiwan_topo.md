@@ -132,7 +132,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror KCWu]](locus-actions://http/moi.kcwu.csie.org/locus_all-kcwu.xml) /
       > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
 
-* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 2/3 自動安裝
+* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
   * 分開安裝
@@ -211,7 +211,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-  * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps 2/3 Style (0.4MB)
+  * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
     > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
     > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
@@ -371,7 +371,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
 
-* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph Maps 2/3、山林日誌。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph Maps、山林日誌。
 
 
 ## 重大修改歷程
