@@ -4,7 +4,6 @@
 
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![Map](./images/Android.png =36x) Mapsforge Map Lite](./MOI_OSM_Taiwan_TOPO_Lite.map.zip)
   * [![POI](./images/Android.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
   * [![Style](./images/Android.png =36x) OruxMaps Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
   * [![Style](./images/Android.png =36x) GTs Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
@@ -14,7 +13,6 @@
 
 * ![Apple](./images/macOS.png =36x) Apple, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/macOS.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![Map](./images/macOS.png =36x) Mapsforge Map Lite](./MOI_OSM_Taiwan_TOPO_Lite.map.zip)
   * [![POI](./images/macOS.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
   * [![Style](./images/macOS.png =36x) Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
   * [![DEM](./images/macOS.png =36x) DEM mix, v2023](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
