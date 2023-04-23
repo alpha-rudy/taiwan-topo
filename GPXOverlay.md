@@ -35,6 +35,9 @@ Useful combination:
 	  參考: https://freegeographytools.com/2008/garmin-gps-unit-waypoint-icons-table
 	  參考: https://www.gpsbabel.org/htmldoc-development/GarminIcons.html
 
+	* zl=1/2: 顯示相關，用來提示高低 zoom level (尚未支援)
+		* z1=1: 長天數 track zoom level 10 ~ max
+		* zl=2: 短天數 track zoom level 13 ~ max (default) 
 
 ### Tag:gpx=rte (暫不支援) 
 
