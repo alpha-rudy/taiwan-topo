@@ -1506,14 +1506,15 @@ $(ADDR_ZIP): $(ADDR)
 
 GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm
 GPX_BASE = $(basename $(GPX_OSM))
+GPX_BASE_EXT = $(notdir $(GPX_OSM))
 TAIWAN_BBOX=21.55682,118.12141,26.44212,122.31377
 
 .PHONY: gpx
 gpx: $(GPX_BASE).map
-$(GPX_BASE).map: $(GPX_BASE).osm
-	[ -f $(GPX_BASE).osm ]
+$(GPX_BASE).map: $(GPX_BASE_EXT)
+	[ -f $(GPX_BASE_EXT) ]
 	rm -f $(GPX_BASE)-sed.pbf $(GPX_BASE)-ren.pbf
-	python3 osm_scripts/gpx_handler.py $(GPX_BASE).osm $(GPX_BASE)-sed.pbf
+	python3.10 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
 	osmium renumber \
 		-s 1,1,0 \
 		$(GPX_BASE)-sed.pbf \
@@ -1539,13 +1540,13 @@ WITH_GPX = $(dir $(GPX_OSM))MOI_OSM_$(basename $(notdir $(GPX_OSM)))
 
 .PHONY: with_gpx
 with_gpx: $(WITH_GPX).map
-$(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE).osm
+$(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	[ -f $(GPX_BASE).osm ]
+	[ -f $(GPX_BASE_EXT) ]
 	mkdir -p $(BUILD_DIR)
 	rm -rf $(GPX_BASE)-sed.pbf $(WITH_GPX)-add.pbf
-	python3 osm_scripts/gpx_handler.py $(GPX_BASE).osm $(GPX_BASE)-sed.pbf
+	python3 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
 	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
