@@ -90,10 +90,10 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror KCWu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[自動分流]](orux-mf-theme://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+    > [[自動分流]](orux-mf-theme://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2023, 請點選下載，並手動安裝 (46MB)
     > [[自動分流]](https://rudy.outdoors.tw/v1/hgtmix.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/hgtmix.zip) /
@@ -202,20 +202,20 @@ MOI.OSM - Taiwan TOPO (by Rudy)
     > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
   * ![Style](images/Android.png =36x) Orux Style (0.4MB)
-    > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+    > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![Style](images/Android.png =36x) Locus Style (0.4MB)
     > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+    > [[自動分流]](https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror KCWu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2023, 台灣本島30m, 離島90m, 適當大小 (46MB)
     > [[自動分流]](https://rudy.outdoors.tw/v1/hgtmix.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/hgtmix.zip) /
