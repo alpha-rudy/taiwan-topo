@@ -2,11 +2,18 @@
 
 (目前版本：Taiwan TOPO v__version__)
 
+* 測試連結，請先不要使用
+
+  * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
+    > [[自動分流]](orux-mf-theme://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror KCWu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![POI](./images/Android.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * [![Style](./images/Android.png =36x) OruxMaps Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
-  * [![Style](./images/Android.png =36x) GTs Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+  * [![Style](./images/Android.png =36x) OruxMaps/GTs/Cartograph/Wadi Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * [![DEM](./images/Android.png =36x) DEM mix, v2023](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
   * [![DEM](./images/Android.png =36x) DEM 90m, v2023](./hgt90.zip) 全部90m, 解析度低, 檔案最小
@@ -14,7 +21,7 @@
 * ![Apple](./images/macOS.png =36x) Apple, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/macOS.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![POI](./images/macOS.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * [![Style](./images/macOS.png =36x) Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_style.zip)
+  * [![Style](./images/macOS.png =36x) Cartograph/山林日誌 Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![DEM](./images/macOS.png =36x) DEM mix, v2023](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
   * [![DEM](./images/macOS.png =36x) DEM 90m, v2023](./hgt90.zip) 全部90m, 解析度低, 檔案最小
 
