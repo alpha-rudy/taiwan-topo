@@ -55,6 +55,11 @@ thead th:last-child {
   border-top-right-radius: 5px;
 }
 
+thead th small {
+  font-size: 13px;
+  color: #f88;
+}
+
 tbody tr td {
   font-family: ‘Noto Sans TC’, sans-serif;
   font-weight: 400;
