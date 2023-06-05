@@ -3,7 +3,6 @@
   <download>
     <source><![CDATA[https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
     <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
-    <after>extract|deleteSource</after>
   </download>
   <download>
     <source><![CDATA[https://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus.zip ]]></source>

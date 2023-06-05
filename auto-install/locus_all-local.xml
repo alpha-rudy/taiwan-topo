@@ -8,7 +8,6 @@
   <download>
     <source><![CDATA[http://__local_ip__:__local_port__/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
     <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
-    <after>extract|deleteSource</after>
   </download>
   <download>
     <source><![CDATA[http://__local_ip__:__local_port__/hgtmix.zip]]></source>

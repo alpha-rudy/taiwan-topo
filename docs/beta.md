@@ -2,14 +2,6 @@
 
 (目前版本：Taiwan TOPO v__version__)
 
-* 測試連結，請先不要使用
-
-  * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[自動分流]](orux-mf-theme://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Rex]](orux-mf-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![POI](./images/Android.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
@@ -34,6 +26,41 @@
 * ![GMap](./images/Garmin.png =x36) Garmin camp3D style, MOI.OSM.camp3D v__version__
   * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe) 用在 Garmin Windows BaseCamp 
   * [![macOS](./images/macOS.png =36x) camp3D](./Taiwan_moi_zh_camp3D.gmap.zip) 用在 Garmin BaseCamp for Mac
+
+## 測試連結，請先不要使用
+
+* ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
+  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+    > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
+  * 分開安裝
+    * ![Map](images/Locus_map.jpeg =36x) Map (298MB)
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/drops/locus_map-cedric.xml) /
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/drops/locus_map-rex.xml) /
+      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/drops/locus_map-kcwu.xml) /
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/drops/locus_map-happyman.xml)
+    * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/drops/locus_style-cedric.xml) /
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/drops/locus_style-rex.xml) /
+      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/drops/locus_style-kcwu.xml) /
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/drops/locus_style-happyman.xml)
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2023 (46MB)
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/drops/locus_dem-cedric.xml) /
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/drops/locus_dem-rex.xml) /
+      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/drops/locus_dem-kcwu.xml) /
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/drops/locus_dem-happyman.xml)
+  * 圖資更新
+    * ![Map](images/Locus.jpeg =36x) 更新 (298MB)
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/drops/locus_upgrade-cedric.xml) /
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/drops/locus_upgrade-rex.xml) /
+      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/drops/locus_upgrade-kcwu.xml) /
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/drops/locus_upgrade-happyman.xml)
+  * 三合一
+    * ![Map](images/Locus.jpeg =36x) 首次安裝 (345MB)
+      > [[自動分流]](locus-actions://https/rudy.outdoors.tw/drops/locus_all-cedric.xml) /
+      > [[mirror Rex]](locus-actions://http/rudy.basecamp.tw/drops/locus_all-rex.xml) /
+      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/drops/locus_all-kcwu.xml) /
+      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/drops/locus_all-happyman.xml)
+
 
 
 ### 版權宣告
