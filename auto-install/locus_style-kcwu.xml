@@ -3,6 +3,6 @@
   <download>
     <source><![CDATA[https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
     <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
-    <after>extract|deleteSource|refreshMap</after>
+    <after>refreshMap</after>
   </download>
 </locusActions>
