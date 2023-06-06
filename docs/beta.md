@@ -78,10 +78,10 @@
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > [[自動分流]](wadi-mapthemes://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Rex]](wadi-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](wadi-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](wadi-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[自動分流]](wadi-theme://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Rex]](wadi-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * 高程檔 (46MB)
       > [[自動分流]](wadi-hgt://rudy.outdoors.tw/v1/hgtmix.zip) /
       > [[mirror Rex]](wadi-hgt://rudy.basecamp.tw/hgtmix.zip) /
@@ -99,10 +99,10 @@
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
     * 風格主題 (0.4MB)
-      > [[自動分流]](wadi-mapthemes://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror Rex]](wadi-mapthemes://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror kcwu]](wadi-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror Happyman]](wadi-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
+      > [[自動分流]](wadi-theme://rudy.outdoors.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
+      > [[mirror Rex]](wadi-theme://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
     * 高程檔 (6MB)
       > [[自動分流]](wadi-hgt://rudy.outdoors.tw/v1/hgt90.zip) /
       > [[mirror Rex]](wadi-hgt://rudy.basecamp.tw/hgt90.zip) /
