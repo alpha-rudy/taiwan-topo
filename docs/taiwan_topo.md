@@ -210,7 +210,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
   * 圖資下載
     * Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
       > 所有地圖產生器所蒐集之行跡檔，以離線圖資產出
-    * Markchoo.map: 馬克褚的大小百岳合輯
+    * Markchoo.map: 馬克褚的大小百岳合輯 V2 (2023.06.23)，[版本解說](https://www.markchoo.com.tw/doc/762)
       > [[自動分流]](https://rudy.outdoors.tw/v1/extra/Markchoo.map.zip) /
       > [[mirror Rex]](https://rudy.basecamp.tw/extra/Markchoo.map.zip) /
       > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Markchoo.map.zip) /
