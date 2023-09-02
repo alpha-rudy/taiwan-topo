@@ -227,7 +227,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="compartments"/>
       <name lang="fr" value="compartments"/>
       <name lang="it" value="compartments"/>
-      <name lang="zh" value="林務局林班地"/>
+      <name lang="zh" value="林業保育署林班地"/>
       <cat id="compartments"/>
     </layer>
     <layer id="elmt-borders-c" enabled="true">

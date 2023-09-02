@@ -35,7 +35,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </layer>
     <layer id="elmt-compartments" enabled="false">
       <name lang="en" value="Forest Compartments"/>
-      <name lang="zh" value="林務局林班地"/>
+      <name lang="zh" value="林業保育署林班地"/>
       <cat id="compartments"/>
     </layer>
     <layer id="elmt-extra" visible="true">
