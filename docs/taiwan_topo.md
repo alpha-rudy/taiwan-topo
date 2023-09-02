@@ -215,7 +215,7 @@ MOI.OSM - Taiwan TOPO (by Rudy)
       > [[mirror Rex]](https://rudy.basecamp.tw/extra/Markchoo.map.zip) /
       > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Markchoo.map.zip) /
       > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/Markchoo.map.zip)
-    * Compartment.map: 林務局林班地 v2022.04.17
+    * Compartment.map: 林業保育署林班地 v2022.04.17
       > [[自動分流]](https://rudy.outdoors.tw/v1/extra/Compartment.map.zip) /
       > [[mirror Rex]](https://rudy.basecamp.tw/extra/Compartment.map.zip) /
       > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Compartment.map.zip) /
