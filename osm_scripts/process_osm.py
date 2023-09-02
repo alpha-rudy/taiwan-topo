@@ -4,6 +4,7 @@ import osmium
 
 hknetworks = {}
 national_park = {}
+strict_protected = {}
 
 
 class NationalParkLoader(osmium.SimpleHandler):
@@ -16,6 +17,15 @@ class NationalParkLoader(osmium.SimpleHandler):
                 if m.role == 'outer' and m.type == 'w':
                     national_park[m.ref] = parks
 
+class StrictProtectedLoader(osmium.SimpleHandler):
+    def relation(self, r):
+        if not r.members:
+            return
+        if r.tags['boundary'] == 'protected_area' and r.tags['protect_class'] == '1':
+            ways = dict([('name', r.tags['name']), ('name:en', r.tags['name:en'])])
+            for m in r.members:
+                if m.role == 'outer' and m.type == 'w':
+                    strict_protected[m.ref] = ways
 
 def round_float(value):
     try:
@@ -81,6 +91,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_hknetwork_way(w.id, tags)
         if w.id in national_park:
             self.handle_national_park(w.id, tags)
+        if w.id in strict_protected:
+            self.handle_strict_protected(w.id, tags)
 
         if tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
@@ -252,6 +264,12 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags['type'] = 'boundary'
         tags['boundary'] = 'national_park'
 
+    def handle_strict_protected(self, id, tags):
+        tags['name'] = strict_protected[id]['name']
+        tags['name:en'] = strict_protected[id]['name:en']
+        tags['type'] = 'boundary'
+        tags['boundary'] = 'strict_protected'
+
     def handle_bicycle_rental(self, tags):
         # YouBike and iBike use network:en
         if tags.get('network:en', '') in ('iBike', 'YouBike'):
@@ -327,6 +345,9 @@ def main():
 
     national_park_loader = NationalParkLoader()
     national_park_loader.apply_file('national_park.osm')
+
+    strict_protected_loader = StrictProtectedLoader()
+    strict_protected_loader.apply_file('strict_protected.osm')
 
     writer = osmium.SimpleWriter(outfile)
     mapsforge_handler = MapsforgeHandler(writer)

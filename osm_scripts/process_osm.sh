@@ -26,6 +26,14 @@ osmfilter \
     --keep-relations='type=boundary and boundary=national_park and name=' \
     "$infile" -o=national_park.osm
 
+osmfilter \
+    --drop-nodes \
+    --drop-ways \
+    --drop-version \
+    --ignore-dependencies \
+    --keep-relations='type=boundary and boundary=protected_area and protect_class=1 and name=' \
+    "$infile" -o=strict_protected.osm
+
 temp_pbf=temp.osm.pbf
 osmfilter \
     --drop-version \

@@ -168,6 +168,7 @@
       <mapping tag="tourism=attraction" />
       <mapping tag="boundary=nature_reserve" />
       <mapping tag="boundary=national_park" />
+      <mapping tag="boundary=protected_area" />
     </category>
   </category>
 
