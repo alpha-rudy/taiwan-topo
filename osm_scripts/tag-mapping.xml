@@ -169,6 +169,7 @@
 <osm-tag key='boundary' value='administrative' force-polygon-line='true' enabled='false' zoom-appear='7' />
 <osm-tag key='boundary' value='national_park' force-polygon-line='true' zoom-appear='7' />
 <osm-tag key='boundary' value='protected_area' force-polygon-line='true' zoom-appear='7' />
+<osm-tag key='boundary' value='strict_protected' force-polygon-line='true' zoom-appear='7' />
 <osm-tag key='boundary' value='maritime' zoom-appear='7' />
 <osm-tag key='boundary' value='map_inner' zoom-appear='7' />
 <osm-tag key='border_type' value='contiguous' renderable='false' zoom-appear='7' />

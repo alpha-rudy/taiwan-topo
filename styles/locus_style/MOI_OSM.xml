@@ -1805,16 +1805,28 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- national park -->
   <rule cat="borders" e="way" k="boundary" v="national_park">
     <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-      <line stroke="#408000" stroke-width="2.0" stroke-linecap="butt"/>
-      <!-- ;national_park -->
+      <line stroke="#A0408000" stroke-width="2.0"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-      <line stroke="#C0408000" stroke-width="3" stroke-linecap="butt"/>
-      <!-- ;national_park -->
+      <line stroke="#70408000" stroke-width="6" stroke-linecap="butt"/>
+      <line stroke="#408000" stroke-width="0.7"/>
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <line stroke="#A0408000" stroke-width="1.5" stroke-linecap="butt"/>
-      <!-- ;national_park -->
+      <line stroke="#40408000" stroke-width="6" stroke-linecap="butt"/>
+      <line stroke="#408000" stroke-width="0.3"/>
+      <line stroke="#204000" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt"/>
+    </rule>
+  </rule>
+  <!-- strict protected -->
+  <rule cat="borders" e="way" k="boundary" v="strict_protected">
+    <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
+      <line stroke="#70306000" stroke-width="3" stroke-linecap="butt"/>
+      <line stroke="#306000" stroke-width="0.7"/>
+    </rule>
+    <rule e="any" k="*" v="*" zoom-min="14">
+      <line stroke="#40306000" stroke-width="3" stroke-linecap="butt"/>
+      <line stroke="#306000" stroke-width="0.3"/>
+      <line stroke="#204000" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt"/>
     </rule>
   </rule>
   <!-- compartment boundaries -->
