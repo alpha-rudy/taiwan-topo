@@ -25,8 +25,8 @@ OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/osx/osmconvert
 else
 OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/linux/osmconvert64
 endif
-MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4905/mkgmap.jar
-SPLITTER_JAR := $(TOOLS_DIR)/splitter-r652/splitter.jar
+MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4910/mkgmap.jar
+SPLITTER_JAR := $(TOOLS_DIR)/splitter-r653/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
 SEA_DIR := $(ROOT_DIR)/sea-20220816001514
 BOUNDS_DIR := $(ROOT_DIR)/bounds-20220826
