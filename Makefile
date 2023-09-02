@@ -681,7 +681,7 @@ TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
 LR_STYLE_DIR := $(ROOT_DIR)/styles/$(LR_STYLE)
 TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
-POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping.xml
+POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-3.xml
 ADDR_MAPPING := $(ROOT_DIR)/osm_scripts/poi-addr-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
@@ -904,7 +904,7 @@ $(NSIS): $(MAP_PC)
 
 .PHONY: poi
 poi: $(POI)
-$(POI): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-mapping.xml
+$(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
