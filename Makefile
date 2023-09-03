@@ -1608,10 +1608,12 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			--mapfile-writer \
 				type=ram \
 				threads=$(MAPWITER_THREADS) \
-				bbox=$(MAPSFORGE_BBOX) \
+				bbox=$(MAPSFORGE_BBOX) bbox-enlargement=50 \
 				preferred-languages="$(MAPSFORGE_NTL)" \
 				tag-conf-file="$(TAG_MAPPING)" \
-				polygon-clipping=true way-clipping=true label-position=true \
+				polylabel=false label-position=true \
+				polygon-clipping=true way-clipping=true \
+				simplification-factor=2.5 simplification-max-zoom=12 \
 				zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 				map-start-zoom=12 \
 				comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \

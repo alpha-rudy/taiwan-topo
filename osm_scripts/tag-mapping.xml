@@ -655,6 +655,9 @@
 <osm-tag key='landuse' value='orchard' zoom-appear='10' />
 <osm-tag key='landuse' value='reservoir' zoom-appear='10' />
 <osm-tag key='leisure' value='nature_reserve' zoom-appear='10' />
+<osm-tag key="boundary" value="national_park" zoom-appear="9"/>
+<osm-tag key="boundary" value="protected_area" zoom-appear="11"/>
+<osm-tag key="boundary" value="strict_protected" zoom-appear="11"/>
 <osm-tag key='protect_class' value='1' equivalent-values='fpier,1a,1b,1A,1B,2' renderable='false' />
 <osm-tag key='protect_class' value='5' equivalent-values='6' renderable='false' />
 <osm-tag key='protect_class' value='11' equivalent-values='12,13,14,15,16,19' renderable='false' />
