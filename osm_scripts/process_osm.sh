@@ -16,7 +16,6 @@ osmfilter \
     --drop-version \
     --ignore-dependencies \
     --keep-relations='type=route and route=hiking and name= and network=' \
-    --keep-relations='type=route and route=foot and name= and network=' \
     "$infile" -o=hknetworks.osm
 
 osmfilter \
