@@ -1,4 +1,5 @@
-﻿; outdoor.typ
+﻿; -*- coding: utf-8 -*-
+; outdoor.typ
 ; Longueur: 38540 octets
 ; Fichier TYP compilé     28.08.2013     09:27:08
 ; Décompilé le 28.08.2013 à 09:27:11
