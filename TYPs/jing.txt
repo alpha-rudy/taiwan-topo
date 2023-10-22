@@ -1,3 +1,4 @@
+; -*- coding: utf-8 -*-
 ; ASTER.OSM.TOPO - TYP
 ; Longueur: 38371 octets
 ; Fichier TYP compile     02.03.2013     22:34:54
