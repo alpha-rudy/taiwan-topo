@@ -7,7 +7,7 @@
 ProductCode=1
 FID=6008
 CodePage=1252
- [End]
+[End]
 
 ;=========== COMMENTAIRES ======
 [_comments]
