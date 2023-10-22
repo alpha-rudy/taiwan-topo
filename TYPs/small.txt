@@ -1,4 +1,5 @@
-﻿; small.TYP
+﻿; -*- coding: utf-8 -*-
+; small.TYP
 ; Longueur: 37006 octets
 ; Fichier TYP compilé     09.05.2013     11:37:19
 ; Décompilé le 12.05.2013 à 11:52:10

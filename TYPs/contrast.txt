@@ -1,4 +1,5 @@
-﻿; contrast.TYP
+﻿; -*- coding: utf-8 -*-
+; contrast.TYP
 ; Longueur: 21394 octets
 ; Fichier TYP compilé     03.02.2013     22:22:54
 ; Décompilé le 18.03.2013 à 19:33:58
