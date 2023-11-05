@@ -23,6 +23,12 @@
   * [TN Style](./MOI_OSM_tn_style.zip) 給高度圖疊圖 (例：Relief Map)
   * [EXTRA Style](./MOI_OSM_extra_style.zip) 給 Cartograph EXTRA 圖層疊圖, 手動安裝 (0.4MB)
 
+* ![GMap](./images/Garmin.png =x36) Garmin bw style, MOI.OSM.bw v__version__
+  * [![Garmin](./images/Garmin_small.jpeg =36x) bw](./gmapsupp_Taiwan_moi_zh_bw.img.zip) 用在小螢幕 Garmin Handheld GPS 
+
+* ![GMap](./images/Garmin.png =x36) Garmin odc3D style, MOI.OSM.odc3D v__version__
+  * [![Garmin](./images/Garmin_large.jpeg =36x) odc3D](./gmapsupp_Taiwan_moi_zh_odc3D.img.zip) 用在大螢幕 Garmin Handheld GPS 
+
 * ![GMap](./images/Garmin.png =x36) Garmin camp3D style, MOI.OSM.camp3D v__version__
   * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe) 用在 Garmin Windows BaseCamp 
   * [![macOS](./images/macOS.png =36x) camp3D](./Taiwan_moi_zh_camp3D.gmap.zip) 用在 Garmin BaseCamp for Mac
