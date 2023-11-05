@@ -14,7 +14,7 @@ SPLITTER_THREADS = 8
 # suggestion: CPU*1
 MKGMAP_JOBS = 8
 # finetune options
-JAVACMD_OPTIONS ?= -Xmx68G -server
+JAVACMD_OPTIONS ?= -Xmx68G -server -Dfile.encoding=UTF-8
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -25,7 +25,7 @@ OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/osx/osmconvert
 else
 OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/linux/osmconvert64
 endif
-MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4910/mkgmap.jar
+MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4916/mkgmap.jar
 SPLITTER_JAR := $(TOOLS_DIR)/splitter-r653/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
 SEA_DIR := $(ROOT_DIR)/sea-20220816001514
@@ -978,6 +978,7 @@ $(GMAPSUPP): $(MAP_HAND)
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_HAND_DIR) && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--license-file=$(ROOT_DIR)/docs/license.txt \
 			--index \
 			--gmapsupp \
@@ -988,7 +989,7 @@ $(GMAPSUPP): $(MAP_HAND)
 			--description="$(NAME_SHORT)" \
 			--overview-mapnumber=$(MAPID)0000 \
 			--product-version=$(VERSION) \
-		$(MAPID)*.img $(MAPID).TYP
+			$(MAPID)*.img $(MAPID).TYP
 	mv $(MAP_HAND_DIR)/gmapsupp.img $@
 
 .PHONY: gmapsupp_zip
@@ -1024,6 +1025,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 			-e "s|FID=.*|FID=$(MAPID)|g" \
 			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--product-id=1 \
 			--family-id=$(MAPID) \
 			$(TYP).txt
@@ -1048,6 +1050,7 @@ $(MAP_HIDEM): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR) $(GMAPDEM)
 		ln -s $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem_camp.cfg" -i mkgmap.cfg && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--max-jobs=$(MKGMAP_JOBS) \
 			-c mkgmap.cfg \
 			--check-styles
@@ -1070,6 +1073,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 			-e "s|FID=.*|FID=$(MAPID)|g" \
 			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--product-id=1 \
 			--family-id=$(MAPID) \
 			$(TYP).txt
@@ -1094,6 +1098,7 @@ $(MAP_LODEM): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR) $(GMAPDEM)
 		ln -s $(GMAPDEM) ./moi-hgt.zip && \
 		$(SED_CMD) "/__dem_section__/ r $(ROOT_DIR)/mkgmaps/gmapdem.cfg" -i mkgmap.cfg && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--max-jobs=$(MKGMAP_JOBS) \
 			-c mkgmap.cfg \
 			--check-styles
@@ -1116,6 +1121,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 			-e "s|FID=.*|FID=$(MAPID)|g" \
 			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--product-id=1 \
 			--family-id=$(MAPID) \
 			$(TYP).txt
@@ -1138,6 +1144,7 @@ $(MAP_NODEM_HR): $(TILES) $(TYP_FILE) $(HR_STYLE_DIR)
 		cat $(TILES_DIR)/template.args | $(SED_CMD) \
 			-e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--max-jobs=$(MKGMAP_JOBS) \
 			-c mkgmap.cfg \
 			--check-styles
@@ -1160,6 +1167,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 			-e "s|FID=.*|FID=$(MAPID)|g" \
 			-e "s|CodePage=.*|CodePage=$(CODE_PAGE)|g" > $(TYP).txt && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--product-id=1 \
 			--family-id=$(MAPID) \
 			$(TYP).txt
@@ -1182,6 +1190,7 @@ $(MAP_NODEM_LR): $(TILES) $(TYP_FILE) $(LR_STYLE_DIR)
 		cat $(TILES_DIR)/template.args | $(SED_CMD) \
 			-e "s|input-file: \(.*\)|input-file: $(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+			--code-page=$(CODE_PAGE) \
 			--max-jobs=$(MKGMAP_JOBS) \
 			-c mkgmap.cfg \
 			--check-styles
