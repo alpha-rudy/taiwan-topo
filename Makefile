@@ -103,7 +103,7 @@ else ifeq ($(SUITE),bbox_odc_dem)
 # REGION: specify your REGION name for bbox
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 65001
+CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500-2023r2.o5m
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
@@ -236,7 +236,7 @@ else ifeq ($(SUITE),yushan_odc_dem)
 REGION := Yushan
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 65001
+CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500-2023r2.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
@@ -449,7 +449,7 @@ else ifeq ($(SUITE),taiwan_odc_dem)
 REGION := Taiwan
 DEM_NAME := MOI
 LANG := zh
-CODE_PAGE := 65001
+CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500-2023r2.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
