@@ -3,124 +3,124 @@
   <rule e="any" k="*" v="*" cat="contour">
     <rule e="way" k="ele" v="1000|2000|3000" zoom-min="9" zoom-max="10">
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#5F564C" stroke-width="0.3"/>
+        <line stroke="#5F564C" stroke-width="0.3" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="11" zoom-max="11">
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#5F564C" stroke-width="0.5"/>
+        <line stroke="#5F564C" stroke-width="0.5" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="12" zoom-max="13">
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#5F564C" stroke-width="0.2"/>
+        <line stroke="#5F564C" stroke-width="0.2" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#5F564C" stroke-width="0.5"/>
+        <line stroke="#5F564C" stroke-width="0.5" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="14" zoom-max="14">
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#5F564C" stroke-width="0.15"/>
+        <line stroke="#5F564C" stroke-width="0.15" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#5F564C" stroke-width="0.29"/>
+        <line stroke="#5F564C" stroke-width="0.29" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#5F564C" stroke-width="0.44"/>
+        <line stroke="#5F564C" stroke-width="0.44" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="15" zoom-max="15">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#5F564C" stroke-width="0.12"/>
+        <line stroke="#5F564C" stroke-width="0.12" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#5F564C" stroke-width="0.21"/>
+        <line stroke="#5F564C" stroke-width="0.21" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#5F564C" stroke-width="0.3"/>
+        <line stroke="#5F564C" stroke-width="0.3" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.40"/>
+        <line stroke="#474039" stroke-width="0.40" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="16" zoom-max="16">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#5F564C" stroke-width="0.08"/>
+        <line stroke="#5F564C" stroke-width="0.08" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#5F564C" stroke-width="0.14"/>
+        <line stroke="#5F564C" stroke-width="0.14" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#5F564C" stroke-width="0.2"/>
+        <line stroke="#5F564C" stroke-width="0.2" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.32"/>
+        <line stroke="#474039" stroke-width="0.32" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="17">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <line stroke="#5F564C" stroke-width="0.06"/>
+        <line stroke="#5F564C" stroke-width="0.06" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_sub">
-        <line stroke="#5F564C" stroke-width="0.11"/>
+        <line stroke="#5F564C" stroke-width="0.11" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <line stroke="#5F564C" stroke-width="0.15"/>
+        <line stroke="#5F564C" stroke-width="0.15" curve="cubic"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <line stroke="#474039" stroke-width="0.24"/>
+        <line stroke="#474039" stroke-width="0.24" curve="cubic"/>
       </rule>
     </rule>
     <rule e="way" k="contour_1280m" v="*" zoom-min="11" zoom-max="12">
       <rule e="way" k="contour_1280m" v="elevation_major">
-        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="50" repeat-gap="150" text-orientation="left"/>
       </rule>
     </rule>
     <rule e="way" k="contour_640m" v="*" zoom-min="13" zoom-max="13">
       <rule e="way" k="contour_640m" v="elevation_medium">
-        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="50" repeat-gap="150" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_640m" v="elevation_major">
-        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="50" repeat-gap="150" text-orientation="left"/>
       </rule>
     </rule>
     <rule e="way" k="contour_320m" v="*" zoom-min="14" zoom-max="14">
       <rule e="way" k="contour_320m" v="elevation_medium">
-        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="50" repeat-gap="150" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_320m" v="elevation_major">
-        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="50" repeat-gap="150" text-orientation="left"/>
       </rule>
     </rule>
     <rule e="way" k="contour_320m" v="*" zoom-min="15" zoom-max="15">
       <rule e="way" k="contour_320m" v="elevation_minor">
-        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="100" repeat-gap="150" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_320m" v="elevation_medium">
-        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="100" repeat-gap="150" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_320m" v="elevation_major">
-        <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="100" repeat-gap="150" text-orientation="left"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="16" zoom-max="17">
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="200" repeat-gap="200" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="200" repeat-gap="200" text-orientation="left"/>
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="18">
       <rule e="way" k="contour_ext" v="elevation_minor">
-        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="9" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="200" repeat-gap="200" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
-        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="200" repeat-gap="200" text-orientation="left"/>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_major">
-        <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1"/>
+        <pathText k="ele" font-size="11" font-style="bold" fill="#6E5A46" stroke="#FFFFFFFF" stroke-width="1" repeat-start="200" repeat-gap="200" text-orientation="left"/>
       </rule>
     </rule>
   </rule>
