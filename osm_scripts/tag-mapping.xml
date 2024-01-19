@@ -528,7 +528,7 @@
 <osm-tag key='building' value='sports' zoom-appear='15' />
 <osm-tag key='building' value='train_station' equivalent-values='station,transportation' zoom-appear='13' />
 <osm-tag key='building' value='university' equivalent-values='school' zoom-appear='14' />
-<osm-tag key='building' value='church' equivalent-values='cathedral,chapel' zoom-appear='13' />
+<osm-tag key='building' value='church' equivalent-values='cathedral,chapel,temple' zoom-appear='13' />
 <osm-tag key='building' value='yes' equivalent-values='house,detached,farm,terrace,apartments,residential,dormitory,hut,cabin,tower,fire_station' zoom-appear='13' />
 <osm-tag key='building' value='commercial' equivalent-values='industrial,warehouse,retail,manufacture' zoom-appear='13' />
 <osm-tag key='building' value='farm_auxiliary' equivalent-values='barn,greenhouse,shed,stable,garage,garages' zoom-appear='13' />
