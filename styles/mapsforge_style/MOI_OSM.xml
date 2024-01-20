@@ -5362,11 +5362,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="name" symbol-id="s_windmill" position="above" font-style="bold" font-size="10" fill="#734A08" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="building" v="church">
-      <symbol id="s_church" priority="56" src="file:moiosm_res/s_church.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+    <rule e="any" k="building" v="church|temple">
       <rule e="any" k="*" v="*">
         <caption k="name" symbol-id="s_church" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-        <caption k="ele" priority="-5" symbol-id="s_church" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
     <rule e="any" k="amenity" v="place_of_worship">
@@ -5375,49 +5373,42 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <symbol id="s_church" priority="56" src="file:moiosm_res/s_church.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_church" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_church" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule e="any" k="religion" v="jewish">
           <symbol id="s_synagogue" priority="56" src="file:moiosm_res/s_synagogue.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_synagogue" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_synagogue" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule e="any" k="religion" v="muslim">
           <symbol id="s_mosque" priority="56" src="file:moiosm_res/s_mosque.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_mosque" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_mosque" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule e="any" k="religion" v="buddhist">
           <symbol id="s_buddhist" priority="56" src="file:moiosm_res/s_buddhist.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_buddhist" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_buddhist" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule e="any" k="religion" v="hindu">
           <symbol id="s_hindu" priority="56" src="file:moiosm_res/s_hindu.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_hindu" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_hindu" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule e="any" k="religion" v="shinto">
           <symbol id="s_shinto" priority="56" src="file:moiosm_res/s_shinto.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_shinto" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_shinto" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
         <rule e="any" k="religion" v="~">
           <symbol id="s_place_of_worship" priority="56" src="file:moiosm_res/s_place_of_worship.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
           <rule e="any" k="*" v="*">
             <caption k="name" symbol-id="s_place_of_worship" position="above" font-style="bold" font-size="10" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-            <caption k="ele" priority="-5" symbol-id="s_place_of_worship" position="below" font-size="10" font-style="bold" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
           </rule>
         </rule>
       </rule>
