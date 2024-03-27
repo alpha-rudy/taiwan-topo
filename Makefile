@@ -830,7 +830,7 @@ $(LICENSE):
 	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/local.article" > $(BUILD_DIR)/local.html
 	cat docs/taiwan_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 		markdown -f +autolink > $(BUILD_DIR)/taiwan_topo.article
-	cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
+	cat docs/taiwan_topo_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/taiwan_topo.article" > $@
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
