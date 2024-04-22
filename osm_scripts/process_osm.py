@@ -38,6 +38,8 @@ class HknetworkLoader(osmium.SimpleHandler):
     def relation(self, r):
         if not r.members:
             return
+        if r.tags['access'] == 'no':
+            return
         network = dict([('name', r.tags['name']), ('name:en', r.tags['name:en']), ('network', r.tags['network']), ('ref', r.tags.get('ref', ''))])
         for m in r.members:
             if not hknetworks.get(m.ref):
