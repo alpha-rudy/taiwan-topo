@@ -3220,7 +3220,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <!-- paths/footways -->
       <rule cat="hike" e="any" k="*" v="*">
         <rule cat="h_routes" e="way" k="access" v="destination|private|~">
-          <rule cat="hike-tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
+          <rule cat="hike-tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking|T5|T6">
             <rule e="way" k="highway" v="footway|path" zoom-min="13">
               <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
                 <line stroke="#700300" stroke-width="0.50" stroke-dasharray="2,1,2,3,5,3,2,1,2,3" stroke-linecap="butt"/>
@@ -3244,7 +3244,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
             </rule>
           </rule>
           <rule e="way" k="trail_visibility" v="excellent|good|intermediate|~">
-            <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~">
+            <rule e="way" k="sac_scale" v="hiking|mountain_hiking|demanding_mountain_hiking|alpine_hiking|~|T1|T2|T3|T4">
               <rule e="way" k="highway" v="footway|path" zoom-min="13">
                 <rule e="way" k="*" v="*" zoom-min="13" zoom-max="13">
                   <line stroke="#E10600" stroke-width="0.66" stroke-dasharray="5,3" stroke-linecap="butt"/>
@@ -3345,7 +3345,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="any" k="area" v="~">
       <rule cat="h_routes" e="way" k="highway" v="footway|path|steps">
         <rule e="way" k="access" v="destination|private|~" zoom-min="13">
-          <rule cat="hike-tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking">
+          <rule cat="hike-tough" e="way" k="trail_visibility|sac_scale" v="bad|horrible|no|demanding_alpine_hiking|difficult_alpine_hiking|T5|T6">
             <rule cat="trail-label" e="way" k="*" v="*">
               <pathText display="always" k="name" font-style="bold" font-size="8" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
             </rule>
