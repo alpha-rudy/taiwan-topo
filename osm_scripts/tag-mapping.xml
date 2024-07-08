@@ -515,7 +515,7 @@
 <osm-tag key='cycleway' value='lane' zoom-appear='13' />
 <!-- buildings -->
 <osm-tag key='building' value='embassy' zoom-appear='14' />
-<osm-tag key='building' value='government' zoom-appear='13' />
+<osm-tag key="building" value="government" equivalent-values="government_office,prison,police,fire_station" zoom-appear="13"/>
 <osm-tag key='building' value='gym' zoom-appear='15' />
 <osm-tag key='building' value='hangar' zoom-appear='14' />
 <osm-tag key='building' value='hotel' zoom-appear='13' />
@@ -530,7 +530,7 @@
 <osm-tag key='building' value='university' equivalent-values='school' zoom-appear='14' />
 <osm-tag key='building' value='church' equivalent-values='cathedral,chapel' zoom-appear='13' />
 <osm-tag key='building' value='temple' equivalent-values='' zoom-appear='13' />
-<osm-tag key='building' value='yes' equivalent-values='house,detached,farm,terrace,apartments,residential,dormitory,hut,cabin,tower,fire_station' zoom-appear='13' />
+<osm-tag key='building' value='yes' equivalent-values='house,detached,farm,farmhouse,terrace,apartments,residential,dormitory,hut,cabin,tower,storage_tank,castle,semidetached_house,pavilion,unclassified,bungalow,semi,ger,allotment_house,transformer_tower,trullo,parking,stilt_house,duplex,dwelling_house,bunker,bridge' zoom-appear='13' />
 <osm-tag key='building' value='commercial' equivalent-values='industrial,warehouse,retail,manufacture' zoom-appear='13' />
 <osm-tag key='building' value='farm_auxiliary' equivalent-values='barn,greenhouse,shed,stable,garage,garages' zoom-appear='13' />
 <osm-tag key='building' value='wall' zoom-appear='15' />
