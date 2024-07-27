@@ -8,7 +8,7 @@
 
 ## 相關網頁
   * 說明網頁:
-    * https://rudy.outdoors.tw/
+    * https://rudymap.tw/
     * https://rudy.basecamp.tw/taiwan_topo.html
     * https://moi.kcwu.csie.org/taiwan_topo.html
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
