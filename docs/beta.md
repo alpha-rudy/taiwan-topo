@@ -1,4 +1,4 @@
-## 測試版：MOI.OSM - Taiwan TOPO (by Rudy)
+## 測試版：MOI.OSM - Taiwan TOPO
 
 (目前版本：Taiwan TOPO v__version__)
 
