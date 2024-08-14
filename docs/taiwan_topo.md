@@ -584,7 +584,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 地圖版權與散佈說明
-    Copyright (c) 2016-2020 Rudy Chung
+    Copyright (c) 2016-2024 Rudy Chung
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
