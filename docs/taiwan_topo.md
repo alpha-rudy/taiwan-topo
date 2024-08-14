@@ -414,6 +414,9 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 重大修改歷程
+* 2024, 8/15
+  * DTM 套用內政部地政司 Taiwan DTM 20m v2024
+  * DTM 套用 AW3D30 v4.1
 * 2023, 1/19
   * DTM 套用內政部地政司 Taiwan DTM 20m v2022
 * 2023, 1/12
