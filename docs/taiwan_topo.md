@@ -1,5 +1,5 @@
-MOI.OSM - Taiwan TOPO (by Rudy)
-=================================
+MOI.OSM - Taiwan TOPO
+=====================
 
 每週四發行 MOI.OSM - Taiwan TOPO v__version__
 

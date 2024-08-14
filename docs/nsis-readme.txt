@@ -1,4 +1,4 @@
-MOI.OSM - Taiwan TOPO (by Rudy) v__version__
+MOI.OSM - Taiwan TOPO v__version__
 ============================================
 
 ## Licenses Acknowledge
