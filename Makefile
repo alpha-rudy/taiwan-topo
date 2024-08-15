@@ -1216,29 +1216,29 @@ $(ELEVATION_MIX):
 		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
 		EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
 
-# .DELETE_ON_ERROR: $(EXTRACT).o5m
-# EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
-# $(EXTRACT).o5m:
-# 	date +'DS: %H:%M:%S $(shell basename $@)'
-# 	[ -n "$(REGION)" ]
-# 	mkdir -p $(EXTRACT_DIR)
-# 	cd $(EXTRACT_DIR) && \
-# 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
-# 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
-# 		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
-# 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
-
-.DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT).osm.pbf
-EXTRACT_URL := https://download.geofabrik.de/asia
+.DELETE_ON_ERROR: $(EXTRACT).o5m
+EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	cd $(EXTRACT_DIR) && \
-	    wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
-		wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
-		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
-		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT).o5m
+		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
+		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
+		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
+		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
+
+# .DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT).osm.pbf
+# EXTRACT_URL := https://download.geofabrik.de/asia
+# $(EXTRACT).o5m:
+# 	date +'DS: %H:%M:%S $(shell basename $@)'
+# 	[ -n "$(REGION)" ]
+# 	mkdir -p $(EXTRACT_DIR)
+# 	cd $(EXTRACT_DIR) && \
+# 	    wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
+# 		wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
+# 		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
+# 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT).o5m
 
 $(EXTRACT)_name.o5m: $(EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
