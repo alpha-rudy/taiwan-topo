@@ -1,5 +1,4 @@
-﻿; -*- coding: utf-8 -*-
-; outdoorl.TYP
+﻿; outdoorl.TYP
 ; Longueur:  octets
 ; Fichier TYP compilé     10.09.2013     09:32:17
 ; Décompilé le 10.09.2013 à 09:32:21

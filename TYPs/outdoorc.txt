@@ -1,5 +1,4 @@
-﻿; -*- coding: utf-8 -*-
-; POPOGPS.TYP
+﻿; POPOGPS.TYP
 ; Longueur: 38688 octets
 ; Fichier TYP compilé     06.07.2014     10:54:13
 ; Décompilé le 04.08.2014 à 20:58:24

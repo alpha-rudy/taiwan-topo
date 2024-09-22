@@ -1,5 +1,4 @@
-﻿; -*- coding: utf-8 -*-
-; freizeit.TYP
+﻿; freizeit.TYP
 ; Longueur: 38371 octets
 ; Fichier TYP compilé     02.03.2013     22:34:54
 ; Décompilé le 18.03.2013 à 19:34:16
