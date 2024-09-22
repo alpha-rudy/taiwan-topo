@@ -273,9 +273,11 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags['boundary'] = 'strict_protected'
 
     def handle_bicycle_rental(self, tags):
-        # YouBike and iBike use network:en
-        if tags.get('network:en', '') in ('iBike', 'YouBike'):
-            tags['network'] = tags['network:en']
+        brand = tags.get('brand', '').lower()
+        if 'youbike' in brand:
+            tags['amenity'] = 'bicycle_rental_YouBike'
+        elif 'moovo' in brand:
+            tags['amenity'] = 'bicycle_rental_Moovo'
 
     def is_only_addr_tags(self, tags):
         only_addr = False  ## no tags mean no addr (False)

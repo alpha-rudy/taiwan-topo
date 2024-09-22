@@ -174,16 +174,20 @@
 
   <!-- Bicycle / added  OAM -->
   <category title="02 自行車相關">
-    <category title="01 自行車租借站">
+    <category title="01 公共自行車">
+      <mapping tag="amenity=bicycle_rental_YouBike" />
+      <mapping tag="amenity=bicycle_rental_Moovo" />
+    </category>
+    <category title="02 自行車租借站">
       <mapping tag="amenity=bicycle_rental" />
     </category>
-    <category title="自行車停車場">
+    <category title="03 自行車停車場">
       <mapping tag="amenity=bicycle_parking" />
     </category>
-    <category title="自行車行">
+    <category title="04 自行車行">
       <mapping tag="shop=bicycle" />
     </category>
-    <category title="自行車修護">
+    <category title="05 自行車修護">
       <mapping tag="amenity=bicycle_repair_station" />
     </category>
   </category>
