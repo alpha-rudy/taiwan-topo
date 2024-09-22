@@ -1,4 +1,3 @@
-; -*- coding: utf-8 -*-
 ; POPOGPS.TYP
 ; Longueur: 38688 octets
 ; Fichier TYP compilé     06.07.2014     10:54:13
@@ -8,7 +7,7 @@
 ProductCode=1
 FID=6008
 CodePage=1252
-[End]
+ [End]
 
 ;=========== COMMENTAIRES ======
 [_comments]
