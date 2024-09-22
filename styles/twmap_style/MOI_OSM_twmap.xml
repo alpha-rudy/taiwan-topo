@@ -4764,10 +4764,8 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule cat="nobike" e="any" k="amenity" v="bicycle_rental">
-      <rule e="any" k="network" v="~"> 
-        <symbol id="s_bicycle_rental" priority="66" src="file:moiosm_twmap/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
+      <symbol id="s_bicycle_rental" priority="66" src="file:moiosm_twmap/s_bicycle_rental.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <caption k="name" symbol-id="s_bicycle_rental" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule cat="nobike" e="any" k="shop|vending" v="bicycle|bicycle_tube">
       <symbol id="s_bicycle_shop" priority="65" src="file:moiosm_twmap/s_bicycle_shop.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
@@ -4985,23 +4983,13 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <!-- public transport -->
   <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="14">
-    <rule cat="nobike" e="any" k="amenity" v="bicycle_rental" zoom-min="15">
-      <rule e="any" k="network" v="YouBike|iBike">
-        <symbol id="s_you_bike" priority="75" src="file:moiosm_twmap/s_you_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        <caption k="name" symbol-id="s_you_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-      <rule e="any" k="network" v="City_Bike">
-        <symbol id="s_city_bike" priority="75" src="file:moiosm_twmap/s_city_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        <caption k="name" symbol-id="s_city_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-      <rule e="any" k="network" v="TBike">
-        <symbol id="s_tbike" priority="75" src="file:moiosm_twmap/s_tbike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        <caption k="name" symbol-id="s_tbike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-      <rule e="any" k="network" v="Pbike">
-        <symbol id="s_pbike" priority="75" src="file:moiosm_twmap/s_pbike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-        <caption k="name" symbol-id="s_pbike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
+    <rule e="any" k="amenity" v="bicycle_rental_YouBike" zoom-min="15">
+      <symbol id="s_you_bike" priority="75" src="file:moiosm_twmap/s_you_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <caption k="name" symbol-id="s_you_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+    </rule>
+    <rule e="any" k="amenity" v="bicycle_rental_Moovo" zoom-min="15">
+      <symbol id="s_moovo_bike" priority="75" src="file:moiosm_twmap/s_moovo_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <caption k="name" symbol-id="s_moovo_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <!-- stations -->
     <rule cat="nocity" e="any" k="highway" v="bus_stop" zoom-min="15">
