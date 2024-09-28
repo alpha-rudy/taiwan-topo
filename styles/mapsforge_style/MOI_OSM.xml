@@ -5143,11 +5143,11 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- public transport -->
   <rule cat="pubtrans" e="any" k="*" v="*" zoom-min="14">
     <rule e="any" k="amenity" v="bicycle_rental_YouBike" zoom-min="15">
-      <symbol id="s_you_bike" priority="75" src="file:moiosm_res/s_you_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <symbol id="s_you_bike" priority="75" src="file:moiosm_res/s_you_bike.svg" symbol-scaling="size" symbol-height="15" symbol-width="15"/>
       <caption k="name" symbol-id="s_you_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="any" k="amenity" v="bicycle_rental_Moovo" zoom-min="15">
-      <symbol id="s_moovo_bike" priority="75" src="file:moiosm_res/s_moovo_bike.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+      <symbol id="s_moovo_bike" priority="75" src="file:moiosm_res/s_moovo_bike.svg" symbol-scaling="size" symbol-height="15" symbol-width="15"/>
       <caption k="name" symbol-id="s_moovo_bike" position="above" font-style="bold" font-size="10" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
     <!-- stations -->
