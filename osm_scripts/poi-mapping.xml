@@ -354,6 +354,8 @@
         <mapping tag="amenity=bicycle_parking" />
       </category>
       <category title="自行車租賃站">
+        <mapping tag="amenity=bicycle_rental_YouBike" />
+        <mapping tag="amenity=bicycle_rental_Moovo" />
         <mapping tag="amenity=bicycle_rental" />
       </category>
       <category title="公車站">
