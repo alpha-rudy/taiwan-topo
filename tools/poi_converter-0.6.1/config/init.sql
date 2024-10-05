@@ -110,6 +110,8 @@ INSERT INTO FoldersSub (name)  VALUES ('telephone');
 INSERT INTO FoldersSub (name)  VALUES ('grave_yard');
 INSERT INTO FoldersSub (name)  VALUES ('parking');
 INSERT INTO FoldersSub (name)  VALUES ('bicycle_rental');
+INSERT INTO FoldersSub (name)  VALUES ('bicycle_rental_YouBike');
+INSERT INTO FoldersSub (name)  VALUES ('bicycle_rental_Moovo');
 INSERT INTO FoldersSub (name)  VALUES ('bicycle_parking');
 INSERT INTO FoldersSub (name)  VALUES ('map');
 INSERT INTO FoldersSub (name)  VALUES ('picnic_site');
@@ -250,6 +252,8 @@ INSERT INTO RootSubMapping (subname, rootname)  VALUES ('telephone','public_serv
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('grave_yard','public_services');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_parking','單車');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_rental','單車');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_rental_YouBike','單車');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('bicycle_rental_Moovo','單車');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('viewpoint','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('protected_area','nature');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('spring','nature');
