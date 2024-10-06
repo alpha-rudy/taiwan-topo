@@ -790,7 +790,7 @@ styles:
 .PHONY: daily
 daily:
 	$(MAKE_CMD) styles
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip poi_zip locus_poi
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip poi_zip locus_poi_zip
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
 
 .PHONY: suites
@@ -1512,6 +1512,16 @@ $(POI_ZIP): $(POI)
 	[ -f "$(POI)" ]
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
+
+
+.PHONY: locus_poi_zip
+locus_poi_zip: $(LOCUS_POI_ZIP)
+$(LOCUS_POI_ZIP): $(LOCUS_POI)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -d "$(BUILD_DIR)" ]
+	[ -f "$(LOCUS_POI)" ]
+	-rm -f $@
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(LOCUS_POI))
 
 
 .PHONY: addr_zip

@@ -5,6 +5,7 @@
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * [![POI](./images/Android.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![POI](./images/Android.png =36x) Locus POI](./MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
   * [![Style](./images/Android.png =36x) OruxMaps/GTs/Cartograph/Wadi Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * [![DEM](./images/Android.png =36x) DEM mix, v2024](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
