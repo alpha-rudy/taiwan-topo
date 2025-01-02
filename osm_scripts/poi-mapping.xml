@@ -6,7 +6,7 @@
   <!-- Hiking -->
   <category title="01 登山相關">
     <category title="01 山頭">
-      <mapping tag="natural=peak" />
+      <mapping tag="man_made=summit_board" />
       <mapping tag="natural=vulcano" />
       <category title="01 百岳">
         <mapping tag="zl=0" />
@@ -195,7 +195,7 @@
   <!-- Natural -->
   <category title="03 自然">
     <category title="01 山/山峰">
-      <mapping tag="natural=peak" />
+      <mapping tag="man_made=summit_board" />
     </category>
     <category title="02 噴泉/泉水">
       <mapping tag="natural=geyser" />

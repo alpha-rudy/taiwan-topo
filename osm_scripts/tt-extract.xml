@@ -12,10 +12,10 @@
     </output>
   </translation>
   <translation>
-    <name>Peak (zl 0)</name>
-    <description>tag for zoom level 0 peak</description>
+    <name>Summit (zl 0)</name>
+    <description>tag for zoom level 0 summit</description>
     <match mode="and" type="node">
-      <tag k="natural" v="peak" />
+      <tag k="man_made" v="summit_board" />
       <tag k="ref" v="^百岳#" />
       <tag k="name" v="^(玉山|雪山主峰|北大武山)$"/>
     </match>
@@ -25,10 +25,10 @@
     </output>
   </translation>
   <translation>
-    <name>Peak (zl 1)</name>
-    <description>tag for zoom level 1 peak</description>
+    <name>Summit (zl 1)</name>
+    <description>tag for zoom level 1 summit</description>
     <match mode="and" type="node">
-      <tag k="natural" v="peak" />
+      <tag k="man_made" v="summit_board" />
       <tag k="ref" v="^百岳#" />
       <notag k="name" v="^(玉山|雪山主峰|北大武山)$"/>
     </match>
@@ -38,10 +38,10 @@
     </output>
   </translation>
   <translation>
-    <name>Peak (zl 2)</name>
-    <description>tag for zoom level 2 peak</description>
+    <name>Summit (zl 2)</name>
+    <description>tag for zoom level 2 summit</description>
     <match mode="and" type="node">
-      <tag k="natural" v="peak" />
+      <tag k="man_made" v="summit_board" />
       <tag k="ref" v="^小百岳#" />
     </match>
     <output>

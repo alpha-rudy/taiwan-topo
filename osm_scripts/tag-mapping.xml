@@ -904,7 +904,8 @@
 <osm-tag key='capital' value='4' renderable='false' />
 <!-- natural -->
 <osm-tag key='natural' value='cave_entrance' zoom-appear='14' />
-<osm-tag key='natural' value='peak' zoom-appear='6' />
+<osm-tag key='natural' value='peak' zoom-appear='12' />
+<osm-tag key='man_made' value='summit_board' zoom-appear='6' />
 <osm-tag key='zl' value='0' zoom-appear='6' />
 <osm-tag key='zl' value='1' zoom-appear='6' />
 <osm-tag key='zl' value='2' zoom-appear='6' />
