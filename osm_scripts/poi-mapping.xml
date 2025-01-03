@@ -9,11 +9,10 @@
       <mapping tag="man_made=summit_board" />
       <mapping tag="natural=vulcano" />
       <category title="01 百岳">
-        <mapping tag="zl=0" />
-        <mapping tag="zl=1" />
+        <mapping tag="cat=baiyue" />
       </category>
       <category title="02 小百岳">
-        <mapping tag="zl=2" />
+        <mapping tag="cat=xiaobaiyue" />
       </category>
     </category>
     <category title="02 標石(基點)">

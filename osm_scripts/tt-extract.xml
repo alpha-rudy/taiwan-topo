@@ -22,6 +22,7 @@
     <output>
       <copy-all/>
       <tag k="zl" v="0" />
+      <tag k="cat" v="baiyue" />
     </output>
   </translation>
   <translation>
@@ -35,6 +36,7 @@
     <output>
       <copy-all/>
       <tag k="zl" v="1" />
+      <tag k="cat" v="baiyue" />
     </output>
   </translation>
   <translation>
@@ -47,6 +49,7 @@
     <output>
       <copy-all/>
       <tag k="zl" v="2" />
+      <tag k="cat" v="xiaobaiyue" />
     </output>
   </translation>
 </translations>
