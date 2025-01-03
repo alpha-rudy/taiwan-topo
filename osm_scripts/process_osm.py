@@ -241,11 +241,14 @@ class MapsforgeHandler(osmium.SimpleHandler):
             else:
                 if '小百岳#' in ref:
                     tags['zl'] = '2'
+                    tags['cat'] = 'xiaobaiyue'
                 else:
                     if name in ['玉山', '北大武山', '雪山主峰']:
                         tags['zl'] = '0'
+                        tags['cat'] = 'baiyue'
                     else:
                         tags['zl'] = '1'
+                        tags['cat'] = 'baiyue'
 
                 tags['ref'] = '(%s)' % ref
 
