@@ -75,7 +75,7 @@ INSERT INTO FoldersRoot (name) VALUES ('sport_leisure');
 INSERT INTO FoldersRoot (name) VALUES ('car_services');
 
 
-INSERT INTO FoldersSub (name)  VALUES ('peak');
+INSERT INTO FoldersSub (name)  VALUES ('summit_board');
 INSERT INTO FoldersSub (name)  VALUES ('survey_point');
 INSERT INTO FoldersSub (name)  VALUES ('trailhead');
 INSERT INTO FoldersSub (name)  VALUES ('guidepost');
@@ -215,7 +215,7 @@ INSERT INTO TagKeys (name) VALUES ('fee');
 -- Table not in official database, but used for folder mapping
 CREATE TABLE RootSubMapping (id INTEGER NOT NULL PRIMARY KEY, subname TEXT NOT NULL, rootname TEXT NOT NULL);
 
-INSERT INTO RootSubMapping (subname, rootname)  VALUES ('peak','登山');
+INSERT INTO RootSubMapping (subname, rootname)  VALUES ('summit_board','登山');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('survey_point','登山');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('guidepost','登山');
 INSERT INTO RootSubMapping (subname, rootname)  VALUES ('trail_milestone','登山');
