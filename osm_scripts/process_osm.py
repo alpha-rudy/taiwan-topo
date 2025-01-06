@@ -59,17 +59,13 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def node(self, n):
         tags = dict((tag.k, tag.v) for tag in n.tags)
 
-        if tags.get('natural', '') == 'peak':
-            if tags.get('name') is not None:
-                return
-            if tags.get('name:en') is not None:
-                return
-
         if n.id in hknetworks:
             self.handle_hknetwork_node(n.id, tags)
 
         if tags.get('man_made', '') == 'summit_board':
             self.handle_summit_board(tags)
+        elif tags.get('natural', '') == 'peak':
+            self.handle_peak(tags)
         elif tags.get('natural', '') == 'spring' and \
                 tags.get('drinking_water', '') == 'yes':
             self.handle_drinking_spring(tags)
@@ -230,6 +226,14 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 tags['name'] = name
             if not tags.get('name:en'):
                 tags['name:en'] = name
+
+    def handle_peak(self, tags):
+        if tags.get('name') or tags.get('name:en') or tags.get('name:zh'):
+            tag.pop('natural', None)
+            tags.pop('name', None)
+            tags.pop('name:en', None)
+            tags.pop('name:zh', None)
+            tag.pop('ele', None)
 
     def handle_summit_board(self, tags):
         ref = tags.get('ref')
