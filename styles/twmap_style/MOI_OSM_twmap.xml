@@ -4180,10 +4180,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
           <caption k="ref" priority="-5" symbol-id="s_peak_small_l" position="below" font-style="normal" font-size="16" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
         <rule e="any" k="zl" v="~|no">
-          <rule e="any" k="name" v="~|no">
-            <symbol id="s_peak_noname_s" priority="-5" src="file:moiosm_twmap/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
-            <caption k="ele" symbol-id="s_peak_noname_s" priority="-5" position="below" font-style="normal" font-size="18" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
-          </rule>
           <rule e="any" k="name" v="*">
             <symbol id="s_peak_small" priority="200" src="file:moiosm_twmap/s_peak_small.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
             <caption k="name" symbol-id="s_peak_small" priority="200" position="above" font-style="normal" font-size="18" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
@@ -4192,12 +4188,10 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule cat="nocity" e="node" k="natural" v="peak">
-      <rule e="any" k="*" v="*" zoom-min="12">
-        <rule e="any" k="zl" v="~|no">
-          <rule e="any" k="name" v="~|no">
-            <symbol id="s_peak_noname_s" priority="-5" src="file:moiosm_twmap/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
-            <caption k="ele" symbol-id="s_peak_noname_s" priority="-5" position="below" font-style="normal" font-size="18" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
-          </rule>
+      <rule e="any" k="*" v="*" zoom-min="13">
+        <symbol id="s_peak_noname_s" priority="-5" src="file:moiosm_twmap/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+        <rule e="any" k="ele" v="*">
+          <caption k="ele" symbol-id="s_peak_noname_s" priority="-10" position="below" font-style="normal" font-size="18" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
         </rule>
       </rule>
     </rule>
