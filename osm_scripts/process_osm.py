@@ -229,11 +229,11 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
     def handle_peak(self, tags):
         if tags.get('name') or tags.get('name:en') or tags.get('name:zh'):
-            tag.pop('natural', None)
+            tags.pop('natural', None)
             tags.pop('name', None)
             tags.pop('name:en', None)
             tags.pop('name:zh', None)
-            tag.pop('ele', None)
+            tags.pop('ele', None)
 
     def handle_summit_board(self, tags):
         ref = tags.get('ref')
