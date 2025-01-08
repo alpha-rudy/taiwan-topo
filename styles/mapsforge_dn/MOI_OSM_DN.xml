@@ -704,11 +704,27 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="node" k="natural" v="peak">
-      <rule e="any" k="*" v="*" zoom-min="14">
-        <symbol id="s_peak_noname_s" priority="-5" src="file:dn_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
-        <rule e="any" k="ele" v="*">
-          <caption k="ele" symbol-id="s_peak_noname_s" priority="-10" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+      <rule e="any" k="is_in" v="taiwan">
+        <rule e="any" k="*" v="*" zoom-min="14">
+          <symbol id="s_peak_noname_s" priority="-5" src="file:dn_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+          <rule e="any" k="ele" v="*">
+            <caption k="ele" symbol-id="s_peak_noname_s" priority="-10" position="below" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
         </rule>
+      </rule>
+      <rule e="any" k="is_in" v="~">
+        <rule e="any" k="*" v="*" zoom-min="13" zoom-max="14">
+          <rule e="any" k="name" v="*">
+            <symbol id="s_peak_small" priority="200" src="file:dn_res/s_peak_small.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="name" symbol-id="s_peak_small" priority="200" position="above" font-style="normal" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="1.8"/>
+          </rule>
+        </rule>
+        <rule e="any" k="*" v="*" zoom-min="15">
+          <rule e="any" k="name" v="*">
+            <symbol id="s_peak" priority="200" src="file:dn_res/s_peak.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+            <caption k="name" priority="200" symbol-id="s_peak" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+          </rule>
+        </rule>        
       </rule>
     </rule>
   </rule>

@@ -231,6 +231,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
         tags.pop('name', None)
         tags.pop('name:en', None)
         tags.pop('name:zh', None)
+        tags['is_in'] = 'taiwan'
 
     def handle_summit_board(self, tags):
         ref = tags.get('ref')
