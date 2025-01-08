@@ -25,6 +25,8 @@ class PoiWriter:
         if poi.type[1] not in self.folders_sub:
             if poi.type[1] == 'fuel':
                 poi.set_type(('subfolder', 'gas_station'))
+            elif poi.type[1] == 'summit_board':
+                poi.set_type(('subfolder', 'peak'))
             elif poi.type[1] == 'bus_stop':
                 poi.set_type(('subfolder', 'bus_and_tram_stop'))
             elif poi.type[1] == 'tram_stop':
@@ -77,6 +79,9 @@ class PoiWriter:
             poi.add_tag('url', poi.tags.get('contact:website'))
         if 'contact:phone' in poi.tags:
             poi.add_tag('phone', poi.tags.get('contact:phone'))
+        if poi.tags.get('man_made', '') == 'summit_board':
+            poi.pop_tag('man_made')
+            poi.add_tag('natural', 'peak')
 
     def write_poi(self, poi):
         if poi:

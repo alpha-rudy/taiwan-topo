@@ -23,6 +23,9 @@ class Poi:
 
     def add_tags(self,tags):
         self.tags = tags
+    
+    def pop_tag(self, k):
+        self.tags.pop(k)
 
     def filter_tags(self, valid_tags):
         new_tags = dict()
