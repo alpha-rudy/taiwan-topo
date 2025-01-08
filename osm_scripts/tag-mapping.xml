@@ -905,6 +905,7 @@
 <!-- natural -->
 <osm-tag key='natural' value='cave_entrance' zoom-appear='14' />
 <osm-tag key='natural' value='peak' zoom-appear='12' />
+<osm-tag key='is_in' value='taiwan' zoom-appear='12' />
 <osm-tag key='man_made' value='summit_board' zoom-appear='6' />
 <osm-tag key='zl' value='0' zoom-appear='6' />
 <osm-tag key='zl' value='1' zoom-appear='6' />
