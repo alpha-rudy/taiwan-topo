@@ -706,9 +706,9 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="node" k="natural" v="peak">
       <rule e="any" k="is_in" v="taiwan">
         <rule e="any" k="*" v="*" zoom-min="14">
-          <symbol id="s_peak_noname_s" priority="-5" src="file:bn_res/s_peak_noname_s.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
+          <symbol id="s_peak_noname" priority="-5" src="file:bn_res/s_peak_noname.svg" symbol-scaling="size" symbol-height="9" symbol-width="9"/>
           <rule e="any" k="ele" v="*">
-            <caption k="ele" symbol-id="s_peak_noname_s" priority="-10" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="1.8"/>
+            <caption k="ele" symbol-id="s_peak_noname" priority="-10" position="below" font-style="normal" font-size="9" fill="#FFFFFF" stroke="#22000000" stroke-width="1.8"/>
           </rule>
         </rule>
       </rule>
