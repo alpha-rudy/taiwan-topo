@@ -162,7 +162,8 @@
       <mapping tag="natural=hot_spring" />
     </category>
     <category title="07 保護區/景點/觀景台">
-      <mapping tag="tourism=information" />
+      <mapping tag="tourism=picnic_site" />
+      <mapping tag="tourism=theme_park" />
       <mapping tag="tourism=viewpoint" />
       <mapping tag="tourism=attraction" />
       <mapping tag="boundary=nature_reserve" />
@@ -263,7 +264,8 @@
       <mapping tag="tourism=hotel" />
     </category>
     <category title="遊客中心">
-      <mapping tag="tourism=information" />
+      <mapping tag="information=visitor_centre" />
+      <mapping tag="information=office" />
     </category>
     <category title="汽車旅館">
       <mapping tag="tourism=motel" />
