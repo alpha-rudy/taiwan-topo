@@ -191,7 +191,7 @@ MOI.OSM - Taiwan TOPO
       > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_dem.cpkg) /
       > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_dem.cpkg)
   * 圖資更新
-    * ![Map](images/Cartograph.png =36x) 更新 (Install_MOI_Taiwan_TOPO_camp.exe)
+    * ![Map](images/Cartograph.png =36x) 更新 (320MB)
       > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg) /
       > [[mirror Rex]](cartograph-map://rudy.basecamp.tw/carto_upgrade.cpkg) /
       > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_upgrade.cpkg) /
