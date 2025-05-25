@@ -1486,11 +1486,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <line stroke="#70606060" stroke-width="1" stroke-dasharray="1.5,1.5" stroke-linecap="butt"/>
       <caption k="name" dy="2.2" font-style="bold_italic" font-family="serif" font-size="20" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
     </rule>
-    <rule e="way" k="natural" v="ridge|arete">
-      <line stroke="#80606060" stroke-width="0.4" stroke-dasharray="6,8" stroke-linecap="round"/>
-      <pathText k="name" dy="2" font-style="italic" font-family="serif" font-size="24" fill="#888888" stroke="#888888" stroke-width="0.1" display="always" priority="-20"/>
-      <lineSymbol src="file:moiosm_twmap/s_ridge.svg" align-center="true" repeat="true" repeat-gap="75" repeat-start="0" display="always" priority="-20" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
-    </rule>
     <rule e="way" k="natural" v="crater">
       <line stroke="#306E5050" stroke-width="1" stroke-linecap="round"/>
       <line stroke="#614646" stroke-width="0.3" stroke-dasharray="1.5,1.5" stroke-linecap="butt"/>
