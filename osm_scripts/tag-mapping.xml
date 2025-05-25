@@ -435,7 +435,6 @@
 <osm-tag key='natural' value='wood' zoom-appear='7' />
 <osm-tag key='natural' value='glacier' zoom-appear='7' />
 <osm-tag key='natural' value='crevasse' zoom-appear='12' />
-<osm-tag key='natural' value='ridge' equivalent-values='arete' zoom-appear='12' />
 <osm-tag key='natural' value='cliff' zoom-appear='12' />
 <osm-tag key='natural' value='rock' equivalent-values='bare_rock,bedrock,stone' zoom-appear='12' />
 <osm-tag key='natural' value='scree' zoom-appear='12' />
