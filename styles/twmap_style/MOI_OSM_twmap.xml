@@ -5590,42 +5590,42 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <rule cat="ads" e="any" k="*" v="*">
     <rule e="node" k="amenity" v="air_defense_shelter">
       <rule e="any" k="cap" v="5000" zoom-min="13">
-        <symbol id="s_ads" display="always" priority="10" src="file:extra_res/s_ads.png" symbol-scaling="size" symbol-height="24" symbol-width="24"/>
+        <symbol id="s_ads" display="always" priority="10" src="file:moiosm_twmap/s_ads.png" symbol-scaling="size" symbol-height="24" symbol-width="24"/>
         <rule cat="ads-label" e="node" k="*" v="*">
           <caption symbol-id="s_ads" k="name" priority="10" position="above" font-style="bold" font-size="11" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption symbol-id="s_ads" k="addr:housenumber" priority="10" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
       <rule e="any" k="cap" v="4000" zoom-min="14">
-        <symbol id="s_ads" display="always" priority="10" src="file:extra_res/s_ads.png" symbol-scaling="size" symbol-height="22" symbol-width="22"/>
+        <symbol id="s_ads" display="always" priority="10" src="file:moiosm_twmap/s_ads.png" symbol-scaling="size" symbol-height="22" symbol-width="22"/>
         <rule cat="ads-label" e="node" k="*" v="*">
           <caption symbol-id="s_ads" k="name" priority="10" position="above" font-style="bold" font-size="11" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption symbol-id="s_ads" k="addr:housenumber" priority="10" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
       <rule e="any" k="cap" v="3000" zoom-min="15">
-        <symbol id="s_ads" display="always" priority="10" src="file:extra_res/s_ads.png" symbol-scaling="size" symbol-height="20" symbol-width="20"/>
+        <symbol id="s_ads" display="always" priority="10" src="file:moiosm_twmap/s_ads.png" symbol-scaling="size" symbol-height="20" symbol-width="20"/>
         <rule cat="ads-label" e="node" k="*" v="*">
           <caption symbol-id="s_ads" k="name" priority="10" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption symbol-id="s_ads" k="addr:housenumber" priority="10" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
       <rule e="any" k="cap" v="2000" zoom-min="16">
-        <symbol id="s_ads" display="always" priority="10" src="file:extra_res/s_ads.png" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
+        <symbol id="s_ads" display="always" priority="10" src="file:moiosm_twmap/s_ads.png" symbol-scaling="size" symbol-height="18" symbol-width="18"/>
         <rule cat="ads-label" e="node" k="*" v="*">
           <caption symbol-id="s_ads" k="name" priority="10" position="above" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption symbol-id="s_ads" k="addr:housenumber" priority="10" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
       <rule e="any" k="cap" v="1000|500" zoom-min="16">
-        <symbol id="s_ads" display="always" priority="10" src="file:extra_res/s_ads.png" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <symbol id="s_ads" display="always" priority="10" src="file:moiosm_twmap/s_ads.png" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule cat="ads-label" e="node" k="*" v="*">
           <caption symbol-id="s_ads" k="name" priority="10" position="above" font-style="bold" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption symbol-id="s_ads" k="addr:housenumber" priority="10" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
         </rule>
       </rule>
       <rule e="any" k="cap" v="0" zoom-min="16">
-        <symbol id="s_ads" display="always" priority="10" src="file:extra_res/s_ads.png" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
+        <symbol id="s_ads" display="always" priority="10" src="file:moiosm_twmap/s_ads.png" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
         <rule cat="ads-label" e="node" k="*" v="*">
           <caption symbol-id="s_ads" k="name" priority="10" position="above" font-style="bold" font-size="9" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
           <caption symbol-id="s_ads" k="addr:housenumber" priority="10" position="below" font-style="bold" font-size="10" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
