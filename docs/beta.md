@@ -1,5 +1,9 @@
 ## 測試版：MOI.OSM - Taiwan TOPO
 
+* ![ADS](./images/ads-icon.png =36x) Taiwan ADShelter 台灣防空避難處所離線地圖 (測試版)
+  * [點我下載 Mapsforge 疊圖](./NPA_Taiwan_ADShelter.map.zip)
+  > 可以套疊在魯地圖之上，也可套疊在 NLSC 地圖之上。
+
 (目前版本：Taiwan TOPO v__version__)
 
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
