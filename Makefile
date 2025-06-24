@@ -699,6 +699,7 @@ LOCUS_POI_ZIP := $(BUILD_DIR)/$(NAME_MAPSFORGE).db.zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
+ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
 GTS_ALL ?= $(BUILD_DIR)/gts-no_defined
@@ -1299,7 +1300,7 @@ $(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
 		-o=$@
 	-rm -f $@.o5m
 
-$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX)
+$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1307,6 +1308,7 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX)
 	cp $< $@.pbf
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(META)
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
+	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ADS_OSM)
 	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
