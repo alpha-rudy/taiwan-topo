@@ -1064,6 +1064,14 @@
 <osm-tag key='generator:source' value='gasoline' zoom-appear='16' />
 <osm-tag key='generator:source' value='waste' zoom-appear='16' />
 <osm-tag key='meta' value='map_version' zoom-appear='7' />
+<osm-tag key='amenity' value='air_defense_shelter' zoom-appear='12' />
+<osm-tag key='cap' value='5000' zoom-appear='12' />
+<osm-tag key='cap' value='4000' zoom-appear='12' />
+<osm-tag key='cap' value='3000' zoom-appear='12' />
+<osm-tag key='cap' value='2000' zoom-appear='12' />
+<osm-tag key='cap' value='1000' zoom-appear='12' />
+<osm-tag key='cap' value='500' zoom-appear='12' />
+<osm-tag key='cap' value='0' zoom-appear='12' />
 </pois>
 
 </tag-mapping>
