@@ -302,6 +302,11 @@
     </category>
   </category>
 
+  <!-- Air Defense Shelters -->
+  <category title="07 防空避難所">
+      <mapping tag="amenity=air_defense_shelter" />
+  </category>
+
   <!-- Amenities -->
   <category title="設施">
     <category title="食物">

@@ -1261,7 +1261,9 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scrip
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
-	cd $(EXTRACT_DIR) && OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
+	cd $(EXTRACT_DIR) && \
+	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@ && \
+	  sh $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
 
 .PHONY: meta
 meta: $(META)
@@ -1308,7 +1310,6 @@ $(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_OSM)
 	cp $< $@.pbf
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(META)
 	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
-	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ADS_OSM)
 	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
