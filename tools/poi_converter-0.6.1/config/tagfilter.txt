@@ -27,6 +27,7 @@ amenity=parking
 amenity=fuel
 amenity=bank
 amenity=atm
+amenity=air_defense_shelter
 railway=tram_stop
 highway=bus_stop
 highway=trailhead
