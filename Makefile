@@ -729,8 +729,10 @@ clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(WORKS_DIR)" ]
+	[ -n "$(EXTRACT_DIR)" ]
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
+	-find $(EXTRACT_DIR)/ -type f -not -name 'taiwan-latest.o5m*' | xargs rm -f
 
 .PHONY: distclean-elevations
 distclean-elevations:
@@ -1242,12 +1244,17 @@ $(EXTRACT).o5m:
 # 		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
 # 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT).o5m
 
-$(EXTRACT)_name.o5m: $(EXTRACT).o5m
+$(EXTRACT)_extra.o5m: $(EXTRACT).o5m
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	cp $< $@
+	sh $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+
+$(EXTRACT)_name.o5m: $(EXTRACT)_extra.o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
-	python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT).o5m $(EXTRACT)_name.pbf
+	python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT)_extra.o5m $(EXTRACT)_name.pbf
 	$(OSMCONVERT_CMD) \
 		$(EXTRACT)_name.pbf \
 		--out-o5m \
@@ -1262,8 +1269,7 @@ $(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scrip
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && \
-	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@ && \
-	  sh $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
 
 .PHONY: meta
 meta: $(META)
