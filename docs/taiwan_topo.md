@@ -217,6 +217,11 @@ MOI.OSM - Taiwan TOPO
       > [[mirror Rex]](https://rudy.basecamp.tw/extra/Compartment.map.zip) /
       > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Compartment.map.zip) /
       > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/Compartment.map.zip)
+    * NPA_Taiwan_ADShelter.map: 台灣防空避難離線地圖 v2025.06.27
+      > [[自動分流]](https://rudymap.tw/v1/extra/NPA_Taiwan_ADShelter.map.zip) /
+      > [[mirror Rex]](https://rudy.basecamp.tw/extra/NPA_Taiwan_ADShelter.map.zip) /
+      > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/NPA_Taiwan_ADShelter.map.zip) /
+      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/NPA_Taiwan_ADShelter.map.zip)
     * ...
       > (期待將來有更多的離線圖層可以使用)
   * Extra 圖層專用 Style
@@ -414,6 +419,8 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 重大修改歷程
+* 2026, 6/26
+  * 增加 NPA 台灣防空避難離圖層 v2025.06.25
 * 2024, 8/15
   * DTM 套用內政部地政司 Taiwan DTM 20m v2024
   * DTM 套用 AW3D30 v4.1
@@ -543,6 +550,10 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 > © OpenStreetMap contributors <br />
 > 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
 > License: http://www.openstreetmap.org/copyright
+
+* 內政部警政署防空避難地圖
+> 作品內含資訊取自「內政部警政署防空避難專區」[https://www.npa.gov.tw/](https://www.npa.gov.tw/) <br />
+> License: 內政部警政署民防指揮管制所版權所有
 
 * 內政部 20 公尺網格數值地形模型資料與 Rex OSM PBF
 > 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />

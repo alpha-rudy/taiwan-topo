@@ -1,9 +1,5 @@
 ## 測試版：MOI.OSM - Taiwan TOPO
 
-* ![ADS](./images/ads-icon.png =36x) Taiwan ADShelter 台灣防空避難處所離線地圖 (測試版)
-  * [點我下載 Mapsforge 疊圖](./NPA_Taiwan_ADShelter.map.zip)
-  > 可以套疊在魯地圖之上，也可套疊在 NLSC 地圖之上。
-
 (目前版本：Taiwan TOPO v__version__)
 
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
@@ -41,6 +37,8 @@
 > © OpenStreetMap contributors <br />
 > 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
 > License: http://www.openstreetmap.org/copyright
+
+* 
 
 * 內政部 20 公尺網格數值地形模型資料與 Rex OSM PBF
 > 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />
