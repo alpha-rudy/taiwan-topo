@@ -218,7 +218,7 @@ MOI.OSM - Taiwan TOPO
       > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Compartment.map.zip) /
       > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/Compartment.map.zip)
     * NPA_Taiwan_ADShelter.map: 台灣防空避難離線地圖 v2025.06.27
-      > [[自動分流]](https://rudymap.tw/v1/extra/NPA_Taiwan_ADShelter.map.zip) /
+      > [[自動分流]](https://rudymap.tw/extra/NPA_Taiwan_ADShelter.map.zip) /
       > [[mirror Rex]](https://rudy.basecamp.tw/extra/NPA_Taiwan_ADShelter.map.zip) /
       > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/NPA_Taiwan_ADShelter.map.zip) /
       > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/NPA_Taiwan_ADShelter.map.zip)
