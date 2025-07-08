@@ -15,7 +15,7 @@ MOI.OSM - Taiwan TOPO
     * https://map.happyman.idv.tw/rudy/taiwan_topo.html (mirror Happyman)
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
-  * Beta 版（每日建置）:
+  * Beta 版（每周一、三、六發行）:
     * https://rudymap.tw/drops/beta.html (自動分流)
     * https://rudy.basecamp.tw/drops/beta.html (mirror Rex)
     * https://moi.kcwu.csie.org/drops/beta.html (mirror kcwu)
