@@ -1673,25 +1673,31 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   </rule>
   <rule cat="borders" e="way" k="admin_level" v="4|6">
     <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
-      <line stroke="#DC94E9" stroke-width="2.0" stroke-linecap="butt"/>
+      <line stroke="#A0DC94E9" stroke-width="2.0" stroke-linecap="butt"/>
       <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
-      <line stroke="#80DC94E9" stroke-width="3" stroke-linecap="butt"/>
+      <line stroke="#70DC94E9" stroke-width="6.0" stroke-linecap="butt"/>
+      <line stroke="#6E4A74" stroke-width="0.7"/>
       <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <line stroke="#80DC94E9" stroke-width="1.5" stroke-linecap="butt"/>
+      <line stroke="#70DC94E9" stroke-width="6.0" stroke-linecap="butt"/>
+      <line stroke="#6E4A74" stroke-width="0.3"/>
+      <line stroke="#37253A" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt"/>
       <!-- ;admin -->
     </rule>
   </rule>
   <rule cat="borders" e="way" k="admin_level" v="5|7|8">
     <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
-      <line stroke="#80DC94E9" stroke-width="1.5" stroke-linecap="butt"/>
+      <line stroke="#70DC94E9" stroke-width="3.0" stroke-linecap="butt"/>
+      <line stroke="#6E4A74" stroke-width="0.35"/>
       <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
-      <line stroke="#80DC94E9" stroke-width="0.75" stroke-linecap="butt"/>
+      <line stroke="#70DC94E9" stroke-width="3.0" stroke-linecap="butt"/>
+      <line stroke="#6E4A74" stroke-width="0.15"/>
+      <line stroke="#37253A" stroke-width="0.15" stroke-dasharray="15, 15" stroke-linecap="butt"/>
       <!-- ;admin -->
     </rule>
   </rule>
