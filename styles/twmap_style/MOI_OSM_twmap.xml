@@ -1678,26 +1678,28 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
       <line stroke="#70DC94E9" stroke-width="6.0" stroke-linecap="butt"/>
-      <line stroke="#6E4A74" stroke-width="0.7"/>
+      <line stroke="#78517F" stroke-width="0.7" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#6E0D7F" stroke-width="2.1" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
       <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
       <line stroke="#70DC94E9" stroke-width="6.0" stroke-linecap="butt"/>
-      <line stroke="#6E4A74" stroke-width="0.3"/>
-      <line stroke="#37253A" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt"/>
+      <line stroke="#78517F" stroke-width="0.3" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#6E0D7F" stroke-width="0.9" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
       <!-- ;admin -->
     </rule>
   </rule>
   <rule cat="borders" e="way" k="admin_level" v="5|7|8">
     <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
       <line stroke="#70DC94E9" stroke-width="3.0" stroke-linecap="butt"/>
-      <line stroke="#6E4A74" stroke-width="0.35"/>
+      <line stroke="#78517F" stroke-width="0.35" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#6E0D7F" stroke-width="1.05" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
       <!-- ;admin -->
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
       <line stroke="#70DC94E9" stroke-width="3.0" stroke-linecap="butt"/>
-      <line stroke="#6E4A74" stroke-width="0.15"/>
-      <line stroke="#37253A" stroke-width="0.15" stroke-dasharray="15, 15" stroke-linecap="butt"/>
+      <line stroke="#78517F" stroke-width="0.15" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#6E0D7F" stroke-width="0.45" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
       <!-- ;admin -->
     </rule>
   </rule>
@@ -1749,24 +1751,26 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="any" k="*" v="*" zoom-min="9" zoom-max="13">
       <line stroke="#70408000" stroke-width="6" stroke-linecap="butt"/>
-      <line stroke="#408000" stroke-width="0.7"/>
+      <line stroke="#408000" stroke-width="0.7" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#204000" stroke-width="2.1" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
       <line stroke="#40408000" stroke-width="6" stroke-linecap="butt"/>
-      <line stroke="#408000" stroke-width="0.3"/>
-      <line stroke="#204000" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt"/>
+      <line stroke="#408000" stroke-width="0.3" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#204000" stroke-width="0.9" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
     </rule>
   </rule>
   <!-- strict protected -->
   <rule cat="borders" e="way" k="boundary" v="strict_protected">
     <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
       <line stroke="#70306000" stroke-width="3" stroke-linecap="butt"/>
-      <line stroke="#306000" stroke-width="0.7"/>
+      <line stroke="#306000" stroke-width="0.7" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#204000" stroke-width="2.1" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
     </rule>
     <rule e="any" k="*" v="*" zoom-min="14">
       <line stroke="#40306000" stroke-width="3" stroke-linecap="butt"/>
-      <line stroke="#306000" stroke-width="0.3"/>
-      <line stroke="#204000" stroke-width="0.3" stroke-dasharray="15, 15" stroke-linecap="butt"/>
+      <line stroke="#306000" stroke-width="0.3" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
+      <line stroke="#204000" stroke-width="0.9" scale="all" stroke-dasharray="0,1.5625,0.625,2.8125,0,5" stroke-linecap="butt" />
     </rule>
   </rule>
   <!-- compartment boundaries -->
