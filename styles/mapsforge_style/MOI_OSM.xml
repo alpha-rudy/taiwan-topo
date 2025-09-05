@@ -212,13 +212,22 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="等高線"/>
       <cat id="contour"/>
     </layer>
+    <layer id="elmt-hiking_borders-h" enabled="false">
+      <name lang="de" value="Nationalpark- und Naturschutzgebietsgrenzen"/>
+      <name lang="en" value="National Park and Protected Area Borders"/>
+      <name lang="es" value="Fronteras de parques nacionales y áreas protegidas"/>
+      <name lang="fr" value="Frontières des parcs nationaux et des zones protégées"/>
+      <name lang="it" value="Confini dei parchi nazionali e delle aree protette"/>
+      <name lang="zh" value="國家公園與林業保育區邊界"/>
+      <cat id="hiking_borders"/>
+    </layer>
     <layer id="elmt-borders-h" enabled="false">
       <name lang="de" value="Grenzen + besondere Gebiete"/>
       <name lang="en" value="borders + special areas"/>
       <name lang="es" value="fronteras y zonas especiales"/>
       <name lang="fr" value="frontières et zones spéciales"/>
       <name lang="it" value="confini e zone speciali"/>
-      <name lang="zh" value="邊界和特殊區域"/>
+      <name lang="zh" value="行政邊界和特殊區域"/>
       <cat id="borders"/>
     </layer>
     <layer id="elmt-compartments-h" enabled="false">
@@ -789,6 +798,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-trail-label"/>
       <overlay id="elmt-surveypoint-h"/>
       <overlay id="elmt-contour-c"/>
+      <overlay id="elmt-hiking_borders-h"/>
       <overlay id="elmt-borders-h"/>
       <overlay id="elmt-compartments-h"/>
       <overlay id="elmt-amenities-h"/>
@@ -1826,7 +1836,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- national park -->
-  <rule cat="borders" e="way" k="boundary" v="national_park">
+  <rule cat="hiking_borders" e="way" k="boundary" v="national_park">
     <rule e="any" k="*" v="*" zoom-min="7" zoom-max="8">
       <line stroke="#A0408000" stroke-width="2.0"/>
     </rule>
@@ -1842,7 +1852,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
   </rule>
   <!-- strict protected -->
-  <rule cat="borders" e="way" k="boundary" v="strict_protected">
+  <rule cat="hiking_borders" e="way" k="boundary" v="strict_protected">
     <rule e="any" k="*" v="*" zoom-min="11" zoom-max="13">
       <line stroke="#70306000" stroke-width="3" stroke-linecap="butt"/>
       <line stroke="#306000" stroke-width="0.7" scale="all" stroke-dasharray="3.75,1.25" stroke-linecap="butt" />
