@@ -221,7 +221,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="等高線"/>
       <cat id="contour"/>
     </layer>
-    <layer id="elmt-hiking_borders-h" enabled="false">
+    <layer id="elmt-hiking_borders-h" enabled="true">
       <name lang="de" value="Nationalpark- und Naturschutzgebietsgrenzen"/>
       <name lang="en" value="National Park and Protected Area Borders"/>
       <name lang="es" value="Fronteras de parques nacionales y áreas protegidas"/>
