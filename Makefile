@@ -928,13 +928,15 @@ $(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
 			file="$@"
 
+.PHONY: poi-v2
+poi-v2: $(POI_V2)
 $(POI_V2): $(EXTRACT)-sed.osm.pbf $(POI_V2_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
-		sh $(OSMOSIS_POI_V2_CMD) \
+		JAVA_HOME=$(JAVA8_HOME) PATH=$(JAVA8_HOME)/bin:$$PATH sh $(OSMOSIS_POI_V2_CMD) \
 			--rb file="$(EXTRACT)-sed.osm.pbf" \
 			--poi-writer \
 			all-tags=true \
