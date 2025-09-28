@@ -907,7 +907,7 @@ $(NSIS): $(MAP_PC)
 
 .PHONY: poi
 poi: $(POI)
-$(POI): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-mapping.xml
+$(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
