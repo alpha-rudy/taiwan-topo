@@ -19,7 +19,8 @@ JAVACMD_OPTIONS ?= -Xmx68G -server -Dfile.encoding=UTF-8
 # directory variables
 ROOT_DIR := $(shell pwd)
 TOOLS_DIR := $(ROOT_DIR)/tools
-OSMOSIS_CMD := $(TOOLS_DIR)/osmosis-0.48.3/bin/osmosis
+OSMOSIS_POI_V2_CMD := $(TOOLS_DIR)/osmosis-0.48.3-poiv2/bin/osmosis
+OSMOSIS_CMD := $(TOOLS_DIR)/osmosis-0.49.2/bin/osmosis
 ifeq ($(shell uname),Darwin)
 OSMCONVERT_CMD := $(TOOLS_DIR)/osmconvert-0.8.11/osx/osmconvert
 else
@@ -681,7 +682,8 @@ TYP_FILE := $(ROOT_DIR)/TYPs/$(TYP).txt
 HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
 LR_STYLE_DIR := $(ROOT_DIR)/styles/$(LR_STYLE)
 TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
-POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping.xml
+POI_V2_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-v2.xml
+POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-v3.xml
 ADDR_MAPPING := $(ROOT_DIR)/osm_scripts/poi-addr-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
@@ -690,6 +692,7 @@ GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
 GMAPSUPP_ZIP := $(GMAPSUPP).zip
 GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
+POI_V2 := $(BUILD_DIR)/$(NAME_MAPSFORGE)_v2.poi
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 ADDR := $(BUILD_DIR)/$(NAME_MAPSFORGE)-addr.poi
 POI_ZIP := $(POI).zip
@@ -850,16 +853,16 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 
 .PHONY: carto_all
 carto_all: $(CARTO_ALL).zip
-$(CARTO_ALL).zip: $(MAPSFORGE) $(POI) $(HS_STYLE) $(HGT)
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
 	unzip $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2))
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg $(shell basename $(HS_STYLE))
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2)) $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2)) $(shell basename $(HS_STYLE))
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
@@ -925,6 +928,24 @@ $(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
 			file="$@"
 
+$(POI_V2): $(EXTRACT)-sed.osm.pbf $(POI_V2_MAPPING)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(EXTRACT)" ]
+	mkdir -p $(BUILD_DIR)
+	-rm -rf $@
+	export JAVACMD_OPTIONS="-server" && \
+		sh $(OSMOSIS_POI_V2_CMD) \
+			--rb file="$(EXTRACT)-sed.osm.pbf" \
+			--poi-writer \
+			all-tags=true \
+			geo-tags=true \
+			names=false \
+			bbox=$(MAPSFORGE_BBOX) \
+			ways=true \
+			tag-conf-file="$(POI_V2_MAPPING)" \
+			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
+			file="$@"
+
 .PHONY: addr
 addr: $(ADDR)
 $(ADDR): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
@@ -933,7 +954,7 @@ $(ADDR): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
-		sh $(OSMOSIS_CMD) \
+		sh $(OSMOSIS_POI_V2_CMD) \
 			--rb file="$(EXTRACT)-sed.osm.pbf" \
 			--poi-writer \
 			all-tags=true \
@@ -947,7 +968,7 @@ $(ADDR): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
 
 .PHONY: locus_poi
 locus_poi: $(LOCUS_POI)
-$(LOCUS_POI): $(POI)
+$(LOCUS_POI): $(POI_V2)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
@@ -1506,22 +1527,22 @@ $(TN_STYLE):
 
 .PHONY: mapsforge_zip
 mapsforge_zip: $(MAPSFORGE_ZIP)
-$(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
+$(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI_V2)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2))
 
 
 .PHONY: poi_zip
 poi_zip: $(POI_ZIP)
-$(POI_ZIP): $(POI)
+$(POI_ZIP): $(POI_V2)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
-	[ -f "$(POI)" ]
+	[ -f "$(POI_V2)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI_V2))
 
 
 .PHONY: locus_poi_zip
