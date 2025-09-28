@@ -683,7 +683,7 @@ HR_STYLE_DIR := $(ROOT_DIR)/styles/$(HR_STYLE)
 LR_STYLE_DIR := $(ROOT_DIR)/styles/$(LR_STYLE)
 TAG_MAPPING := $(ROOT_DIR)/osm_scripts/tag-mapping.xml
 POI_V2_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-v2.xml
-POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-v3.xml
+POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-v2.xml
 ADDR_MAPPING := $(ROOT_DIR)/osm_scripts/poi-addr-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
@@ -853,9 +853,10 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 
 .PHONY: carto_all
 carto_all: $(CARTO_ALL).zip
-$(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(HS_STYLE) $(HGT)
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
+	mv $(POI) $(POI).bak && cp $(POI_V2) $(POI)
 	unzip $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2))
@@ -863,6 +864,7 @@ $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(HS_STYLE) $(HGT)
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
 	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2)) $(shell basename $(HS_STYLE))
 	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2)) $(shell basename $(HS_STYLE))
+	mv $(POI).bak $(POI)
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
@@ -1529,22 +1531,22 @@ $(TN_STYLE):
 
 .PHONY: mapsforge_zip
 mapsforge_zip: $(MAPSFORGE_ZIP)
-$(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI_V2)
+$(MAPSFORGE_ZIP): $(MAPSFORGE) $(POI)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
 	[ -f "$(MAPSFORGE)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI_V2))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
 
 
 .PHONY: poi_zip
 poi_zip: $(POI_ZIP)
-$(POI_ZIP): $(POI_V2)
+$(POI_ZIP): $(POI)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -d "$(BUILD_DIR)" ]
-	[ -f "$(POI_V2)" ]
+	[ -f "$(POI)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI_V2))
+	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
 
 
 .PHONY: locus_poi_zip
