@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="root"
-  xmlns="http://mapsforge.org/poi-mapping"
-  xsi:schemaLocation="http://mapsforge.org/poi-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/poi-mapping.xsd">
+    xmlns="http://mapsforge.org/poi-mapping"
+    xsi:schemaLocation="http://mapsforge.org/poi-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/master/resources/poi-mapping.xsd">
 
   <!-- Hiking -->
   <category title="01 登山相關">
