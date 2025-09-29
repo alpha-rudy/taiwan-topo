@@ -4,9 +4,10 @@
 
 * ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![POI](./images/Android.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![POI](./images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟 POIv3](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![POI](./images/Android.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
   * [![POI](./images/Android.png =36x) Locus POI](./MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
-  * [![Style](./images/Android.png =36x) OruxMaps/GTs/Cartograph/Wadi Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+  * [![Style](./images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * [![Style](./images/Android.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
   * [![DEM](./images/Android.png =36x) DEM mix, v2024](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
@@ -14,7 +15,8 @@
 
 * ![Apple](./images/macOS.png =36x) Apple, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/macOS.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![POI](./images/macOS.png =36x) Mapsforge POI](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![POI](./images/Android.png =36x) 山林日誌 POIv3](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![POI](./images/Android.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
   * [![Style](./images/macOS.png =36x) Cartograph/山林日誌 Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/macOS.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
   * [![DEM](./images/macOS.png =36x) DEM mix, v2024](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
@@ -37,8 +39,6 @@
 > © OpenStreetMap contributors <br />
 > 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
 > License: http://www.openstreetmap.org/copyright
-
-* 
 
 * 內政部 20 公尺網格數值地形模型資料與 Rex OSM PBF
 > 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />

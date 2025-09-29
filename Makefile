@@ -145,7 +145,7 @@ MAPSFORGE_BBOX := 20.62439,118.0000,26.70665,123.0348
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
-TARGETS := mapsforge_zip poi_zip gts_all carto_all locus_map
+TARGETS := mapsforge_zip poi_zip poi_v2_zip gts_all carto_all locus_map
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
@@ -696,6 +696,7 @@ POI_V2 := $(BUILD_DIR)/$(NAME_MAPSFORGE)_v2.poi
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
 ADDR := $(BUILD_DIR)/$(NAME_MAPSFORGE)-addr.poi
 POI_ZIP := $(POI).zip
+POI_V2_ZIP := $(POI_V2).zip
 ADDR_ZIP := $(ADDR).zip
 LOCUS_POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).db
 LOCUS_POI_ZIP := $(BUILD_DIR)/$(NAME_MAPSFORGE).db.zip
@@ -797,7 +798,7 @@ styles:
 .PHONY: daily
 daily:
 	$(MAKE_CMD) styles
-	$(MAKE_CMD) SUITE=taiwan mapsforge_zip poi_zip locus_poi_zip
+	$(MAKE_CMD) SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
 	$(MAKE_CMD) SUITE=taiwan_bc_dem gmap nsis
 
 .PHONY: suites
@@ -930,8 +931,8 @@ $(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
 			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
 			file="$@"
 
-.PHONY: poi-v2
-poi-v2: $(POI_V2)
+.PHONY: poi_v2
+poi_v2: $(POI_V2)
 $(POI_V2): $(EXTRACT)-sed.osm.pbf $(POI_V2_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
@@ -1547,6 +1548,20 @@ $(POI_ZIP): $(POI)
 	[ -f "$(POI)" ]
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(POI))
+
+
+.PHONY: poi_v2_zip
+poi_v2_zip: $(POI_V2_ZIP)
+$(POI_V2_ZIP): $(POI_V2) $(POI)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -d "$(BUILD_DIR)" ]
+	[ -f "$(POI)" ]
+	[ -f "$(POI_V2)" ]
+	-rm -rf $@
+	cd $(BUILD_DIR) && \
+		mv $(POI) $(POI).bak && cp $(POI_V2) $(POI) && \
+		$(ZIP_CMD) $@ $(shell basename $(POI)) && \
+		mv $(POI).bak $(POI)
 
 
 .PHONY: locus_poi_zip
