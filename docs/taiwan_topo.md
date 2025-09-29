@@ -240,12 +240,22 @@ MOI.OSM - Taiwan TOPO
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * ![POI](images/Android.png =36x) POI (8MB)
+  * ![POIv3](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 POIv3 (8MB)
     > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * ![Style](images/Android.png =36x) Orux Style (0.4MB)
+  * ![POIv2](images/Android.png =36x) Cartograph POIv2 (8MB)
+    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip) /
+    > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
+  * ![LOCUS_POI](images/Android.png =36x) Locus POI (8MB)
+    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip) /
+    > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy.db.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.db.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
+  * ![Style](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 Style (0.4MB)
     > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
     > [[mirror Rex]](https://rudy.basecamp.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
