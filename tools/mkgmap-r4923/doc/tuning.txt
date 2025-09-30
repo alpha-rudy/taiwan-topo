@@ -1,0 +1,42 @@
+
+Tuning
+======
+Building a map is a resource intensive process that may take several hours to
+complete. To minimise execution time and make sure the process does not run out
+of memory, it is necessary to tune the process using command line options.
+
+Mkgmap is designed to allow multi-threaded operation and, providing sufficient
+memory is available, will complete in the shortest time if the number of threads
+used is the same as the number of CPU cores available. Each input file is
+processed in a separate thread with a scheduler determining when a thread is
+available for use and which input file is next to be processed. You can specify
+the maximum number of threads to be used by mkgmap with the --max-jobs option. If
+you do not specify this option, mkgmap will attempt to determine how many threads
+it can handle simultaneously by dividing the available heap memory by the amount
+of memory used when processing the first input file on the command line. In this
+case, it is important to make sure that the first input file is representative of
+the other files. If one of your input files is a typ file and you do not specify
+--max-jobs in your command line, make sure that the typ file is not the first
+input file specified. As typ file compilation uses few resources this would be
+likely to lead mkgmap to believe it could run more simultaneous jobs than is
+realistic.
+
+If mkgmap crashes with a message that it is out of memory, or it does not use all
+the available cores, you may need to allow it to use more memory. Typically,
+mkgmap requires about 500MB of heap memory per thread, so an 8-core processor
+might need 4GB memory to be allocated to the Java heap. You can specify the
+maximum Java heap size using the -Xmx Java option. Note that this option needs to
+be specified before -jar mkgmap.jar, unlike the mkgmap options, which are
+specified after. The format is -Xmx<size>[g|G|m|M|k|K] where g, m and k indicate
+gigabytes, megabytes and kilobytes respectively, so to specify 4GB use -Xmx4g.
+Note that there is no space or equals sign in this option.
+
+After processing all the input files, any required processes that operate on all
+tiles are undertaken. This includes generating a gmapsupp.img file if --gmapsupp
+is specified, and creating indexes if --index is specified. If the --gmapsupp and
+--index options are both specified along with any of --tdbfile, --gmapi, or
+--nsis then two indexes will be created. This is likely to require roughly twice
+as much memory. If you run out of memory at this stage, rather than increasing
+the amount of memory you may find it beneficial to separate these tasks into
+separate commands, with --gmapsupp and --index in one command and --index and
+--tdbfile, --gmapi, or --nsis in another.
