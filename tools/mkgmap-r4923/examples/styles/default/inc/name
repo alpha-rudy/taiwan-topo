@@ -1,0 +1,49 @@
+# Rules for naming objects, based on the following tags:
+# name, brand, operator, ref
+
+# delete FIXME values (they should be better used in maintenance maps)
+# better use option --ignore-fixme-values
+ref ~ '(?i)fix[ _]?+me'		{ delete ref; } 
+operator ~ '(?i)fix[ _]?+me'	{ delete operator; }
+brand ~ '(?i)fix[ _]?+me'		{ delete brand; }
+name ~ '(?i)fix[ _]?+me'		{ delete name; }
+
+# delete duplicate names
+operator=${brand} { delete operator; }
+operator=${name}  { delete operator; }
+brand=${name}     { delete brand; }
+
+# None of operator, brand given
+ref=* & (operator!=* & brand!=*) & (highway=bus_stop | railway=tram_stop | railway=halt | railway=station) { name '${name} ${ref}' | '${ref}' }
+ref=* & (operator!=* & brand!=*) { name '${ref} ${name}' | '${ref}' }
+
+# Both operator and brand given
+operator=* & brand=* {
+ name '${brand}: ${ref} ${name} (${operator})' |
+      '${brand} ${ref} (${operator})' |
+      '${brand}: ${name} (${operator})' |
+      '${brand} (${operator})'
+}
+
+# One of operator or brand given
+operator=* & brand!=* & (highway=bus_stop | railway=tram_stop | railway=halt | railway=station) {
+ name '${name} ${ref} ${operator}' |
+      '${name} ${operator}' |
+      '${ref} ${operator}' |
+      '${operator}'
+}
+
+operator=* & brand!=* {
+ name '${operator}: ${ref} ${name}' |
+      '${operator}: ${name}' |
+      '${operator}: ${ref}' |
+      '${operator}' |
+      '${ref}'
+}
+brand=* & operator!=* {
+ name '${brand}: ${ref} ${name}' |
+      '${brand}: ${name}' | 
+      '${brand}: ${ref}' |
+      '${brand}' |
+      '${ref}'
+}

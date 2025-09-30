@@ -1,0 +1,144 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for converting closed OSM ways
+# into Garmin polygons.
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more information.
+
+addr:housenumber=* {set mkgmap:execute_finalize_rules=true}
+
+leisure=* & sport=* & name=* {set name='${name} (${sport})'}
+leisure=* & sport=* & name!=* {add name='${sport}'}
+
+include 'inc/name';
+
+aeroway=airport [0x07 resolution 20]
+aeroway=aerodrome [0x07 resolution 20]
+aeroway=runway & area=yes {name '${ref}'} [0x0e resolution 20]
+(aeroway=taxiway | aeroway=taxilane) & area=yes {name '${ref}'} [0x0e resolution 24]
+aeroway=heliport [0x07 resolution 20]
+aeroway=helipad [0x0e resolution 22]
+
+amenity=kindergarten [0x0a resolution 22]
+amenity=cafe | amenity=fast_food | amenity=restaurant [0x08 resolution 24]
+amenity=food_court [0x08 resolution 22]
+amenity=college [0x0a resolution 22]
+parking=underground | parking=multi-storey [0x06 resolution 22]
+amenity=parking | parking=surface [0x05 resolution 22]
+amenity=prison [0x04 resolution 22]
+amenity=school [0x0a resolution 22]
+# amenity=supermarket is superceded by shop=supermarket or landuse=retail
+amenity=supermarket [0x08 resolution 22]
+amenity=university [0x0a resolution 21]
+
+healthcare=hospital | amenity=hospital | amenity=clinic [0x0b resolution 22]
+healthcare=* | amenity=dentist | amenity=doctors | amenity=nursing_home [0x0b resolution 23]
+
+leisure=common [0x1d resolution 21]
+leisure=garden [0x20 resolution 21]
+leisure=golf_course [0x18 resolution 21]
+leisure=ice_rink [0x19 resolution 22]
+leisure=nature_reserve [0x16 resolution 19]
+leisure=park [0x17 resolution 20]
+leisure=pitch [0x19 resolution 21]
+leisure=playground [0x17 resolution 22]
+leisure=recreation_ground [0x19 resolution 21]
+leisure=sports_center | leisure=sports_centre [0x19 resolution 20]
+leisure=stadium [0x19 resolution 20]
+leisure=track & area=yes [0x19 resolution 21]
+leisure=water_park [0x09 resolution 21]
+
+place=village [0x03 resolution 19]
+place=suburb [0x02 resolution 19]
+
+shop=* {add name='${shop|subst:"_=> "}'} [0x08 resolution 22]
+
+# squares and plazas
+place=square [0x25 resolution 22]
+highway=pedestrian & (area=yes | mkgmap:mp_created=true) [0x25 resolution 22]
+# following rule also renders a closed way without area attribute as a plaza
+highway=pedestrian & area!=no [0x25 resolution 22]
+
+# footways areas are similar, but should be explicity marked as such
+highway=footway & area=yes [0x25 resolution 24]
+
+highway=services [0x12 resolution 22]  # service station complex; show as retail
+highway=rest_area & area!=no [0x05 resolution 22]  # show as parking lot
+
+historic=* & historic!=no & historic!=yes & boundary!=* {add name='${historic|subst:"_=> "}'} [0x22 resolution 21]
+
+landuse=basin [0x3f resolution 20]
+landuse=reservoir | (natural=water & water=reservoir) [0x3f resolution 20]
+
+dock=drydock [0x4c resolution 22]  # might also have natural=water
+
+natural=bay [0x3d resolution 18]
+natural=glacier [0x4d resolution 18]
+natural=marsh [0x51 resolution 20]
+natural=tundra [0x52 resolution 18]
+natural=mud [0x51 resolution 20]
+natural=beach | natural=sand [0x53 resolution 20]
+natural=wetland [0x51 resolution 20]
+natural=water & water=canal [0x48 resolution 22]
+natural=water & water=lock [0x4c resolution 22 default_name 'Lock']
+natural=water & area_size() < 100000 [0x41 resolution 22]  # Small Lake
+natural=water [0x3c resolution 18]
+natural=waterfall | waterway=waterfall [0x47 resolution 21]
+natural=sea {add mkgmap:skipSizeFilter=true; set mkgmap:drawLevel=2} [0x32 resolution 10]
+
+waterway=riverbank [0x46 resolution 20]
+
+# mop up any remaining water areas
+waterway=* & waterway!=no & area!=no {add name='${waterway|subst:"_=> "}'} [0x3b resolution 22]
+
+landuse=allotments [0x4e resolution 21]
+landuse=cemetery | landuse=cemetary | amenity=grave_yard [0x1a resolution 21]
+landuse=commercial [0x0f resolution 19]
+landuse=construction [0x0c resolution 21]
+landuse=farm [0x26 resolution 22]
+landuse=farmland [0x1c resolution 20]
+landuse=farmyard [0x26 resolution 22]
+landuse=forest | landuse=wood [0x50 resolution 20]
+landuse=greenfield [0x1c resolution 20]
+landuse=meadow | landuse=grass [0x1c resolution 19]
+landuse=military [0x04 resolution 19]
+landuse=quarry [0x0c resolution 19]
+landuse=recreation_ground [0x19 resolution 19]
+# dedicate resolution 24 for building=* instead of related landuse=*
+landuse=industrial [0x0c resolution 19-23]
+landuse=residential [0x10 resolution 19-23]
+landuse=retail [0x12 resolution 20-23]
+landuse=village_green [0x15 resolution 20]
+landuse=vineyard [0x4e resolution 20]
+landuse=orchard [0x4e resolution 20]
+
+military=airfield [0x04 resolution 20]
+military=barracks [0x04 resolution 23]
+military=danger_area [0x11 resolution 20]
+military=range [0x04 resolution 20]
+
+natural=scrub [0x4f resolution 20]
+natural=wood [0x50 resolution 20]
+
+# building tag should be last
+amenity=* & area!=no & amenity!=grave_yard {add name='${amenity|subst:"_=> "}'} [0x23 resolution 24]
+building=* & building!=no [0x13 resolution 24]
+tourism=* & area!=no & waterway!=* {add name='${tourism|subst:"_=> "}'} [0x21 resolution 24]
+
+# man_made can be used on areas or lines
+man_made=* & area!=no {add name='${man_made|subst:"_=> "}'} [0x24 resolution 24]
+
+# render small named islands
+place=island & name=* & area_size() < 1000000 [0x53 resolution 19]
+place=islet & name=* [0x53 resolution 20]
+
+<finalize>
+# The finalizer section is executed for each element when a rule with an element type matches
+
+# we need address info from buildings for the address search
+include 'inc/address';
+
+name=* {name '${name}'}

@@ -1,0 +1,29 @@
+# This file contains country specific access restrictions
+# If your country is missing please post your country specific access rules
+# to the mkgmap developers list.
+
+# Belgium (BEL)
+
+highway=trunk     & mkgmap:country=BEL {add bicycle=no; add foot=no}
+highway=cycleway  & mkgmap:country=BEL {add foot=yes}
+highway=bridleway & mkgmap:country=BEL {add foot=yes}
+
+# The Netherlands (NLD)
+
+highway=trunk     & mkgmap:country=NLD {add bicycle=no; add foot=no}
+highway=cycleway  & mkgmap:country=NLD {add foot=yes}
+highway=bridleway & mkgmap:country=NLD {add foot=yes}
+
+# Spain (ESP)
+
+highway=trunk     & mkgmap:country=ESP {add bicycle=yes; add foot=yes}
+highway=bridleway & mkgmap:country=ESP {add bicycle=yes; add foot=yes}
+
+# United Kingdom (GBR)
+
+highway=cycleway  & mkgmap:country=GBR {add foot=yes}
+highway=bridleway & mkgmap:country=GBR {
+    add bicycle=yes;
+    add foot=yes;
+    add motor_vehicle=private
+    }

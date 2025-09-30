@@ -1,0 +1,87 @@
+
+Making maps for Garmin GPS units
+================================
+
+The goal of the project is to take the map data from
+OpenStreetMap <http://www.openstreetmap.org>
+and to generate a map in the Garmin file format so
+that it can be loaded onto Garmin GPS units.
+
+The original motivation was to help plan mapping sessions,
+but now the maps are becoming useful in their own right.
+
+Using
+=====
+
+This program requires Java 1.8 or above to run.
+
+Producing a map is simple.  Save OpenStreetMap data from JOSM 
+or by any other method to a file and copy it to the mkgmap
+directory.  In the following examples this file is called data.osm.
+
+Run the command:
+
+	java -jar mkgmap.jar data.osm
+
+This will produce a file called 63240001.img.
+
+You can copy the map to your Garmin GPS unit in any way you know how.
+It is best to use a SD card, since then if anything goes wrong you
+can remove it from the unit and all should be well again.
+
+Copy it to the file "Garmin/gmapsupp.img" on the card.
+On many modern Garmin devices, you can use a different
+name so that you can have more than one set of maps.
+
+*NOTE* this will overwrite any other map you have on
+there, make sure that you are not overwriting a valuable map.
+
+Another way would be to use a USB memory card writer and
+for a large map this is quicker as many GPS's have a slow USB
+connection.
+
+There are also various programs that can send a map to the
+device.
+
+You should (depending on the particular Garmin model) see a OSM
+copyright message on starting up, and the map name 'OSM Street map'
+should appear in the map setup section.
+
+For more help see: http://www.mkgmap.org.uk/doc/index.html
+
+
+Invoking mkgmap
+--------------
+
+Most of the default names mentioned in the previous section can be altered
+by suitable options.  Run
+
+ java -jar mkgmap.jar --help=options
+
+to obtain an up to date and complete listing of options.
+
+Also consider examples/sample.cfg as a starting point for your options package 
+
+Processing more than one file at a time
+---------------------------------------
+
+The Garmin map format was designed so that a map is made of a number
+of tiles, and if your map has more data than can fit into a single
+tile, you will have to split the map.
+
+See: http://www.mkgmap.org.uk/doc/splitter.html for a program that
+can do this.
+
+You can compile all of the map tiles that are created by splitter
+all at once, by simply listing them all on the command line.
+
+Acknowledgements
+================
+
+This project is almost entirely based on the file format specification
+document written by John Mechalas at the SourceForge project at
+http://sourceforge.net/projects/garmin-img.  The 'imgdecode' program
+from the same source was also very important in checking that I was
+on the right lines to producing a good file.  Thanks.
+
+Steve
