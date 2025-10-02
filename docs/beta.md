@@ -15,8 +15,8 @@
 
 * ![Apple](./images/macOS.png =36x) Apple, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/macOS.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![POI](./images/Android.png =36x) 山林日誌 POIv3](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * [![POI](./images/Android.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
+  * [![POI](./images/macOS.png =36x) 山林日誌 POIv3](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+  * [![POI](./images/macOS.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
   * [![Style](./images/macOS.png =36x) Cartograph/山林日誌 Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/macOS.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
   * [![DEM](./images/macOS.png =36x) DEM mix, v2024](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
