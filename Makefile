@@ -145,7 +145,7 @@ MAPSFORGE_BBOX := 20.62439,118.0000,26.70665,123.0348
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
-TARGETS := mapsforge_zip poi_zip poi_v2_zip gts_all carto_all locus_map
+TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
 
 else ifeq ($(SUITE),taiwan_lite)
 REGION := Taiwan
