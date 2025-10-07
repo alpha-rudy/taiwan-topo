@@ -514,16 +514,6 @@ natural = cliff & name = * {name "${name} (Cliff)"} [0x6607 resolution 23]
 (mountain_pass = yes) & ele = *            {name "N.N. (${ele})"}    [0x6617 resolution 23]
 (mountain_pass = yes)                      {name "N.N."}             [0x6617 resolution 23]
 
-# Joch, Sattel. [point] (s.a. natural = peak)
-# col -    A high, narrow, sharp-edged pass or saddle through a divide or between two adjacent peaks in a mountain
-#          range; especially a deep pass formed by the headward erosion and intersection of two cirques.
-# saddle - A low point on a ridge or interfluve, generally a divide (pass, col) between the heads of streams
-#          flowing in opposite directions.
-(natural = col | natural = saddle) & name = * & ele = * {name "${name} (${ele})"} [0x661b resolution 23]
-(natural = col | natural = saddle) & name = *           {name "${name}"}          [0x661b resolution 23]
-(natural = col | natural = saddle) & ele = *            {name "N.N. (${ele})"}    [0x661b resolution 23]
-(natural = col | natural = saddle)                      {name "N.N."}             [0x661b resolution 23]
-
 # Alm, Matten: Bereich oberhalb der Baumgrenze. [point, closedway]
 natural = fell & name = * {name "${name} (Open Fell)"} [0x6600 resolution 24]
 

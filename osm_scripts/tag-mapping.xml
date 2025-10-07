@@ -911,7 +911,6 @@
 <osm-tag key='zl' value='2' zoom-appear='6' />
 <osm-tag key='summit:cross' value='yes' renderable='false' zoom-appear='10' />
 <osm-tag key='natural' value='volcano' zoom-appear='10' />
-<osm-tag key='natural' value='saddle' zoom-appear='10' />
 <osm-tag key='natural' value='geyser' zoom-appear='12' />
 <osm-tag key='natural' value='spring' zoom-appear='13' />
 <osm-tag key='natural' value='hot_spring' zoom-appear='13' />

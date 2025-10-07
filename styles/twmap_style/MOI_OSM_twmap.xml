@@ -4033,13 +4033,6 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="20" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
       </rule>
     </rule>
-    <rule e="any" k="natural" v="saddle">
-      <circle radius="0.8" scale-radius="true" fill="#CCCCCC" stroke="#666666" stroke-width="0.4"/>
-      <caption k="name" dy="-21" font-style="bold" font-size="20" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-      <rule e="any" k="*" v="*">
-        <caption k="ele" priority="-5" dy="21" font-style="bold" font-size="20" fill="#666666" stroke="#E5FFFFFF" stroke-width="2"/>
-      </rule>
-    </rule>
     <rule e="any" k="waterway|natural" v="rapids">
       <symbol id="s_rapids" priority="63" src="file:moiosm_twmap/s_rapids.svg" symbol-scaling="size" symbol-height="16" symbol-width="16"/>
       <caption k="name" symbol-id="s_rapids" position="above" font-style="bold" font-size="20" fill="#6C96E6" stroke="#E5FFFFFF" stroke-width="2"/>
