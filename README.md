@@ -18,7 +18,7 @@
         EXTRACT_FILE=japan-latest \
         TOP=35.0 BOTTOM=33.0 \
         LEFT=135.0 RIGHT=137.0 \
-        mapsforge_zip
+        mapsforge_zip poi_v2
 
     $ make SUITE=bbox_bc_dem REGION=kumano \
         DEM_NAME=AW3D LANG=ja CODE_PAGE=65001 \
