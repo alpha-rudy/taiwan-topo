@@ -674,6 +674,7 @@ endif
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
+POI_EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)-poi-$(REGION)
 CITY := $(CITIES_DIR)/TW.zip
 COMMON_TILES := $(COMMON_TILES_DIR)/.COMMON_TILES.done
 TILES := $(TILES_DIR)/.TILES.done
@@ -911,16 +912,27 @@ $(NSIS): $(MAP_PC)
 		rm "$(NAME_WORD)_InstallFiles.zip"
 	mv "$(MAP_PC_DIR)/Install_$(NAME_WORD).exe" $@
 
+.PHONY: poi_extract
+poi_extract: $(POI_EXTRACT).osm.pbf
+$(POI_EXTRACT).osm.pbf: $(EXTRACT)-sed.osm.pbf
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(EXTRACT)" ]
+	[ -n "$(MAPSFORGE_BBOX)" ]
+	mkdir -p $(EXTRACT_DIR)
+	-rm -rf $@
+	osmium extract -b $(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --strategy=smart \
+		$(EXTRACT)-sed.osm.pbf -o $@ --overwrite
+
 .PHONY: poi
 poi: $(POI)
-$(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
+$(POI): $(POI_EXTRACT).osm.pbf $(POI_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 		sh $(OSMOSIS_CMD) \
-			--rb file="$(EXTRACT)-sed.osm.pbf" \
+			--rb file="$(POI_EXTRACT).osm.pbf" \
 			--poi-writer \
 			all-tags=true \
 			geo-tags=true \
@@ -933,14 +945,14 @@ $(POI): $(EXTRACT)-sed.osm.pbf $(POI_MAPPING)
 
 .PHONY: poi_v2
 poi_v2: $(POI_V2)
-$(POI_V2): $(EXTRACT)-sed.osm.pbf $(POI_V2_MAPPING)
+$(POI_V2): $(POI_EXTRACT).osm.pbf $(POI_V2_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 		JAVA_HOME=$(JAVA8_HOME) PATH=$(JAVA8_HOME)/bin:$$PATH sh $(OSMOSIS_POI_V2_CMD) \
-			--rb file="$(EXTRACT)-sed.osm.pbf" \
+			--rb file="$(POI_EXTRACT).osm.pbf" \
 			--poi-writer \
 			all-tags=true \
 			geo-tags=true \
@@ -1030,11 +1042,11 @@ $(GMAPSUPP_ZIP): $(GMAPSUPP)
 	-rm -rf $@
 	cd $(BUILD_DIR) && $(ZIP_CMD) $@ $(shell basename $(GMAPSUPP))
 
-MAPSFORGE_NTL := zh,en
-ifeq ($(LANG),zh)
-NTL := name,name:zh,name:en
-else ifeq ($(LANG),en)
+MAPSFORGE_NTL := $(LANG),en
+ifeq ($(LANG),en)
 NTL := name:en,name:zh_pinyin
+else
+NTL := name,name:$(LANG),name:en
 endif
 
 .PHONY: map_hidem
@@ -1247,6 +1259,19 @@ $(ELEVATION_MIX):
 		EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
 
 .DELETE_ON_ERROR: $(EXTRACT).o5m
+# Determine EXTRACT_URL and download method based on the EXTRACT_FILE
+ifeq ($(EXTRACT_FILE),japan-latest)
+EXTRACT_URL := https://download.geofabrik.de/asia
+$(EXTRACT).o5m:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(EXTRACT_DIR)
+	cd $(EXTRACT_DIR) && \
+		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
+		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf.md5 $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
+		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
+		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT_FILE).o5m
+else
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -1257,6 +1282,7 @@ $(EXTRACT).o5m:
 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
 		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
+endif
 
 # .DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT).osm.pbf
 # EXTRACT_URL := https://download.geofabrik.de/asia
@@ -1280,11 +1306,19 @@ $(EXTRACT)_name.o5m: $(EXTRACT)_extra.o5m
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
-	python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT)_extra.o5m $(EXTRACT)_name.pbf
+	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT)_extra.o5m $(EXTRACT)_name.pbf
+ifeq ($(LANG),zh)
 	$(OSMCONVERT_CMD) \
 		$(EXTRACT)_name.pbf \
 		--out-o5m \
 		-o=$(EXTRACT)_name.o5m
+else
+	$(OSMCONVERT_CMD) \
+		$(EXTRACT)_name.pbf \
+		--modify-tags="natural=peak man_made=summit_board" \
+		--out-o5m \
+		-o=$(EXTRACT)_name.o5m
+endif
 	-rm -rf $(EXTRACT)_name.pbf
 
 .PHONY: sed
