@@ -6,10 +6,38 @@
     
     $ make SUITE=taiwan mapsforge   ### make a mapsforge map
     
-    $ make SUITE=bbox REGION=陽明山 \  ### make a small mapsforge map 
+    $ make SUITE=bbox REGION=陽明山 \
         TOP=25.24917 BOTTOM=25.11332 \
         LEFT=121.48012 RIGHT=121.63218 \ 
         mapsforge
+
+    $ make SUITE=bbox REGION=kumano_kodo \
+        DEM_NAME=AW3D30 LANG=ja CODE_PAGE=65001 \
+        ELEVATION_FILE=ele_kumano_kodo_10_100_500.pbf \
+        ELEVATION_MIX_FILE=ele_kumano_kodo_10_100_500_mix.pbf \
+        EXTRACT_FILE=japan-latest \
+        TOP=35.0 BOTTOM=33.0 \
+        LEFT=135.0 RIGHT=137.0 \
+        mapsforge_zip
+
+    $ make SUITE=bbox_bc_dem REGION=kumano \
+        DEM_NAME=AW3D LANG=ja CODE_PAGE=65001 \
+        ELEVATION_FILE=ele_kumano_kodo_10_100_500.pbf \
+        EXTRACT_FILE=japan-latest \
+        GMAPDEM=/home/rudychung/Works/taiwan-topo/hgt/kumano_hgtmix.zip \
+        TOP=35.0 BOTTOM=33.0 \
+        LEFT=135.0 RIGHT=137.0 \
+        gmap nsis
+
+    $ make SUITE=bbox_odc_dem REGION=kumano \
+        DEM_NAME=AW3D LANG=ja CODE_PAGE=65001 \
+        ELEVATION_FILE=ele_kumano_kodo_10_100_500.pbf \
+        EXTRACT_FILE=japan-latest \
+        GMAPDEM=/home/rudychung/Works/taiwan-topo/hgt/kumano_hgtmix.zip \
+        TOP=35.0 BOTTOM=33.0 \
+        LEFT=135.0 RIGHT=137.0 \
+        gmapsupp_zip
+
 
 ## SUITE list
 
