@@ -51,7 +51,6 @@ ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := YushanNationalPark.poly
-MAPSFORGE_BBOX := 23.226,120.822,23.578,121.249
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge
 
@@ -141,7 +140,6 @@ ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MAPSFORGE_BBOX := 20.62439,118.0000,26.70665,123.0348
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
@@ -156,7 +154,6 @@ ELEVATION_FILE = ele_taiwan_20_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_20_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MAPSFORGE_BBOX := 20.62439,118.0000,26.70665,123.0348
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 HGT := $(ROOT_DIR)/hgt/hgt90.zip
 GTS_STYLE = $(LITE_STYLE)
@@ -171,7 +168,6 @@ ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
-MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge
 
@@ -184,7 +180,6 @@ ELEVATION_FILE = ele_taiwan_20_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_20_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Beibeiji.poly
-MAPSFORGE_BBOX := 24.6731646,121.2826336,25.2997353,122.0064049
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Lite
 HGT := $(ROOT_DIR)/hgt/hgt90.zip
 GTS_STYLE = $(LITE_STYLE)
@@ -199,7 +194,6 @@ ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taipei.poly
-MAPSFORGE_BBOX := 24.96034,121.4570,25.21024,121.6659
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge_zip
 
@@ -518,7 +512,6 @@ ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MAPSFORGE_BBOX := 20.150,115.650,26.44212,122.31377
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge_zip
 
@@ -531,7 +524,6 @@ ELEVATION_FILE = ele_taiwan_20_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_20_100_500_marker-2025.o5m
 EXTRACT_FILE := taiwan-latest
 POLY_FILE := Taiwan.poly
-MAPSFORGE_BBOX := 20.62439,118.0000,26.70665,123.0348
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgt90.zip
 TARGETS := mapsforge_zip mapsforge_style gts_all
@@ -723,6 +715,17 @@ else
 MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
 JMC_CMD := jmc-0.8/linux/jmc_cli
 SED_CMD := sed
+endif
+
+# BOUNDING settings
+ifneq (,$(strip $(POLY_FILE)))
+OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMIUM_BOUNDING := --polygon "$(POLIES_DIR)/$(POLY_FILE)"
+OSMOSIS_BOUNDING := --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes clipIncompleteEntities=true
+else ifneq (,$(strip $(BOUNDING_BOX)))
+OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMIUM_BOUNDING := --bbox $(LEFT),$(BOTTOM),$(RIGHT),$(TOP)
+OSMOSIS_BOUNDING := --bounding-box left=$(LEFT) bottom=$(BOTTOM) right=$(RIGHT) top=$(TOP) completeWays=yes completeRelations=yes clipIncompleteEntities=true
 endif
 
 ZIP_CMD := 7z a -tzip -mx=6
@@ -917,10 +920,10 @@ poi_extract: $(POI_EXTRACT).osm.pbf
 $(POI_EXTRACT).osm.pbf: $(EXTRACT)-sed.osm.pbf
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
-	[ -n "$(MAPSFORGE_BBOX)" ]
+	[ -n "$(OSMIUM_BOUNDING)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
-	osmium extract -b $(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --strategy=smart \
+	osmium extract $(OSMIUM_BOUNDING) --strategy=smart \
 		$(EXTRACT)-sed.osm.pbf -o $@ --overwrite
 
 .PHONY: poi
@@ -928,20 +931,21 @@ poi: $(POI)
 $(POI): $(POI_EXTRACT).osm.pbf $(POI_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 		sh $(OSMOSIS_CMD) \
 			--rb file="$(POI_EXTRACT).osm.pbf" \
+			$(OSMOSIS_BOUNDING) \
 			--poi-writer \
-			all-tags=true \
-			geo-tags=true \
-			names=false \
-			bbox=$(MAPSFORGE_BBOX) \
-			ways=true \
-			tag-conf-file="$(POI_MAPPING)" \
-			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
-			file="$@"
+				all-tags=true \
+				geo-tags=true \
+				names=false \
+				ways=true \
+				tag-conf-file="$(POI_MAPPING)" \
+				comment="$(VERSION)  /  (c) Map data: OSM contributors" \
+				file="$@"
 
 .PHONY: poi_v2
 poi_v2: $(POI_V2)
@@ -954,14 +958,13 @@ $(POI_V2): $(POI_EXTRACT).osm.pbf $(POI_V2_MAPPING)
 		JAVA_HOME=$(JAVA8_HOME) PATH=$(JAVA8_HOME)/bin:$$PATH sh $(OSMOSIS_POI_V2_CMD) \
 			--rb file="$(POI_EXTRACT).osm.pbf" \
 			--poi-writer \
-			all-tags=true \
-			geo-tags=true \
-			names=false \
-			bbox=$(MAPSFORGE_BBOX) \
-			ways=true \
-			tag-conf-file="$(POI_V2_MAPPING)" \
-			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
-			file="$@"
+				all-tags=true \
+				geo-tags=true \
+				names=false \
+				ways=true \
+				tag-conf-file="$(POI_V2_MAPPING)" \
+				comment="$(VERSION)  /  (c) Map data: OSM contributors" \
+				file="$@"
 
 .PHONY: addr
 addr: $(ADDR)
@@ -974,14 +977,13 @@ $(ADDR): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
 		sh $(OSMOSIS_POI_V2_CMD) \
 			--rb file="$(EXTRACT)-sed.osm.pbf" \
 			--poi-writer \
-			all-tags=true \
-			geo-tags=true \
-			names=false \
-			bbox=$(MAPSFORGE_BBOX) \
-			ways=true \
-			tag-conf-file="$(ADDR_MAPPING)" \
-			comment="$(VERSION)  /  (c) Map data: OSM contributors" \
-			file="$@"
+				all-tags=true \
+				geo-tags=true \
+				names=false \
+				ways=true \
+				tag-conf-file="$(ADDR_MAPPING)" \
+				comment="$(VERSION)  /  (c) Map data: OSM contributors" \
+				file="$@"
 
 .PHONY: locus_poi
 locus_poi: $(LOCUS_POI)
@@ -1340,20 +1342,6 @@ $(META): meta/meta.osm
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && cat $(ROOT_DIR)/meta/meta.osm | $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $@
 
-# OSMCONVERT_BOUNDING
-ifneq (,$(strip $(POLY_FILE)))
-ifeq (Taiwan,$(REGION))
-OSMCONVERT_BOUNDING :=
-else
-OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
-endif
-else
-ifneq (,$(strip $(BOUNDING_BOX)))
-OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
-MAPSFORGE_BBOX := $(BOTTOM),$(LEFT),$(TOP),$(RIGHT)
-endif
-endif
-
 $(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
@@ -1621,12 +1609,12 @@ $(ADDR_ZIP): $(ADDR)
 GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm
 GPX_BASE = $(basename $(GPX_OSM))
 GPX_BASE_EXT = $(notdir $(GPX_OSM))
-TAIWAN_BBOX=21.55682,118.12141,26.44212,122.31377
 
 .PHONY: gpx
 gpx: $(GPX_BASE).map
 $(GPX_BASE).map: $(GPX_BASE_EXT)
 	[ -f $(GPX_BASE_EXT) ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
 	rm -f $(GPX_BASE)-sed.pbf $(GPX_BASE)-ren.pbf
 	python3.10 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
 	osmium renumber \
@@ -1636,11 +1624,11 @@ $(GPX_BASE).map: $(GPX_BASE_EXT)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	sh $(OSMOSIS_CMD) \
 		--read-pbf $(GPX_BASE)-ren.pbf \
+		$(OSMOSIS_BOUNDING) \
 		--buffer \
 		--mapfile-writer \
 			type=ram \
 			threads=$(MAPWITER_THREADS) \
-			bbox=$(TAIWAN_BBOX) \
 			preferred-languages="zh,en" \
 			tag-conf-file=osm_scripts/gpx-mapping.xml \
 			polygon-clipping=true way-clipping=true label-position=true \
@@ -1658,6 +1646,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	[ -f $(GPX_BASE_EXT) ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
 	mkdir -p $(BUILD_DIR)
 	rm -rf $(GPX_BASE)-sed.pbf $(WITH_GPX)-add.pbf
 	python3 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
@@ -1666,11 +1655,11 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		sh $(OSMOSIS_CMD) \
 			--read-pbf "$(WITH_GPX)-add.pbf" \
+			$(OSMOSIS_BOUNDING) \
 			--buffer \
 			--mapfile-writer \
 				type=ram \
 				threads=$(MAPWITER_THREADS) \
-				bbox=$(MAPSFORGE_BBOX) \
 				preferred-languages="$(MAPSFORGE_NTL)" \
 				tag-conf-file="$(TAG_MAPPING)" \
 				polygon-clipping=true way-clipping=true label-position=true \
@@ -1685,6 +1674,7 @@ GPX_MAPSFORGE ?= $(BUILD_DIR)/Happyman-wptgpx.map
 .PHONY: gpx-2
 gpx-2: $(GPX_MAPSFORGE)
 $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
+	[ -n "$(OSMOSIS_BOUNDING)" ]
 	rm -f $(BUILD_DIR)/track-sed.pbf $(BUILD_DIR)/waypoint-sed.pbf
 	python3 osm_scripts/gpx_handler.py $(BUILD_DIR)/track.pbf $(BUILD_DIR)/track-sed.pbf
 	python3 osm_scripts/gpx_handler.py $(BUILD_DIR)/waypoint.pbf $(BUILD_DIR)/waypoint-sed.pbf
@@ -1696,11 +1686,11 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 	sh $(OSMOSIS_CMD) \
 		--read-pbf $(@:.map=.pbf) \
+		$(OSMOSIS_BOUNDING) \
 		--buffer \
 		--mapfile-writer \
 			type=ram \
 			threads=$(MAPWITER_THREADS) \
-			bbox=$(TAIWAN_BBOX) \
 			preferred-languages="zh,en" \
 			tag-conf-file=osm_scripts/gpx-mapping.xml \
 			polygon-clipping=true way-clipping=true label-position=true \
@@ -1714,15 +1704,16 @@ mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
+	[ -n "$(OSMOSIS_BOUNDING)"]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		sh $(OSMOSIS_CMD) \
 			--read-pbf "$(MAPSFORGE_PBF)" \
+			$(OSMOSIS_BOUNDING) \
 			--buffer \
 			--mapfile-writer \
 				type=ram \
 				threads=$(MAPWITER_THREADS) \
-				bbox=$(MAPSFORGE_BBOX) bbox-enlargement=50 \
 				preferred-languages="$(MAPSFORGE_NTL)" \
 				tag-conf-file="$(TAG_MAPPING)" \
 				polylabel=false label-position=true \
