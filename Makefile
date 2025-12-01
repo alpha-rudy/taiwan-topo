@@ -1301,7 +1301,9 @@ endif
 $(EXTRACT)_extra.o5m: $(EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	cp $< $@
+ifeq ($(EXTRACT_FILE),taiwan-latest)
 	sh $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+endif
 
 $(EXTRACT)_name.o5m: $(EXTRACT)_extra.o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
