@@ -719,9 +719,9 @@ endif
 
 # BOUNDING settings
 ifneq (,$(strip $(POLY_FILE)))
-OSMCONVERT_BOUNDING := -B="$(POLIES_DIR)/$(POLY_FILE)" --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
-OSMIUM_BOUNDING := --polygon "$(POLIES_DIR)/$(POLY_FILE)"
-OSMOSIS_BOUNDING := --bounding-polygon file="$(POLIES_DIR)/$(POLY_FILE)" completeWays=yes completeRelations=yes clipIncompleteEntities=true
+OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMIUM_BOUNDING := --polygon $(POLIES_DIR)/$(POLY_FILE)
+OSMOSIS_BOUNDING := --bounding-polygon file=$(POLIES_DIR)/$(POLY_FILE) completeWays=yes completeRelations=yes clipIncompleteEntities=true
 else ifneq (,$(strip $(BOUNDING_BOX)))
 OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
 OSMIUM_BOUNDING := --bbox $(LEFT),$(BOTTOM),$(RIGHT),$(TOP)
@@ -1708,7 +1708,7 @@ mapsforge: $(MAPSFORGE)
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	[ -n "$(OSMOSIS_BOUNDING)"]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		sh $(OSMOSIS_CMD) \
