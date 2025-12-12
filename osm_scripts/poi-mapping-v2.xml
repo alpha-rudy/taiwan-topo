@@ -144,6 +144,9 @@
       <category title="04 通訊點">
         <mapping tag="information=mobile" />
       </category>
+      <category title="05 救援樁">
+        <mapping tag="highway=emergency_access_point" />
+      </category>
     </category>
     <category title="05 山屋/營地">
       <mapping tag="tourism=camp_site" />

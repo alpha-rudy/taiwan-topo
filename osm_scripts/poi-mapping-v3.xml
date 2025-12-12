@@ -568,9 +568,9 @@
         <!--<category title="Crossings">
             <mapping tag="highway=crossing" />
         </category>-->
-        <!--<category title="Emergency access points">
+        <category title="Emergency access points">
             <mapping tag="highway=emergency_access_point" />
-        </category>-->
+        </category>
         <!--<category title="Fords">
             <mapping tag="highway=ford" />
         </category>-->
