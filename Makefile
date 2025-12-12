@@ -731,7 +731,8 @@ endif
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
-POI_EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)-poi-$(REGION)
+REGION_EXTRACT := $(BUILD_DIR)/latest-$(REGION)
+POI_EXTRACT := $(REGION_EXTRACT)-poi
 CITY := $(CITIES_DIR)/TW.zip
 COMMON_TILES := $(COMMON_TILES_DIR)/.COMMON_TILES.done
 TILES := $(TILES_DIR)/.TILES.done
@@ -805,7 +806,7 @@ clean:
 	[ -n "$(EXTRACT_DIR)" ]
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(WORKS_DIR)
-	-find $(EXTRACT_DIR)/ -type f -not -name 'taiwan-latest.o5m*' | xargs rm -f
+	-find $(EXTRACT_DIR)/ -type f -not -name '*-latest.o5m*' -not -name '*-latest.osm*' | xargs rm -f
 
 .PHONY: distclean-elevations
 distclean-elevations:
@@ -982,22 +983,22 @@ $(NSIS): $(MAP_PC)
 
 .PHONY: poi_extract
 poi_extract: $(POI_EXTRACT).osm.pbf
-$(POI_EXTRACT).osm.pbf: $(EXTRACT)-sed.osm.pbf
+$(POI_EXTRACT).osm.pbf: $(REGION_EXTRACT)-sed.osm.pbf
 	date +'DS: %H:%M:%S $(shell basename $@)'
-	[ -n "$(EXTRACT)" ]
+	[ -n "$(REGION_EXTRACT)" ]
 	[ -n "$(OSMIUM_BOUNDING)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dirname $@)
 	-rm -rf $@
 	osmium extract $(OSMIUM_BOUNDING) --strategy=smart \
-		$(EXTRACT)-sed.osm.pbf -o $@ --overwrite
+		$< -o $@ --overwrite
 
 .PHONY: poi
 poi: $(POI)
 $(POI): $(POI_EXTRACT).osm.pbf $(POI_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
-	[ -n "$(EXTRACT)" ]
+	[ -n "$(POI_EXTRACT)" ]
 	[ -n "$(OSMOSIS_BOUNDING)" ]
-	mkdir -p $(BUILD_DIR)
+	mkdir -p $(dirname $@)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 		sh $(OSMOSIS_CMD) \
@@ -1033,14 +1034,14 @@ $(POI_V2): $(POI_EXTRACT).osm.pbf $(POI_V2_MAPPING)
 
 .PHONY: addr
 addr: $(ADDR)
-$(ADDR): $(EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
+$(ADDR): $(REGION_EXTRACT)-sed.osm.pbf osm_scripts/poi-addr-mapping.xml
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 		sh $(OSMOSIS_POI_V2_CMD) \
-			--rb file="$(EXTRACT)-sed.osm.pbf" \
+			--rb file="$<" \
 			--poi-writer \
 				all-tags=true \
 				geo-tags=true \
@@ -1363,44 +1364,51 @@ endif
 # 		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
 # 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT).o5m
 
-$(EXTRACT)_extra.o5m: $(EXTRACT).o5m
+$(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 	cp $< $@
 	sh $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
 else
-	ln -sf $< $@
+	$(OSMCONVERT_CMD) \
+		$< \
+		--modify-tags="natural=peak man_made=summit_board" \
+		--out-o5m \
+		-o=$@
 endif
 
-$(EXTRACT)_name.o5m: $(EXTRACT)_extra.o5m
+$(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
-	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_en.py $(EXTRACT)_extra.o5m $(EXTRACT)_name.pbf
-ifeq ($(LANG),zh)
 	$(OSMCONVERT_CMD) \
-		$(EXTRACT)_name.pbf \
-		--out-o5m \
-		-o=$(EXTRACT)_name.o5m
-else
+		--drop-version \
+		$(OSMCONVERT_BOUNDING) \
+		$< \
+		-o=$@
+
+$(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(EXTRACT_DIR)
+	-rm -rf $@
+	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_en.py $< $(REGION_EXTRACT)_name.pbf
 	$(OSMCONVERT_CMD) \
-		$(EXTRACT)_name.pbf \
-		--modify-tags="natural=peak man_made=summit_board" \
+		$(REGION_EXTRACT)_name.pbf \
 		--out-o5m \
-		-o=$(EXTRACT)_name.o5m
-endif
-	-rm -rf $(EXTRACT)_name.pbf
+		-o=$(REGION_EXTRACT)_name.o5m
+	-rm -rf $(REGION_EXTRACT)_name.pbf
 
 .PHONY: sed
-sed: $(EXTRACT)-sed.osm.pbf
-$(EXTRACT)-sed.osm.pbf: $(EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
+sed: $(REGION_EXTRACT)-sed.osm.pbf
+$(REGION_EXTRACT)-sed.osm.pbf: $(REGION_EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(EXTRACT_DIR)
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && \
-	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $(EXTRACT_FILE)_name.o5m $@
+	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $< $@
 
 .PHONY: meta
 meta: $(META)
@@ -1411,7 +1419,7 @@ $(META): meta/meta.osm
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && cat $(ROOT_DIR)/meta/meta.osm | $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $@
 
-$(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
+$(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(ELEVATION)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
@@ -1425,7 +1433,7 @@ $(GMAP_INPUT): $(EXTRACT)_name.o5m $(ELEVATION)
 		-o=$@
 	-rm -f $@.o5m
 
-$(MAPSFORGE_PBF): $(EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_OSM)
+$(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
