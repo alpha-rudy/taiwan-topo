@@ -38,6 +38,32 @@
         LEFT=135.0 RIGHT=137.0 \
         gmapsupp_zip
 
+## Docker Usage
+
+Build with your user ID to avoid permission issues:
+
+```bash
+docker build \
+  --build-arg USER_ID=$(id -u) \
+  --build-arg GROUP_ID=$(id -g) \
+  -t taiwan-contour:latest .
+```
+
+Running Make Commands Directly:
+    
+```bash
+docker run --rm \
+  -v $(pwd):/workspace \
+  -u builder \
+  taiwan-contour:latest \
+  make SUITE=taiwan mapsforge
+```
+
+Using a Wrapper Script:
+
+```bash
+./tools/docker-make SUITE=taiwan mapsforge
+```
 
 ## SUITE list
 
