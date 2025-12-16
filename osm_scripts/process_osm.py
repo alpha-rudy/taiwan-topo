@@ -222,10 +222,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['zl'] = '1'
 
         if name:
-            if not tags.get('name'):
-                tags['name'] = name
-            if not tags.get('name:en'):
-                tags['name:en'] = name
+            tags['name'] = name
+            tags['name:en'] = name
 
     def handle_peak(self, tags):
         tags.pop('name', None)
