@@ -33,8 +33,7 @@ SEA_DIR := $(ROOT_DIR)/sea-20220816001514
 BOUNDS_DIR := $(ROOT_DIR)/bounds-20220826
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
-WORKS_DIR := $(ROOT_DIR)/work
-BUILD_DIR := $(ROOT_DIR)/install
+BUILD_DIR := $(ROOT_DIR)/build
 DOWNLOAD_DIR := $(ROOT_DIR)/download
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
@@ -144,6 +143,42 @@ LEFT := 118.0000
 RIGHT := 123.0348
 BOTTOM := 20.62439
 TOP := 26.70665
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+HGT := $(ROOT_DIR)/hgt/hgtmix.zip
+GTS_STYLE = $(HS_STYLE)
+TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
+
+else ifeq ($(SUITE),kumano)
+REGION := Kumano
+DEM_NAME := AW3D30
+LANG := ja
+CODE_PAGE := 65001
+ELEVATION_FILE = ele_kumano_10_100_500.pbf
+ELEVATION_MIX_FILE = ele_kumano_10_100_500_mix.pbf
+EXTRACT_FILE := japan-latest
+BOUNDING_BOX := true
+LEFT := 135.0
+RIGHT := 137.0
+BOTTOM := 33.0
+TOP := 35.0
+NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+HGT := $(ROOT_DIR)/hgt/kumano_hgtmix.zip
+GTS_STYLE = $(HS_STYLE)
+TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
+
+else ifeq ($(SUITE),sheipa)
+REGION := Sheipa
+DEM_NAME := MOI
+LANG := zh
+CODE_PAGE := 950
+ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
+ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+LEFT := 120.993
+RIGHT := 121.353
+BOTTOM := 24.241
+TOP := 24.535
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
@@ -540,6 +575,46 @@ GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1017)
 TARGETS := gmapsupp_zip gmap nsis
 
+else ifeq ($(SUITE),kumano_bc_dem)
+REGION := Kumano
+DEM_NAME := AW3D30
+LANG := ja
+CODE_PAGE := 65001
+ELEVATION_FILE = ele_kumano_10_100_500.pbf
+EXTRACT_FILE := japan-latest
+BOUNDING_BOX := true
+LEFT := 135.0
+RIGHT := 137.0
+BOTTOM := 33.0
+TOP := 35.0
+TYP := basecamp
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := camp3D
+GMAPDEM := $(ROOT_DIR)/hgt/kumano_hgtmix.zip
+MAPID := $(shell printf %d 0x1018)
+TARGETS := gmapsupp_zip gmap nsis
+
+else ifeq ($(SUITE),sheipa_bc_dem)
+REGION := Sheipa
+DEM_NAME := MOI
+LANG := zh
+CODE_PAGE := 65001
+ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
+EXTRACT_FILE := taiwan-latest
+BOUNDING_BOX := true
+LEFT := 120.993
+RIGHT := 121.353
+BOTTOM := 24.241
+TOP := 24.535
+TYP := basecamp
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := camp3D
+GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
+MAPID := $(shell printf %d 0x1019)
+TARGETS := gmapsupp_zip gmap nsis
+
 else ifeq ($(SUITE),taiwan_bc_dem_en)
 REGION := Taiwan
 DEM_NAME := MOI
@@ -703,9 +778,9 @@ NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) TOPO v$(VERSION)
 NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(LANG)
 endif
 
-COMMON_TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles
-TILES_DIR := $(WORKS_DIR)/$(REGION)/tiles-$(MAPID)
-MAP_DIR := $(WORKS_DIR)/$(REGION)/$(NAME_WORD)
+COMMON_TILES_DIR := $(BUILD_DIR)/$(REGION)/tiles
+TILES_DIR := $(BUILD_DIR)/$(REGION)/tiles-$(MAPID)
+MAP_DIR := $(BUILD_DIR)/$(REGION)/$(NAME_WORD)
 MAP_HIDEM_DIR := $(MAP_DIR)_hidem
 MAP_LODEM_DIR := $(MAP_DIR)_lodem
 MAP_NODEM_HR_DIR := $(MAP_DIR)_nodemhr
@@ -795,6 +870,7 @@ OSMOSIS_BOUNDING := --bounding-box left=$(LEFT) bottom=$(BOTTOM) right=$(RIGHT) 
 endif
 
 ZIP_CMD := 7z a -tzip -mx=6
+UNZIP_CMD := unzip -o
 MAKE_CMD := make
 
 all: $(TARGETS)
@@ -802,37 +878,28 @@ all: $(TARGETS)
 clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(WORKS_DIR)" ]
 	[ -n "$(EXTRACT_DIR)" ]
 	-rm -rf $(BUILD_DIR)
-	-rm -rf $(WORKS_DIR)
-	-find $(EXTRACT_DIR)/ -type f -not -name '*-latest.o5m*' -not -name '*-latest.osm*' | xargs rm -f
 
 .PHONY: distclean-elevations
 distclean-elevations:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
-	-rm -rf $(WORKS_DIR)
 	-rm -rf $(ELEVATIONS_DIR)
 
 .PHONY: distclean-extracts
 distclean-extracts:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
-	-rm -rf $(WORKS_DIR)
 	-rm -rf $(EXTRACT_DIR)
 
 .PHONY: distclean
 distclean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(WORKS_DIR)" ]
 	-rm -rf $(BUILD_DIR)
-	-rm -rf $(WORKS_DIR)
 	-rm -rf $(DOWNLOAD_DIR)
 
 .PHONY: install
@@ -916,9 +983,9 @@ $(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
 	mkdir -p $(GTS_ALL)
 	cd $(GTS_ALL) && \
-		unzip $(MAPSFORGE_ZIP) -d map && \
-		unzip $(GTS_STYLE) -d mapthemes && \
-		unzip $(HGT) -d hgt && \
+		$(UNZIP_CMD) $(MAPSFORGE_ZIP) -d map && \
+		$(UNZIP_CMD) $(GTS_STYLE) -d mapthemes && \
+		$(UNZIP_CMD) $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
 	rm -rf $(GTS_ALL)
 
@@ -928,7 +995,7 @@ $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
 	mv $(POI) $(POI).bak && cp $(POI_V2) $(POI)
-	unzip $(HGT) -d $(BUILD_DIR)
+	$(UNZIP_CMD) $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
 	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg $(shell basename $(HS_STYLE))
@@ -987,7 +1054,7 @@ $(POI_EXTRACT).osm.pbf: $(REGION_EXTRACT)-sed.osm.pbf
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION_EXTRACT)" ]
 	[ -n "$(OSMIUM_BOUNDING)" ]
-	mkdir -p $(dirname $@)
+	mkdir -p $(dir $@)
 	-rm -rf $@
 	osmium extract $(OSMIUM_BOUNDING) --strategy=smart \
 		$< -o $@ --overwrite
@@ -998,7 +1065,7 @@ $(POI): $(POI_EXTRACT).osm.pbf $(POI_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(POI_EXTRACT)" ]
 	[ -n "$(OSMOSIS_BOUNDING)" ]
-	mkdir -p $(dirname $@)
+	mkdir -p $(dir $@)
 	-rm -rf $@
 	export JAVACMD_OPTIONS="-server" && \
 		sh $(OSMOSIS_CMD) \
@@ -1333,7 +1400,7 @@ EXTRACT_URL := https://download.geofabrik.de/asia
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dir $@)
 	cd $(EXTRACT_DIR) && \
 		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
 		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf.md5 $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
@@ -1344,7 +1411,7 @@ EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dir $@)
 	cd $(EXTRACT_DIR) && \
 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
@@ -1357,7 +1424,7 @@ endif
 # $(EXTRACT).o5m:
 # 	date +'DS: %H:%M:%S $(shell basename $@)'
 # 	[ -n "$(REGION)" ]
-# 	mkdir -p $(EXTRACT_DIR)
+# 	mkdir -p $(dir $@)
 # 	cd $(EXTRACT_DIR) && \
 # 	    wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
 # 		wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
@@ -1368,7 +1435,7 @@ $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 	cp $< $@
-	sh $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
 else
 	$(OSMCONVERT_CMD) \
 		$< \
@@ -1380,7 +1447,7 @@ endif
 $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dir $@)
 	-rm -rf $@
 	$(OSMCONVERT_CMD) \
 		--drop-version \
@@ -1391,7 +1458,7 @@ $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dir $@)
 	-rm -rf $@
 	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_en.py $< $(REGION_EXTRACT)_name.pbf
 	$(OSMCONVERT_CMD) \
@@ -1405,7 +1472,7 @@ sed: $(REGION_EXTRACT)-sed.osm.pbf
 $(REGION_EXTRACT)-sed.osm.pbf: $(REGION_EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dir $@)
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && \
 	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $< $@
@@ -1415,7 +1482,7 @@ meta: $(META)
 $(META): meta/meta.osm
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(VERSION)" ]
-	mkdir -p $(EXTRACT_DIR)
+	mkdir -p $(dir $@)
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && cat $(ROOT_DIR)/meta/meta.osm | $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $@
 
@@ -1425,7 +1492,7 @@ $(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(ELEVATION)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp $< $@.o5m
-	sh $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
+	bash $(TOOLS_DIR)/osmium-append.sh $@.o5m $(ELEVATION)
 	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
@@ -1439,8 +1506,8 @@ $(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_O
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cp $< $@.pbf
-	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(META)
-	sh $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
+	bash $(TOOLS_DIR)/osmium-append.sh $@.pbf $(META)
+	bash $(TOOLS_DIR)/osmium-append.sh $@.pbf $(ELEVATION_MIX)
 	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
@@ -1742,7 +1809,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 				polygon-clipping=true way-clipping=true label-position=true \
 				zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 				map-start-zoom=12 \
-				comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI; GPX: $(notdir $(WITH_GPX))" \
+				comment="$(VERSION)  /  (c) Map: Rudy; GPX: $(notdir $(WITH_GPX))" \
 				file="$@" > /dev/null 2> /dev/null
 
 
@@ -1798,7 +1865,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 				simplification-factor=2.5 simplification-max-zoom=12 \
 				zoom-interval-conf=6,0,6,10,7,11,14,12,21 \
 				map-start-zoom=12 \
-				comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: Taiwan MOI" \
+				comment="$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: $(DEM_NAME)" \
 				file="$@"
 	
 $(COMMON_TILES): $(GMAP_INPUT)
