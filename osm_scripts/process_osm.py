@@ -347,20 +347,26 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
 
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python %s <infile> <outfile>" % sys.argv[0])
+    if len(sys.argv) < 3:
+        print("Usage: python %s <infile> <outfile> [prefix]" % sys.argv[0])
         sys.exit(-1)
     infile = sys.argv[1]
     outfile = sys.argv[2]
+    prefix = sys.argv[3] if len(sys.argv) > 3 else ""
+
+    # Use prefixed filenames to avoid conflicts between regions
+    hknetworks_file = f"{prefix}_hknetworks.osm" if prefix else "hknetworks.osm"
+    national_park_file = f"{prefix}_national_park.osm" if prefix else "national_park.osm"
+    strict_protected_file = f"{prefix}_strict_protected.osm" if prefix else "strict_protected.osm"
 
     nknetwork_loader = HknetworkLoader()
-    nknetwork_loader.apply_file('hknetworks.osm')
+    nknetwork_loader.apply_file(hknetworks_file)
 
     national_park_loader = NationalParkLoader()
-    national_park_loader.apply_file('national_park.osm')
+    national_park_loader.apply_file(national_park_file)
 
     strict_protected_loader = StrictProtectedLoader()
-    strict_protected_loader.apply_file('strict_protected.osm')
+    strict_protected_loader.apply_file(strict_protected_file)
 
     writer = osmium.SimpleWriter(outfile)
     mapsforge_handler = MapsforgeHandler(writer)

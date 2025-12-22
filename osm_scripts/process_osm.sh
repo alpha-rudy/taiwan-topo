@@ -10,13 +10,16 @@ fi
 
 rm -f "$outfile"
 
+# Generate unique prefix based on input filename to avoid conflicts between regions
+prefix=$(basename "$infile" .o5m)
+
 osmfilter \
     --drop-nodes \
     --drop-ways \
     --drop-version \
     --ignore-dependencies \
     --keep-relations='type=route and route=hiking and name= and network=' \
-    "$infile" -o=hknetworks.osm
+    "$infile" -o="${prefix}_hknetworks.osm"
 
 osmfilter \
     --drop-nodes \
@@ -24,7 +27,7 @@ osmfilter \
     --drop-version \
     --ignore-dependencies \
     --keep-relations='type=boundary and boundary=national_park and name=' \
-    "$infile" -o=national_park.osm
+    "$infile" -o="${prefix}_national_park.osm"
 
 osmfilter \
     --drop-nodes \
@@ -32,15 +35,20 @@ osmfilter \
     --drop-version \
     --ignore-dependencies \
     --keep-relations='type=boundary and boundary=protected_area and protect_class=1 and name=' \
-    "$infile" -o=strict_protected.osm
+    "$infile" -o="${prefix}_strict_protected.osm"
 
-temp_pbf=temp.osm.pbf
+filtered_o5m="${prefix}_filtered.o5m"
+filtered_pbf="${prefix}_filtered.osm.pbf"
 osmfilter \
     --drop-version \
     --ignore-dependencies \
     --drop-tags='name:zh= ref:zh=' \
     --drop-tags='disused:*=' \
-    "$infile" --out-o5m | ${OSMCONVERT_CMD} - -o="$temp_pbf"
+    "$infile" -o="$filtered_o5m"
+${OSMCONVERT_CMD} "$filtered_o5m" -o="$filtered_pbf"
 
 script_dir="$(dirname $0)"
-python3 "$script_dir/process_osm.py" "$temp_pbf" "$outfile"
+python3 "$script_dir/process_osm.py" "$filtered_pbf" "$outfile" "$prefix"
+
+# Cleanup intermediate files
+rm -f "${prefix}_hknetworks.osm" "${prefix}_national_park.osm" "${prefix}_strict_protected.osm" "$filtered_o5m" "$filtered_pbf"
