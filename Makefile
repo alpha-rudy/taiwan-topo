@@ -144,6 +144,7 @@ RIGHT := 123.0348
 BOTTOM := 20.62439
 TOP := 26.70665
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+NAME_CARTO := carto
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
@@ -162,6 +163,7 @@ RIGHT := 137.0
 BOTTOM := 33.0
 TOP := 35.0
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+NAME_CARTO := $(REGION)_carto
 HGT := $(ROOT_DIR)/hgt/kumano_hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
@@ -180,6 +182,7 @@ RIGHT := 121.353
 BOTTOM := 24.241
 TOP := 24.535
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+NAME_CARTO := $(REGION)_carto
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
@@ -635,6 +638,26 @@ GMAPDEM := $(ROOT_DIR)/hgt/hgtmix.zip
 MAPID := $(shell printf %d 0x1007)
 TARGETS := gmap nsis
 
+else ifeq ($(SUITE),kumano_bc_dem_en)
+REGION := Kumano
+DEM_NAME := AW3D30
+LANG := en
+CODE_PAGE := 1252
+ELEVATION_FILE = ele_kumano_10_100_500.pbf
+EXTRACT_FILE := japan-latest
+BOUNDING_BOX := true
+LEFT := 135.0
+RIGHT := 137.0
+BOTTOM := 33.0
+TOP := 35.0
+TYP := basecamp
+LR_STYLE := swisspopo
+HR_STYLE := basecamp
+STYLE_NAME := camp3D
+GMAPDEM := $(ROOT_DIR)/hgt/kumano_hgtmix.zip
+MAPID := $(shell printf %d 0x1008)
+TARGETS := gmapsupp_zip gmap nsis
+
 else ifeq ($(SUITE),taiwan_exp)
 REGION := Taiwan
 DEM_NAME := MOI
@@ -952,6 +975,13 @@ suites:
 	$(MAKE_CMD) SUITE=taiwan_bc_dem_en all
 	$(MAKE_CMD) SUITE=taiwan_bw_en all
 
+.PHONY: kumano_suites
+kumano_suites:
+	$(MAKE_CMD) styles
+	$(MAKE_CMD) SUITE=kumano all
+	$(MAKE_CMD) SUITE=kumano_bc_dem all
+	$(MAKE_CMD) SUITE=kumano_bc_dem_en all
+
 .PHONY: exps
 exps:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -997,11 +1027,11 @@ $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	mv $(POI) $(POI).bak && cp $(POI_V2) $(POI)
 	$(UNZIP_CMD) $(HGT) -d $(BUILD_DIR)
 	cp auto-install/carto/*.cpkg $(BUILD_DIR)/
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_style.cpkg $(shell basename $(HS_STYLE))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./carto_dem.cpkg N2*.hgt
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
-	cd $(BUILD_DIR) && $(ZIP_CMD) carto_all.cpkg N2*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_style.cpkg $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_dem.cpkg N*.hgt
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
 	mv $(POI).bak $(POI)
 
 .PHONY: locus_map
