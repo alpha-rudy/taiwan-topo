@@ -1471,14 +1471,12 @@ $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 	cp $< $@
 	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
-	rm $<
 else
 	$(OSMCONVERT_CMD) \
 		$< \
 		--modify-tags="natural=peak man_made=summit_board" \
 		--out-o5m \
 		-o=$@
-	rm $<
 endif
 
 $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
@@ -1503,7 +1501,6 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 		--out-o5m \
 		-o=$(REGION_EXTRACT)_name.o5m
 	-rm -f $(REGION_EXTRACT)_name.pbf
-	-rm -f $<
 
 .PHONY: sed
 sed: $(REGION_EXTRACT)-sed.osm.pbf
