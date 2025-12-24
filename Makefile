@@ -34,6 +34,7 @@ BOUNDS_DIR := $(ROOT_DIR)/bounds-20220826
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 BUILD_DIR := $(ROOT_DIR)/build
+INSTALL_DIR := $(ROOT_DIR)/install
 DOWNLOAD_DIR := $(ROOT_DIR)/download
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
@@ -902,12 +903,14 @@ clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
 	[ -n "$(EXTRACT_DIR)" ]
+	-rm -rf $(INSTALL_DIR)/
 	-rm -rf $(BUILD_DIR)
 
 .PHONY: distclean-elevations
 distclean-elevations:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
+	-rm -rf $(INSTALL_DIR)/
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(ELEVATIONS_DIR)
 
@@ -915,6 +918,7 @@ distclean-elevations:
 distclean-extracts:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
+	-rm -rf $(INSTALL_DIR)/
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(EXTRACT_DIR)
 
@@ -922,6 +926,7 @@ distclean-extracts:
 distclean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
+	-rm -rf $(INSTALL_DIR)/
 	-rm -rf $(BUILD_DIR)
 	-rm -rf $(DOWNLOAD_DIR)
 
@@ -1466,12 +1471,14 @@ $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 	cp $< $@
 	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+	rm $<
 else
 	$(OSMCONVERT_CMD) \
 		$< \
 		--modify-tags="natural=peak man_made=summit_board" \
 		--out-o5m \
 		-o=$@
+	rm $<
 endif
 
 $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
@@ -1495,7 +1502,8 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 		$(REGION_EXTRACT)_name.pbf \
 		--out-o5m \
 		-o=$(REGION_EXTRACT)_name.o5m
-	-rm -rf $(REGION_EXTRACT)_name.pbf
+	-rm -f $(REGION_EXTRACT)_name.pbf
+	-rm -f $<
 
 .PHONY: sed
 sed: $(REGION_EXTRACT)-sed.osm.pbf
