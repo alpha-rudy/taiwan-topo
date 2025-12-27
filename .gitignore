@@ -3,8 +3,8 @@
 /download
 .DS_Store
 /.idea
-/install
+/install*
 /.idea
 /.vscode
 /.java-version
-/build
+/build*
