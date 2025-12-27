@@ -1,37 +1,37 @@
-#!/bin/sh
+#!/bin/bash
+
 TARGET=$1
-[ "${TARGET}" == "suites" ] || [ "${TARGET}" == "daily" ] || exit 1
+[[ "${TARGET}" == *"suites"* ]] || [ "${TARGET}" == "daily" ] || exit 1
 
 set -ex
 
-PATH=~/bin:$PATH
+export PATH=~/bin:$PATH
+export JAVA8_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 
-export INSTALL_DIR=v$(date +%Y.%m.%d)
-GS_FILENAME="dayofmonth_$(date +%d)"
-
-while sleep 2.5; do { date +'DS: %H:%M:%S'; free -h; df -h /; } > log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
+date > log/mem_$(date +%d).log
+while sleep 10; do { date +'DS: %H:%M:%S'; free -h; df -h /; } >> log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
+# background logging is fine, as build machine would be shutdown after building
 
 cd ~/taiwan-topo
+make distclean-extracts
 git clean -fd
 git checkout -- .
 git pull --rebase
-make distclean-extracts
 
-make ${TARGET}
+INSTALL_DIR=$PWD/install/v$(date +%Y.%m.%d)
+rm -rf ${INSTALL_DIR}
+mkdir -p ${INSTALL_DIR}
+
+make INSTALL_DIR=${INSTALL_DIR} ${TARGET}
 make exps || echo make exps failed
-make license
-
-rm -rf install/${INSTALL_DIR}
-mkdir -p install/${INSTALL_DIR}
-make INSTALL_DIR=install/${INSTALL_DIR} drop
-cd install/${INSTALL_DIR}
-tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
 
 ## rclone to dropbox
-if [ "${TARGET}" == "suites" ]; then
+cd ${INSTALL_DIR}
+tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
+if [[ "${TARGET}" == *"suites" ]]; then
     rclone copy --update . rudybox:Apps/share-mapdata/
     echo "Completed with weeekly drop."
-else
+elif [ "${TARGET}" == "daily" ]; then
     rclone copy --update . rudybox:Apps/share-mapdata/drops/
     echo "Completed with daily drop."
 fi
