@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import click
 import requests
 import sys
 import re
@@ -10,16 +11,26 @@ import time
 mirrors = [
     "https://map.happyman.idv.tw/rudy",
     "https://moi.kcwu.csie.org",
-    "http://rudy.basecamp.tw",
+    # "http://rudy.basecamp.tw",
     "https://d3r5lsn28erp7o.cloudfront.net",
     "https://rudymap.tw"
 ]
 
-indexes = [
+# Index files for version checking
+indexes_daily = [
+    "drops/beta.html"
+]
+
+indexes_suites = [
     "taiwan_topo.html",
-    "drops/beta.html",
     "gts/index.html"
 ]
+
+indexes_kumano = [
+    "kumano_topo.html"
+]
+
+indexes_all = indexes_daily + indexes_suites
 
 files = [
     "extra/Markchoo.map.zip",
@@ -44,7 +55,9 @@ files = [
     "locus_all-rex.xml"
 ]
 
-daily = [
+# Daily files (beta version) - released Mon/Wed/Sat, in drops/ folder
+# Reference: docs/Taiwan/beta.md
+daily_files = [
     "drops/MOI_OSM_Taiwan_TOPO_Rudy.map.zip",
     "drops/index.json",
     "drops/beta.html",
@@ -54,13 +67,18 @@ daily = [
     "drops/MOI_OSM_extra_style.zip",
     "drops/MOI_OSM_bn_style.zip",
     "drops/MOI_OSM_dn_style.zip",
+    "drops/MOI_OSM_tn_style.zip",
     "drops/Install_MOI_Taiwan_TOPO_camp3D.exe",
     "drops/Taiwan_moi_zh_camp3D.gmap.zip",
-    "drops/hgtmix.zip",
-    "drops/hgt90.zip"
+    "drops/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip",
+    "drops/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip",
+    "drops/MOI_OSM_Taiwan_TOPO_Rudy.db.zip",
+    "drops/MOI_OSM_twmap_style.zip"
 ]
 
-weekly = [
+# Weekly/Suites files (stable version) - released Thursday, in root folder
+# Reference: docs/Taiwan/taiwan_topo.md
+suites_files = [
     "index.json",
     "taiwan_topo.html",
     "gts/index.html",
@@ -98,6 +116,36 @@ weekly = [
     "gmapsupp_Taiwan_moi_zh_bw3D.img.zip",
     "MOI_OSM_tn_style.zip",
     "Taiwan_moi_zh_odc3D.gmap.zip"
+]
+
+# Keep 'weekly' as alias for backward compatibility
+weekly = suites_files
+
+# Kumano Kodo files - released with suites
+# Reference: docs/Kumano/kumano_topo.md
+kumano_files = [
+    "kumano_topo.html",
+    "AW3D30_OSM_Kumano_TOPO_Rudy.map.zip",
+    "AW3D30_OSM_Kumano_TOPO_Rudy.zip",
+    "AW3D30_OSM_Kumano_TOPO_Rudy.poi.zip",
+    "AW3D30_OSM_Kumano_TOPO_Rudy_v2.poi.zip",
+    "AW3D30_OSM_Kumano_TOPO_Rudy.db.zip",
+    "Kumano_carto_map.cpkg",
+    "Kumano_carto_style.cpkg",
+    "Kumano_carto_dem.cpkg",
+    "Kumano_carto_upgrade.cpkg",
+    "Kumano_carto_all.cpkg",
+    "gmapsupp_Kumano_aw3d30_ja_camp3D.img.zip",
+    "Install_AW3D30_Kumano_TOPO_camp3D_ja.exe",
+    "Kumano_aw3d30_ja_camp3D.gmap.zip",
+    "gmapsupp_Kumano_aw3d30_en_camp3D.img.zip",
+    "Install_AW3D30_Kumano_TOPO_camp3D_en.exe",
+    "Kumano_aw3d30_en_camp3D.gmap.zip"
+]
+
+# Files to check for existence only (no date check) in Kumano
+kumano_exist_only = [
+    "kumano_hgtmix.zip"
 ]
 
 
@@ -154,7 +202,7 @@ def check_exist(uri, check_today=False, check_this_week=False):
         local = gmt.replace(tzinfo=datetime.timezone.utc).astimezone(tz=None)
         now = datetime.datetime.now()
         delta = now - gmt
-        if check_today and delta.days > 1:
+        if check_today and delta.days > 3:
             print_status(False, "{} ({})".format(uri, local.strftime("v%Y.%m.%d")))
             # print("{} - {} = {}".format(now.time(), gmt.time(), delta.days), file=sys.stdout)
         elif check_this_week and delta.days > 7:
@@ -185,19 +233,80 @@ def check_speed(uri):
     os.system("curl -L {} > /dev/null".format(uri))
 
 
-for mirror in mirrors:
-    print("Checking {}, ...".format(mirror))
-    for index in indexes:
-        check_version("{}/{}".format(mirror, index))
-    for file in daily:
-        check_exist("{}/{}".format(mirror, file), check_today=True)
-    for file in weekly:
-        check_exist("{}/{}".format(mirror, file), check_this_week=True)
-    for file in files:
-        check_exist("{}/{}".format(mirror, file))
-    print("")
+@click.command()
+@click.option('--daily', '-d', is_flag=True, help='Check daily/beta files (released Mon/Wed/Sat, in drops/ folder)')
+@click.option('--suites', '-s', is_flag=True, help='Check weekly/suites files (released Thursday, in root folder)')
+@click.option('--kumano', '-k', is_flag=True, help='Check Kumano Kodo files (released with suites)')
+@click.option('--speed', is_flag=True, default=False, help='Run speed test (default: off)')
+@click.option('--mirror', '-m', type=str, help='Check specific mirror URL only')
+def main(daily, suites, kumano, speed, mirror):
+    """Check mirror servers for Taiwan TOPO map files.
 
-for mirror in mirrors:
-    print("Speed testing {}, ...".format(mirror))
-    check_speed("{}/{}".format(mirror, daily[0]))
-    print("")
+    \b
+    Examples:
+      check-mirrors.py                  # Check all (daily + suites)
+      check-mirrors.py --daily          # Check daily/beta files only (drops/ folder)
+      check-mirrors.py --suites         # Check weekly/suites files only (root folder)
+      check-mirrors.py --kumano         # Check Kumano Kodo files only
+      check-mirrors.py --daily --suites # Check both daily and suites
+    check-mirrors.py --speed          # Run speed test
+    """
+    # If neither daily nor suites nor kumano is specified, check daily and suites (default behavior)
+    check_daily = daily
+    check_suites = suites
+    check_kumano = kumano
+    if not check_daily and not check_suites and not check_kumano:
+        check_daily = True
+        check_suites = True
+
+    # Determine which mirrors to check
+    check_mirrors = mirrors
+    if mirror:
+        check_mirrors = [mirror]
+
+    # Determine which indexes to check
+    indexes = []
+    if check_daily:
+        indexes.extend(indexes_daily)
+    if check_suites:
+        indexes.extend(indexes_suites)
+    if check_kumano:
+        indexes.extend(indexes_kumano)
+
+    for m in check_mirrors:
+        print("Checking {}, ...".format(m))
+        for index in indexes:
+            check_version("{}/{}".format(m, index))
+        if check_daily:
+            print("  [Daily/Beta files]")
+            for file in daily_files:
+                check_exist("{}/{}".format(m, file), check_today=True)
+        if check_suites:
+            print("  [Suites/Weekly files]")
+            for file in suites_files:
+                check_exist("{}/{}".format(m, file), check_this_week=True)
+            for file in files:
+                check_exist("{}/{}".format(m, file))
+        if check_kumano:
+            print("  [Kumano Kodo files]")
+            for file in kumano_files:
+                check_exist("{}/{}".format(m, file), check_this_week=True)
+            for file in kumano_exist_only:
+                check_exist("{}/{}".format(m, file))
+        print("")
+
+    if speed:
+        if check_daily:
+            speed_test_file = daily_files[0]
+        elif check_suites:
+            speed_test_file = suites_files[0]
+        else:
+            speed_test_file = kumano_files[0]
+        for m in check_mirrors:
+            print("Speed testing {}, ...".format(m))
+            check_speed("{}/{}".format(m, speed_test_file))
+            print("")
+
+
+if __name__ == "__main__":
+    main()
