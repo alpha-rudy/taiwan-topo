@@ -524,7 +524,7 @@ natural = beach [0x2e resolution 20]
 natural = fell [0x40 resolution 17]
 
 # Gebiet (auch Bergspitze), das ganzjährig mit Eis bedeckt ist. [point, closedway]
-natural = glacier [0x4d resolution 17]
+# natural = glacier [0x4d resolution 17]
 
 # Heide. [point, closedway]
 natural = heath [0x2b resolution 17]

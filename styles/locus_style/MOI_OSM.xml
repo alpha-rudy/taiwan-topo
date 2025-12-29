@@ -1239,6 +1239,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
   <!-- contours-body -->
   <rule cat="contour" e="any" k="*" v="*">
     <rule e="way" k="contour_ext" v="elevation_major" zoom-min="9" zoom-max="10">
+      <rule e="way" k="ele" v="8000">
+        <line stroke="#FF000000" stroke-width="1.8"/>
+      </rule>
+      <rule e="way" k="ele" v="7000">
+        <line stroke="#FF000000" stroke-width="1.6"/>
+      </rule>
+      <rule e="way" k="ele" v="6000">
+        <line stroke="#FF000000" stroke-width="1.4"/>
+      </rule>
+      <rule e="way" k="ele" v="5000">
+        <line stroke="#FF000000" stroke-width="1.2"/>
+      </rule>
+      <rule e="way" k="ele" v="4000">
+        <line stroke="#FF000000" stroke-width="1.0"/>
+      </rule>
       <rule e="way" k="ele" v="3000">
         <line stroke="#FF000000" stroke-width="0.8"/>
       </rule>
@@ -1250,6 +1265,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="elevation_major" zoom-min="11" zoom-max="11">
+      <rule e="way" k="ele" v="8000">
+        <line stroke="#FF000000" stroke-width="1.8"/>
+      </rule>
+      <rule e="way" k="ele" v="7000">
+        <line stroke="#FF000000" stroke-width="1.6"/>
+      </rule>
+      <rule e="way" k="ele" v="6000">
+        <line stroke="#FF000000" stroke-width="1.4"/>
+      </rule>
+      <rule e="way" k="ele" v="5000">
+        <line stroke="#FF000000" stroke-width="1.2"/>
+      </rule>
+      <rule e="way" k="ele" v="4000">
+        <line stroke="#FF000000" stroke-width="1.0"/>
+      </rule>
       <rule e="way" k="ele" v="3000">
         <line stroke="#FF000000" stroke-width="0.8"/>
       </rule>
@@ -1258,6 +1288,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule e="way" k="ele" v="1000">
         <line stroke="#DD222222" stroke-width="0.6"/>
+      </rule>
+      <rule e="way" k="ele" v="8500">
+        <line stroke="#FF000000" stroke-width="0.9"/>
+      </rule>
+      <rule e="way" k="ele" v="7500">
+        <line stroke="#FF000000" stroke-width="0.8"/>
+      </rule>
+      <rule e="way" k="ele" v="6500">
+        <line stroke="#FF000000" stroke-width="0.7"/>
+      </rule>
+      <rule e="way" k="ele" v="5500">
+        <line stroke="#FF000000" stroke-width="0.6"/>
+      </rule>
+      <rule e="way" k="ele" v="4500">
+        <line stroke="#FF000000" stroke-width="0.5"/>
       </rule>
       <rule e="way" k="ele" v="3500">
         <line stroke="#FF000000" stroke-width="0.4"/>
@@ -1273,6 +1318,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="elevation_major|elevation_medium" zoom-min="12" zoom-max="12">
+      <rule e="way" k="ele" v="8000">
+        <line stroke="#FF000000" stroke-width="1.2"/>
+      </rule>
+      <rule e="way" k="ele" v="7000">
+        <line stroke="#FF000000" stroke-width="1.07"/>
+      </rule>
+      <rule e="way" k="ele" v="6000">
+        <line stroke="#FF000000" stroke-width="0.95"/>
+      </rule>
+      <rule e="way" k="ele" v="5000">
+        <line stroke="#FF000000" stroke-width="0.82"/>
+      </rule>
+      <rule e="way" k="ele" v="4000">
+        <line stroke="#FF000000" stroke-width="0.70"/>
+      </rule>
       <rule e="way" k="ele" v="3000">
         <line stroke="#FF000000" stroke-width="0.57"/>
       </rule>
@@ -1281,6 +1341,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule e="way" k="ele" v="1000">
         <line stroke="#DD222222" stroke-width="0.43"/>
+      </rule>
+      <rule e="way" k="ele" v="8800|8600|8400|8200">
+        <line stroke="#FF000000" stroke-width="0.6"/>
+      </rule>
+      <rule e="way" k="ele" v="7800|7600|7400|7200">
+        <line stroke="#FF000000" stroke-width="0.54"/>
+      </rule>
+      <rule e="way" k="ele" v="6800|6600|6400|6200">
+        <line stroke="#FF000000" stroke-width="0.48"/>
+      </rule>
+      <rule e="way" k="ele" v="5800|5600|5400|5200">
+        <line stroke="#FF000000" stroke-width="0.41"/>
+      </rule>
+      <rule e="way" k="ele" v="4800|4600|4400|4200">
+        <line stroke="#FF000000" stroke-width="0.35"/>
       </rule>
       <rule e="way" k="ele" v="3800|3600|3400|3200">
         <line stroke="#FF000000" stroke-width="0.29"/>
@@ -1296,6 +1371,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
     </rule>
     <rule e="way" k="contour_ext" v="elevation_major|elevation_medium" zoom-min="13" zoom-max="13">
+      <rule e="way" k="ele" v="8000">
+        <line stroke="#FF000000" stroke-width="1.0"/>
+      </rule>
+      <rule e="way" k="ele" v="7000">
+        <line stroke="#FF000000" stroke-width="0.88"/>
+      </rule>
+      <rule e="way" k="ele" v="6000">
+        <line stroke="#FF000000" stroke-width="0.76"/>
+      </rule>
+      <rule e="way" k="ele" v="5000">
+        <line stroke="#FF000000" stroke-width="0.65"/>
+      </rule>
+      <rule e="way" k="ele" v="4000">
+        <line stroke="#FF000000" stroke-width="0.53"/>
+      </rule>
       <rule e="way" k="ele" v="3000">
         <line stroke="#FF000000" stroke-width="0.41"/>
       </rule>
@@ -1304,6 +1394,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       </rule>
       <rule e="way" k="ele" v="1000">
         <line stroke="#DD222222" stroke-width="0.41"/>
+      </rule>
+      <rule e="way" k="ele" v="8800|8600|8400|8200">
+        <line stroke="#FF000000" stroke-width="0.50"/>
+      </rule>
+      <rule e="way" k="ele" v="7800|7600|7400|7200">
+        <line stroke="#FF000000" stroke-width="0.44"/>
+      </rule>
+      <rule e="way" k="ele" v="6800|6600|6400|6200">
+        <line stroke="#FF000000" stroke-width="0.38"/>
+      </rule>
+      <rule e="way" k="ele" v="5800|5600|5400|5200">
+        <line stroke="#FF000000" stroke-width="0.32"/>
+      </rule>
+      <rule e="way" k="ele" v="4800|4600|4400|4200">
+        <line stroke="#FF000000" stroke-width="0.31"/>
       </rule>
       <rule e="way" k="ele" v="3800|3600|3400|3200">
         <line stroke="#FF000000" stroke-width="0.31"/>
@@ -1320,6 +1425,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     </rule>
     <rule e="way" k="contour_ext" v="*" zoom-min="14" zoom-max="14">
       <rule e="way" k="contour_ext" v="elevation_major">        
+        <rule e="way" k="ele" v="8000">
+          <line stroke="#FF000000" stroke-width="0.55"/>
+        </rule>
+        <rule e="way" k="ele" v="7000">
+          <line stroke="#FF000000" stroke-width="0.50"/>
+        </rule>
+        <rule e="way" k="ele" v="6000">
+          <line stroke="#FF000000" stroke-width="0.45"/>
+        </rule>
+        <rule e="way" k="ele" v="5000">
+          <line stroke="#FF000000" stroke-width="0.40"/>
+        </rule>
+        <rule e="way" k="ele" v="4000">
+          <line stroke="#FF000000" stroke-width="0.35"/>
+        </rule>
         <rule e="way" k="ele" v="3000">
           <line stroke="#FF000000" stroke-width="0.31"/>
         </rule>
@@ -1328,6 +1448,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
         <rule e="way" k="ele" v="1000">
           <line stroke="#DD222222" stroke-width="0.31"/>
+        </rule>
+        <rule e="way" k="ele" v="8500">
+          <line stroke="#FF000000" stroke-width="0.28"/>
+        </rule>
+        <rule e="way" k="ele" v="7500">
+          <line stroke="#FF000000" stroke-width="0.26"/>
+        </rule>
+        <rule e="way" k="ele" v="6500">
+          <line stroke="#FF000000" stroke-width="0.26"/>
+        </rule>
+        <rule e="way" k="ele" v="5500">
+          <line stroke="#FF000000" stroke-width="0.26"/>
+        </rule>
+        <rule e="way" k="ele" v="4500">
+          <line stroke="#FF000000" stroke-width="0.26"/>
         </rule>
         <rule e="way" k="ele" v="3500">
           <line stroke="#FF000000" stroke-width="0.26"/>
@@ -1343,6 +1478,21 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
         </rule>
       </rule>
       <rule e="way" k="contour_ext" v="elevation_medium">
+        <rule e="way" k="ele" v="8900|8800|8700|8600|8400|8300|8200|8100">
+          <line stroke="#FF000000" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="7900|7800|7700|7600|7400|7300|7200|7100">
+          <line stroke="#FF000000" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="6900|6800|6700|6600|6400|6300|6200|6100">
+          <line stroke="#FF000000" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="5900|5800|5700|5600|5400|5300|5200|5100">
+          <line stroke="#FF000000" stroke-width="0.20"/>
+        </rule>
+        <rule e="way" k="ele" v="4900|4800|4700|4600|4400|4300|4200|4100">
+          <line stroke="#FF000000" stroke-width="0.20"/>
+        </rule>
         <rule e="way" k="ele" v="3900|3800|3700|3600|3400|3300|3200|3100">
           <line stroke="#FF000000" stroke-width="0.20"/>
         </rule>
