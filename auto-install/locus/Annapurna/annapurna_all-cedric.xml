@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<locusActions>
+  <download>
+    <source><![CDATA[https://rudymap.tw/AW3D30_OSM_Annapurna_TOPO_Rudy_locus.zip ]]></source>
+    <dest><![CDATA[/mapsVector/AW3D30_OSM_Annapurna_TOPO_Rudy_locus.zip ]]></dest>
+    <after>extract|deleteSource</after>
+  </download>
+  <download>
+    <source><![CDATA[https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip]]></source>
+    <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
+  </download>
+  <download>
+    <source><![CDATA[https://rudymap.tw/annapurna_hgtmix.zip]]></source>
+    <dest><![CDATA[/data/srtm/annapurna_hgt.zip]]></dest>
+    <after>extract|deleteSource|refreshMap</after>
+  </download>
+</locusActions>

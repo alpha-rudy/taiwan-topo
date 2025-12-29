@@ -49,6 +49,7 @@ include $(wildcard $(ROOT_DIR)/suites/yushan/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/beibeiji/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/sheipa/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kumano/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 
@@ -62,13 +63,13 @@ MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 DUMMYID = 9999
 
 ifeq ($(LANG),zh)
-NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
-NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
-NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
+NAME_LONG ?= $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
+NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
+NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 else
-NAME_LONG := $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) TOPO v$(VERSION)
-NAME_SHORT := $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) TOPO v$(VERSION)
-NAME_WORD := $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(LANG)
+NAME_LONG ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) v$(VERSION)
+NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) v$(VERSION)
+NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(LANG)
 endif
 
 COMMON_TILES_DIR := $(BUILD_DIR)/$(REGION)/tiles
@@ -235,7 +236,6 @@ exps:
 # Suite lists for batch builds
 TAIWAN_SUITES := taiwan taiwan_lite taiwan_bw taiwan_odc taiwan_bc \
                  taiwan_bw_dem taiwan_odc_dem taiwan_bc_dem taiwan_bc_dem_en taiwan_bw_en
-
 .PHONY: suites
 suites:
 	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan styles
@@ -243,12 +243,18 @@ suites:
 	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 KUMANO_SUITES := kumano kumano_bc_dem kumano_bc_dem_en
-
 .PHONY: kumano_suites
 kumano_suites:
 	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-kumano styles
 	$(foreach suite,$(KUMANO_SUITES),$(MAKE_CMD) BUILD_DIR=$(PWD)/build-kumano SUITE=$(suite) all;)
 	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-kumano INSTALL_DIR=$(INSTALL_DIR) SUITE=kumano install
+
+ANNAPURNA_SUITES := annapurna annapurna_bc_dem annapurna_bc_dem_en
+.PHONY: annapurna_suites
+annapurna_suites:
+	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-annapurna styles
+	$(foreach suite,$(ANNAPURNA_SUITES),$(MAKE_CMD) BUILD_DIR=$(PWD)/build-annapurna SUITE=$(suite) all;)
+	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-annapurna INSTALL_DIR=$(INSTALL_DIR) SUITE=annapurna install
 
 .PHONY: daily
 daily:
@@ -434,18 +440,7 @@ $(ELEVATION_MIX):
 
 .DELETE_ON_ERROR: $(EXTRACT).o5m
 # Determine EXTRACT_URL and download method based on the EXTRACT_FILE
-ifeq ($(EXTRACT_FILE),japan-latest)
-EXTRACT_URL := https://download.geofabrik.de/asia
-$(EXTRACT).o5m:
-	date +'DS: %H:%M:%S $(shell basename $@)'
-	[ -n "$(REGION)" ]
-	mkdir -p $(dir $@)
-	cd $(EXTRACT_DIR) && \
-		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
-		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf.md5 $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
-		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
-		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT_FILE).o5m
-else
+ifeq ($(EXTRACT_FILE),taiwan-latest)
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -456,6 +451,17 @@ $(EXTRACT).o5m:
 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
 		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
+else
+EXTRACT_URL := https://download.geofabrik.de/asia
+$(EXTRACT).o5m:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(dir $@)
+	cd $(EXTRACT_DIR) && \
+		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
+		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf.md5 $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
+		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
+		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT_FILE).o5m
 endif
 
 # .DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT).osm.pbf
