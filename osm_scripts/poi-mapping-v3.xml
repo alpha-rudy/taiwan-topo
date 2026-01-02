@@ -1544,6 +1544,16 @@
         </category>
     </category>
 
+    <!-- Extras -->
+    <category title="Extra">
+        <category title="Air Defense Shelters">
+            <mapping tag="amenity=air_defense_shelter" />
+        </category>
+        <category title="Taiwan Giant Trees">
+            <mapping tag="natrual=giant_tree" />
+        </category>
+    </category>
+
     <!-- Address search -->
     <!--<category title="Address">
         <mapping tag="addr:street" />

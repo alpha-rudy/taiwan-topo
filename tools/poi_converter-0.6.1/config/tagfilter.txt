@@ -28,6 +28,7 @@ amenity=fuel
 amenity=bank
 amenity=atm
 amenity=air_defense_shelter
+natural=giant_tree
 railway=tram_stop
 highway=bus_stop
 highway=trailhead

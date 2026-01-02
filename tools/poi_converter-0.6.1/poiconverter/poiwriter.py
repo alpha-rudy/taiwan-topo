@@ -29,6 +29,8 @@ class PoiWriter:
                 poi.set_type(('subfolder', 'peak'))
             elif poi.type[1] == 'air_defense_shelter':
                 poi.set_type(('subfolder', 'air_defense_shelter'))
+            elif poi.type[1] == 'giant_tree':
+                poi.set_type(('subfolder', 'giant_tree'))
             elif poi.type[1] == 'bus_stop':
                 poi.set_type(('subfolder', 'bus_and_tram_stop'))
             elif poi.type[1] == 'tram_stop':

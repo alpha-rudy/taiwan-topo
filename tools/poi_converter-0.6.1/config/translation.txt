@@ -87,3 +87,4 @@ camp_site=營地
 caravan_site=車營地
 shelter=涼亭
 air_defense_shelter=防空避難所
+giant_tree=台灣巨木
