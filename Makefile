@@ -481,6 +481,7 @@ $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 	cp $< $@
 	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm
 else
 	$(OSMCONVERT_CMD) \
 		$< \

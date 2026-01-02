@@ -1017,6 +1017,7 @@
 <osm-tag key='drinking_water' value='yes' equivalent-values='saisonal' zoom-appear='13' />
 <osm-tag key='drinking_water' value='no' zoom-appear='13' />
 <osm-tag key='natural' value='tree' zoom-appear='14' />
+<osm-tag key='natural' value='giant_tree' zoom-appear='11' />
 <!-- landuse -->
 <!-- highway -->
 <osm-tag key='highway' value='ford' zoom-appear='12' />

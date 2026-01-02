@@ -62,17 +62,35 @@ class Database:
         self.cursor.executemany(sql, iterator(pois_with_ids))
 
     def insert_root_sub_folders(self, pois_with_ids):
-        def iterator(pois_with_ids):
-            for (id, poi) in pois_with_ids:
-                yield [id, poi.type[1], poi.type[1]]
+        missing_rootsub = set()
+        missing_folderssub = set()
+        valid_rows = []
+        for (id, poi) in pois_with_ids:
+            subname = poi.type[1]
+            # Check FoldersRoot_id
+            self.cursor.execute("SELECT fr.id FROM FoldersRoot fr JOIN RootSubMapping rsm ON fr.name = rsm.rootname WHERE rsm.subname = ?", (subname,))
+            fr_result = self.cursor.fetchone()
+            if not fr_result:
+                missing_rootsub.add(subname)
+                continue  # skip if no mapping
+            foldersroot_id = fr_result[0]
+            # Check FoldersSub_id
+            self.cursor.execute("SELECT fs.id FROM FoldersSub fs WHERE fs.name = ?", (subname,))
+            fs_result = self.cursor.fetchone()
+            if not fs_result:
+                missing_folderssub.add(subname)
+                continue  # skip if no subfolder
+            folderssub_id = fs_result[0]
+            valid_rows.append((id, foldersroot_id, folderssub_id))
 
-        sql = """INSERT INTO Points_root_sub VALUES(
-            ?,
-            (SELECT fr.id FROM FoldersRoot fr JOIN RootSubMapping rsm ON fr.name = rsm.rootname WHERE rsm.subname = ?),
-            (SELECT fs.id FROM FoldersSub fs WHERE fs.name = ?)
-        )
-        """
-        self.cursor.executemany(sql, iterator(pois_with_ids))
+        if missing_rootsub:
+            print("\nWarning: missing RootSubMapping for subnames:", sorted(missing_rootsub))
+        if missing_folderssub:
+            print("\nWarning: missing FoldersSub for subnames:", sorted(missing_folderssub))
+
+        if valid_rows:
+            sql = "INSERT INTO Points_root_sub VALUES(?, ?, ?)"
+            self.cursor.executemany(sql, valid_rows)
 
     def insert_tags(self, pois_with_ids):
         def value_iterator(pois_with_ids):

@@ -310,6 +310,11 @@
       <mapping tag="amenity=air_defense_shelter" />
   </category>
 
+  <!-- Taiwan Giant Trees -->
+  <category title="08 台灣巨木">
+      <mapping tag="natural=giant_tree" />
+  </category>
+
   <!-- Amenities -->
   <category title="設施">
     <category title="食物">

@@ -704,6 +704,15 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="防空避難處所"/>
       <cat id="ads"/>
     </layer>
+    <layer id="elmt-giant_tree" enabled="false">
+      <name lang="de" value="Taiwan Giant Tree"/>
+      <name lang="en" value="Taiwan Giant Tree"/>
+      <name lang="es" value="Taiwan Giant Tree"/>
+      <name lang="fr" value="Taiwan Giant Tree"/>
+      <name lang="it" value="Taiwan Giant Tree"/>
+      <name lang="zh" value="台灣巨木"/>
+      <cat id="giant_tree"/>
+    </layer>
     <layer id="elmt-track-label" enabled="false">
       <name lang="de" value="Track Labels"/>
       <name lang="en" value="Track Labels"/>
@@ -818,6 +827,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <overlay id="elmt-waypoint"/>
       <overlay id="elmt-waypoint-label"/>
       <overlay id="elmt-ads"/>
+      <overlay id="elmt-giant_tree"/>
     </layer>
     <layer id="elmt-city" visible="false">
       <name lang="de" value="Stadt"/>
@@ -5854,6 +5864,18 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
     <rule e="any" k="amenity" v="ferry_terminal">
       <symbol id="s_pt_ferry" display="always" priority="113" src="file:moiosm_res/s_pt_ferry.svg" symbol-scaling="size" symbol-height="12" symbol-width="12"/>
       <caption priority="118" k="name" symbol-id="s_pt_ferry" position="above" font-style="bold" font-size="9" fill="#0092DA" stroke="#E5FFFFFF" stroke-width="2"/>
+    </rule>
+  </rule>
+  <!-- Taiwan Giant Trees-->
+  <rule cat="giant_tree" e="any" k="*" v="*">
+    <rule e="node" k="natural" v="giant_tree">
+      <rule e="any" k="*" v="*" zoom-min="11" zoom-max="14">
+        <symbol id="p_giant_tree" display="always" priority="10" src="file:moiosmhs_res/p_giant_tree.svg" symbol-scaling="size" symbol-height="20" symbol-width="20"/>
+      </rule>
+      <rule e="any" k="*" v="*" zoom-min="15">
+        <symbol id="p_giant_tree" display="always" priority="10" src="file:moiosmhs_res/p_giant_tree.svg" symbol-scaling="size" symbol-height="24" symbol-width="24"/>
+        <caption symbol-id="p_giant_tree" k="name" priority="10" position="below" font-style="bold" font-size="11" fill="#000000" stroke="#E5FFFFFF" stroke-width="2"/>
+      </rule>
     </rule>
   </rule>
   <!-- air defense shelters -->
