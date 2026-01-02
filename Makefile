@@ -238,30 +238,30 @@ TAIWAN_SUITES := taiwan taiwan_lite taiwan_bw taiwan_odc taiwan_bc \
                  taiwan_bw_dem taiwan_odc_dem taiwan_bc_dem taiwan_bc_dem_en taiwan_bw_en
 .PHONY: suites
 suites:
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan styles
-	$(foreach suite,$(TAIWAN_SUITES),$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan SUITE=$(suite) all;)
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
+	$(foreach suite,$(TAIWAN_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=$(suite) all;)
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 KUMANO_SUITES := kumano kumano_bc_dem kumano_bc_dem_en
 .PHONY: kumano_suites
 kumano_suites:
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-kumano styles
-	$(foreach suite,$(KUMANO_SUITES),$(MAKE_CMD) BUILD_DIR=$(PWD)/build-kumano SUITE=$(suite) all;)
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-kumano INSTALL_DIR=$(INSTALL_DIR) SUITE=kumano install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano styles
+	$(foreach suite,$(KUMANO_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano SUITE=$(suite) all;)
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano INSTALL_DIR=$(INSTALL_DIR) SUITE=kumano install
 
 ANNAPURNA_SUITES := annapurna annapurna_bc_dem annapurna_bc_dem_en
 .PHONY: annapurna_suites
 annapurna_suites:
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-annapurna styles
-	$(foreach suite,$(ANNAPURNA_SUITES),$(MAKE_CMD) BUILD_DIR=$(PWD)/build-annapurna SUITE=$(suite) all;)
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-annapurna INSTALL_DIR=$(INSTALL_DIR) SUITE=annapurna install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna styles
+	$(foreach suite,$(ANNAPURNA_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna SUITE=$(suite) all;)
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna INSTALL_DIR=$(INSTALL_DIR) SUITE=annapurna install
 
 .PHONY: daily
 daily:
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan styles
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
-	$(MAKE_CMD) BUILD_DIR=$(PWD)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 .PHONY: styles
 styles:
