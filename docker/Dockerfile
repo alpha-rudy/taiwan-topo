@@ -30,6 +30,7 @@ RUN dpkg --add-architecture i386 && \
         locales \
         make \
         nsis \
+        openjdk-8-jre \
         osmctools \
         osmium-tool \
         p7zip-full \
@@ -45,14 +46,21 @@ RUN dpkg --add-architecture i386 && \
 
 RUN pip3 install --break-system-packages --upgrade setuptools bs4 matplotlib numpy
 RUN pip3 install --no-cache-dir --break-system-packages \
+                    hanzi2reading \
+                    nepali_roman \
                     osmium \
+                    pykakasi \
                     spatialite \
                     tqdm \
-                    wheel \
-                    hanzi2reading
+                    wheel
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
+
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+ENV JAVA8_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 RUN locale-gen en_US.UTF-8
 RUN set -e && \
@@ -74,11 +82,8 @@ RUN set -e && \
     echo "builder:builder" | chpasswd && \
     usermod -aG sudo builder && \
     echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
+    
 USER builder
 WORKDIR /workspace
-
-# Set default shell
 SHELL ["/bin/bash", "-c"]
-
 CMD ["/bin/bash"]
