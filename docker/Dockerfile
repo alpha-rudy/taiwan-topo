@@ -40,6 +40,7 @@ RUN dpkg --add-architecture i386 && \
         ssh \
         sudo \
         tree \
+        unzip \
         zip \
         zstd \
     && rm -rf /var/lib/apt/lists/*
