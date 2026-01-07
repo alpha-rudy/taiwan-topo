@@ -131,6 +131,7 @@ kumano_files = [
     "kumano_topo.html",
     "AW3D30_OSM_Kumano_TOPO_Rudy.map.zip",
     "AW3D30_OSM_Kumano_TOPO_Rudy.zip",
+    "AW3D30_OSM_Kumano_TOPO_Rudy_locus.zip",
     "AW3D30_OSM_Kumano_TOPO_Rudy.poi.zip",
     "AW3D30_OSM_Kumano_TOPO_Rudy_v2.poi.zip",
     "AW3D30_OSM_Kumano_TOPO_Rudy.db.zip",
@@ -149,7 +150,11 @@ kumano_files = [
 
 # Files to check for existence only (no date check) in Kumano
 kumano_exist_only = [
-    "kumano_hgtmix.zip"
+    "kumano_hgtmix.zip",
+    "kumano_map-cedric.xml",
+    "kumano_dem-cedric.xml",
+    "kumano_upgrade-cedric.xml",
+    "kumano_all-cedric.xml"
 ]
 
 # Annapurna files - released with suites
@@ -158,6 +163,7 @@ annapurna_files = [
     "annapurna_topo.html",
     "AW3D30_OSM_Annapurna_TOPO_Rudy.map.zip",
     "AW3D30_OSM_Annapurna_TOPO_Rudy.zip",
+    "AW3D30_OSM_Annapurna_TOPO_Rudy_locus.zip",
     "AW3D30_OSM_Annapurna_TOPO_Rudy.poi.zip",
     "AW3D30_OSM_Annapurna_TOPO_Rudy_v2.poi.zip",
     "AW3D30_OSM_Annapurna_TOPO_Rudy.db.zip",
@@ -166,12 +172,24 @@ annapurna_files = [
     "Annapurna_carto_dem.cpkg",
     "Annapurna_carto_upgrade.cpkg",
     "Annapurna_carto_all.cpkg",
+    "gmapsupp_Annapurna_aw3d30_ne_camp3D.img.zip",
+    "Install_AW3D30_Annapurna_TOPO_camp3D_ne.exe",
+    "Annapurna_aw3d30_ne_camp3D.gmap.zip",
     "gmapsupp_Annapurna_aw3d30_en_camp3D.img.zip",
     "Install_AW3D30_Annapurna_TOPO_camp3D_en.exe",
     "Annapurna_aw3d30_en_camp3D.gmap.zip",
     "gmapsupp_Annapurna_aw3d30_ne_camp3D.img.zip",
     "Install_AW3D30_Annapurna_TOPO_camp3D_ne.exe",
     "Annapurna_aw3d30_ne_camp3D.gmap.zip"
+]
+
+# Files to check for existence only (no date check) in Annapurna
+annapurna_exist_only = [
+    "annapurna_hgtmix.zip",
+    "annapurna_map-cedric.xml",
+    "annapurna_dem-cedric.xml",
+    "annapurna_upgrade-cedric.xml",
+    "annapurna_all-cedric.xml"
 ]
 
 
@@ -328,6 +346,8 @@ def main(daily, suites, kumano, annapurna, speed, mirror):
             print("  [Annapurna files]")
             for file in annapurna_files:
                 check_exist("{}/{}".format(m, file), check_this_week=True)
+            for file in annapurna_exist_only:
+                check_exist("{}/{}".format(m, file))
         print("")
 
     if speed:
