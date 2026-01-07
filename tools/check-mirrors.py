@@ -30,6 +30,10 @@ indexes_kumano = [
     "kumano_topo.html"
 ]
 
+indexes_annapurna = [
+    "annapurna_topo.html"
+]
+
 indexes_all = indexes_daily + indexes_suites
 
 files = [
@@ -148,6 +152,28 @@ kumano_exist_only = [
     "kumano_hgtmix.zip"
 ]
 
+# Annapurna files - released with suites
+# Reference: docs/Annapurna/annapurna_topo.md
+annapurna_files = [
+    "annapurna_topo.html",
+    "AW3D30_OSM_Annapurna_TOPO_Rudy.map.zip",
+    "AW3D30_OSM_Annapurna_TOPO_Rudy.zip",
+    "AW3D30_OSM_Annapurna_TOPO_Rudy.poi.zip",
+    "AW3D30_OSM_Annapurna_TOPO_Rudy_v2.poi.zip",
+    "AW3D30_OSM_Annapurna_TOPO_Rudy.db.zip",
+    "Annapurna_carto_map.cpkg",
+    "Annapurna_carto_style.cpkg",
+    "Annapurna_carto_dem.cpkg",
+    "Annapurna_carto_upgrade.cpkg",
+    "Annapurna_carto_all.cpkg",
+    "gmapsupp_Annapurna_aw3d30_en_camp3D.img.zip",
+    "Install_AW3D30_Annapurna_TOPO_camp3D_en.exe",
+    "Annapurna_aw3d30_en_camp3D.gmap.zip",
+    "gmapsupp_Annapurna_aw3d30_ne_camp3D.img.zip",
+    "Install_AW3D30_Annapurna_TOPO_camp3D_ne.exe",
+    "Annapurna_aw3d30_ne_camp3D.gmap.zip"
+]
+
 
 def print_error(message, err):
     print("  {} ({})".format(message, err), file=sys.stderr)
@@ -237,9 +263,10 @@ def check_speed(uri):
 @click.option('--daily', '-d', is_flag=True, help='Check daily/beta files (released Mon/Wed/Sat, in drops/ folder)')
 @click.option('--suites', '-s', is_flag=True, help='Check weekly/suites files (released Thursday, in root folder)')
 @click.option('--kumano', '-k', is_flag=True, help='Check Kumano Kodo files (released with suites)')
+@click.option('--annapurna', '-a', is_flag=True, help='Check Annapurna files (released with suites)')
 @click.option('--speed', is_flag=True, default=False, help='Run speed test (default: off)')
 @click.option('--mirror', '-m', type=str, help='Check specific mirror URL only')
-def main(daily, suites, kumano, speed, mirror):
+def main(daily, suites, kumano, annapurna, speed, mirror):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
@@ -248,14 +275,16 @@ def main(daily, suites, kumano, speed, mirror):
       check-mirrors.py --daily          # Check daily/beta files only (drops/ folder)
       check-mirrors.py --suites         # Check weekly/suites files only (root folder)
       check-mirrors.py --kumano         # Check Kumano Kodo files only
+      check-mirrors.py --annapurna      # Check Annapurna files only
       check-mirrors.py --daily --suites # Check both daily and suites
     check-mirrors.py --speed          # Run speed test
     """
-    # If neither daily nor suites nor kumano is specified, check daily and suites (default behavior)
+    # If neither daily nor suites nor kumano nor annapurna is specified, check daily and suites (default behavior)
     check_daily = daily
     check_suites = suites
     check_kumano = kumano
-    if not check_daily and not check_suites and not check_kumano:
+    check_annapurna = annapurna
+    if not check_daily and not check_suites and not check_kumano and not check_annapurna:
         check_daily = True
         check_suites = True
 
@@ -272,6 +301,8 @@ def main(daily, suites, kumano, speed, mirror):
         indexes.extend(indexes_suites)
     if check_kumano:
         indexes.extend(indexes_kumano)
+    if check_annapurna:
+        indexes.extend(indexes_annapurna)
 
     for m in check_mirrors:
         print("Checking {}, ...".format(m))
@@ -293,6 +324,10 @@ def main(daily, suites, kumano, speed, mirror):
                 check_exist("{}/{}".format(m, file), check_this_week=True)
             for file in kumano_exist_only:
                 check_exist("{}/{}".format(m, file))
+        if check_annapurna:
+            print("  [Annapurna files]")
+            for file in annapurna_files:
+                check_exist("{}/{}".format(m, file), check_this_week=True)
         print("")
 
     if speed:
@@ -300,8 +335,10 @@ def main(daily, suites, kumano, speed, mirror):
             speed_test_file = daily_files[0]
         elif check_suites:
             speed_test_file = suites_files[0]
-        else:
+        elif check_kumano:
             speed_test_file = kumano_files[0]
+        else:
+            speed_test_file = annapurna_files[0]
         for m in check_mirrors:
             print("Speed testing {}, ...".format(m))
             check_speed("{}/{}".format(m, speed_test_file))
