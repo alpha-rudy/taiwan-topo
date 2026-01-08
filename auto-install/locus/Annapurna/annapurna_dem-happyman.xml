@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<locusActions>
+  <download>
+    <source><![CDATA[https://map.happyman.idv.tw/rudy/annapurna_hgtmix.zip]]></source>
+    <dest><![CDATA[/data/srtm/annapurna-hgt.zip]]></dest>
+    <after>extract|deleteSource|refreshMap</after>
+  </download>
+</locusActions>
