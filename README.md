@@ -46,7 +46,7 @@ Build with your user ID to avoid permission issues:
 docker build \
   --build-arg USER_ID=$(id -u) \
   --build-arg GROUP_ID=$(id -g) \
-  -t taiwan-contour:latest .
+  -t taiwan-topo:latest .
 ```
 
 Running Make Commands Directly:
@@ -55,7 +55,7 @@ Running Make Commands Directly:
 docker run --rm \
   -v $(pwd):/workspace \
   -u builder \
-  taiwan-contour:latest \
+  taiwan-topo:latest \
   make SUITE=taiwan mapsforge
 ```
 
