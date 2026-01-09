@@ -34,6 +34,10 @@ indexes_annapurna = [
     "annapurna_topo.html"
 ]
 
+indexes_kashmir = [
+    "kashmir_topo.html"
+]
+
 indexes_all = indexes_daily + indexes_suites
 
 files = [
@@ -193,6 +197,39 @@ annapurna_exist_only = [
 ]
 
 
+# Kashmir files - released with suites
+# Reference: docs/Kashmir/kashmir_topo.md
+kashmir_files = [
+    "kashmir_topo.html",
+    "AW3D30_OSM_Kashmir_TOPO_Rudy.map.zip",
+    "AW3D30_OSM_Kashmir_TOPO_Rudy.zip",
+    "AW3D30_OSM_Kashmir_TOPO_Rudy_locus.zip",
+    "AW3D30_OSM_Kashmir_TOPO_Rudy.poi.zip",
+    "AW3D30_OSM_Kashmir_TOPO_Rudy_v2.poi.zip",
+    "AW3D30_OSM_Kashmir_TOPO_Rudy.db.zip",
+    "Kashmir_carto_map.cpkg",
+    "Kashmir_carto_style.cpkg",
+    "Kashmir_carto_dem.cpkg",
+    "Kashmir_carto_upgrade.cpkg",
+    "Kashmir_carto_all.cpkg",
+    "gmapsupp_Kashmir_aw3d30_hi_camp3D.img.zip",
+    "Install_AW3D30_Kashmir_TOPO_camp3D_hi.exe",
+    "Kashmir_aw3d30_hi_camp3D.gmap.zip",
+    "gmapsupp_Kashmir_aw3d30_en_camp3D.img.zip",
+    "Install_AW3D30_Kashmir_TOPO_camp3D_en.exe",
+    "Kashmir_aw3d30_en_camp3D.gmap.zip"
+]
+
+# Files to check for existence only (no date check) in Kashmir
+kashmir_exist_only = [
+    "kashmir_hgtmix.zip",
+    "kashmir_map-cedric.xml",
+    "kashmir_dem-cedric.xml",
+    "kashmir_upgrade-cedric.xml",
+    "kashmir_all-cedric.xml"
+]
+
+
 def print_error(message, err):
     print("  {} ({})".format(message, err), file=sys.stderr)
 
@@ -282,9 +319,10 @@ def check_speed(uri):
 @click.option('--suites', '-s', is_flag=True, help='Check weekly/suites files (released Thursday, in root folder)')
 @click.option('--kumano', '-k', is_flag=True, help='Check Kumano Kodo files (released with suites)')
 @click.option('--annapurna', '-a', is_flag=True, help='Check Annapurna files (released with suites)')
+@click.option('--kashmir', '-K', is_flag=True, help='Check Kashmir files (released with suites)')
 @click.option('--speed', is_flag=True, default=False, help='Run speed test (default: off)')
 @click.option('--mirror', '-m', type=str, help='Check specific mirror URL only')
-def main(daily, suites, kumano, annapurna, speed, mirror):
+def main(daily, suites, kumano, annapurna, kashmir, speed, mirror):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
@@ -294,6 +332,7 @@ def main(daily, suites, kumano, annapurna, speed, mirror):
       check-mirrors.py --suites         # Check weekly/suites files only (root folder)
       check-mirrors.py --kumano         # Check Kumano Kodo files only
       check-mirrors.py --annapurna      # Check Annapurna files only
+      check-mirrors.py --kashmir        # Check Kashmir files only
       check-mirrors.py --daily --suites # Check both daily and suites
     check-mirrors.py --speed          # Run speed test
     """
@@ -302,7 +341,8 @@ def main(daily, suites, kumano, annapurna, speed, mirror):
     check_suites = suites
     check_kumano = kumano
     check_annapurna = annapurna
-    if not check_daily and not check_suites and not check_kumano and not check_annapurna:
+    check_kashmir = kashmir
+    if not check_daily and not check_suites and not check_kumano and not check_annapurna and not check_kashmir:
         check_daily = True
         check_suites = True
 
@@ -319,6 +359,8 @@ def main(daily, suites, kumano, annapurna, speed, mirror):
         indexes.extend(indexes_suites)
     if check_kumano:
         indexes.extend(indexes_kumano)
+    if check_kashmir:
+        indexes.extend(indexes_kashmir)
     if check_annapurna:
         indexes.extend(indexes_annapurna)
 
@@ -348,6 +390,12 @@ def main(daily, suites, kumano, annapurna, speed, mirror):
                 check_exist("{}/{}".format(m, file), check_this_week=True)
             for file in annapurna_exist_only:
                 check_exist("{}/{}".format(m, file))
+        if check_kashmir:
+            print("  [Kashmir files]")
+            for file in kashmir_files:
+                check_exist("{}/{}".format(m, file), check_this_week=True)
+            for file in kashmir_exist_only:
+                check_exist("{}/{}".format(m, file))
         print("")
 
     if speed:
@@ -357,8 +405,10 @@ def main(daily, suites, kumano, annapurna, speed, mirror):
             speed_test_file = suites_files[0]
         elif check_kumano:
             speed_test_file = kumano_files[0]
-        else:
+        elif check_annapurna:
             speed_test_file = annapurna_files[0]
+        else:
+            speed_test_file = kashmir_files[0]
         for m in check_mirrors:
             print("Speed testing {}, ...".format(m))
             check_speed("{}/{}".format(m, speed_test_file))

@@ -34,7 +34,7 @@ BOUNDS_DIR := $(ROOT_DIR)/bounds-20220826
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 BUILD_DIR ?= $(ROOT_DIR)/build
-INSTALL_DIR ?= $(ROOT_DIR)/install-$(SUITE)
+INSTALL_DIR ?= $(ROOT_DIR)/install
 DOWNLOAD_DIR ?= $(ROOT_DIR)/download
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
@@ -50,6 +50,7 @@ include $(wildcard $(ROOT_DIR)/suites/beibeiji/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/sheipa/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kumano/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/kashmir/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 
@@ -238,23 +239,26 @@ TAIWAN_SUITES := taiwan taiwan_lite taiwan_bw taiwan_odc taiwan_bc \
                  taiwan_bw_dem taiwan_odc_dem taiwan_bc_dem taiwan_bc_dem_en taiwan_bw_en
 .PHONY: suites
 suites:
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
 	$(foreach suite,$(TAIWAN_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=$(suite) all;)
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 KUMANO_SUITES := kumano kumano_bc_dem kumano_bc_dem_en
 .PHONY: kumano_suites
 kumano_suites:
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano styles
 	$(foreach suite,$(KUMANO_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano SUITE=$(suite) all;)
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano INSTALL_DIR=$(INSTALL_DIR) SUITE=kumano install
 
 ANNAPURNA_SUITES := annapurna annapurna_bc_dem annapurna_bc_dem_en
 .PHONY: annapurna_suites
 annapurna_suites:
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna styles
 	$(foreach suite,$(ANNAPURNA_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna SUITE=$(suite) all;)
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna INSTALL_DIR=$(INSTALL_DIR) SUITE=annapurna install
+
+KASHMIR_SUITES := kashmir kashmir_bc_dem kashmir_bc_dem_en
+.PHONY: kashmir_suites
+kashmir_suites:
+	$(foreach suite,$(KASHMIR_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kashmir SUITE=$(suite) all;)
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kashmir INSTALL_DIR=$(INSTALL_DIR) SUITE=kashmir install
 
 .PHONY: daily
 daily:

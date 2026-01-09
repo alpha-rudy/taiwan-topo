@@ -2,7 +2,7 @@
 <locusActions>
   <download>
     <source><![CDATA[https://moi.kcwu.csie.org/annapurna_hgtmix.zip]]></source>
-    <dest><![CDATA[/data/srtm/annapurna-hgt.zip]]></dest>
+    <dest><![CDATA[/data/srtm/annapurna_hgt.zip]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
 </locusActions>
