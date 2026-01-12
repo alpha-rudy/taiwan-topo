@@ -704,7 +704,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="zh" value="防空避難處所"/>
       <cat id="ads"/>
     </layer>
-    <layer id="elmt-giant_tree" enabled="false">
+    <layer id="elmt-giant_tree" enabled="true">
       <name lang="de" value="Taiwan Giant Tree"/>
       <name lang="en" value="Taiwan Giant Tree"/>
       <name lang="es" value="Taiwan Giant Tree"/>
