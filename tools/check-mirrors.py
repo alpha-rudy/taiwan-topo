@@ -31,6 +31,10 @@ indexes_suites = [
     "gts/index.html"
 ]
 
+indexes_fujisan = [
+    "fujisan_topo.html"
+]
+
 indexes_kumano = [
     "kumano_topo.html"
 ]
@@ -133,6 +137,38 @@ suites_files = [
 
 # Keep 'weekly' as alias for backward compatibility
 weekly = suites_files
+
+# Fujisan files - released with suites
+# Reference: docs/Fujisan/fujisan_topo.md
+fujisan_files = [
+    "fujisan_topo.html",
+    "AW3D30_OSM_Fujisan_TOPO_Rudy.map.zip",
+    "AW3D30_OSM_Fujisan_TOPO_Rudy.zip",
+    "AW3D30_OSM_Fujisan_TOPO_Rudy_locus.zip",
+    "AW3D30_OSM_Fujisan_TOPO_Rudy.poi.zip",
+    "AW3D30_OSM_Fujisan_TOPO_Rudy_v2.poi.zip",
+    "AW3D30_OSM_Fujisan_TOPO_Rudy.db.zip",
+    "Fujisan_carto_map.cpkg",
+    "Fujisan_carto_style.cpkg",
+    "Fujisan_carto_dem.cpkg",
+    "Fujisan_carto_upgrade.cpkg",
+    "Fujisan_carto_all.cpkg",
+    "gmapsupp_Fujisan_aw3d30_ja_camp3D.img.zip",
+    "Install_AW3D30_Fujisan_TOPO_camp3D_ja.exe",
+    "Fujisan_aw3d30_ja_camp3D.gmap.zip",
+    "gmapsupp_Fujisan_aw3d30_en_camp3D.img.zip",
+    "Install_AW3D30_Fujisan_TOPO_camp3D_en.exe",
+    "Fujisan_aw3d30_en_camp3D.gmap.zip"
+]
+
+# Files to check for existence only (no date check) in Fujisan
+fujisan_exist_only = [
+    "fujisan_hgtmix.zip",
+    "fujisan_map-cedric.xml",
+    "fujisan_dem-cedric.xml",
+    "fujisan_upgrade-cedric.xml",
+    "fujisan_all-cedric.xml"
+]
 
 # Kumano Kodo files - released with suites
 # Reference: docs/Kumano/kumano_topo.md
@@ -327,6 +363,7 @@ def get_mirror_names():
 @click.command()
 @click.option('--daily', '-d', is_flag=True, help='Check daily/beta files (released Mon/Wed/Sat, in drops/ folder)')
 @click.option('--suites', '-s', is_flag=True, help='Check weekly/suites files (released Thursday, in root folder)')
+@click.option('--fujisan', '-f', is_flag=True, help='Check Fujisan files (released with suites)')
 @click.option('--kumano', '-k', is_flag=True, help='Check Kumano Kodo files (released with suites)')
 @click.option('--annapurna', '-a', is_flag=True, help='Check Annapurna files (released with suites)')
 @click.option('--kashmir', '-K', is_flag=True, help='Check Kashmir files (released with suites)')
@@ -336,12 +373,12 @@ def get_mirror_names():
 @click.option('--kcwu', is_flag=True, help='Check kcwu mirror only')
 @click.option('--cedric', is_flag=True, help='Check cedric mirror only')
 @click.option('--rudymap', is_flag=True, help='Check rudymap mirror only')
-def main(daily, suites, kumano, annapurna, kashmir, speed, mirror, happyman, kcwu, cedric, rudymap):
+def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happyman, kcwu, cedric, rudymap):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
     Two-dimensional selection:
-      - Suite dimension: --daily, --suites, --kumano, --annapurna, --kashmir
+      - Suite dimension: --daily, --suites, --fujisan, --kumano, --annapurna, --kashmir
       - Mirror dimension: --happyman, --kcwu, --cedric, --rudymap
 
     \b
@@ -362,6 +399,7 @@ def main(daily, suites, kumano, annapurna, kashmir, speed, mirror, happyman, kcw
     suite_flags = {
         "daily": daily,
         "suites": suites,
+        "fujisan": fujisan,
         "kumano": kumano,
         "annapurna": annapurna,
         "kashmir": kashmir
@@ -401,6 +439,7 @@ def main(daily, suites, kumano, annapurna, kashmir, speed, mirror, happyman, kcw
         suite_files = {
             "daily": daily_files,
             "suites": suites_files,
+            "fujisan": fujisan_files,
             "kumano": kumano_files,
             "annapurna": annapurna_files,
             "kashmir": kashmir_files
@@ -431,6 +470,13 @@ def main(daily, suites, kumano, annapurna, kashmir, speed, mirror, happyman, kcw
             "exist_only": files,
             "check_today": False,
             "label": "Suites/Weekly"
+        },
+        "fujisan": {
+            "indexes": indexes_fujisan,
+            "files": fujisan_files,
+            "exist_only": fujisan_exist_only,
+            "check_today": False,
+            "label": "Fujisan"
         },
         "kumano": {
             "indexes": indexes_kumano,

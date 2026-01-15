@@ -48,6 +48,7 @@ include $(wildcard $(ROOT_DIR)/suites/taipei/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/yushan/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/beibeiji/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/sheipa/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/fujisan/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kumano/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kashmir/*.mk)
@@ -241,6 +242,12 @@ TAIWAN_SUITES := taiwan taiwan_lite taiwan_bw taiwan_odc taiwan_bc \
 suites:
 	$(foreach suite,$(TAIWAN_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=$(suite) all;)
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
+
+FUJISAN_SUITES := fujisan fujisan_bc_dem fujisan_bc_dem_en
+.PHONY: fujisan_suites
+fujisan_suites:
+	$(foreach suite,$(FUJISAN_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-fujisan SUITE=$(suite) all;)
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-fujisan INSTALL_DIR=$(ROOT_DIR)/install-fujisan SUITE=fujisan install
 
 KUMANO_SUITES := kumano kumano_bc_dem kumano_bc_dem_en
 .PHONY: kumano_suites
