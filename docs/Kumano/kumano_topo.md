@@ -187,7 +187,7 @@ AW3D30.OSM - Kumano Kodo TOPO v__version__
       > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
       > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Taiwan TOPO（適合 PC/Mac BaseCamp）
+* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Kumano TOPO（適合 PC/Mac BaseCamp）
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
@@ -204,7 +204,7 @@ AW3D30.OSM - Kumano Kodo TOPO v__version__
     > [[mirror kcwu]](https://moi.kcwu.csie.org/Kumano_aw3d30_ja_camp3D.gmap.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Kumano_aw3d30_ja_camp3D.gmap.zip)
 
-* ![Map](images/Garmin.png =x36) Garmin English Maps - Taiwan TOPO
+* ![Map](images/Garmin.png =x36) Garmin English Maps - Kumano TOPO
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
