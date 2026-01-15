@@ -1,7 +1,7 @@
 Annapurna TOPO 安娜普納登山地圖
 ===============================
 
-AW3D30.OSM - Annapurna Kodo TOPO v__version__
+AW3D30.OSM - Annapurna TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
