@@ -246,19 +246,19 @@ KUMANO_SUITES := kumano kumano_bc_dem kumano_bc_dem_en
 .PHONY: kumano_suites
 kumano_suites:
 	$(foreach suite,$(KUMANO_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano SUITE=$(suite) all;)
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano INSTALL_DIR=$(INSTALL_DIR) SUITE=kumano install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kumano INSTALL_DIR=$(ROOT_DIR)/install-kumano SUITE=kumano install
 
 ANNAPURNA_SUITES := annapurna annapurna_bc_dem annapurna_bc_dem_en
 .PHONY: annapurna_suites
 annapurna_suites:
 	$(foreach suite,$(ANNAPURNA_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna SUITE=$(suite) all;)
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna INSTALL_DIR=$(INSTALL_DIR) SUITE=annapurna install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-annapurna INSTALL_DIR=$(ROOT_DIR)/install-annapurna SUITE=annapurna install
 
 KASHMIR_SUITES := kashmir kashmir_bc_dem kashmir_bc_dem_en
 .PHONY: kashmir_suites
 kashmir_suites:
 	$(foreach suite,$(KASHMIR_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kashmir SUITE=$(suite) all;)
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kashmir INSTALL_DIR=$(INSTALL_DIR) SUITE=kashmir install
+	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-kashmir INSTALL_DIR=$(ROOT_DIR)/install-kashmir SUITE=kashmir install
 
 .PHONY: daily
 daily:
