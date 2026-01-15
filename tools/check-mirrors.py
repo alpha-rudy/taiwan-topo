@@ -8,13 +8,18 @@ import os
 import datetime
 import time
 
-mirrors = [
-    "https://map.happyman.idv.tw/rudy",
-    "https://moi.kcwu.csie.org",
-    # "http://rudy.basecamp.tw",
-    "https://d3r5lsn28erp7o.cloudfront.net",
-    "https://rudymap.tw"
-]
+# Mirror servers configuration
+# Key is the short name used for CLI options, value is the URL
+MIRRORS = {
+    "happyman": "https://map.happyman.idv.tw/rudy",
+    "kcwu": "https://moi.kcwu.csie.org",
+    # "basecamp": "http://rudy.basecamp.tw",
+    "cedric": "https://d3r5lsn28erp7o.cloudfront.net",
+    "rudymap": "https://rudymap.tw"
+}
+
+# For backward compatibility
+mirrors = list(MIRRORS.values())
 
 # Index files for version checking
 indexes_daily = [
@@ -314,6 +319,11 @@ def check_speed(uri):
     os.system("curl -L {} > /dev/null".format(uri))
 
 
+def get_mirror_names():
+    """Return list of mirror short names for help text."""
+    return list(MIRRORS.keys())
+
+
 @click.command()
 @click.option('--daily', '-d', is_flag=True, help='Check daily/beta files (released Mon/Wed/Sat, in drops/ folder)')
 @click.option('--suites', '-s', is_flag=True, help='Check weekly/suites files (released Thursday, in root folder)')
@@ -321,98 +331,151 @@ def check_speed(uri):
 @click.option('--annapurna', '-a', is_flag=True, help='Check Annapurna files (released with suites)')
 @click.option('--kashmir', '-K', is_flag=True, help='Check Kashmir files (released with suites)')
 @click.option('--speed', is_flag=True, default=False, help='Run speed test (default: off)')
-@click.option('--mirror', '-m', type=str, help='Check specific mirror URL only')
-def main(daily, suites, kumano, annapurna, kashmir, speed, mirror):
+@click.option('--mirror', '-m', type=str, help='Check specific mirror URL only (deprecated, use mirror options below)')
+@click.option('--happyman', is_flag=True, help='Check happyman mirror only')
+@click.option('--kcwu', is_flag=True, help='Check kcwu mirror only')
+@click.option('--cedric', is_flag=True, help='Check cedric mirror only')
+@click.option('--rudymap', is_flag=True, help='Check rudymap mirror only')
+def main(daily, suites, kumano, annapurna, kashmir, speed, mirror, happyman, kcwu, cedric, rudymap):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
-    Examples:
-      check-mirrors.py                  # Check all (daily + suites)
-      check-mirrors.py --daily          # Check daily/beta files only (drops/ folder)
-      check-mirrors.py --suites         # Check weekly/suites files only (root folder)
-      check-mirrors.py --kumano         # Check Kumano Kodo files only
-      check-mirrors.py --annapurna      # Check Annapurna files only
-      check-mirrors.py --kashmir        # Check Kashmir files only
-      check-mirrors.py --daily --suites # Check both daily and suites
-    check-mirrors.py --speed          # Run speed test
-    """
-    # If neither daily nor suites nor kumano nor annapurna is specified, check daily and suites (default behavior)
-    check_daily = daily
-    check_suites = suites
-    check_kumano = kumano
-    check_annapurna = annapurna
-    check_kashmir = kashmir
-    if not check_daily and not check_suites and not check_kumano and not check_annapurna and not check_kashmir:
-        check_daily = True
-        check_suites = True
+    Two-dimensional selection:
+      - Suite dimension: --daily, --suites, --kumano, --annapurna, --kashmir
+      - Mirror dimension: --happyman, --kcwu, --cedric, --rudymap
 
-    # Determine which mirrors to check
-    check_mirrors = mirrors
+    \b
+    Examples:
+      check-mirrors.py                  # Check all (daily + suites) on all mirrors
+      check-mirrors.py --daily          # Check daily/beta files on all mirrors
+      check-mirrors.py --suites         # Check weekly/suites files on all mirrors
+      check-mirrors.py --happyman       # Check all (daily + suites) on happyman only
+      check-mirrors.py --daily --happyman  # Check daily files on happyman only
+      check-mirrors.py --suites --kcwu --rudymap  # Check suites on kcwu and rudymap
+      check-mirrors.py --kumano         # Check Kumano Kodo files on all mirrors
+      check-mirrors.py --annapurna      # Check Annapurna files on all mirrors
+      check-mirrors.py --kashmir        # Check Kashmir files on all mirrors
+      check-mirrors.py --speed          # Run speed test on all mirrors
+      check-mirrors.py --speed --happyman  # Run speed test on happyman only
+    """
+    # Suite dimension: Determine which suites to check
+    suite_flags = {
+        "daily": daily,
+        "suites": suites,
+        "kumano": kumano,
+        "annapurna": annapurna,
+        "kashmir": kashmir
+    }
+    
+    # Build list of suites to check
+    selected_suites = [name for name, selected in suite_flags.items() if selected]
+    
+    # If none specified, check daily and suites (default behavior)
+    if not selected_suites:
+        selected_suites = ["daily", "suites"]
+
+    # Mirror dimension: Determine which mirrors to check
+    mirror_flags = {
+        "happyman": happyman,
+        "kcwu": kcwu,
+        "cedric": cedric,
+        "rudymap": rudymap
+    }
+    
+    # Build list of mirrors to check
+    selected_mirrors = [name for name, selected in mirror_flags.items() if selected]
+    
+    # If --mirror option is used (deprecated), add it
     if mirror:
         check_mirrors = [mirror]
+    elif selected_mirrors:
+        # Use selected mirrors
+        check_mirrors = [MIRRORS[name] for name in selected_mirrors]
+    else:
+        # No mirror specified, check all mirrors
+        check_mirrors = list(MIRRORS.values())
 
-    # Determine which indexes to check
-    indexes = []
-    if check_daily:
-        indexes.extend(indexes_daily)
-    if check_suites:
-        indexes.extend(indexes_suites)
-    if check_kumano:
-        indexes.extend(indexes_kumano)
-    if check_kashmir:
-        indexes.extend(indexes_kashmir)
-    if check_annapurna:
-        indexes.extend(indexes_annapurna)
-
-    for m in check_mirrors:
-        print("Checking {}, ...".format(m))
-        for index in indexes:
-            check_version("{}/{}".format(m, index))
-        if check_daily:
-            print("  [Daily/Beta files]")
-            for file in daily_files:
-                check_exist("{}/{}".format(m, file), check_today=True)
-        if check_suites:
-            print("  [Suites/Weekly files]")
-            for file in suites_files:
-                check_exist("{}/{}".format(m, file), check_this_week=True)
-            for file in files:
-                check_exist("{}/{}".format(m, file))
-        if check_kumano:
-            print("  [Kumano Kodo files]")
-            for file in kumano_files:
-                check_exist("{}/{}".format(m, file), check_this_week=True)
-            for file in kumano_exist_only:
-                check_exist("{}/{}".format(m, file))
-        if check_annapurna:
-            print("  [Annapurna files]")
-            for file in annapurna_files:
-                check_exist("{}/{}".format(m, file), check_this_week=True)
-            for file in annapurna_exist_only:
-                check_exist("{}/{}".format(m, file))
-        if check_kashmir:
-            print("  [Kashmir files]")
-            for file in kashmir_files:
-                check_exist("{}/{}".format(m, file), check_this_week=True)
-            for file in kashmir_exist_only:
-                check_exist("{}/{}".format(m, file))
-        print("")
-
+    # If --speed is specified, only run speed test
     if speed:
-        if check_daily:
-            speed_test_file = daily_files[0]
-        elif check_suites:
-            speed_test_file = suites_files[0]
-        elif check_kumano:
-            speed_test_file = kumano_files[0]
-        elif check_annapurna:
-            speed_test_file = annapurna_files[0]
-        else:
-            speed_test_file = kashmir_files[0]
+        # Map suite names to their file lists
+        suite_files = {
+            "daily": daily_files,
+            "suites": suites_files,
+            "kumano": kumano_files,
+            "annapurna": annapurna_files,
+            "kashmir": kashmir_files
+        }
+        
+        # Use the first selected suite, or daily as default
+        suite_for_speed = selected_suites[0] if selected_suites else "daily"
+        speed_test_file = suite_files[suite_for_speed][0]
+        
         for m in check_mirrors:
             print("Speed testing {}, ...".format(m))
             check_speed("{}/{}".format(m, speed_test_file))
             print("")
+        return
+
+    # Suite file configurations
+    suite_configs = {
+        "daily": {
+            "indexes": indexes_daily,
+            "files": daily_files,
+            "exist_only": [],
+            "check_today": True,
+            "label": "Daily/Beta"
+        },
+        "suites": {
+            "indexes": indexes_suites,
+            "files": suites_files,
+            "exist_only": files,
+            "check_today": False,
+            "label": "Suites/Weekly"
+        },
+        "kumano": {
+            "indexes": indexes_kumano,
+            "files": kumano_files,
+            "exist_only": kumano_exist_only,
+            "check_today": False,
+            "label": "Kumano Kodo"
+        },
+        "annapurna": {
+            "indexes": indexes_annapurna,
+            "files": annapurna_files,
+            "exist_only": annapurna_exist_only,
+            "check_today": False,
+            "label": "Annapurna"
+        },
+        "kashmir": {
+            "indexes": indexes_kashmir,
+            "files": kashmir_files,
+            "exist_only": kashmir_exist_only,
+            "check_today": False,
+            "label": "Kashmir"
+        }
+    }
+
+    # Determine which indexes to check
+    indexes = []
+    for suite in selected_suites:
+        indexes.extend(suite_configs[suite]["indexes"])
+
+    for m in check_mirrors:
+        print("Checking {}, ...".format(m))
+        print("  [Index files]")
+        for index in indexes:
+            check_version("{}/{}".format(m, index))
+        
+        for suite in selected_suites:
+            config = suite_configs[suite]
+            print("  [{} files]".format(config["label"]))
+            for file in config["files"]:
+                check_exist("{}/{}".format(m, file), check_today=config["check_today"], check_this_week=not config["check_today"])
+            if config["exist_only"]:
+                print("  [Existing files]")
+                for file in config["exist_only"]:
+                    check_exist("{}/{}".format(m, file))
+        print("")
 
 
 if __name__ == "__main__":
