@@ -288,7 +288,7 @@ def check_exist(uri, check_today=False, check_this_week=False):
         local = gmt.replace(tzinfo=datetime.timezone.utc).astimezone(tz=None)
         now = datetime.datetime.now()
         delta = now - gmt
-        if check_today and delta.days > 3:
+        if check_today and delta.days > 2:
             print_status(False, "{} ({})".format(uri, local.strftime("v%Y.%m.%d")))
             # print("{} - {} = {}".format(now.time(), gmt.time(), delta.days), file=sys.stdout)
         elif check_this_week and delta.days > 7:
