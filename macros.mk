@@ -252,3 +252,19 @@ $2: $4
 				comment="$$(VERSION)  /  (c) Map data: OSM contributors" \
 				file="$$@"
 endef
+
+#==============================================================================
+# Suite Build Macro
+#==============================================================================
+# Macro to generate suite targets that run multiple suites in sequence with error handling
+# Parameters:
+#   1: region name (e.g., fujisan, kumano)
+#   2: suite list variable name (e.g., FUJISAN_SUITES)
+#   3: install directory path
+#   4: suite name for install target (usually same as region, e.g., fujisan)
+define SUITE_BUILD
+.PHONY: $(1)_suites
+$(1)_suites:
+	set -e; $$(foreach suite,$$($(2)),$(MAKE_CMD) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$(suite) all;)
+	$$(MAKE_CMD) BUILD_DIR=$$(ROOT_DIR)/build-$(1) INSTALL_DIR=$(3) SUITE=$(4) install
+endef

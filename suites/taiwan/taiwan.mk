@@ -18,3 +18,9 @@ HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 TARGETS := mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
 endif
+
+# Suite lists for batch builds
+TAIWAN_SUITES := taiwan taiwan_lite taiwan_bw taiwan_odc taiwan_bc \
+                 taiwan_bw_dem taiwan_odc_dem taiwan_bc_dem taiwan_bc_dem_en taiwan_bw_en
+# Instantiate suite targets for each region
+$(eval $(call SUITE_BUILD,taiwan,TAIWAN_SUITES,$(INSTALL_DIR),taiwan))

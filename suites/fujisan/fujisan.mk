@@ -19,3 +19,8 @@ GTS_STYLE = $(HS_STYLE)
 TOPO_PAGE := fujisan_topo
 TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
 endif
+
+# Suite lists for batch builds
+FUJISAN_SUITES := fujisan fujisan_bc_dem fujisan_bc_dem_en
+# Instantiate suite targets for each region
+$(eval $(call SUITE_BUILD,fujisan,FUJISAN_SUITES,$(ROOT_DIR)/install-fujisan,fujisan))
