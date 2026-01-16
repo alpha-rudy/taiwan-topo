@@ -1,0 +1,38 @@
+{
+	"version": 2,
+	"extracted_size_mb": 750,  
+	"elevationdata": [
+		"*.hgt"
+	],
+	"maps": [
+		{
+			"name": "AW3D30_OSM_Fujisan_TOPO_Rudy",
+			"file": "AW3D30_OSM_Fujisan_TOPO_Rudy.map",
+			"type": "map",
+			"load_in_layer": 0,
+			"uniqueId": "AW3D30_OSM_Fujisan_TOPO_Rudy"
+		}
+	],
+	"styles": [
+		{
+			"file": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
+			"load_in_layer": 0,
+			"uniqueId": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style"
+		}
+	],
+	"overlays": [
+		{
+			"file": "AW3D30_OSM_Fujisan_TOPO_Rudy.poi",
+			"load": false,
+			"uniqueId": "AW3D30_OSM_Fujisan_TOPO_Rudy"
+		}
+	],
+	"commands": [
+		{
+			"command": "mapposition",
+			"lat": 35.362473611084596,
+			"lon": 138.73043381758578,
+			"zoom": 13
+		}
+	]
+}

@@ -1,0 +1,28 @@
+{
+        "version": 2,
+        "extracted_size_mb": 350,
+        "maps": [
+                {
+                        "name": "AW3D30_OSM_Kashmir_TOPO_Rudy",
+                        "file": "AW3D30_OSM_Kashmir_TOPO_Rudy.map",
+                        "type": "map",
+                        "load_in_layer": 0,
+                        "uniqueId": "AW3D30_OSM_Kashmir_TOPO_Rudy"
+                }
+        ],
+        "overlays": [
+                {
+                        "file": "AW3D30_OSM_Kashmir_TOPO_Rudy.poi",
+                        "load": false,
+                        "uniqueId": "AW3D30_OSM_Kashmir_TOPO_Rudy"
+                }
+        ],
+        "commands": [
+                {
+                        "command": "mapposition",
+                        "lat": 34.375,
+                        "lon": 75.0,
+                        "zoom": 13
+                }
+        ]
+}
