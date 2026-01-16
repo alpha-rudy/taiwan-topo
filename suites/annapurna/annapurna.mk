@@ -19,3 +19,8 @@ GTS_STYLE = $(HS_STYLE)
 TOPO_PAGE := annapurna_topo
 TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
 endif
+
+# Suite lists for batch builds
+ANNAPURNA_SUITES := annapurna annapurna_bc_dem annapurna_bc_dem_en
+# Instantiate suite targets for each region
+$(eval $(call SUITE_BUILD,annapurna,ANNAPURNA_SUITES,$(ROOT_DIR)/install-annapurna,annapurna))
