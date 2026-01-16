@@ -1,6 +1,6 @@
 {
 	"version": 2,
-	"extracted_size_mb": 750,  
+	"extracted_size_mb": 1150,  
 	"elevationdata": [
 		"*.hgt"
 	],
