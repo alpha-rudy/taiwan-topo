@@ -213,7 +213,7 @@ $2: $3
 	date +'DS: %H:%M:%S $$(shell basename $$@)'
 	[ -d "$$(BUILD_DIR)" ]
 	-rm -rf $$@
-	cd $$(BUILD_DIR) && $$(ZIP_CMD) $$@ $(foreach f,$4,$$(shell basename $f))
+	set -e; cd $$(BUILD_DIR) && $$(ZIP_CMD) $$@ $(foreach f,$4,$$(shell basename $f))
 endef
 
 
