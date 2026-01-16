@@ -1,0 +1,35 @@
+{
+	"version": 2,
+	"extracted_size_mb": 300,  
+	"maps": [
+		{
+			"name": "MOI_OSM_Taiwan_TOPO_Rudy",
+			"file": "MOI_OSM_Taiwan_TOPO_Rudy.map",
+			"type": "map",
+			"load_in_layer": 0,
+			"uniqueId": "MOI_OSM_Taiwan_TOPO_Rudy"
+		}
+	],
+	"styles": [
+		{
+			"file": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
+			"load_in_layer": 0,
+			"uniqueId": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style"
+		}
+	],
+	"overlays": [
+		{
+			"file": "MOI_OSM_Taiwan_TOPO_Rudy.poi",
+			"load": false,
+			"uniqueId": "MOI_OSM_Taiwan_TOPO_Rudy"
+		}
+	],
+	"commands": [
+		{
+			"command": "mapposition",
+			"lat": 23.470,
+			"lon": 120.957,
+			"zoom": 13
+		}
+	]
+}

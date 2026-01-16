@@ -1,0 +1,7 @@
+{
+        "version": 2,
+        "extracted_size_mb": 440,
+        "elevationdata": [
+                "*.hgt"
+        ]
+}

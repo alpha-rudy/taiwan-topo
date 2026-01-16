@@ -40,6 +40,22 @@ ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
 META := $(EXTRACT_DIR)/meta.osm
 
+ZIP_CMD := 7z a -tzip -mx=6
+UNZIP_CMD := unzip -o
+MAKE_CMD := make
+
+ifeq ($(shell uname),Darwin)
+MD5_CMD := md5 -q $$EXAM_FILE
+JMC_CMD := jmc-0.8/macos/jmc_cli
+SED_CMD := gsed
+else
+MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
+JMC_CMD := jmc-0.8/linux/jmc_cli
+SED_CMD := sed
+endif
+
+# Include reusable build macros
+include $(ROOT_DIR)/macros.mk
 
 # Include suite definitions from external files
 # Each suite is defined in its own .mk file under suites/<region>/
@@ -54,9 +70,6 @@ include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kashmir/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
-
-# Include reusable build macros
-include $(ROOT_DIR)/macros.mk
 
 # auto variables
 VERSION := $(shell date +%Y.%m.%d)
@@ -144,16 +157,6 @@ GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 CARTO_ALL := $(BUILD_DIR)/carto_all
 LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
 
-ifeq ($(shell uname),Darwin)
-MD5_CMD := md5 -q $$EXAM_FILE
-JMC_CMD := jmc-0.8/macos/jmc_cli
-SED_CMD := gsed
-else
-MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
-JMC_CMD := jmc-0.8/linux/jmc_cli
-SED_CMD := sed
-endif
-
 # BOUNDING settings
 ifneq (,$(strip $(POLY_FILE)))
 OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
@@ -164,10 +167,6 @@ OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --co
 OSMIUM_BOUNDING := --bbox $(LEFT),$(BOTTOM),$(RIGHT),$(TOP)
 OSMOSIS_BOUNDING := --bounding-box left=$(LEFT) bottom=$(BOTTOM) right=$(RIGHT) top=$(TOP) completeWays=yes completeRelations=yes clipIncompleteEntities=false
 endif
-
-ZIP_CMD := 7z a -tzip -mx=6
-UNZIP_CMD := unzip -o
-MAKE_CMD := make
 
 all: $(TARGETS)
 
@@ -271,12 +270,11 @@ $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	[ -n "$(CARTO_ALL)" ]
 	mv $(POI) $(POI).bak && cp $(POI_V2) $(POI)
 	$(UNZIP_CMD) $(HGT) -d $(BUILD_DIR)
-	cp auto-install/carto/$(REGION)/*.cpkg $(BUILD_DIR)/
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_style.cpkg $(shell basename $(HS_STYLE))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_dem.cpkg N*.hgt
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
-	cd $(BUILD_DIR) && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE))
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) && rm -f mapdetails.json
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_style.cpkg mapdetails.json $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt && rm -f mapdetails.json
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
 	mv $(POI).bak $(POI)
 
 .PHONY: locus_map
