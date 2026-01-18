@@ -1,0 +1,27 @@
+{
+    "name": "daily",
+    "label": "Daily/Beta",
+    "indexes": [
+        "drops/beta.html"
+    ],
+    "files": [
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy.map.zip",
+        "drops/index.json",
+        "drops/beta.html",
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy_style.zip",
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip",
+        "drops/MOI_OSM_extra_style.zip",
+        "drops/MOI_OSM_bn_style.zip",
+        "drops/MOI_OSM_dn_style.zip",
+        "drops/MOI_OSM_tn_style.zip",
+        "drops/Install_MOI_Taiwan_TOPO_camp3D.exe",
+        "drops/Taiwan_moi_zh_camp3D.gmap.zip",
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip",
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip",
+        "drops/MOI_OSM_Taiwan_TOPO_Rudy.db.zip",
+        "drops/MOI_OSM_twmap_style.zip"
+    ],
+    "exist_only": [],
+    "check_today": true
+}

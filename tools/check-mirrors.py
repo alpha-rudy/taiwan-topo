@@ -5,8 +5,14 @@ import requests
 import sys
 import re
 import os
+import json
 import datetime
 import time
+from pathlib import Path
+
+# Get the directory where this script is located
+SCRIPT_DIR = Path(__file__).parent.resolve()
+CONFIGS_DIR = SCRIPT_DIR / "mirror-configs"
 
 # Mirror servers configuration
 # Key is the short name used for CLI options, value is the URL
@@ -21,34 +27,35 @@ MIRRORS = {
 # For backward compatibility
 mirrors = list(MIRRORS.values())
 
-# Index files for version checking
-indexes_daily = [
-    "drops/beta.html"
-]
+# Available suite names (loaded from config files)
+AVAILABLE_SUITES = ["daily", "suites", "fujisan", "kumano", "annapurna", "kashmir"]
 
-indexes_suites = [
-    "taiwan_topo.html",
-    "gts/index.html"
-]
 
-indexes_fujisan = [
-    "fujisan_topo.html"
-]
+def load_suite_config(suite_name):
+    """Load suite configuration from JSON file."""
+    config_file = CONFIGS_DIR / f"{suite_name}.json"
+    if not config_file.exists():
+        raise FileNotFoundError(f"Suite config file not found: {config_file}")
+    
+    with open(config_file, 'r') as f:
+        return json.load(f)
 
-indexes_kumano = [
-    "kumano_topo.html"
-]
 
-indexes_annapurna = [
-    "annapurna_topo.html"
-]
+def load_all_suite_configs():
+    """Load all suite configurations."""
+    configs = {}
+    for suite_name in AVAILABLE_SUITES:
+        configs[suite_name] = load_suite_config(suite_name)
+    return configs
 
-indexes_kashmir = [
-    "kashmir_topo.html"
-]
 
-indexes_all = indexes_daily + indexes_suites
+# Legacy compatibility: load configs for backward compatible access
+def _get_legacy_data():
+    """Load data for backward compatibility with old variable names."""
+    configs = load_all_suite_configs()
+    return configs
 
+# Files to check for existence only (no date check) - for backward compatibility
 files = [
     "extra/Markchoo.map.zip",
     "extra/Compartment.map.zip",
@@ -70,204 +77,6 @@ files = [
     "locus_dem-rex.xml",
     "locus_upgrade-rex.xml",
     "locus_all-rex.xml"
-]
-
-# Daily files (beta version) - released Mon/Wed/Sat, in drops/ folder
-# Reference: docs/Taiwan/beta.md
-daily_files = [
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy.map.zip",
-    "drops/index.json",
-    "drops/beta.html",
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy_style.zip",
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip",
-    "drops/MOI_OSM_extra_style.zip",
-    "drops/MOI_OSM_bn_style.zip",
-    "drops/MOI_OSM_dn_style.zip",
-    "drops/MOI_OSM_tn_style.zip",
-    "drops/Install_MOI_Taiwan_TOPO_camp3D.exe",
-    "drops/Taiwan_moi_zh_camp3D.gmap.zip",
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip",
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip",
-    "drops/MOI_OSM_Taiwan_TOPO_Rudy.db.zip",
-    "drops/MOI_OSM_twmap_style.zip"
-]
-
-# Weekly/Suites files (stable version) - released Thursday, in root folder
-# Reference: docs/Taiwan/taiwan_topo.md
-suites_files = [
-    "index.json",
-    "taiwan_topo.html",
-    "gts/index.html",
-    "carto_all.cpkg",
-    "carto_upgrade.cpkg",
-    "carto_dem.cpkg",
-    "carto_style.cpkg",
-    "carto_map.cpkg",
-    "MOI_OSM_Taiwan_TOPO_Rudy.map.zip",
-    "MOI_OSM_Taiwan_TOPO_Rudy.zip",
-    "MOI_OSM_Taiwan_TOPO_Rudy_locus.zip",
-    "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
-    "MOI_OSM_Taiwan_TOPO_Lite.zip",
-    "MOI_OSM_Taiwan_TOPO_Lite.map.zip",
-    "MOI_OSM_Taiwan_TOPO_Lite_style.zip",
-    "MOI_OSM_Taiwan_TOPO_Rudy.poi.zip",
-    "MOI_OSM_Taiwan_TOPO_Rudy_style.zip",
-    "MOI_OSM_twmap_style.zip",
-    "MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip",
-    "MOI_OSM_extra_style.zip",
-    "MOI_OSM_bn_style.zip",
-    "MOI_OSM_dn_style.zip",
-    "gmapsupp_Taiwan_moi_zh_bw.img.zip",
-    "gmapsupp_Taiwan_moi_zh_odc.img.zip",
-    "Install_MOI_Taiwan_TOPO_odc3D.exe",
-    "Taiwan_moi_en_camp3D.gmap.zip",
-    "Install_MOI_Taiwan_TOPO_camp3D_en.exe",
-    "gmapsupp_Taiwan_moi_en_bw.img.zip",
-    "Taiwan_moi_zh_camp3D.gmap.zip",
-    "Install_MOI_Taiwan_TOPO_camp3D.exe",
-    "gmapsupp_Taiwan_moi_zh_camp3D.img.zip",
-    "Taiwan_moi_zh_camp.gmap.zip",
-    "Install_MOI_Taiwan_TOPO_camp.exe",
-    "gmapsupp_Taiwan_moi_zh_odc3D.img.zip",
-    "gmapsupp_Taiwan_moi_zh_bw3D.img.zip",
-    "MOI_OSM_tn_style.zip",
-    "Taiwan_moi_zh_odc3D.gmap.zip"
-]
-
-# Keep 'weekly' as alias for backward compatibility
-weekly = suites_files
-
-# Fujisan files - released with suites
-# Reference: docs/Fujisan/fujisan_topo.md
-fujisan_files = [
-    "fujisan_topo.html",
-    "AW3D30_OSM_Fujisan_TOPO_Rudy.map.zip",
-    "AW3D30_OSM_Fujisan_TOPO_Rudy.zip",
-    "AW3D30_OSM_Fujisan_TOPO_Rudy_locus.zip",
-    "AW3D30_OSM_Fujisan_TOPO_Rudy.poi.zip",
-    "AW3D30_OSM_Fujisan_TOPO_Rudy_v2.poi.zip",
-    "AW3D30_OSM_Fujisan_TOPO_Rudy.db.zip",
-    "Fujisan_carto_map.cpkg",
-    "Fujisan_carto_style.cpkg",
-    "Fujisan_carto_dem.cpkg",
-    "Fujisan_carto_upgrade.cpkg",
-    "Fujisan_carto_all.cpkg",
-    "gmapsupp_Fujisan_aw3d30_ja_camp3D.img.zip",
-    "Install_AW3D30_Fujisan_TOPO_camp3D_ja.exe",
-    "Fujisan_aw3d30_ja_camp3D.gmap.zip",
-    "gmapsupp_Fujisan_aw3d30_en_camp3D.img.zip",
-    "Install_AW3D30_Fujisan_TOPO_camp3D_en.exe",
-    "Fujisan_aw3d30_en_camp3D.gmap.zip"
-]
-
-# Files to check for existence only (no date check) in Fujisan
-fujisan_exist_only = [
-    "fujisan_hgtmix.zip",
-    "fujisan_map-cedric.xml",
-    "fujisan_dem-cedric.xml",
-    "fujisan_upgrade-cedric.xml",
-    "fujisan_all-cedric.xml"
-]
-
-# Kumano Kodo files - released with suites
-# Reference: docs/Kumano/kumano_topo.md
-kumano_files = [
-    "kumano_topo.html",
-    "AW3D30_OSM_Kumano_TOPO_Rudy.map.zip",
-    "AW3D30_OSM_Kumano_TOPO_Rudy.zip",
-    "AW3D30_OSM_Kumano_TOPO_Rudy_locus.zip",
-    "AW3D30_OSM_Kumano_TOPO_Rudy.poi.zip",
-    "AW3D30_OSM_Kumano_TOPO_Rudy_v2.poi.zip",
-    "AW3D30_OSM_Kumano_TOPO_Rudy.db.zip",
-    "Kumano_carto_map.cpkg",
-    "Kumano_carto_style.cpkg",
-    "Kumano_carto_dem.cpkg",
-    "Kumano_carto_upgrade.cpkg",
-    "Kumano_carto_all.cpkg",
-    "gmapsupp_Kumano_aw3d30_ja_camp3D.img.zip",
-    "Install_AW3D30_Kumano_TOPO_camp3D_ja.exe",
-    "Kumano_aw3d30_ja_camp3D.gmap.zip",
-    "gmapsupp_Kumano_aw3d30_en_camp3D.img.zip",
-    "Install_AW3D30_Kumano_TOPO_camp3D_en.exe",
-    "Kumano_aw3d30_en_camp3D.gmap.zip"
-]
-
-# Files to check for existence only (no date check) in Kumano
-kumano_exist_only = [
-    "kumano_hgtmix.zip",
-    "kumano_map-cedric.xml",
-    "kumano_dem-cedric.xml",
-    "kumano_upgrade-cedric.xml",
-    "kumano_all-cedric.xml"
-]
-
-# Annapurna files - released with suites
-# Reference: docs/Annapurna/annapurna_topo.md
-annapurna_files = [
-    "annapurna_topo.html",
-    "AW3D30_OSM_Annapurna_TOPO_Rudy.map.zip",
-    "AW3D30_OSM_Annapurna_TOPO_Rudy.zip",
-    "AW3D30_OSM_Annapurna_TOPO_Rudy_locus.zip",
-    "AW3D30_OSM_Annapurna_TOPO_Rudy.poi.zip",
-    "AW3D30_OSM_Annapurna_TOPO_Rudy_v2.poi.zip",
-    "AW3D30_OSM_Annapurna_TOPO_Rudy.db.zip",
-    "Annapurna_carto_map.cpkg",
-    "Annapurna_carto_style.cpkg",
-    "Annapurna_carto_dem.cpkg",
-    "Annapurna_carto_upgrade.cpkg",
-    "Annapurna_carto_all.cpkg",
-    "gmapsupp_Annapurna_aw3d30_ne_camp3D.img.zip",
-    "Install_AW3D30_Annapurna_TOPO_camp3D_ne.exe",
-    "Annapurna_aw3d30_ne_camp3D.gmap.zip",
-    "gmapsupp_Annapurna_aw3d30_en_camp3D.img.zip",
-    "Install_AW3D30_Annapurna_TOPO_camp3D_en.exe",
-    "Annapurna_aw3d30_en_camp3D.gmap.zip",
-    "gmapsupp_Annapurna_aw3d30_ne_camp3D.img.zip",
-    "Install_AW3D30_Annapurna_TOPO_camp3D_ne.exe",
-    "Annapurna_aw3d30_ne_camp3D.gmap.zip"
-]
-
-# Files to check for existence only (no date check) in Annapurna
-annapurna_exist_only = [
-    "annapurna_hgtmix.zip",
-    "annapurna_map-cedric.xml",
-    "annapurna_dem-cedric.xml",
-    "annapurna_upgrade-cedric.xml",
-    "annapurna_all-cedric.xml"
-]
-
-
-# Kashmir files - released with suites
-# Reference: docs/Kashmir/kashmir_topo.md
-kashmir_files = [
-    "kashmir_topo.html",
-    "AW3D30_OSM_Kashmir_TOPO_Rudy.map.zip",
-    "AW3D30_OSM_Kashmir_TOPO_Rudy.zip",
-    "AW3D30_OSM_Kashmir_TOPO_Rudy_locus.zip",
-    "AW3D30_OSM_Kashmir_TOPO_Rudy.poi.zip",
-    "AW3D30_OSM_Kashmir_TOPO_Rudy_v2.poi.zip",
-    "AW3D30_OSM_Kashmir_TOPO_Rudy.db.zip",
-    "Kashmir_carto_map.cpkg",
-    "Kashmir_carto_style.cpkg",
-    "Kashmir_carto_dem.cpkg",
-    "Kashmir_carto_upgrade.cpkg",
-    "Kashmir_carto_all.cpkg",
-    "gmapsupp_Kashmir_aw3d30_hi_camp3D.img.zip",
-    "Install_AW3D30_Kashmir_TOPO_camp3D_hi.exe",
-    "Kashmir_aw3d30_hi_camp3D.gmap.zip",
-    "gmapsupp_Kashmir_aw3d30_en_camp3D.img.zip",
-    "Install_AW3D30_Kashmir_TOPO_camp3D_en.exe",
-    "Kashmir_aw3d30_en_camp3D.gmap.zip"
-]
-
-# Files to check for existence only (no date check) in Kashmir
-kashmir_exist_only = [
-    "kashmir_hgtmix.zip",
-    "kashmir_map-cedric.xml",
-    "kashmir_dem-cedric.xml",
-    "kashmir_upgrade-cedric.xml",
-    "kashmir_all-cedric.xml"
 ]
 
 
@@ -435,19 +244,12 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happ
 
     # If --speed is specified, only run speed test
     if speed:
-        # Map suite names to their file lists
-        suite_files = {
-            "daily": daily_files,
-            "suites": suites_files,
-            "fujisan": fujisan_files,
-            "kumano": kumano_files,
-            "annapurna": annapurna_files,
-            "kashmir": kashmir_files
-        }
+        # Load suite configs from JSON files
+        suite_configs = load_all_suite_configs()
         
         # Use the first selected suite, or daily as default
         suite_for_speed = selected_suites[0] if selected_suites else "daily"
-        speed_test_file = suite_files[suite_for_speed][0]
+        speed_test_file = suite_configs[suite_for_speed]["files"][0]
         
         for m in check_mirrors:
             print("Speed testing {}, ...".format(m))
@@ -455,51 +257,8 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happ
             print("")
         return
 
-    # Suite file configurations
-    suite_configs = {
-        "daily": {
-            "indexes": indexes_daily,
-            "files": daily_files,
-            "exist_only": [],
-            "check_today": True,
-            "label": "Daily/Beta"
-        },
-        "suites": {
-            "indexes": indexes_suites,
-            "files": suites_files,
-            "exist_only": files,
-            "check_today": False,
-            "label": "Suites/Weekly"
-        },
-        "fujisan": {
-            "indexes": indexes_fujisan,
-            "files": fujisan_files,
-            "exist_only": fujisan_exist_only,
-            "check_today": False,
-            "label": "Fujisan"
-        },
-        "kumano": {
-            "indexes": indexes_kumano,
-            "files": kumano_files,
-            "exist_only": kumano_exist_only,
-            "check_today": False,
-            "label": "Kumano Kodo"
-        },
-        "annapurna": {
-            "indexes": indexes_annapurna,
-            "files": annapurna_files,
-            "exist_only": annapurna_exist_only,
-            "check_today": False,
-            "label": "Annapurna"
-        },
-        "kashmir": {
-            "indexes": indexes_kashmir,
-            "files": kashmir_files,
-            "exist_only": kashmir_exist_only,
-            "check_today": False,
-            "label": "Kashmir"
-        }
-    }
+    # Load suite file configurations from JSON files
+    suite_configs = load_all_suite_configs()
 
     # Determine which indexes to check
     indexes = []

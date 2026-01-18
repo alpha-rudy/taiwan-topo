@@ -1,0 +1,35 @@
+{
+    "name": "kumano",
+    "label": "Kumano Kodo",
+    "indexes": [
+        "kumano_topo.html"
+    ],
+    "files": [
+        "kumano_topo.html",
+        "AW3D30_OSM_Kumano_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Kumano_TOPO_Rudy.zip",
+        "AW3D30_OSM_Kumano_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Kumano_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Kumano_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Kumano_TOPO_Rudy.db.zip",
+        "Kumano_carto_map.cpkg",
+        "Kumano_carto_style.cpkg",
+        "Kumano_carto_dem.cpkg",
+        "Kumano_carto_upgrade.cpkg",
+        "Kumano_carto_all.cpkg",
+        "gmapsupp_Kumano_aw3d30_ja_camp3D.img.zip",
+        "Install_AW3D30_Kumano_TOPO_camp3D_ja.exe",
+        "Kumano_aw3d30_ja_camp3D.gmap.zip",
+        "gmapsupp_Kumano_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Kumano_TOPO_camp3D_en.exe",
+        "Kumano_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "kumano_hgtmix.zip",
+        "kumano_map-cedric.xml",
+        "kumano_dem-cedric.xml",
+        "kumano_upgrade-cedric.xml",
+        "kumano_all-cedric.xml"
+    ],
+    "check_today": false
+}

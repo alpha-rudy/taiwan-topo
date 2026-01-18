@@ -1,0 +1,35 @@
+{
+    "name": "annapurna",
+    "label": "Annapurna",
+    "indexes": [
+        "annapurna_topo.html"
+    ],
+    "files": [
+        "annapurna_topo.html",
+        "AW3D30_OSM_Annapurna_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Annapurna_TOPO_Rudy.zip",
+        "AW3D30_OSM_Annapurna_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Annapurna_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Annapurna_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Annapurna_TOPO_Rudy.db.zip",
+        "Annapurna_carto_map.cpkg",
+        "Annapurna_carto_style.cpkg",
+        "Annapurna_carto_dem.cpkg",
+        "Annapurna_carto_upgrade.cpkg",
+        "Annapurna_carto_all.cpkg",
+        "gmapsupp_Annapurna_aw3d30_ne_camp3D.img.zip",
+        "Install_AW3D30_Annapurna_TOPO_camp3D_ne.exe",
+        "Annapurna_aw3d30_ne_camp3D.gmap.zip",
+        "gmapsupp_Annapurna_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Annapurna_TOPO_camp3D_en.exe",
+        "Annapurna_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "annapurna_hgtmix.zip",
+        "annapurna_map-cedric.xml",
+        "annapurna_dem-cedric.xml",
+        "annapurna_upgrade-cedric.xml",
+        "annapurna_all-cedric.xml"
+    ],
+    "check_today": false
+}
