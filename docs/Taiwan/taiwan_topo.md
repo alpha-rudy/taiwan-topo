@@ -377,6 +377,10 @@ MOI.OSM - Taiwan TOPO
     * Fujisan summit trails, 富士山登頂
     * Kanto Fureai no Michi, 關東接觸之徑
     * Fujisan Long Trail, 富士山長程步道
+* Nikko Oze, 日光尾瀨地區
+  * https://rudymap.tw/nikko_oze_topo.html
+  * 涵蓋的長距離步道：
+    * ???
 
 ## 說明
 

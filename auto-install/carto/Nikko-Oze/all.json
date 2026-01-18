@@ -1,0 +1,38 @@
+{
+	"version": 2,
+	"extracted_size_mb": 1150,
+	"elevationdata": [
+		"*.hgt"
+	],
+	"maps": [
+		{
+			"name": "AW3D30_OSM_Nikko-Oze_TOPO_Rudy",
+			"file": "AW3D30_OSM_Nikko-Oze_TOPO_Rudy.map",
+			"type": "map",
+			"load_in_layer": 0,
+			"uniqueId": "AW3D30_OSM_Nikko-Oze_TOPO_Rudy"
+		}
+	],
+	"styles": [
+		{
+			"file": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip",
+			"load_in_layer": 0,
+			"uniqueId": "MOI_OSM_Taiwan_TOPO_Rudy_hs_style"
+		}
+	],
+	"overlays": [
+		{
+			"file": "AW3D30_OSM_Nikko-Oze_TOPO_Rudy.poi",
+			"load": false,
+			"uniqueId": "AW3D30_OSM_Nikko-Oze_TOPO_Rudy"
+		}
+	],
+	"commands": [
+		{
+			"command": "mapposition",
+			"lat": 37.0,
+			"lon": 139.0,
+			"zoom": 13
+		}
+	]
+}
