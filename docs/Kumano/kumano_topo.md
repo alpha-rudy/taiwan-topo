@@ -213,9 +213,9 @@ AW3D30.OSM - Kumano Kodo TOPO v__version__
     > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Kumano_aw3d30_en_camp3D.img.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Kumano_aw3d30_en_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) en_camp3D (227MB)
-    > [[自動分流]](https://rudymap.tw/InstaInstall_AW3D30_Kumano_TOPO_camp3D_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/InstaInstall_AW3D30_Kumano_TOPO_camp3D_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/InstaInstall_AW3D30_Kumano_TOPO_camp3D_en.exe)
+    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Kumano_TOPO_camp3D_en.exe) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Kumano_TOPO_camp3D_en.exe) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Kumano_TOPO_camp3D_en.exe)
   * ![Map](images/macOS.png =36x) en_camp3D (227MB)
     > [[自動分流]](https://rudymap.tw/Kumano_aw3d30_en_camp3D.gmap.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/Kumano_aw3d30_en_camp3D.gmap.zip) /

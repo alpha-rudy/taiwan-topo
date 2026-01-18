@@ -1,0 +1,35 @@
+{
+    "name": "kashmir",
+    "label": "Kashmir",
+    "indexes": [
+        "kashmir_topo.html"
+    ],
+    "files": [
+        "kashmir_topo.html",
+        "AW3D30_OSM_Kashmir_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Kashmir_TOPO_Rudy.zip",
+        "AW3D30_OSM_Kashmir_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Kashmir_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Kashmir_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Kashmir_TOPO_Rudy.db.zip",
+        "Kashmir_carto_map.cpkg",
+        "Kashmir_carto_style.cpkg",
+        "Kashmir_carto_dem.cpkg",
+        "Kashmir_carto_upgrade.cpkg",
+        "Kashmir_carto_all.cpkg",
+        "gmapsupp_Kashmir_aw3d30_hi_camp3D.img.zip",
+        "Install_AW3D30_Kashmir_TOPO_camp3D_hi.exe",
+        "Kashmir_aw3d30_hi_camp3D.gmap.zip",
+        "gmapsupp_Kashmir_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Kashmir_TOPO_camp3D_en.exe",
+        "Kashmir_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "kashmir_hgtmix.zip",
+        "kashmir_map-cedric.xml",
+        "kashmir_dem-cedric.xml",
+        "kashmir_upgrade-cedric.xml",
+        "kashmir_all-cedric.xml"
+    ],
+    "check_today": false
+}
