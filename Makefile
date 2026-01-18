@@ -5,6 +5,11 @@
 # - 3rd hex, lang -> en(0), zh(1),
 # - 4th hex, style -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
 
+# for foreign region:
+# - 1st hex, dem/lang -> aw3d30_na(3), aw3d30_en(4)
+# - 2n hex, style -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
+# - 3rd/4th hex, region -> kumano(1), annapurna(2), kashmir(3), fujisan(4) 
+
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
