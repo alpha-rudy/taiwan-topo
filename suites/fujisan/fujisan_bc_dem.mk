@@ -16,6 +16,6 @@ LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := camp3D
 GMAPDEM := $(ROOT_DIR)/hgt/fujisan_hgtmix.zip
-MAPID := $(shell printf %d 0x1011)
+MAPID := $(shell printf %d 0x3704)
 TARGETS := gmapsupp_zip gmap nsis
 endif
