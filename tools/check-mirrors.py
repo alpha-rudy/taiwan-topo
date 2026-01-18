@@ -31,6 +31,15 @@ mirrors = list(MIRRORS.values())
 AVAILABLE_SUITES = ["daily", "suites", "fujisan", "kumano", "annapurna", "kashmir"]
 
 
+def discover_available_suites():
+    """Discover available suites from config files."""
+    suites = []
+    if CONFIGS_DIR.exists():
+        for config_file in sorted(CONFIGS_DIR.glob("*.json")):
+            suites.append(config_file.stem)
+    return suites
+
+
 def load_suite_config(suite_name):
     """Load suite configuration from JSON file."""
     config_file = CONFIGS_DIR / f"{suite_name}.json"
@@ -45,6 +54,17 @@ def load_all_suite_configs():
     """Load all suite configurations."""
     configs = {}
     for suite_name in AVAILABLE_SUITES:
+        try:
+            configs[suite_name] = load_suite_config(suite_name)
+        except FileNotFoundError:
+            pass  # Skip suites without config files
+    return configs
+
+
+def load_suite_configs(suite_names):
+    """Load specific suite configurations."""
+    configs = {}
+    for suite_name in suite_names:
         configs[suite_name] = load_suite_config(suite_name)
     return configs
 
@@ -176,18 +196,21 @@ def get_mirror_names():
 @click.option('--kumano', '-k', is_flag=True, help='Check Kumano Kodo files (released with suites)')
 @click.option('--annapurna', '-a', is_flag=True, help='Check Annapurna files (released with suites)')
 @click.option('--kashmir', '-K', is_flag=True, help='Check Kashmir files (released with suites)')
+@click.option('--suite', '-S', multiple=True, help='Check specific suite by name (can be used multiple times)')
+@click.option('--list-suites', is_flag=True, help='List all available suites')
 @click.option('--speed', is_flag=True, default=False, help='Run speed test (default: off)')
 @click.option('--mirror', '-m', type=str, help='Check specific mirror URL only (deprecated, use mirror options below)')
 @click.option('--happyman', is_flag=True, help='Check happyman mirror only')
 @click.option('--kcwu', is_flag=True, help='Check kcwu mirror only')
 @click.option('--cedric', is_flag=True, help='Check cedric mirror only')
 @click.option('--rudymap', is_flag=True, help='Check rudymap mirror only')
-def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happyman, kcwu, cedric, rudymap):
+def main(daily, suites, fujisan, kumano, annapurna, kashmir, suite, list_suites, speed, mirror, happyman, kcwu, cedric, rudymap):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
     Two-dimensional selection:
       - Suite dimension: --daily, --suites, --fujisan, --kumano, --annapurna, --kashmir
+                         or use --suite <name> for any suite with a config file
       - Mirror dimension: --happyman, --kcwu, --cedric, --rudymap
 
     \b
@@ -201,9 +224,25 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happ
       check-mirrors.py --kumano         # Check Kumano Kodo files on all mirrors
       check-mirrors.py --annapurna      # Check Annapurna files on all mirrors
       check-mirrors.py --kashmir        # Check Kashmir files on all mirrors
+      check-mirrors.py --suite nikko_oze  # Check any suite by name
+      check-mirrors.py --suite nikko_oze --suite yushan  # Check multiple suites
+      check-mirrors.py --list-suites    # List all available suites
       check-mirrors.py --speed          # Run speed test on all mirrors
       check-mirrors.py --speed --happyman  # Run speed test on happyman only
     """
+    # Handle --list-suites
+    if list_suites:
+        available = discover_available_suites()
+        print("Available suites:")
+        for s in available:
+            try:
+                config = load_suite_config(s)
+                label = config.get('label', s)
+                print(f"  {s:20} ({label})")
+            except Exception as e:
+                print(f"  {s:20} (error: {e})")
+        return
+
     # Suite dimension: Determine which suites to check
     suite_flags = {
         "daily": daily,
@@ -216,6 +255,16 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happ
     
     # Build list of suites to check
     selected_suites = [name for name, selected in suite_flags.items() if selected]
+    
+    # Add suites from --suite option
+    if suite:
+        available = discover_available_suites()
+        for s in suite:
+            if s not in available:
+                print(f"Error: Suite '{s}' not found. Use --list-suites to see available suites.", file=sys.stderr)
+                sys.exit(1)
+            if s not in selected_suites:
+                selected_suites.append(s)
     
     # If none specified, check daily and suites (default behavior)
     if not selected_suites:
@@ -245,7 +294,7 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happ
     # If --speed is specified, only run speed test
     if speed:
         # Load suite configs from JSON files
-        suite_configs = load_all_suite_configs()
+        suite_configs = load_suite_configs(selected_suites)
         
         # Use the first selected suite, or daily as default
         suite_for_speed = selected_suites[0] if selected_suites else "daily"
@@ -258,7 +307,7 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, speed, mirror, happ
         return
 
     # Load suite file configurations from JSON files
-    suite_configs = load_all_suite_configs()
+    suite_configs = load_suite_configs(selected_suites)
 
     # Determine which indexes to check
     indexes = []
