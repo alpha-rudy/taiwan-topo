@@ -70,7 +70,7 @@ include $(wildcard $(ROOT_DIR)/suites/yushan/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/beibeiji/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/sheipa/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/fujisan/*.mk)
-include $(wildcard $(ROOT_DIR)/suites/nikko_oze/*.mk) # nikko_oze suites mk
+include $(wildcard $(ROOT_DIR)/suites/nikko_oze/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kumano/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kashmir/*.mk)
