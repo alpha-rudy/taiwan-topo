@@ -257,7 +257,7 @@ make nikko_oze_suites
 
 This will:
 1. Download and extract OSM data for the bounding box
-2. Generate elevation contours
+2. Merge elevation contours
 3. Build mapsforge maps
 4. Generate POI databases
 5. Build Garmin maps (native and English)
