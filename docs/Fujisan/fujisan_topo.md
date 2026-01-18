@@ -1,5 +1,5 @@
-Fujisan TOPO 富士山附近登山地圖
-===============================
+Fujisan TOPO / 富士山附近登山地圖
+==============================
 
 AW3D30.OSM - Fujisan TOPO v__version__
 

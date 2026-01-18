@@ -1,5 +1,5 @@
-Annapurna TOPO 安娜普納登山地圖
-===============================
+Annapurna TOPO / 安娜普納登山地圖
+==============================
 
 AW3D30.OSM - Annapurna TOPO v__version__
 

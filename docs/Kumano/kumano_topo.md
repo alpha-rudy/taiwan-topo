@@ -1,5 +1,5 @@
-Kumano Kodo TOPO 熊野古道登山地圖
-===============================
+Kumano Kodo TOPO / 熊野古道登山地圖
+=================================
 
 AW3D30.OSM - Kumano Kodo TOPO v__version__
 

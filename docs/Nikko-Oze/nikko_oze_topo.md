@@ -1,7 +1,7 @@
-Nikko-Oze Region
-================
+Nikko-Oze TOPO / 日光.尾瀨附近登山地圖
+===================================
 
-AW3D30.OSM - Nikko-Oze Region v__version__
+AW3D30.OSM - Nikko-Oze TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 

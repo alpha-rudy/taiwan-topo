@@ -32,7 +32,7 @@ import click
 TOPO_MD_TEMPLATE = """{title}
 {title_underline}
 
-AW3D30.OSM - {title} v__version__
+AW3D30.OSM - {region} TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
