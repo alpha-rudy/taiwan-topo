@@ -6,8 +6,8 @@
 # - 4th hex, style -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
 
 # for foreign region:
-# - 1st hex, dem/lang -> aw3d30_na(3), aw3d30_en(4)
-# - 2n hex, style -> jing(0), outdoor(1), odc(2), bw(3), odc_dem(4), bw_dem(5), bc(6), bc_dem(7), exp(8)
+# - 1st hex, fix -> 0 
+# - 1st/2nd hex, dem/lang/style -> aw3d30_na_bc_dem(10), aw3d30_en_bc_dem(20)
 # - 3rd/4th hex, region -> kumano(1), annapurna(2), kashmir(3), fujisan(4) 
 
 SHELL := /usr/bin/env bash
@@ -70,6 +70,7 @@ include $(wildcard $(ROOT_DIR)/suites/yushan/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/beibeiji/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/sheipa/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/fujisan/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/nikko_zoe/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kumano/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kashmir/*.mk)
