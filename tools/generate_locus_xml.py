@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import os
 import click
 
@@ -56,16 +58,14 @@ def get_xml_content(variant, base_url, region, region_lower):
     return xml
 
 @click.command()
-@click.option('--suite', required=True, help='The suite name (region_lower), e.g., kashmir, annapurna')
-def main(suite):
-    region_lower = suite.lower()
-    region = suite.capitalize()
-    
+@click.option('--region', required=True, help='The region name, e.g., Kashmir, Annapurna, Nikko-Oze')
+@click.option('--region-lower', required=True, help='The low-case region name, e.g., kashmir, annapurna, nikko_oze')
+def main(region, region_lower):    
     output_dir = f"auto-install/locus/{region}"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         
-    print(f"Generating Locus XML for suite: {suite} (Region: {region}) in {output_dir}")
+    print(f"Generating Locus XML for suite (Region: {region}/{region_lower}) in {output_dir}")
 
     for provider, url in PROVIDERS.items():
         for variant in VARIANTS:
