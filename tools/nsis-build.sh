@@ -37,8 +37,7 @@ cd "$MAP_DIR"
 rm -f copy_tiles.txt
 for i in ${MAPID}*.img; do
     [ -f "$i" ] || continue
-    echo "  CopyFiles \"\$MyTempDir\\${i}\" \"\$INSTDIR\\${i}\"  "
-    echo "  Delete \"\$MyTempDir\\${i}\"  "
+    echo "  File \"${i}\"  "
 done > copy_tiles.txt
 
 # Generate delete_tiles.txt - NSIS commands to delete tile files on uninstall
@@ -61,8 +60,11 @@ cat "${ROOT_DIR}/mkgmaps/makensis.cfg" | $SED_CMD \
 $SED_CMD "/__copy_tiles__/ r copy_tiles.txt" -i "${NAME_WORD}.nsi"
 $SED_CMD "/__delete_tiles__/ r delete_tiles.txt" -i "${NAME_WORD}.nsi"
 
-# Create ZIP archive of install files (use 7z to match original Makefile's ZIP_CMD)
-7z a -tzip -mx=6 "${NAME_WORD}_InstallFiles.zip" ${MAPID}*.img ${MAPID}.TYP "${NAME_WORD}.img" "${NAME_WORD}_mdr.img" "${NAME_WORD}.tdb" "${NAME_WORD}.mdx"
+# Create ZIP archive of install files
+# (Skipped in favor of direct NSIS compression)
+# rm -f "${NAME_WORD}_InstallFiles.zip"
+# find . -maxdepth 1 \( -name "${MAPID}*.img" -o -name "${MAPID}.TYP" -o -name "${NAME_WORD}.img" -o -name "${NAME_WORD}_mdr.img" -o -name "${NAME_WORD}.tdb" -o -name "${NAME_WORD}.mdx" \) -type f -print0 | xargs -0 zip -j -6 "${NAME_WORD}_InstallFiles.zip"
+
 
 # Generate readme from template
 cat "${ROOT_DIR}/docs/nsis-readme.txt" | $SED_CMD \
@@ -75,7 +77,7 @@ cp "${ROOT_DIR}/nsis/Install.bmp" "${ROOT_DIR}/nsis/Deinstall.bmp" .
 makensis "${NAME_WORD}.nsi"
 
 # Cleanup temporary ZIP
-rm -f "${NAME_WORD}_InstallFiles.zip"
+# rm -f "${NAME_WORD}_InstallFiles.zip"
 
 # Move output to final location
 mv "Install_${NAME_WORD}.exe" "$OUTPUT_EXE"
