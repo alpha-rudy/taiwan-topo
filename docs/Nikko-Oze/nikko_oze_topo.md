@@ -1,4 +1,4 @@
-Nikko-Oze TOPO / 日光.尾瀨附近登山地圖
+Nikko-Oze TOPO / 日光.尾瀨 - 登山地圖
 ===================================
 
 AW3D30.OSM - Nikko-Oze TOPO v__version__
