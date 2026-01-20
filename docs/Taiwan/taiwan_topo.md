@@ -381,10 +381,10 @@ MOI.OSM - Taiwan TOPO
   * https://rudymap.tw/nikko_oze_topo.html
   * 涵蓋的長距離步道：
     * 男體山, 日光白根山, 燧岳, 至仏山, 會津駒之岳, 日本百名山
-    * Senjogahara Plateau Nature Trail, 戰場之原步道
+    * Senjogahara Trail, 戰場之原步道
     * Yudaki Falls - Yumoto Onsen Trail, 湯瀑布-湯元溫泉步道
     * Kirifuri Highlands Mt. Komaruyama Trail, 霧降高原小丸山步道
-    * Ozegahara Marsh Traverse, 尾瀨之原縱走
+    * Ozegahara Traverse, 尾瀨之原縱走
     * Lake Ozenuma Loop Trail, 尾瀨沼環湖步道
     * Miharashi - Onsen-koya Lodges Trail, 見晴-溫泉小屋群步道
 
