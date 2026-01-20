@@ -9,7 +9,6 @@ AW3D30.OSM - Fujisan TOPO v__version__
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/
   * 說明網頁:
-    * https://rudy.basecamp.tw/fujisan_topo.html (mirror Rex)
     * https://moi.kcwu.csie.org/fujisan_topo.html (mirror kcwu)
     * https://map.happyman.idv.tw/rudy/fujisan_topo.html (mirror Happyman)
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo

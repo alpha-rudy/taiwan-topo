@@ -91,12 +91,7 @@ files = [
     "locus_style-kcwu.xml",
     "locus_dem-kcwu.xml",
     "locus_upgrade-kcwu.xml",
-    "locus_all-kcwu.xml",
-    "locus_map-rex.xml",
-    "locus_style-rex.xml",
-    "locus_dem-rex.xml",
-    "locus_upgrade-rex.xml",
-    "locus_all-rex.xml"
+    "locus_all-kcwu.xml"
 ]
 
 
