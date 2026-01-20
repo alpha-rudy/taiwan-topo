@@ -34,7 +34,6 @@ AW3D30.OSM - Nikko-Oze TOPO v__version__
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/
   * 說明網頁:
-    * https://rudy.basecamp.tw/nikko_oze_topo.html (mirror Rex)
     * https://moi.kcwu.csie.org/nikko_oze_topo.html (mirror kcwu)
     * https://map.happyman.idv.tw/rudy/nikko_oze_topo.html (mirror Happyman)
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
