@@ -210,13 +210,13 @@ distclean:
 .PHONY: topo.md
 topo.md:
 	date +'DS: %H:%M:%S $(shell basename $@)'
-	[ -n "$(INSTALL_DIR)" ] && [ -d "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
-	rm -rf $(INSTALL_DIR)
-	mkdir -p $(INSTALL_DIR)
+	[ -n "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
+	mkdir -p $(BUILD_DIR)
 	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
 		cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(INSTALL_DIR)/$(SUITE)_topo.html
+		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(BUILD_DIR)/$(SUITE)_topo.html
+	cp -a docs/images $(BUILD_DIR)/
 
 .PHONY: install
 install:
