@@ -373,7 +373,9 @@ MOI.OSM - Taiwan TOPO
     * KGL, Kashmir Great Lakes, 喀什米爾大湖健行
 * Fujisan, 富士山
   * https://rudymap.tw/fujisan_topo.html
-  * 涵蓋的長距離步道：
+  * 涵蓋範圍：
+    * 富士山附近 18 座百名山
+    * 南南阿爾卑斯山脈 10 座百名山
     * Fujisan summit trails, 富士山登頂
     * Kanto Fureai no Michi, 關東接觸之徑
     * Fujisan Long Trail, 富士山長程步道
