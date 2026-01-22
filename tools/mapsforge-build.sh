@@ -1,10 +1,10 @@
 #!/bin/bash
-# gpx-build.sh - Build mapsforge map using osmosis mapfile-writer
+# mapsforge-build.sh - Build mapsforge map using osmosis mapfile-writer
 #
 # This script consolidates the common osmosis mapfile-writer pattern used by
 # gpx, with_gpx, gpx-2, and mapsforge targets.
 #
-# Usage: gpx-build.sh <input_pbf> <output_map> <osmosis_cmd> <osmosis_bounding> \
+# Usage: mapsforge-build.sh <input_pbf> <output_map> <osmosis_cmd> <osmosis_bounding> \
 #                     <threads> <languages> <tag_conf> <comment> [extra_opts]
 #
 # Parameters:
