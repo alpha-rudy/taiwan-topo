@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# mapsforge-pbf-build.sh - Build Mapsforge PBF file with metadata and elevation
+# mapsforge-input-build.sh - Build Mapsforge PBF file with metadata and elevation
 #
-# Usage: mapsforge-pbf-build.sh <SED_PBF> <META> <ELEVATION_MIX> <OSMCONVERT_CMD> <OSMCONVERT_BOUNDING> <BUILD_DIR> <OUTPUT>
+# Usage: mapsforge-input-build.sh <SED_PBF> <META> <ELEVATION_MIX> <OSMCONVERT_CMD> <OSMCONVERT_BOUNDING> <BUILD_DIR> <OUTPUT>
 #
 # This script:
 # 1. Copies the sed-processed PBF

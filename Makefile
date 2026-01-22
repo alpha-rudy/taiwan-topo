@@ -531,7 +531,7 @@ $(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_O
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
-	$(TOOLS_DIR)/mapsforge-pbf-build.sh "$<" "$(META)" "$(ELEVATION_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
+	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(ELEVATION_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
 
 
 #==============================================================================
@@ -679,7 +679,7 @@ $(GPX_BASE).map: $(GPX_BASE_EXT)
 		$(GPX_BASE)-sed.pbf \
 		-Oo $(GPX_BASE)-ren.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-		$(TOOLS_DIR)/gpx-build.sh \
+		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(GPX_BASE)-ren.pbf" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
@@ -706,7 +706,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
 	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-		$(TOOLS_DIR)/gpx-build.sh \
+		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(WITH_GPX)-add.pbf" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
@@ -734,7 +734,7 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 		-Oo $(@:.map=.pbf)
 	osm_scripts/osium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-		$(TOOLS_DIR)/gpx-build.sh \
+		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(@:.map=.pbf)" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
@@ -753,7 +753,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	[ -n "$(OSMOSIS_BOUNDING)" ]
 	mkdir -p $(BUILD_DIR)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
-		$(TOOLS_DIR)/gpx-build.sh \
+		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(MAPSFORGE_PBF)" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
