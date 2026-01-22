@@ -50,11 +50,9 @@ UNZIP_CMD := unzip -o
 MAKE_CMD := make
 
 ifeq ($(shell uname),Darwin)
-MD5_CMD := md5 -q $$EXAM_FILE
 JMC_CMD := jmc-0.8/macos/jmc_cli
 SED_CMD := gsed
 else
-MD5_CMD := md5sum $$EXAM_FILE | cut -d' ' -f1
 JMC_CMD := jmc-0.8/linux/jmc_cli
 SED_CMD := sed
 endif
@@ -424,7 +422,7 @@ $(ELEVATION):
 	cd $(ELEVATIONS_DIR) && \
 		curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
 		curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
-		EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_FILE).md5 | cut -d' ' -f1)" ]
+		md5sum -c $(ELEVATION_FILE).md5
 
 .DELETE_ON_ERROR: $(ELEVATION_MIX)
 $(ELEVATION_MIX):
@@ -434,7 +432,7 @@ $(ELEVATION_MIX):
 	cd $(ELEVATIONS_DIR)/marker && \
 		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
 		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
-		EXAM_FILE=$@; [ "$$($(MD5_CMD))" == "$$(cat $(ELEVATION_MIX_FILE).md5 | cut -d' ' -f1)" ]
+		md5sum -c $(ELEVATION_MIX_FILE).md5
 
 .DELETE_ON_ERROR: $(EXTRACT).o5m
 # Determine EXTRACT_URL and download method based on the EXTRACT_FILE
@@ -447,7 +445,7 @@ $(EXTRACT).o5m:
 	cd $(EXTRACT_DIR) && \
 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
 		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
-		EXAM_FILE=$(EXTRACT_FILE).o5m.zst; [ "$$($(MD5_CMD))" == "$$(cat $(EXTRACT_FILE).o5m.zst.md5 | $(SED_CMD) -e 's/^.* = //')" ] && \
+		md5sum -c $(EXTRACT_FILE).o5m.zst.md5 && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 else
 EXTRACT_URL := https://download.geofabrik.de/asia
@@ -461,18 +459,6 @@ $(EXTRACT).o5m:
 		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT_FILE).o5m
 endif
-
-# .DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT).osm.pbf
-# EXTRACT_URL := https://download.geofabrik.de/asia
-# $(EXTRACT).o5m:
-# 	date +'DS: %H:%M:%S $(shell basename $@)'
-# 	[ -n "$(REGION)" ]
-# 	mkdir -p $(dir $@)
-# 	cd $(EXTRACT_DIR) && \
-# 	    wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
-# 		wget $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
-# 		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
-# 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT).o5m
 
 $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
