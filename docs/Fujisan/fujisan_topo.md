@@ -5,6 +5,42 @@ AW3D30.OSM - Fujisan TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
+## 地圖範圍
+
+* 包括18座日本百名山
+  * Mt. Fuji (3776m) 富士山
+  * Mt. Kumotori (2017m) 雲取山
+  * Mt. Tanzawa (1567m) 丹沢山
+  * Kobushin-gadake (2475m)甲武信之岳
+  * Mt. Daibutsu (2057m) 大菩薩嶺
+  * Mt. Kinpo (2599m)  金峰山
+  * Mt. Zuigaki (2230m) 瑞牆山
+  * Mt. Amagi (1406m) 天城山
+
+* 以下百名山是在南阿爾卑斯山脈
+  * Kita-dake (3193m) 北岳
+  * Kaikoma-gatake (2967m) 甲斐駒之岳
+  * Senjo-gadake (3033m) 仙丈之岳
+  * Mt. Houou (Jizo-dake)(2764m) 鳳凰山(地藏岳)
+  * Aino-dake (3190m) 間之岳
+  * Shiomi-dake (3047m) 塩見岳
+  * Akuzawa-dake (3141m) 惡澤岳
+  * Akaishi-dake (3121m) 赤石岳
+  * Saigo-dake (3013m)  聖岳
+  * Kō-dake (2592m) 光岳 
+
+* 其他有名的觀光景點與山峰
+  * Tokyo: Takao-yama, Ontake-yama/Otake-yama, Mitsumi-yama
+    (東京都:高尾山、御岳山/大岳山、三頭山)
+  * Yamanashi: Shōsen-kyō/Yajiro-dake, Irikasa-yama, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama
+    (山梨:昇仙峽/彌二郎岳、入笠山、身延山、富士五湖/三ツ峠山)
+  * Kanagawa: Hakone/Hakone-Komagake
+    (神奈川:箱根/箱根駒之岳)
+  * Shizuoka: Izu Peninsula, Numazu Trail
+    (靜岡:伊豆半島、沼津縱走)
+
+## 安裝/下載連結
+
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/

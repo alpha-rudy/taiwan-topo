@@ -27,7 +27,7 @@ AW3D30.OSM - Nikko-Oze TOPO v__version__
         * Mount Akagi, 赤城山（1,827 m）
         * Mount Sukai, 皇海山（2,144 m）
     2. 經典健行步道
-        * Ozegahara, 尾瀨之原縱走（最經典）
+        * Ozegahara, 尾瀨之原橫斷縱走（最經典）
         * 尾瀨沼環湖步道
         * 見晴-溫泉小屋群步道
 
