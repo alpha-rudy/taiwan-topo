@@ -162,12 +162,17 @@ CARTO_ALL := $(BUILD_DIR)/carto_all
 LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
 
 # BOUNDING settings
+# Note: --drop-broken-refs removed to preserve contour ways crossing boundaries
 ifneq (,$(strip $(POLY_FILE)))
-OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries
+SPLITTER_BOUNDING := --polygon-file=$(POLIES_DIR)/$(POLY_FILE)
 OSMIUM_BOUNDING := --polygon $(POLIES_DIR)/$(POLY_FILE)
 OSMOSIS_BOUNDING := --bounding-polygon file=$(POLIES_DIR)/$(POLY_FILE) completeWays=yes completeRelations=yes clipIncompleteEntities=false
 else ifneq (,$(strip $(BOUNDING_BOX)))
-OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries
+# Auto-generated polygon file from bounding box for splitter
+BBOX_POLY_FILE := $(BUILD_DIR)/$(REGION)_bbox.poly
+SPLITTER_BOUNDING := --polygon-file=$(BBOX_POLY_FILE)
 OSMIUM_BOUNDING := --bbox $(LEFT),$(BOTTOM),$(RIGHT),$(TOP)
 OSMOSIS_BOUNDING := --bounding-box left=$(LEFT) bottom=$(BOTTOM) right=$(RIGHT) top=$(TOP) completeWays=yes completeRelations=yes clipIncompleteEntities=false
 endif
@@ -759,7 +764,24 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: $(DEM_NAME)" \
 			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12"
 	
-$(COMMON_TILES): $(GMAP_INPUT)
+# Generate polygon file from bounding box for splitter
+# Only created when BOUNDING_BOX is set (not POLY_FILE)
+ifneq (,$(strip $(BOUNDING_BOX)))
+$(BBOX_POLY_FILE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(dir $@)
+	@echo "$(REGION)_bbox" > $@
+	@echo "1" >> $@
+	@echo "   $(LEFT)   $(BOTTOM)" >> $@
+	@echo "   $(RIGHT)   $(BOTTOM)" >> $@
+	@echo "   $(RIGHT)   $(TOP)" >> $@
+	@echo "   $(LEFT)   $(TOP)" >> $@
+	@echo "   $(LEFT)   $(BOTTOM)" >> $@
+	@echo "END" >> $@
+	@echo "END" >> $@
+endif
+
+$(COMMON_TILES): $(GMAP_INPUT) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE))
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(COMMON_TILES_DIR)
@@ -771,6 +793,7 @@ $(COMMON_TILES): $(GMAP_INPUT)
 			--no-trim \
 			--precomp-sea=$(SEA_DIR) \
 			--keep-complete=true \
+			$(SPLITTER_BOUNDING) \
 			--mapid=$(DUMMYID)0001 \
 			--max-areas=4096 \
 			--max-nodes=800000 \
