@@ -164,12 +164,12 @@ LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
 # BOUNDING settings
 # Note: --drop-broken-refs removed to preserve contour ways crossing boundaries
 ifneq (,$(strip $(POLY_FILE)))
-OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries
+OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
 SPLITTER_BOUNDING := --polygon-file=$(POLIES_DIR)/$(POLY_FILE)
 OSMIUM_BOUNDING := --polygon $(POLIES_DIR)/$(POLY_FILE)
 OSMOSIS_BOUNDING := --bounding-polygon file=$(POLIES_DIR)/$(POLY_FILE) completeWays=yes completeRelations=yes clipIncompleteEntities=false
 else ifneq (,$(strip $(BOUNDING_BOX)))
-OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries
+OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
 # Auto-generated polygon file from bounding box for splitter
 BBOX_POLY_FILE := $(BUILD_DIR)/$(REGION)_bbox.poly
 SPLITTER_BOUNDING := --polygon-file=$(BBOX_POLY_FILE)
