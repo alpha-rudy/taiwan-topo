@@ -195,7 +195,7 @@ AW3D30.OSM - {region} TOPO v__version__
     > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2025, 台灣本島30m, 離島90m, 適當大小
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) 30m HGT
     > [[自動分流]](https://rudymap.tw/{region_lower}_hgtmix.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/{region_lower}_hgtmix.zip) /
     > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/{region_lower}_hgtmix.zip)
