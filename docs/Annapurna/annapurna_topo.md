@@ -18,7 +18,7 @@ AW3D30.OSM - Annapurna TOPO v__version__
 * 安娜普納 II、III、IV 峰：皆為 7,000 公尺以上的壯麗高峰。
 * 魚尾峰 (Machhapuchchre, 6,993m)：以其完美的雙峰外形和像魚尾的形狀聞名，被視為神山，禁止攀登。
 * 安娜普納南峰 (Annapurna South, 7,219m)。
-* 道拉吉里峰 (Dhaulagiri I, 8,167m)：位於該範圍的西緣附近（約 E83.4°），世界第 7 高峰。
+* 道拉吉利峰 (Dhaulagiri I, 8,167m)：位於該範圍的西緣附近（約 E83.4°），世界第 7 高峰。
 * 康加普納峰 (Gangapurna, 7,455m)。
 * 馬那斯鹿峰 (Manaslu, 8,163m)：位於該範圍的東部邊緣（約 E84.5°），世界第 8 高峰。
 
@@ -32,18 +32,18 @@ AW3D30.OSM - Annapurna TOPO v__version__
 * ABC, 安娜普納大本營健行 (Annapurna Base Camp / ABC Trek, 115km)
   * 特點：深入安娜普納群山中心（Annapurna Sanctuary），四周被 7,000-8,000 公尺的高山環繞，震撼力十足。
 * 布恩山健行 (Poon Hill Trek, 50km)
-  * 特點：初級入門路線，通常從 Ghorepani 出發。在布恩山頂觀看道拉吉里與安娜普納群峰的日出是經典景觀。
+  * 特點：初級入門路線，通常從 Ghorepani 出發。在布恩山頂觀看道拉吉利與安娜普納群峰的日出是經典景觀。
 * 馬蹄山群健行 (Mardi Himal Trek, 55km)
   * 特點：近年興起的「秘境」路線，位置與魚尾峰非常接近，提供近距離觀賞雪山的絕佳視角。
-* 馬納斯魯環線 (Manaslu Circuit Trek, 180km)
+* 馬那斯鹿環線 (Manaslu Circuit Trek, 180km)
   * 特點：位於範圍的東側，較 ABC 更為原始安靜，需穿越 Larkya La 埡口 (5,106m)。
 
 ### 著名景點
 
 * 波卡拉 (Pokhara)：位於約 N28.2°, E83.9°，是所有進入安娜普納地區健行的重要門戶城市。
 * 提里卓湖 (Tilicho Lake, 4,919m)：世界上海拔最高的湖泊之一，位於安娜普納環線的支線上。
-* 卡利甘達基峽谷 (Kali Gandaki Gorge)：位於道拉吉里與安娜普納之間，被認為是世界上最深的峽谷。
-* 穆克提納斯 (Muktinath)：著名的宗教聖地，吸引無數印度教與佛教徒。
+* 卡力康達基峽谷 (Kali Gandaki Gorge)：位於道拉吉利與安娜普納之間，被認為是世界上最深的峽谷。
+* 穆丁納特 (Muktinath)：著名的宗教聖地，吸引無數印度教與佛教徒。
 
 ## 安裝/下載連結
 
