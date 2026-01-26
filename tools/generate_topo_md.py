@@ -36,6 +36,19 @@ AW3D30.OSM - {region} TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
+## 地圖範圍
+
+* 緯度範圍: Nxx.xx ~ Nyy.yy
+* 經度範圍: Eaa.aa ~ Ebb.bb
+
+請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
+
+### 著名的山頭 (Famous Peaks)
+
+### 著名的健行路線 (Famous Trekking Routes)
+
+### 著名景點
+
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/
