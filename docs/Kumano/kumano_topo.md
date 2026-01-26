@@ -5,6 +5,27 @@ AW3D30.OSM - Kumano Kodo TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
+## 地圖範圍
+
+* 緯度範圍: N33.0 ~ N35.0
+* 經度範圍: E135.0 ~ E137.0
+
+### 著名的山頭 (Famous Peaks)
+
+### 著名的健行路線 (Famous Trekking Routes)
+
+  * 涵蓋的長距離步道：
+    * Nakahechi, 中邊路
+    * Kohechi, 小邊路
+    * Ohechi, 大邊路
+    * Iseji North, 伊勢路北路
+    * Iseji Central, 伊勢路中路
+    * Iseji South, 伊勢路南路
+
+### 著名景點
+
+## 安裝/下載連結
+
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/

@@ -5,6 +5,26 @@ AW3D30.OSM - Kashmir Kodo TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
+## 地圖範圍
+
+* 緯度範圍: N34.0 ~ N34.75
+* 經度範圍: E74.5 ~ E75.5
+
+LEFT := 74.5
+RIGHT := 75.5
+BOTTOM := 34.0
+TOP := 34.75
+
+### 著名的山頭 (Famous Peaks)
+
+### 著名的健行路線 (Famous Trekking Routes)
+
+* KGL, 喀什米爾大湖健行 (Kashmir Great Lakes)
+
+### 著名景點
+
+## 安裝/下載連結
+
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/

@@ -355,40 +355,29 @@ MOI.OSM - Taiwan TOPO
 
 * Kumano Kodo, 熊野古道
   * https://rudymap.tw/kumano_topo.html
-  * 涵蓋的長距離步道：
-    * Nakahechi, 中邊路
-    * Kohechi, 小邊路
-    * Ohechi, 大邊路
-    * Iseji North, 伊勢路北路
-    * Iseji Central, 伊勢路中路
-    * Iseji South, 伊勢路南路
+  * 地圖範圍：
+    * 緯度範圍: N33.0 ~ N35.0
+    * 經度範圍: E135.0 ~ E137.0
 * Annapurna, 安娜普納
   * https://rudymap.tw/annapurna_topo.html
-  * 涵蓋的長距離步道：
-    * AC, Annapurna Circuit, 安娜普納環線
-    * ABC, Annapurna Base Camp Trek, 安娜普納基地營健行
+  * 地圖範圍：
+    * 緯度範圍: N28.0 ~ N29.0
+    * 經度範圍: E83.0 ~ E85.0
 * Kashmir, 喀什米爾
   * https://rudymap.tw/kashmir_topo.html
-  * 涵蓋的長距離步道：
-    * KGL, Kashmir Great Lakes, 喀什米爾大湖健行
+  * 地圖範圍：
+    * 緯度範圍: N34.0 ~ N34.75
+    * 經度範圍: E74.5 ~ E75.5
 * Fujisan, 富士山
   * https://rudymap.tw/fujisan_topo.html
-  * 涵蓋範圍：
-    * 富士山附近 18 座百名山
-    * 南南阿爾卑斯山脈 10 座百名山
-    * Fujisan summit trails, 富士山登頂
-    * Kanto Fureai no Michi, 關東接觸之徑
-    * Fujisan Long Trail, 富士山長程步道
+  * 地圖範圍：
+    * 緯度範圍: N34.30 ~ N35.95
+    * 經度範圍: E137.69 ~ E139.55
 * Nikko Oze, 日光尾瀨地區
   * https://rudymap.tw/nikko_oze_topo.html
-  * 涵蓋的長距離步道：
-    * 男體山, 日光白根山, 燧岳, 至仏山, 會津駒之岳, 日本百名山
-    * Senjogahara Trail, 戰場之原步道
-    * Yudaki Falls - Yumoto Onsen Trail, 湯瀑布-湯元溫泉步道
-    * Kirifuri Highlands Mt. Komaruyama Trail, 霧降高原小丸山步道
-    * Ozegahara Traverse, 尾瀨之原縱走
-    * Lake Ozenuma Loop Trail, 尾瀨沼環湖步道
-    * Miharashi - Onsen-koya Lodges Trail, 見晴-溫泉小屋群步道
+  * 地圖範圍：
+    * 緯度範圍: N36.50 ~ N37.47
+    * 經度範圍: E138.68 ~ E139.86
 
 ## 說明
 
