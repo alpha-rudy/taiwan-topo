@@ -7,29 +7,39 @@ AW3D30.OSM - Nikko-Oze TOPO v__version__
 
 ## 地圖範圍
 
+  * 緯度範圍: N36.50 ~ N37.47
+  * 經度範圍: E138.68 ~ E139.86
+
+### 著名的山頭 (Famous Peaks)
+
 1. 日光地區（栃木縣為主）
-    1. 代表性名山
-        * Mount Nantai, 男體山（2,486m｜日本百名山）
-        * 女峰山（2,483m）
-        * 太郎山（2,368m）
-        * Mount Nikko-Shirane, 日光白根山（奧白根山，2,578m｜日本百名山）
-        * Nasu Mountain Range / Mount Chausu, 那須連峰/茶臼岳（1,915 m）
-    2. 經典健行步道
-        * Senjogahara, 戰場之原步道
-        * 湯瀑布-湯元溫泉步道
-        * 霧降高原小丸山步道
+    * 男體山 (Mount Nantai, 2,486m, 日本百名山)
+    * 女峰山 (2,483m)
+    * 太郎山 (2,368m)
+    * 日光白根山, 奧白根山 (Mount Nikko-Shirane, 2,578m, 日本百名山)
+    * 那須連峰/茶臼岳 (Nasu Mountain Range/Mount Chausu,  1,915m)
 
 2. 尾瀨地區（群馬・福島・新潟交界）
-    1. 代表性名山
-        * Mount Hiuchigatake, 燧岳（2,356 m｜日本百名山）
-        * Mount Shibutsu, 至仏山（2,228 m｜日本百名山）
-        * Aizu-Komagatake, 會津駒之岳（2,133 m｜日本百名山）
-        * Mount Akagi, 赤城山（1,827 m）
-        * Mount Sukai, 皇海山（2,144 m）
-    2. 經典健行步道
-        * Ozegahara, 尾瀨之原橫斷縱走（最經典）
-        * 尾瀨沼環湖步道
-        * 見晴-溫泉小屋群步道
+    * 燧岳 (Mount Hiuchigatake, 2,356m, 日本百名山)
+    * 至仏山 (Mount Shibutsu, 2,228m, 日本百名山)
+    * 會津駒之岳 (Aizu-Komagatake, 2,133m, 日本百名山)
+    * 赤城山 (Mount Akagi, 1,827m)
+    * 皇海山 (Mount Sukai, 2,144m)
+
+### 著名的健行路線 (Famous Trekking Routes)
+
+1. 日光地區（栃木縣為主）
+    * 戰場之原步道 (Senjogahara)
+    * 湯瀑布-湯元溫泉步道
+    * 霧降高原小丸山步道
+
+2. 尾瀨地區（群馬・福島・新潟交界）
+    * 尾瀨之原橫斷縱走（Ozegahara)
+    * 尾瀨沼環湖步道
+    * 見晴-溫泉小屋群步道
+
+### 著名景點
+
 
 ## 安裝/下載連結
 

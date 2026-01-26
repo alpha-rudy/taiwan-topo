@@ -7,37 +7,43 @@ AW3D30.OSM - Fujisan TOPO v__version__
 
 ## 地圖範圍
 
-* 包括18座日本百名山
-  * Mt. Fuji (3776m) 富士山
-  * Mt. Kumotori (2017m) 雲取山
-  * Mt. Tanzawa (1567m) 丹沢山
-  * Kobushin-gadake (2475m)甲武信之岳
-  * Mt. Daibutsu (2057m) 大菩薩嶺
-  * Mt. Kinpo (2599m)  金峰山
-  * Mt. Zuigaki (2230m) 瑞牆山
-  * Mt. Amagi (1406m) 天城山
+* 緯度範圍: N34.30 ~ N35.95
+* 經度範圍: E137.69 ~ E139.55
+
+### 著名的山頭 (Famous Peaks)
+
+* 富士山附近日本百名山
+  * 富士山 (Mt. Fuji, 3776m)
+  * 雲取山 (Mt. Kumotori, 2017m)
+  * 丹沢山 (Mt. Tanzawa, 1567m) 
+  * 甲武信之岳 (Kobushin-gadake, 2475m)
+  * 大菩薩嶺 (Mt. Daibutsu, 2057m) 
+  * 金峰山 (Mt. Kinpo, 2599m)  
+  * 瑞牆山 (Mt. Zuigaki, 2230m) 
+  * 天城山 (Mt. Amagi, 1406m)
+  * 木曾駒之岳 (Kiso-Koma-gatake, 2956m)
 
 * 以下百名山是在南阿爾卑斯山脈
-  * Kita-dake (3193m) 北岳
-  * Kaikoma-gatake (2967m) 甲斐駒之岳
-  * Senjo-gadake (3033m) 仙丈之岳
-  * Mt. Houou (Jizo-dake)(2764m) 鳳凰山(地藏岳)
-  * Aino-dake (3190m) 間之岳
-  * Shiomi-dake (3047m) 塩見岳
-  * Akuzawa-dake (3141m) 惡澤岳
-  * Akaishi-dake (3121m) 赤石岳
-  * Saigo-dake (3013m)  聖岳
-  * Kō-dake (2592m) 光岳 
+  * 北岳 (Kita-dake, 3193m) 
+  * 甲斐駒之岳 (Kaikoma-gatake, 2967m)
+  * 仙丈之岳 (Senjo-gadake, 3033m) 
+  * 鳳凰山, 地藏岳 (Mt. Houou Jizo-dake, 2764m)
+  * 間之岳 (Aino-dake, 3190m)
+  * 塩見岳 (Shiomi-dake, 3047m)
+  * 惡澤岳 (Akuzawa-dake, 3141m)
+  * 赤石岳 (Akaishi-dake, 3121m)
+  * 聖岳 (Saigo-dake, 3013m)
+  * 光岳 (Kō-dake, 2592m) 
 
 * 其他有名的觀光景點與山峰
-  * Tokyo: Takao-yama, Ontake-yama/Otake-yama, Mitsumi-yama
-    (東京都:高尾山、御岳山/大岳山、三頭山)
-  * Yamanashi: Shōsen-kyō/Yajiro-dake, Irikasa-yama, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama
-    (山梨:昇仙峽/彌二郎岳、入笠山、身延山、富士五湖/三ツ峠山)
-  * Kanagawa: Hakone/Hakone-Komagake
-    (神奈川:箱根/箱根駒之岳)
-  * Shizuoka: Izu Peninsula, Numazu Trail
-    (靜岡:伊豆半島、沼津縱走)
+  * 東京都:高尾山、御岳山/大岳山、三頭山 (Tokyo: Takao-yama, Ontake-yama/Otake-yama, Mitsumi-yama)    
+  * 山梨:昇仙峽/彌二郎岳、入笠山、身延山、富士五湖/三ツ峠山 (Yamanashi: Shōsen-kyō/Yajiro-dake, Irikasa-yama, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama)
+  * 神奈川:箱根/箱根駒之岳 (Kanagawa: Hakone/Hakone-Komagake)    
+  * 靜岡:伊豆半島、沼津縱走 (Shizuoka: Izu Peninsula, Numazu Trail) 
+
+### 著名的健行路線 (Famous Trekking Routes)
+
+### 著名景點
 
 ## 安裝/下載連結
 
