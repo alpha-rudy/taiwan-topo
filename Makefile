@@ -491,12 +491,14 @@ $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 		$< \
 		-o=$@
 
+.PHONY: named
+named: $(REGION_EXTRACT)_name.o5m
 $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
 	-rm -rf $@
-	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_en.py $< $(REGION_EXTRACT)_name.pbf
+	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< $(REGION_EXTRACT)_name.pbf
 	$(OSMCONVERT_CMD) \
 		$(REGION_EXTRACT)_name.pbf \
 		--out-o5m \
