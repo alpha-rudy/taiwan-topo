@@ -8,3 +8,4 @@
 /.vscode
 /.java-version
 /build*
+*/__pycache__/

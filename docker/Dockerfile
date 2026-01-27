@@ -49,6 +49,7 @@ RUN pip3 install --break-system-packages --upgrade setuptools bs4 matplotlib num
 RUN pip3 install --no-cache-dir --break-system-packages \
                     hanzi2reading \
                     indic-transliteration \
+                    janome \
                     nepali_roman \
                     osmium \
                     pyewts \
