@@ -398,7 +398,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
-      <name lang="en" value="住宿旅館"/>
+      <name lang="zh" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -408,7 +408,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
-      <name lang="en" value="住宿旅館"/>
+      <name lang="zh" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -418,7 +418,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
-      <name lang="en" value="住宿旅館"/>
+      <name lang="zh" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
@@ -428,7 +428,7 @@ Please have a look at read_me_elevate.txt for reuse and licenses of resources us
       <name lang="es" value="alojamiento"/>
       <name lang="fr" value="hébergement"/>
       <name lang="it" value="alloggi"/>
-      <name lang="en" value="住宿旅館"/>
+      <name lang="zh" value="住宿旅館"/>
       <cat id="accommodation"/>
       <cat id="huts"/>
     </layer>
