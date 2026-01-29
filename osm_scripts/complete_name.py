@@ -639,7 +639,6 @@ def annotate(obj):
             modified = True
     else:
         print(f"fail name: {d}")
-        exit(1)
     
     if modified:
         new_obj = obj.replace()
