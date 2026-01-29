@@ -604,7 +604,9 @@ def complete_name(d):
     else:
         # Priority: name:zh, name:cn, name:ja (filtered), name (if Chinese+Latin only), name:en, name (fallback)
         name_filtered = name if name and is_chinese_latin_only(name) else None
-        return name_zh or name_cn or name_ja or name_filtered or name_en or name
+        if name_zh:
+            return f"{name_zh} ({name_en})" if name_en else name_zh
+        return name_cn or name_ja or name_filtered or name_en or name
 
 
 def annotate(obj):
