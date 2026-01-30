@@ -497,7 +497,7 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
-	-rm -rf $@
+	-rm -f $@ $(REGION_EXTRACT)_name.pbf
 	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< $(REGION_EXTRACT)_name.pbf
 	$(OSMCONVERT_CMD) \
 		$(REGION_EXTRACT)_name.pbf \
