@@ -181,33 +181,34 @@ all: $(TARGETS)
 
 clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(SUITE)" ]
 	[ -n "$(BUILD_DIR)" ]
-	[ -n "$(EXTRACT_DIR)" ]
-	-rm -rf $(INSTALL_DIR)/
-	-rm -rf $(BUILD_DIR)
+	[ -n "$(INSTALL_DIR)" ]
+	-rm -rf $(INSTALL_DIR)-$(SUITE)
+	-rm -rf $(BUILD_DIR)-$(SUITE)
 
 .PHONY: distclean-elevations
 distclean-elevations:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $(INSTALL_DIR)/
-	-rm -rf $(BUILD_DIR)
+	-rm -rf $(INSTALL_DIR)*
+	-rm -rf $(BUILD_DIR)*
 	-rm -rf $(ELEVATIONS_DIR)
 
 .PHONY: distclean-extracts
 distclean-extracts:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $(INSTALL_DIR)/
-	-rm -rf $(BUILD_DIR)
+	-rm -rf $(INSTALL_DIR)*
+	-rm -rf $(BUILD_DIR)*
 	-rm -rf $(EXTRACT_DIR)
 
 .PHONY: distclean
 distclean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ]
-	-rm -rf $(INSTALL_DIR)/
-	-rm -rf $(BUILD_DIR)
+	-rm -rf $(INSTALL_DIR)*
+	-rm -rf $(BUILD_DIR)*
 	-rm -rf $(DOWNLOAD_DIR)
 
 .PHONY: topo.md
