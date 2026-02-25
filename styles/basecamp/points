@@ -887,6 +887,7 @@ amenity = bicycle_rental {name "${name}" | "單車租借站"} [0x2f13 resolution
 # Busbahnhof (große Haltestelle). [point, closedway] (s.a. highway = bus_stop)
 amenity = bus_station                         {name "${name}"} [0x2f08 resolution 24]
 public_transport = stop_position & bus = yes  {name "${name}"} [0x2f08 resolution 24]
+highway = platform & bus = yes                {name "${name}"} [0x2f08 resolution 24]
 
 # Automobil-Club. [point, closedway]
 amenity = car_club & name = * {name "${name}"} [0x2f0d resolution 24]
