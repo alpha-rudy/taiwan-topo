@@ -77,6 +77,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.handle_trail_milestone(tags)
         elif tags.get('highway', '') == 'emergency_access_point':
             self.handle_eap(tags)
+        elif tags.get('highway', '') == 'platform' and tags.get('bus', '') == 'yes':
+            self.handle_bus_platform(tags)
         elif tags.get('amenity', '') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
         
@@ -197,6 +199,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['name'] = '取水點'
         if tags.get('name:en') is None:
             tags['name'] = 'water'
+
+    def handle_bus_platform(self, tags):
+        tags['highway'] = 'bus_stop'
+        tags.pop('bus')
 
     def handle_trail_milestone(self, tags):
         tags.pop('highway')
