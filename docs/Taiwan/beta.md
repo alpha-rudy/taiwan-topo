@@ -10,8 +10,8 @@
   * [![Style](./images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * [![Style](./images/Android.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
-  * [![DEM](./images/Android.png =36x) DEM mix, v2024](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
-  * [![DEM](./images/Android.png =36x) DEM 90m, v2024](./hgt90.zip) 全部90m, 解析度低, 檔案最小
+  * [![DEM](./images/Android.png =36x) DEM mix, v2025](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
+  * [![DEM](./images/Android.png =36x) DEM 90m, v2025](./hgt90.zip) 全部90m, 解析度低, 檔案最小
 
 * ![Apple](./images/macOS.png =36x) Apple, MOI.OSM - Taiwan TOPO v__version__
   * [![Map](./images/macOS.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
@@ -19,8 +19,8 @@
   * [![POI](./images/macOS.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
   * [![Style](./images/macOS.png =36x) Cartograph/山林日誌 Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * [![Style](./images/macOS.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
-  * [![DEM](./images/macOS.png =36x) DEM mix, v2024](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
-  * [![DEM](./images/macOS.png =36x) DEM 90m, v2024](./hgt90.zip) 全部90m, 解析度低, 檔案最小
+  * [![DEM](./images/macOS.png =36x) DEM mix, v2025](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
+  * [![DEM](./images/macOS.png =36x) DEM 90m, v2025](./hgt90.zip) 全部90m, 解析度低, 檔案最小
 
 * 疊圖專用 Styles
   * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖)
