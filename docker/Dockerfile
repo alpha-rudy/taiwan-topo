@@ -87,7 +87,11 @@ RUN set -e && \
     echo "builder:builder" | chpasswd && \
     usermod -aG sudo builder && \
     echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-    
+
+RUN mkdir -p /home/builder/bin
+COPY --chown=builder:builder build.sh /home/builder/bin/build.sh
+RUN chmod +x /home/builder/bin/build.sh
+
 USER builder
 WORKDIR /workspace
 SHELL ["/bin/bash", "-c"]
