@@ -18,7 +18,7 @@ git clean -fd
 git checkout -- .
 git pull --rebase
 
-INSTALL_DIR=$PWD/install/v$(date +%Y.%m.%d)
+INSTALL_DIR=install/v$(date +%Y.%m.%d)
 rm -rf ${INSTALL_DIR}
 mkdir -p ${INSTALL_DIR}
 
