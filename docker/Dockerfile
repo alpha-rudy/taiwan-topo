@@ -45,7 +45,7 @@ RUN dpkg --add-architecture i386 && \
         zstd \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --break-system-packages --upgrade setuptools bs4 matplotlib numpy
+RUN pip3 install --break-system-packages --upgrade "setuptools<82" bs4 matplotlib numpy
 RUN pip3 install --no-cache-dir --break-system-packages \
                     hanzi2reading \
                     indic-transliteration \
