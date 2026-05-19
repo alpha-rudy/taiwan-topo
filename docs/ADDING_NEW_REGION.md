@@ -69,7 +69,10 @@ A suite is a specific build configuration for a region. Each region typically ha
    - `bottom`: Southern latitude
    - `top`: Northern latitude
 
-2. **Identify the OSM extract file** (e.g., `japan-latest`, `nepal-latest`)
+2. **Identify the OSM extract file** for your region:
+   - Browse [https://download.geofabrik.de/](https://download.geofabrik.de/) and navigate to the most specific sub-region that fully covers your bounding box. Smaller extracts download faster and are far less likely to fail.
+   - Note the **full URL path** to the extract directory. The Makefile defaults to `https://download.geofabrik.de/asia` — if your region is elsewhere (e.g., Russia, Europe, Africa), you must override `EXTRACT_URL` in the generated suite `.mk` files.
+   - Example: Elbrus (Russia Caucasus) → `north-caucasus-fed-district-latest` from `https://download.geofabrik.de/russia`.
 
 3. **Prepare HGT files** covering the region
 
@@ -116,6 +119,25 @@ The HGT files should cover all tiles within the bounding box. For Nikko-Oze (lat
 - N36E138.hgt, N36E139.hgt, N36E140.hgt
 - N37E138.hgt, N37E139.hgt, N37E140.hgt
 
+#### Elevation PBF Files
+
+The build also downloads pre-generated elevation PBF files from `http://moi.kcwu.csie.org/osm_elevations/`. **These do not exist on the server for a new region** — you must generate them from the HGT data and place them locally before building:
+
+```
+download/osm_elevations/ele_<region>_10_100_500.pbf
+download/osm_elevations/marker/ele_<region>_10_100_500_mix.pbf
+```
+
+After placing both files, generate their checksum files:
+
+```bash
+cd download/osm_elevations
+md5sum ele_<region>_10_100_500.pbf > ele_<region>_10_100_500.pbf.md5
+
+cd marker
+md5sum ele_<region>_10_100_500_mix.pbf > ele_<region>_10_100_500_mix.pbf.md5
+```
+
 ---
 
 ### Step 4: Generate Suite Definitions
@@ -155,6 +177,14 @@ Run the suite generator to create Makefile definitions:
 - `nikko_oze.mk` - Base mapsforge suite
 - `nikko_oze_bc_dem.mk` - Garmin DEM with native language
 - `nikko_oze_bc_dem_en.mk` - Garmin DEM with English
+
+**For non-Asia regions**: `generate_suite.py` does not emit `EXTRACT_URL` (the Makefile defaults to `https://download.geofabrik.de/asia`). If your extract is under a different continent/country path, manually add `EXTRACT_URL` to **all three** generated `.mk` files, directly after the `EXTRACT_FILE` line:
+
+```makefile
+EXTRACT_FILE := north-caucasus-fed-district-latest
+EXTRACT_URL := https://download.geofabrik.de/russia
+BOUNDING_BOX := true
+```
 
 Build the initial suite structure:
 
@@ -365,6 +395,10 @@ added Nikko Oze region
 3. **Build failures**: Check that the extract file exists in `download/extracts/` or will be downloaded.
 
 4. **Mirror sync issues**: Run `./tools/check-mirrors.py -S region_lower` to diagnose sync problems.
+
+5. **`osmconvert Error: unknown file format`**: The downloaded `.osm.pbf` is actually an HTML error page (typically ~162 bytes). The root cause is a wrong `EXTRACT_URL` — the server returned a 404 page instead of the actual PBF. Verify the URL manually: open `$(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf` in a browser. Common fix: set `EXTRACT_URL := https://download.geofabrik.de/<continent>` in the suite `.mk` files, and choose a valid sub-region extract name.
+
+6. **Missing elevation PBF files (`curl` downloads 162 bytes)**: The elevation files don't exist on the server for new regions. Generate them from HGT data and place them in `download/osm_elevations/` and `download/osm_elevations/marker/`, then create `.md5` checksums with `md5sum`. See Step 3.
 
 ### Getting Help
 
