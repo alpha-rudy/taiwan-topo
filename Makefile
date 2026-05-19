@@ -69,6 +69,7 @@ include $(wildcard $(ROOT_DIR)/suites/beibeiji/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/sheipa/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/fujisan/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/nikko_oze/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/elbrus/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kumano/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/annapurna/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kashmir/*.mk)
@@ -455,7 +456,7 @@ $(EXTRACT).o5m:
 		md5sum -c $(EXTRACT_FILE).o5m.zst.md5 && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 else
-EXTRACT_URL := https://download.geofabrik.de/asia
+EXTRACT_URL ?= https://download.geofabrik.de/asia
 $(EXTRACT).o5m:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]

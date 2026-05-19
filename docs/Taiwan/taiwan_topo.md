@@ -378,6 +378,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N36.50 ~ N37.47
     * 經度範圍: E138.68 ~ E139.86
+* Elbrus, 厄爾布魯士 (俄羅斯高加索)
+  * https://rudymap.tw/elbrus_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N43.25 ~ N43.47
+    * 經度範圍: E42.15 ~ E42.67
 
 ## 說明
 
