@@ -27,8 +27,8 @@
 	"commands": [
 		{
 			"command": "mapposition",
-			"lat": 43.36,
-			"lon": 42.41,
+			"lat": 43.43,
+			"lon": 42.85,
 			"zoom": 13
 		}
 	]
