@@ -1,0 +1,78 @@
+# Define the access restrictions
+# The following tags define the restrictions:
+# mkgmap:bicycle
+# mkgmap:foot
+# mkgmap:car
+# mkgmap:truck
+# mkgmap:taxi
+# mkgmap:bus
+# mkgmap:emergency
+# mkgmap:delivery
+# A class is not allowed to use the way if its tag is set to 'no'
+
+# First set access settings with high priority.
+#
+# In case a way is tagged with 
+#    highway=motorway;access=yes 
+# we assume that foot and bikes are not allowed anyhow.
+
+highway=* & motorroad=yes                  { add bicycle=no; add foot=no; }
+highway=motorway | highway=motorway_link   { add bicycle=no; add foot=no; }
+
+(access=agricultural | access=forestry) { set access=no; add foot=yes }
+
+# Now fill the access tree (http://wiki.openstreetmap.org/wiki/Key:access) 
+# This is required so that subsequent rules do not add a tag (bicycle) which is already defined by a higher tag (vehicle) 
+access=*             { add foot='${access}'; add vehicle='${access}'; }
+vehicle=*            { add bicycle='${vehicle}'; add motor_vehicle='${vehicle}'; }
+motor_vehicle=*      { add motorcar='${motor_vehicle}'; add goods='${motor_vehicle}'; add hgv='${motor_vehicle}'; add psv='${motor_vehicle}'; add emergency='${motor_vehicle}'; }
+psv=*                { add taxi='${psv}'; add bus='${psv}'; }
+
+
+# Include country specific access rules that are derived from the highway type
+include 'inc/access_country';
+
+# Add common access rules that are derived from the highway type
+highway=steps                              { add foot=yes; add access=no }
+highway=pedestrian & area!=yes             { add foot=yes; add access=no } 
+highway=path                               { add foot=yes; add bicycle=yes; add access=no } 
+highway=bridleway                          { add access=no }
+highway=cycleway                           { add bicycle=yes; add access=no }
+highway=footway                            { add foot=yes; add access=no }
+railway=platform                           { add foot=yes; add access=no }
+
+# throughroute cannot be handled differently for different vehicle types
+# Therefore we have to choose one vehicle type - and the winner is: motorcar
+motorcar=destination  | motorcar=delivery { set mkgmap:throughroute=no; set motorcar=yes } 
+access=destination    | access=delivery   { set mkgmap:throughroute=no; set access=yes }
+
+# Normalize all values that indicate a restriction to 'no'
+foot=private          | foot=agricultural       | foot=forestry       { set foot=no }
+bicycle=private       | bicycle=agricultural    | bicycle=forestry    { set bicycle=no }
+motorcar=private      | motorcar=agricultural   | motorcar=forestry   { set motorcar=no }
+goods=private         | goods=agricultural      | goods=forestry      { set goods=no }
+hgv=private           | hgv=agricultural        | hgv=forestry        { set hgv=no }
+bus=private           | bus=agricultural        | bus=forestry        { set bus=no }
+taxi=private          | taxi=agricultural       | taxi=forestry       { set taxi=no }
+emergency=private     | emergency=agricultural  | emergency=forestry  { set emergency=no }
+
+# Copy the OSM access tags to the mkgmap internal tags
+foot=*       { set mkgmap:foot='${foot}' }
+bicycle=*    { set mkgmap:bicycle='${bicycle}' }
+motorcar=*   { set mkgmap:car='${motorcar}' }
+goods=*      { set mkgmap:delivery='${goods}' }
+hgv=*        { set mkgmap:truck='${hgv}' }
+bus=*        { set mkgmap:bus='${bus}' }
+taxi=*       { set mkgmap:taxi='${taxi}' }
+emergency=*  { set mkgmap:emergency='${emergency}' }
+
+# The access tag defines all restrictions that are not already set
+access=* { addaccess '${access}' }
+
+# Check for carpool lane (they are not really supported yet so these lines are commented)
+# hov=* { add carpool='${hov}' }
+# (carpool=yes | carpool=designated | carpool=permissive | carpool=official)     { set mkgmap:carpool=yes }
+
+# Don't route through highway=construction, they are considered unusable 
+highway=construction {setaccess no}
+

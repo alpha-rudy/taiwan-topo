@@ -1,0 +1,113 @@
+﻿# Sample configuration file for use with the --road-name-config option.
+# -*- coding: UTF-8 -*-
+
+# This gives road name prefixes and suffixes in various languages.
+# A road name like West Main Street is separated into a prefix 'West',
+# the important part 'Main', and the suffix 'Street'.
+
+# The first section lists often used prefixes and suffixes for a language.
+# The next section is used to configure which languages are used for road names
+# in each country.
+
+# Note that the order of the options doesn't matter, as well as the position
+# in the comma separated lists. Very important is the proper usage of blanks
+# within the quotation marks as well as the spelling.
+
+# Having suffixes makes Find>Address less easy to use on some GPS devices! See posting 21-Feb-2019:
+#  http://www.mkgmap.org.uk/pipermail/mkgmap-dev/2019q1/029506.html
+
+##########################################################################
+# Section 1
+# prefix1:<lang> list of 1st words
+# prefix2:<lang> further words to combine with each prefix1 word, separated with a blank
+# suffix:<lang> gives list of suffix words
+
+# basque
+suffix:eu = " Kalea"
+
+# catalan
+prefix1:ca = "Avinguda", "Carrer"
+prefix2:ca = "de las ", "de los ", "de la ", "del ", "de ", "d'"
+
+# english
+prefix1:en = "East ", "North ", "South ", "West "
+suffix:en = " Road", " Street"
+#
+# UK road names don't have prefixes, eg "North View" and "South View" are unlikely to be connected.
+# So, via Section 2 (country to language mapping), have different prefix/suffix for the UK:
+#prefix1:en_gb = empty
+# UK road names have many different suffixes and should not be used as they make address searching counter-intuitive
+#suffix:en_gb = " Arcade", " Avenue", " Boulevard", " Circus", " Close", " Court", " Crescent", " Croft", " Drive", " Field", " Fields", " Gardens", " Gate", " Grove", " Hill", " Lane", " Mews", " Parade", " Park", " Passage", " Place", " Rise", " Road", " Square", " Street", " Terrace", " View", " Villas", " Walk", " Way", " Wood", " Yard"
+
+# french
+prefix1:fr = "Allée", "Avenue", "Boulevard", "Chemin", "Place", "Rue", "Route"
+prefix2:fr = "de la ", "du ", "de ", "des ", "d'", "de l'"
+
+# galician
+prefix1:gl = "Rua", "Avenida", "Travessa"
+prefix2:gl = "da ", "do ", "de ", "das ", "dos "
+
+# german
+suffix:de = " Straße", "-Straße", " Strasse", "-Strasse", " Weg", "-Weg"
+
+# italian
+prefix1:it = "Via", "Piazza", "Viale"
+prefix2:it = "del ", "dei ", "della ", "delle ", "di "
+
+# portugese
+prefix1:pt = "Rua", "Avenida", "Travessa", "Alameda", "Beco", "Estrada", "Rodovia"
+prefix2:pt = "da ", "do ", "de ", "das ", "dos ", "d'"
+
+# spanish
+prefix1:es = "Avenida", "Calle", "Paseo"
+prefix2:es = "de las ", "de los ", "de la ", "del ", "de ", "d'", "las ", "los "
+
+##########################################################################
+# Section 2
+# Map three letter ISO country codes to list of used languages for road names.
+# It is assumed that the style sets mkgmap:country to one of these ISO codes.
+
+# Botswana (BWA), Kenya (KEN), Malawi (MWI), Zambia (ZMB) and Zimbabwe (ZWE), owing to their colonial past,
+# have a similar naming format to the UK and the same suffixes are common, so treat them as en_gb
+
+lang:AGO = pt
+lang:AND = es, ca
+lang:ARG = es
+lang:BOL = es
+lang:BRA = pt
+lang:BWA = en_gb
+lang:CAN = en, fr
+lang:CHE = de, fr, it
+lang:CHL = es
+lang:COL = es
+lang:CRI = es
+lang:CUB = es
+lang:DEU = de
+lang:DOM = es
+lang:ECU = es
+lang:ESH = es
+lang:ESP = es, gl, eu, ca
+lang:FRA = fr
+lang:GBR = en_gb
+lang:GNB = pt
+lang:GTM = es
+lang:GUY = en
+lang:HND = es
+lang:KEN = en_gb
+lang:MEX = es
+lang:MOZ = pt
+lang:MWI = en_gb
+lang:NIC = es
+lang:PAN = es
+lang:PER = es
+lang:PRI = es
+lang:PRT = pt
+lang:PRY = es
+lang:SLV = es
+lang:URI = es
+lang:USA = en
+lang:VEN = es
+lang:ZMB = en_gb
+lang:ZWE = en_gb
+
+# End Section 2
