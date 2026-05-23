@@ -148,7 +148,7 @@ endef
 define MAP_BUILD
 .PHONY: $1
 $1: $2
-$2: $$(TILES) $$(TYP_FILE) $4 $7
+$2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 	date +'DS: %H:%M:%S $$(shell basename $$@)'
 	[ -n "$$(MAPID)" ]
 	rm -rf $3

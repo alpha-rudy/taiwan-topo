@@ -34,8 +34,8 @@ endif
 MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4924/mkgmap.jar
 SPLITTER_JAR := $(TOOLS_DIR)/splitter-r654/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
-SEA_DIR := $(ROOT_DIR)/sea-20220816001514
-BOUNDS_DIR := $(ROOT_DIR)/bounds-20220826
+SEA_ZIP := $(DOWNLOAD_DIR)/sea-latest.zip
+BOUNDS_ZIP := $(DOWNLOAD_DIR)/bounds-latest.zip
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 BUILD_DIR ?= $(ROOT_DIR)/build
@@ -421,6 +421,18 @@ $(eval $(call MAP_BUILD,map_nodem_hr,$(MAP_NODEM_HR),$(MAP_NODEM_HR_DIR),$(HR_ST
 # map_nodem_lr: Low-resolution map without DEM
 $(eval $(call MAP_BUILD,map_nodem_lr,$(MAP_NODEM_LR),$(MAP_NODEM_LR_DIR),$(LR_STYLE_DIR),$(LR_STYLE),,))
 
+.DELETE_ON_ERROR: $(BOUNDS_ZIP)
+$(BOUNDS_ZIP):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(DOWNLOAD_DIR)
+	wget -O $@ https://www.thkukuk.de/osm/data/bounds-latest.zip
+
+.DELETE_ON_ERROR: $(SEA_ZIP)
+$(SEA_ZIP):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(DOWNLOAD_DIR)
+	wget -O $@ https://www.thkukuk.de/osm/data/sea-latest.zip
+
 .DELETE_ON_ERROR: $(ELEVATION)
 ELEVATIONS_URL := http://moi.kcwu.csie.org/osm_elevations
 $(ELEVATION):
@@ -786,7 +798,7 @@ $(BBOX_POLY_FILE):
 	@echo "END" >> $@
 endif
 
-$(COMMON_TILES): $(GMAP_INPUT) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE))
+$(COMMON_TILES): $(GMAP_INPUT) $(SEA_ZIP) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE))
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
 	rm -rf $(COMMON_TILES_DIR)
@@ -796,7 +808,7 @@ $(COMMON_TILES): $(GMAP_INPUT) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE))
 			--max-threads=$(SPLITTER_THREADS) \
 			--geonames-file=$(CITY) \
 			--no-trim \
-			--precomp-sea=$(SEA_DIR) \
+			--precomp-sea=$(SEA_ZIP) \
 			--keep-complete=true \
 			$(SPLITTER_BOUNDING) \
 			--mapid=$(DUMMYID)0001 \

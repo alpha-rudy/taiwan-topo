@@ -1,6 +1,9 @@
 /work
 /drops
 /download
+/bounds*/
+/sea
+/sea-*/
 .DS_Store
 /.idea
 /install*
