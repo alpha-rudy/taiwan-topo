@@ -11,3 +11,9 @@ POLY_FILE := Taipei.poly
 NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 TARGETS := mapsforge_zip
 endif
+
+# Suite list: taipei (mapsforge) + taipei_bc (gmap) covers both build paths
+TAIPEI_SUITES := taipei taipei_bc
+.PHONY: taipei_suites
+taipei_suites:
+	set -e; $(foreach suite,$(TAIPEI_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taipei SUITE=$(suite) all;)
