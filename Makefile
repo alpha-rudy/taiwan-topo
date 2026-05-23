@@ -34,7 +34,6 @@ endif
 MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4924/mkgmap.jar
 SPLITTER_JAR := $(TOOLS_DIR)/splitter-r654/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
-CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 BUILD_DIR ?= $(ROOT_DIR)/build
 INSTALL_DIR ?= $(ROOT_DIR)/install
@@ -122,7 +121,6 @@ ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 REGION_EXTRACT := $(BUILD_DIR)/latest-$(REGION)
 POI_EXTRACT := $(REGION_EXTRACT)-poi
-CITY := $(CITIES_DIR)/TW.zip
 COMMON_TILES := $(COMMON_TILES_DIR)/.COMMON_TILES.done
 TILES := $(TILES_DIR)/.TILES.done
 GMAP_INPUT := $(BUILD_DIR)/$(REGION).o5m
@@ -806,7 +804,6 @@ $(COMMON_TILES): $(GMAP_INPUT) $(SEA_ZIP) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE)
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && cd $(COMMON_TILES_DIR) && \
 		java $(JAVACMD_OPTIONS) -jar $(SPLITTER_JAR) \
 			--max-threads=$(SPLITTER_THREADS) \
-			--geonames-file=$(CITY) \
 			--no-trim \
 			--precomp-sea=$(SEA_ZIP) \
 			--keep-complete=true \
