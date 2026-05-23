@@ -34,13 +34,13 @@ endif
 MKGMAP_JAR := $(TOOLS_DIR)/mkgmap-r4924/mkgmap.jar
 SPLITTER_JAR := $(TOOLS_DIR)/splitter-r654/splitter.jar
 LOCUS_POI_CONVERTER := python3 $(TOOLS_DIR)/poi_converter-0.6.1/poiconverter.py
-SEA_ZIP := $(DOWNLOAD_DIR)/sea-latest.zip
-BOUNDS_ZIP := $(DOWNLOAD_DIR)/bounds-latest.zip
 CITIES_DIR := $(ROOT_DIR)/cities
 POLIES_DIR := $(ROOT_DIR)/polies
 BUILD_DIR ?= $(ROOT_DIR)/build
 INSTALL_DIR ?= $(ROOT_DIR)/install
 DOWNLOAD_DIR ?= $(ROOT_DIR)/download
+SEA_ZIP := $(DOWNLOAD_DIR)/sea-latest.zip
+BOUNDS_ZIP := $(DOWNLOAD_DIR)/bounds-latest.zip
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
 META := $(EXTRACT_DIR)/meta.osm
