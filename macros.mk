@@ -245,7 +245,7 @@ $2: $4
 			$7 \
 			--poi-writer \
 				all-tags=true \
-				geo-tags=true \
+				geo-tags=false \
 				names=false \
 				ways=true \
 				tag-conf-file="$5" \

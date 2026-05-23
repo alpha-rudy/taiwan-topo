@@ -335,8 +335,8 @@ $(POI_EXTRACT).osm.pbf: $(REGION_EXTRACT)-sed.osm.pbf
 # Using the POI_BUILD macro to create POI database targets.
 # Parameters: target, output, input, deps, mapping, osmosis_cmd, extra_opts, java_env
 
-# poi: Standard POI database with bounding
-$(eval $(call POI_BUILD,poi,$(POI),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_MAPPING),$(POI_MAPPING),$(OSMOSIS_CMD),$(OSMOSIS_BOUNDING),))
+# poi: Standard POI database (no extra bounding; input is already osmium-extracted)
+$(eval $(call POI_BUILD,poi,$(POI),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_MAPPING),$(POI_MAPPING),$(OSMOSIS_CMD),,))
 
 # poi_v2: POI v2 database using Java 8 osmosis
 $(eval $(call POI_BUILD,poi_v2,$(POI_V2),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_V2_MAPPING),$(POI_V2_MAPPING),$(OSMOSIS_POI_V2_CMD),,JAVA_HOME=$(JAVA8_HOME) PATH=$(JAVA8_HOME)/bin:$$$$PATH))
