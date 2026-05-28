@@ -47,6 +47,7 @@ RUN dpkg --add-architecture i386 && \
 
 RUN pip3 install --break-system-packages --upgrade "setuptools<82" bs4 matplotlib numpy
 RUN pip3 install --no-cache-dir --break-system-packages \
+                    cyrtranslit \
                     hanzi2reading \
                     indic-transliteration \
                     janome \

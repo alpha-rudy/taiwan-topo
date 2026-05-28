@@ -48,6 +48,14 @@ try:
 except ImportError:
     has_indic_transliteration = False
 
+# Import Russian romanization
+try:
+    import cyrtranslit
+    has_cyrtranslit = True
+    # print("Using cyrtranslit for Russian romanization")
+except ImportError:
+    has_cyrtranslit = False
+
 # Import various romanization tools
 try:
     from unidecode import unidecode
@@ -265,6 +273,19 @@ def romanize_generic(text):
     return None
 
 
+def romanize_ru(text):
+    """Romanize Russian/Cyrillic text using cyrtranslit."""
+    if not has_cyrtranslit:
+        return None
+    try:
+        result = cyrtranslit.to_latin(text, "ru")
+        if result and result != text:
+            return ' '.join(word.capitalize() for word in result.split())
+    except Exception:
+        pass
+    return None
+
+
 def extract_latin_part(text):
     """Extract Latin/English parts from mixed-script text."""
     # Matches: Latin chars (incl accents), numbers, common punctuation
@@ -327,6 +348,11 @@ def has_tibetan_chars(text):
 def has_arabic_chars(text):
     """Check if text contains Arabic/Urdu characters."""
     return any('\u0600' <= char <= '\u06FF' for char in text)
+
+
+def has_cyrillic_chars(text):
+    """Check if text contains Cyrillic characters."""
+    return any('\u0400' <= char <= '\u04FF' for char in text)
 
 
 def has_non_ascii(text):
@@ -405,7 +431,20 @@ def romanize_by_lang_tag(tags):
                 return tags['name:hi']
             if has_indic_transliteration:
                 return romanize_hi(tags['name:hi'])
-    
+
+    elif LANG == 'ru':
+        # Check for existing romanization tags
+        if 'name:ru_rm' in tags:
+            return tags['name:ru_rm']
+        if 'name:ru-Latn' in tags:
+            return tags['name:ru-Latn']
+        # Try romanizing name:ru
+        if 'name:ru' in tags:
+            if tags['name:ru'].isascii():
+                return tags['name:ru']
+            if has_cyrtranslit:
+                return romanize_ru(tags['name:ru'])
+
     return None
 
 
@@ -434,7 +473,7 @@ def romanize_by_combined_rules(name):
     
     # If name is Latin-based (no CJK/Devanagari/etc.), return as-is
     # This handles cases like "Häagen-Dazs" with accented Latin characters
-    if not has_chinese_chars(name) and not has_tibetan_chars(name) and not has_arabic_chars(name):
+    if not has_chinese_chars(name) and not has_tibetan_chars(name) and not has_arabic_chars(name) and not has_cyrillic_chars(name):
         # Check for Devanagari (Hindi/Nepali), Japanese kana, etc.
         has_devanagari = any('\u0900' <= char <= '\u097F' for char in name)
         has_japanese_kana = any(('\u3040' <= char <= '\u309F') or ('\u30A0' <= char <= '\u30FF') for char in name)
@@ -506,11 +545,22 @@ def romanize_by_combined_rules(name):
             return latin_part
         
         return None
-    
+
+    elif LANG == 'ru':
+        if has_cyrillic_chars(name):
+            result = romanize_ru(name)
+            if result:
+                return result
+        # Fall back to Latin extraction if romanization fails
+        latin_part = extract_latin_part(name)
+        if latin_part:
+            return latin_part
+        return name
+
     else:
         # Unknown language - try generic romanization
         return romanize_generic(name) or name
-    
+
     return None
 
 def is_latin_text(text):
@@ -535,7 +585,7 @@ def is_latin_text(text):
     return True
 
 
-PROCESSED_NAMES = {'name', 'name:en', 'name:ja', 'name:zh', 'name:cn', 'name:ne', 'name:hi'}
+PROCESSED_NAMES = {'name', 'name:en', 'name:ja', 'name:zh', 'name:cn', 'name:ne', 'name:hi', 'name:ru'}
 
 def complete_name_en(d):
     """
@@ -588,7 +638,7 @@ def complete_name(d):
     name_zh = d.get('name:zh', '').strip() or None
     name_cn = d.get('name:cn', '').strip() or None
     name_en = d.get('name:en', '').strip() or None
-    
+
     # name:ja is only valid if it contains only Chinese+Latin (no Japanese kana)
     name_ja_raw = d.get('name:ja', '').strip() or None
     name_ja = name_ja_raw if name_ja_raw and is_chinese_latin_only(name_ja_raw) else None
@@ -600,7 +650,7 @@ def complete_name(d):
     elif LANG == 'ja':
         # Priority: name:zh, name:cn, name, name:ja (filtered), name:en
         return name_zh or name_cn or name or name_ja or name_en
-    
+
     else:
         # Priority: name:zh, name:cn, name:ja (filtered), name (if Chinese+Latin only), name:en, name (fallback)
         name_filtered = name if name and is_chinese_latin_only(name) else None
