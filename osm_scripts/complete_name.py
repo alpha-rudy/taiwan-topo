@@ -72,8 +72,8 @@ try:
 except ImportError:
     has_pyewts = False
 
-# Determine language from environment variable or default to zh
-LANG = os.environ.get('LANG_CODE', 'zh')
+# Determine native script language from environment variable or default to zh
+NATIVE_LANG = os.environ.get('NATIVE_LANG', 'zh')
 
 # Dictionary for Urdu/Hindi common terms correction
 URDU_REPLACEMENTS = {
@@ -369,7 +369,7 @@ def romanize_by_lang_tag(tags):
     Priority 1: Try to romanize using name:$lang tag with language-specific module.
     Returns romanized string or None if not applicable.
     """
-    if LANG == 'zh':
+    if NATIVE_LANG == 'zh':
         # Check for existing romanization tag
         if 'name:zh_pinyin' in tags:
             return tags['name:zh_pinyin']
@@ -381,7 +381,7 @@ def romanize_by_lang_tag(tags):
             if has_hanzi2reading:
                 return romanize_zh(tags['name:zh'])
     
-    elif LANG == 'ja':
+    elif NATIVE_LANG == 'ja':
         # Check for existing romanization tags
         if 'name:ja_rm' in tags:
             return tags['name:ja_rm']
@@ -394,7 +394,7 @@ def romanize_by_lang_tag(tags):
             if has_pykakasi:
                 return romanize_ja(tags['name:ja'])
     
-    elif LANG == 'ne':
+    elif NATIVE_LANG == 'ne':
         # Check for existing romanization tags
         if 'name:ne_rm' in tags:
             return tags['name:ne_rm']
@@ -419,7 +419,7 @@ def romanize_by_lang_tag(tags):
             if has_indic_transliteration:
                 return romanize_hi(tags['name:hi'])
     
-    elif LANG == 'hi':
+    elif NATIVE_LANG == 'hi':
         # Check for existing romanization tags
         if 'name:hi_rm' in tags:
             return tags['name:hi_rm']
@@ -432,7 +432,7 @@ def romanize_by_lang_tag(tags):
             if has_indic_transliteration:
                 return romanize_hi(tags['name:hi'])
 
-    elif LANG == 'ru':
+    elif NATIVE_LANG == 'ru':
         # Check for existing romanization tags
         if 'name:ru_rm' in tags:
             return tags['name:ru_rm']
@@ -480,7 +480,7 @@ def romanize_by_combined_rules(name):
         if not has_devanagari and not has_japanese_kana:
             return name
     
-    if LANG == 'zh':
+    if NATIVE_LANG == 'zh':
         if has_chinese_chars(name):
             result = romanize_zh(name)
             if result:
@@ -491,7 +491,7 @@ def romanize_by_combined_rules(name):
                 return latin_part
         return name
     
-    elif LANG == 'ja':
+    elif NATIVE_LANG == 'ja':
         result = romanize_ja(name)
         if result:
             return result
@@ -505,7 +505,7 @@ def romanize_by_combined_rules(name):
             return latin_part
         return name
     
-    elif LANG == 'ne':
+    elif NATIVE_LANG == 'ne':
         result = romanize_ne(name)
         if result:
             return result
@@ -515,7 +515,7 @@ def romanize_by_combined_rules(name):
             return latin_part
         return name
     
-    elif LANG == 'hi':
+    elif NATIVE_LANG == 'hi':
         # Try Devanagari transliteration
         result = romanize_hi(name)
         if result:
@@ -546,7 +546,7 @@ def romanize_by_combined_rules(name):
         
         return None
 
-    elif LANG == 'ru':
+    elif NATIVE_LANG == 'ru':
         if has_cyrillic_chars(name):
             result = romanize_ru(name)
             if result:
@@ -610,7 +610,7 @@ def complete_name_en(d):
         name_en = romanize_by_lang_tag(d)
     
     # Priority 3: Try name:zh with hanzi2reading (if not already tried for zh)
-    if name_en is None and LANG != 'zh':
+    if name_en is None and NATIVE_LANG != 'zh':
         name_en = romanize_by_zh_tag(d)
     
     # Priority 4: Assume 'name' is in $lang and use combined rules
@@ -620,18 +620,15 @@ def complete_name_en(d):
     return name_en
 
 
-def complete_name(d):
+def complete_name_zh(d):
     """
-    Complete/replace name tag based on priority order (depends on LANG).
-    
-    Priority order:
-    - LANG=zh: "name", "name:zh", "name:cn", "name:ja" (if Chinese+Latin only), "name:en"
-    - LANG=ja: "name:zh", "name:cn", "name", "name:ja" (if Chinese+Latin only), "name:en"
-    - Others:  "name:zh", "name:cn", "name:ja" (if Chinese+Latin only), "name" (if Chinese+Latin only), "name:en", "name"
-    
-    Note: name:ja is only used if it contains only Chinese and Latin characters (no Japanese kana).
-    
-    Returns the name value or None if not found.
+    Complete name:zh tag if missing.
+
+    Priority order depends on NATIVE_LANG:
+    - NATIVE_LANG=zh (Taiwan): name (if CJK/Latin) -> name:zh -> name:cn -> name:ja (filtered) -> name:en -> name
+    - All others:              name:zh -> name:cn -> name:ja (filtered) -> name (if CJK/Latin) -> name:en -> name
+
+    Returns the name:zh value or None if not found.
     """
     # Extract and normalize tag values (None if empty or missing)
     name = d.get('name', '').strip() or None
@@ -642,39 +639,33 @@ def complete_name(d):
     # name:ja is only valid if it contains only Chinese+Latin (no Japanese kana)
     name_ja_raw = d.get('name:ja', '').strip() or None
     name_ja = name_ja_raw if name_ja_raw and is_chinese_latin_only(name_ja_raw) else None
-    
-    if LANG == 'zh':
-        # Priority: name, name:zh, name:cn, name:ja (filtered), name:en
-        return name or name_zh or name_cn or name_ja or name_en
-    
-    elif LANG == 'ja':
-        # Priority: name:zh, name:cn, name, name:ja (filtered), name:en
-        return name_zh or name_cn or name or name_ja or name_en
 
+    if NATIVE_LANG == 'zh':
+        # Prefer name (if CJK/Latin only) for Taiwan, preserving current behavior
+        return name or name_zh or name_cn or name_ja or name_en
     else:
-        # Priority: name:zh, name:cn, name:ja (filtered), name (if Chinese+Latin only), name:en, name (fallback)
+        # For non-zh regions: prefer explicit name:zh tag, then name if CJK/Latin readable
         name_filtered = name if name and is_chinese_latin_only(name) else None
-        if name_zh:
-            return f"{name_zh} ({name_en})" if name_en else name_zh
-        return name_cn or name_ja or name_filtered or name_en or name
+        return name_zh or name_cn or name_ja or name_filtered or name_en or name
 
 
 def annotate(obj):
     """
-    Annotate object with name and name:en tags.
-    
+    Annotate object with name:en, name:zh, and name tags.
+
     1. Complete name:en tag if missing (do this first)
-    2. Complete/replace name tag based on LANG-specific priority (uses name:en)
+    2. Complete name:zh tag if missing (uses name:en already set)
+    3. Set name = name:zh or name:en or original name
     """
     d = dict(obj.tags)
     if len(d) == 0:
         return obj
     if not any(k in PROCESSED_NAMES for k in d.keys()):
         return obj
-    
+
     modified = False
-    
-    # Step 1: Complete name:en tag if missing (do this first so complete_name can use it)
+
+    # Step 1: Complete name:en tag if missing (do this first so complete_name_zh can use it)
     if 'name:en' not in d:
         name_en = complete_name_en(d)
         if name_en:
@@ -682,21 +673,30 @@ def annotate(obj):
             modified = True
         else:
             print(f"fail name:en: {d}")
-    
-    # Step 2: Complete/replace name tag (now uses the completed name:en)
-    new_name = complete_name(d)
+
+    # Step 2: Complete name:zh tag if missing (now uses the completed name:en)
+    if 'name:zh' not in d:
+        name_zh = complete_name_zh(d)
+        if name_zh:
+            d['name:zh'] = name_zh
+            modified = True
+        else:
+            print(f"fail name:zh: {d}")
+
+    # Step 3: Set name tag to name:zh or name:en or original name
+    new_name = d.get('name:zh') or d.get('name:en') or d.get('name')
     if new_name:
         if new_name != d.get('name', ''):
             d['name'] = new_name
             modified = True
     else:
         print(f"fail name: {d}")
-    
+
     if modified:
         new_obj = obj.replace()
         new_obj.tags = d
         return new_obj
-    
+
     return obj
 
 class Complete_name_Handler(osmium.SimpleHandler):

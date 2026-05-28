@@ -394,11 +394,11 @@ $(GMAPSUPP): $(MAP_HAND)
 			$(MAPID)*.img $(MAPID).TYP
 	mv $(MAP_HAND_DIR)/gmapsupp.img $@
 
-MAPSFORGE_NTL := $(LANG),en
+MAPSFORGE_NTL := zh,en
 ifeq ($(LANG),en)
-NTL := name:en,name:zh_pinyin
+NTL := name:en,name:zh,name:zh_pinyin
 else
-NTL := name,name:$(LANG),name:en
+NTL := name,name:zh,name:en
 endif
 
 #==============================================================================
@@ -503,6 +503,8 @@ $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 		$< \
 		-o=$@
 
+NATIVE_LANG ?= $(LANG)
+
 .PHONY: named
 named: $(REGION_EXTRACT)_name.o5m
 $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
@@ -510,7 +512,7 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
 	-rm -f $@ $(REGION_EXTRACT)_name.pbf
-	LANG_CODE=$(LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< $(REGION_EXTRACT)_name.pbf
+	NATIVE_LANG=$(NATIVE_LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< $(REGION_EXTRACT)_name.pbf
 	$(OSMCONVERT_CMD) \
 		$(REGION_EXTRACT)_name.pbf \
 		--out-o5m \

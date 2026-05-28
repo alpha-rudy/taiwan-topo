@@ -34,9 +34,11 @@ A region is a geographic area for which we generate offline maps. Each region pr
 
 ### What is a "Suite"?
 A suite is a specific build configuration for a region. Each region typically has multiple suites:
-- **Base suite** (`region`): Mapsforge build with native language
-- **Garmin DEM native** (`region_bc_dem`): Garmin map with native language and DEM
-- **Garmin DEM English** (`region_bc_dem_en`): Garmin map with English and DEM
+- **Base suite** (`region`): Mapsforge build with `LANG=zh` (Chinese display names)
+- **Garmin DEM native** (`region_bc_dem`): Garmin map with `LANG=zh` and DEM
+- **Garmin DEM English** (`region_bc_dem_en`): Garmin map with `LANG=en` and DEM
+
+`NATIVE_LANG` is set in all suites to indicate the script language of the region's OSM `name` tags (e.g., `ja`, `ne`, `hi`, `ru`). `complete_name.py` uses it to romanize names into `name:en` and `name:zh`.
 
 ### Build Pipeline
 1. **Extract**: Download and extract OSM data for the bounding box
@@ -166,17 +168,17 @@ Run the suite generator to create Makefile definitions:
 | `--region` | Display name | `Nikko-Oze` |
 | `--region-lower` | Lowercase identifier | `nikko_oze` |
 | `--dem-name` | DEM source | `AW3D30` |
-| `--lang` | Primary language code | `ja` (Japanese) |
+| `--lang` | Native script language (becomes `NATIVE_LANG`) | `ja` (Japanese) |
 | `--extract-file` | OSM country extract | `japan-latest` |
 | `--left/right/top/bottom` | Bounding box coordinates | See above |
 | `--code-page` | Character encoding | `65001` (UTF-8) |
-| `--mapid-native` | Garmin MAPID for native lang | `0x1005` |
+| `--mapid-native` | Garmin MAPID for zh variant | `0x1005` |
 | `--mapid-english` | Garmin MAPID for English | `0x2005` |
 
 **Output**: Creates files in `suites/nikko_oze/`:
-- `nikko_oze.mk` - Base mapsforge suite
-- `nikko_oze_bc_dem.mk` - Garmin DEM with native language
-- `nikko_oze_bc_dem_en.mk` - Garmin DEM with English
+- `nikko_oze.mk` - Base mapsforge suite (`NATIVE_LANG=ja`, `LANG=zh`)
+- `nikko_oze_bc_dem.mk` - Garmin DEM with zh language (`NATIVE_LANG=ja`, `LANG=zh`)
+- `nikko_oze_bc_dem_en.mk` - Garmin DEM with English (`NATIVE_LANG=ja`, `LANG=en`)
 
 **For non-Asia regions**: `generate_suite.py` does not emit `EXTRACT_URL` (the Makefile defaults to `https://download.geofabrik.de/asia`). If your extract is under a different continent/country path, manually add `EXTRACT_URL` to **all three** generated `.mk` files, directly after the `EXTRACT_FILE` line:
 
@@ -260,7 +262,6 @@ Generate the region's documentation page:
     --region Nikko-Oze \
     --region-lower nikko_oze \
     --title "Nikko-Oze Region" \
-    --lang ja \
     --hgt-files "N36E138, N36E139, N36E140, N37E138, N37E139, N37E140"
 ```
 
@@ -270,7 +271,6 @@ Generate the region's documentation page:
 | `--region` | Display name | `Nikko-Oze` |
 | `--region-lower` | Lowercase identifier | `nikko_oze` |
 | `--title` | Page title | `Nikko-Oze Region` |
-| `--lang` | Language code | `ja` |
 | `--hgt-files` | Comma-separated HGT file list | `N36E138, N36E139, ...` |
 
 **Output**: Creates `docs/Nikko-Oze/nikko_oze_topo.md`

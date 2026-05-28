@@ -230,17 +230,17 @@ AW3D30.OSM - Kashmir Kodo TOPO v__version__
     > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D (211MB)
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Kashmir_aw3d30_ne_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Kashmir_aw3d30_ne_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Kashmir_aw3d30_ne_camp3D.img.zip)
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Kashmir_aw3d30_zh_camp3D.img.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Kashmir_aw3d30_zh_camp3D.img.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Kashmir_aw3d30_zh_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) camp3D (227MB)
-    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Kashmir_TOPO_camp3D_ne.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Kashmir_TOPO_camp3D_ne.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Kashmir_TOPO_camp3D_ne.exe)
+    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Kashmir_TOPO_camp3D.exe) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Kashmir_TOPO_camp3D.exe) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Kashmir_TOPO_camp3D.exe)
   * ![Map](images/macOS.png =36x) camp3D (227MB)
-    > [[自動分流]](https://rudymap.tw/Kashmir_aw3d30_ne_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Kashmir_aw3d30_ne_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Kashmir_aw3d30_ne_camp3D.gmap.zip)
+    > [[自動分流]](https://rudymap.tw/Kashmir_aw3d30_zh_camp3D.gmap.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Kashmir_aw3d30_zh_camp3D.gmap.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Kashmir_aw3d30_zh_camp3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Kashmir TOPO
   * Clip on one of mirrors to download

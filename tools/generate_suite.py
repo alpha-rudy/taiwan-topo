@@ -63,7 +63,8 @@ def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extrac
 ifeq ($(SUITE),{region_lower})
 REGION := {region}
 DEM_NAME := {dem_name}
-LANG := {lang}
+NATIVE_LANG := {lang}
+LANG := zh
 CODE_PAGE := {code_page}
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
 ELEVATION_MIX_FILE = ele_{region_lower}_10_100_500_mix.pbf
@@ -96,7 +97,8 @@ def create_garmin_dem_suite_mk(region, region_lower, dem_name, lang, code_page, 
 ifeq ($(SUITE),{region_lower}_bc_dem)
 REGION := {region}
 DEM_NAME := {dem_name}
-LANG := {lang}
+NATIVE_LANG := {lang}
+LANG := zh
 CODE_PAGE := {code_page}
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
 EXTRACT_FILE := {extract_file}
@@ -116,7 +118,7 @@ endif
 """
 
 
-def create_garmin_dem_english_suite_mk(region, region_lower, dem_name, extract_file,
+def create_garmin_dem_english_suite_mk(region, region_lower, dem_name, lang, extract_file,
                                        left, right, bottom, top, mapid):
     """Create a Garmin DEM basecamp English suite .mk file."""
     mapid_hex = f"0x{mapid:04x}"
@@ -124,6 +126,7 @@ def create_garmin_dem_english_suite_mk(region, region_lower, dem_name, extract_f
 ifeq ($(SUITE),{region_lower}_bc_dem_en)
 REGION := {region}
 DEM_NAME := {dem_name}
+NATIVE_LANG := {lang}
 LANG := en
 CODE_PAGE := 1252
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
@@ -250,7 +253,7 @@ def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom
     files_to_create[f"{suite_dir}/{region_lower}_bc_dem.mk"] = garmin_mk
     
     # Garmin DEM suite (English)
-    garmin_en_mk = create_garmin_dem_english_suite_mk(region, region_lower, dem_name,
+    garmin_en_mk = create_garmin_dem_english_suite_mk(region, region_lower, dem_name, lang,
                                                        extract_file, left, right, bottom, top,
                                                        mapid_english)
     files_to_create[f"{suite_dir}/{region_lower}_bc_dem_en.mk"] = garmin_en_mk

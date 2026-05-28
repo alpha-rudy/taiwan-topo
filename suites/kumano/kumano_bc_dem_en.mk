@@ -2,6 +2,7 @@
 ifeq ($(SUITE),kumano_bc_dem_en)
 REGION := Kumano
 DEM_NAME := AW3D30
+NATIVE_LANG := ja
 LANG := en
 CODE_PAGE := 1252
 ELEVATION_FILE = ele_kumano_10_100_500.pbf

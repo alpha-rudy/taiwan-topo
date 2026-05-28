@@ -235,17 +235,17 @@ AW3D30.OSM - {region} TOPO v__version__
     > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/gmapsupp_{region}_aw3d30_{lang}_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_{region}_aw3d30_{lang}_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_{region}_aw3d30_{lang}_camp3D.img.zip)
+    > [[自動分流]](https://rudymap.tw/gmapsupp_{region}_aw3d30_zh_camp3D.img.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_{region}_aw3d30_zh_camp3D.img.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_{region}_aw3d30_zh_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/Install_AW3D30_{region}_TOPO_camp3D_{lang}.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_{region}_TOPO_camp3D_{lang}.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_{region}_TOPO_camp3D_{lang}.exe)
+    > [[自動分流]](https://rudymap.tw/Install_AW3D30_{region}_TOPO_camp3D.exe) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_{region}_TOPO_camp3D.exe) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_{region}_TOPO_camp3D.exe)
   * ![Map](images/macOS.png =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/{region}_aw3d30_{lang}_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/{region}_aw3d30_{lang}_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/{region}_aw3d30_{lang}_camp3D.gmap.zip)
+    > [[自動分流]](https://rudymap.tw/{region}_aw3d30_zh_camp3D.gmap.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/{region}_aw3d30_zh_camp3D.gmap.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/{region}_aw3d30_zh_camp3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - {title}
   * Clip on one of mirrors to download
@@ -343,7 +343,7 @@ AW3D30.OSM - {region} TOPO v__version__
 @click.option('--region', required=True, help='Region name (e.g., Everest)')
 @click.option('--region-lower', required=True, help='Region name lowercase (e.g., everest)')
 @click.option('--title', required=True, help='Full title for documentation (e.g., Everest Region Climbing Map)')
-@click.option('--lang', required=True, help='Language code for Garmin maps (e.g., ne, ja, en)')
+@click.option('--lang', required=False, hidden=True, default=None, help='Deprecated: native language code (no longer used for URLs)')
 @click.option('--hgt-files', default='N28E83, N28E84', help='HGT DEM files used (e.g., N28E83, N28E84)')
 @click.option('--dry-run', is_flag=True, default=False, help='Show what would be created without creating files')
 def main(region, region_lower, title, lang, hgt_files, dry_run):
@@ -362,7 +362,6 @@ def main(region, region_lower, title, lang, hgt_files, dry_run):
         title_underline=title_underline,
         region=region,
         region_lower=region_lower,
-        lang=lang,
         hgt_files=hgt_files,
     )
     
@@ -387,7 +386,6 @@ def main(region, region_lower, title, lang, hgt_files, dry_run):
         print(f"    --region {region} \\")
         print(f"    --region-lower {region_lower} \\")
         print(f"    --title '{title}' \\")
-        print(f"    --lang {lang} \\")
         print(f"    --hgt-files '{hgt_files}'")
     else:
         print(f"✓ Documentation created successfully!")

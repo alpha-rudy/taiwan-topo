@@ -98,12 +98,12 @@ def generate_config(suite_name, mk_config, label=None):
         f"{carto_name}_dem.cpkg",
         f"{carto_name}_upgrade.cpkg",
         f"{carto_name}_all.cpkg",
-        # Garmin files - native language
+        # Garmin files - native language (LANG=zh has no suffix in NSIS installer)
         f"gmapsupp_{region}_{dem_name.lower()}_{lang}_camp3D.img.zip",
-        f"Install_{dem_name}_{region}_TOPO_camp3D_{lang}.exe",
+        f"Install_{dem_name}_{region}_TOPO_camp3D.exe" if lang == 'zh' else f"Install_{dem_name}_{region}_TOPO_camp3D_{lang}.exe",
         f"{region}_{dem_name.lower()}_{lang}_camp3D.gmap.zip",
     ]
-    
+
     # Add English Garmin files if native language is not English
     if lang != 'en':
         files.extend([

@@ -2,7 +2,8 @@
 ifeq ($(SUITE),fujisan_bc_dem)
 REGION := Fujisan
 DEM_NAME := AW3D30
-LANG := ja
+NATIVE_LANG := ja
+LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_fujisan_10_100_500.pbf
 EXTRACT_FILE := japan-latest

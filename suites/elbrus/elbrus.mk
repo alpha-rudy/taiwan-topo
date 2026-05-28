@@ -2,7 +2,8 @@
 ifeq ($(SUITE),elbrus)
 REGION := Elbrus
 DEM_NAME := AW3D30
-LANG := ru
+NATIVE_LANG := ru
+LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_elbrus_10_100_500.pbf
 ELEVATION_MIX_FILE = ele_elbrus_10_100_500_mix.pbf
