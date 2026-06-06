@@ -92,7 +92,7 @@ Add an include statement for the new region's suite files in the main `Makefile`
 include $(wildcard $(ROOT_DIR)/suites/nikko_oze/*.mk)
 ```
 
-**Location**: Add after other regional includes (around line 73)
+**Location**: Add after the last existing regional include in the Makefile (before `include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)`)
 
 ---
 
@@ -172,8 +172,10 @@ Run the suite generator to create Makefile definitions:
 | `--extract-file` | OSM country extract | `japan-latest` |
 | `--left/right/top/bottom` | Bounding box coordinates | See above |
 | `--code-page` | Character encoding | `65001` (UTF-8) |
-| `--mapid-native` | Garmin MAPID for zh variant | `0x1005` |
-| `--mapid-english` | Garmin MAPID for English | `0x2005` |
+| `--mapid-native` | *(optional)* Garmin MAPID for zh variant — auto-detected if omitted | `0x1005` |
+| `--mapid-english` | *(optional)* Garmin MAPID for English — auto-detected if omitted | `0x2005` |
+
+`--mapid-native` and `--mapid-english` are optional. When omitted, the script scans all existing `suites/**/*.mk` files to find the next unused `0x100N` / `0x200N` pair. Supply them explicitly only if you need a specific value.
 
 **Output**: Creates files in `suites/nikko_oze/`:
 - `nikko_oze.mk` - Base mapsforge suite (`NATIVE_LANG=ja`, `LANG=zh`)
@@ -186,12 +188,6 @@ Run the suite generator to create Makefile definitions:
 EXTRACT_FILE := north-caucasus-fed-district-latest
 EXTRACT_URL := https://download.geofabrik.de/russia
 BOUNDING_BOX := true
-```
-
-Build the initial suite structure:
-
-```bash
-make nikko_oze_suites
 ```
 
 ---
@@ -388,7 +384,7 @@ added Nikko Oze region
 
 ### Common Issues
 
-1. **MAPID conflicts**: Ensure your MAPID values don't conflict with existing regions. Check `tools/generate_suite.py` for the registry.
+1. **MAPID conflicts**: `generate_suite.py` auto-detects the next free MAPID pair by scanning all existing `suites/**/*.mk` files, so conflicts are avoided automatically. If you supply `--mapid-native` / `--mapid-english` manually, verify they are not already used: `grep -r "MAPID" suites/ --include="*.mk"`.
 
 2. **Missing HGT files**: Verify all tiles in your bounding box are included in the HGT ZIP.
 

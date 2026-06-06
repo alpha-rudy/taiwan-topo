@@ -35,25 +35,39 @@ Example:
         --left 86.5 --right 87.2 --bottom 27.7 --top 28.2
 """
 
+import glob
 import os
+import re
+
 import click
 
 
-# MAPID registry - add new regions here to avoid conflicts
-MAPID_REGISTRY = {
-    # Kumano (Japan)
-    "kumano_native": 0x1018,
-    "kumano_english": 0x1008,
-    # Annapurna (Nepal)
-    "annapurna_native": 0x1018,
-    "annapurna_english": 0x1008,
-    # Fujisan (Japan)
-    "fujisan_native": 0x1028,
-    "fujisan_english": 0x1048,
-    # Kashmir (India)
-    "kashmir_native": 0x1028,
-    "kashmir_english": 0x1038,
-}
+def scan_used_mapids(suites_dir="suites"):
+    """Return the set of all MAPID values already declared in existing .mk files."""
+    used = set()
+    pattern = re.compile(r'\s*MAPID\s*:=\s*\$\(shell printf %d (0x[0-9a-fA-F]+)\)')
+    for mk_file in glob.glob(f'{suites_dir}/**/*.mk', recursive=True):
+        with open(mk_file) as f:
+            for line in f:
+                m = pattern.match(line)
+                if m:
+                    used.add(int(m.group(1), 16))
+    return used
+
+
+def find_next_mapid_pair(suites_dir="suites"):
+    """Return the next free (native, english) MAPID pair for a foreign region.
+
+    Foreign regions use 0x100N (native) and 0x200N (english) where N is
+    sequential from 1.  Both slots must be free to form a valid pair.
+    """
+    used = scan_used_mapids(suites_dir)
+    for n in range(1, 0x100):
+        native = 0x1000 + n
+        english = 0x2000 + n
+        if native not in used and english not in used:
+            return native, english
+    raise ValueError("No available MAPID pair in 0x1001-0x10FF / 0x2001-0x20FF range")
 
 
 def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extract_file,
@@ -216,20 +230,21 @@ def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom
     print(f"Generating Suite: {region} ({region_lower})")
     print(f"{'=' * 70}\n")
     
-    # Generate default MAPIDs if not provided
-    if mapid_native is None:
-        # Auto-generate based on existing registry
-        next_id = max(MAPID_REGISTRY.values()) + 0x10
-        mapid_native = next_id
-        print(f"⚠ Auto-generated native MAPID: 0x{mapid_native:04x}")
-    else:
+    # Parse any explicitly provided values first
+    if mapid_native is not None:
         mapid_native = int(mapid_native, 16)
-    
-    if mapid_english is None:
-        mapid_english = mapid_native - 0x10
-        print(f"⚠ Auto-generated English MAPID: 0x{mapid_english:04x}")
-    else:
+    if mapid_english is not None:
         mapid_english = int(mapid_english, 16)
+
+    # Auto-detect whichever IDs are still missing by scanning existing .mk files
+    if mapid_native is None or mapid_english is None:
+        auto_native, auto_english = find_next_mapid_pair()
+        if mapid_native is None:
+            mapid_native = auto_native
+            print(f"ℹ Auto-detected native MAPID: 0x{mapid_native:04x} (next available)")
+        if mapid_english is None:
+            mapid_english = auto_english
+            print(f"ℹ Auto-detected English MAPID: 0x{mapid_english:04x} (next available)")
     
     print()
     
