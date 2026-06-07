@@ -1,5 +1,5 @@
-Alps-Eastern Region
-===================
+EuroPeaks TOPO - Eastern Alps & Dolomites / 歐陸巔峰 - 東阿爾卑斯與多洛米蒂登山地圖
+=============================================================================
 
 AW3D30.OSM - Alps-Eastern TOPO v__version__
 

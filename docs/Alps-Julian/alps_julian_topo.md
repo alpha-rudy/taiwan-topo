@@ -1,5 +1,5 @@
-Alps-Julian Region
-==================
+EuroPeaks TOPO - Julian Alps / 歐陸巔峰 - 朱利安阿爾卑斯與斯洛維尼亞登山地圖
+=============================================================================
 
 AW3D30.OSM - Alps-Julian TOPO v__version__
 
