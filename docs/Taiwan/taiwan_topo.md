@@ -18,7 +18,6 @@ MOI.OSM - Taiwan TOPO
     * https://rudymap.tw/drops/beta.html (自動分流)
     * https://moi.kcwu.csie.org/drops/beta.html (mirror kcwu)
     * https://map.happyman.idv.tw/rudy/drops/beta.html (mirror Happyman)
-  * 手機GPS登山: [https://sites.google.com/view/mobilegpshiking/手機gps登山](https://sites.google.com/view/mobilegpshiking/手機gps登山)
   * 阿牛兄的圖例說明: [圖例 V1R3版](./legend_V1R3.pdf)
 
 * 其他國外山區 (不固定發行) 的地圖仍在建構中，請拉到網頁後面，"說明" 之前。
