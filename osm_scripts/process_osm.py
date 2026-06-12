@@ -245,16 +245,29 @@ class MapsforgeHandler(osmium.SimpleHandler):
             if name is None or '百岳#' not in ref:
                 del tags['ref']
             else:
-                if '小百岳#' in ref:
-                    tags['zl'] = '2'
-                    tags['cat'] = 'xiaobaiyue'
-                else:
+                # Split ref by semicolon and extract classification names (before '#')
+                ref_parts = ref.split(';')
+                classifications = set()
+                for part in ref_parts:
+                    if '#' in part:
+                        classification = part.split('#')[0]
+                        classifications.add(classification)
+
+                # Check for exact classification names
+                has_baiyue = '百岳' in classifications
+                has_xiaobaiyue = '小百岳' in classifications
+
+                if has_baiyue:
+                    # Baiyue takes priority
                     if name in ['玉山', '北大武山', '雪山主峰']:
                         tags['zl'] = '0'
                         tags['cat'] = 'baiyue'
                     else:
                         tags['zl'] = '1'
                         tags['cat'] = 'baiyue'
+                elif has_xiaobaiyue:
+                    tags['zl'] = '2'
+                    tags['cat'] = 'xiaobaiyue'
 
                 tags['ref'] = '(%s)' % ref
 
