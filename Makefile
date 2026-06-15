@@ -270,6 +270,9 @@ daily:
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
+.PHONY: world_suites
+world_suites: alps_core_suites annapurna_suites elbrus_suites fujisan_suites kashmir_suites kumano_suites kyushu_suites nikko_oze_suites
+
 .PHONY: styles
 styles:
 	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style extra_style
