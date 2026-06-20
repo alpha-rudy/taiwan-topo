@@ -76,6 +76,7 @@ include $(wildcard $(ROOT_DIR)/suites/alps_core/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/alps_eastern/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/alps_pyrenees/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/alps_julian/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/alps_dolomites/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 
