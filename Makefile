@@ -275,7 +275,7 @@ daily:
 	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 .PHONY: world_suites
-world_suites: alps_core_suites annapurna_suites elbrus_suites fujisan_suites kashmir_suites kumano_suites nikko_oze_suites
+world_suites: annapurna_suites elbrus_suites fujisan_suites kashmir_suites kumano_suites nikko_oze_suites alps_core_suites alps_western_suites alps_eastern_suites alps_fareast_suites
 
 .PHONY: styles
 styles:
