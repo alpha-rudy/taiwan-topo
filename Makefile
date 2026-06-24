@@ -519,13 +519,13 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
-	-rm -f $@ $(REGION_EXTRACT)_name.pbf
-	NATIVE_LANG=$(NATIVE_LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< $(REGION_EXTRACT)_name.pbf
-	$(OSMCONVERT_CMD) \
-		$(REGION_EXTRACT)_name.pbf \
-		--out-o5m \
-		-o=$(REGION_EXTRACT)_name.o5m
-	-rm -f $(REGION_EXTRACT)_name.pbf
+	set -e; \
+	name_pbf=$(REGION_EXTRACT)_name.$$$$.pbf; \
+	trap 'rm -f "$$name_pbf"' EXIT; \
+	rm -f "$$name_pbf" $@; \
+	NATIVE_LANG=$(NATIVE_LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< "$$name_pbf"; \
+	test -s "$$name_pbf" || { echo "ERROR: complete_name.py produced no output ($$name_pbf)" >&2; exit 1; }; \
+	$(OSMCONVERT_CMD) "$$name_pbf" --out-o5m -o=$@
 
 .PHONY: sed
 sed: $(REGION_EXTRACT)-sed.osm.pbf
