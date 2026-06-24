@@ -1,0 +1,35 @@
+{
+    "name": "alps_fareast",
+    "label": "Alps Fareast",
+    "indexes": [
+        "alps_fareast_topo.html"
+    ],
+    "files": [
+        "alps_fareast_topo.html",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.zip",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.db.zip",
+        "Alps-Fareast_carto_map.cpkg",
+        "Alps-Fareast_carto_style.cpkg",
+        "Alps-Fareast_carto_dem.cpkg",
+        "Alps-Fareast_carto_upgrade.cpkg",
+        "Alps-Fareast_carto_all.cpkg",
+        "gmapsupp_Alps-Fareast_aw3d30_de_camp3D.img.zip",
+        "Install_AW3D30_Alps-Fareast_TOPO_camp3D_de.exe",
+        "Alps-Fareast_aw3d30_de_camp3D.gmap.zip",
+        "gmapsupp_Alps-Fareast_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Alps-Fareast_TOPO_camp3D_en.exe",
+        "Alps-Fareast_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "alps_fareast_hgtmix.zip",
+        "alps_fareast_map-cedric.xml",
+        "alps_fareast_dem-cedric.xml",
+        "alps_fareast_upgrade-cedric.xml",
+        "alps_fareast_all-cedric.xml"
+    ],
+    "check_today": false
+}
