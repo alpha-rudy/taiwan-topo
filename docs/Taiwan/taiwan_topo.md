@@ -382,6 +382,26 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N43.10 ~ N43.75
     * 經度範圍: E41.90 ~ E43.80
+* Alps Core, 阿爾卑斯核心 (伯恩高地－恩加丁區)
+  * https://rudymap.tw/alps_core_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N45.80 ~ N47.30
+    * 經度範圍: E7.15 ~ E10.75
+* Alps Eastern, 東阿爾卑斯 (多洛米蒂－高陶恩區)
+  * https://rudymap.tw/alps_eastern_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N45.80 ~ N47.55
+    * 經度範圍: E10.50 ~ E14.00
+* Alps Western, 西阿爾卑斯 (白朗峰－馬特洪峰區)
+  * https://rudymap.tw/alps_western_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N44.00 ~ N46.20
+    * 經度範圍: E6.00 ~ E8.00
+* Alps Fareast, 遠東阿爾卑斯 (卡姆尼克－維也納近郊區)
+  * https://rudymap.tw/alps_fareast_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N46.30 ~ N47.85
+    * 經度範圍: E13.90 ~ E15.90
 
 ## 說明
 
