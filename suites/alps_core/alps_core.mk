@@ -1,6 +1,7 @@
 # Suite: alps_core - Alps-Core mapsforge build
 ifeq ($(SUITE),alps_core)
 REGION := Alps-Core
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := de
 LANG := zh

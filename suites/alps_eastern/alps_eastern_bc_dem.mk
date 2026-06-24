@@ -1,6 +1,7 @@
 # Suite: alps_eastern_bc_dem - Alps-Eastern basecamp style with DEM
 ifeq ($(SUITE),alps_eastern_bc_dem)
 REGION := Alps-Eastern
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := de
 LANG := zh

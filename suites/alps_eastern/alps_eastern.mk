@@ -1,6 +1,7 @@
 # Suite: alps_eastern - Alps-Eastern mapsforge build
 ifeq ($(SUITE),alps_eastern)
 REGION := Alps-Eastern
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := de
 LANG := zh

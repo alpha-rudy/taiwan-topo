@@ -1,6 +1,7 @@
 # Suite: alps_fareast_bc_dem_en - Alps-Fareast basecamp style with DEM (English)
 ifeq ($(SUITE),alps_fareast_bc_dem_en)
 REGION := Alps-Fareast
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := de
 LANG := en

@@ -85,12 +85,16 @@ MAPID_LO_HEX := $(shell printf '%x' $(MAPID) | cut -c3-4)
 MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 DUMMYID = 9999
 
+# Map description prefix; suites override (e.g. EuroPeak) in suites/*/*.mk
+DESC_PREFIX ?= RudyMap
+
+# NAME_LONG feeds the Garmin map "description" (IMG header, max 50 chars)
+NAME_LONG ?= $(DESC_PREFIX) $(REGION) $(STYLE_NAME) v$(VERSION)
+
 ifeq ($(LANG),zh)
-NAME_LONG ?= $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
 NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
 NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 else
-NAME_LONG ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) v$(VERSION)
 NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) v$(VERSION)
 NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(LANG)
 endif
@@ -395,7 +399,7 @@ $(GMAPSUPP): $(MAP_HAND)
 			--family-id=$(MAPID) \
 			--series-name="$(NAME_WORD)" \
 			--family-name="$(NAME_SHORT)" \
-			--description="$(NAME_SHORT)" \
+			--description="$(NAME_LONG)" \
 			--overview-mapnumber=$(MAPID)0000 \
 			--product-version=$(VERSION) \
 			$(MAPID)*.img $(MAPID).TYP

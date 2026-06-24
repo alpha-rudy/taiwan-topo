@@ -1,6 +1,7 @@
 # Suite: elbrus_bc_dem_en - Elbrus basecamp style with DEM (English)
 ifeq ($(SUITE),elbrus_bc_dem_en)
 REGION := Elbrus
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := ru
 LANG := en

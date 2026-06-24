@@ -1,6 +1,7 @@
 # Suite: alps_fareast - Alps-Fareast mapsforge build
 ifeq ($(SUITE),alps_fareast)
 REGION := Alps-Fareast
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := de
 LANG := zh

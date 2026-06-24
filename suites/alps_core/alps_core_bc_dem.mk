@@ -1,6 +1,7 @@
 # Suite: alps_core_bc_dem - Alps-Core basecamp style with DEM
 ifeq ($(SUITE),alps_core_bc_dem)
 REGION := Alps-Core
+DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 NATIVE_LANG := de
 LANG := zh
