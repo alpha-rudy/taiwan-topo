@@ -407,9 +407,9 @@ $(GMAPSUPP): $(MAP_HAND)
 
 MAPSFORGE_NTL := zh,en
 ifeq ($(LANG),en)
-NTL := name:en,name:zh,name:zh_pinyin
+NTL := name:en,name:zh,name:zh_pinyin,name
 else
-NTL := name,name:zh,name:en
+NTL := name:zh,name:en,name
 endif
 
 #==============================================================================
@@ -516,9 +516,25 @@ $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 
 NATIVE_LANG ?= $(LANG)
 
+# Offline Wikidata label cache (per region), used by complete_name.py to enrich
+# name:en/name:zh with canonical Wikidata labels. It is a build prerequisite of the
+# `named` step: the cache is (re)built whenever the region extract is newer. The
+# online prefetch is incremental (only new QIDs are fetched) and resilient (an empty
+# cache is produced on network failure, in which case complete_name.py just falls
+# back to romanization), so the dependency does not block offline builds.
+WIKIDATA_CACHE ?= $(REGION_EXTRACT)_wikidata.sqlite
+
+.PHONY: wikidata-cache
+wikidata-cache: $(WIKIDATA_CACHE)
+
+$(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	python3 $(ROOT_DIR)/osm_scripts/build_wikidata_cache.py $< "$@"
+
 .PHONY: named
 named: $(REGION_EXTRACT)_name.o5m
-$(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
+$(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
@@ -526,7 +542,7 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m
 	name_pbf=$(REGION_EXTRACT)_name.$$$$.pbf; \
 	trap 'rm -f "$$name_pbf"' EXIT; \
 	rm -f "$$name_pbf" $@; \
-	NATIVE_LANG=$(NATIVE_LANG) python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< "$$name_pbf"; \
+	NATIVE_LANG=$(NATIVE_LANG) WIKIDATA_CACHE="$(WIKIDATA_CACHE)" python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< "$$name_pbf"; \
 	test -s "$$name_pbf" || { echo "ERROR: complete_name.py produced no output ($$name_pbf)" >&2; exit 1; }; \
 	$(OSMCONVERT_CMD) "$$name_pbf" --out-o5m -o=$@
 

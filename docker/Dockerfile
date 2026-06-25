@@ -52,9 +52,11 @@ RUN pip3 install --no-cache-dir --break-system-packages \
                     indic-transliteration \
                     janome \
                     nepali_roman \
+                    opencc-python-reimplemented \
                     osmium \
                     pyewts \
                     pykakasi \
+                    requests \
                     spatialite \
                     tqdm \
                     unidecode \

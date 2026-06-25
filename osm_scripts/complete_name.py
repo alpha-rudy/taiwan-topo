@@ -2,6 +2,8 @@ import osmium
 import sys
 import os
 import re
+import sqlite3
+import unicodedata
 
 # Import Chinese romanization
 try:
@@ -72,8 +74,81 @@ try:
 except ImportError:
     has_pyewts = False
 
+# Import OpenCC for Simplified -> Traditional (Taiwan) conversion of name:zh
+try:
+    import opencc
+    _opencc_s2twp = opencc.OpenCC('s2twp')
+    has_opencc = True
+    # print("Using OpenCC s2twp for Simplified->Traditional conversion")
+except Exception:
+    has_opencc = False
+
 # Determine native script language from environment variable or default to zh
 NATIVE_LANG = os.environ.get('NATIVE_LANG', 'zh')
+
+# =============================================================================
+# Offline Wikidata label cache (optional, built by build_wikidata_cache.py).
+# Runtime is fully offline and O(1): we open the SQLite read-only once and look
+# up labels by the object's wikidata=Q... tag. If the cache file is absent the
+# pipeline behaves exactly as before (has_wikidata=False).
+# =============================================================================
+WIKIDATA_CACHE = os.environ.get('WIKIDATA_CACHE', '')
+_wikidata_conn = None
+has_wikidata = False
+if WIKIDATA_CACHE and os.path.exists(WIKIDATA_CACHE):
+    try:
+        _wikidata_conn = sqlite3.connect(f'file:{WIKIDATA_CACHE}?mode=ro', uri=True)
+        has_wikidata = True
+        # print(f"Using Wikidata label cache: {WIKIDATA_CACHE}")
+    except Exception:
+        _wikidata_conn = None
+        has_wikidata = False
+
+_QID_RE = re.compile(r'^Q\d+$')
+
+
+def wikidata_label(tags, lang):
+    """Return a cached Wikidata label for tags['wikidata'], or None.
+
+    lang must be 'en' or 'zh' (internal, not user input -> safe to interpolate).
+    The 'zh' column is already Traditional/Taiwan (normalized at cache-build time).
+    """
+    if not has_wikidata:
+        return None
+    qid = tags.get('wikidata', '').strip()
+    if not qid or not _QID_RE.match(qid):
+        return None
+    try:
+        cur = _wikidata_conn.execute(
+            f"SELECT {lang} FROM labels WHERE qid = ?", (qid,))
+        row = cur.fetchone()
+        if row and row[0]:
+            return row[0]
+    except Exception:
+        pass
+    return None
+
+
+def to_traditional(text):
+    """Convert Simplified Chinese to Traditional (Taiwan, s2twp). No-op if unavailable."""
+    if not text or not has_opencc:
+        return text
+    try:
+        return _opencc_s2twp.convert(text)
+    except Exception:
+        return text
+
+
+def _strip_diacritics(text):
+    """Strip combining marks (e.g. pinyin tone marks: Yú -> Yu)."""
+    nfd = unicodedata.normalize('NFD', text)
+    stripped = ''.join(c for c in nfd if unicodedata.category(c) != 'Mn')
+    return unicodedata.normalize('NFC', stripped)
+
+
+def _is_han_char(ch):
+    """True for CJK ideographs (Chinese / Japanese kanji)."""
+    return ('\u4e00' <= ch <= '\u9fff') or ('\u3400' <= ch <= '\u4dbf')
 
 # Dictionary for Urdu/Hindi common terms correction
 URDU_REPLACEMENTS = {
@@ -117,16 +192,53 @@ def apply_urdu_replacements(text):
 # Romanization helper functions for each language
 # =============================================================================
 
+def _romanize_han_run(run):
+    """Romanize a pure-Han run to tone-free, space-joined, capitalized pinyin."""
+    segments = reading.get(run)
+    if not segments:
+        return None
+    roman = ' '.join(pinyin(s).capitalize() for s in segments)
+    roman = _strip_diacritics(roman).strip()
+    return roman or None
+
+
 def romanize_zh(text):
-    """Romanize Chinese text using hanzi2reading."""
+    """Romanize Chinese text using hanzi2reading.
+
+    Splits the text into Han / non-Han runs so that interspersed digits and Latin
+    (e.g. the "101" in "臺北101") are preserved verbatim instead of being dropped,
+    and strips pinyin tone diacritics (Yú -> Yu) for clean English-reader output.
+    """
     if not has_hanzi2reading:
         return None
     try:
-        segments = reading.get(text)
-        if not segments:
-            return None
-        result = ' '.join(pinyin(s).capitalize() for s in segments)
-        return result if result else None
+        parts = []
+        run = ''
+        run_is_han = None
+        for ch in text:
+            ih = _is_han_char(ch)
+            if run_is_han is None:
+                run, run_is_han = ch, ih
+            elif ih == run_is_han:
+                run += ch
+            else:
+                parts.append((run, run_is_han))
+                run, run_is_han = ch, ih
+        if run:
+            parts.append((run, run_is_han))
+
+        out = []
+        for run, is_han in parts:
+            if is_han:
+                roman = _romanize_han_run(run)
+                if roman:
+                    out.append(roman)
+            else:
+                piece = run.strip()
+                if piece:
+                    out.append(piece)
+        result = ' '.join(' '.join(out).split())
+        return result or None
     except Exception:
         return None
 
@@ -587,48 +699,74 @@ def is_latin_text(text):
 
 PROCESSED_NAMES = {'name', 'name:en', 'name:ja', 'name:zh', 'name:cn', 'name:ne', 'name:hi', 'name:ru'}
 
+# Per-source fill counters, reported at the end of a run. Keyed as
+# STATS['name:en']['<source>'] -> count of objects whose tag was filled from <source>.
+from collections import Counter
+STATS = {'name:en': Counter(), 'name:zh': Counter()}
+
+
 def complete_name_en(d):
     """
     Complete name:en tag if missing.
-    
+
     Priority for generating name:en:
-    1. name is already Latin - copy to name:en
-    2. name:$lang (by $lang related python module)
-    3. name:zh (by hanzi2reading)
-    4. name assumed as $lang (by combined rules)
-    
-    Returns the name:en value or None if not generated.
+    1. Wikidata 'en' label (via wikidata=Q... tag) - canonical English exonym
+    2. int_name (OSM international name) if Latin
+    3. name is already Latin - copy to name:en
+    4. name:$lang (by $lang related python module)
+    5. name:zh (by hanzi2reading)
+    6. name assumed as $lang (by combined rules)
+
+    Returns (value, source) where source names the rule that produced the value,
+    or (None, None) if not generated.
     """
-    name_en = None
-    
-    # Priority 1: If name is already Latin, copy it directly (normalize spaces)
+    # Priority 1: Wikidata English label (canonical exonym, e.g. "Yushan", "Taipei 101")
+    name_en = wikidata_label(d, 'en')
+    if name_en:
+        return name_en, 'wikidata'
+
+    # Priority 2: int_name (international name) if Latin
+    int_name = d.get('int_name', '').strip()
+    if int_name and is_latin_text(int_name):
+        return ' '.join(int_name.split()), 'int_name'
+
+    # Priority 3: If name is already Latin, copy it directly (normalize spaces)
     if 'name' in d and d['name'] and is_latin_text(d['name'].strip()):
-        name_en = ' '.join(d['name'].split())
-    
-    # Priority 2: Try name:$lang with language-specific module
-    if name_en is None:
-        name_en = romanize_by_lang_tag(d)
-    
-    # Priority 3: Try name:zh with hanzi2reading (if not already tried for zh)
-    if name_en is None and NATIVE_LANG != 'zh':
+        return ' '.join(d['name'].split()), 'latin_name'
+
+    # Priority 4: Try name:$lang with language-specific module
+    name_en = romanize_by_lang_tag(d)
+    if name_en:
+        return name_en, 'romanize'
+
+    # Priority 5: Try name:zh with hanzi2reading (if not already tried for zh)
+    if NATIVE_LANG != 'zh':
         name_en = romanize_by_zh_tag(d)
-    
-    # Priority 4: Assume 'name' is in $lang and use combined rules
-    if name_en is None and 'name' in d and d['name'] and d['name'].strip():
+        if name_en:
+            return name_en, 'romanize'
+
+    # Priority 6: Assume 'name' is in $lang and use combined rules
+    if 'name' in d and d['name'] and d['name'].strip():
         name_en = romanize_by_combined_rules(d['name'].strip())
-    
-    return name_en
+        if name_en:
+            return name_en, 'romanize'
+
+    return None, None
 
 
 def complete_name_zh(d):
     """
-    Complete name:zh tag if missing.
+    Complete name:zh tag if missing. Produces Traditional Chinese (Taiwan).
 
     Priority order depends on NATIVE_LANG:
-    - NATIVE_LANG=zh (Taiwan): name (if CJK/Latin) -> name:zh -> name:cn -> name:ja (filtered) -> name:en -> name
-    - All others:              name:zh -> name:cn -> name:ja (filtered) -> name (if CJK/Latin) -> name:en -> name
+    - NATIVE_LANG=zh (Taiwan): wikidata(zh) -> name (if CJK/Latin) -> name:cn(->Trad)
+                               -> name:ja (filtered) -> name:en
+    - All others:              wikidata(zh) -> name:zh -> name:cn(->Trad)
+                               -> name:ja (filtered) -> name (if CJK/Latin) -> name:en
 
-    Returns the name:zh value or None if not found.
+    Returns (value, source), or (None, None) when nothing sensible is derivable (the
+    raw mapper 'name' is intentionally NOT used as a last resort - downstream
+    name-tag-lists fall back to 'name' themselves).
     """
     # Extract and normalize tag values (None if empty or missing)
     name = d.get('name', '').strip() or None
@@ -640,22 +778,37 @@ def complete_name_zh(d):
     name_ja_raw = d.get('name:ja', '').strip() or None
     name_ja = name_ja_raw if name_ja_raw and is_chinese_latin_only(name_ja_raw) else None
 
+    # Wikidata Traditional-Chinese label (already normalized to Traditional in the cache)
+    wd_zh = wikidata_label(d, 'zh')
+
+    # name is only usable as name:zh if CJK/Latin only (no kana/Cyrillic/etc.);
+    # normalize to Traditional in case the mapper used Simplified.
+    name_filtered = to_traditional(name) if name and is_chinese_latin_only(name) else None
+
+    # name:cn is Simplified -> convert to Traditional (Taiwan)
+    name_cn_t = to_traditional(name_cn) if name_cn else None
+
     if NATIVE_LANG == 'zh':
-        # Prefer name (if CJK/Latin only) for Taiwan, preserving current behavior
-        return name or name_zh or name_cn or name_ja or name_en
+        candidates = [(wd_zh, 'wikidata'), (name_filtered, 'name'),
+                      (name_cn_t, 'name:cn'), (name_ja, 'name:ja'), (name_en, 'name:en')]
     else:
-        # For non-zh regions: prefer explicit name:zh tag, then name if CJK/Latin readable
-        name_filtered = name if name and is_chinese_latin_only(name) else None
-        return name_zh or name_cn or name_ja or name_filtered or name_en or name
+        candidates = [(wd_zh, 'wikidata'), (name_zh, 'name:zh'), (name_cn_t, 'name:cn'),
+                      (name_ja, 'name:ja'), (name_filtered, 'name'), (name_en, 'name:en')]
+
+    for value, source in candidates:
+        if value:
+            return value, source
+    return None, None
 
 
 def annotate(obj):
     """
-    Annotate object with name:en, name:zh, and name tags.
+    Annotate object by completing the name:en and name:zh tags only.
 
-    1. Complete name:en tag if missing (do this first)
-    2. Complete name:zh tag if missing (uses name:en already set)
-    3. Set name = name:zh or name:en or original name
+    1. Complete name:en tag if missing
+    2. Complete name:zh tag if missing
+    The original 'name' tag is left untouched (downstream name-tag-lists read
+    name:en / name:zh and fall back to 'name' themselves).
     """
     d = dict(obj.tags)
     if len(d) == 0:
@@ -665,32 +818,25 @@ def annotate(obj):
 
     modified = False
 
-    # Step 1: Complete name:en tag if missing (do this first so complete_name_zh can use it)
+    # Step 1: Complete name:en tag if missing
     if 'name:en' not in d:
-        name_en = complete_name_en(d)
+        name_en, source = complete_name_en(d)
         if name_en:
             d['name:en'] = name_en
+            STATS['name:en'][source] += 1
             modified = True
         else:
             print(f"fail name:en: {d}")
 
-    # Step 2: Complete name:zh tag if missing (now uses the completed name:en)
+    # Step 2: Complete name:zh tag if missing
     if 'name:zh' not in d:
-        name_zh = complete_name_zh(d)
+        name_zh, source = complete_name_zh(d)
         if name_zh:
             d['name:zh'] = name_zh
+            STATS['name:zh'][source] += 1
             modified = True
         else:
             print(f"fail name:zh: {d}")
-
-    # Step 3: Set name tag to name:zh or name:en or original name
-    new_name = d.get('name:zh') or d.get('name:en') or d.get('name')
-    if new_name:
-        if new_name != d.get('name', ''):
-            d['name'] = new_name
-            modified = True
-    else:
-        print(f"fail name: {d}")
 
     if modified:
         new_obj = obj.replace()
@@ -713,6 +859,26 @@ class Complete_name_Handler(osmium.SimpleHandler):
     def relation(self,r):
         self.writer.add_relation(annotate(r))
 
-writer = osmium.SimpleWriter(sys.argv[2])
-Complete_name_Handler(writer).apply_file(sys.argv[1])
-writer.close()
+
+def print_stats():
+    """Report how many objects each tag was filled for, broken down by source."""
+    # Stable, priority-ordered source list (union of both tags' sources)
+    order = ['wikidata', 'int_name', 'latin_name', 'romanize',
+             'name', 'name:zh', 'name:cn', 'name:ja', 'name:en']
+    print("=== complete_name.py fill summary (NATIVE_LANG=%s, wikidata=%s) ==="
+          % (NATIVE_LANG, 'on' if has_wikidata else 'off'), file=sys.stderr)
+    for tag in ('name:en', 'name:zh'):
+        counts = STATS[tag]
+        total = sum(counts.values())
+        wd = counts.get('wikidata', 0)
+        breakdown = ', '.join(
+            f"{src} {counts[src]}" for src in order if counts.get(src))
+        print(f"{tag}: filled {total} (wikidata hits {wd})"
+              + (f" [{breakdown}]" if breakdown else ""), file=sys.stderr)
+
+
+if __name__ == '__main__':
+    writer = osmium.SimpleWriter(sys.argv[2])
+    Complete_name_Handler(writer).apply_file(sys.argv[1])
+    writer.close()
+    print_stats()

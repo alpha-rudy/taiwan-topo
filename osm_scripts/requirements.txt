@@ -1,0 +1,26 @@
+# Python dependencies for the OSM name-completion pipeline (osm_scripts/).
+#
+# complete_name.py and build_wikidata_cache.py.
+
+# OSM I/O (used by complete_name.py and build_wikidata_cache.py)
+osmium
+
+# Simplified -> Traditional (Taiwan) conversion for name:zh (OpenCC s2twp)
+opencc-python-reimplemented
+
+# Wikidata label prefetch (build_wikidata_cache.py, online step only)
+requests
+
+# Chinese romanization for name:en
+hanzi2reading
+
+# Japanese romanization for name:en
+pykakasi
+janome
+
+# Other-script romanization fallbacks (used by non-zh regions)
+nepali-roman
+indic-transliteration
+cyrtranslit
+pyewts
+unidecode
