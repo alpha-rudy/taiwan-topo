@@ -16,6 +16,6 @@ TYP := bw
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
 STYLE_NAME := bw
-MAPID := $(shell printf %d 0x1003)
+MAPID := $(shell printf %d 0x2007)
 TARGETS := gmapsupp_zip
 endif

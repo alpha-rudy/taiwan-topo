@@ -6,6 +6,7 @@ This document describes the step-by-step process for adding a new geographic reg
 
 - [Concepts](#concepts)
 - [Terminology](#terminology)
+- [MAPID Indexing](#mapid-indexing)
 - [Prerequisites](#prerequisites)
 - [Step-by-Step Guide](#step-by-step-guide)
   - [Step 1: Update Makefile](#step-1-update-makefile)
@@ -60,6 +61,117 @@ A suite is a specific build configuration for a region. Each region typically ha
 | **MAPID** | Unique hexadecimal identifier for Garmin maps |
 | **CODE_PAGE** | Character encoding (65001 = UTF-8) |
 | **Bounding Box** | Geographic extent defined by left/right/top/bottom coordinates |
+
+---
+
+## MAPID Indexing
+
+### What MAPID is
+
+`MAPID` is the **unique hexadecimal Garmin map identifier** declared by every
+suite `.mk` file:
+
+```makefile
+MAPID := $(shell printf %d 0x100c)
+```
+
+The `Makefile` consumes it as the mkgmap `--family-id`, the per-suite tiles
+directory (`tiles-$(MAPID)`), the overview mapnumber (`$(MAPID)0000`), and the
+generated `.img` filenames. **It must be globally unique across all suites** —
+two suites sharing a MAPID produce conflicting Garmin maps. Values are 4 hex
+digits (`0x0000`–`0xffff`).
+
+### The two numbering schemes
+
+This repo has two historical conventions, and they **share the `0x10xx` /
+`0x20xx` space** — the source of past collisions. Know which one applies before
+picking a value.
+
+**1. Foreign-region pair scheme — use this for all new regions.**
+A region gets a sequential index `N` and claims a pair:
+
+| Variant | MAPID |
+|---------|-------|
+| Native (zh) | `0x100N` |
+| English | `0x200N` |
+
+`N` runs from 1. This is what `tools/generate_suite.py`
+(`find_next_mapid_pair()`) allocates automatically.
+
+**2. Taiwan-area (legacy) scheme — do not extend, kept for reference.**
+Encoded as `0x<RR><T>` (and a mirrored `0x2<RR><T>` band for `srtm3` / `jing` /
+`_en` / secondary variants):
+
+| `RR` (region code) | Region |
+|--------------------|--------|
+| `10` | taiwan |
+| `11` | taipei |
+| `13` | beibeiji |
+| `14` | yushan |
+| `1f` | bbox |
+| `23` | kyushu |
+
+| `T` (product-type digit) | Product |
+|--------------------------|---------|
+| `0` | jing |
+| `2` | odc |
+| `3` | bw |
+| `4` | odc_dem |
+| `5` | bw_dem |
+| `6` | bc |
+| `7` | bc_dem |
+
+Taiwan's English variants used `0x100<T>`: `taiwan_bc_dem_en = 0x1007`,
+`taiwan_bw_en = 0x2007`. Because the legacy scheme reuses the same `0x10xx` /
+`0x20xx` bytes as the foreign pair scheme, several Taiwan-area ids occupy
+foreign `N` slots and must be skipped (see Reserved list).
+
+### Allocation reference
+
+Foreign-pair regions (sorted by `N`):
+
+| N | Region | Native | English |
+|---|--------|--------|---------|
+| 1 | kumano | `0x1001` | `0x2001` |
+| 2 | annapurna | `0x1002` | `0x2002` |
+| 3 | kashmir | `0x1003` | `0x2003` |
+| 4 | fujisan | `0x1004` | `0x2004` |
+| 5 | nikko_oze | `0x1005` | `0x2005` |
+| 6 | elbrus | `0x1006` | `0x2006` |
+| 7 | *(reserved by taiwan English)* | `0x1007` | `0x2007` |
+| 8 | alps_core | `0x1008` | `0x2008` |
+| 9 | alps_eastern | `0x1009` | `0x2009` |
+| a | alps_western | `0x100a` | `0x200a` |
+| b | alps_fareast | `0x100b` | `0x200b` |
+
+➡️ **Next free foreign pair: `N = 0xc` → `0x100c` / `0x200c`.**
+
+### The rule for a new region
+
+1. New regions follow the **foreign-region pair scheme**: pick the lowest `N`
+   where **both** `0x100N` and `0x200N` are unused, then assign `0x100N` to the
+   native (zh) suite and `0x200N` to the English suite.
+2. **Prefer auto-allocation.** Omit `--mapid-native` / `--mapid-english` when
+   running `generate_suite.py` — it scans `suites/**/*.mk` and returns the next
+   free pair automatically. Supply them only to claim a specific value.
+3. **Verify before committing** any manually chosen value:
+
+   ```bash
+   # list duplicates (should print nothing)
+   grep -rn "MAPID :=" suites/ --include="*.mk" \
+     | grep -oE '0x[0-9a-f]+' | sort | uniq -d
+   ```
+
+### Reserved / do-not-reuse values
+
+These Taiwan-area ids squat the `0x10xx` / `0x20xx` space and are skipped by the
+pair allocator — never assign them to a foreign region:
+
+- `0x1007` + `0x2007` — taiwan English variants (`taiwan_bc_dem_en`,
+  `taiwan_bw_en`), occupying foreign slot `N=7`.
+- The remaining legacy ids: taiwan (`0x1012`–`0x1017`, `0x2010`–`0x2013`),
+  sheipa (`0x1019`), taipei (`0x11xx`/`0x21xx`), beibeiji (`0x13xx`), yushan
+  (`0x14xx`), bbox (`0x1fxx`), kyushu (`0x2313`).
 
 ---
 
@@ -175,7 +287,7 @@ Run the suite generator to create Makefile definitions:
 | `--mapid-native` | *(optional)* Garmin MAPID for zh variant — auto-detected if omitted | `0x1005` |
 | `--mapid-english` | *(optional)* Garmin MAPID for English — auto-detected if omitted | `0x2005` |
 
-`--mapid-native` and `--mapid-english` are optional. When omitted, the script scans all existing `suites/**/*.mk` files to find the next unused `0x100N` / `0x200N` pair. Supply them explicitly only if you need a specific value.
+`--mapid-native` and `--mapid-english` are optional. When omitted, the script scans all existing `suites/**/*.mk` files to find the next unused `0x100N` / `0x200N` pair. Supply them explicitly only if you need a specific value. See [MAPID Indexing](#mapid-indexing) for the full scheme, allocation table, and reserved values.
 
 **Output**: Creates files in `suites/nikko_oze/`:
 - `nikko_oze.mk` - Base mapsforge suite (`NATIVE_LANG=ja`, `LANG=zh`)
@@ -384,7 +496,7 @@ added Nikko Oze region
 
 ### Common Issues
 
-1. **MAPID conflicts**: `generate_suite.py` auto-detects the next free MAPID pair by scanning all existing `suites/**/*.mk` files, so conflicts are avoided automatically. If you supply `--mapid-native` / `--mapid-english` manually, verify they are not already used: `grep -r "MAPID" suites/ --include="*.mk"`.
+1. **MAPID conflicts**: `generate_suite.py` auto-detects the next free MAPID pair by scanning all existing `suites/**/*.mk` files, so conflicts are avoided automatically. If you supply `--mapid-native` / `--mapid-english` manually, verify they are not already used: `grep -r "MAPID" suites/ --include="*.mk"`. See [MAPID Indexing](#mapid-indexing) for the numbering scheme and reserved values.
 
 2. **Missing HGT files**: Verify all tiles in your bounding box are included in the HGT ZIP.
 
