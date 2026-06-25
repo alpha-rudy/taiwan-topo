@@ -48,17 +48,20 @@ def parse_makefile(suite_name):
     with open(mk_file, 'r') as f:
         content = f.read()
     
-    # Extract key variables using regex
+    # Extract key variables using regex.
+    # LANG is anchored at line start so it does not also match NATIVE_LANG,
+    # which would otherwise capture the native script language (e.g. de) instead
+    # of the display language (zh).
     patterns = {
-        'REGION': r'REGION\s*:=\s*(\S+)',
-        'DEM_NAME': r'DEM_NAME\s*:=\s*(\S+)',
-        'LANG': r'LANG\s*:=\s*(\S+)',
-        'TOPO_PAGE': r'TOPO_PAGE\s*:=\s*(\S+)',
-        'TARGETS': r'TARGETS\s*:=\s*(.+)',
+        'REGION': r'^REGION\s*:=\s*(\S+)',
+        'DEM_NAME': r'^DEM_NAME\s*:=\s*(\S+)',
+        'LANG': r'^LANG\s*:=\s*(\S+)',
+        'TOPO_PAGE': r'^TOPO_PAGE\s*:=\s*(\S+)',
+        'TARGETS': r'^TARGETS\s*:=\s*(.+)',
     }
-    
+
     for key, pattern in patterns.items():
-        match = re.search(pattern, content)
+        match = re.search(pattern, content, re.MULTILINE)
         if match:
             config[key] = match.group(1).strip()
     
