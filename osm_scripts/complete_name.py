@@ -4,7 +4,6 @@ import os
 import re
 import sqlite3
 import unicodedata
-import urllib.parse
 
 # Import Chinese romanization
 try:
@@ -138,58 +137,6 @@ def to_traditional(text):
         return _opencc_s2twp.convert(text)
     except Exception:
         return text
-
-
-# Trailing Wikipedia disambiguation parenthetical, e.g. "玉山 (台灣)" / "Mercury (planet)"
-_WIKI_DISAMBIG_RE = re.compile(r'\s*\([^()]*\)\s*$')
-
-
-def _clean_wiki_title(title):
-    """Turn a Wikipedia article title (or /wiki/ URL) into a plain name."""
-    if not title:
-        return None
-    title = title.strip()
-    if '/wiki/' in title:  # full URL form
-        title = urllib.parse.unquote(title.split('/wiki/', 1)[1])
-    title = title.replace('_', ' ').strip()
-    title = _WIKI_DISAMBIG_RE.sub('', title).strip()  # drop "( ... )" disambiguation
-    return title or None
-
-
-def wikipedia_name(tags, lang):
-    """Derive a name from the wikipedia=* / wikipedia:<lang>=* tags (fully offline).
-
-    The article title itself is the name. lang is 'en' or 'zh'; for 'zh' the
-    matched Chinese-Wikipedia title is normalized to Traditional. Returns None
-    if no matching-language Wikipedia tag is present.
-    """
-    title = None
-
-    # Language-specific tag, e.g. wikipedia:en=Taipei 101 (usually a bare title,
-    # but tolerate a "lang:Title" prefixed value too).
-    specific = tags.get(f'wikipedia:{lang}', '').strip()
-    if specific:
-        if (':' in specific and '/wiki/' not in specific
-                and specific.split(':', 1)[0].lower().startswith(lang)):
-            title = specific.split(':', 1)[1]
-        else:
-            title = specific
-
-    # Generic tag carries a language prefix: wikipedia="zh:玉山" / "en:Yushan".
-    if not title:
-        generic = tags.get('wikipedia', '').strip()
-        if generic and ':' in generic:
-            prefix, rest = generic.split(':', 1)
-            prefix = prefix.lower()
-            if (lang == 'en' and prefix == 'en') or (lang == 'zh' and prefix.startswith('zh')):
-                title = rest
-
-    title = _clean_wiki_title(title)
-    if not title:
-        return None
-    if lang == 'zh':
-        title = to_traditional(title)
-    return title
 
 
 def _strip_diacritics(text):
@@ -764,12 +711,11 @@ def complete_name_en(d):
 
     Priority for generating name:en:
     1. Wikidata 'en' label (via wikidata=Q... tag) - canonical English exonym
-    2. wikipedia=en: / wikipedia:en= article title
-    3. int_name (OSM international name) if Latin
-    4. name is already Latin - copy to name:en
-    5. name:$lang (by $lang related python module)
-    6. name:zh (by hanzi2reading)
-    7. name assumed as $lang (by combined rules)
+    2. int_name (OSM international name) if Latin
+    3. name is already Latin - copy to name:en
+    4. name:$lang (by $lang related python module)
+    5. name:zh (by hanzi2reading)
+    6. name assumed as $lang (by combined rules)
 
     Returns (value, source) where source names the rule that produced the value,
     or (None, None) if not generated.
@@ -779,32 +725,27 @@ def complete_name_en(d):
     if name_en:
         return name_en, 'wikidata'
 
-    # Priority 2: English Wikipedia article title
-    name_en = wikipedia_name(d, 'en')
-    if name_en:
-        return name_en, 'wikipedia'
-
-    # Priority 3: int_name (international name) if Latin
+    # Priority 2: int_name (international name) if Latin
     int_name = d.get('int_name', '').strip()
     if int_name and is_latin_text(int_name):
         return ' '.join(int_name.split()), 'int_name'
 
-    # Priority 4: If name is already Latin, copy it directly (normalize spaces)
+    # Priority 3: If name is already Latin, copy it directly (normalize spaces)
     if 'name' in d and d['name'] and is_latin_text(d['name'].strip()):
         return ' '.join(d['name'].split()), 'latin_name'
 
-    # Priority 5: Try name:$lang with language-specific module
+    # Priority 4: Try name:$lang with language-specific module
     name_en = romanize_by_lang_tag(d)
     if name_en:
         return name_en, 'romanize'
 
-    # Priority 6: Try name:zh with hanzi2reading (if not already tried for zh)
+    # Priority 5: Try name:zh with hanzi2reading (if not already tried for zh)
     if NATIVE_LANG != 'zh':
         name_en = romanize_by_zh_tag(d)
         if name_en:
             return name_en, 'romanize'
 
-    # Priority 7: Assume 'name' is in $lang and use combined rules
+    # Priority 6: Assume 'name' is in $lang and use combined rules
     if 'name' in d and d['name'] and d['name'].strip():
         name_en = romanize_by_combined_rules(d['name'].strip())
         if name_en:
@@ -818,9 +759,9 @@ def complete_name_zh(d):
     Complete name:zh tag if missing. Produces Traditional Chinese (Taiwan).
 
     Priority order depends on NATIVE_LANG:
-    - NATIVE_LANG=zh (Taiwan): wikidata(zh) -> wikipedia(zh) -> name (if CJK/Latin)
-                               -> name:cn(->Trad) -> name:ja (filtered) -> name:en
-    - All others:              wikidata(zh) -> wikipedia(zh) -> name:zh -> name:cn(->Trad)
+    - NATIVE_LANG=zh (Taiwan): wikidata(zh) -> name (if CJK/Latin) -> name:cn(->Trad)
+                               -> name:ja (filtered) -> name:en
+    - All others:              wikidata(zh) -> name:zh -> name:cn(->Trad)
                                -> name:ja (filtered) -> name (if CJK/Latin) -> name:en
 
     Returns (value, source), or (None, None) when nothing sensible is derivable (the
@@ -840,9 +781,6 @@ def complete_name_zh(d):
     # Wikidata Traditional-Chinese label (already normalized to Traditional in the cache)
     wd_zh = wikidata_label(d, 'zh')
 
-    # Chinese Wikipedia article title (normalized to Traditional)
-    wp_zh = wikipedia_name(d, 'zh')
-
     # name is only usable as name:zh if CJK/Latin only (no kana/Cyrillic/etc.);
     # normalize to Traditional in case the mapper used Simplified.
     name_filtered = to_traditional(name) if name and is_chinese_latin_only(name) else None
@@ -851,12 +789,11 @@ def complete_name_zh(d):
     name_cn_t = to_traditional(name_cn) if name_cn else None
 
     if NATIVE_LANG == 'zh':
-        candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'), (name_filtered, 'name'),
+        candidates = [(wd_zh, 'wikidata'), (name_filtered, 'name'),
                       (name_cn_t, 'name:cn'), (name_ja, 'name:ja'), (name_en, 'name:en')]
     else:
-        candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'), (name_zh, 'name:zh'),
-                      (name_cn_t, 'name:cn'), (name_ja, 'name:ja'),
-                      (name_filtered, 'name'), (name_en, 'name:en')]
+        candidates = [(wd_zh, 'wikidata'), (name_zh, 'name:zh'), (name_cn_t, 'name:cn'),
+                      (name_ja, 'name:ja'), (name_filtered, 'name'), (name_en, 'name:en')]
 
     for value, source in candidates:
         if value:
@@ -926,7 +863,7 @@ class Complete_name_Handler(osmium.SimpleHandler):
 def print_stats():
     """Report how many objects each tag was filled for, broken down by source."""
     # Stable, priority-ordered source list (union of both tags' sources)
-    order = ['wikidata', 'wikipedia', 'int_name', 'latin_name', 'romanize',
+    order = ['wikidata', 'int_name', 'latin_name', 'romanize',
              'name', 'name:zh', 'name:cn', 'name:ja', 'name:en']
     print("=== complete_name.py fill summary (NATIVE_LANG=%s, wikidata=%s) ==="
           % (NATIVE_LANG, 'on' if has_wikidata else 'off'), file=sys.stderr)

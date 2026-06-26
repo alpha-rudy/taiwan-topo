@@ -542,7 +542,7 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE)
 	name_pbf=$(REGION_EXTRACT)_name.$$$$.pbf; \
 	trap 'rm -f "$$name_pbf"' EXIT; \
 	rm -f "$$name_pbf" $@; \
-	time NATIVE_LANG=$(NATIVE_LANG) WIKIDATA_CACHE="$(WIKIDATA_CACHE)" python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< "$$name_pbf"; \
+	NATIVE_LANG=$(NATIVE_LANG) WIKIDATA_CACHE="$(WIKIDATA_CACHE)" python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< "$$name_pbf"; \
 	test -s "$$name_pbf" || { echo "ERROR: complete_name.py produced no output ($$name_pbf)" >&2; exit 1; }; \
 	$(OSMCONVERT_CMD) "$$name_pbf" --out-o5m -o=$@
 
