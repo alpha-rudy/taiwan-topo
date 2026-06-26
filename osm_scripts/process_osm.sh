@@ -39,10 +39,14 @@ osmfilter \
 
 filtered_o5m="${prefix}_filtered.o5m"
 filtered_pbf="${prefix}_filtered.osm.pbf"
+# NB: name:zh is intentionally KEPT (do not add it back to --drop-tags). mapsforge renders
+# Chinese via the name:zh tag (preferred-languages=zh,en) and complete_name.py no longer
+# overwrites `name` with the Chinese value, so dropping name:zh would leave the mapsforge
+# map with only the native `name` (e.g. French/German in the Alps). ref:zh is still dropped
+# because the pipeline does not complete it, so `ref` carries the rendered value.
 osmfilter \
     --drop-version \
     --ignore-dependencies \
-    --drop-tags='name:zh= ref:zh=' \
     --drop-tags='disused:*=' \
     "$infile" -o="$filtered_o5m"
 ${OSMCONVERT_CMD} "$filtered_o5m" -o="$filtered_pbf"
