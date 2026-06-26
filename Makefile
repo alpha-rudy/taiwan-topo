@@ -522,7 +522,12 @@ NATIVE_LANG ?= $(LANG)
 # online prefetch is incremental (only new QIDs are fetched) and resilient (an empty
 # cache is produced on network failure, in which case complete_name.py just falls
 # back to romanization), so the dependency does not block offline builds.
-WIKIDATA_CACHE ?= $(REGION_EXTRACT)_wikidata.sqlite
+#
+# Kept under download/ (NOT under extracts/ or osm_elevations/) so the expensive label
+# data survives `make clean`, `distclean-extracts` and `distclean-elevations`, and is
+# only discarded by `make distclean` (which wipes all of download/).
+WIKIDATA_DIR := $(DOWNLOAD_DIR)/wikidata
+WIKIDATA_CACHE ?= $(WIKIDATA_DIR)/$(REGION)_wikidata.sqlite
 
 .PHONY: wikidata-cache
 wikidata-cache: $(WIKIDATA_CACHE)
@@ -530,6 +535,7 @@ wikidata-cache: $(WIKIDATA_CACHE)
 $(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
+	mkdir -p $(dir $@)
 	python3 $(ROOT_DIR)/osm_scripts/build_wikidata_cache.py $< "$@"
 
 .PHONY: named
