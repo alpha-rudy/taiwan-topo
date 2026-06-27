@@ -1,4 +1,4 @@
-EuroPeaks TOPO - Eastern Alps / 歐陸巔峰 - 遠東阿爾卑斯山脈（卡姆尼克－維也納近郊區）
+EuroPeaks TOPO - Far East Alps / 歐陸巔峰 - 遠東阿爾卑斯山脈（卡姆尼克－維也納近郊區）
 ================
 
 AW3D30.OSM - Alps-Fareast TOPO v__version__
