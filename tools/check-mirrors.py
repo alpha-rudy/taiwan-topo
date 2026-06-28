@@ -30,6 +30,11 @@ mirrors = list(MIRRORS.values())
 # Available suite names (loaded from config files)
 AVAILABLE_SUITES = ["daily", "suites", "fujisan", "kumano", "annapurna", "kashmir"]
 
+# Virtual "world" meta-suite: all regions outside Taiwan.
+# Taiwan suites are excluded so "world" expands to every non-Taiwan region.
+WORLD_SUITE = "world"
+TAIWAN_SUITES = ["daily", "suites"]
+
 
 def discover_available_suites():
     """Discover available suites from config files."""
@@ -38,6 +43,11 @@ def discover_available_suites():
         for config_file in sorted(CONFIGS_DIR.glob("*.json")):
             suites.append(config_file.stem)
     return suites
+
+
+def world_suites():
+    """Return the regional suites that make up the virtual 'world' suite."""
+    return [s for s in discover_available_suites() if s not in TAIWAN_SUITES]
 
 
 def load_suite_config(suite_name):
@@ -191,6 +201,7 @@ def get_mirror_names():
 @click.option('--kumano', '-k', is_flag=True, help='Check Kumano Kodo files (released with suites)')
 @click.option('--annapurna', '-a', is_flag=True, help='Check Annapurna files (released with suites)')
 @click.option('--kashmir', '-K', is_flag=True, help='Check Kashmir files (released with suites)')
+@click.option('--world', '-w', is_flag=True, help='Check all regions outside Taiwan')
 @click.option('--suite', '-S', multiple=True, help='Check specific suite by name (can be used multiple times)')
 @click.option('--list-suites', is_flag=True, help='List all available suites')
 @click.option('--speed', is_flag=True, default=False, help='Run speed test (default: off)')
@@ -199,7 +210,7 @@ def get_mirror_names():
 @click.option('--kcwu', is_flag=True, help='Check kcwu mirror only')
 @click.option('--cedric', is_flag=True, help='Check cedric mirror only')
 @click.option('--rudymap', is_flag=True, help='Check rudymap mirror only')
-def main(daily, suites, fujisan, kumano, annapurna, kashmir, suite, list_suites, speed, mirror, happyman, kcwu, cedric, rudymap):
+def main(daily, suites, fujisan, kumano, annapurna, kashmir, world, suite, list_suites, speed, mirror, happyman, kcwu, cedric, rudymap):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
@@ -219,6 +230,7 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, suite, list_suites,
       check-mirrors.py --kumano         # Check Kumano Kodo files on all mirrors
       check-mirrors.py --annapurna      # Check Annapurna files on all mirrors
       check-mirrors.py --kashmir        # Check Kashmir files on all mirrors
+      check-mirrors.py --world          # Check all regions outside Taiwan
       check-mirrors.py --suite nikko_oze  # Check any suite by name
       check-mirrors.py --suite nikko_oze --suite yushan  # Check multiple suites
       check-mirrors.py --list-suites    # List all available suites
@@ -236,6 +248,7 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, suite, list_suites,
                 print(f"  {s:20} ({label})")
             except Exception as e:
                 print(f"  {s:20} (error: {e})")
+        print(f"  {WORLD_SUITE:20} (World/all non-Taiwan: {', '.join(world_suites())})")
         return
 
     # Suite dimension: Determine which suites to check
@@ -250,16 +263,25 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, suite, list_suites,
     
     # Build list of suites to check
     selected_suites = [name for name, selected in suite_flags.items() if selected]
-    
+
+    # --world flag: add all non-Taiwan regional suites
+    if world:
+        for name in world_suites():
+            if name not in selected_suites:
+                selected_suites.append(name)
+
     # Add suites from --suite option
     if suite:
         available = discover_available_suites()
         for s in suite:
-            if s not in available:
+            # Expand the virtual "world" suite into all non-Taiwan regions
+            expanded = world_suites() if s == WORLD_SUITE else [s]
+            if s != WORLD_SUITE and s not in available:
                 print(f"Error: Suite '{s}' not found. Use --list-suites to see available suites.", file=sys.stderr)
                 sys.exit(1)
-            if s not in selected_suites:
-                selected_suites.append(s)
+            for name in expanded:
+                if name not in selected_suites:
+                    selected_suites.append(name)
     
     # If none specified, check daily and suites (default behavior)
     if not selected_suites:
