@@ -3,7 +3,7 @@ ifeq ($(SUITE),alps_western_bc_dem)
 REGION := Alps-Western
 DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
-NATIVE_LANG := fr
+READING_LANG := fr
 LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_alps_western_10_100_500.pbf

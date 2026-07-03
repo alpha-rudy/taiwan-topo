@@ -2,7 +2,7 @@
 ifeq ($(SUITE),annapurna_bc_dem_en)
 REGION := Annapurna
 DEM_NAME := AW3D30
-NATIVE_LANG := ne
+READING_LANG := ne
 LANG := en
 CODE_PAGE := 1252
 ELEVATION_FILE = ele_annapurna_10_100_500.pbf

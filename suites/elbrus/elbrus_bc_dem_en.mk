@@ -3,7 +3,7 @@ ifeq ($(SUITE),elbrus_bc_dem_en)
 REGION := Elbrus
 DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
-NATIVE_LANG := ru
+READING_LANG := ru
 LANG := en
 CODE_PAGE := 1252
 ELEVATION_FILE = ele_elbrus_10_100_500.pbf

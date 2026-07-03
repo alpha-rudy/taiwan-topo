@@ -92,6 +92,15 @@ try:
 except Exception:
     has_opencc_jp2t = False
 
+# OpenCC s2t: plain character-level Simplified -> Traditional (no Taiwan phrase
+# substitution), used before pinyin lookup - hanzi2reading only knows
+# Traditional and silently drops unknown Simplified characters (丽 -> 麗).
+try:
+    _opencc_s2t = opencc.OpenCC('s2t')
+    has_opencc_s2t = True
+except Exception:
+    has_opencc_s2t = False
+
 # Import PyICU for generic any-script -> Latin transliteration (name:en fallback).
 # Better quality than unidecode for Hangul/Thai/Arabic/Greek; unidecode remains
 # the fallback when PyICU is not installed.
@@ -103,8 +112,11 @@ try:
 except Exception:
     has_icu = False
 
-# Determine native script language from environment variable or default to zh
-NATIVE_LANG = os.environ.get('NATIVE_LANG', 'zh')
+# Regional reading preference for ambiguous scripts (Han: zh pinyin vs ja
+# reading; Devanagari: ne vs hi), plus the zh/ja special-casing of 'name'.
+# It does NOT declare the language of 'name' - that is detected per object.
+# The old NATIVE_LANG environment variable is accepted as a legacy alias.
+READING_LANG = os.environ.get('READING_LANG', os.environ.get('NATIVE_LANG', 'zh'))
 
 # =============================================================================
 # Offline Wikidata label cache (optional, built by build_wikidata_cache.py).
@@ -280,6 +292,11 @@ def apply_urdu_replacements(text):
 
 def _romanize_han_run(run):
     """Romanize a pure-Han run to tone-free, space-joined, capitalized pinyin."""
+    if has_opencc_s2t:
+        try:
+            run = _opencc_s2t.convert(run)
+        except Exception:
+            pass
     segments = reading.get(run)
     if not segments:
         return None
@@ -605,6 +622,12 @@ def has_devanagari_chars(text):
     return any('\u0900' <= char <= '\u097F' for char in text)
 
 
+def has_japanese_kana(text):
+    """Check if text contains hiragana or (half/full-width) katakana."""
+    return any(('\u3040' <= char <= '\u30FF') or ('\uFF66' <= char <= '\uFF9F')
+               for char in text)
+
+
 def has_tibetan_chars(text):
     """Check if text contains Tibetan characters."""
     return any('\u0F00' <= char <= '\u0FFF' for char in text)
@@ -653,7 +676,7 @@ def romanize_by_lang_tag(tags):
     Priority 1: Try to romanize using name:$lang tag with language-specific module.
     Returns romanized string or None if not applicable.
     """
-    if NATIVE_LANG == 'zh':
+    if READING_LANG == 'zh':
         # Check for existing romanization tags
         roman = _existing_roman_tag(
             tags, ('name:zh_pinyin', 'name:zh-Latn-pinyin', 'name:zh-Latn'), romanize_zh)
@@ -667,7 +690,7 @@ def romanize_by_lang_tag(tags):
             if has_hanzi2reading:
                 return romanize_zh(tags['name:zh'])
     
-    elif NATIVE_LANG == 'ja':
+    elif READING_LANG == 'ja':
         # Check for existing romanization tags
         roman = _existing_roman_tag(
             tags, ('name:ja_rm', 'name:ja-Latn'),
@@ -681,7 +704,7 @@ def romanize_by_lang_tag(tags):
             if has_pykakasi:
                 return romanize_ja(tags['name:ja'])
     
-    elif NATIVE_LANG == 'ne':
+    elif READING_LANG == 'ne':
         # Check for existing romanization tags
         roman = _existing_roman_tag(tags, ('name:ne_rm', 'name:ne-Latn'), romanize_ne)
         if roman:
@@ -705,7 +728,7 @@ def romanize_by_lang_tag(tags):
             if has_indic_transliteration:
                 return romanize_hi(tags['name:hi'])
     
-    elif NATIVE_LANG == 'hi':
+    elif READING_LANG == 'hi':
         # Check for existing romanization tags
         roman = _existing_roman_tag(tags, ('name:hi_rm', 'name:hi-Latn'), romanize_hi)
         if roman:
@@ -717,7 +740,7 @@ def romanize_by_lang_tag(tags):
             if has_indic_transliteration:
                 return romanize_hi(tags['name:hi'])
 
-    elif NATIVE_LANG == 'ru':
+    elif READING_LANG == 'ru':
         # Check for existing romanization tags
         roman = _existing_roman_tag(tags, ('name:ru_rm', 'name:ru-Latn'), romanize_ru)
         if roman:
@@ -748,105 +771,54 @@ def romanize_by_zh_tag(tags):
 
 def romanize_by_combined_rules(name):
     """
-    Priority 3: Assume 'name' is in $lang and use combined rules.
-    Returns romanized string or None if romanization fails.
+    Priority 8: romanize 'name' by its detected script.
+
+    The script is detected per object (kana, Han, Devanagari, Cyrillic,
+    Tibetan); READING_LANG is only a tie-breaker for scripts with more than
+    one reading: Han (ja reading vs zh pinyin) and Devanagari (hi vs ne).
+    Anything else - including multilingual regions where 'name' has no single
+    language - falls through to generic transliteration.
     """
     # If name is already ASCII, return as-is
     if name.isascii():
         return name
-    
+
     # If name is Latin-based (e.g. "Häagen-Dazs"), return as-is. Anything else
     # (Hangul, Thai, Greek, kana, ... - not just the scripts with dedicated
     # romanizers) must go through romanization below.
     if is_latin_text(name):
         return name
-    
-    if NATIVE_LANG == 'zh':
-        if has_chinese_chars(name):
+
+    result = None
+    if has_japanese_kana(name):
+        # kana is unambiguously Japanese, whatever the region
+        result = romanize_ja(name) or romanize_ja_janome(name)
+    elif has_chinese_chars(name):
+        # Han without kana: Japanese reading only where the region says so
+        if READING_LANG == 'ja':
+            result = romanize_ja(name) or romanize_ja_janome(name)
+        else:
             result = romanize_zh(name)
-            if result:
-                return result
-            # Fall back to Latin extraction if romanization fails
-            latin_part = extract_latin_part(name)
-            if latin_part:
-                return latin_part
-        # Non-Chinese scripts (Hangul, Thai, ...) or failed romanization:
-        # generic transliteration so non-Latin text never leaks into name:en
-        return romanize_generic(name) or name
-    
-    elif NATIVE_LANG == 'ja':
-        result = romanize_ja(name)
-        if result:
-            return result
-        # Fall back to janome for Japanese romanization
-        result = romanize_ja_janome(name)
-        if result:
-            return result
-        # Fall back to Latin extraction if romanization fails
-        latin_part = extract_latin_part(name)
-        if latin_part:
-            return latin_part
-        return romanize_generic(name) or name
-    
-    elif NATIVE_LANG == 'ne':
-        # Only feed Devanagari to nepali_roman - it mangles other scripts
-        if has_devanagari_chars(name):
-            result = romanize_ne(name)
-            if result:
-                return result
-        # Fall back to Latin extraction if romanization fails
-        latin_part = extract_latin_part(name)
-        if latin_part:
-            return latin_part
-        return romanize_generic(name) or name
-    
-    elif NATIVE_LANG == 'hi':
-        # Try Devanagari transliteration
-        result = romanize_hi(name)
-        if result:
-            return result
+    elif has_devanagari_chars(name):
+        if READING_LANG == 'hi':
+            result = romanize_hi(name) or romanize_ne(name)
+        else:
+            result = romanize_ne(name) or romanize_hi(name)
+    elif has_cyrillic_chars(name):
+        result = romanize_ru(name)
+    elif has_tibetan_chars(name):
+        result = romanize_bo(name)
+    if result:
+        return result
 
-        # Try Tibetan characters
-        if has_tibetan_chars(name):
-            result = romanize_bo(name)
-            if result:
-                return result
+    # Mixed or unhandled scripts (Arabic, Hangul, Thai, Greek, Georgian, ...):
+    # extract the Latin part or transliterate generically so non-Latin text
+    # never leaks into name:en
+    latin_part = extract_latin_part(name)
+    if latin_part:
+        return latin_part
+    return romanize_generic(name) or name
 
-        # Try Arabic/Urdu using generic unidecode
-        if has_arabic_chars(name) or has_non_ascii(name):
-            result = romanize_generic(name)
-            if result:
-                return result
-        
-        # Try Chinese characters (common in border regions)
-        if has_chinese_chars(name):
-            result = romanize_zh(name)
-            if result:
-                return result
-        
-        # Try to extract Latin part from mixed text
-        latin_part = extract_latin_part(name)
-        if latin_part:
-            return latin_part
-        
-        return None
-
-    elif NATIVE_LANG == 'ru':
-        if has_cyrillic_chars(name):
-            result = romanize_ru(name)
-            if result:
-                return result
-        # Fall back to Latin extraction if romanization fails
-        latin_part = extract_latin_part(name)
-        if latin_part:
-            return latin_part
-        return romanize_generic(name) or name
-
-    else:
-        # Unknown language - try generic romanization
-        return romanize_generic(name) or name
-
-    return None
 
 def is_latin_text(text):
     """Check if text is already Latin-based (ASCII or accented Latin characters)."""
@@ -868,6 +840,8 @@ def is_latin_text(text):
         if char == '\u00B7':  # Middle dot (common name separator)
             continue
         if '\u2010' <= char <= '\u2027':  # Typographic dashes/quotes (\u2013 \u2014 ' ' " " \u2026)
+            continue
+        if char == '\u2212':  # Minus sign U+2212 (used as separator in FR stop names)
             continue
         # Any other character means it's not purely Latin
         return False
@@ -945,7 +919,7 @@ def complete_name_en(d):
         return name_en, 'romanize'
 
     # Priority 7: Try name:zh with hanzi2reading (if not already tried for zh)
-    if NATIVE_LANG != 'zh':
+    if READING_LANG != 'zh':
         name_en = romanize_by_zh_tag(d)
         if name_en:
             return name_en, 'romanize'
@@ -977,8 +951,8 @@ def complete_name_zh(d):
     """
     Complete name:zh tag if missing. Produces Traditional Chinese (Taiwan).
 
-    Priority order depends on NATIVE_LANG:
-    - NATIVE_LANG=zh (Taiwan): wikidata(zh) -> wikipedia(zh title) -> name (if CJK/Latin)
+    Priority order depends on READING_LANG:
+    - READING_LANG=zh (Taiwan): wikidata(zh) -> wikipedia(zh title) -> name (if CJK/Latin)
                                -> name:zh-Hant* -> name:zh-Hans*(->Trad) -> name:cn(->Trad)
                                -> name:ja (filtered, jp2t) -> brand:wikidata(zh) -> name:en
     - All others:              wikidata(zh) -> wikipedia(zh title) -> name:zh-Hant*
@@ -1027,7 +1001,7 @@ def complete_name_zh(d):
     # name is only usable as name:zh if CJK/Latin only (no kana/Cyrillic/etc.).
     # In ja mode the raw name IS Japanese: kana-map and convert shinjitai too;
     # elsewhere just normalize to Traditional in case the mapper used Simplified.
-    if NATIVE_LANG == 'ja':
+    if READING_LANG == 'ja':
         name_filtered = ja_name_to_zh(name)
     else:
         name_filtered = to_traditional(name) if name and is_chinese_latin_only(name) else None
@@ -1035,7 +1009,7 @@ def complete_name_zh(d):
     # name:cn is Simplified -> convert to Traditional (Taiwan)
     name_cn_t = to_traditional(name_cn) if name_cn else None
 
-    if NATIVE_LANG == 'zh':
+    if READING_LANG == 'zh':
         candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'), (name_filtered, 'name'),
                       (name_hant, 'name:zh-Hant'), (name_hans_t, 'name:zh-Hans'),
                       (name_cn_t, 'name:cn'), (name_ja, 'name:ja'),
@@ -1116,8 +1090,8 @@ def print_stats():
     # Stable, priority-ordered source list (union of both tags' sources)
     order = ['wikidata', 'wikipedia', 'int_name', 'latin_name', 'brand', 'romanize',
              'other_name', 'name', 'name:zh-Hant', 'name:zh-Hans', 'name:cn', 'name:ja', 'name:en']
-    print("=== complete_name.py fill summary (NATIVE_LANG=%s, wikidata=%s) ==="
-          % (NATIVE_LANG, 'on' if has_wikidata else 'off'), file=sys.stderr)
+    print("=== complete_name.py fill summary (READING_LANG=%s, wikidata=%s) ==="
+          % (READING_LANG, 'on' if has_wikidata else 'off'), file=sys.stderr)
     for tag in ('name:en', 'name:zh'):
         counts = STATS[tag]
         total = sum(counts.values())

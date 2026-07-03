@@ -77,7 +77,7 @@ def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extrac
 ifeq ($(SUITE),{region_lower})
 REGION := {region}
 DEM_NAME := {dem_name}
-NATIVE_LANG := {lang}
+READING_LANG := {lang}
 LANG := zh
 CODE_PAGE := {code_page}
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
@@ -111,7 +111,7 @@ def create_garmin_dem_suite_mk(region, region_lower, dem_name, lang, code_page, 
 ifeq ($(SUITE),{region_lower}_bc_dem)
 REGION := {region}
 DEM_NAME := {dem_name}
-NATIVE_LANG := {lang}
+READING_LANG := {lang}
 LANG := zh
 CODE_PAGE := {code_page}
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
@@ -140,7 +140,7 @@ def create_garmin_dem_english_suite_mk(region, region_lower, dem_name, lang, ext
 ifeq ($(SUITE),{region_lower}_bc_dem_en)
 REGION := {region}
 DEM_NAME := {dem_name}
-NATIVE_LANG := {lang}
+READING_LANG := {lang}
 LANG := en
 CODE_PAGE := 1252
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf

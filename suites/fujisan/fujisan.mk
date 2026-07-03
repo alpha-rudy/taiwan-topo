@@ -2,7 +2,7 @@
 ifeq ($(SUITE),fujisan)
 REGION := Fujisan
 DEM_NAME := AW3D30
-NATIVE_LANG := ja
+READING_LANG := ja
 LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_fujisan_10_100_500.pbf

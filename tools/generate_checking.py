@@ -49,7 +49,7 @@ def parse_makefile(suite_name):
         content = f.read()
     
     # Extract key variables using regex.
-    # LANG is anchored at line start so it does not also match NATIVE_LANG,
+    # LANG is anchored at line start so it does not also match READING_LANG,
     # which would otherwise capture the native script language (e.g. de) instead
     # of the display language (zh).
     patterns = {
