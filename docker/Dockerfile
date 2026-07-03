@@ -24,6 +24,7 @@ RUN dpkg --add-architecture i386 && \
         curl \
         default-jre \
         discount \
+        gdal-bin \
         git \
         libc6:i386 libncurses6:i386 libstdc++6:i386 \
         libsqlite3-mod-spatialite \
@@ -36,6 +37,7 @@ RUN dpkg --add-architecture i386 && \
         p7zip-full \
         python3-lxml \
         python3-pip \
+        python3-rasterio \
         pyosmium \
         ssh \
         sudo \
@@ -45,7 +47,10 @@ RUN dpkg --add-architecture i386 && \
         zstd \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --break-system-packages --upgrade "setuptools<82" bs4 matplotlib numpy
+# numpy is intentionally NOT upgraded here: python3-rasterio (apt) provides
+# Debian's numpy 1.26.4, which pip may not uninstall ("installed by debian").
+# That version already satisfies matplotlib, so let apt own numpy.
+RUN pip3 install --break-system-packages --upgrade "setuptools<82" bs4 matplotlib
 RUN pip3 install --no-cache-dir --break-system-packages \
                     cyrtranslit \
                     hanzi2reading \
@@ -57,10 +62,28 @@ RUN pip3 install --no-cache-dir --break-system-packages \
                     pyewts \
                     pykakasi \
                     requests \
+                    rio-rgbify \
                     spatialite \
                     tqdm \
                     unidecode \
                     wheel
+
+# Build tilemaker (PMTiles vector-tile generator) from source.
+# Ubuntu does not package it; v3+ writes .pmtiles directly. The build deps also
+# provide the shared libs tilemaker needs at runtime, so they are kept.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential cmake \
+        libboost-program-options-dev libboost-filesystem-dev \
+        libboost-system-dev libboost-iostreams-dev \
+        libprotobuf-dev protobuf-compiler \
+        libshp-dev libsqlite3-dev rapidjson-dev liblua5.1-0-dev \
+        zlib1g-dev \
+    && git clone --depth 1 -b v3.1.0 https://github.com/systemed/tilemaker /tmp/tilemaker \
+    && cmake -S /tmp/tilemaker -B /tmp/tilemaker/build -DCMAKE_BUILD_TYPE=Release \
+    && cmake --build /tmp/tilemaker/build -j"$(nproc)" \
+    && cmake --install /tmp/tilemaker/build \
+    && rm -rf /tmp/tilemaker /var/lib/apt/lists/* \
+    && tilemaker --help >/dev/null
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000

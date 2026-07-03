@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Taiwan TOPO — PMTiles viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js"></script>
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    #hud { position: absolute; top: 8px; left: 8px; z-index: 1; background: rgba(255,255,255,.9);
+           font: 12px/1.4 sans-serif; padding: 6px 10px; border-radius: 4px; max-width: 70ch; }
+    .err { color: #b00; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="hud">starting…</div>
+  <script>
+    const hud = document.getElementById("hud");
+    const say = (html, isErr) => { hud.innerHTML = html; hud.classList.toggle("err", !!isErr); };
+
+    // Pass ?pmtiles=<url> for the vector archive (and optional ?dem=<url> for the
+    // terrain-RGB DEM). Otherwise both are looked for next to this page. When
+    // serving the repo root, use absolute paths, e.g.:
+    //   viewer.html?pmtiles=/build-taiwan/MOI_OSM_Taiwan_TOPO_Rudy.pmtiles
+    //              &dem=/build-taiwan/dem/taiwan_dem.pmtiles
+    const params = new URLSearchParams(location.search);
+    const pmtilesUrl = params.get("pmtiles") || "./MOI_OSM_Taiwan_TOPO_Rudy.pmtiles";
+    // Default the DEM to a sibling of the vector archive (same folder).
+    const demUrl = params.get("dem") || pmtilesUrl.replace(/[^/]+$/, "taiwan_dem.pmtiles");
+
+    async function main() {
+      if (typeof maplibregl === "undefined" || typeof pmtiles === "undefined") {
+        return say("CDN libraries (maplibre-gl / pmtiles) did not load. Is the browser online / not blocking unpkg.com?", true);
+      }
+
+      // Load the topo style and point its source at the archive.
+      let style;
+      try { style = await (await fetch("./style.json?t=" + Date.now(), { cache: "no-store" })).json(); }
+      catch (e) { return say("Could not load style.json next to this page: " + e, true); }
+      style.sources.topo.url = "pmtiles://" + pmtilesUrl;
+      if (style.sources.dem) style.sources.dem.url = "pmtiles://" + demUrl;
+
+      const protocol = new pmtiles.Protocol();
+      maplibregl.addProtocol("pmtiles", protocol.tile);
+
+      const map = new maplibregl.Map({
+        container: "map", style, center: [120.96, 23.7], zoom: 7, hash: true, maxZoom: 20
+      });
+      map.addControl(new maplibregl.NavigationControl());
+      map.addControl(new maplibregl.ScaleControl());
+      say("Taiwan TOPO — " + pmtilesUrl);
+      map.on("error", (e) => {
+        const m = (e && e.error && e.error.message) || String(e);
+        say("Map error: " + m, true);
+        console.error(e);
+      });
+    }
+    main();
+  </script>
+</body>
+</html>

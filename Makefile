@@ -157,6 +157,15 @@ LOCUS_POI_ZIP := $(BUILD_DIR)/$(NAME_MAPSFORGE).db.zip
 MAPSFORGE := $(BUILD_DIR)/$(NAME_MAPSFORGE).map
 MAPSFORGE_ZIP := $(MAPSFORGE).zip
 MAPSFORGE_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_zls.osm.pbf
+PMTILES := $(BUILD_DIR)/$(NAME_MAPSFORGE).pmtiles
+TILEMAKER_CMD ?= $(if $(wildcard $(TOOLS_DIR)/tilemaker/tilemaker),$(TOOLS_DIR)/tilemaker/tilemaker,tilemaker)
+PMTILES_CONFIG := $(ROOT_DIR)/osm_scripts/pmtiles/config.json
+PMTILES_PROCESS := $(ROOT_DIR)/osm_scripts/pmtiles/process.lua
+REGION_LOWER := $(shell echo $(REGION) | tr A-Z a-z)
+DEM_PMTILES := $(BUILD_DIR)/dem/$(REGION_LOWER)_dem.pmtiles
+GOPMTILES_CMD ?= $(if $(wildcard $(TOOLS_DIR)/go-pmtiles/pmtiles),$(TOOLS_DIR)/go-pmtiles/pmtiles,pmtiles)
+DEM_MIN_ZOOM ?= 6
+DEM_MAX_ZOOM ?= 13
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
@@ -813,7 +822,34 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$(TAG_MAPPING)" \
 			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: $(DEM_NAME)" \
 			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12"
-	
+
+.PHONY: pmtiles
+pmtiles: $(PMTILES)
+$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(BUILD_DIR)
+	$(TOOLS_DIR)/pmtiles-build.sh \
+		"$(MAPSFORGE_PBF)" \
+		"$@" \
+		"$(TILEMAKER_CMD)" \
+		"$(PMTILES_CONFIG)" \
+		"$(PMTILES_PROCESS)" \
+		"$(VERSION)"
+
+.PHONY: dem
+dem: $(DEM_PMTILES)
+$(DEM_PMTILES): $(HGT)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	[ -n "$(HGT)" ]
+	$(TOOLS_DIR)/dem-build.sh \
+		"$(HGT)" \
+		"$@" \
+		"$(GOPMTILES_CMD)" \
+		"$(DEM_MIN_ZOOM)" \
+		"$(DEM_MAX_ZOOM)"
+
 # Generate polygon file from bounding box for splitter
 # Only created when BOUNDING_BOX is set (not POLY_FILE)
 ifneq (,$(strip $(BOUNDING_BOX)))

@@ -1,0 +1,89 @@
+#!/bin/bash
+# preview-server - start / status / stop the local nginx PMTiles preview server.
+#
+# Wraps nginx with tools/nginx-preview.conf so you don't have to remember the
+# -p/-c flags. nginx serves the repo root with HTTP Range support (needed by
+# pmtiles.js) on port 8030.
+#
+# Usage:
+#   tools/preview-server start    # launch nginx (no-op if already running)
+#   tools/preview-server status   # show whether it is running / listening
+#   tools/preview-server stop     # shut it down
+#   tools/preview-server restart  # stop then start
+#
+# The one-time "[alert] could not open error log file /var/log/nginx/error.log"
+# printed at startup is harmless: nginx opens its compiled-in default log before
+# reading our config, then switches to the prefix log. Older nginx has no -e
+# flag to suppress it, so it is simply ignored here.
+
+set -eo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONF="$SCRIPT_DIR/nginx-preview.conf"
+PREFIX="/tmp/taiwan-topo-nginx"
+PIDFILE="$PREFIX/nginx.pid"
+PORT=8030
+
+nginx_running() {
+    [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE" 2>/dev/null)" 2>/dev/null
+}
+
+do_start() {
+    if nginx_running; then
+        echo "preview-server: already running (pid $(cat "$PIDFILE"))."
+        do_status
+        return 0
+    fi
+    if ! command -v nginx >/dev/null 2>&1; then
+        echo "ERROR: nginx not found on PATH." >&2
+        exit 1
+    fi
+    mkdir -p "$PREFIX"
+    # The startup /var/log alert is non-fatal; nginx daemonizes and uses the
+    # prefix log. Suppress just that line so success is not mistaken for error.
+    nginx -p "$PREFIX" -c "$CONF" 2>&1 \
+        | grep -v 'could not open error log file' >&2 || true
+    sleep 0.3
+    if nginx_running; then
+        echo "preview-server: started (pid $(cat "$PIDFILE"))."
+        do_status
+    else
+        echo "ERROR: nginx did not start. Check $PREFIX/error.log" >&2
+        exit 1
+    fi
+}
+
+do_stop() {
+    if ! nginx_running; then
+        echo "preview-server: not running."
+        return 0
+    fi
+    nginx -p "$PREFIX" -c "$CONF" -s stop 2>&1 \
+        | grep -v 'could not open error log file' >&2 || true
+    echo "preview-server: stopped."
+}
+
+do_status() {
+    if nginx_running; then
+        echo "status: RUNNING (pid $(cat "$PIDFILE"))"
+    else
+        echo "status: stopped"
+    fi
+    if command -v ss >/dev/null 2>&1 && ss -ltn 2>/dev/null | grep -q ":$PORT\b"; then
+        echo "listen: 0.0.0.0:$PORT"
+        echo "viewer: http://localhost:$PORT/styles/pmtiles_style/viewer.html?pmtiles=/build-taiwan/MOI_OSM_Taiwan_TOPO_Rudy.pmtiles&dem=/build-taiwan/dem/taiwan_dem.pmtiles"
+    else
+        echo "listen: (port $PORT not bound)"
+    fi
+}
+
+case "${1:-}" in
+    start)          do_start ;;
+    stop)           do_stop ;;
+    status)         do_status ;;
+    restart)        do_stop; do_start ;;
+    *)
+        echo "Usage: $0 {start|status|stop|restart}" >&2
+        exit 1
+        ;;
+esac
