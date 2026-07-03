@@ -2,8 +2,9 @@
 #
 # complete_name.py and build_wikidata_cache.py.
 
-# OSM I/O (used by complete_name.py and build_wikidata_cache.py)
-osmium
+# OSM I/O (used by complete_name.py and build_wikidata_cache.py).
+# >=4.0 for FileProcessor/KeyFilter, used by complete_name.py's parallel mode
+osmium>=4.0
 
 # Simplified -> Traditional (Taiwan) conversion for name:zh (OpenCC s2twp) and
 # Japanese shinjitai -> Traditional kanji (OpenCC jp2t). The official C++-backed

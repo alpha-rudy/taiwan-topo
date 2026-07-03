@@ -1128,8 +1128,123 @@ def print_stats():
               + (f" [{breakdown}]" if breakdown else ""), file=sys.stderr)
 
 
-if __name__ == '__main__':
-    writer = osmium.SimpleWriter(sys.argv[2])
-    Complete_name_Handler(writer).apply_file(sys.argv[1])
+# =============================================================================
+# Parallel processing (multiprocessing across all cores).
+#
+# Two passes over the input:
+#   pass 1: read-only scan; objects carrying a name tag (matched C++-side by
+#           KeyFilter) are shipped as plain tag dicts to a worker pool that
+#           computes the missing name:en / name:zh values.
+#   pass 2: rewrite the file; objects without name tags are forwarded to the
+#           writer inside libosmium (handler_for_filtered), named objects get
+#           their computed additions applied.
+# Completion is a pure function of an object's own tags, so the output is
+# identical to the serial path. NAME_WORKERS=1 forces the serial path.
+# =============================================================================
+
+_BATCH_SIZE = 8192
+
+
+def _worker_init():
+    """Pool initializer: reopen the SQLite cache (a connection inherited
+    through fork must not be reused)."""
+    global _wikidata_conn, has_wikidata
+    _wikidata_conn = None
+    has_wikidata = False
+    if WIKIDATA_CACHE and os.path.exists(WIKIDATA_CACHE):
+        try:
+            _wikidata_conn = sqlite3.connect(f'file:{WIKIDATA_CACHE}?mode=ro', uri=True)
+            has_wikidata = True
+        except Exception:
+            pass
+
+
+def _complete_batch(items):
+    """Worker: compute tag additions for a batch of (kind, id, tags) items."""
+    out = []
+    stats = {'name:en': Counter(), 'name:zh': Counter()}
+    for kind, oid, d in items:
+        add = {}
+        if 'name:en' not in d:
+            value, source = complete_name_en(d)
+            if value:
+                add['name:en'] = value
+                stats['name:en'][source] += 1
+            else:
+                print(f"fail name:en: {d}")
+        if 'name:zh' not in d:
+            # name:zh completion must see the just-filled name:en (same order
+            # as the serial annotate())
+            value, source = complete_name_zh({**d, **add})
+            if value:
+                add['name:zh'] = value
+                stats['name:zh'][source] += 1
+            else:
+                print(f"fail name:zh: {d}")
+        if add:
+            out.append((kind, oid, add))
+    return out, stats
+
+
+def _obj_kind(o):
+    if isinstance(o, osmium.osm.Node):
+        return 'n'
+    if isinstance(o, osmium.osm.Way):
+        return 'w'
+    return 'r'
+
+
+def _name_filter():
+    import osmium.filter
+    return osmium.filter.KeyFilter(*PROCESSED_NAMES)
+
+
+def run_parallel(infile, outfile, workers):
+    from multiprocessing import Pool
+
+    # Pass 1: collect tag dicts of objects needing completion, compute in pool
+    additions = {}
+    with Pool(workers, initializer=_worker_init) as pool:
+        pending = []
+        batch = []
+        for o in osmium.FileProcessor(infile).with_filter(_name_filter()):
+            if 'name:en' in o.tags and 'name:zh' in o.tags:
+                continue
+            batch.append((_obj_kind(o), o.id, dict(o.tags)))
+            if len(batch) >= _BATCH_SIZE:
+                pending.append(pool.apply_async(_complete_batch, (batch,)))
+                batch = []
+        if batch:
+            pending.append(pool.apply_async(_complete_batch, (batch,)))
+        for res in pending:
+            out, stats = res.get()
+            for kind, oid, add in out:
+                additions[(kind, oid)] = add
+            for tag, counts in stats.items():
+                STATS[tag].update(counts)
+
+    # Pass 2: rewrite; unnamed objects bypass Python entirely
+    writer = osmium.SimpleWriter(outfile)
+    fp = osmium.FileProcessor(infile).with_filter(_name_filter())
+    fp.handler_for_filtered(writer)
+    for o in fp:
+        add = additions.get((_obj_kind(o), o.id))
+        if add:
+            d = dict(o.tags)
+            d.update(add)
+            writer.add(o.replace(tags=d))
+        else:
+            writer.add(o)
     writer.close()
+
+
+if __name__ == '__main__':
+    infile, outfile = sys.argv[1], sys.argv[2]
+    workers = int(os.environ.get('NAME_WORKERS', '0')) or os.cpu_count() or 1
+    if workers > 1 and hasattr(osmium, 'FileProcessor'):
+        run_parallel(infile, outfile, workers)
+    else:
+        writer = osmium.SimpleWriter(outfile)
+        Complete_name_Handler(writer).apply_file(infile)
+        writer.close()
     print_stats()
