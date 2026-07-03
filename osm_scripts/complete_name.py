@@ -263,6 +263,10 @@ URDU_REPLACEMENTS = {
     'Ngr': 'Nagar',
     'Rylwy': 'Railway',
     'Sttyshn': 'Station',
+    'Prtap': 'Pratap',   # ICU skeleton variants (unidecode gives Prtp etc.)
+    'Kalj': 'College',
+    'Rwrr': 'Road',
+    'Khbr': 'Akbar',
     'Qdy': 'Qazi',
     'Bg': 'Bagh',
     'Sl': 'Asal',      # Asal (Actual)
@@ -475,6 +479,9 @@ def romanize_hi(text):
         if raw_roman and raw_roman != text:
             roman = ' '.join(word.capitalize() for word in raw_roman.split())
             roman = roman.translate(_DEVANAGARI_DIGITS)
+            # IAST carries diacritics (Śrīnagara); plain ASCII reads better
+            # on map labels, matching the pinyin treatment
+            roman = _strip_diacritics(roman)
             if is_latin_text(roman):
                 return roman
     except Exception:
@@ -511,7 +518,12 @@ def romanize_generic(text):
             roman = _icu_latin_ascii.transliterate(roman)
             # Only accept a complete transliteration (no non-Latin leftovers)
             if roman and roman.strip() and roman != text and is_latin_text(roman):
-                return ' '.join(word.capitalize() for word in roman.split())
+                roman = ' '.join(word.capitalize() for word in roman.split())
+                # Arabic-script sources come out as consonant skeletons;
+                # expand the known Urdu/Hindi terms (Msjd -> Masjid)
+                if has_arabic_chars(text):
+                    roman = apply_urdu_replacements(roman)
+                return roman
         except Exception:
             pass
     if not has_unidecode:
@@ -567,6 +579,7 @@ def extract_latin_part(text):
     
     # Combine matches and clean up
     candidate = " ".join(matches).strip()
+    candidate = re.sub(r'\(\s*\)', ' ', candidate)  # empty () after non-Latin removal
     candidate = re.sub(r'\s+', ' ', candidate)
     candidate = re.sub(r'^[\-\s]+|[\-\s]+$', '', candidate)
     
@@ -988,8 +1001,9 @@ def complete_name_zh(d):
     # Chinese+Latin only; shinjitai is converted to Traditional (広沢 -> 廣澤)
     name_ja = ja_name_to_zh(d.get('name:ja', '').strip())
 
-    # Wikidata Traditional-Chinese label (already normalized to Traditional in the cache)
-    wd_zh = wikidata_label(d, 'zh')
+    # Wikidata Traditional-Chinese label (normalized at cache-build time, but
+    # upstream zh-tw labels occasionally contain Simplified chars - re-normalize)
+    wd_zh = to_traditional(wikidata_label(d, 'zh'))
 
     # Chinese Wikipedia article title from the wikipedia tag (curated, offline)
     wp_zh = wikipedia_title(d, 'zh')

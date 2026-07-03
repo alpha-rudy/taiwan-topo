@@ -92,10 +92,13 @@ def sitelink_title(sitelinks, site):
 def pick_zh(labels, sitelinks):
     """Pick the best Traditional-Chinese (Taiwan) label from a labels dict,
     falling back to the zhwiki article title (many items have a Chinese
-    Wikipedia article but no zh label)."""
+    Wikipedia article but no zh label). Every result goes through
+    to_traditional: upstream zh-tw/zh-hant labels occasionally contain
+    Simplified characters (curation errors), and the conversion is idempotent
+    on genuine Traditional text."""
     for k in ('zh-tw', 'zh-hant', 'zh-hk'):
         if k in labels:
-            return labels[k]['value']
+            return to_traditional(labels[k]['value'])
     for k in ('zh', 'zh-hans'):
         if k in labels:
             return to_traditional(labels[k]['value'])
