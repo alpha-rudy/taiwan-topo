@@ -37,6 +37,11 @@ USER_AGENT = ('taiwan-topo name-completion cache '
               '(https://github.com/rudism/taiwan-topo; rudyboy.tw@gmail.com)')
 
 
+# Tag keys whose QIDs are cached. brand:wikidata is used by complete_name.py to
+# name chain-store POIs; values may be ';'-separated lists of QIDs.
+QID_KEYS = ('wikidata', 'brand:wikidata')
+
+
 class QidCollector(osmium.SimpleHandler):
     """Collect the distinct, well-formed wikidata QIDs in an OSM file."""
 
@@ -45,11 +50,13 @@ class QidCollector(osmium.SimpleHandler):
         self.qids = set()
 
     def _collect(self, o):
-        v = o.tags.get('wikidata')
-        if v:
-            v = v.strip()
-            if QID_RE.match(v):
-                self.qids.add(v)
+        for key in QID_KEYS:
+            v = o.tags.get(key)
+            if v:
+                for part in v.split(';'):
+                    part = part.strip()
+                    if QID_RE.match(part):
+                        self.qids.add(part)
 
     def node(self, n):
         self._collect(n)
@@ -70,15 +77,39 @@ def to_traditional(text):
     return text
 
 
-def pick_zh(labels):
-    """Pick the best Traditional-Chinese (Taiwan) label from a labels dict."""
+# Trailing parenthetical disambiguation in Wikipedia titles: "玉山 (臺灣)" -> "玉山"
+PAREN_RE = re.compile(r'\s*[(（][^()（）]*[)）]\s*$')
+
+
+def sitelink_title(sitelinks, site):
+    """Return a sitelink's article title with disambiguation suffix stripped."""
+    title = (sitelinks.get(site) or {}).get('title', '').strip()
+    if not title:
+        return None
+    return PAREN_RE.sub('', title).strip() or None
+
+
+def pick_zh(labels, sitelinks):
+    """Pick the best Traditional-Chinese (Taiwan) label from a labels dict,
+    falling back to the zhwiki article title (many items have a Chinese
+    Wikipedia article but no zh label)."""
     for k in ('zh-tw', 'zh-hant', 'zh-hk'):
         if k in labels:
             return labels[k]['value']
     for k in ('zh', 'zh-hans'):
         if k in labels:
             return to_traditional(labels[k]['value'])
+    title = sitelink_title(sitelinks, 'zhwiki')
+    if title:
+        return to_traditional(title)
     return None
+
+
+def pick_en(labels, sitelinks):
+    """Pick the English label, falling back to the enwiki article title."""
+    if 'en' in labels:
+        return labels['en']['value']
+    return sitelink_title(sitelinks, 'enwiki')
 
 
 def fetch(ids, session):
@@ -86,7 +117,8 @@ def fetch(ids, session):
     params = {
         'action': 'wbgetentities',
         'ids': '|'.join(ids),
-        'props': 'labels',
+        'props': 'labels|sitelinks',
+        'sitefilter': 'zhwiki|enwiki',
         'languages': LANGS,
         'format': 'json',
     }
@@ -143,8 +175,9 @@ def main():
         for qid in batch:
             ent = entities.get(qid) or {}
             labels = ent.get('labels', {})
-            en = labels.get('en', {}).get('value')
-            zh = pick_zh(labels)
+            sitelinks = ent.get('sitelinks', {})
+            en = pick_en(labels, sitelinks)
+            zh = pick_zh(labels, sitelinks)
             ja = labels.get('ja', {}).get('value')
             rows.append((qid, en, zh, ja))
         conn.executemany(

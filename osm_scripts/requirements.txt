@@ -5,8 +5,10 @@
 # OSM I/O (used by complete_name.py and build_wikidata_cache.py)
 osmium
 
-# Simplified -> Traditional (Taiwan) conversion for name:zh (OpenCC s2twp)
-opencc-python-reimplemented
+# Simplified -> Traditional (Taiwan) conversion for name:zh (OpenCC s2twp) and
+# Japanese shinjitai -> Traditional kanji (OpenCC jp2t). The official C++-backed
+# wheel; the pure-python opencc-python-reimplemented lacks jp2t.
+opencc
 
 # Wikidata label prefetch (build_wikidata_cache.py, online step only)
 requests
@@ -24,3 +26,7 @@ indic-transliteration
 cyrtranslit
 pyewts
 unidecode
+
+# Generic any-script -> Latin transliteration for name:en fallback (better than
+# unidecode for Hangul/Thai/Arabic/Greek); unidecode remains the fallback if absent
+PyICU
