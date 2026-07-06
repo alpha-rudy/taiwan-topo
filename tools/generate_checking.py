@@ -49,13 +49,14 @@ def parse_makefile(suite_name):
         content = f.read()
     
     # Extract key variables using regex.
-    # LANG is anchored at line start so it does not also match READING_LANG,
-    # which would otherwise capture the native script language (e.g. de) instead
-    # of the display language (zh).
+    # The display language is MAP_LANG in new suites; legacy suites still use
+    # LANG. Both are anchored at line start so they do not also match
+    # READING_LANG, which would otherwise capture the native script language
+    # (e.g. de) instead of the display language (zh).
     patterns = {
         'REGION': r'^REGION\s*:=\s*(\S+)',
         'DEM_NAME': r'^DEM_NAME\s*:=\s*(\S+)',
-        'LANG': r'^LANG\s*:=\s*(\S+)',
+        'LANG': r'^(?:MAP_)?LANG\s*:=\s*(\S+)',
         'TOPO_PAGE': r'^TOPO_PAGE\s*:=\s*(\S+)',
         'TARGETS': r'^TARGETS\s*:=\s*(.+)',
     }
@@ -64,7 +65,7 @@ def parse_makefile(suite_name):
         match = re.search(pattern, content, re.MULTILINE)
         if match:
             config[key] = match.group(1).strip()
-    
+
     return config
 
 

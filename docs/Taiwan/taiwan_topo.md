@@ -402,6 +402,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N46.30 ~ N47.85
     * 經度範圍: E13.90 ~ E15.90
+* Yakushima, 屋久島地區 (含種子島、口永良部島)
+  * https://rudymap.tw/yakushima_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N30.16 ~ N30.93
+    * 經度範圍: E129.83 ~ E131.16
 
 ## 說明
 

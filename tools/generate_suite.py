@@ -78,7 +78,7 @@ ifeq ($(SUITE),{region_lower})
 REGION := {region}
 DEM_NAME := {dem_name}
 READING_LANG := {lang}
-LANG := zh
+MAP_LANG := zh
 CODE_PAGE := {code_page}
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
 ELEVATION_MIX_FILE = ele_{region_lower}_10_100_500_mix.pbf
@@ -112,7 +112,7 @@ ifeq ($(SUITE),{region_lower}_bc_dem)
 REGION := {region}
 DEM_NAME := {dem_name}
 READING_LANG := {lang}
-LANG := zh
+MAP_LANG := zh
 CODE_PAGE := {code_page}
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
 EXTRACT_FILE := {extract_file}
@@ -141,7 +141,7 @@ ifeq ($(SUITE),{region_lower}_bc_dem_en)
 REGION := {region}
 DEM_NAME := {dem_name}
 READING_LANG := {lang}
-LANG := en
+MAP_LANG := en
 CODE_PAGE := 1252
 ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
 EXTRACT_FILE := {extract_file}

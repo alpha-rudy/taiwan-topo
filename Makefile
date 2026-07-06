@@ -77,7 +77,12 @@ include $(wildcard $(ROOT_DIR)/suites/alps_eastern/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/alps_western/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/alps_fareast/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/yakushima/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
+
+# Map display language. New suites set MAP_LANG; legacy suites still set LANG,
+# whose file assignment shadows the shell locale. Consume only $(MAP_LANG).
+MAP_LANG ?= $(LANG)
 
 # auto variables
 VERSION := $(shell date +%Y.%m.%d)
@@ -91,12 +96,12 @@ DESC_PREFIX ?= RudyMap
 # NAME_LONG feeds the Garmin map "description" (IMG header, max 50 chars)
 NAME_LONG ?= $(DESC_PREFIX) $(REGION) $(STYLE_NAME) v$(VERSION)
 
-ifeq ($(LANG),zh)
+ifeq ($(MAP_LANG),zh)
 NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
 NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
 else
-NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(LANG) - $(REGION) v$(VERSION)
-NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(LANG)
+NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(MAP_LANG) - $(REGION) v$(VERSION)
+NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(MAP_LANG)
 endif
 
 COMMON_TILES_DIR := $(BUILD_DIR)/$(REGION)/tiles
@@ -142,9 +147,9 @@ ADDR_MAPPING := $(ROOT_DIR)/osm_scripts/poi-addr-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
 
-GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).img
+GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(MAP_LANG)_$(STYLE_NAME).img
 GMAPSUPP_ZIP := $(GMAPSUPP).zip
-GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(LANG)_$(STYLE_NAME).gmap.zip
+GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(MAP_LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 POI_V2 := $(BUILD_DIR)/$(NAME_MAPSFORGE)_v2.poi
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
@@ -415,7 +420,7 @@ $(GMAPSUPP): $(MAP_HAND)
 	mv $(MAP_HAND_DIR)/gmapsupp.img $@
 
 MAPSFORGE_NTL := zh,en
-ifeq ($(LANG),en)
+ifeq ($(MAP_LANG),en)
 NTL := name:en,name:zh,name:zh_pinyin,name
 else
 NTL := name:zh,name:en,name
@@ -523,7 +528,7 @@ $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 		$< \
 		-o=$@
 
-READING_LANG ?= $(LANG)
+READING_LANG ?= $(MAP_LANG)
 
 # Offline Wikidata label cache (per region), used by complete_name.py to enrich
 # name:en/name:zh with canonical Wikidata labels. It is a build prerequisite of the
