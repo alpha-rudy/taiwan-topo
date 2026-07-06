@@ -265,6 +265,6 @@ endef
 define SUITE_BUILD
 .PHONY: $(1)_suites
 $(1)_suites:
-	set -e; $$(foreach suite,$$($(2)),$(MAKE_CMD) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$(suite) all;)
-	$$(MAKE_CMD) BUILD_DIR=$$(ROOT_DIR)/build-$(1) INSTALL_DIR=$(3) SUITE=$(4) install
+	set -e; $$(foreach suite,$$($(2)),$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$(suite) all;)
+	$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) INSTALL_DIR=$(3) SUITE=$(4) install
 endef

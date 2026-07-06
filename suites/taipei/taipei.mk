@@ -2,7 +2,7 @@
 ifeq ($(SUITE),taipei)
 REGION := Taipei
 DEM_NAME := MOI
-LANG := zh
+MAP_LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 ELEVATION_MIX_FILE = ele_taiwan_10_50_100_500_marker-2025.o5m
@@ -16,4 +16,4 @@ endif
 TAIPEI_SUITES := taipei taipei_bc
 .PHONY: taipei_suites
 taipei_suites:
-	set -e; $(foreach suite,$(TAIPEI_SUITES),$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taipei SUITE=$(suite) all;)
+	set -e; $(foreach suite,$(TAIPEI_SUITES),$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taipei SUITE=$(suite) all;)

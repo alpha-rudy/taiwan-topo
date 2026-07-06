@@ -2,7 +2,7 @@
 ifeq ($(SUITE),taiwan_srtm3_bw)
 REGION := Taiwan
 DEM_NAME := SRTM3
-LANG := zh
+MAP_LANG := zh
 CODE_PAGE := 950
 ELEVATION_FILE = ele_taiwan_10_100_500_view1,srtm1,view3,srtm3.o5m
 EXTRACT_FILE := taiwan-latest

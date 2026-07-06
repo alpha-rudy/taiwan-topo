@@ -37,7 +37,7 @@ rm -f "$OUTPUT"
 cp "${REGION_EXTRACT_NAME}.o5m" "$TEMP_FILE"
 
 # Append elevation data
-bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION"
+OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION"
 
 # Convert to final format with bounding
 $OSMCONVERT_CMD \

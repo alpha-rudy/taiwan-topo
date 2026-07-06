@@ -1,38 +1,70 @@
 #!/bin/bash
+#
+# osmium-append.sh - Append an OSM file into a target, renumbering IDs
+# past the target's largest node/way/relation IDs to avoid collisions.
+#
+# Usage: osmium-append.sh <target> <add>
+#
+# Env:
+#   OSMCONVERT_CMD - path to osmconvert binary (falls back to `osmconvert`
+#                    on PATH) used to convert the merged result back to
+#                    the target's format when target is not already .pbf
+#
+set -euo pipefail
 
-target=$1
-add=$2
-end=$3
-[ -f ${target} ] || exit 1
-[ -f ${add} ] || exit 1
-[ -z ${end} ] || exit 1
+usage() {
+    echo "Usage: $0 <target> <add>" >&2
+    exit 1
+}
 
-if [ $(uname) != 'Darwin' ]; then
-    shopt -s expand_aliases
-    alias gsed='sed'
+if [ "$#" -ne 2 ]; then
+    usage
 fi
 
-let $(osmium fileinfo -e ${target} | \
-		gsed -e 's/Largest node ID: /LNID=/' -e 's/Largest way ID: /LWID=/' -e 's/Largest relation ID: /LRID=/' | \
-		grep ID=)
+target="$1"
+add="$2"
 
-let LNID++ LWID++ LRID++
+[ -f "$target" ] || { echo "error: target file not found: $target" >&2; exit 1; }
+[ -f "$add" ] || { echo "error: add file not found: $add" >&2; exit 1; }
 
-EXT=${target##*.}
-REN_FILE="ren_${RANDOM}.pbf"
-MGR_FILE="mgr_${RANDOM}.pbf"
+fileinfo=$(osmium fileinfo -e "$target")
 
-echo "renumber ${add}: ${LNID},${LWID},${LRID}"
+lnid=$(printf '%s\n' "$fileinfo" | sed -n 's/.*Largest node ID: \([0-9]*\).*/\1/p')
+lwid=$(printf '%s\n' "$fileinfo" | sed -n 's/.*Largest way ID: \([0-9]*\).*/\1/p')
+lrid=$(printf '%s\n' "$fileinfo" | sed -n 's/.*Largest relation ID: \([0-9]*\).*/\1/p')
+
+lnid=${lnid:-0}
+lwid=${lwid:-0}
+lrid=${lrid:-0}
+
+lnid=$((lnid + 1))
+lwid=$((lwid + 1))
+lrid=$((lrid + 1))
+
+ext="${target##*.}"
+tmp_dir="$(dirname "$target")"
+ren_file="${tmp_dir}/.append_$$_ren.pbf"
+mgr_file="${tmp_dir}/.append_$$_mgr.pbf"
+
+cleanup() {
+    rm -f "$ren_file" "$mgr_file"
+}
+trap cleanup EXIT
+
+echo "renumber ${add}: ${lnid},${lwid},${lrid}"
 osmium renumber \
-	-s ${LNID},${LWID},${LRID} \
-	${add} \
-	-Oo ${REN_FILE} || exit $?
+    -s "${lnid},${lwid},${lrid}" \
+    "$add" \
+    -Oo "$ren_file"
 
 echo "merge: ${target} ${add}"
 osmium merge \
-	${target} \
-	${REN_FILE} \
-	-Oo ${MGR_FILE} || exit $?
+    "$target" \
+    "$ren_file" \
+    -Oo "$mgr_file"
 
-[ "${EXT}" == pbf ] && mv ${MGR_FILE} ${target} || osmconvert ${MGR_FILE} -o=${target}
-rm -f ${REN_FILE} ${MGR_FILE}
+if [ "$ext" == "pbf" ]; then
+    mv "$mgr_file" "$target"
+else
+    "${OSMCONVERT_CMD:-osmconvert}" "$mgr_file" -o="$target"
+fi

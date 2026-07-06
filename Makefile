@@ -13,7 +13,7 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWITER_THREADS = 8
+MAPWRITER_THREADS = 8
 # suggestion: doesn't matter
 SPLITTER_THREADS = 8
 # suggestion: CPU*1
@@ -46,7 +46,6 @@ META := $(EXTRACT_DIR)/meta.osm
 
 ZIP_CMD := 7z a -tzip -mx=6
 UNZIP_CMD := unzip -o
-MAKE_CMD := make
 
 ifeq ($(shell uname),Darwin)
 JMC_CMD := jmc-0.8/macos/jmc_cli
@@ -174,10 +173,6 @@ DEM_MAX_ZOOM ?= 13
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
-GTS_ALL ?= $(BUILD_DIR)/gts-no_defined
-CARTO_ALL ?= $(BUILD_DIR)/carto-no_defined
-LOCUS_MAP ?= $(BUILD_DIR)/locus-no_defined
-
 GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 CARTO_ALL := $(BUILD_DIR)/carto_all
 LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
@@ -263,7 +258,7 @@ install:
 	-[ -f docs/$(REGION)/local.md ] && \
 		cat docs/$(REGION)/local.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 		markdown -f +autolink > $(BUILD_DIR)/local.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/local.article" > $(BUILD_DIR)/local.html
+		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/local.article" > $(INSTALL_DIR)/local.html
 	-[ -d docs/$(REGION)/gts ] && cp -r docs/$(REGION)/gts $(INSTALL_DIR) && \
 		cat docs/$(REGION)/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cp -r $(BUILD_DIR)/{*.zip,*.exe} $(INSTALL_DIR)
@@ -283,17 +278,109 @@ suites: taiwan_suites
 
 .PHONY: daily
 daily:
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
-	$(MAKE_CMD) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
+	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
+	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
+	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
+	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 .PHONY: world_suites
 world_suites: annapurna_suites elbrus_suites fujisan_suites kashmir_suites kumano_suites nikko_oze_suites alps_core_suites alps_western_suites alps_eastern_suites alps_fareast_suites
 
 .PHONY: styles
 styles:
-	$(MAKE_CMD) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style extra_style
+	$(MAKE) mapsforge_style lite_style hs_style locus_style twmap_style bn_style dn_style tn_style extra_style
+
+#==============================================================================
+# Style Target Instantiations
+#==============================================================================
+# Using the style macros defined above to create style build targets.
+# Each $(eval $(call ...)) instantiates a style target with the given parameters.
+
+# mapsforge_style: Main mapsforge style with documentation
+$(eval $(call STYLE_WITH_DOCS,mapsforge_style,MOI_OSM_Taiwan_TOPO_Rudy_style,styles/mapsforge_style,mapsforge_style,MOI_OSM.xml,MOI_OSM.pdf,MOI_OSM.png))
+MAPSFORGE_STYLE := $(mapsforge_style_VAR)
+
+# locus_style: Locus-specific style packaging
+$(eval $(call STYLE_LOCUS,locus_style,MOI_OSM_Taiwan_TOPO_Rudy_locus_style,styles/locus_style,MOI_OSM_Taiwan_TOPO_Rudy_style,MOI_OSM.xml,MOI_OSM.pdf,MOI_OSM.png))
+LOCUS_STYLE := $(locus_style_VAR)
+LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
+
+# lite_style: Lite version with hillshading enabled and simplified contours
+# This has custom sed transformations that don't fit the standard macro
+LITE_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Lite_style.zip
+
+.PHONY: lite_style $(LITE_STYLE)
+lite_style: $(LITE_STYLE)
+$(LITE_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_lite
+	mkdir -p $(BUILD_DIR)/mapsforge_lite
+	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_lite
+	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_lite/moiosmlite_res
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+		$(SED_CMD) \
+			-e "s/__version__/$(VERSION)/g" \
+			-e "s/file:moiosm_res/file:moiosmlite_res/g" \
+			-e "s,file:/moiosm_res,file:/moiosmlite_res,g" \
+			-e "s,<!-- hillshading -->,<hillshading />,g" \
+			-e "/-- contours-begin --/,/-- contours-end --/d" \
+			-e "/-- contours-body --/ r styles/mapsforge_lite/Lite_contours.part" \
+		> $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
+	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.pdf
+	cd $(BUILD_DIR)/mapsforge_lite && \
+		$(ZIP_CMD) $@ *
+
+# hs_style: Hillshading-enabled style variant
+$(eval $(call STYLE_TRANSFORM,hs_style,MOI_OSM_Taiwan_TOPO_Rudy_hs_style,mapsforge_hs,moiosmhs_res,MOI_OSM.xml,-e "s$$(COMMA)<!-- hillshading -->$$(COMMA)<hillshading />$$(COMMA)g",MOI_OSM.pdf,MOI_OSM.png))
+HS_STYLE := $(hs_style_VAR)
+
+# bn_style: Basic night style
+$(eval $(call STYLE_SIMPLE,bn_style,MOI_OSM_bn_style,styles/mapsforge_bn,mapsforge_bn,MOI_OSM_BN.xml))
+BN_STYLE := $(bn_style_VAR)
+
+# dn_style: Dark night style
+$(eval $(call STYLE_SIMPLE,dn_style,MOI_OSM_dn_style,styles/mapsforge_dn,mapsforge_dn,MOI_OSM_DN.xml))
+DN_STYLE := $(dn_style_VAR)
+
+# extra_style: Extra style variant
+$(eval $(call STYLE_SIMPLE,extra_style,MOI_OSM_extra_style,styles/extra,extra,MOI_OSM_EXTRA.xml))
+EXTRA_STYLE := $(extra_style_VAR)
+
+# twmap_style: Taiwan map style
+$(eval $(call STYLE_SIMPLE,twmap_style,MOI_OSM_twmap_style,styles/twmap_style,twmap_style,MOI_OSM_twmap.xml))
+TWMAP_STYLE := $(twmap_style_VAR)
+
+# tn_style: TN style with custom transformations
+# This has custom sed transformations and extra resource copying that don't fit the standard macro
+TN_STYLE := $(BUILD_DIR)/MOI_OSM_tn_style.zip
+
+.PHONY: tn_style $(TN_STYLE)
+tn_style: $(TN_STYLE)
+$(TN_STYLE):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(BUILD_DIR)" ]
+	-rm -f $@
+	-rm -rf $(BUILD_DIR)/mapsforge_tn
+	mkdir -p $(BUILD_DIR)/mapsforge_tn
+	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_tn
+	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
+	cp styles/mapsforge_tn/tn_res/* $(BUILD_DIR)/mapsforge_tn/tn_res/
+	cat styles/mapsforge_style/MOI_OSM.xml | \
+		$(SED_CMD) \
+			-e "s/__version__/$(VERSION)/g" \
+			-e "s/file:moiosm_res/file:tn_res/g" \
+			-e "s,file:/moiosm_res,file:/tn_res,g" \
+			-e 's/outside="#FFFFFF"/outside="#00FFFFFF"/g' \
+			-e "s,<!-- hillshading -->,<hillshading />,g" \
+			-e "/TN-REMOVED-FROM/,/TN-REMOVED-TO/d" \
+			-e "/-- coastlines-body --/ r styles/mapsforge_tn/coastlines.part" \
+			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
+		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
+	cd $(BUILD_DIR)/mapsforge_tn && \
+		$(ZIP_CMD) $@ *
+
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
@@ -314,14 +401,19 @@ carto_all: $(CARTO_ALL).zip
 $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
-	mv $(POI) $(POI).bak && cp $(POI_V2) $(POI)
+	rm -rf $(BUILD_DIR)/.poi_v2_stage
+	mkdir -p $(BUILD_DIR)/.poi_v2_stage
+	cp $(POI_V2) $(BUILD_DIR)/.poi_v2_stage/$(shell basename $(POI))
 	$(UNZIP_CMD) $(HGT) -d $(BUILD_DIR)
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) && rm -f mapdetails.json
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) && rm -f mapdetails.json
+	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_map.cpkg $(shell basename $(POI))
 	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_style.cpkg mapdetails.json $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
 	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt && rm -f mapdetails.json
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(POI)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	mv $(POI).bak $(POI)
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
+	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_upgrade.cpkg $(shell basename $(POI))
+	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
+	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_all.cpkg $(shell basename $(POI))
+	rm -rf $(BUILD_DIR)/.poi_v2_stage
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
@@ -463,8 +555,8 @@ $(ELEVATION):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)
 	cd $(ELEVATIONS_DIR) && \
-		curl $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
-		curl $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
+		curl --fail --location $(ELEVATIONS_URL)/$(ELEVATION_FILE) -o $(ELEVATION_FILE) && \
+		curl --fail --location $(ELEVATIONS_URL)/$(ELEVATION_FILE).md5 -o $(ELEVATION_FILE).md5 && \
 		md5sum -c $(ELEVATION_FILE).md5
 
 .DELETE_ON_ERROR: $(ELEVATION_MIX)
@@ -473,8 +565,8 @@ $(ELEVATION_MIX):
 	[ -n "$(REGION)" ]
 	mkdir -p $(ELEVATIONS_DIR)/marker
 	cd $(ELEVATIONS_DIR)/marker && \
-		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
-		curl $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
+		curl --fail --location $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE) -o $(ELEVATION_MIX_FILE) && \
+		curl --fail --location $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
 		md5sum -c $(ELEVATION_MIX_FILE).md5
 
 .DELETE_ON_ERROR: $(EXTRACT).o5m
@@ -486,8 +578,8 @@ $(EXTRACT).o5m:
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
 	cd $(EXTRACT_DIR) && \
-		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
-		aria2c -x 5 $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
+		aria2c -x 5 --allow-overwrite=true --auto-file-renaming=false --remove-control-file $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst && \
+		aria2c -x 5 --allow-overwrite=true --auto-file-renaming=false --remove-control-file $(EXTRACT_URL)/$(EXTRACT_FILE).o5m.zst.md5 && \
 		md5sum -c $(EXTRACT_FILE).o5m.zst.md5 && \
 		zstd --decompress --rm $(EXTRACT_FILE).o5m.zst
 else
@@ -497,8 +589,8 @@ $(EXTRACT).o5m:
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
 	cd $(EXTRACT_DIR) && \
-		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
-		aria2c -x 5 -o $(EXTRACT_FILE).osm.pbf.md5 $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
+		aria2c -x 5 --allow-overwrite=true --auto-file-renaming=false --remove-control-file -o $(EXTRACT_FILE).osm.pbf $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf && \
+		aria2c -x 5 --allow-overwrite=true --auto-file-renaming=false --remove-control-file -o $(EXTRACT_FILE).osm.pbf.md5 $(EXTRACT_URL)/$(EXTRACT_FILE).osm.pbf.md5 && \
 		md5sum -c $(EXTRACT_FILE).osm.pbf.md5 && \
 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT_FILE).o5m
 endif
@@ -507,8 +599,8 @@ $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 	cp $< $@
-	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
-	bash $(TOOLS_DIR)/osmium-append.sh $@ $(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm
 else
 	$(OSMCONVERT_CMD) \
 		$< \
@@ -546,7 +638,7 @@ WIKIDATA_CACHE ?= $(WIKIDATA_DIR)/$(REGION)_wikidata.sqlite
 .PHONY: wikidata-cache
 wikidata-cache: $(WIKIDATA_CACHE)
 
-$(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m
+$(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m osm_scripts/build_wikidata_cache.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
@@ -554,7 +646,7 @@ $(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m
 
 .PHONY: named
 named: $(REGION_EXTRACT)_name.o5m
-$(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE)
+$(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE) osm_scripts/complete_name.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
@@ -576,9 +668,22 @@ $(REGION_EXTRACT)-sed.osm.pbf: $(REGION_EXTRACT)_name.o5m osm_scripts/process_os
 	cd $(EXTRACT_DIR) && \
 	  OSMCONVERT_CMD=$(OSMCONVERT_CMD) $(ROOT_DIR)/osm_scripts/process_osm.sh $< $@
 
+# Version stamp: $(META) substitutes VERSION into meta.osm but its only real
+# prerequisite (meta/meta.osm) never changes day-to-day, so without this the
+# incremental build would keep baking in a stale VERSION once download/extracts
+# persists past midnight. The stamp filename embeds VERSION, so it's naturally
+# out-of-date exactly once per day; the rm -f prunes yesterday's stamp(s).
+VERSION_STAMP := $(EXTRACT_DIR)/.version-$(VERSION)
+
+$(VERSION_STAMP):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(dir $@)
+	rm -f $(EXTRACT_DIR)/.version-*
+	touch $@
+
 .PHONY: meta
 meta: $(META)
-$(META): meta/meta.osm
+$(META): meta/meta.osm $(VERSION_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(VERSION)" ]
 	mkdir -p $(dir $@)
@@ -596,98 +701,6 @@ $(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_O
 	[ -n "$(REGION)" ]
 	-rm -rf $@
 	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(ELEVATION_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
-
-
-#==============================================================================
-# Style Target Instantiations
-#==============================================================================
-# Using the style macros defined above to create style build targets.
-# Each $(eval $(call ...)) instantiates a style target with the given parameters.
-
-# mapsforge_style: Main mapsforge style with documentation
-$(eval $(call STYLE_WITH_DOCS,mapsforge_style,MOI_OSM_Taiwan_TOPO_Rudy_style,styles/mapsforge_style,mapsforge_style,MOI_OSM.xml,MOI_OSM.pdf,MOI_OSM.png))
-MAPSFORGE_STYLE := $(mapsforge_style_VAR)
-
-# locus_style: Locus-specific style packaging
-$(eval $(call STYLE_LOCUS,locus_style,MOI_OSM_Taiwan_TOPO_Rudy_locus_style,styles/locus_style,MOI_OSM_Taiwan_TOPO_Rudy_style,MOI_OSM.xml,MOI_OSM.pdf,MOI_OSM.png))
-LOCUS_STYLE := $(locus_style_VAR)
-LOCUS_STYLE_INST := MOI_OSM_Taiwan_TOPO_Rudy_style
-
-# lite_style: Lite version with hillshading enabled and simplified contours
-# This has custom sed transformations that don't fit the standard macro
-LITE_STYLE := $(BUILD_DIR)/MOI_OSM_Taiwan_TOPO_Lite_style.zip
-
-.PHONY: lite_style $(LITE_STYLE)
-lite_style: $(LITE_STYLE)
-$(LITE_STYLE):
-	date +'DS: %H:%M:%S $(shell basename $@)'
-	[ -n "$(BUILD_DIR)" ]
-	-rm -f $@
-	-rm -rf $(BUILD_DIR)/mapsforge_lite
-	mkdir -p $(BUILD_DIR)/mapsforge_lite
-	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_lite
-	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_lite/moiosmlite_res
-	cat styles/mapsforge_style/MOI_OSM.xml | \
-		$(SED_CMD) \
-			-e "s/__version__/$(VERSION)/g" \
-			-e "s/file:moiosm_res/file:moiosmlite_res/g" \
-			-e "s,file:/moiosm_res,file:/moiosmlite_res,g" \
-			-e "s,<!-- hillshading -->,<hillshading />,g" \
-			-e "/-- contours-begin --/,/-- contours-end --/d" \
-			-e "/-- contours-body --/ r styles/mapsforge_lite/Lite_contours.part" \
-		> $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
-	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.pdf
-	cd $(BUILD_DIR)/mapsforge_lite && \
-		$(ZIP_CMD) $@ *
-
-# hs_style: Hillshading-enabled style variant
-$(eval $(call STYLE_TRANSFORM,hs_style,MOI_OSM_Taiwan_TOPO_Rudy_hs_style,mapsforge_hs,moiosmhs_res,MOI_OSM.xml,-e "s$$(COMMA)<!-- hillshading -->$$(COMMA)<hillshading />$$(COMMA)g",MOI_OSM.pdf,MOI_OSM.png))
-HS_STYLE := $(hs_style_VAR)
-
-# bn_style: Basic night style
-$(eval $(call STYLE_SIMPLE,bn_style,MOI_OSM_bn_style,styles/mapsforge_bn,mapsforge_bn,MOI_OSM_BN.xml))
-BN_STYLE := $(bn_style_VAR)
-
-# dn_style: Dark night style
-$(eval $(call STYLE_SIMPLE,dn_style,MOI_OSM_dn_style,styles/mapsforge_dn,mapsforge_dn,MOI_OSM_DN.xml))
-DN_STYLE := $(dn_style_VAR)
-
-# extra_style: Extra style variant
-$(eval $(call STYLE_SIMPLE,extra_style,MOI_OSM_extra_style,styles/extra,extra,MOI_OSM_EXTRA.xml))
-EXTRA_STYLE := $(extra_style_VAR)
-
-# twmap_style: Taiwan map style
-$(eval $(call STYLE_SIMPLE,twmap_style,MOI_OSM_twmap_style,styles/twmap_style,twmap_style,MOI_OSM_twmap.xml))
-TWMAP_STYLE := $(twmap_style_VAR)
-
-# tn_style: TN style with custom transformations
-# This has custom sed transformations and extra resource copying that don't fit the standard macro
-TN_STYLE := $(BUILD_DIR)/MOI_OSM_tn_style.zip
-
-.PHONY: tn_style $(TN_STYLE)
-tn_style: $(TN_STYLE)
-$(TN_STYLE):
-	date +'DS: %H:%M:%S $(shell basename $@)'
-	[ -n "$(BUILD_DIR)" ]
-	-rm -f $@
-	-rm -rf $(BUILD_DIR)/mapsforge_tn
-	mkdir -p $(BUILD_DIR)/mapsforge_tn
-	cp -a styles/mapsforge_style/License.txt $(BUILD_DIR)/mapsforge_tn
-	cp -a styles/mapsforge_style/moiosm_res $(BUILD_DIR)/mapsforge_tn/tn_res
-	cp styles/mapsforge_tn/tn_res/* $(BUILD_DIR)/mapsforge_tn/tn_res/
-	cat styles/mapsforge_style/MOI_OSM.xml | \
-		$(SED_CMD) \
-			-e "s/__version__/$(VERSION)/g" \
-			-e "s/file:moiosm_res/file:tn_res/g" \
-			-e "s,file:/moiosm_res,file:/tn_res,g" \
-			-e 's/outside="#FFFFFF"/outside="#00FFFFFF"/g' \
-			-e "s,<!-- hillshading -->,<hillshading />,g" \
-			-e "/TN-REMOVED-FROM/,/TN-REMOVED-TO/d" \
-			-e "/-- coastlines-body --/ r styles/mapsforge_tn/coastlines.part" \
-			-e 's/id="elmt-landcover" enabled="true"/id="elmt-landcover" enabled="false"/g' \
-		> $(BUILD_DIR)/mapsforge_tn/MOI_OSM_TN.xml
-	cd $(BUILD_DIR)/mapsforge_tn && \
-		$(ZIP_CMD) $@ *
 
 
 #==============================================================================
@@ -721,10 +734,11 @@ $(POI_V2_ZIP): $(POI_V2) $(POI)
 	[ -f "$(POI)" ]
 	[ -f "$(POI_V2)" ]
 	-rm -rf $@
-	cd $(BUILD_DIR) && \
-		mv $(POI) $(POI).bak && cp $(POI_V2) $(POI) && \
-		$(ZIP_CMD) $@ $(shell basename $(POI)) && \
-		mv $(POI).bak $(POI)
+	rm -rf $(BUILD_DIR)/.poi_v2_stage
+	mkdir -p $(BUILD_DIR)/.poi_v2_stage
+	cp $(POI_V2) $(BUILD_DIR)/.poi_v2_stage/$(shell basename $(POI))
+	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) $@ $(shell basename $(POI))
+	rm -rf $(BUILD_DIR)/.poi_v2_stage
 
 
 GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm
@@ -737,7 +751,7 @@ $(GPX_BASE).map: $(GPX_BASE_EXT)
 	[ -f $(GPX_BASE_EXT) ]
 	[ -n "$(OSMOSIS_BOUNDING)" ]
 	rm -f $(GPX_BASE)-sed.pbf $(GPX_BASE)-ren.pbf
-	python3.10 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
+	python3 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
 	osmium renumber \
 		-s 1,1,0 \
 		$(GPX_BASE)-sed.pbf \
@@ -748,7 +762,7 @@ $(GPX_BASE).map: $(GPX_BASE_EXT)
 			"$@" \
 			"$(OSMOSIS_CMD)" \
 			"$(OSMOSIS_BOUNDING)" \
-			"$(MAPWITER_THREADS)" \
+			"$(MAPWRITER_THREADS)" \
 			"zh,en" \
 			"osm_scripts/gpx-mapping.xml" \
 			"$(VERSION) / (c) GPX: $(notdir $(GPX_BASE))" \
@@ -768,14 +782,14 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 	rm -rf $(GPX_BASE)-sed.pbf $(WITH_GPX)-add.pbf
 	python3 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
-	osm_scripts/osium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(WITH_GPX)-add.pbf" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
 			"$(OSMOSIS_BOUNDING)" \
-			"$(MAPWITER_THREADS)" \
+			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
 			"$(VERSION)  /  (c) Map: Rudy; GPX: $(notdir $(WITH_GPX))" \
@@ -796,14 +810,14 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 		-s 1,1,0 \
 		$(BUILD_DIR)/track-sed.pbf \
 		-Oo $(@:.map=.pbf)
-	osm_scripts/osium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(@:.map=.pbf)" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
 			"$(OSMOSIS_BOUNDING)" \
-			"$(MAPWITER_THREADS)" \
+			"$(MAPWRITER_THREADS)" \
 			"zh,en" \
 			"osm_scripts/gpx-mapping.xml" \
 			"$(VERSION) / (c) Map: Happyman" \
@@ -822,7 +836,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$@" \
 			"$(OSMOSIS_CMD)" \
 			"$(OSMOSIS_BOUNDING)" \
-			"$(MAPWITER_THREADS)" \
+			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
 			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: $(DEM_NAME)" \

@@ -23,13 +23,13 @@ INSTALL_DIR=install/v$(date +%Y.%m.%d)
 rm -rf ${INSTALL_DIR}
 mkdir -p ${INSTALL_DIR}
 
-if [[ "${TARGET}" == *"suites" ]]; then
+if [[ "${TARGET}" == *"suites"* ]]; then
     make INSTALL_DIR=/workspace/${INSTALL_DIR} ${TARGET}
     make exps || echo make exps failed
     cd ${INSTALL_DIR}
     tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
     rclone copy ${RCLONE_OPTS} . rudybox:Apps/share-mapdata/
-    echo "Completed with weeekly drop."
+    echo "Completed with weekly drop."
 elif [ "${TARGET}" == "daily" ]; then
     make INSTALL_DIR=/workspace/${INSTALL_DIR} ${TARGET}
     make exps || echo make exps failed
@@ -44,5 +44,5 @@ elif [ "${TARGET}" == "world" ]; then
         rclone copy ${RCLONE_OPTS} . rudybox:Apps/share-mapdata/
 	cd ..
     done
-    echo "Completed with weely world drop."
+    echo "Completed with weekly world drop."
 fi

@@ -21,7 +21,7 @@ BINARY_EXTS="map|poi|img|db"
 # Intermediate build artifacts to exclude from comparison (contain BUILD_DIR paths)
 # These are generated config files, not final outputs
 # Note: Using -iname for case-insensitive matching where needed
-EXCLUDE_PATTERN="-name *.cfg -o -name *.args -o -name *.txt -o -name *.nsi -o -name .*.done -o -iname *.typ -o -name *.article -o -name *.list -o -name *.poly -o -name *.log"
+EXCLUDE_PATTERN=(-name '*.cfg' -o -name '*.args' -o -name '*.txt' -o -name '*.nsi' -o -name '.*.done' -o -iname '*.typ' -o -name '*.article' -o -name '*.list' -o -name '*.poly' -o -name '*.log')
 
 echo "=========================================="
 echo "Comparing: $DIR1 vs $DIR2"
@@ -45,8 +45,8 @@ LIST1=$(mktemp)
 LIST2=$(mktemp)
 trap "rm -f $LIST1 $LIST2" EXIT
 
-(cd "$DIR1" && find . -type f ! \( $EXCLUDE_PATTERN \) | sort) > "$LIST1"
-(cd "$DIR2" && find . -type f ! \( $EXCLUDE_PATTERN \) | sort) > "$LIST2"
+(cd "$DIR1" && find . -type f ! \( "${EXCLUDE_PATTERN[@]}" \) | sort) > "$LIST1"
+(cd "$DIR2" && find . -type f ! \( "${EXCLUDE_PATTERN[@]}" \) | sort) > "$LIST2"
 
 if diff -q "$LIST1" "$LIST2" > /dev/null 2>&1; then
     echo -e "${GREEN}✓ File lists are identical${NC}"
@@ -71,8 +71,8 @@ SIZE1=$(mktemp)
 SIZE2=$(mktemp)
 trap "rm -f $LIST1 $LIST2 $SIZE1 $SIZE2" EXIT
 
-(cd "$DIR1" && find . -type f ! -name "*.zip" ! \( $EXCLUDE_PATTERN \) -exec stat -c "%n %s" {} \; | sort) > "$SIZE1"
-(cd "$DIR2" && find . -type f ! -name "*.zip" ! \( $EXCLUDE_PATTERN \) -exec stat -c "%n %s" {} \; | sort) > "$SIZE2"
+(cd "$DIR1" && find . -type f ! -name "*.zip" ! \( "${EXCLUDE_PATTERN[@]}" \) -exec stat -c "%n %s" {} \; | sort) > "$SIZE1"
+(cd "$DIR2" && find . -type f ! -name "*.zip" ! \( "${EXCLUDE_PATTERN[@]}" \) -exec stat -c "%n %s" {} \; | sort) > "$SIZE2"
 
 if diff -q "$SIZE1" "$SIZE2" > /dev/null 2>&1; then
     echo -e "${GREEN}✓ File sizes are identical${NC}"
@@ -136,13 +136,13 @@ if [[ -n "$ZIP_FILES" ]]; then
                 else
                     echo -e "${RED}✗ $zipfile${NC}"
                     diff -rq "$ZIP_TEMP/dir1" "$ZIP_TEMP/dir2" 2>/dev/null | head -10
-                    ((ZIP_DIFF_COUNT++))
+                    ZIP_DIFF_COUNT=$((ZIP_DIFF_COUNT+1))
                 fi
             fi
             rm -rf "$ZIP_TEMP/dir1" "$ZIP_TEMP/dir2"
         else
             echo -e "${YELLOW}⚠ $zipfile missing in $DIR2${NC}"
-            ((ZIP_DIFF_COUNT++))
+            ZIP_DIFF_COUNT=$((ZIP_DIFF_COUNT+1))
         fi
     done
     
@@ -165,10 +165,10 @@ MD5_2=$(mktemp)
 trap "rm -rf $LIST1 $LIST2 $SIZE1 $SIZE2 $ZIP_TEMP $MD5_1 $MD5_2" EXIT
 
 echo "Computing checksums for $DIR1..."
-(cd "$DIR1" && find . -type f ! -name "*.zip" ! \( $EXCLUDE_PATTERN \) -exec md5sum {} \; | sort) > "$MD5_1"
+(cd "$DIR1" && find . -type f ! -name "*.zip" ! \( "${EXCLUDE_PATTERN[@]}" \) -exec md5sum {} \; | sort) > "$MD5_1"
 
 echo "Computing checksums for $DIR2..."
-(cd "$DIR2" && find . -type f ! -name "*.zip" ! \( $EXCLUDE_PATTERN \) -exec md5sum {} \; | sort) > "$MD5_2"
+(cd "$DIR2" && find . -type f ! -name "*.zip" ! \( "${EXCLUDE_PATTERN[@]}" \) -exec md5sum {} \; | sort) > "$MD5_2"
 
 if diff -q "$MD5_1" "$MD5_2" > /dev/null 2>&1; then
     echo -e "${GREEN}✓ All non-ZIP checksums are identical${NC}"

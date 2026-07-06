@@ -3,7 +3,7 @@ ifeq ($(SUITE),kumano_bc_dem)
 REGION := Kumano
 DEM_NAME := AW3D30
 READING_LANG := ja
-LANG := zh
+MAP_LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_kumano_10_100_500.pbf
 EXTRACT_FILE := japan-latest

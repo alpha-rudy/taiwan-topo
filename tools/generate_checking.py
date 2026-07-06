@@ -49,14 +49,13 @@ def parse_makefile(suite_name):
         content = f.read()
     
     # Extract key variables using regex.
-    # The display language is MAP_LANG in new suites; legacy suites still use
-    # LANG. Both are anchored at line start so they do not also match
-    # READING_LANG, which would otherwise capture the native script language
-    # (e.g. de) instead of the display language (zh).
+    # MAP_LANG is anchored at line start so it does not also match READING_LANG,
+    # which would otherwise capture the native script language (e.g. de) instead
+    # of the display language (zh).
     patterns = {
         'REGION': r'^REGION\s*:=\s*(\S+)',
         'DEM_NAME': r'^DEM_NAME\s*:=\s*(\S+)',
-        'LANG': r'^(?:MAP_)?LANG\s*:=\s*(\S+)',
+        'MAP_LANG': r'^MAP_LANG\s*:=\s*(\S+)',
         'TOPO_PAGE': r'^TOPO_PAGE\s*:=\s*(\S+)',
         'TARGETS': r'^TARGETS\s*:=\s*(.+)',
     }
@@ -73,7 +72,7 @@ def generate_config(suite_name, mk_config, label=None):
     """Generate the checking configuration for a suite."""
     region = mk_config.get('REGION', suite_name.capitalize())
     dem_name = mk_config.get('DEM_NAME', 'AW3D30')
-    lang = mk_config.get('LANG', 'en')
+    lang = mk_config.get('MAP_LANG', 'en')
     topo_page = mk_config.get('TOPO_PAGE', f'{suite_name}_topo')
     
     # Use provided label or derive from region
@@ -102,7 +101,7 @@ def generate_config(suite_name, mk_config, label=None):
         f"{carto_name}_dem.cpkg",
         f"{carto_name}_upgrade.cpkg",
         f"{carto_name}_all.cpkg",
-        # Garmin files - native language (LANG=zh has no suffix in NSIS installer)
+        # Garmin files - native language (MAP_LANG=zh has no suffix in NSIS installer)
         f"gmapsupp_{region}_{dem_name.lower()}_{lang}_camp3D.img.zip",
         f"Install_{dem_name}_{region}_TOPO_camp3D.exe" if lang == 'zh' else f"Install_{dem_name}_{region}_TOPO_camp3D_{lang}.exe",
         f"{region}_{dem_name.lower()}_{lang}_camp3D.gmap.zip",
@@ -177,7 +176,7 @@ the suite definition files in suites/<suite>/<suite>.mk.
 Required makefile variables:
   REGION      - Region name (e.g., Fujisan, Kashmir)
   DEM_NAME    - DEM source (e.g., AW3D30, MOI)
-  LANG        - Native language code (e.g., ja, ne, hi, zh)
+  MAP_LANG    - Native language code (e.g., ja, ne, hi, zh)
   TOPO_PAGE   - HTML page name (e.g., fujisan_topo)
 
 Examples:
@@ -224,9 +223,9 @@ Available suites: {', '.join(available_suites) if available_suites else '(none f
             try:
                 mk_config = parse_makefile(suite)
                 region = mk_config.get('REGION', '?')
-                lang = mk_config.get('LANG', '?')
+                lang = mk_config.get('MAP_LANG', '?')
                 dem = mk_config.get('DEM_NAME', '?')
-                print(f"  {suite:15} REGION={region}, LANG={lang}, DEM={dem}")
+                print(f"  {suite:15} REGION={region}, MAP_LANG={lang}, DEM={dem}")
             except Exception as e:
                 print(f"  {suite:15} (error: {e})")
         return 0

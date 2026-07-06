@@ -2,7 +2,7 @@
 ifeq ($(SUITE),kyushu_srtm3_en_bw)
 REGION := Kyushu
 DEM_NAME := SRTM3
-LANG := en
+MAP_LANG := en
 CODE_PAGE := 950
 #CODE_PAGE := 1252
 ELEVATION_FILE = ele_japan_10_100_500_view1,view3.o5m

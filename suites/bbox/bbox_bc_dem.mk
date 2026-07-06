@@ -2,7 +2,7 @@
 # REGION: specify your REGION name for bbox
 ifeq ($(SUITE),bbox_bc_dem)
 DEM_NAME := MOI
-LANG := zh
+MAP_LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
 EXTRACT_FILE := taiwan-latest
