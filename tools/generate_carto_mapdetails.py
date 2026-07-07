@@ -254,9 +254,12 @@ def main(region, dem_name, map_lat, map_lon, build_dir, dem_name_lower, auto_est
     if dem_name_lower is None:
         dem_name_lower = dem_name.lower()
     
-    # Determine build directory
+    # Determine build directory. The Makefile SUITE_BUILD macro builds into
+    # build-<region_lower>, where region_lower is the display name lowercased
+    # with hyphens turned into underscores (e.g. Nikko-Oze -> build-nikko_oze).
     if build_dir is None:
-        build_dir = f"build-{dem_name_lower}"
+        region_lower = region.lower().replace('-', '_')
+        build_dir = f"build-{region_lower}"
     
     output_dir = f"auto-install/carto/{region}"
     if not os.path.exists(output_dir):
