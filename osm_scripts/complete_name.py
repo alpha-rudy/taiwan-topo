@@ -222,6 +222,11 @@ def to_traditional_jp(text):
 _JA_TO_ZH_TRANS = str.maketrans({'ノ': '之', 'の': '之',
                                  'ヶ': None, 'ヵ': None, 'ケ': None})
 
+# Every hiragana/katakana codepoint (incl. halfwidth), for stripping kana out
+# of a name before checking whether the rest is Chinese+Latin only.
+_KANA_STRIP = {c: None for c in range(0x3040, 0x3100)}
+_KANA_STRIP.update({c: None for c in range(0xFF66, 0xFFA0)})
+
 
 def ja_name_to_zh(text):
     """Derive a name:zh candidate from a Japanese kanji name, or None.
@@ -1023,16 +1028,26 @@ def complete_name_zh(d):
     # name:cn is Simplified -> convert to Traditional (Taiwan)
     name_cn_t = to_traditional(name_cn) if name_cn else None
 
+    # A Japanese name mixing kanji with unconvertible kana (祈りの道) cannot be
+    # cleanly converted, but for a Traditional-Chinese reader the original
+    # kanji-bearing name is far more readable than its romanization - keep it
+    # verbatim instead of falling through to the Latin name:en.
+    name_ja_mixed = None
+    if name and has_chinese_chars(name) and has_japanese_kana(name) \
+            and is_chinese_latin_only(name.translate(_KANA_STRIP)):
+        name_ja_mixed = name
+
     if READING_LANG == 'zh':
         candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'), (name_filtered, 'name'),
                       (name_hant, 'name:zh-Hant'), (name_hans_t, 'name:zh-Hans'),
-                      (name_cn_t, 'name:cn'), (name_ja, 'name:ja'),
-                      (brand_zh, 'brand'), (name_en, 'name:en')]
+                      (name_cn_t, 'name:cn'), (name_ja, 'name:ja'), (brand_zh, 'brand'),
+                      (name_ja_mixed, 'name-kana'), (name_en, 'name:en')]
     else:
         candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'),
                       (name_hant, 'name:zh-Hant'), (name_hans_t, 'name:zh-Hans'),
                       (name_cn_t, 'name:cn'), (name_ja, 'name:ja'),
-                      (name_filtered, 'name'), (brand_zh, 'brand'), (name_en, 'name:en')]
+                      (name_filtered, 'name'), (brand_zh, 'brand'),
+                      (name_ja_mixed, 'name-kana'), (name_en, 'name:en')]
 
     for value, source in candidates:
         if value:
@@ -1103,7 +1118,8 @@ def print_stats():
     """Report how many objects each tag was filled for, broken down by source."""
     # Stable, priority-ordered source list (union of both tags' sources)
     order = ['wikidata', 'wikipedia', 'int_name', 'latin_name', 'brand', 'romanize',
-             'other_name', 'name', 'name:zh-Hant', 'name:zh-Hans', 'name:cn', 'name:ja', 'name:en']
+             'other_name', 'name', 'name-kana', 'name:zh-Hant', 'name:zh-Hans',
+             'name:cn', 'name:ja', 'name:en']
     print("=== complete_name.py fill summary (READING_LANG=%s, wikidata=%s) ==="
           % (READING_LANG, 'on' if has_wikidata else 'off'), file=sys.stderr)
     for tag in ('name:en', 'name:zh'):
