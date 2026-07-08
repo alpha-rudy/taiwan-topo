@@ -1,5 +1,5 @@
-Yakushima Region
-================
+Mononoke Forest - Yakushima / 魔法之森 - 屋久島登山地圖（大隅諸島）
+==================================================================
 
 AW3D30.OSM - Yakushima TOPO v__version__
 
