@@ -35,6 +35,13 @@ import json
 import click
 
 
+def map_base_name(dem_name, region_name):
+    """Mapsforge base name. No-DEM regions drop the DEM_NAME prefix."""
+    if dem_name:
+        return map_base_name(dem_name, region_name)
+    return f"OSM_{region_name}_TOPO_Rudy"
+
+
 def estimate_sizes_from_build(build_dir, dem_name, region):
     """
     Estimate extracted_size_mb values from build directory.
@@ -45,8 +52,8 @@ def estimate_sizes_from_build(build_dir, dem_name, region):
     - style_size: Style zip file (typically 6MB)
     - all_size: Sum of all components
     """
-    map_name = f"{dem_name}_OSM_{region}_TOPO_Rudy"
-    
+    map_name = map_base_name(dem_name, region)
+
     # Try to find the main files
     map_file = os.path.join(build_dir, f"{map_name}.map")
     poi_file = os.path.join(build_dir, f"{map_name}.poi")
@@ -97,11 +104,11 @@ def create_all_json(dem_name, region_name, map_lat, map_lon, all_size):
         "elevationdata": ["*.hgt"],
         "maps": [
             {
-                "name": f"{dem_name}_OSM_{region_name}_TOPO_Rudy",
-                "file": f"{dem_name}_OSM_{region_name}_TOPO_Rudy.map",
+                "name": map_base_name(dem_name, region_name),
+                "file": f"{map_base_name(dem_name, region_name)}.map",
                 "type": "map",
                 "load_in_layer": 0,
-                "uniqueId": f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
+                "uniqueId": map_base_name(dem_name, region_name)
             }
         ],
         "styles": [
@@ -113,9 +120,9 @@ def create_all_json(dem_name, region_name, map_lat, map_lon, all_size):
         ],
         "overlays": [
             {
-                "file": f"{dem_name}_OSM_{region_name}_TOPO_Rudy.poi",
+                "file": f"{map_base_name(dem_name, region_name)}.poi",
                 "load": False,
-                "uniqueId": f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
+                "uniqueId": map_base_name(dem_name, region_name)
             }
         ],
         "commands": [
@@ -136,18 +143,18 @@ def create_map_json(dem_name, region_name, map_lat, map_lon, map_size):
         "extracted_size_mb": map_size,
         "maps": [
             {
-                "name": f"{dem_name}_OSM_{region_name}_TOPO_Rudy",
-                "file": f"{dem_name}_OSM_{region_name}_TOPO_Rudy.map",
+                "name": map_base_name(dem_name, region_name),
+                "file": f"{map_base_name(dem_name, region_name)}.map",
                 "type": "map",
                 "load_in_layer": 0,
-                "uniqueId": f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
+                "uniqueId": map_base_name(dem_name, region_name)
             }
         ],
         "overlays": [
             {
-                "file": f"{dem_name}_OSM_{region_name}_TOPO_Rudy.poi",
+                "file": f"{map_base_name(dem_name, region_name)}.poi",
                 "load": False,
-                "uniqueId": f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
+                "uniqueId": map_base_name(dem_name, region_name)
             }
         ],
         "commands": [
@@ -192,11 +199,11 @@ def create_upgrade_json(dem_name, region_name, map_lat, map_lon, all_size):
         "extracted_size_mb": all_size,
         "maps": [
             {
-                "name": f"{dem_name}_OSM_{region_name}_TOPO_Rudy",
-                "file": f"{dem_name}_OSM_{region_name}_TOPO_Rudy.map",
+                "name": map_base_name(dem_name, region_name),
+                "file": f"{map_base_name(dem_name, region_name)}.map",
                 "type": "map",
                 "load_in_layer": 0,
-                "uniqueId": f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
+                "uniqueId": map_base_name(dem_name, region_name)
             }
         ],
         "styles": [
@@ -208,9 +215,9 @@ def create_upgrade_json(dem_name, region_name, map_lat, map_lon, all_size):
         ],
         "overlays": [
             {
-                "file": f"{dem_name}_OSM_{region_name}_TOPO_Rudy.poi",
+                "file": f"{map_base_name(dem_name, region_name)}.poi",
                 "load": False,
-                "uniqueId": f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
+                "uniqueId": map_base_name(dem_name, region_name)
             }
         ],
         "commands": [
@@ -236,8 +243,12 @@ def create_upgrade_json(dem_name, region_name, map_lat, map_lon, all_size):
 @click.option('--all-size', type=int, default=None, help='All package size in MB (auto-estimated if not provided)')
 @click.option('--dem-size', type=int, default=None, help='DEM package size in MB (auto-estimated if not provided)')
 @click.option('--style-size', type=int, default=None, help='Style package size in MB (default: 6)')
-def main(region, dem_name, map_lat, map_lon, build_dir, dem_name_lower, auto_estimate, 
-         map_size, all_size, dem_size, style_size):
+@click.option('--no-elevation', is_flag=True, default=False,
+              help='Region without HGT/DEM: only emit map/style/upgrade json '
+                   '(skip dem.json and all.json, which reference *.hgt) and drop the DEM_NAME '
+                   'prefix. Note: carto_all must be re-enabled in the suite TARGETS to use these.')
+def main(region, dem_name, map_lat, map_lon, build_dir, dem_name_lower, auto_estimate,
+         map_size, all_size, dem_size, style_size, no_elevation):
     """
     Generate CartoType mapdetails.json files for a region suite.
     
@@ -253,6 +264,9 @@ def main(region, dem_name, map_lat, map_lon, build_dir, dem_name_lower, auto_est
     """
     if dem_name_lower is None:
         dem_name_lower = dem_name.lower()
+
+    # No-DEM regions drop the DEM_NAME token from all map file names.
+    carto_dem = '' if no_elevation else dem_name
     
     # Determine build directory. The Makefile SUITE_BUILD macro builds into
     # build-<region_lower>, where region_lower is the display name lowercased
@@ -275,7 +289,7 @@ def main(region, dem_name, map_lat, map_lon, build_dir, dem_name_lower, auto_est
             print(f"  Build directory: {build_dir}")
             print(f"  Auto-estimating sizes from build directory...\n")
             
-            estimated = estimate_sizes_from_build(build_dir, dem_name, region)
+            estimated = estimate_sizes_from_build(build_dir, carto_dem, region)
             
             # Use estimated values if not manually specified
             if map_size is None:
@@ -313,21 +327,28 @@ def main(region, dem_name, map_lat, map_lon, build_dir, dem_name_lower, auto_est
     
     # Create all JSON files
     files_data = {
-        "all.json": create_all_json(dem_name, region, map_lat, map_lon, all_size),
-        "map.json": create_map_json(dem_name, region, map_lat, map_lon, map_size),
+        "all.json": create_all_json(carto_dem, region, map_lat, map_lon, all_size),
+        "map.json": create_map_json(carto_dem, region, map_lat, map_lon, map_size),
         "style.json": create_style_json(),
         "dem.json": create_dem_json(dem_size),
-        "upgrade.json": create_upgrade_json(dem_name, region, map_lat, map_lon, all_size),
+        "upgrade.json": create_upgrade_json(carto_dem, region, map_lat, map_lon, all_size),
     }
-    
+
+    if no_elevation:
+        # No HGT/DEM: drop the elevation-bearing packages (all.json bundles *.hgt,
+        # dem.json is elevation only). Keep map/style/upgrade.
+        for f in ("all.json", "dem.json"):
+            files_data.pop(f, None)
+        print("  --no-elevation: skipping all.json and dem.json (no HGT/DEM data)\n")
+
     # Write each JSON file
     for filename, data in files_data.items():
         filepath = os.path.join(output_dir, filename)
         with open(filepath, 'w') as f:
             json.dump(data, f, indent='\t')
         print(f"  Generated {filepath}")
-    
-    print(f"\n✓ Successfully generated 5 mapdetails.json files for {region}")
+
+    print(f"\n✓ Successfully generated {len(files_data)} mapdetails.json files for {region}")
 
 
 if __name__ == "__main__":

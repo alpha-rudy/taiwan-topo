@@ -18,6 +18,7 @@ This document describes the step-by-step process for adding a new geographic reg
   - [Step 7: Generate Region Documentation](#step-7-generate-region-documentation)
   - [Step 8: Build the Suites](#step-8-build-the-suites)
   - [Step 9: Generate Mirror Checking Configuration](#step-9-generate-mirror-checking-configuration)
+- [Variant: Region Without Contours / HGT](#variant-region-without-contours--hgt)
 - [Generated Files Summary](#generated-files-summary)
 - [Commit Example](#commit-example)
 
@@ -46,6 +47,14 @@ A suite is a specific build configuration for a region. Each region typically ha
 2. **Process**: Add elevation contours and POI data
 3. **Render**: Generate map tiles using mkgmap/mapsforge
 4. **Package**: Create distributable ZIP/CPKG files
+
+> **Regions without elevation:** a region can ship with *no contour lines and no
+> HGT/DEM* (the first example is `moscow`). The contour append (`Makefile:693-703`
+> plus the two `tools/*-input-build.sh` scripts) is skipped when the suite omits
+> `ELEVATION_FILE` / `ELEVATION_MIX_FILE`, and the Garmin build falls back to the
+> `map_nodem_*` path when `GMAPDEM` is unset. If that is what you want, follow
+> [Variant: Region Without Contours / HGT](#variant-region-without-contours--hgt)
+> instead of Steps 3–7 below.
 
 ---
 
@@ -220,6 +229,10 @@ Edit `docs/Taiwan/taiwan_topo.md` to list the new region:
 ```
 
 ---
+
+> **Skip this step** (and Steps 5 & 7's DEM/CartoType pieces) for a region
+> without contours/HGT — see
+> [Variant: Region Without Contours / HGT](#variant-region-without-contours--hgt).
 
 ### Step 3: Prepare HGT Elevation Data
 
@@ -435,6 +448,84 @@ Checking suite: nikko_oze (Nikko Oze)
   ...
 All files synced successfully!
 ```
+
+---
+
+## Variant: Region Without Contours / HGT
+
+Some regions ship with **no contour lines and no HGT/DEM elevation data** (the
+first example is `moscow`). The build supports this as a first-class variant,
+analogous to the existing no-DEM Garmin path — you do **not** prepare any HGT or
+elevation-PBF data.
+
+### What changes vs a normal region
+
+| Aspect | Normal region | No-elevation region |
+|--------|---------------|---------------------|
+| Suite vars | `ELEVATION_FILE`, `ELEVATION_MIX_FILE`, `HGT`, `GMAPDEM`, `DEM_NAME` set | all **omitted** |
+| Garmin suites | `<region>_bc_dem` / `_bc_dem_en` (DEM) | `<region>_bc` / `_bc_en` (nodem) |
+| Base `TARGETS` | includes `gts_all carto_all` | **drops** `gts_all` and `carto_all` (both hard-require `$(HGT)`) |
+| Contour merge | `ELEVATION` / `ELEVATION_MIX` appended into map inputs | skipped automatically |
+| File names | `AW3D30_OSM_<Region>...`, `gmapsupp_<Region>_aw3d30_zh_camp3D` | DEM token dropped: `OSM_<Region>...`, `gmapsupp_<Region>_zh_camp` |
+| Garmin style | `camp3D` | `camp` |
+| Data files (Step 3) | HGT zip + elevation PBFs required | **not needed** |
+| CartoType (Step 5) | 5 `.cpkg` packages | **skipped** (no `.cpkg` produced) |
+| Products | mapsforge, POI, Locus, Garmin, CartoType, GTS | mapsforge, POI, Locus, Garmin (nodem) |
+
+### How the build stays correct
+
+- The contour append is gated on the elevation vars: `$(GMAP_INPUT)` and
+  `$(MAPSFORGE_PBF)` depend on `$(if $(ELEVATION_FILE),$(ELEVATION))` /
+  `$(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX))` (`Makefile:693-703`), and
+  `gmap-input-build.sh` / `mapsforge-input-build.sh` skip the append when the
+  elevation argument is empty.
+- Garmin uses the `map_nodem_*` path automatically when `GMAPDEM` is empty
+  (`Makefile:117-126`).
+- The DEM_NAME token disappears from every generated file name because the
+  Makefile builds them from `DEM_PREFIX` / `DEM_INFIX` / `DEM_DOT`, which expand
+  to empty when `DEM_NAME` is unset (existing regions are unchanged).
+- The `install` HGT copy is soft (`-cp hgt/$(SUITE)_hgt*.zip`, `Makefile:265`),
+  so a missing HGT zip does not fail the install.
+
+### Generating a no-elevation region
+
+The generators take a `--no-elevation` flag that emits the stripped, correctly
+named output directly — no hand-editing required:
+
+```bash
+# Suites: omit ELEVATION_*/HGT/GMAPDEM/DEM_NAME, drop gts_all/carto_all, name the
+# Garmin suites _bc / _bc_en (nodem, "camp" style). MAPID pair auto-allocated.
+./tools/generate_suite.py --region Moscow --region-lower moscow --lang ru \
+    --extract-file central-fed-district-latest \
+    --left 36.03 --right 39.00 --bottom 54.94 --top 56.48 --no-elevation
+
+# Documentation: strips all HGT/DEM/contour/CartoType blocks + credits and drops
+# the DEM_NAME token / uses the "camp" style in file names.
+./tools/generate_topo_md.py --region Moscow --region-lower moscow \
+    --title "Moscow Region" --no-elevation
+
+# Locus XML: only the map + upgrade variants (skips dem / all) with the no-DEM name.
+./tools/generate_locus_xml.py --region Moscow --region-lower moscow --no-elevation
+
+# Mirror-check config: auto-detected from the suite .mk — no flag needed. It drops
+# the gts_all zip, .cpkg packages, HGT zip, dem/all Locus XML, and the DEM token.
+./tools/generate_checking.py moscow --label "Moscow"
+```
+
+`generate_carto_mapdetails.py` also accepts `--no-elevation` (emits only
+`map/style/upgrade` json without the DEM prefix), but because a no-elevation
+region has `carto_all` disabled, CartoType generation (Step 5) is normally
+**skipped entirely**.
+
+Since the suite `.mk` files omit `EXTRACT_URL`, add it manually for non-Asia
+regions exactly as in [Step 4](#step-4-generate-suite-definitions). Moscow uses
+`https://download.geofabrik.de/russia` with `central-fed-district-latest`.
+
+### Reference example
+
+`suites/moscow/` (`moscow.mk`, `moscow_bc.mk`, `moscow_bc_en.mk`) is the
+canonical no-elevation region — copy it the way `suites/elbrus/` is the reference
+for a Russia extract.
 
 ---
 

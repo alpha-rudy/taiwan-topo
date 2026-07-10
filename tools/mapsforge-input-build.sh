@@ -21,7 +21,7 @@ OSMCONVERT_BOUNDING="$5"
 BUILD_DIR="$6"
 OUTPUT="$7"
 
-if [ -z "$SED_PBF" ] || [ -z "$META" ] || [ -z "$ELEVATION_MIX" ] || [ -z "$OSMCONVERT_CMD" ] || [ -z "$BUILD_DIR" ] || [ -z "$OUTPUT" ]; then
+if [ -z "$SED_PBF" ] || [ -z "$META" ] || [ -z "$OSMCONVERT_CMD" ] || [ -z "$BUILD_DIR" ] || [ -z "$OUTPUT" ]; then
     echo "Usage: $0 <SED_PBF> <META> <ELEVATION_MIX> <OSMCONVERT_CMD> <OSMCONVERT_BOUNDING> <BUILD_DIR> <OUTPUT>"
     exit 1
 fi
@@ -41,8 +41,10 @@ cp "$SED_PBF" "$TEMP_FILE"
 # Append metadata
 OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$META"
 
-# Append elevation mix data
-OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION_MIX"
+# Append elevation mix data (skipped when no contour data is configured)
+if [ -n "$ELEVATION_MIX" ]; then
+    OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION_MIX"
+fi
 
 # Convert to final format with bounding
 $OSMCONVERT_CMD \

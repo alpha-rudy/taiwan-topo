@@ -1,7 +1,7 @@
 Moscow Region
 =============
 
-AW3D30.OSM - Moscow TOPO v__version__
+OSM - Moscow TOPO v__version__
 
 適合用在 Garmin / Android / iOS 上的離線地圖。
 
@@ -30,7 +30,7 @@ AW3D30.OSM - Moscow TOPO v__version__
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖
     > 安裝示範影片：https://youtu.be/HP6BXKdBUvg
-  * 主地圖，請貼網址: https://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip
+  * 主地圖，請貼網址: https://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip
   * 地圖樣式: 一樣
 
 * ![蛙弟](images/wadi.png =36x) 自動安裝
@@ -38,9 +38,9 @@ AW3D30.OSM - Moscow TOPO v__version__
     > 安裝示範影片：https://youtu.be/g8b15RPZ7nA
   * 傳統版
     * 離線地圖
-      > [[自動分流]](wadi-map://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip)
+      > [[自動分流]](wadi-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
+      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
+      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
       > 一樣
 
@@ -49,9 +49,9 @@ AW3D30.OSM - Moscow TOPO v__version__
     > 安裝示範影片：https://youtu.be/JsvP61CErYY
   * 傳統版
     * 離線地圖
-      > [[自動分流]](gts-map://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip)
+      > [[自動分流]](gts-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
+      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
+      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
       > [[自動分流]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
       > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
@@ -62,9 +62,9 @@ AW3D30.OSM - Moscow TOPO v__version__
     > 安卓 11(含) 以後：安裝示範影片：https://youtu.be/8hwJr4jMsE0 <br />
     > 安卓 10(含) 以前：安裝示範影片：https://youtu.be/GbBaePfk4cE
   * ![Map](images/OruxMaps_map.jpeg =36x) Map
-    > [[自動分流]](orux-map://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip)
+    > [[自動分流]](orux-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
+    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
+    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
     > [[自動分流]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
     > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
@@ -93,21 +93,21 @@ AW3D30.OSM - Moscow TOPO v__version__
     > * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     > * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy.map.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
   * ![POIv3](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 POIv3
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy.poi.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.poi.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.poi.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.poi.zip)
   * ![POIv2](images/Android.png =36x) Cartograph POIv2
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy_v2.poi.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy_v2.poi.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy_v2.poi.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy_v2.poi.zip)
   * ![LOCUS_POI](images/Android.png =36x) Locus POI
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Moscow_TOPO_Rudy.db.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy.db.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Moscow_TOPO_Rudy.db.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.db.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.db.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.db.zip)
   * ![Style](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 Style (0.4MB)
     > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
     > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
@@ -138,39 +138,39 @@ AW3D30.OSM - Moscow TOPO v__version__
       > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
       > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Moscow Region（適合 PC/Mac BaseCamp）
+* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp - Moscow Region（適合 PC/Mac BaseCamp）
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
     > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Moscow_aw3d30_zh_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Moscow_aw3d30_zh_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Moscow_aw3d30_zh_camp3D.img.zip)
-  * ![Map](images/Windows.png =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Moscow_TOPO_camp3D.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Moscow_TOPO_camp3D.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Moscow_TOPO_camp3D.exe)
-  * ![Map](images/macOS.png =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/Moscow_aw3d30_zh_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Moscow_aw3d30_zh_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Moscow_aw3d30_zh_camp3D.gmap.zip)
+  * ![Map](images/Garmin_large.jpeg =36x) camp
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Moscow_zh_camp.img.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Moscow_zh_camp.img.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Moscow_zh_camp.img.zip)
+  * ![Map](images/Windows.png =36x) camp
+    > [[自動分流]](https://rudymap.tw/Install_Moscow_TOPO_camp.exe) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_Moscow_TOPO_camp.exe) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_Moscow_TOPO_camp.exe)
+  * ![Map](images/macOS.png =36x) camp
+    > [[自動分流]](https://rudymap.tw/Moscow_zh_camp.gmap.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Moscow_zh_camp.gmap.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Moscow_zh_camp.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Moscow Region
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Moscow_aw3d30_en_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Moscow_aw3d30_en_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Moscow_aw3d30_en_camp3D.img.zip)
-  * ![Map](images/Windows.png =36x) en_camp3D
-    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Moscow_TOPO_camp3D_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Moscow_TOPO_camp3D_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Moscow_TOPO_camp3D_en.exe)
-  * ![Map](images/macOS.png =36x) en_camp3D
-    > [[自動分流]](https://rudymap.tw/Moscow_aw3d30_en_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Moscow_aw3d30_en_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Moscow_aw3d30_en_camp3D.gmap.zip)
+  * ![Map](images/Garmin_large.jpeg =36x) camp
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Moscow_en_camp.img.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Moscow_en_camp.img.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Moscow_en_camp.img.zip)
+  * ![Map](images/Windows.png =36x) en_camp
+    > [[自動分流]](https://rudymap.tw/Install_Moscow_TOPO_camp_en.exe) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_Moscow_TOPO_camp_en.exe) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_Moscow_TOPO_camp_en.exe)
+  * ![Map](images/macOS.png =36x) en_camp
+    > [[自動分流]](https://rudymap.tw/Moscow_en_camp.gmap.zip) /
+    > [[mirror kcwu]](https://moi.kcwu.csie.org/Moscow_en_camp.gmap.zip) /
+    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Moscow_en_camp.gmap.zip)
 
 ## 版權宣告
 

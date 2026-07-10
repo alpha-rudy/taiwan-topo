@@ -25,7 +25,64 @@ Example:
 """
 
 import os
+import re
 import click
+
+
+# Blocks removed for regions without contours / HGT (no_elevation). Each pattern
+# is matched against the raw template (before .format(), so {region}/{region_lower}
+# still appear literally). Patterns anchor at line-start (re.MULTILINE) and consume
+# the block's own trailing newlines only (never a leading newline, which would merge
+# the block into its neighbour), and are anchored on stable text so unrelated
+# sections that share a label (e.g. "三合一", "高程檔") are not touched.
+NO_ELEVATION_STRIP_PATTERNS = [
+    # 山林日誌: 地形渲染 (HGT) line
+    r'^  \* 地形渲染，請貼網址: https://rudymap\.tw/\{region_lower\}_hgtmix\.zip\n',
+    # 蛙弟 (wadi): 三合一 (all bundle) and 高程檔 (HGT)
+    r'^    \* 三合一\n(?:      > [^\n]*wadi-all://[^\n]*\n){3}',
+    r'^    \* 高程檔\n(?:      > [^\n]*wadi-hgt://[^\n]*\n){3}',
+    # 綠野遊蹤 (GTS): 三合一 and 高程檔
+    r'^    \* 三合一\n(?:      > [^\n]*gts-all://[^\n]*\n){3}',
+    r'^    \* 高程檔\n(?:      > [^\n]*gts-hgt://[^\n]*\n){3}',
+    # OruxMaps: DEM item
+    r'^  \* !\[DEM\]\(images/OruxMaps_dem\.jpeg =36x\)[^\n]*\n(?:    > [^\n]*\n){3}',
+    # Locus: DEM item
+    r'^    \* !\[DEM\]\(images/Locus_dem\.jpeg =36x\)[^\n]*\n(?:      > [^\n]*\n){3}',
+    # Locus: 三合一 (all) item
+    r'^  \* 三合一\n    \* !\[Map\]\(images/Locus\.jpeg =36x\) 首次安裝\n(?:      > [^\n]*\n){3}',
+    # Cartograph: entire block + its trailing blank line (all packages are .cpkg)
+    r'^\* !\[Cartograph\]\(images/Cartograph\.png =36x\).*?\n\n(?=\* !\[Android\])',
+    # Mapsforge manual section: 30m HGT item
+    r'^  \* !\[DEM\]\(images/Android\.png =36x\)!\[iOS\]\(images/macOS\.png =36x\) 30m HGT\n(?:    > [^\n]*\n){3}',
+    # Copyright: JAXA AW3D30 credit and Contour Lines tool credit (each + trailing blank)
+    r'^\* JAXA ALOS World 3D - 30m \(AW3D30\) Version 4\.1.*?\n\n(?=\* GMAP Styles and TYP)',
+    r'^\* Tool of Contour Lines: gdal and phyghtmap.*?\n\n(?=\* Tools of Maps)',
+]
+
+
+def strip_elevation_blocks(template):
+    """Remove all HGT/DEM/contour/CartoType blocks from the raw template."""
+    for pattern in NO_ELEVATION_STRIP_PATTERNS:
+        template = re.sub(pattern, '', template, flags=re.DOTALL | re.MULTILINE)
+    return template
+
+
+# File-name token rewrites for no-elevation regions: drop the DEM_NAME token
+# (AW3D30 / aw3d30) and use the plain "camp" Garmin style instead of "camp3D".
+NO_ELEVATION_RENAMES = [
+    ('AW3D30_OSM_', 'OSM_'),
+    ('AW3D30.OSM', 'OSM'),
+    ('Install_AW3D30_', 'Install_'),
+    ('_aw3d30_', '_'),
+    ('camp3D', 'camp'),
+]
+
+
+def rename_no_elevation(text):
+    """Rewrite DEM/style file-name tokens for a no-elevation region."""
+    for old, new in NO_ELEVATION_RENAMES:
+        text = text.replace(old, new)
+    return text
 
 
 # Template for the main documentation structure
@@ -345,19 +402,30 @@ AW3D30.OSM - {region} TOPO v__version__
 @click.option('--title', required=True, help='Full title for documentation (e.g., Everest Region Climbing Map)')
 @click.option('--lang', required=False, hidden=True, default=None, help='Deprecated: native language code (no longer used for URLs)')
 @click.option('--hgt-files', default='N28E83, N28E84', help='HGT DEM files used (e.g., N28E83, N28E84)')
+@click.option('--no-elevation', is_flag=True, default=False,
+              help='Region without contours/HGT: strip all HGT/DEM/contour/CartoType '
+                   'download blocks and credits, and drop the DEM_NAME token / use "camp" style')
 @click.option('--dry-run', is_flag=True, default=False, help='Show what would be created without creating files')
-def main(region, region_lower, title, lang, hgt_files, dry_run):
+def main(region, region_lower, title, lang, hgt_files, no_elevation, dry_run):
     """Generate documentation markdown for a new TOPO map region."""
-    
+
     print(f"\n{'=' * 70}")
     print(f"Generating Documentation: {region} ({region_lower})")
     print(f"{'=' * 70}\n")
-    
+
     # Generate title underline
     title_underline = "=" * len(title)
-    
+
+    # Strip elevation-specific blocks and rewrite DEM/style file-name tokens first
+    # (operates on the raw template so the {region}/{region_lower} placeholders are
+    # still intact), then format.
+    if no_elevation:
+        template = rename_no_elevation(strip_elevation_blocks(TOPO_MD_TEMPLATE))
+    else:
+        template = TOPO_MD_TEMPLATE
+
     # Format the template with variables
-    content = TOPO_MD_TEMPLATE.format(
+    content = template.format(
         title=title,
         title_underline=title_underline,
         region=region,

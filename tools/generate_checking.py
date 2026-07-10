@@ -58,6 +58,9 @@ def parse_makefile(suite_name):
         'MAP_LANG': r'^MAP_LANG\s*:=\s*(\S+)',
         'TOPO_PAGE': r'^TOPO_PAGE\s*:=\s*(\S+)',
         'TARGETS': r'^TARGETS\s*:=\s*(.+)',
+        # HGT presence signals the region ships elevation data; absent for
+        # no-contour/no-HGT regions (e.g. moscow). Matched with '=' or ':='.
+        'HGT': r'^HGT\s*:?=\s*(\S+)',
     }
 
     for key, pattern in patterns.items():
@@ -79,42 +82,83 @@ def generate_config(suite_name, mk_config, label=None):
     if label is None:
         label = region
     
+    # Derive which product families this suite actually ships from its TARGETS
+    # and whether it defines HGT. A no-contour/no-HGT region (HGT unset, and
+    # gts_all/carto_all dropped from TARGETS, e.g. moscow) omits the gts_all
+    # zip, the CartoType .cpkg packages, the HGT zip, and the dem/all Locus XML.
+    targets = mk_config.get('TARGETS', '')
+    # If TARGETS is missing, fall back to the historical full set.
+    has_gts = ('gts_all' in targets) if targets else True
+    has_carto = ('carto_all' in targets) if targets else True
+    has_hgt = 'HGT' in mk_config
+
+    # A no-contour/no-HGT region ships without the DEM_NAME token in its file
+    # names and uses the plain "camp" Garmin style (vs "camp3D").
+    if not has_hgt:
+        dem_name = ''
+        style_name = 'camp'
+    else:
+        style_name = 'camp3D'
+    dem_prefix = f"{dem_name}_" if dem_name else ''
+    dem_infix = f"{dem_name.lower()}_" if dem_name else ''
+
     # Base name patterns
-    base_name = f"{dem_name}_OSM_{region}_TOPO_Rudy"
+    base_name = f"{dem_prefix}OSM_{region}_TOPO_Rudy"
     carto_name = f"{region}_carto"
-    
+
     # Generate file lists
     files = [
         # Index/HTML file
         f"{topo_page}.html",
         # Mapsforge files
         f"{base_name}.map.zip",
-        f"{base_name}.zip",
+    ]
+    if has_gts:
+        # gts_all bundle (map + themes + hgt)
+        files.append(f"{base_name}.zip")
+    files.extend([
         f"{base_name}_locus.zip",
         # POI files
         f"{base_name}.poi.zip",
         f"{base_name}_v2.poi.zip",
         f"{base_name}.db.zip",
+    ])
+    if has_carto:
         # Carto packages
-        f"{carto_name}_map.cpkg",
-        f"{carto_name}_style.cpkg",
-        f"{carto_name}_dem.cpkg",
-        f"{carto_name}_upgrade.cpkg",
-        f"{carto_name}_all.cpkg",
+        files.extend([
+            f"{carto_name}_map.cpkg",
+            f"{carto_name}_style.cpkg",
+            f"{carto_name}_dem.cpkg",
+            f"{carto_name}_upgrade.cpkg",
+            f"{carto_name}_all.cpkg",
+        ])
+    files.extend([
         # Garmin files - native language (MAP_LANG=zh has no suffix in NSIS installer)
-        f"gmapsupp_{region}_{dem_name.lower()}_{lang}_camp3D.img.zip",
-        f"Install_{dem_name}_{region}_TOPO_camp3D.exe" if lang == 'zh' else f"Install_{dem_name}_{region}_TOPO_camp3D_{lang}.exe",
-        f"{region}_{dem_name.lower()}_{lang}_camp3D.gmap.zip",
-    ]
+        f"gmapsupp_{region}_{dem_infix}{lang}_{style_name}.img.zip",
+        f"Install_{dem_prefix}{region}_TOPO_{style_name}.exe" if lang == 'zh' else f"Install_{dem_prefix}{region}_TOPO_{style_name}_{lang}.exe",
+        f"{region}_{dem_infix}{lang}_{style_name}.gmap.zip",
+    ])
 
     # Add English Garmin files if native language is not English
     if lang != 'en':
         files.extend([
-            f"gmapsupp_{region}_{dem_name.lower()}_en_camp3D.img.zip",
-            f"Install_{dem_name}_{region}_TOPO_camp3D_en.exe",
-            f"{region}_{dem_name.lower()}_en_camp3D.gmap.zip",
+            f"gmapsupp_{region}_{dem_infix}en_{style_name}.img.zip",
+            f"Install_{dem_prefix}{region}_TOPO_{style_name}_en.exe",
+            f"{region}_{dem_infix}en_{style_name}.gmap.zip",
         ])
-    
+
+    # exist_only: HGT zip and the dem/all Locus XML only exist for regions that
+    # ship elevation data.
+    exist_only = []
+    if has_hgt:
+        exist_only.append(f"{suite_name}_hgtmix.zip")
+    exist_only.append(f"{suite_name}_map-cedric.xml")
+    if has_hgt:
+        exist_only.append(f"{suite_name}_dem-cedric.xml")
+    exist_only.append(f"{suite_name}_upgrade-cedric.xml")
+    if has_hgt:
+        exist_only.append(f"{suite_name}_all-cedric.xml")
+
     config = {
         "name": suite_name,
         "label": label,
@@ -122,18 +166,10 @@ def generate_config(suite_name, mk_config, label=None):
             f"{topo_page}.html"
         ],
         "files": files,
-        "exist_only": [
-            # HGT/DEM file
-            f"{suite_name}_hgtmix.zip",
-            # Locus XML files (cedric mirror)
-            f"{suite_name}_map-cedric.xml",
-            f"{suite_name}_dem-cedric.xml",
-            f"{suite_name}_upgrade-cedric.xml",
-            f"{suite_name}_all-cedric.xml",
-        ],
+        "exist_only": exist_only,
         "check_today": False
     }
-    
+
     return config
 
 

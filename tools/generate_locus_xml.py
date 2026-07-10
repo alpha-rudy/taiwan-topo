@@ -5,6 +5,8 @@ import click
 
 # Configuration
 MAP_ZIP_TEMPLATE = "AW3D30_OSM_{REGION}_TOPO_Rudy_locus.zip"
+# No-DEM regions drop the DEM_NAME token from the map file name.
+MAP_ZIP_TEMPLATE_NO_ELEV = "OSM_{REGION}_TOPO_Rudy_locus.zip"
 STYLE_ZIP = "MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip"
 STYLE_DEST = "MOI_OSM_Taiwan_TOPO_Rudy_style.zip"
 HGT_ZIP_TEMPLATE = "{REGION_LOWER}_hgtmix.zip"
@@ -18,8 +20,8 @@ PROVIDERS = {
 
 VARIANTS = ["all", "map", "dem", "upgrade"]
 
-def get_xml_content(variant, base_url, region, region_lower):
-    map_zip = MAP_ZIP_TEMPLATE.format(REGION=region)
+def get_xml_content(variant, base_url, region, region_lower, map_zip_template=MAP_ZIP_TEMPLATE):
+    map_zip = map_zip_template.format(REGION=region)
     hgt_zip = HGT_ZIP_TEMPLATE.format(REGION_LOWER=region_lower)
     hgt_dest = HGT_DEST_TEMPLATE.format(REGION_LOWER=region_lower)
 
@@ -60,19 +62,24 @@ def get_xml_content(variant, base_url, region, region_lower):
 @click.command()
 @click.option('--region', required=True, help='The region name, e.g., Kashmir, Annapurna, Nikko-Oze')
 @click.option('--region-lower', required=True, help='The low-case region name, e.g., kashmir, annapurna, nikko_oze')
-def main(region, region_lower):    
+@click.option('--no-elevation', is_flag=True, default=False,
+              help='Region without HGT/DEM: only emit the map and upgrade variants '
+                   '(skip dem/all, which download the HGT zip) and drop the DEM_NAME token')
+def main(region, region_lower, no_elevation):
     output_dir = f"auto-install/locus/{region}"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-        
+
+    variants = ["map", "upgrade"] if no_elevation else VARIANTS
+    map_zip_template = MAP_ZIP_TEMPLATE_NO_ELEV if no_elevation else MAP_ZIP_TEMPLATE
     print(f"Generating Locus XML for suite (Region: {region}/{region_lower}) in {output_dir}")
 
     for provider, url in PROVIDERS.items():
-        for variant in VARIANTS:
+        for variant in variants:
             filename = f"{region_lower}_{variant}-{provider}.xml"
             path = os.path.join(output_dir, filename)
-            
-            map_zip = MAP_ZIP_TEMPLATE.format(REGION=region)
+
+            map_zip = map_zip_template.format(REGION=region)
             
             # Corrections for specific order matching Annapurna exactly
             if variant == "upgrade":
@@ -89,7 +96,7 @@ def main(region, region_lower):
   </download>\n"""
                 content += "</locusActions>\n"
             else:
-                content = get_xml_content(variant, url, region, region_lower)
+                content = get_xml_content(variant, url, region, region_lower, map_zip_template)
             
             with open(path, "w") as f:
                 f.write(content)

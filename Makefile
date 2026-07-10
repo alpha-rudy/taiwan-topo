@@ -77,6 +77,7 @@ include $(wildcard $(ROOT_DIR)/suites/alps_western/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/alps_fareast/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/yakushima/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/moscow/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 
 # Map display language. New suites set MAP_LANG; legacy suites still set LANG,
@@ -92,15 +93,22 @@ DUMMYID = 9999
 # Map description prefix; suites override (e.g. EuroPeak) in suites/*/*.mk
 DESC_PREFIX ?= RudyMap
 
+# Optional filename segments derived from DEM_NAME. They expand to "<token>_" /
+# "<token>." when a DEM source is set, or to "" for regions that ship without
+# contours/DEM (e.g. moscow) so the DEM token disappears from names instead of
+# leaving a stray separator.
+DEM_PREFIX := $(if $(DEM_NAME),$(DEM_NAME)_)
+DEM_DOT := $(if $(DEM_NAME),$(DEM_NAME).)
+
 # NAME_LONG feeds the Garmin map "description" (IMG header, max 50 chars)
 NAME_LONG ?= $(DESC_PREFIX) $(REGION) $(STYLE_NAME) v$(VERSION)
 
 ifeq ($(MAP_LANG),zh)
-NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
-NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)
+NAME_SHORT ?= $(DEM_DOT)OSM.$(STYLE_NAME) - $(REGION) TOPO v$(VERSION)
+NAME_WORD ?= $(DEM_PREFIX)$(REGION)_TOPO_$(STYLE_NAME)
 else
-NAME_SHORT ?= $(DEM_NAME).OSM.$(STYLE_NAME).$(MAP_LANG) - $(REGION) v$(VERSION)
-NAME_WORD ?= $(DEM_NAME)_$(REGION)_TOPO_$(STYLE_NAME)_$(MAP_LANG)
+NAME_SHORT ?= $(DEM_DOT)OSM.$(STYLE_NAME).$(MAP_LANG) - $(REGION) v$(VERSION)
+NAME_WORD ?= $(DEM_PREFIX)$(REGION)_TOPO_$(STYLE_NAME)_$(MAP_LANG)
 endif
 
 COMMON_TILES_DIR := $(BUILD_DIR)/$(REGION)/tiles
@@ -145,10 +153,12 @@ POI_MAPPING := $(ROOT_DIR)/osm_scripts/poi-mapping-v2.xml
 ADDR_MAPPING := $(ROOT_DIR)/osm_scripts/poi-addr-mapping.xml
 
 DEM_FIX := $(shell echo $(DEM_NAME) | tr A-Z a-z)
+# "<dem>_" when a DEM source is set, else "" (see DEM_PREFIX above)
+DEM_INFIX := $(if $(DEM_FIX),$(DEM_FIX)_)
 
-GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_FIX)_$(MAP_LANG)_$(STYLE_NAME).img
+GMAPSUPP := $(BUILD_DIR)/gmapsupp_$(REGION)_$(DEM_INFIX)$(MAP_LANG)_$(STYLE_NAME).img
 GMAPSUPP_ZIP := $(GMAPSUPP).zip
-GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_FIX)_$(MAP_LANG)_$(STYLE_NAME).gmap.zip
+GMAP := $(BUILD_DIR)/$(REGION)_$(DEM_INFIX)$(MAP_LANG)_$(STYLE_NAME).gmap.zip
 NSIS := $(BUILD_DIR)/Install_$(NAME_WORD).exe
 POI_V2 := $(BUILD_DIR)/$(NAME_MAPSFORGE)_v2.poi
 POI := $(BUILD_DIR)/$(NAME_MAPSFORGE).poi
@@ -262,7 +272,7 @@ install:
 	-[ -d docs/$(REGION)/gts ] && cp -r docs/$(REGION)/gts $(INSTALL_DIR) && \
 		cat docs/$(REGION)/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cp -r $(BUILD_DIR)/{*.zip,*.exe} $(INSTALL_DIR)
-	cp hgt/$(SUITE)_hgt*.zip $(INSTALL_DIR)
+	-cp hgt/$(SUITE)_hgt*.zip $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 
@@ -690,17 +700,17 @@ $(META): meta/meta.osm $(VERSION_STAMP)
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && cat $(ROOT_DIR)/meta/meta.osm | $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $@
 
-$(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(ELEVATION)
+$(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(if $(ELEVATION_FILE),$(ELEVATION))
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
-	$(TOOLS_DIR)/gmap-input-build.sh "$(REGION_EXTRACT)_name" "$(ELEVATION)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
+	$(TOOLS_DIR)/gmap-input-build.sh "$(REGION_EXTRACT)_name" "$(if $(ELEVATION_FILE),$(ELEVATION))" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
 
-$(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(ELEVATION_MIX) $(ADS_OSM)
+$(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX)) $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
-	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(ELEVATION_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
+	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX))" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
 
 
 #==============================================================================
@@ -839,7 +849,7 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
-			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors; DEM data: $(DEM_NAME)" \
+			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))" \
 			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12"
 
 .PHONY: pmtiles

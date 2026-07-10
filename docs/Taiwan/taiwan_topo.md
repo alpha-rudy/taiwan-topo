@@ -407,6 +407,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N30.16 ~ N30.93
     * 經度範圍: E129.83 ~ E131.16
+* Moscow, 莫斯科地區 (俄羅斯，無等高線與 HGT)
+  * https://rudymap.tw/moscow_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N54.94 ~ N56.48
+    * 經度範圍: E36.03 ~ E39.00
 
 ## 說明
 

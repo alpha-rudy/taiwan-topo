@@ -71,51 +71,83 @@ def find_next_mapid_pair(suites_dir="suites"):
 
 
 def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extract_file,
-                         left, right, bottom, top):
-    """Create the base mapsforge suite .mk file."""
-    return f"""# Suite: {region_lower} - {region} mapsforge build
+                         left, right, bottom, top, no_elevation=False):
+    """Create the base mapsforge suite .mk file.
+
+    When no_elevation is True the region ships no contour/HGT data: the
+    ELEVATION_FILE / ELEVATION_MIX_FILE / HGT / GTS_STYLE variables are omitted
+    (the build skips the contour append and the HGT-only targets), the
+    gts_all / carto_all targets are dropped, the Garmin suites are named
+    _bc / _bc_en (no DEM), and the DEM_NAME token is dropped from file names.
+    """
+    if no_elevation:
+        elevation_lines = ""
+        hgt_lines = ""
+        targets = "styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip locus_map"
+        garmin_suites = f"{region_lower}_bc {region_lower}_bc_en"
+        dem_name_line = ""
+        name_mapsforge = "OSM_$(REGION)_TOPO_Rudy"
+    else:
+        elevation_lines = (
+            f"ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf\n"
+            f"ELEVATION_MIX_FILE = ele_{region_lower}_10_100_500_mix.pbf\n"
+        )
+        hgt_lines = (
+            f"HGT := $(ROOT_DIR)/hgt/{region_lower}_hgtmix.zip\n"
+            f"GTS_STYLE = $(HS_STYLE)\n"
+        )
+        targets = "styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map"
+        garmin_suites = f"{region_lower}_bc_dem {region_lower}_bc_dem_en"
+        dem_name_line = f"DEM_NAME := {dem_name}\n"
+        name_mapsforge = "$(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy"
+    kind = "mapsforge build, no contours / no DEM" if no_elevation else "mapsforge build"
+    return f"""# Suite: {region_lower} - {region} {kind}
 ifeq ($(SUITE),{region_lower})
 REGION := {region}
-DEM_NAME := {dem_name}
-READING_LANG := {lang}
+{dem_name_line}READING_LANG := {lang}
 MAP_LANG := zh
 CODE_PAGE := {code_page}
-ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
-ELEVATION_MIX_FILE = ele_{region_lower}_10_100_500_mix.pbf
-EXTRACT_FILE := {extract_file}
+{elevation_lines}EXTRACT_FILE := {extract_file}
 BOUNDING_BOX := true
 LEFT := {left}
 RIGHT := {right}
 BOTTOM := {bottom}
 TOP := {top}
-NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
+NAME_MAPSFORGE := {name_mapsforge}
 NAME_CARTO := $(REGION)_carto
-HGT := $(ROOT_DIR)/hgt/{region_lower}_hgtmix.zip
-GTS_STYLE = $(HS_STYLE)
-TOPO_PAGE := {region_lower}_topo
-TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map
+{hgt_lines}TOPO_PAGE := {region_lower}_topo
+TARGETS := {targets}
 endif
 
 # Suite lists for batch builds
-{region_lower.upper()}_SUITES := {region_lower} {region_lower}_bc_dem {region_lower}_bc_dem_en
+{region_lower.upper()}_SUITES := {region_lower} {garmin_suites}
 # Instantiate suite targets for each region
 $(eval $(call SUITE_BUILD,{region_lower},{region_lower.upper()}_SUITES,$(ROOT_DIR)/install-{region_lower},{region_lower}))
 """
 
 
 def create_garmin_dem_suite_mk(region, region_lower, dem_name, lang, code_page, extract_file,
-                               left, right, bottom, top, mapid):
-    """Create a Garmin DEM basecamp suite .mk file."""
+                               left, right, bottom, top, mapid, no_elevation=False):
+    """Create a Garmin basecamp suite .mk file (zh).
+
+    With no_elevation the suite is named _bc (no DEM): ELEVATION_FILE, GMAPDEM and
+    DEM_NAME are omitted (contour append skipped, Garmin falls back to the
+    map_nodem_* path) and the plain "camp" style name is used.
+    """
     mapid_hex = f"0x{mapid:04x}"
-    return f"""# Suite: {region_lower}_bc_dem - {region} basecamp style with DEM
-ifeq ($(SUITE),{region_lower}_bc_dem)
+    suite = f"{region_lower}_bc" if no_elevation else f"{region_lower}_bc_dem"
+    desc = "basecamp style, no DEM" if no_elevation else "basecamp style with DEM"
+    elevation_line = "" if no_elevation else f"ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf\n"
+    gmapdem_line = "" if no_elevation else f"GMAPDEM := $(ROOT_DIR)/hgt/{region_lower}_hgtmix.zip\n"
+    dem_name_line = "" if no_elevation else f"DEM_NAME := {dem_name}\n"
+    style_name = "camp" if no_elevation else "camp3D"
+    return f"""# Suite: {suite} - {region} {desc}
+ifeq ($(SUITE),{suite})
 REGION := {region}
-DEM_NAME := {dem_name}
-READING_LANG := {lang}
+{dem_name_line}READING_LANG := {lang}
 MAP_LANG := zh
 CODE_PAGE := {code_page}
-ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
-EXTRACT_FILE := {extract_file}
+{elevation_line}EXTRACT_FILE := {extract_file}
 BOUNDING_BOX := true
 LEFT := {left}
 RIGHT := {right}
@@ -124,27 +156,30 @@ TOP := {top}
 TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
-STYLE_NAME := camp3D
-GMAPDEM := $(ROOT_DIR)/hgt/{region_lower}_hgtmix.zip
-MAPID := $(shell printf %d {mapid_hex})
+STYLE_NAME := {style_name}
+{gmapdem_line}MAPID := $(shell printf %d {mapid_hex})
 TARGETS := gmapsupp_zip gmap nsis
 endif
 """
 
 
 def create_garmin_dem_english_suite_mk(region, region_lower, dem_name, lang, extract_file,
-                                       left, right, bottom, top, mapid):
-    """Create a Garmin DEM basecamp English suite .mk file."""
+                                       left, right, bottom, top, mapid, no_elevation=False):
+    """Create a Garmin basecamp English suite .mk file."""
     mapid_hex = f"0x{mapid:04x}"
-    return f"""# Suite: {region_lower}_bc_dem_en - {region} basecamp style with DEM (English)
-ifeq ($(SUITE),{region_lower}_bc_dem_en)
+    suite = f"{region_lower}_bc_en" if no_elevation else f"{region_lower}_bc_dem_en"
+    desc = "basecamp style, no DEM (English)" if no_elevation else "basecamp style with DEM (English)"
+    elevation_line = "" if no_elevation else f"ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf\n"
+    gmapdem_line = "" if no_elevation else f"GMAPDEM := $(ROOT_DIR)/hgt/{region_lower}_hgtmix.zip\n"
+    dem_name_line = "" if no_elevation else f"DEM_NAME := {dem_name}\n"
+    style_name = "camp" if no_elevation else "camp3D"
+    return f"""# Suite: {suite} - {region} {desc}
+ifeq ($(SUITE),{suite})
 REGION := {region}
-DEM_NAME := {dem_name}
-READING_LANG := {lang}
+{dem_name_line}READING_LANG := {lang}
 MAP_LANG := en
 CODE_PAGE := 1252
-ELEVATION_FILE = ele_{region_lower}_10_100_500.pbf
-EXTRACT_FILE := {extract_file}
+{elevation_line}EXTRACT_FILE := {extract_file}
 BOUNDING_BOX := true
 LEFT := {left}
 RIGHT := {right}
@@ -153,9 +188,8 @@ TOP := {top}
 TYP := basecamp
 LR_STYLE := swisspopo
 HR_STYLE := basecamp
-STYLE_NAME := camp3D
-GMAPDEM := $(ROOT_DIR)/hgt/{region_lower}_hgtmix.zip
-MAPID := $(shell printf %d {mapid_hex})
+STYLE_NAME := {style_name}
+{gmapdem_line}MAPID := $(shell printf %d {mapid_hex})
 TARGETS := gmapsupp_zip gmap nsis
 endif
 """
@@ -221,9 +255,12 @@ Suitable for offline use on Garmin, Android, and iOS devices.
 @click.option('--code-page', type=int, default=65001, help='Character encoding (default: 65001 UTF-8)')
 @click.option('--mapid-native', default=None, help='MAPID for native language (hex, e.g., 1058)')
 @click.option('--mapid-english', default=None, help='MAPID for English (hex, e.g., 1048)')
+@click.option('--no-elevation', is_flag=True, default=False,
+              help='Region without contours/HGT: omit ELEVATION_*/HGT/GMAPDEM/DEM_NAME, drop '
+                   'gts_all/carto_all, name Garmin suites _bc/_bc_en (no DEM, "camp" style)')
 @click.option('--dry-run', is_flag=True, default=False, help='Show what would be created without creating files')
 def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom, top,
-         code_page, mapid_native, mapid_english, dry_run):
+         code_page, mapid_native, mapid_english, no_elevation, dry_run):
     """Generate suite .mk files for a new TOPO map region."""
     
     print(f"\n{'=' * 70}")
@@ -257,21 +294,25 @@ def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom
     # Generate suite files
     files_to_create = {}
     
+    bc_suffix = "_bc" if no_elevation else "_bc_dem"
+
     # Base mapsforge suite
     base_mk = create_base_suite_mk(region, region_lower, dem_name, lang, code_page,
-                                   extract_file, left, right, bottom, top)
+                                   extract_file, left, right, bottom, top,
+                                   no_elevation=no_elevation)
     files_to_create[f"{suite_dir}/{region_lower}.mk"] = base_mk
-    
-    # Garmin DEM suite (native language)
+
+    # Garmin suite (native language)
     garmin_mk = create_garmin_dem_suite_mk(region, region_lower, dem_name, lang, code_page,
-                                          extract_file, left, right, bottom, top, mapid_native)
-    files_to_create[f"{suite_dir}/{region_lower}_bc_dem.mk"] = garmin_mk
-    
-    # Garmin DEM suite (English)
+                                          extract_file, left, right, bottom, top, mapid_native,
+                                          no_elevation=no_elevation)
+    files_to_create[f"{suite_dir}/{region_lower}{bc_suffix}.mk"] = garmin_mk
+
+    # Garmin suite (English)
     garmin_en_mk = create_garmin_dem_english_suite_mk(region, region_lower, dem_name, lang,
                                                        extract_file, left, right, bottom, top,
-                                                       mapid_english)
-    files_to_create[f"{suite_dir}/{region_lower}_bc_dem_en.mk"] = garmin_en_mk
+                                                       mapid_english, no_elevation=no_elevation)
+    files_to_create[f"{suite_dir}/{region_lower}{bc_suffix}_en.mk"] = garmin_en_mk
     
     # Print preview and create files
     print(f"Files to be created:\n")
@@ -296,16 +337,20 @@ def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom
         print(f"    --extract-file {extract_file} \\")
         print(f"    --left {left} --right {right} --bottom {bottom} --top {top}")
     else:
+        bc = "_bc" if no_elevation else "_bc_dem"
         print(f"✓ Suite created successfully!")
         print(f"\nNext steps:")
         print(f"  1. Add suite include to Makefile:")
         print(f"     include $(wildcard $(ROOT_DIR)/suites/{region_lower}/*.mk)")
-        print(f"  2. Add batch build target to Makefile:")
-        print(f"     {region_lower.upper()}_SUITES := {region_lower} {region_lower}_bc_dem {region_lower}_bc_dem_en")
-        print(f"  3. Prepare data files:")
-        print(f"     - hgt/{region_lower}_hgtmix.zip")
-        print(f"     - download/osm_elevations/ele_{region_lower}_10_100_500.pbf")
-        print(f"     - download/osm_elevations/marker/ele_{region_lower}_10_100_500_mix.pbf")
+        print(f"  2. Batch build target (auto-registered by SUITE_BUILD):")
+        print(f"     {region_lower.upper()}_SUITES := {region_lower} {region_lower}{bc} {region_lower}{bc}_en")
+        if no_elevation:
+            print(f"  3. No elevation data needed (no HGT / no contour PBFs).")
+        else:
+            print(f"  3. Prepare data files:")
+            print(f"     - hgt/{region_lower}_hgtmix.zip")
+            print(f"     - download/osm_elevations/ele_{region_lower}_10_100_500.pbf")
+            print(f"     - download/osm_elevations/marker/ele_{region_lower}_10_100_500_mix.pbf")
         print(f"  4. Build the suite:")
         print(f"     make {region_lower}_suites")
     

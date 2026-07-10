@@ -19,7 +19,7 @@ OSMCONVERT_BOUNDING="$4"
 BUILD_DIR="$5"
 OUTPUT="$6"
 
-if [ -z "$REGION_EXTRACT_NAME" ] || [ -z "$ELEVATION" ] || [ -z "$OSMCONVERT_CMD" ] || [ -z "$BUILD_DIR" ] || [ -z "$OUTPUT" ]; then
+if [ -z "$REGION_EXTRACT_NAME" ] || [ -z "$OSMCONVERT_CMD" ] || [ -z "$BUILD_DIR" ] || [ -z "$OUTPUT" ]; then
     echo "Usage: $0 <REGION_EXTRACT_NAME> <ELEVATION> <OSMCONVERT_CMD> <OSMCONVERT_BOUNDING> <BUILD_DIR> <OUTPUT>"
     exit 1
 fi
@@ -36,8 +36,10 @@ rm -f "$OUTPUT"
 # Copy source file
 cp "${REGION_EXTRACT_NAME}.o5m" "$TEMP_FILE"
 
-# Append elevation data
-OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION"
+# Append elevation data (skipped when no contour data is configured)
+if [ -n "$ELEVATION" ]; then
+    OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION"
+fi
 
 # Convert to final format with bounding
 $OSMCONVERT_CMD \

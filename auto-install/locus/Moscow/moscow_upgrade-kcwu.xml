@@ -5,8 +5,8 @@
     <dest><![CDATA[/mapsVector/_themes/MOI_OSM_Taiwan_TOPO_Rudy_style.zip]]></dest>
   </download>
   <download>
-    <source><![CDATA[https://moi.kcwu.csie.org/AW3D30_OSM_Moscow_TOPO_Rudy_locus.zip ]]></source>
-    <dest><![CDATA[/mapsVector/AW3D30_OSM_Moscow_TOPO_Rudy_locus.zip ]]></dest>
+    <source><![CDATA[https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy_locus.zip ]]></source>
+    <dest><![CDATA[/mapsVector/OSM_Moscow_TOPO_Rudy_locus.zip ]]></dest>
     <after>extract|deleteSource|refreshMap</after>
   </download>
 </locusActions>
