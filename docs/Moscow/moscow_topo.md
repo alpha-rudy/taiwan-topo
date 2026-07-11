@@ -1,4 +1,4 @@
-CityTour - Moscow Core / 城市旅遊 - 莫斯科核心區
+CityTour - Moscow Core / 城市漫遊 - 莫斯科核心區
 =============================================
 
 OSM - Moscow TOPO v__version__
