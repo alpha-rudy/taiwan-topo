@@ -166,7 +166,8 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 			--code-page=$$(CODE_PAGE) \
 			--product-id=1 \
 			--family-id=$$(MAPID) \
-			$$(TYP).txt
+			$$(TYP).txt && \
+		rm -f osmmap.img osmmap.tdb
 	cd $3 && \
 		cp $$(TYP).typ $$(MAPID).TYP && \
 		mkdir $3/style && \

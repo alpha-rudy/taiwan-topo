@@ -78,6 +78,7 @@ include $(wildcard $(ROOT_DIR)/suites/alps_fareast/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/yakushima/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/moscow/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/saint_petersburg/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 
 # Map display language. New suites set MAP_LANG; legacy suites still set LANG,
@@ -488,7 +489,8 @@ $(GMAP): $(MAP_PC)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_PC_DIR) && \
-		rm -rf $@ && \
+		rm -rf $@ "OSM map.gmap" && \
+		rm -f osmmap.img osmmap.tdb && \
 		cat $(ROOT_DIR)/mkgmaps/jmc_cli.cfg | $(SED_CMD) \
 			-e "s|__map_dir__|$(MAP_PC_DIR)|g" \
 			-e "s|__name_word__|$(NAME_WORD)|g" \
