@@ -1,0 +1,26 @@
+{
+    "name": "saint_petersburg",
+    "label": "Saint Petersburg",
+    "indexes": [
+        "saint_petersburg_topo.html"
+    ],
+    "files": [
+        "saint_petersburg_topo.html",
+        "OSM_Saint-Petersburg_TOPO_Rudy.map.zip",
+        "OSM_Saint-Petersburg_TOPO_Rudy_locus.zip",
+        "OSM_Saint-Petersburg_TOPO_Rudy.poi.zip",
+        "OSM_Saint-Petersburg_TOPO_Rudy_v2.poi.zip",
+        "OSM_Saint-Petersburg_TOPO_Rudy.db.zip",
+        "gmapsupp_Saint-Petersburg_zh_camp.img.zip",
+        "Install_Saint-Petersburg_TOPO_camp.exe",
+        "Saint-Petersburg_zh_camp.gmap.zip",
+        "gmapsupp_Saint-Petersburg_en_camp.img.zip",
+        "Install_Saint-Petersburg_TOPO_camp_en.exe",
+        "Saint-Petersburg_en_camp.gmap.zip"
+    ],
+    "exist_only": [
+        "saint_petersburg_map-cedric.xml",
+        "saint_petersburg_upgrade-cedric.xml"
+    ],
+    "check_today": false
+}

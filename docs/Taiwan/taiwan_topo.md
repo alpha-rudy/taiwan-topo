@@ -412,6 +412,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N54.94 ~ N56.48
     * 經度範圍: E36.03 ~ E39.00
+* Saint Petersburg, 聖彼得堡地區 (俄羅斯，無等高線與 HGT)
+  * https://rudymap.tw/saint_petersburg_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N59.69 ~ N60.15
+    * 經度範圍: E29.99 ~ E30.62
 
 ## 說明
 

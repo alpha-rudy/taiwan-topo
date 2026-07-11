@@ -599,6 +599,18 @@ added Nikko Oze region
 
 6. **Missing elevation PBF files (`curl` downloads 162 bytes)**: The elevation files don't exist on the server for new regions. Generate them from HGT data and place them in `download/osm_elevations/` and `download/osm_elevations/marker/`, then create `.md5` checksums with `md5sum`. See Step 3.
 
+7. **`gmap` zip is empty / jmc_cli produces `OSM map.gmap`**: the TYP-compile step
+   used to leave default-named `osmmap.img`/`osmmap.tdb` in the map directory, and
+   `jmc_cli` picks the alphabetically-first `.tdb` — so any region whose
+   `NAME_WORD` sorts after "osmmap" (e.g. `Saint-Petersburg_...`; regions with an
+   `AW3D30_`/`MOI_` prefix always sorted first and were never affected) got its
+   `.gmap` named `OSM map.gmap`, and the follow-up rename/zip failed with
+   `errno=2 : No such file or directory`. Fixed in the build system (`macros.mk`
+   removes the stray files after the TYP compile; the `gmap` rule also cleans
+   them and any stale `OSM map.gmap` before running jmc_cli, so existing build
+   directories self-heal on re-run). If you see this on an old tree, delete
+   `osmmap.img osmmap.tdb` from the `*_hidem`/`*_nodemhr` directory and re-run.
+
 ### Getting Help
 
 - GitHub: https://github.com/alpha-rudy/taiwan-topo
