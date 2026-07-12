@@ -13,6 +13,9 @@ BOTTOM := 59.69
 TOP := 60.15
 NAME_MAPSFORGE := OSM_$(REGION)_TOPO_Rudy
 NAME_CARTO := $(REGION)_carto
+# Coastal region without contours: generate the mapsforge sea/nosea overlay
+# locally (normally carried by the kcwu ele_*_mix.pbf, which this suite omits)
+LANDSEA := true
 TOPO_PAGE := saint_petersburg_topo
 TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip locus_map
 endif

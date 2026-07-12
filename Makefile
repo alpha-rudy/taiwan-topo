@@ -139,6 +139,13 @@ endif
 #   osmconvert --drop-version file.osm.pbf -o=file.o5m
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
+# Mapsforge land/sea source: the kcwu elevation-mix files already contain the
+# natural=sea/nosea polygons, so regions with contours get sea from there.
+# Coastal regions built WITHOUT contours set LANDSEA := true in the suite to
+# generate the same scheme locally from the extract's coastline instead
+# (see tools/generate_landsea.py); landlocked ones leave both unset.
+LANDSEA_FILE = $(BUILD_DIR)/landsea_$(REGION).osm.pbf
+MAPSFORGE_MIX = $(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX),$(if $(LANDSEA),$(LANDSEA_FILE)))
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
 REGION_EXTRACT := $(BUILD_DIR)/latest-$(REGION)
 POI_EXTRACT := $(REGION_EXTRACT)-poi
@@ -708,11 +715,22 @@ $(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(if $(ELEVATION_FILE),$(ELEVATION))
 	-rm -rf $@
 	$(TOOLS_DIR)/gmap-input-build.sh "$(REGION_EXTRACT)_name" "$(if $(ELEVATION_FILE),$(ELEVATION))" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
 
-$(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX)) $(ADS_OSM)
+.PHONY: landsea
+landsea: $(LANDSEA_FILE)
+$(LANDSEA_FILE): $(REGION_EXTRACT)-sed.osm.pbf
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(LANDSEA)" ]
+	-rm -f $@
+	python3 $(TOOLS_DIR)/generate_landsea.py \
+		--input $< \
+		--output $@ \
+		--left $(LEFT) --bottom $(BOTTOM) --right $(RIGHT) --top $(TOP)
+
+$(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(MAPSFORGE_MIX) $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
-	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX))" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
+	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(MAPSFORGE_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
 
 
 #==============================================================================

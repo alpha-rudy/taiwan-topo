@@ -71,7 +71,7 @@ def find_next_mapid_pair(suites_dir="suites"):
 
 
 def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extract_file,
-                         left, right, bottom, top, no_elevation=False):
+                         left, right, bottom, top, no_elevation=False, landsea=False):
     """Create the base mapsforge suite .mk file.
 
     When no_elevation is True the region ships no contour/HGT data: the
@@ -101,6 +101,13 @@ def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extrac
         dem_name_line = f"DEM_NAME := {dem_name}\n"
         name_mapsforge = "$(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy"
     kind = "mapsforge build, no contours / no DEM" if no_elevation else "mapsforge build"
+    landsea_lines = ""
+    if landsea:
+        landsea_lines = (
+            "# Coastal region without contours: generate the mapsforge sea/nosea overlay\n"
+            "# locally (normally carried by the kcwu ele_*_mix.pbf, which this suite omits)\n"
+            "LANDSEA := true\n"
+        )
     return f"""# Suite: {region_lower} - {region} {kind}
 ifeq ($(SUITE),{region_lower})
 REGION := {region}
@@ -115,7 +122,7 @@ BOTTOM := {bottom}
 TOP := {top}
 NAME_MAPSFORGE := {name_mapsforge}
 NAME_CARTO := $(REGION)_carto
-{hgt_lines}TOPO_PAGE := {region_lower}_topo
+{hgt_lines}{landsea_lines}TOPO_PAGE := {region_lower}_topo
 TARGETS := {targets}
 endif
 
@@ -258,9 +265,13 @@ Suitable for offline use on Garmin, Android, and iOS devices.
 @click.option('--no-elevation', is_flag=True, default=False,
               help='Region without contours/HGT: omit ELEVATION_*/HGT/GMAPDEM/DEM_NAME, drop '
                    'gts_all/carto_all, name Garmin suites _bc/_bc_en (no DEM, "camp" style)')
+@click.option('--landsea', is_flag=True, default=False,
+              help='Coastal no-elevation region: emit LANDSEA := true so the mapsforge '
+                   'sea/nosea overlay is generated from the coastline (requires --no-elevation; '
+                   'regions with contours get sea from the kcwu mix file instead)')
 @click.option('--dry-run', is_flag=True, default=False, help='Show what would be created without creating files')
 def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom, top,
-         code_page, mapid_native, mapid_english, no_elevation, dry_run):
+         code_page, mapid_native, mapid_english, no_elevation, landsea, dry_run):
     """Generate suite .mk files for a new TOPO map region."""
     
     print(f"\n{'=' * 70}")
@@ -294,12 +305,16 @@ def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom
     # Generate suite files
     files_to_create = {}
     
+    if landsea and not no_elevation:
+        raise click.UsageError("--landsea only applies to --no-elevation regions "
+                               "(regions with contours get sea from the kcwu mix file)")
+
     bc_suffix = "_bc" if no_elevation else "_bc_dem"
 
     # Base mapsforge suite
     base_mk = create_base_suite_mk(region, region_lower, dem_name, lang, code_page,
                                    extract_file, left, right, bottom, top,
-                                   no_elevation=no_elevation)
+                                   no_elevation=no_elevation, landsea=landsea)
     files_to_create[f"{suite_dir}/{region_lower}.mk"] = base_mk
 
     # Garmin suite (native language)

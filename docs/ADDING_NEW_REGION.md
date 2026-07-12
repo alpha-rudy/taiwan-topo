@@ -487,6 +487,19 @@ elevation-PBF data.
 - The `install` HGT copy is soft (`-cp hgt/$(SUITE)_hgt*.zip`, `Makefile:265`),
   so a missing HGT zip does not fail the install.
 
+### Sea rendering (coastal no-elevation regions)
+
+The mapsforge sea is **not** computed by the map-writer — it comes from
+`natural=sea`/`natural=nosea` polygons that the kcwu `ele_*_mix.pbf` files
+carry for normal regions (see the `land_sea` entries in
+`osm_scripts/tag-mapping.xml`). A no-elevation region skips the mix file, so a
+**coastal** region would render without sea (Garmin is unaffected — mkgmap
+takes sea from `precomp-sea`). Set `LANDSEA := true` in the base suite (or pass
+`--landsea` to `generate_suite.py`): the build then generates the same
+sea/nosea scheme locally from the extract's `natural=coastline` ways via
+`tools/generate_landsea.py`. Landlocked regions (e.g. `moscow`) must leave it
+unset — the tool fails on purpose when the bbox contains no coastline.
+
 ### Generating a no-elevation region
 
 The generators take a `--no-elevation` flag that emits the stripped, correctly
@@ -495,6 +508,7 @@ named output directly — no hand-editing required:
 ```bash
 # Suites: omit ELEVATION_*/HGT/GMAPDEM/DEM_NAME, drop gts_all/carto_all, name the
 # Garmin suites _bc / _bc_en (nodem, "camp" style). MAPID pair auto-allocated.
+# Add --landsea for a coastal region (sea/nosea overlay from the coastline).
 ./tools/generate_suite.py --region Moscow --region-lower moscow --lang ru \
     --extract-file central-fed-district-latest \
     --left 36.03 --right 39.00 --bottom 54.94 --top 56.48 --no-elevation
@@ -610,6 +624,14 @@ added Nikko Oze region
    them and any stale `OSM map.gmap` before running jmc_cli, so existing build
    directories self-heal on re-run). If you see this on an old tree, delete
    `osmmap.img osmmap.tdb` from the `*_hidem`/`*_nodemhr` directory and re-run.
+
+8. **Garmin map shows sea but mapsforge doesn't** (coastal no-elevation region):
+   the mapsforge sea comes from `natural=sea`/`nosea` polygons normally carried
+   by the kcwu `ele_*_mix.pbf`, which no-elevation regions skip; Garmin's sea
+   comes from mkgmap `precomp-sea` and keeps working. Fix: set
+   `LANDSEA := true` in the base suite `.mk` and rebuild — the build generates
+   the sea/nosea overlay from the coastline via `tools/generate_landsea.py`.
+   See [Sea rendering](#sea-rendering-coastal-no-elevation-regions).
 
 ### Getting Help
 
