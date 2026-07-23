@@ -55,8 +55,8 @@ This region has some of the Indian Himalaya's most classic alpine-lake treks, kn
   * RudyMap Mirror Selector (Cedric Shih)
     * https://rudymap.tw/
   * Info pages:
-    * https://moi.kcwu.csie.org/kashmir_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/kashmir_topo.html (mirror Happyman)
+    * https://moi.kcwu.csie.org/kashmir_topo-en.html (mirror kcwu)
+    * https://map.happyman.idv.tw/rudy/kashmir_topo-en.html (mirror Happyman)
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 

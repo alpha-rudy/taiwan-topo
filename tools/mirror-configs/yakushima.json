@@ -2,10 +2,12 @@
     "name": "yakushima",
     "label": "Yakushima",
     "indexes": [
-        "yakushima_topo.html"
+        "yakushima_topo.html",
+        "yakushima_topo-en.html"
     ],
     "files": [
         "yakushima_topo.html",
+        "yakushima_topo-en.html",
         "AW3D30_OSM_Yakushima_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Yakushima_TOPO_Rudy.zip",
         "AW3D30_OSM_Yakushima_TOPO_Rudy_locus.zip",

@@ -2,10 +2,12 @@
     "name": "moscow",
     "label": "Moscow",
     "indexes": [
-        "moscow_topo.html"
+        "moscow_topo.html",
+        "moscow_topo-en.html"
     ],
     "files": [
         "moscow_topo.html",
+        "moscow_topo-en.html",
         "OSM_Moscow_TOPO_Rudy.map.zip",
         "OSM_Moscow_TOPO_Rudy_locus.zip",
         "OSM_Moscow_TOPO_Rudy.poi.zip",

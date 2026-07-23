@@ -2,10 +2,12 @@
     "name": "alps_fareast",
     "label": "Alps Fareast",
     "indexes": [
-        "alps_fareast_topo.html"
+        "alps_fareast_topo.html",
+        "alps_fareast_topo-en.html"
     ],
     "files": [
         "alps_fareast_topo.html",
+        "alps_fareast_topo-en.html",
         "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.zip",
         "AW3D30_OSM_Alps-Fareast_TOPO_Rudy_locus.zip",

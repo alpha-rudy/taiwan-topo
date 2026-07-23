@@ -215,6 +215,11 @@ include $(wildcard $(ROOT_DIR)/suites/nikko_oze/*.mk)
 
 **Location**: Add after the last existing regional include in the Makefile (before `include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)`)
 
+No further Makefile change is needed to get `<suite>_topo-en.html` built and
+installed — the `topo.md` and `install` targets already look for
+`docs/$(REGION)/$(SUITE)_topo-en.md` generically (for every suite) and build
+it alongside `<suite>_topo.html` whenever that file exists.
+
 ---
 
 ### Step 2: Update Main Documentation
@@ -224,8 +229,21 @@ Edit `docs/Taiwan/taiwan_topo.md` to list the new region:
 ```markdown
 * Nikko Oze, 日光尾瀨地區
   * https://rudymap.tw/nikko_oze_topo.html
-  * 涵蓋的長距離步道：
-    * ???
+  * 地圖範圍：
+    * 緯度範圍: N36.50 ~ N37.47
+    * 經度範圍: E138.68 ~ E139.86
+```
+
+Add the same entry to `docs/Taiwan/taiwan_topo-en.md` (the pure-English
+counterpart of the main doc) — **link to the `-en.html` page**, not the
+Chinese one, so English readers stay on English pages:
+
+```markdown
+* Nikko Oze
+  * https://rudymap.tw/nikko_oze_topo-en.html
+  * Map coverage: 
+    * Latitude range: N36.50 ~ N37.47
+    * Longitude range: E138.68 ~ E139.86
 ```
 
 ---
@@ -391,10 +409,14 @@ Generate the region's documentation page:
 |-----------|-------------|---------|
 | `--region` | Display name | `Nikko-Oze` |
 | `--region-lower` | Lowercase identifier | `nikko_oze` |
-| `--title` | Page title | `Nikko-Oze Region` |
+| `--title` | Page title (used verbatim as the `<h1>` in **both** the Chinese and English doc — restyle either afterward if you want, e.g. a more evocative English title) | `Nikko-Oze Region` |
 | `--hgt-files` | Comma-separated HGT file list | `N36E138, N36E139, ...` |
 
-**Output**: Creates `docs/Nikko-Oze/nikko_oze_topo.md`
+**Output**: Creates two files:
+- `docs/Nikko-Oze/nikko_oze_topo.md` — the primary (Chinese) doc
+- `docs/Nikko-Oze/nikko_oze_topo-en.md` — a pure-English counterpart, generated automatically by translating the shared boilerplate (installation instructions, mirror links, copyright notices, etc.) via a dictionary in `generate_topo_md.py`. Its "Info pages" mirror links already point at its own `_topo-en.html`, not the Chinese page.
+
+Both files start with **empty** `### 著名的山頭 (Famous Peaks)` / `### 著名的健行路線 (Famous Trekking Routes)` / `### 著名景點` / `### 歷史事件` sections (`### Famous Peaks` / `### Famous Trekking Routes` / `### Famous Sights` / `### Historical Events` in the English file) — write the region's peaks/routes/sights/historical-events content into the Chinese file first, then translate that same content into the English file. This is manual/AI-assisted work; the generator only produces the shared boilerplate around it. See the existing `docs/*/*_topo.md` + `*_topo-en.md` pairs for the expected style and level of detail.
 
 ---
 
@@ -443,11 +465,18 @@ Verify mirrors are properly synced:
 ```
 Checking suite: nikko_oze (Nikko Oze)
   ✓ nikko_oze_topo.html
+  ✓ nikko_oze_topo-en.html
   ✓ AW3D30_OSM_Nikko-Oze_TOPO_Rudy.map.zip
   ✓ AW3D30_OSM_Nikko-Oze_TOPO_Rudy.zip
   ...
 All files synced successfully!
 ```
+
+Note: `generate_checking.py` always checks both `<suite>_topo.html` and
+`<suite>_topo-en.html` on every mirror — make sure Step 8's `install` build
+actually produced the `-en.html` (i.e. `docs/<Region>/<suite>_topo-en.md`
+exists from Step 7) before syncing, or this check will report the English
+page as missing on all mirrors.
 
 ---
 
@@ -514,7 +543,8 @@ named output directly — no hand-editing required:
     --left 36.03 --right 39.00 --bottom 54.94 --top 56.48 --no-elevation
 
 # Documentation: strips all HGT/DEM/contour/CartoType blocks + credits and drops
-# the DEM_NAME token / uses the "camp" style in file names.
+# the DEM_NAME token / uses the "camp" style in file names. Produces both
+# moscow_topo.md and moscow_topo-en.md with the same blocks stripped.
 ./tools/generate_topo_md.py --region Moscow --region-lower moscow \
     --title "Moscow Region" --no-elevation
 
@@ -552,7 +582,9 @@ taiwan-topo/
 ├── Makefile                                    # Updated with include
 ├── docs/
 │   ├── Taiwan/taiwan_topo.md                   # Updated with region link
-│   └── Nikko-Oze/nikko_oze_topo.md            # New documentation
+│   ├── Taiwan/taiwan_topo-en.md                # Updated with region link (-en.html)
+│   ├── Nikko-Oze/nikko_oze_topo.md            # New documentation (zh)
+│   └── Nikko-Oze/nikko_oze_topo-en.md         # New documentation (en)
 ├── hgt/
 │   └── nikko_oze_hgtmix.zip                   # Elevation data
 ├── suites/nikko_oze/
@@ -591,7 +623,8 @@ added Nikko Oze region
 - Generated suite definitions (nikko_oze/*.mk)
 - Generated CartoType configurations (auto-install/carto/Nikko-Oze/)
 - Generated Locus XML files (auto-install/locus/Nikko-Oze/)
-- Created documentation (docs/Nikko-Oze/nikko_oze_topo.md)
+- Created documentation (docs/Nikko-Oze/nikko_oze_topo.md + nikko_oze_topo-en.md)
+- Updated docs/Taiwan/taiwan_topo.md and taiwan_topo-en.md with the new region link
 - Added mirror checking config (tools/mirror-configs/nikko_oze.json)
 ```
 

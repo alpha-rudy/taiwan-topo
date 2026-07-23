@@ -10,8 +10,8 @@ For hiking and geocaching on Garmin / Android / iOS!
     * https://rudymap.tw/
     * https://rudymap.tw/app (dedicated mobile offline app)
   * Info pages:
-    * https://moi.kcwu.csie.org/taiwan_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/taiwan_topo.html (mirror Happyman)
+    * https://moi.kcwu.csie.org/taiwan_topo-en.html (mirror kcwu)
+    * https://map.happyman.idv.tw/rudy/taiwan_topo-en.html (mirror Happyman)
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
   * Beta version (released Mon/Wed/Sat):

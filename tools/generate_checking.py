@@ -108,8 +108,9 @@ def generate_config(suite_name, mk_config, label=None):
 
     # Generate file lists
     files = [
-        # Index/HTML file
+        # Index/HTML file (zh) and its English counterpart
         f"{topo_page}.html",
+        f"{topo_page}-en.html",
         # Mapsforge files
         f"{base_name}.map.zip",
     ]
@@ -163,7 +164,8 @@ def generate_config(suite_name, mk_config, label=None):
         "name": suite_name,
         "label": label,
         "indexes": [
-            f"{topo_page}.html"
+            f"{topo_page}.html",
+            f"{topo_page}-en.html"
         ],
         "files": files,
         "exist_only": exist_only,

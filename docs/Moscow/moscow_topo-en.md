@@ -62,8 +62,8 @@ Moscow is a wonderfully walkable city: the center radiates outward from the Krem
   * RudyMap Mirror Selector (Cedric Shih)
     * https://rudymap.tw/
   * Info pages:
-    * https://moi.kcwu.csie.org/moscow_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/moscow_topo.html (mirror Happyman)
+    * https://moi.kcwu.csie.org/moscow_topo-en.html (mirror kcwu)
+    * https://map.happyman.idv.tw/rudy/moscow_topo-en.html (mirror Happyman)
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 

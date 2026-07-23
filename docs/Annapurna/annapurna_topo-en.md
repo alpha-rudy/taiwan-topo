@@ -58,8 +58,8 @@ This region has Nepal's most well-developed and scenically diverse trekking rout
   * RudyMap Mirror Selector (Cedric Shih)
     * https://rudymap.tw/
   * Info pages:
-    * https://moi.kcwu.csie.org/annapurna_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/annapurna_topo.html (mirror Happyman)
+    * https://moi.kcwu.csie.org/annapurna_topo-en.html (mirror kcwu)
+    * https://map.happyman.idv.tw/rudy/annapurna_topo-en.html (mirror Happyman)
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 

@@ -5,7 +5,14 @@ Generate documentation markdown for a new TOPO map region.
 This script creates the region documentation markdown file with installation
 instructions for various mapping applications (Locus Map, Garmin, etc.).
 
-It generates a single file: docs/$REGION/$region_topo.md
+It generates two files: docs/$REGION/$region_topo.md (the primary doc, whose
+prose sections are filled in by hand/AI afterward) and docs/$REGION/$region_topo-en.md
+(a pure-English counterpart). The English file's boilerplate is derived
+automatically from the Chinese template via a translation dictionary (see
+`translate_to_english()`); its Famous Peaks/Trekking Routes/Sights/Historical
+Events sections start empty just like the Chinese file's, and are meant to be
+filled in with an English translation of whatever is written into the Chinese
+doc (see docs/ADDING_NEW_REGION.md).
 
 Usage:
     python3 tools/generate_topo_md.py \
@@ -85,6 +92,108 @@ def rename_no_elevation(text):
     return text
 
 
+# Boilerplate translation dictionary (Traditional Chinese phrase -> English),
+# used to derive the English template from the Chinese one. Keep this in sync
+# with the phrasing used across the existing docs/*/*_topo-en.md files (they
+# were produced by hand with the same glossary before this generator existed).
+# Order doesn't matter here; apply_dict() sorts by length (longest first) so
+# compound phrases are translated before their shorter substrings.
+EN_TRANSLATIONS = {
+    "適合用在 Garmin / Android / iOS 上的離線地圖。": "An offline map for Garmin / Android / iOS.",
+    "適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！": "For hiking and geocaching on Garmin / Android / iOS!",
+    "請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^": "Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^",
+    "## 地圖範圍": "## Map Coverage",
+    "緯度範圍": "Latitude range",
+    "經度範圍": "Longitude range",
+    "### 著名的山頭 (Famous Peaks)": "### Famous Peaks",
+    "### 著名的健行路線 (Famous Trekking Routes)": "### Famous Trekking Routes",
+    "### 著名景點": "### Famous Sights",
+    "### 歷史事件": "### Historical Events",
+    "## 安裝/下載連結": "## Installation / Download Links",
+    "* 相關網頁": "* Related Links",
+    "魯地圖分流器 (Cedric Shih)": "RudyMap Mirror Selector (Cedric Shih)",
+    "說明網頁:": "Info pages:",
+    "使用討論（臉書社團）:": "Discussion (Facebook Group):",
+    "開發網站（GitHub）:": "Development site (GitHub):",
+    "自動安裝": "Auto Install",
+    "請於 APP 內直接安裝地圖": "Install the map directly within the app",
+    "安裝示範影片：": "Installation demo video: ",
+    "主地圖，請貼網址:": "Main map, paste this URL:",
+    "地圖樣式，請貼網址:": "Map style, paste this URL:",
+    "地形渲染，請貼網址:": "Terrain relief, paste this URL:",
+    "點選下列連結來啟動安裝，也可於 APP 內直接下載來安裝地圖": "Tap one of the links below to trigger installation, or download and install directly within the app",
+    "傳統版": "Classic version",
+    "三合一": "All-in-one",
+    "離線地圖": "Offline map",
+    "風格主題": "Style theme",
+    "高程檔": "Elevation (DEM) file",
+    "安裝時，請隨意點選任一站台就可以 (不用重複點選)": "Click any one of the mirrors below to install (no need to click more than one)",
+    "綠野遊蹤自動安裝": "GTS (Green Wild Trails) Auto Install",
+    "安卓 11(含) 以後：安裝示範影片：": "Android 11 and later: installation demo video: ",
+    "安卓 10(含) 以前：安裝示範影片：": "Android 10 and earlier: installation demo video: ",
+    "請點選下載，並手動安裝": "Click to download, then install manually",
+    "DEM mix v2025, 請點選下載，並手動安裝": "DEM mix, v2025, click to download then install manually",
+    "分開安裝": "Install separately",
+    "圖資更新": "Map data update",
+    "首次安裝": "First-time install",
+    "更新": "Update",
+    "手動下載自行安裝": "Manual download, install yourself",
+    "手動安裝給 OruxMaps:": "Manual installation guide for OruxMaps:",
+    "手動安裝給 Locus Map:": "Manual installation guide for Locus Map:",
+    "疊圖專用 Styles": "Overlay-only styles",
+    "給深色地圖疊圖 (例：衛星地圖)": "for dark-base map overlays (e.g. satellite imagery)",
+    "給淡色地圖疊圖 (例：通用電子地圖)": "for light-base map overlays (e.g. general digital maps)",
+    "給高度圖疊圖 (例：Relief Map)": "for elevation/relief map overlays",
+    "給 Cartograph Extra 圖層疊圖": "for Cartograph Extra layer overlays",
+    "（適合 PC/Mac BaseCamp）": " (for PC/Mac BaseCamp)",
+    "Windows 平台:": "Windows platform:",
+    "macOS 平台:": "macOS platform:",
+    "## 版權宣告": "## Copyright Notice",
+    "## 地圖版權與散佈說明": "## Map License and Distribution Notice",
+    "本作品內含部份資訊取自「OpenStreetMap」": "This work contains information from “OpenStreetMap” ",
+    "，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。": ", made available under the Open Database License (ODbL).",
+    "部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v4.1。": "Contour lines and HGT DEM for part of this coverage area are derived from JAXA AW3D30 v4.1.",
+    "使用檔案：": "Files used: ",
+    "OruxMaps/綠野遊蹤/蛙弟/山林日誌": "OruxMaps / GTS / Wadi / HikingJournal",
+    "OruxMaps (歐魯妹)": "OruxMaps",
+    "山林日誌": "HikingJournal",
+    "蛙弟": "Wadi",
+    "綠野遊蹤": "GTS",
+    "自動分流": "Auto-mirror",
+}
+
+# Fullwidth punctuation left over after the dictionary pass (mostly inside
+# region-specific prose that a human/AI will overwrite anyway, but cleaned up
+# here so the generated boilerplate itself never carries stray fullwidth marks).
+EN_FULLWIDTH_PUNCT = {
+    "。": ".",
+    "，": ", ",
+    "：": ": ",
+    "「": '"',
+    "」": '"',
+    "（": " (",
+    "）": ")",
+    "、": ", ",
+}
+
+
+def translate_to_english(template):
+    """Derive the English counterpart of a (still-Chinese, unformatted) template.
+
+    Operates on the raw template text (before .format()), so {region}/
+    {region_lower}/etc. placeholders and the empty Famous Peaks/Routes/Sights/
+    Historical Events sections pass through untouched.
+    """
+    for zh, en in sorted(EN_TRANSLATIONS.items(), key=lambda kv: len(kv[0]), reverse=True):
+        template = template.replace(zh, en)
+    for zh, en in EN_FULLWIDTH_PUNCT.items():
+        template = template.replace(zh, en)
+    # The "Info pages" mirror links are self-referential; the English doc
+    # should point readers at its own English mirror page, not the Chinese one.
+    template = template.replace('_topo.html (mirror', '_topo-en.html (mirror')
+    return template
+
+
 # Template for the main documentation structure
 TOPO_MD_TEMPLATE = """{title}
 {title_underline}
@@ -106,6 +215,8 @@ AW3D30.OSM - {region} TOPO v__version__
 
 ### 著名景點
 
+### 歷史事件
+
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/
@@ -119,7 +230,7 @@ AW3D30.OSM - {region} TOPO v__version__
   * 請於 APP 內直接安裝地圖
     > 安裝示範影片：https://youtu.be/HP6BXKdBUvg
   * 主地圖，請貼網址: https://rudymap.tw/AW3D30_OSM_{region}_TOPO_Rudy.map.zip
-  * 地圖樣式: 一樣
+  * 地圖樣式，請貼網址: https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
   * 地形渲染，請貼網址: https://rudymap.tw/{region_lower}_hgtmix.zip
 
 * ![蛙弟](images/wadi.png =36x) 自動安裝
@@ -135,7 +246,9 @@ AW3D30.OSM - {region} TOPO v__version__
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/AW3D30_OSM_{region}_TOPO_Rudy.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/AW3D30_OSM_{region}_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > 一樣
+      > [[自動分流]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * 高程檔
       > [[自動分流]](wadi-hgt://rudymap.tw/{region_lower}_hgtmix.zip) /
       > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/{region_lower}_hgtmix.zip) /
@@ -424,29 +537,40 @@ def main(region, region_lower, title, lang, hgt_files, no_elevation, dry_run):
     else:
         template = TOPO_MD_TEMPLATE
 
-    # Format the template with variables
-    content = template.format(
+    # Derive the English template from the (already stripped/renamed) Chinese
+    # one before formatting, so both files share the same no-elevation shape.
+    template_en = translate_to_english(template)
+
+    fmt_kwargs = dict(
         title=title,
         title_underline=title_underline,
         region=region,
         region_lower=region_lower,
         hgt_files=hgt_files,
     )
-    
+
+    # Format both templates with the same variables
+    content = template.format(**fmt_kwargs)
+    content_en = template_en.format(**fmt_kwargs)
+
     # Create directory
     doc_dir = f"docs/{region}"
     filename = f"{doc_dir}/{region_lower}_topo.md"
-    
+    filename_en = f"{doc_dir}/{region_lower}_topo-en.md"
+
     print(f"Files to be created:\n")
     print(f"  ✓ {filename} ({content.count(chr(10))} lines)")
-    
+    print(f"  ✓ {filename_en} ({content_en.count(chr(10))} lines)")
+
     if not dry_run:
         os.makedirs(doc_dir, exist_ok=True)
         with open(filename, 'w') as f:
             f.write(content)
-    
+        with open(filename_en, 'w') as f:
+            f.write(content_en)
+
     print(f"\n{'=' * 70}")
-    
+
     if dry_run:
         print("✓ Dry run completed - no files were created")
         print("\nTo create files, run without --dry-run:")
@@ -458,7 +582,12 @@ def main(region, region_lower, title, lang, hgt_files, no_elevation, dry_run):
     else:
         print(f"✓ Documentation created successfully!")
         print(f"\nCreated: {filename}")
-    
+        print(f"Created: {filename_en}")
+        print(f"\nNote: Famous Peaks/Trekking Routes/Sights/Historical Events sections")
+        print(f"are left empty in both files — fill in {filename} first, then write an")
+        print(f"English translation of that content into {filename_en} (see")
+        print(f"docs/ADDING_NEW_REGION.md).")
+
     print(f"{'=' * 70}\n")
 
 

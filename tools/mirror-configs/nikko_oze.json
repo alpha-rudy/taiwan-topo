@@ -2,10 +2,12 @@
     "name": "nikko_oze",
     "label": "Nikko Oze",
     "indexes": [
-        "nikko_oze_topo.html"
+        "nikko_oze_topo.html",
+        "nikko_oze_topo-en.html"
     ],
     "files": [
         "nikko_oze_topo.html",
+        "nikko_oze_topo-en.html",
         "AW3D30_OSM_Nikko-Oze_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Nikko-Oze_TOPO_Rudy.zip",
         "AW3D30_OSM_Nikko-Oze_TOPO_Rudy_locus.zip",

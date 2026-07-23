@@ -2,10 +2,12 @@
     "name": "elbrus",
     "label": "Elbrus",
     "indexes": [
-        "elbrus_topo.html"
+        "elbrus_topo.html",
+        "elbrus_topo-en.html"
     ],
     "files": [
         "elbrus_topo.html",
+        "elbrus_topo-en.html",
         "AW3D30_OSM_Elbrus_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Elbrus_TOPO_Rudy.zip",
         "AW3D30_OSM_Elbrus_TOPO_Rudy_locus.zip",

@@ -2,10 +2,12 @@
     "name": "alps_western",
     "label": "Alps Western",
     "indexes": [
-        "alps_western_topo.html"
+        "alps_western_topo.html",
+        "alps_western_topo-en.html"
     ],
     "files": [
         "alps_western_topo.html",
+        "alps_western_topo-en.html",
         "AW3D30_OSM_Alps-Western_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Alps-Western_TOPO_Rudy.zip",
         "AW3D30_OSM_Alps-Western_TOPO_Rudy_locus.zip",

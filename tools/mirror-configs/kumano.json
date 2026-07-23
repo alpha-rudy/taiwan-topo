@@ -2,10 +2,12 @@
     "name": "kumano",
     "label": "Kumano Kodo",
     "indexes": [
-        "kumano_topo.html"
+        "kumano_topo.html",
+        "kumano_topo-en.html"
     ],
     "files": [
         "kumano_topo.html",
+        "kumano_topo-en.html",
         "AW3D30_OSM_Kumano_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Kumano_TOPO_Rudy.zip",
         "AW3D30_OSM_Kumano_TOPO_Rudy_locus.zip",

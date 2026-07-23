@@ -2,10 +2,12 @@
     "name": "kashmir",
     "label": "Kashmir",
     "indexes": [
-        "kashmir_topo.html"
+        "kashmir_topo.html",
+        "kashmir_topo-en.html"
     ],
     "files": [
         "kashmir_topo.html",
+        "kashmir_topo-en.html",
         "AW3D30_OSM_Kashmir_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Kashmir_TOPO_Rudy.zip",
         "AW3D30_OSM_Kashmir_TOPO_Rudy_locus.zip",

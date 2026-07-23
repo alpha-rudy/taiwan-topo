@@ -2,10 +2,12 @@
     "name": "alps_eastern",
     "label": "Alps Eastern",
     "indexes": [
-        "alps_eastern_topo.html"
+        "alps_eastern_topo.html",
+        "alps_eastern_topo-en.html"
     ],
     "files": [
         "alps_eastern_topo.html",
+        "alps_eastern_topo-en.html",
         "AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip",
         "AW3D30_OSM_Alps-Eastern_TOPO_Rudy_locus.zip",

@@ -2,10 +2,12 @@
     "name": "fujisan",
     "label": "Fujisan",
     "indexes": [
-        "fujisan_topo.html"
+        "fujisan_topo.html",
+        "fujisan_topo-en.html"
     ],
     "files": [
         "fujisan_topo.html",
+        "fujisan_topo-en.html",
         "AW3D30_OSM_Fujisan_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Fujisan_TOPO_Rudy.zip",
         "AW3D30_OSM_Fujisan_TOPO_Rudy_locus.zip",

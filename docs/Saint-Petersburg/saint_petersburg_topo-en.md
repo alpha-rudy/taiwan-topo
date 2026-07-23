@@ -70,8 +70,8 @@ St. Petersburg is built across more than forty islands in the Neva River delta, 
   * RudyMap Mirror Selector (Cedric Shih)
     * https://rudymap.tw/
   * Info pages:
-    * https://moi.kcwu.csie.org/saint_petersburg_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/saint_petersburg_topo.html (mirror Happyman)
+    * https://moi.kcwu.csie.org/saint_petersburg_topo-en.html (mirror kcwu)
+    * https://map.happyman.idv.tw/rudy/saint_petersburg_topo-en.html (mirror Happyman)
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 

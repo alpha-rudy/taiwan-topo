@@ -52,8 +52,8 @@ This region is centered on Switzerland, extending east to include the canton of 
   * RudyMap Mirror Selector (Cedric Shih)
     * https://rudymap.tw/
   * Info pages:
-    * https://moi.kcwu.csie.org/alps_core_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/alps_core_topo.html (mirror Happyman)
+    * https://moi.kcwu.csie.org/alps_core_topo-en.html (mirror kcwu)
+    * https://map.happyman.idv.tw/rudy/alps_core_topo-en.html (mirror Happyman)
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 

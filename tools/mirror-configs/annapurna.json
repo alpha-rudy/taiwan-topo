@@ -2,10 +2,12 @@
     "name": "annapurna",
     "label": "Annapurna",
     "indexes": [
-        "annapurna_topo.html"
+        "annapurna_topo.html",
+        "annapurna_topo-en.html"
     ],
     "files": [
         "annapurna_topo.html",
+        "annapurna_topo-en.html",
         "AW3D30_OSM_Annapurna_TOPO_Rudy.map.zip",
         "AW3D30_OSM_Annapurna_TOPO_Rudy.zip",
         "AW3D30_OSM_Annapurna_TOPO_Rudy_locus.zip",

@@ -3,11 +3,13 @@
     "label": "Suites/Weekly",
     "indexes": [
         "taiwan_topo.html",
+        "taiwan_topo-en.html",
         "gts/index.html"
     ],
     "files": [
         "index.json",
         "taiwan_topo.html",
+        "taiwan_topo-en.html",
         "gts/index.html",
         "carto_all.cpkg",
         "carto_upgrade.cpkg",
