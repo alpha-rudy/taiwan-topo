@@ -41,6 +41,13 @@ AW3D30.OSM - Alps-Core TOPO v__version__
 * 聖莫里茨 (St. Moritz)：恩加丁谷地中璀璨的度假勝地，曾兩度舉辦冬季奧運。
 * 科莫湖與盧加諾湖 (Lake Como & Lugano)：位於地圖南側的北義湖區，高山直接沒入深邃藍湖，呈現絕美的義式度假風情。
 
+### 歷史事件
+
+* 1811 年少女峰首登：邁爾兄弟 (Meyer brothers) 完成首次登頂，是伯恩高地登山開發史上的重要里程碑。
+* 1858 年艾格峰首登：Charles Barrington 與嚮導 Christian Almer、Peter Bohren 完成首登。
+* 1938 年艾格峰北壁首登：Anderl Heckmair 等四人組成的德奧聯隊，攻克了素有「死亡之壁」(Mordwand) 之稱的艾格峰北壁；此前 1936 年 Toni Kurz 在此壁嘗試時罹難的悲劇，曾被山下 Kleine Scheidegg 旅館的遊客以望遠鏡目睹全程，是登山史上最著名的山難事件之一。
+* 1850 年伯連納峰首登：由瑞士測量師 Johann Coaz 完成，確立此峰為整條阿爾卑斯山脈最東端的四千米巨峰。
+
 * 相關網頁
   * 魯地圖分流器 (Cedric Shih)
     * https://rudymap.tw/
