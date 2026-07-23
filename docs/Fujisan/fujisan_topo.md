@@ -1,5 +1,5 @@
-Fujisan TOPO / 富士山附近登山地圖
-==============================
+Sacred Summit - Fujisan / 靈峰聖岳 - 富士山登山地圖（南阿爾卑斯・富士五湖）
+===========================================================================
 
 AW3D30.OSM - Fujisan TOPO v__version__
 
@@ -12,38 +12,69 @@ AW3D30.OSM - Fujisan TOPO v__version__
 
 ### 著名的山頭 (Famous Peaks)
 
+* 富士山
+  * 富士山 (Mt. Fuji, 3776m，日本第一高峰，2013 年登錄 UNESCO 世界文化遺產)
+
 * 富士山附近日本百名山
-  * 富士山 (Mt. Fuji, 3776m)
   * 雲取山 (Mt. Kumotori, 2017m)
-  * 丹沢山 (Mt. Tanzawa, 1567m) 
+  * 丹沢山 (Mt. Tanzawa, 1567m)
   * 甲武信之岳 (Kobushin-gadake, 2475m)
-  * 大菩薩嶺 (Mt. Daibutsu, 2057m) 
-  * 金峰山 (Mt. Kinpo, 2599m)  
-  * 瑞牆山 (Mt. Zuigaki, 2230m) 
+  * 大菩薩嶺 (Mt. Daibutsu, 2057m)
+  * 金峰山 (Mt. Kinpo, 2599m)
+  * 瑞牆山 (Mt. Zuigaki, 2230m)
   * 天城山 (Mt. Amagi, 1406m)
   * 木曾駒之岳 (Kiso-Koma-gatake, 2956m)
 
-* 以下百名山是在南阿爾卑斯山脈
-  * 北岳 (Kita-dake, 3193m) 
+* 以下百名山是在南阿爾卑斯山脈（赤石山脈）
+  * 北岳 (Kita-dake, 3193m，日本第二高峰)
   * 甲斐駒之岳 (Kaikoma-gatake, 2967m)
-  * 仙丈之岳 (Senjo-gadake, 3033m) 
+  * 仙丈之岳 (Senjo-gadake, 3033m)
   * 鳳凰山, 地藏岳 (Mt. Houou Jizo-dake, 2764m)
-  * 間之岳 (Aino-dake, 3190m)
+  * 間之岳 (Aino-dake, 3190m，日本第三高峰)
   * 塩見岳 (Shiomi-dake, 3047m)
   * 惡澤岳 (Akuzawa-dake, 3141m)
   * 赤石岳 (Akaishi-dake, 3121m)
   * 聖岳 (Saigo-dake, 3013m)
-  * 光岳 (Kō-dake, 2592m) 
+  * 光岳 (Kō-dake, 2592m)
 
 * 其他有名的觀光景點與山峰
-  * 東京都:高尾山、御岳山/大岳山、三頭山 (Tokyo: Takao-yama, Ontake-yama/Otake-yama, Mitsumi-yama)    
+  * 東京都:高尾山、御岳山/大岳山、三頭山 (Tokyo: Takao-yama, Ontake-yama/Otake-yama, Mitsumi-yama)
   * 山梨:昇仙峽/彌二郎岳、入笠山、身延山、富士五湖/三ツ峠山 (Yamanashi: Shōsen-kyō/Yajiro-dake, Irikasa-yama, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama)
-  * 神奈川:箱根/箱根駒之岳 (Kanagawa: Hakone/Hakone-Komagake)    
-  * 靜岡:伊豆半島、沼津縱走 (Shizuoka: Izu Peninsula, Numazu Trail) 
+  * 神奈川:箱根/箱根駒之岳 (Kanagawa: Hakone/Hakone-Komagake)
+  * 靜岡:伊豆半島、沼津縱走 (Shizuoka: Izu Peninsula, Numazu Trail)
 
 ### 著名的健行路線 (Famous Trekking Routes)
 
+1. 富士山登山路線
+    * 吉田口登山道 (Yoshida Trail)：最多人使用的登山道，五合目登山口交通最便利，山屋密集
+    * 富士宮口登山道 (Fujinomiya Trail)：距山頂最短的路線，起登點海拔最高
+    * 須走口登山道 (Subashiri Trail)：下山可走「大砂走り」碎石坡，速度快且景色壯闊
+    * 御殿場口登山道 (Gotemba Trail)：路程最長、坡度最緩的傳統路線，人潮最少
+    * 御鉢巡り (Ohachi-meguri)：登頂後沿火山口環繞一周，可達最高點劍峰
+
+2. 南阿爾卑斯（赤石山脈）縱走路線
+    * 白根三山縱走 (北岳－間之岳－農鳥岳，經廣河原、北岳山莊)
+    * 甲斐駒‧仙丈縱走 (北澤峠起登，兩座百名山一次收錄)
+    * 鳳凰三山縱走 (地藏岳－觀音岳－藥師岳，夜叉神峠起登)
+    * 南阿爾卑斯南部主脈大縱走 (塩見岳－惡澤岳－赤石岳－聖岳，多日行程，日本高山縱走經典)
+
+3. 關東近郊步道
+    * 丹澤主脈縱走 (大倉尾根－塔之岳－丹澤山－蛭之岳)
+    * 高尾山－陣馬山縱走 (東京都近郊入門百岳步道)
+    * 大菩薩嶺－大菩薩峠環狀路線 (可遠眺富士山的展望名所)
+    * 御岳山－大岳山縱走 (奧多摩地區代表路線)
+    * 天城山縱走 (伊豆半島脊梁，日本百名山)
+    * 沼津アルプス縱走 (靜岡低海拔展望路線，可俯瞰駿河灣與富士山)
+    * 箱根外輪山縱走 (金時山－明神岳，環繞蘆之湖)
+
 ### 著名景點
+
+* 富士五湖 (Fuji Five Lakes)：河口湖、山中湖、西湖、精進湖、本栖湖，本栖湖為日幣千円鈔票背面倒影富士山之取景地
+* 富士山世界文化遺產構成資產：富士山本宮淺間大社、忍野八海、白絲瀑布 (白糸の滝) 等 25 處指定景點 (2013 年登錄 UNESCO)
+* 箱根 (Hakone)：蘆之湖、大涌谷、箱根神社與溫泉鄉，芦ノ湖遊船可眺望富士山倒影
+* 昇仙峽 (Shōsen-kyō)：山梨縣代表溪谷美景，日本三大特別名勝之一
+* 伊豆半島 (Izu Peninsula)：城崎海岸、修善寺溫泉，2018 年登錄 UNESCO 世界地質公園
+* 御殿場 (Gotemba)：時之栖與御殿場 Outlet，眺望富士山東側之熱門去處
 
 ## 安裝/下載連結
 

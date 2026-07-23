@@ -1,4 +1,4 @@
-Elbrus TOPO / 厄爾布魯士 - 登山地圖
+EuroPeaks TOPO - Elbrus / 歐陸巔峰 - 厄爾布魯士登山地圖
 ====================================
 
 AW3D30.OSM - Elbrus TOPO v__version__
