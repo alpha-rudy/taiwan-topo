@@ -71,7 +71,7 @@ Moscow is a wonderfully walkable city: the center radiates outward from the Krem
   * Install the map directly within the app
     > Installation demo video: https://youtu.be/HP6BXKdBUvg
   * Main map, paste this URL: https://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip
-  * Map style: same as above
+  * Map style, paste this URL: https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
 
 * ![Wadi](images/wadi.png =36x) Auto Install
   * Tap one of the links below to trigger installation, or download and install directly within the app
@@ -82,7 +82,9 @@ Moscow is a wonderfully walkable city: the center radiates outward from the Krem
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > Same as above
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![GTS](images/GTS.png =36x) GTS (Green Wild Trails) Auto Install
   * Click any one of the mirrors below to install (no need to click more than one)

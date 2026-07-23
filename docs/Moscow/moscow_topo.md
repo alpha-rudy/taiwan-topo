@@ -71,7 +71,7 @@ OSM - Moscow TOPO v__version__
   * 請於 APP 內直接安裝地圖
     > 安裝示範影片：https://youtu.be/HP6BXKdBUvg
   * 主地圖，請貼網址: https://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip
-  * 地圖樣式: 一樣
+  * 地圖樣式，請貼網址: https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
 
 * ![蛙弟](images/wadi.png =36x) 自動安裝
   * 點選下列連結來啟動安裝，也可於 APP 內直接下載來安裝地圖
@@ -82,7 +82,9 @@ OSM - Moscow TOPO v__version__
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > 一樣
+      > [[自動分流]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
   * 安裝時，請隨意點選任一站台就可以 (不用重複點選)

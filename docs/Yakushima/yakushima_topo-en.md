@@ -71,7 +71,7 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
   * Install the map directly within the app
     > Installation demo video: https://youtu.be/HP6BXKdBUvg
   * Main map, paste this URL: https://rudymap.tw/AW3D30_OSM_Yakushima_TOPO_Rudy.map.zip
-  * Map style: same as above
+  * Map style, paste this URL: https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
   * Terrain relief, paste this URL: https://rudymap.tw/yakushima_hgtmix.zip
 
 * ![Wadi](images/wadi.png =36x) Auto Install
@@ -87,7 +87,9 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/AW3D30_OSM_Yakushima_TOPO_Rudy.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Yakushima_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > Same as above
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * Elevation (DEM) file
       > [[Auto-mirror]](wadi-hgt://rudymap.tw/yakushima_hgtmix.zip) /
       > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/yakushima_hgtmix.zip) /

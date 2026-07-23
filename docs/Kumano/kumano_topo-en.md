@@ -68,7 +68,7 @@ An offline map for Garmin / Android / iOS.
   * Install the map directly within the app
     > Installation demo video: https://youtu.be/HP6BXKdBUvg
   * Main map, paste this URL: https://rudymap.tw/AW3D30_OSM_Kumano_TOPO_Rudy.map.zip
-  * Map style: same as above
+  * Map style, paste this URL: https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip
   * Terrain relief, paste this URL: https://rudymap.tw/kumano_hgtmix.zip
 
 * ![Wadi](images/wadi.png =36x) Auto Install
@@ -84,7 +84,9 @@ An offline map for Garmin / Android / iOS.
       > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/AW3D30_OSM_Kumano_TOPO_Rudy.map.zip) /
       > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Kumano_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > Same as above
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
+      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * Elevation (DEM) file (25MB)
       > [[Auto-mirror]](wadi-hgt://rudymap.tw/kumano_hgtmix.zip) /
       > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/kumano_hgtmix.zip) /
