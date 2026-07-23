@@ -353,67 +353,67 @@ If a map already covers an area but a trail isn't listed, please let the communi
 Or if you'd like the coverage expanded to include a nearby long-distance trail, please also let the community know. Thanks!  ^^
 
 * Kumano Kodo
-  * https://rudymap.tw/kumano_topo.html
+  * https://rudymap.tw/kumano_topo-en.html
   * Map coverage: 
     * Latitude range: N33.0 ~ N35.0
     * Longitude range: E135.0 ~ E137.0
 * Annapurna
-  * https://rudymap.tw/annapurna_topo.html
+  * https://rudymap.tw/annapurna_topo-en.html
   * Map coverage: 
     * Latitude range: N28.0 ~ N29.0
     * Longitude range: E83.0 ~ E85.0
 * Kashmir
-  * https://rudymap.tw/kashmir_topo.html
+  * https://rudymap.tw/kashmir_topo-en.html
   * Map coverage: 
     * Latitude range: N34.0 ~ N34.75
     * Longitude range: E74.5 ~ E75.5
 * Fujisan
-  * https://rudymap.tw/fujisan_topo.html
+  * https://rudymap.tw/fujisan_topo-en.html
   * Map coverage: 
     * Latitude range: N34.30 ~ N35.95
     * Longitude range: E137.69 ~ E139.55
 * Nikko Oze
-  * https://rudymap.tw/nikko_oze_topo.html
+  * https://rudymap.tw/nikko_oze_topo-en.html
   * Map coverage: 
     * Latitude range: N36.50 ~ N37.47
     * Longitude range: E138.68 ~ E139.86
 * Elbrus (Russian Caucasus)
-  * https://rudymap.tw/elbrus_topo.html
+  * https://rudymap.tw/elbrus_topo-en.html
   * Map coverage: 
     * Latitude range: N43.10 ~ N43.75
     * Longitude range: E41.90 ~ E43.80
 * Alps Core (Bernese Oberland - Engadin)
-  * https://rudymap.tw/alps_core_topo.html
+  * https://rudymap.tw/alps_core_topo-en.html
   * Map coverage: 
     * Latitude range: N45.80 ~ N47.30
     * Longitude range: E7.15 ~ E10.75
 * Alps Eastern (Dolomites - Hohe Tauern)
-  * https://rudymap.tw/alps_eastern_topo.html
+  * https://rudymap.tw/alps_eastern_topo-en.html
   * Map coverage: 
     * Latitude range: N45.80 ~ N47.55
     * Longitude range: E10.50 ~ E14.00
 * Alps Western (Mont Blanc - Matterhorn)
-  * https://rudymap.tw/alps_western_topo.html
+  * https://rudymap.tw/alps_western_topo-en.html
   * Map coverage: 
     * Latitude range: N44.00 ~ N46.20
     * Longitude range: E6.00 ~ E8.00
 * Alps Fareast (Kamnik - Vienna Woods)
-  * https://rudymap.tw/alps_fareast_topo.html
+  * https://rudymap.tw/alps_fareast_topo-en.html
   * Map coverage: 
     * Latitude range: N46.30 ~ N47.85
     * Longitude range: E13.90 ~ E15.90
 * Yakushima (including Tanegashima and Kuchinoerabujima)
-  * https://rudymap.tw/yakushima_topo.html
+  * https://rudymap.tw/yakushima_topo-en.html
   * Map coverage: 
     * Latitude range: N30.16 ~ N30.93
     * Longitude range: E129.83 ~ E131.16
 * Moscow (Russia, no contour lines or HGT)
-  * https://rudymap.tw/moscow_topo.html
+  * https://rudymap.tw/moscow_topo-en.html
   * Map coverage: 
     * Latitude range: N54.94 ~ N56.48
     * Longitude range: E36.03 ~ E39.00
 * Saint Petersburg (Russia, no contour lines or HGT)
-  * https://rudymap.tw/saint_petersburg_topo.html
+  * https://rudymap.tw/saint_petersburg_topo-en.html
   * Map coverage: 
     * Latitude range: N59.69 ~ N60.15
     * Longitude range: E29.99 ~ E30.62

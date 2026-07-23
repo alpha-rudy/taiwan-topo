@@ -254,6 +254,10 @@ topo.md:
 		cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
 		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(BUILD_DIR)/$(SUITE)_topo.html
+	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
+		cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
+		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(BUILD_DIR)/$(SUITE)_topo-en.html
 	cp -a docs/images $(BUILD_DIR)/
 
 .PHONY: install
@@ -267,6 +271,10 @@ install:
 		cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
 		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(INSTALL_DIR)/$(SUITE)_topo.html
+	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
+		cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
+		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(INSTALL_DIR)/$(SUITE)_topo-en.html
 	-[ -f docs/$(REGION)/index.json ] && \
 		cat docs/$(REGION)/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 	-[ -f docs/$(REGION)/beta.md ] && \
