@@ -267,8 +267,9 @@ Suitable for offline use on Garmin, Android, and iOS devices.
                    'gts_all/carto_all, name Garmin suites _bc/_bc_en (no DEM, "camp" style)')
 @click.option('--landsea', is_flag=True, default=False,
               help='Coastal no-elevation region: emit LANDSEA := true so the mapsforge '
-                   'sea/nosea overlay is generated from the coastline (requires --no-elevation; '
-                   'regions with contours get sea from the kcwu mix file instead)')
+                   'sea/nosea overlay is generated from the OSM land-polygons dataset '
+                   '(requires --no-elevation; regions with contours get sea from the '
+                   'kcwu mix file instead)')
 @click.option('--dry-run', is_flag=True, default=False, help='Show what would be created without creating files')
 def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom, top,
          code_page, mapid_native, mapid_english, no_elevation, landsea, dry_run):

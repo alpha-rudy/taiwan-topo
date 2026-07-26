@@ -35,6 +35,7 @@ RUN dpkg --add-architecture i386 && \
         osmctools \
         osmium-tool \
         p7zip-full \
+        python3-gdal \
         python3-lxml \
         python3-pip \
         python3-rasterio \
@@ -63,7 +64,6 @@ RUN pip3 install --no-cache-dir --break-system-packages \
                     pykakasi \
                     requests \
                     rio-rgbify \
-                    shapely \
                     spatialite \
                     tqdm \
                     unidecode \

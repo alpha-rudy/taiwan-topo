@@ -521,13 +521,22 @@ elevation-PBF data.
 The mapsforge sea is **not** computed by the map-writer — it comes from
 `natural=sea`/`natural=nosea` polygons that the kcwu `ele_*_mix.pbf` files
 carry for normal regions (see the `land_sea` entries in
-`osm_scripts/tag-mapping.xml`). A no-elevation region skips the mix file, so a
-**coastal** region would render without sea (Garmin is unaffected — mkgmap
-takes sea from `precomp-sea`). Set `LANDSEA := true` in the base suite (or pass
-`--landsea` to `generate_suite.py`): the build then generates the same
-sea/nosea scheme locally from the extract's `natural=coastline` ways via
-`tools/generate_landsea.py`. Landlocked regions (e.g. `moscow`) must leave it
-unset — the tool fails on purpose when the bbox contains no coastline.
+`osm_scripts/tag-mapping.xml`): one fixed `natural=sea` rectangle covering the
+whole bbox, with `natural=nosea` land polygons drawn on top of it — the sea is
+never computed, only the land shape is. A no-elevation region skips the mix
+file, so a **coastal** region would render without sea (Garmin is
+unaffected — mkgmap takes sea from `precomp-sea`).
+
+Set `LANDSEA := true` in the base suite (or pass `--landsea` to
+`generate_suite.py`): the build then reproduces the same scheme via
+`tools/generate_landsea.py`, using the same method as the sibling
+**taiwan-contour** project's `tools/sealand-creator.sh` — clip the
+authoritative OSM land-polygons dataset
+([land-polygons-split-4326](https://osmdata.openstreetmap.de/data/land-polygons.html))
+to the bbox for the land shape, laying the fixed sea rectangle underneath. The
+dataset (~880MB) is downloaded once to `download/land-polygons/` and shared
+across all regions. Landlocked regions (e.g. `moscow`) must leave `LANDSEA`
+unset.
 
 ### Generating a no-elevation region
 
@@ -537,7 +546,7 @@ named output directly — no hand-editing required:
 ```bash
 # Suites: omit ELEVATION_*/HGT/GMAPDEM/DEM_NAME, drop gts_all/carto_all, name the
 # Garmin suites _bc / _bc_en (nodem, "camp" style). MAPID pair auto-allocated.
-# Add --landsea for a coastal region (sea/nosea overlay from the coastline).
+# Add --landsea for a coastal region (sea/nosea overlay from land-polygons).
 ./tools/generate_suite.py --region Moscow --region-lower moscow --lang ru \
     --extract-file central-fed-district-latest \
     --left 36.03 --right 39.00 --bottom 54.94 --top 56.48 --no-elevation
@@ -662,9 +671,11 @@ added Nikko Oze region
    the mapsforge sea comes from `natural=sea`/`nosea` polygons normally carried
    by the kcwu `ele_*_mix.pbf`, which no-elevation regions skip; Garmin's sea
    comes from mkgmap `precomp-sea` and keeps working. Fix: set
-   `LANDSEA := true` in the base suite `.mk` and rebuild — the build generates
-   the sea/nosea overlay from the coastline via `tools/generate_landsea.py`.
-   See [Sea rendering](#sea-rendering-coastal-no-elevation-regions).
+   `LANDSEA := true` in the base suite `.mk` and rebuild — the build clips the
+   OSM land-polygons dataset to the bbox via `tools/generate_landsea.py` (see
+   [Sea rendering](#sea-rendering-coastal-no-elevation-regions)). The first
+   build with any `LANDSEA` region downloads the ~880MB dataset to
+   `download/land-polygons/` — expect that step to take a while once.
 
 ### Getting Help
 

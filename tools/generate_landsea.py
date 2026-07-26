@@ -5,96 +5,26 @@ Generate a mapsforge land/sea overlay PBF for a bounding box.
 Coastal regions built WITHOUT contours (no ele_*_mix.pbf) still need sea
 polygons in the mapsforge input: the kcwu elevation-mix files carry them for
 normal regions (one natural=sea rectangle covering the bbox plus natural=nosea
-land polygons, all layer=-5 — the OpenAndroMaps land/sea scheme, rendered via
-the land_sea entries in osm_scripts/tag-mapping.xml). This tool produces the
-same scheme directly from the OSM natural=coastline ways in the region
-extract, using the OSM coastline convention: land on the LEFT, water on the
-RIGHT of the way direction.
+land polygons, all layer=-5 -- the OpenAndroMaps land/sea scheme, rendered via
+the land_sea entries in osm_scripts/tag-mapping.xml). This tool reproduces the
+same scheme using the same method as the (sibling project) taiwan-contour's
+tools/sealand-creator.sh: clip the authoritative OSM land-polygons dataset
+(https://osmdata.openstreetmap.de/data/land-polygons.html) to the bbox for
+"nosea" land, and lay a single fixed rectangle covering the whole bbox
+underneath as "sea" -- the sea is never computed, only the land shape is.
 
 Usage:
     python3 tools/generate_landsea.py \
-        --input build-<region>/latest-<Region>-sed.osm.pbf \
+        --land-polygons download/land-polygons/land-polygons-split-4326/land_polygons.shp \
         --output build-<region>/landsea_<region>.osm.pbf \
         --left 29.99 --bottom 59.69 --right 30.62 --top 60.15
-
-Exits with an error if the input contains no coastline inside the bbox —
-landlocked regions must not enable LANDSEA.
 """
 
 import argparse
 import sys
 
 import osmium
-from shapely.geometry import LineString, Point, box
-from shapely.ops import polygonize, unary_union
-
-SIDE_EPS = 1e-6      # ~10 cm offset used to probe which side of a coastline a face is on
-ON_BOUNDARY_EPS = 1e-9
-
-
-class CoastlineReader(osmium.SimpleHandler):
-    def __init__(self):
-        super().__init__()
-        self.lines = []
-
-    def way(self, w):
-        if w.tags.get('natural') != 'coastline':
-            return
-        try:
-            coords = [(n.lon, n.lat) for n in w.nodes]
-        except osmium.InvalidLocationError:
-            return
-        if len(coords) >= 2:
-            self.lines.append(coords)
-
-
-def clip_coastlines(lines, bbox_poly):
-    """Clip coastline ways to the bbox, preserving vertex order (direction)."""
-    pieces = []
-    for coords in lines:
-        geom = LineString(coords).intersection(bbox_poly)
-        if geom.is_empty:
-            continue
-        geoms = getattr(geom, 'geoms', [geom])
-        for g in geoms:
-            if g.geom_type == 'LineString' and len(g.coords) >= 2:
-                pieces.append(g)
-    return pieces
-
-
-def face_signature(face):
-    """All rings of a face, for boundary-membership tests."""
-    return [face.exterior] + list(face.interiors)
-
-
-def classify_face(face, pieces):
-    """Return 'sea' or 'land' for a polygonized face, or None if undecided.
-
-    A face is SEA when it lies on the right-hand side of a coastline piece on
-    its boundary (OSM convention: water on the right).
-    """
-    rings = face_signature(face)
-    for piece in pieces:
-        coords = list(piece.coords)
-        for i in range(len(coords) - 1):
-            (x0, y0), (x1, y1) = coords[i], coords[i + 1]
-            mx, my = (x0 + x1) / 2.0, (y0 + y1) / 2.0
-            mid = Point(mx, my)
-            if not any(ring.distance(mid) < ON_BOUNDARY_EPS for ring in rings):
-                continue
-            dx, dy = x1 - x0, y1 - y0
-            length = (dx * dx + dy * dy) ** 0.5
-            if length == 0:
-                continue
-            # right-hand normal of the direction vector
-            rx, ry = dy / length, -dx / length
-            right_probe = Point(mx + SIDE_EPS * rx, my + SIDE_EPS * ry)
-            left_probe = Point(mx - SIDE_EPS * rx, my - SIDE_EPS * ry)
-            if face.contains(right_probe):
-                return 'sea'
-            if face.contains(left_probe):
-                return 'land'
-    return None
+from osgeo import ogr
 
 
 class PbfBuilder:
@@ -126,13 +56,11 @@ class PbfBuilder:
         self.ways.append((wid, refs, tags))
         return wid
 
-    def add_multipolygon(self, outer_id, inner_ids, tags):
+    def add_multipolygon(self, outer_ids, inner_ids):
         rid = self._next_rel
         self._next_rel += 1
-        members = [('w', outer_id, 'outer')] + [('w', i, 'inner') for i in inner_ids]
-        rel_tags = dict(tags)
-        rel_tags['type'] = 'multipolygon'
-        self.relations.append((rid, members, rel_tags))
+        members = [('w', i, 'outer') for i in outer_ids] + [('w', i, 'inner') for i in inner_ids]
+        self.relations.append((rid, members, {'type': 'multipolygon'}))
 
     def write(self, path):
         writer = osmium.SimpleWriter(path)
@@ -147,9 +75,39 @@ class PbfBuilder:
             writer.close()
 
 
+def add_polygon(builder, polygon, tags):
+    """Add one OGR Polygon geometry as a tagged outer way, plus a multipolygon
+    relation if it has holes (matching taiwan-contour's shape2osm.py: tags on
+    the outer way, holes grouped via a bare type=multipolygon relation)."""
+    ring_count = polygon.GetGeometryCount()
+    if ring_count == 0:
+        return
+    exterior = polygon.GetGeometryRef(0)
+    outer_id = builder.add_ring(exterior.GetPoints(), tags)
+    if ring_count > 1:
+        inner_ids = [builder.add_ring(polygon.GetGeometryRef(i).GetPoints(), {})
+                     for i in range(1, ring_count)]
+        builder.add_multipolygon([outer_id], inner_ids)
+
+
+def add_clipped_geometry(builder, geom, tags):
+    """geom may be Polygon, MultiPolygon, or a GeometryCollection produced by
+    Intersection() mixing polygons with degenerate points/lines at the clip
+    boundary -- only the polygonal parts are kept."""
+    gtype = geom.GetGeometryType()
+    flat_type = ogr.GT_Flatten(gtype)
+    if flat_type == ogr.wkbPolygon:
+        add_polygon(builder, geom, tags)
+    elif flat_type in (ogr.wkbMultiPolygon, ogr.wkbGeometryCollection):
+        for i in range(geom.GetGeometryCount()):
+            add_clipped_geometry(builder, geom.GetGeometryRef(i), tags)
+    # else: point/line degenerate intersection artifact -- ignore
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--input', required=True, help='OSM extract (pbf) containing natural=coastline ways')
+    ap.add_argument('--land-polygons', required=True,
+                     help='Path to land_polygons.shp from the OSM land-polygons-split-4326 dataset')
     ap.add_argument('--output', required=True, help='Output .osm.pbf with the land/sea scheme')
     ap.add_argument('--left', type=float, required=True)
     ap.add_argument('--bottom', type=float, required=True)
@@ -157,49 +115,41 @@ def main():
     ap.add_argument('--top', type=float, required=True)
     args = ap.parse_args()
 
-    bbox_poly = box(args.left, args.bottom, args.right, args.top)
+    bbox_coords = [(args.left, args.bottom), (args.left, args.top),
+                   (args.right, args.top), (args.right, args.bottom), (args.left, args.bottom)]
+    bbox_wkt = "POLYGON((" + ",".join(f"{x} {y}" for x, y in bbox_coords) + "))"
+    bbox_geom = ogr.CreateGeometryFromWkt(bbox_wkt)
 
-    reader = CoastlineReader()
-    reader.apply_file(args.input, locations=True, idx='flex_mem')
-    print(f"coastline ways in extract: {len(reader.lines)}")
-
-    pieces = clip_coastlines(reader.lines, bbox_poly)
-    print(f"coastline pieces inside bbox: {len(pieces)}")
-    if not pieces:
-        print("ERROR: no natural=coastline inside the bounding box.", file=sys.stderr)
-        print("This region looks landlocked - do not enable LANDSEA for it.", file=sys.stderr)
+    ds = ogr.Open(args.land_polygons)
+    if ds is None:
+        print(f"ERROR: could not open {args.land_polygons}", file=sys.stderr)
         return 1
-
-    # Partition the bbox into faces along the coastline, then classify each
-    # face by which side of the coastline it lies on.
-    faces = list(polygonize(unary_union([bbox_poly.exterior] + pieces)))
-    land, sea, undecided = [], 0, 0
-    for face in faces:
-        cls = classify_face(face, pieces)
-        if cls == 'land':
-            land.append(face)
-        elif cls == 'sea':
-            sea += 1
-        else:
-            undecided += 1
-            land.append(face)  # safer to over-draw land than to flood it
-    print(f"faces: {len(faces)} (land {len(land)}, sea {sea}, undecided->land {undecided})")
-    if sea == 0:
-        print("WARNING: no sea face found; output will render as all land.", file=sys.stderr)
+    layer = ds.GetLayer(0)
+    layer.SetSpatialFilterRect(args.left, args.bottom, args.right, args.top)
 
     builder = PbfBuilder()
-    tags_sea = {'natural': 'sea', 'area': 'yes', 'layer': '-5'}
-    tags_land = {'natural': 'nosea', 'layer': '-5'}
-    builder.add_ring(list(bbox_poly.exterior.coords), tags_sea)
-    for face in land:
-        outer_id = builder.add_ring(list(face.exterior.coords), tags_land)
-        if face.interiors:
-            inner_ids = [builder.add_ring(list(r.coords), {}) for r in face.interiors]
-            builder.add_multipolygon(outer_id, inner_ids, tags_land)
+    land_tags = {'natural': 'nosea', 'layer': '-5'}
+    land_count = 0
+    for feature in layer:
+        clipped = feature.GetGeometryRef().Intersection(bbox_geom)
+        if clipped is None or clipped.IsEmpty():
+            continue
+        add_clipped_geometry(builder, clipped, land_tags)
+        land_count += 1
+    print(f"land polygon features clipped into bbox: {land_count}")
+
+    # Sea is always the full bbox rectangle -- land (nosea) polygons draw over
+    # it, exactly like the kcwu ele_*_mix.pbf files (verified: one natural=sea
+    # rectangle plus many natural=nosea polygons, both layer=-5, no relations
+    # unless a land polygon has holes).
+    builder.add_ring(bbox_coords, {'natural': 'sea', 'area': 'yes', 'layer': '-5'})
+
+    if land_count == 0:
+        print("WARNING: no land polygons found in this bbox -- it may be entirely "
+              "open ocean, or LANDSEA may not be needed if this region is inland.",
+              file=sys.stderr)
 
     builder.write(args.output)
-    land_area = sum(f.area for f in land)
-    print(f"land coverage: {land_area / bbox_poly.area * 100:.1f}% of bbox")
     print(f"wrote {args.output}: {len(builder.nodes)} nodes, {len(builder.ways)} ways, "
           f"{len(builder.relations)} relations")
     return 0

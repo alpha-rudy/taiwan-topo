@@ -43,6 +43,12 @@ BOUNDS_ZIP := $(DOWNLOAD_DIR)/bounds-latest.zip
 ELEVATIONS_DIR := $(DOWNLOAD_DIR)/osm_elevations
 EXTRACT_DIR := $(DOWNLOAD_DIR)/extracts
 META := $(EXTRACT_DIR)/meta.osm
+# Authoritative OSM land polygons (for LANDSEA, see below) - shared across all
+# regions, downloaded once (~880MB). Same dataset/source as the sibling
+# taiwan-contour project's tools/sealand-creator.sh.
+LAND_POLYGONS_DIR := $(DOWNLOAD_DIR)/land-polygons
+LAND_POLYGONS_URL := https://osmdata.openstreetmap.de/download/land-polygons-split-4326.zip
+LAND_POLYGONS_SHP := $(LAND_POLYGONS_DIR)/land-polygons-split-4326/land_polygons.shp
 
 ZIP_CMD := 7z a -tzip -mx=6
 UNZIP_CMD := unzip -o
@@ -142,8 +148,9 @@ ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 # Mapsforge land/sea source: the kcwu elevation-mix files already contain the
 # natural=sea/nosea polygons, so regions with contours get sea from there.
 # Coastal regions built WITHOUT contours set LANDSEA := true in the suite to
-# generate the same scheme locally from the extract's coastline instead
-# (see tools/generate_landsea.py); landlocked ones leave both unset.
+# generate the same scheme locally from the OSM land-polygons dataset instead
+# (see tools/generate_landsea.py, same method as the sibling taiwan-contour
+# project's tools/sealand-creator.sh); landlocked ones leave both unset.
 LANDSEA_FILE = $(BUILD_DIR)/landsea_$(REGION).osm.pbf
 MAPSFORGE_MIX = $(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX),$(if $(LANDSEA),$(LANDSEA_FILE)))
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
@@ -723,14 +730,24 @@ $(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(if $(ELEVATION_FILE),$(ELEVATION))
 	-rm -rf $@
 	$(TOOLS_DIR)/gmap-input-build.sh "$(REGION_EXTRACT)_name" "$(if $(ELEVATION_FILE),$(ELEVATION))" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
 
+.DELETE_ON_ERROR: $(LAND_POLYGONS_DIR)/land-polygons-split-4326.zip
+$(LAND_POLYGONS_DIR)/land-polygons-split-4326.zip:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(LAND_POLYGONS_DIR)
+	wget -O $@ $(LAND_POLYGONS_URL)
+
+$(LAND_POLYGONS_SHP): $(LAND_POLYGONS_DIR)/land-polygons-split-4326.zip
+	cd $(LAND_POLYGONS_DIR) && $(UNZIP_CMD) land-polygons-split-4326.zip
+	touch $@
+
 .PHONY: landsea
 landsea: $(LANDSEA_FILE)
-$(LANDSEA_FILE): $(REGION_EXTRACT)-sed.osm.pbf
+$(LANDSEA_FILE): $(LAND_POLYGONS_SHP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(LANDSEA)" ]
 	-rm -f $@
 	python3 $(TOOLS_DIR)/generate_landsea.py \
-		--input $< \
+		--land-polygons $(LAND_POLYGONS_SHP) \
 		--output $@ \
 		--left $(LEFT) --bottom $(BOTTOM) --right $(RIGHT) --top $(TOP)
 
