@@ -38,7 +38,7 @@ import click
 def map_base_name(dem_name, region_name):
     """Mapsforge base name. No-DEM regions drop the DEM_NAME prefix."""
     if dem_name:
-        return map_base_name(dem_name, region_name)
+        return f"{dem_name}_OSM_{region_name}_TOPO_Rudy"
     return f"OSM_{region_name}_TOPO_Rudy"
 
 
