@@ -417,6 +417,11 @@ Or if you'd like the coverage expanded to include a nearby long-distance trail, 
   * Map coverage: 
     * Latitude range: N59.69 ~ N60.15
     * Longitude range: E29.99 ~ E30.62
+* Shikoku
+  * https://rudymap.tw/shikoku_topo-en.html
+  * Map coverage: 
+    * Latitude range: N32.702 ~ N34.428
+    * Longitude range: E132.000 ~ E134.846
 
 ## About
 

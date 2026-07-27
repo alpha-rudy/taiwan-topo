@@ -85,6 +85,7 @@ include $(wildcard $(ROOT_DIR)/suites/kyushu/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/yakushima/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/moscow/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/saint_petersburg/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/shikoku/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 
 # Map display language. New suites set MAP_LANG; legacy suites still set LANG,

@@ -417,6 +417,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N59.69 ~ N60.15
     * 經度範圍: E29.99 ~ E30.62
+* Shikoku, 四國地區
+  * https://rudymap.tw/shikoku_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N32.702 ~ N34.428
+    * 經度範圍: E132.000 ~ E134.846
 
 ## 說明
 

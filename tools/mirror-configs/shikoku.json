@@ -1,0 +1,37 @@
+{
+    "name": "shikoku",
+    "label": "Shikoku",
+    "indexes": [
+        "shikoku_topo.html",
+        "shikoku_topo-en.html"
+    ],
+    "files": [
+        "shikoku_topo.html",
+        "shikoku_topo-en.html",
+        "AW3D30_OSM_Shikoku_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Shikoku_TOPO_Rudy.zip",
+        "AW3D30_OSM_Shikoku_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Shikoku_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Shikoku_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Shikoku_TOPO_Rudy.db.zip",
+        "Shikoku_carto_map.cpkg",
+        "Shikoku_carto_style.cpkg",
+        "Shikoku_carto_dem.cpkg",
+        "Shikoku_carto_upgrade.cpkg",
+        "Shikoku_carto_all.cpkg",
+        "gmapsupp_Shikoku_aw3d30_zh_camp3D.img.zip",
+        "Install_AW3D30_Shikoku_TOPO_camp3D.exe",
+        "Shikoku_aw3d30_zh_camp3D.gmap.zip",
+        "gmapsupp_Shikoku_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Shikoku_TOPO_camp3D_en.exe",
+        "Shikoku_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "shikoku_hgtmix.zip",
+        "shikoku_map-cedric.xml",
+        "shikoku_dem-cedric.xml",
+        "shikoku_upgrade-cedric.xml",
+        "shikoku_all-cedric.xml"
+    ],
+    "check_today": false
+}
