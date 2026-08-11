@@ -1,6 +1,8 @@
 # Suite: nikko_oze - Nikko-Oze mapsforge build
 ifeq ($(SUITE),nikko_oze)
 REGION := Nikko-Oze
+REGION_NAME_ZH := 日光尾瀨
+REGION_NAME_EN := Nikko-Oze
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

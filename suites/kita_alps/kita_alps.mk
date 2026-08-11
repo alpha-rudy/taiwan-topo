@@ -1,6 +1,8 @@
 # Suite: kita_alps - Kita-Alps mapsforge build
 ifeq ($(SUITE),kita_alps)
 REGION := Kita-Alps
+REGION_NAME_ZH := 北阿爾卑斯
+REGION_NAME_EN := Kita Alps
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

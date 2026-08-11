@@ -1,6 +1,8 @@
 # Suite: kashmir - Kashmir (India) mapsforge build
 ifeq ($(SUITE),kashmir)
 REGION := Kashmir
+REGION_NAME_ZH := 喀什米爾
+REGION_NAME_EN := Kashmir
 DEM_NAME := AW3D30
 READING_LANG := hi
 MAP_LANG := zh

@@ -1,6 +1,8 @@
 # Suite: jeju - Jeju mapsforge build
 ifeq ($(SUITE),jeju)
 REGION := Jeju
+REGION_NAME_ZH := 濟州島
+REGION_NAME_EN := Jeju
 DEM_NAME := AW3D30
 READING_LANG := ko
 MAP_LANG := zh

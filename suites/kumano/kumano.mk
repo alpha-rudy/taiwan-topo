@@ -1,6 +1,8 @@
 # Suite: kumano - Kumano (Japan) mapsforge build
 ifeq ($(SUITE),kumano)
 REGION := Kumano
+REGION_NAME_ZH := 熊野古道
+REGION_NAME_EN := Kumano Kodo
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

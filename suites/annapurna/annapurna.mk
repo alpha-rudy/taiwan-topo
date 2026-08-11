@@ -1,6 +1,8 @@
 # Suite: annapurna - Annapurna (Nepal) mapsforge build
 ifeq ($(SUITE),annapurna)
 REGION := Annapurna
+REGION_NAME_ZH := 安娜普納
+REGION_NAME_EN := Annapurna
 DEM_NAME := AW3D30
 READING_LANG := ne
 MAP_LANG := zh
