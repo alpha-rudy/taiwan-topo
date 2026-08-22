@@ -1006,7 +1006,7 @@ amenity = public_building & name = * {name "${name}"} [0x3007 resolution 24]
 amenity = shelter {name "${name}" | "涼亭"} [0x2b06 resolution 22]
 
 # Öffentliche Toilette / public toilet (z.T. mit Gebühr). [point, closedway]
-amenity = toilets [0x2f0c resolution 24]
+amenity = toilets {name "${name}" | "廁所"} [0x2f0c resolution 24]
 
 # Rathaus. [point, closedway]
 amenity = townhall & name = * {name "${name}"} [0x3003 resolution 24]
