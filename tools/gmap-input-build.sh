@@ -38,7 +38,7 @@ cp "${REGION_EXTRACT_NAME}.o5m" "$TEMP_FILE"
 
 # Append elevation data (skipped when no contour data is configured)
 if [ -n "$ELEVATION" ]; then
-    OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION"
+    OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION" contour
 fi
 
 # Convert to final format with bounding

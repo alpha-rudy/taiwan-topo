@@ -203,15 +203,32 @@ GTS_ALL := $(BUILD_DIR)/$(NAME_MAPSFORGE)
 CARTO_ALL := $(BUILD_DIR)/carto_all
 LOCUS_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_locus
 
+# 3600 MiB node bitmap (~30.2e9 bits) covers the whole OSM node id space (~14.2e9),
+# so --drop-broken-refs becomes exact instead of probabilistic. 4000 is osmconvert's
+# maximum accepted total.
+OSMCONVERT_HASH := --hash-memory=4000
+
+# Whole-world clip used only to make --drop-broken-refs effective. osmconvert
+# populates its node hash only while a border filter is active, so
+# --drop-broken-refs on its own would delete EVERY way and relation. The world
+# bbox keeps all data and drops nothing but references to nodes that are not in
+# the file. Upstream extracts (notably the kcwu tw-extract) carry hundreds of
+# thousands of orphan ways whose nodes were clipped away; their dangling refs sit
+# ABOVE the largest node id actually present, which is exactly where appended data
+# used to be renumbered to - see tools/osmium-append.sh.
+OSMCONVERT_CLEAN := -b=-180,-90,180,90 --drop-broken-refs $(OSMCONVERT_HASH)
+
 # BOUNDING settings
-# Note: --drop-broken-refs removed to preserve contour ways crossing boundaries
+# --drop-broken-refs needs a big enough node hash to be exact; with the osmconvert
+# default it silently keeps some broken refs, which is how foreign objects used to
+# survive the clip (see OSMCONVERT_CLEAN above).
 ifneq (,$(strip $(POLY_FILE)))
-OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMCONVERT_BOUNDING := -B=$(POLIES_DIR)/$(POLY_FILE) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs $(OSMCONVERT_HASH)
 SPLITTER_BOUNDING := --polygon-file=$(POLIES_DIR)/$(POLY_FILE)
 OSMIUM_BOUNDING := --polygon $(POLIES_DIR)/$(POLY_FILE)
 OSMOSIS_BOUNDING := --bounding-polygon file=$(POLIES_DIR)/$(POLY_FILE) completeWays=yes completeRelations=yes clipIncompleteEntities=false
 else ifneq (,$(strip $(BOUNDING_BOX)))
-OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs
+OSMCONVERT_BOUNDING := -b=$(LEFT),$(BOTTOM),$(RIGHT),$(TOP) --complete-ways --complete-multipolygons --complete-boundaries --drop-broken-refs $(OSMCONVERT_HASH)
 # Auto-generated polygon file from bounding box for splitter
 BBOX_POLY_FILE := $(BUILD_DIR)/$(REGION)_bbox.poly
 SPLITTER_BOUNDING := --polygon-file=$(BBOX_POLY_FILE)
@@ -630,15 +647,23 @@ $(EXTRACT).o5m:
 		$(OSMCONVERT_CMD) $(EXTRACT_FILE).osm.pbf -o=$(EXTRACT_FILE).o5m
 endif
 
+# $(OSMCONVERT_CLEAN) must run BEFORE any osmium-append.sh call: the appends
+# renumber their payload just above the largest id present, so any dangling ref
+# left in the extract would be silently re-bound to appended data.
 $(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 ifeq ($(EXTRACT_FILE),taiwan-latest)
-	cp $< $@
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM)
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm
+	$(OSMCONVERT_CMD) \
+		$< \
+		$(OSMCONVERT_CLEAN) \
+		--out-o5m \
+		-o=$@
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM) adshelter
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm gianttree
 else
 	$(OSMCONVERT_CMD) \
 		$< \
+		$(OSMCONVERT_CLEAN) \
 		--modify-tags="natural=peak man_made=summit_board" \
 		--out-o5m \
 		-o=$@
@@ -838,7 +863,7 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 	rm -rf $(GPX_BASE)-sed.pbf $(WITH_GPX)-add.pbf
 	python3 osm_scripts/gpx_handler.py $(GPX_BASE_EXT) $(GPX_BASE)-sed.pbf
 	cp -a $(MAPSFORGE_PBF) $(WITH_GPX)-add.pbf
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $(WITH_GPX)-add.pbf $(GPX_BASE)-sed.pbf gpx
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(WITH_GPX)-add.pbf" \
@@ -866,7 +891,7 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 		-s 1,1,0 \
 		$(BUILD_DIR)/track-sed.pbf \
 		-Oo $(@:.map=.pbf)
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $(@:.map=.pbf) $(BUILD_DIR)/waypoint-sed.pbf gpx
 	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
 		$(TOOLS_DIR)/mapsforge-build.sh \
 			"$(@:.map=.pbf)" \

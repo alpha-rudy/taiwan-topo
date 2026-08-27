@@ -39,11 +39,11 @@ rm -f "$OUTPUT"
 cp "$SED_PBF" "$TEMP_FILE"
 
 # Append metadata
-OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$META"
+OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$META" meta
 
 # Append elevation mix data (skipped when no contour data is configured)
 if [ -n "$ELEVATION_MIX" ]; then
-    OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION_MIX"
+    OSMCONVERT_CMD="$OSMCONVERT_CMD" bash "${TOOLS_DIR}/osmium-append.sh" "$TEMP_FILE" "$ELEVATION_MIX" mix
 fi
 
 # Convert to final format with bounding
