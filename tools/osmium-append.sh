@@ -37,9 +37,9 @@ lnid=${lnid:-0}
 lwid=${lwid:-0}
 lrid=${lrid:-0}
 
-lnid=$((lnid + 1))
-lwid=$((lwid + 1))
-lrid=$((lrid + 1))
+lnid=$((lnid + 10))
+lwid=$((lwid + 10))
+lrid=$((lrid + 10))
 
 ext="${target##*.}"
 tmp_dir="$(dirname "$target")"
