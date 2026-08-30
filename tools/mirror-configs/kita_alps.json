@@ -1,0 +1,37 @@
+{
+    "name": "kita_alps",
+    "label": "Kita Alps",
+    "indexes": [
+        "kita_alps_topo.html",
+        "kita_alps_topo-en.html"
+    ],
+    "files": [
+        "kita_alps_topo.html",
+        "kita_alps_topo-en.html",
+        "AW3D30_OSM_Kita-Alps_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Kita-Alps_TOPO_Rudy.zip",
+        "AW3D30_OSM_Kita-Alps_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Kita-Alps_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Kita-Alps_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Kita-Alps_TOPO_Rudy.db.zip",
+        "Kita-Alps_carto_map.cpkg",
+        "Kita-Alps_carto_style.cpkg",
+        "Kita-Alps_carto_dem.cpkg",
+        "Kita-Alps_carto_upgrade.cpkg",
+        "Kita-Alps_carto_all.cpkg",
+        "gmapsupp_Kita-Alps_aw3d30_zh_camp3D.img.zip",
+        "Install_AW3D30_Kita-Alps_TOPO_camp3D.exe",
+        "Kita-Alps_aw3d30_zh_camp3D.gmap.zip",
+        "gmapsupp_Kita-Alps_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Kita-Alps_TOPO_camp3D_en.exe",
+        "Kita-Alps_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "kita_alps_hgtmix.zip",
+        "kita_alps_map-cedric.xml",
+        "kita_alps_dem-cedric.xml",
+        "kita_alps_upgrade-cedric.xml",
+        "kita_alps_all-cedric.xml"
+    ],
+    "check_today": false
+}

@@ -1,0 +1,37 @@
+{
+    "name": "chuo_alps",
+    "label": "Chuo Alps",
+    "indexes": [
+        "chuo_alps_topo.html",
+        "chuo_alps_topo-en.html"
+    ],
+    "files": [
+        "chuo_alps_topo.html",
+        "chuo_alps_topo-en.html",
+        "AW3D30_OSM_Chuo-Alps_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Chuo-Alps_TOPO_Rudy.zip",
+        "AW3D30_OSM_Chuo-Alps_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Chuo-Alps_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Chuo-Alps_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Chuo-Alps_TOPO_Rudy.db.zip",
+        "Chuo-Alps_carto_map.cpkg",
+        "Chuo-Alps_carto_style.cpkg",
+        "Chuo-Alps_carto_dem.cpkg",
+        "Chuo-Alps_carto_upgrade.cpkg",
+        "Chuo-Alps_carto_all.cpkg",
+        "gmapsupp_Chuo-Alps_aw3d30_zh_camp3D.img.zip",
+        "Install_AW3D30_Chuo-Alps_TOPO_camp3D.exe",
+        "Chuo-Alps_aw3d30_zh_camp3D.gmap.zip",
+        "gmapsupp_Chuo-Alps_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Chuo-Alps_TOPO_camp3D_en.exe",
+        "Chuo-Alps_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "chuo_alps_hgtmix.zip",
+        "chuo_alps_map-cedric.xml",
+        "chuo_alps_dem-cedric.xml",
+        "chuo_alps_upgrade-cedric.xml",
+        "chuo_alps_all-cedric.xml"
+    ],
+    "check_today": false
+}

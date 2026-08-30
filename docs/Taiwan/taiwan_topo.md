@@ -422,6 +422,16 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N32.702 ~ N34.428
     * 經度範圍: E132.000 ~ E134.846
+* Kita Alps, 北阿爾卑斯 (飛驒山脈・立山黑部)
+  * https://rudymap.tw/kita_alps_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N35.90 ~ N37.05
+    * 經度範圍: E137.15 ~ E138.25
+* Chuo Alps, 中央阿爾卑斯 (木曾山脈・御嶽山)
+  * https://rudymap.tw/chuo_alps_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N35.35 ~ N36.05
+    * 經度範圍: E137.30 ~ E138.10
 
 ## 說明
 

@@ -422,6 +422,16 @@ Or if you'd like the coverage expanded to include a nearby long-distance trail, 
   * Map coverage: 
     * Latitude range: N32.702 ~ N34.428
     * Longitude range: E132.000 ~ E134.846
+* Kita Alps (Northern Japanese Alps - Hida Mountains, Tateyama-Kurobe)
+  * https://rudymap.tw/kita_alps_topo-en.html
+  * Map coverage: 
+    * Latitude range: N35.90 ~ N37.05
+    * Longitude range: E137.15 ~ E138.25
+* Chuo Alps (Central Japanese Alps - Kiso Mountains, Mount Ontake)
+  * https://rudymap.tw/chuo_alps_topo-en.html
+  * Map coverage: 
+    * Latitude range: N35.35 ~ N36.05
+    * Longitude range: E137.30 ~ E138.10
 
 ## About
 
