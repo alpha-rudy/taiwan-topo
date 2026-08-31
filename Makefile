@@ -623,7 +623,7 @@ $(ELEVATION_MIX):
 		curl --fail --location $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
 		md5sum -c $(ELEVATION_MIX_FILE).md5
 
-.DELETE_ON_ERROR: $(EXTRACT).o5m
+.DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT)_extra.o5m $(REGION_EXTRACT).o5m
 # Determine EXTRACT_URL and download method based on the EXTRACT_FILE
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
@@ -675,12 +675,18 @@ $(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
-	-rm -rf $@
+	set -e; \
+	region_o5m=$(REGION_EXTRACT).$$$$.o5m.tmp; \
+	trap 'rm -f "$$region_o5m"' EXIT; \
+	rm -f "$$region_o5m" $@; \
 	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
+		--out-o5m \
 		$< \
-		-o=$@
+		-o="$$region_o5m"; \
+	test -s "$$region_o5m" || { echo "ERROR: osmconvert produced no output ($$region_o5m)" >&2; exit 1; }; \
+	mv "$$region_o5m" $@
 
 READING_LANG ?= $(MAP_LANG)
 
