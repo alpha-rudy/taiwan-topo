@@ -529,9 +529,8 @@ unaffected — mkgmap takes sea from `precomp-sea`).
 
 Set `LANDSEA := true` in the base suite (or pass `--landsea` to
 `generate_suite.py`): the build then reproduces the same scheme via
-`tools/generate_landsea.py`, using the same method as the sibling
-**taiwan-contour** project's `tools/sealand-creator.sh` — clip the
-authoritative OSM land-polygons dataset
+`tools/sealand-creator.sh`, ported in from the sibling **taiwan-contour**
+project — clip the authoritative OSM land-polygons dataset
 ([land-polygons-split-4326](https://osmdata.openstreetmap.de/data/land-polygons.html))
 to the bbox for the land shape, laying the fixed sea rectangle underneath. The
 dataset (~880MB) is downloaded once to `download/land-polygons/` and shared
@@ -672,7 +671,7 @@ added Nikko Oze region
    by the kcwu `ele_*_mix.pbf`, which no-elevation regions skip; Garmin's sea
    comes from mkgmap `precomp-sea` and keeps working. Fix: set
    `LANDSEA := true` in the base suite `.mk` and rebuild — the build clips the
-   OSM land-polygons dataset to the bbox via `tools/generate_landsea.py` (see
+   OSM land-polygons dataset to the bbox via `tools/sealand-creator.sh` (see
    [Sea rendering](#sea-rendering-coastal-no-elevation-regions)). The first
    build with any `LANDSEA` region downloads the ~880MB dataset to
    `download/land-polygons/` — expect that step to take a while once.

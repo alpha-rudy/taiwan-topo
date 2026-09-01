@@ -13,6 +13,7 @@ BOTTOM := 55.46
 TOP := 56.01
 NAME_MAPSFORGE := OSM_$(REGION)_TOPO_Rudy
 NAME_CARTO := $(REGION)_carto
+LANDSEA := true
 TOPO_PAGE := moscow_topo
 TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip locus_map
 endif

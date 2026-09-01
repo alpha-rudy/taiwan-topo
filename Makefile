@@ -152,8 +152,8 @@ ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 # natural=sea/nosea polygons, so regions with contours get sea from there.
 # Coastal regions built WITHOUT contours set LANDSEA := true in the suite to
 # generate the same scheme locally from the OSM land-polygons dataset instead
-# (see tools/generate_landsea.py, same method as the sibling taiwan-contour
-# project's tools/sealand-creator.sh); landlocked ones leave both unset.
+# (see tools/sealand-creator.sh, ported in from the sibling taiwan-contour
+# project); landlocked ones leave both unset.
 LANDSEA_FILE = $(BUILD_DIR)/landsea_$(REGION).osm.pbf
 MAPSFORGE_MIX = $(if $(ELEVATION_MIX_FILE),$(ELEVATION_MIX),$(if $(LANDSEA),$(LANDSEA_FILE)))
 EXTRACT := $(EXTRACT_DIR)/$(EXTRACT_FILE)
@@ -780,10 +780,11 @@ $(LANDSEA_FILE): $(LAND_POLYGONS_SHP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(LANDSEA)" ]
 	-rm -f $@
-	python3 $(TOOLS_DIR)/generate_landsea.py \
-		--land-polygons $(LAND_POLYGONS_SHP) \
-		--output $@ \
-		--left $(LEFT) --bottom $(BOTTOM) --right $(RIGHT) --top $(TOP)
+	DATA_PATH="$(LAND_POLYGONS_DIR)" OSMOSIS_HOME="$(TOOLS_DIR)/osmosis-0.49.2" \
+		$(TOOLS_DIR)/sealand-creator.sh \
+			-l $(LEFT) -r $(RIGHT) -b $(BOTTOM) -t $(TOP) \
+			-n landsea_$(REGION) -o $(BUILD_DIR)
+	mv $(BUILD_DIR)/landsea_$(REGION)-sealand.pbf $@
 
 $(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(MAPSFORGE_MIX) $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
