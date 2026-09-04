@@ -461,7 +461,7 @@ landuse = industrial [0x0c resolution 22-24]
 landuse = landfill [0x2a resolution 22-24]
 
 # Wiese (meist außerorts; nicht für öffentliche Zwecke). [point, closedway]
-landuse = meadow [0x17 resolution 22-24]
+landuse = meadow [0x17 resolution 17]
 
 # Militärisch genutztes Gebiet (Kasernen, Truppenübungsplätze, use.). [point, closedway]
 landuse = military [0x04 resolution 22-24]
