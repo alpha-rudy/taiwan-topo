@@ -432,6 +432,11 @@ Or if you'd like the coverage expanded to include a nearby long-distance trail, 
   * Map coverage: 
     * Latitude range: N35.35 ~ N36.05
     * Longitude range: E137.30 ~ E138.10
+* Hong Kong
+  * https://rudymap.tw/hong_kong_topo-en.html
+  * Map coverage: 
+    * Latitude range: N22.130 ~ N22.569
+    * Longitude range: E113.813 ~ E114.506
 
 ## About
 

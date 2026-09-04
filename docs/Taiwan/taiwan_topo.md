@@ -432,6 +432,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N35.35 ~ N36.05
     * 經度範圍: E137.30 ~ E138.10
+* Hong Kong, 香港
+  * https://rudymap.tw/hong_kong_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N22.130 ~ N22.569
+    * 經度範圍: E113.813 ~ E114.506
 
 ## 說明
 

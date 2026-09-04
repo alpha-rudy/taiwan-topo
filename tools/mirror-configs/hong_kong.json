@@ -1,0 +1,37 @@
+{
+    "name": "hong_kong",
+    "label": "Hong Kong",
+    "indexes": [
+        "hong_kong_topo.html",
+        "hong_kong_topo-en.html"
+    ],
+    "files": [
+        "hong_kong_topo.html",
+        "hong_kong_topo-en.html",
+        "AW3D30_OSM_Hong-Kong_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Hong-Kong_TOPO_Rudy.zip",
+        "AW3D30_OSM_Hong-Kong_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Hong-Kong_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Hong-Kong_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Hong-Kong_TOPO_Rudy.db.zip",
+        "Hong-Kong_carto_map.cpkg",
+        "Hong-Kong_carto_style.cpkg",
+        "Hong-Kong_carto_dem.cpkg",
+        "Hong-Kong_carto_upgrade.cpkg",
+        "Hong-Kong_carto_all.cpkg",
+        "gmapsupp_Hong-Kong_aw3d30_zh_camp3D.img.zip",
+        "Install_AW3D30_Hong-Kong_TOPO_camp3D.exe",
+        "Hong-Kong_aw3d30_zh_camp3D.gmap.zip",
+        "gmapsupp_Hong-Kong_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Hong-Kong_TOPO_camp3D_en.exe",
+        "Hong-Kong_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "hong_kong_hgtmix.zip",
+        "hong_kong_map-cedric.xml",
+        "hong_kong_dem-cedric.xml",
+        "hong_kong_upgrade-cedric.xml",
+        "hong_kong_all-cedric.xml"
+    ],
+    "check_today": false
+}
