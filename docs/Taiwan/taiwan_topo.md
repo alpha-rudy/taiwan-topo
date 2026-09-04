@@ -371,7 +371,7 @@ MOI.OSM - Taiwan TOPO
   * https://rudymap.tw/fujisan_topo.html
   * 地圖範圍：
     * 緯度範圍: N34.30 ~ N35.95
-    * 經度範圍: E137.69 ~ E139.55
+    * 經度範圍: E138.35 ~ E139.55
 * Nikko Oze, 日光尾瀨地區
   * https://rudymap.tw/nikko_oze_topo.html
   * 地圖範圍：
@@ -432,6 +432,11 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N35.35 ~ N36.05
     * 經度範圍: E137.30 ~ E138.10
+* Minami Alps, 南阿爾卑斯 (赤石山脈)
+  * https://rudymap.tw/minami_alps_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N35.15 ~ N35.90
+    * 經度範圍: E137.70 ~ E138.65
 * Hong Kong, 香港
   * https://rudymap.tw/hong_kong_topo.html
   * 地圖範圍：

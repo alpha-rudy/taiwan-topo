@@ -88,6 +88,7 @@ include $(wildcard $(ROOT_DIR)/suites/saint_petersburg/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/shikoku/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/kita_alps/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/chuo_alps/*.mk)
+include $(wildcard $(ROOT_DIR)/suites/minami_alps/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/hong_kong/*.mk)
 include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 

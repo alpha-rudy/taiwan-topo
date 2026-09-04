@@ -8,7 +8,7 @@ An offline map for Garmin / Android / iOS.
 ## Map Coverage
 
 * Latitude range: N34.30 ~ N35.95
-* Longitude range: E137.69 ~ E139.55
+* Longitude range: E138.35 ~ E139.55
 
 ### Famous Peaks
 
@@ -23,23 +23,10 @@ An offline map for Garmin / Android / iOS.
   * Mount Kinpu (2,599m)
   * Mount Mizugaki (2,230m)
   * Mount Amagi (1,406m)
-  * Kiso-Koma-ga-take (2,956m)
-
-* The following Hyakumeizan lie in the Southern Alps (Akaishi Mountains)
-  * Kita-dake (3,193m) - Japan's second-highest peak
-  * Kaikoma-ga-take (2,967m)
-  * Senjo-ga-take (3,033m)
-  * Mount Houou, Jizo-dake (2,764m)
-  * Ai-no-dake (3,190m) - Japan's third-highest peak
-  * Shiomi-dake (3,047m)
-  * Warusawa-dake (3,141m)
-  * Akaishi-dake (3,121m)
-  * Hijiri-dake (3,013m)
-  * Kō-dake (2,592m)
 
 * Other well-known sightseeing spots and peaks
   * Tokyo: Takao-yama, Mitake-san/Ōtake-san, Mitsutoge-yama
-  * Yamanashi: Shōsen-kyō/Yajiro-dake, Irikasa-yama, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama
+  * Yamanashi: Shōsen-kyō/Yajiro-dake, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama
   * Kanagawa: Hakone/Hakone-Komagatake
   * Shizuoka: Izu Peninsula, Numazu Trail
 
@@ -52,13 +39,7 @@ An offline map for Garmin / Android / iOS.
     * Gotemba Trail: the longest route with the gentlest gradient, and the least crowded
     * Ohachi-meguri: a circuit around the crater rim after reaching the top, leading to the true summit at Kengamine
 
-2. Southern Alps (Akaishi Mountains) traverses
-    * Shirane Sanzan Traverse (Kita-dake - Ai-no-dake - Nōtori-dake, via Hirogawara and Kita-dake Hut)
-    * Kaikoma - Senjo Traverse (starting from Kitazawa Pass, bagging two Hyakumeizan in one trip)
-    * Hōō Sanzan Traverse (Jizo-dake - Kannon-dake - Yakushi-dake, starting from Yashajin Pass)
-    * Southern Alps Grand Traverse (Shiomi-dake - Warusawa-dake - Akaishi-dake - Hijiri-dake, a multi-day classic of Japanese high-mountain traversing)
-
-3. Trails near the Greater Tokyo area
+2. Trails near the Greater Tokyo area
     * Tanzawa Main Ridge Traverse (Ōkura Ridge - Tō-no-dake - Tanzawa-san - Hiru-ga-dake)
     * Takao-san - Jinba-san Traverse (a beginner-friendly Hyakumeizan-adjacent route near Tokyo)
     * Mount Daibosatsu - Daibosatsu Pass loop (a famous viewpoint for Mount Fuji)
@@ -313,7 +294,7 @@ An offline map for Garmin / Android / iOS.
 
 * JAXA ALOS World 3D - 30m (AW3D30) Version 4.1
 > Contour lines and HGT DEM for part of this coverage area are derived from JAXA AW3D30 v4.1. <br /> 
-> Files used: N33E135, N33E136, N34E135, N34E136. <br />
+> Files used: N34E138, N34E139, N35E138, N35E139. <br />
 > Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
 
 * GMAP Styles and TYP

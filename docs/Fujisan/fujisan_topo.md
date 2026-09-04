@@ -1,5 +1,5 @@
-Sacred Summit - Fujisan / 靈峰聖岳 - 富士山登山地圖（南阿爾卑斯・富士五湖）
-===========================================================================
+Sacred Summit - Fujisan / 靈峰聖岳 - 富士山登山地圖（富士五湖・伊豆箱根）
+===================================================
 
 AW3D30.OSM - Fujisan TOPO v__version__
 
@@ -8,7 +8,7 @@ AW3D30.OSM - Fujisan TOPO v__version__
 ## 地圖範圍
 
 * 緯度範圍: N34.30 ~ N35.95
-* 經度範圍: E137.69 ~ E139.55
+* 經度範圍: E138.35 ~ E139.55
 
 ### 著名的山頭 (Famous Peaks)
 
@@ -23,23 +23,10 @@ AW3D30.OSM - Fujisan TOPO v__version__
   * 金峰山 (Mt. Kinpo, 2599m)
   * 瑞牆山 (Mt. Zuigaki, 2230m)
   * 天城山 (Mt. Amagi, 1406m)
-  * 木曾駒之岳 (Kiso-Koma-gatake, 2956m)
-
-* 以下百名山是在南阿爾卑斯山脈（赤石山脈）
-  * 北岳 (Kita-dake, 3193m，日本第二高峰)
-  * 甲斐駒之岳 (Kaikoma-gatake, 2967m)
-  * 仙丈之岳 (Senjo-gadake, 3033m)
-  * 鳳凰山, 地藏岳 (Mt. Houou Jizo-dake, 2764m)
-  * 間之岳 (Aino-dake, 3190m，日本第三高峰)
-  * 塩見岳 (Shiomi-dake, 3047m)
-  * 惡澤岳 (Akuzawa-dake, 3141m)
-  * 赤石岳 (Akaishi-dake, 3121m)
-  * 聖岳 (Saigo-dake, 3013m)
-  * 光岳 (Kō-dake, 2592m)
 
 * 其他有名的觀光景點與山峰
   * 東京都:高尾山、御岳山/大岳山、三頭山 (Tokyo: Takao-yama, Ontake-yama/Otake-yama, Mitsumi-yama)
-  * 山梨:昇仙峽/彌二郎岳、入笠山、身延山、富士五湖/三ツ峠山 (Yamanashi: Shōsen-kyō/Yajiro-dake, Irikasa-yama, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama)
+  * 山梨:昇仙峽/彌二郎岳、身延山、富士五湖/三ツ峠山 (Yamanashi: Shōsen-kyō/Yajiro-dake, Minobu-yama, Fuji Five Lakes/Mitsu-toge-yama)
   * 神奈川:箱根/箱根駒之岳 (Kanagawa: Hakone/Hakone-Komagake)
   * 靜岡:伊豆半島、沼津縱走 (Shizuoka: Izu Peninsula, Numazu Trail)
 
@@ -52,13 +39,7 @@ AW3D30.OSM - Fujisan TOPO v__version__
     * 御殿場口登山道 (Gotemba Trail)：路程最長、坡度最緩的傳統路線，人潮最少
     * 御鉢巡り (Ohachi-meguri)：登頂後沿火山口環繞一周，可達最高點劍峰
 
-2. 南阿爾卑斯（赤石山脈）縱走路線
-    * 白根三山縱走 (北岳－間之岳－農鳥岳，經廣河原、北岳山莊)
-    * 甲斐駒‧仙丈縱走 (北澤峠起登，兩座百名山一次收錄)
-    * 鳳凰三山縱走 (地藏岳－觀音岳－藥師岳，夜叉神峠起登)
-    * 南阿爾卑斯南部主脈大縱走 (塩見岳－惡澤岳－赤石岳－聖岳，多日行程，日本高山縱走經典)
-
-3. 關東近郊步道
+2. 關東近郊步道
     * 丹澤主脈縱走 (大倉尾根－塔之岳－丹澤山－蛭之岳)
     * 高尾山－陣馬山縱走 (東京都近郊入門百岳步道)
     * 大菩薩嶺－大菩薩峠環狀路線 (可遠眺富士山的展望名所)
@@ -313,7 +294,7 @@ AW3D30.OSM - Fujisan TOPO v__version__
 
 * JAXA ALOS World 3D - 30m (AW3D30) Version 4.1
 > 部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v4.1。 <br /> 
-> 使用檔案：N33E135, N33E136, N34E135, N34E136。 <br />
+> 使用檔案：N34E138, N34E139, N35E138, N35E139。 <br />
 > Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
 
 * GMAP Styles and TYP

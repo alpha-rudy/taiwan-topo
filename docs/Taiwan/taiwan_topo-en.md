@@ -371,7 +371,7 @@ Or if you'd like the coverage expanded to include a nearby long-distance trail, 
   * https://rudymap.tw/fujisan_topo-en.html
   * Map coverage: 
     * Latitude range: N34.30 ~ N35.95
-    * Longitude range: E137.69 ~ E139.55
+    * Longitude range: E138.35 ~ E139.55
 * Nikko Oze
   * https://rudymap.tw/nikko_oze_topo-en.html
   * Map coverage: 
@@ -432,6 +432,11 @@ Or if you'd like the coverage expanded to include a nearby long-distance trail, 
   * Map coverage: 
     * Latitude range: N35.35 ~ N36.05
     * Longitude range: E137.30 ~ E138.10
+* Minami Alps (Southern Japanese Alps - Akaishi Mountains)
+  * https://rudymap.tw/minami_alps_topo-en.html
+  * Map coverage: 
+    * Latitude range: N35.15 ~ N35.90
+    * Longitude range: E137.70 ~ E138.65
 * Hong Kong
   * https://rudymap.tw/hong_kong_topo-en.html
   * Map coverage: 

@@ -1,0 +1,37 @@
+{
+    "name": "minami_alps",
+    "label": "Minami Alps",
+    "indexes": [
+        "minami_alps_topo.html",
+        "minami_alps_topo-en.html"
+    ],
+    "files": [
+        "minami_alps_topo.html",
+        "minami_alps_topo-en.html",
+        "AW3D30_OSM_Minami-Alps_TOPO_Rudy.map.zip",
+        "AW3D30_OSM_Minami-Alps_TOPO_Rudy.zip",
+        "AW3D30_OSM_Minami-Alps_TOPO_Rudy_locus.zip",
+        "AW3D30_OSM_Minami-Alps_TOPO_Rudy.poi.zip",
+        "AW3D30_OSM_Minami-Alps_TOPO_Rudy_v2.poi.zip",
+        "AW3D30_OSM_Minami-Alps_TOPO_Rudy.db.zip",
+        "Minami-Alps_carto_map.cpkg",
+        "Minami-Alps_carto_style.cpkg",
+        "Minami-Alps_carto_dem.cpkg",
+        "Minami-Alps_carto_upgrade.cpkg",
+        "Minami-Alps_carto_all.cpkg",
+        "gmapsupp_Minami-Alps_aw3d30_zh_camp3D.img.zip",
+        "Install_AW3D30_Minami-Alps_TOPO_camp3D.exe",
+        "Minami-Alps_aw3d30_zh_camp3D.gmap.zip",
+        "gmapsupp_Minami-Alps_aw3d30_en_camp3D.img.zip",
+        "Install_AW3D30_Minami-Alps_TOPO_camp3D_en.exe",
+        "Minami-Alps_aw3d30_en_camp3D.gmap.zip"
+    ],
+    "exist_only": [
+        "minami_alps_hgtmix.zip",
+        "minami_alps_map-cedric.xml",
+        "minami_alps_dem-cedric.xml",
+        "minami_alps_upgrade-cedric.xml",
+        "minami_alps_all-cedric.xml"
+    ],
+    "check_today": false
+}
