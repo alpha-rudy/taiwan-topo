@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Build the taiwan-topo:latest image used by tools/docker-make.
+#
+# The image's "builder" user is created with the caller's UID/GID so files
+# written into the bind-mounted /workspace stay owned by the host user.
+#
+# Extra arguments are passed through to `docker build`, e.g.:
+#   ./tools/docker-build --no-cache
+#   ./tools/docker-build --pull
+
+set -e
+
+ROOT_DIR=$(cd "$(dirname "$0")/.." && pwd)
+
+docker build \
+    --build-arg USER_ID=$(id -u) \
+    --build-arg GROUP_ID=$(id -g) \
+    -t taiwan-topo:latest \
+    "$@" \
+    "${ROOT_DIR}/docker"

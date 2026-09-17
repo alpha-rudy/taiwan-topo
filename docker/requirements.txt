@@ -1,0 +1,17 @@
+# Pure-Python packages that Ubuntu 26.04 does not ship (or ships too old).
+# Pinned so a rebuild produces the same image; bump versions deliberately.
+#
+# Do NOT list packages owned by apt here (numpy, rasterio, GDAL, lxml, osmium,
+# requests, click, tqdm, unidecode, ...). The Dockerfile installs with a
+# constraints file pinning every apt-owned distribution, so pip fails fast
+# instead of trying to replace them.
+cyrtranslit==1.2.0
+hanzi2reading==0.1.1
+indic-transliteration==2.3.82
+janome==0.5.0
+nepali_roman==1.1
+opencc-python-reimplemented==0.1.7
+pyewts==1.0.0
+pykakasi==2.3.0
+rio-rgbify==0.4.0
+spatialite==0.0.3

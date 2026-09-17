@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 # Prevent interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -7,22 +7,25 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-RUN sed -i 's/archive.ubuntu.com/free.nchc.org.tw/g' /etc/apt/sources.list
+# Since 24.04 apt sources live in deb822 format; /etc/apt/sources.list is empty.
+RUN sed -i 's,archive.ubuntu.com,free.nchc.org.tw,g' /etc/apt/sources.list.d/ubuntu.sources
 RUN apt-get update
 
 ENV TZ=Asia/Taipei
 RUN echo $TZ > /etc/timezone && apt-get install -y --no-install-recommends tzdata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
-RUN echo "dash dash/sh boolean false" | debconf-set-selections; dpkg-reconfigure -f noninteractive dash
 
+# i386 libs: tools/jmc*/linux/jmc_cli is a 32-bit binary.
+# openjdk-8 is only for the POI v2 osmosis (JAVA8_HOME); the rest use default-java.
 RUN dpkg --add-architecture i386 && \
     apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+        7zip \
         aria2 \
         bash \
         bzip2 \
         curl \
-        default-jre \
+        default-jre-headless \
         discount \
         gdal-bin \
         git \
@@ -31,65 +34,50 @@ RUN dpkg --add-architecture i386 && \
         locales \
         make \
         nsis \
-        openjdk-8-jre \
+        openjdk-8-jre-headless \
         osmctools \
         osmium-tool \
-        p7zip-full \
         python3-gdal \
         python3-lxml \
         python3-pip \
         python3-rasterio \
+        python3-requests \
+        python3-tqdm \
+        python3-unidecode \
         pyosmium \
         ssh \
         sudo \
+        tilemaker \
         tree \
         unzip \
         zip \
         zstd \
     && rm -rf /var/lib/apt/lists/*
 
-# numpy is intentionally NOT upgraded here: python3-rasterio (apt) provides
-# Debian's numpy 1.26.4, which pip may not uninstall ("installed by debian").
-# That version already satisfies matplotlib, so let apt own numpy.
-RUN pip3 install --break-system-packages --upgrade "setuptools<82" bs4 matplotlib
+# Python packages: apt owns the compiled stack (numpy, GDAL, rasterio, lxml,
+# osmium), pip only adds the pinned pure-Python packages in requirements.txt.
+# pip cannot uninstall apt packages ("installed by debian"), and the apt
+# bindings are built against Debian's numpy ABI, so pip must never replace
+# them. Pin every apt-owned distribution as a constraint (except the packaging
+# tools) so a pip dependency asking for another numpy/rasterio/... fails with a
+# clear resolver error or picks an older compatible release.
+RUN python3 -c 'import importlib.metadata as m; \
+        [print(f"{d.name}=={d.version}") for d in m.distributions() \
+         if str(d.locate_file("")).startswith("/usr/lib/python3/dist-packages") \
+         and d.name.lower() not in ("pip", "setuptools", "wheel")]' \
+        | sort -f > /etc/pip-constraints.txt
+COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install --no-cache-dir --break-system-packages \
-                    cyrtranslit \
-                    hanzi2reading \
-                    indic-transliteration \
-                    janome \
-                    nepali_roman \
-                    opencc-python-reimplemented \
-                    osmium \
-                    pyewts \
-                    pykakasi \
-                    requests \
-                    rio-rgbify \
-                    spatialite \
-                    tqdm \
-                    unidecode \
-                    wheel
-
-# Build tilemaker (PMTiles vector-tile generator) from source.
-# Ubuntu does not package it; v3+ writes .pmtiles directly. The build deps also
-# provide the shared libs tilemaker needs at runtime, so they are kept.
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        build-essential cmake \
-        libboost-program-options-dev libboost-filesystem-dev \
-        libboost-system-dev libboost-iostreams-dev \
-        libprotobuf-dev protobuf-compiler \
-        libshp-dev libsqlite3-dev rapidjson-dev liblua5.1-0-dev \
-        zlib1g-dev \
-    && git clone --depth 1 -b v3.1.0 https://github.com/systemed/tilemaker /tmp/tilemaker \
-    && cmake -S /tmp/tilemaker -B /tmp/tilemaker/build -DCMAKE_BUILD_TYPE=Release \
-    && cmake --build /tmp/tilemaker/build -j"$(nproc)" \
-    && cmake --install /tmp/tilemaker/build \
-    && rm -rf /tmp/tilemaker /var/lib/apt/lists/* \
-    && tilemaker --help >/dev/null
+        -c /etc/pip-constraints.txt -r /tmp/requirements.txt \
+    && rm /tmp/requirements.txt
+# Guard ad-hoc `pip install` inside the container too.
+ENV PIP_CONSTRAINT=/etc/pip-constraints.txt
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 
-ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+# default-java follows default-jre (OpenJDK 25 on 26.04).
+ENV JAVA_HOME=/usr/lib/jvm/default-java
 ENV JAVA8_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
