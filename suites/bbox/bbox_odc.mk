@@ -4,7 +4,7 @@ ifeq ($(SUITE),bbox_odc)
 DEM_NAME := MOI
 MAP_LANG := zh
 CODE_PAGE := 950
-ELEVATION_FILE = ele_taiwan_10_100_500-2025.o5m
+ELEVATION_FILE = ele_taiwan_10_100_500-2026.pbf
 EXTRACT_FILE := taiwan-latest
 BOUNDING_BOX := true
 TYP := outdoorc

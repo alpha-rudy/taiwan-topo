@@ -146,8 +146,7 @@ MAP_PC := $(MAP_HIDEM)
 MAP_HAND := $(MAP_LODEM)
 endif
 
-# these elevation files are converted to o5m format by
-#   osmconvert --drop-version file.osm.pbf -o=file.o5m
+# kcwu contour extracts; fetched from $(ELEVATIONS_URL) when not present locally
 ELEVATION := $(ELEVATIONS_DIR)/$(ELEVATION_FILE)
 ELEVATION_MIX := $(ELEVATIONS_DIR)/marker/$(ELEVATION_MIX_FILE)
 # Mapsforge land/sea source: the kcwu elevation-mix files already contain the

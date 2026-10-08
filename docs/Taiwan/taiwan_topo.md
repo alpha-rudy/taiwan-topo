@@ -464,6 +464,8 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 重大修改歷程
+* 2026, 10/8
+  * DTM 套用內政部地政司 Taiwan DTM 20m v2026
 * 2026, 1/8
   * 增加 foreign topos 國外登山地圖
 * 2026, 1/5

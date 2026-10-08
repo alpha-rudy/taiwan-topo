@@ -464,6 +464,8 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 
 
 ## Major Revision History
+* 2026, 10/8
+  * DTM updated to MOI Department of Land Administration Taiwan DTM 20m v2026
 * 2026, 1/8
   * Added foreign topo maps for overseas mountain regions
 * 2026, 1/5
