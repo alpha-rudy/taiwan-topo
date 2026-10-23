@@ -442,6 +442,11 @@ Or if you'd like the coverage expanded to include a nearby long-distance trail, 
   * Map coverage: 
     * Latitude range: N22.130 ~ N22.569
     * Longitude range: E113.813 ~ E114.506
+* Jeju
+  * https://rudymap.tw/jeju_topo-en.html
+  * Map coverage: 
+    * Latitude range: N33.108 ~ N34.018
+    * Longitude range: E126.138 ~ E126.978
 
 ## About
 

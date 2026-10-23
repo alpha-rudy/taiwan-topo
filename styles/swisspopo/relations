@@ -58,4 +58,5 @@ type=route
 #----------------------------
 # Hiking Trails
 # -----------------------------------------
-type = route & route = hiking & network = *   { apply { set hknetwork = '${network}'; set ref = '${name}' } }
+# any hiking/foot route counts; network is optional (lwn when missing)
+type = route & (route = hiking | route = foot)   { apply { set hknetwork = '${network}' | 'lwn'; set ref = '${name}' | '${name:en}' | '${ref}' } }

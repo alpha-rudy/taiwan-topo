@@ -576,6 +576,87 @@ def romanize_ru(text):
     return None
 
 
+# Korean Revised Romanization (2000) with the sound-change rules that the
+# official road/place-name romanization reflects (liaison, nasalization,
+# lateralization, h-aspiration, palatalization). Tensification is not
+# reflected, and per the noun rule h after g/d/b is kept (묵호 -> Mukho).
+_KO_INI = ['g', 'kk', 'n', 'd', 'tt', 'r', 'm', 'b', 'pp', 's', 'ss', '',
+           'j', 'jj', 'ch', 'k', 't', 'p', 'h']
+_KO_MED = ['a', 'ae', 'ya', 'yae', 'eo', 'e', 'yeo', 'ye', 'o', 'wa', 'wae',
+           'oe', 'yo', 'u', 'wo', 'we', 'wi', 'yu', 'eu', 'ui', 'i']
+# final consonant as pronounced before a consonant / at word end
+_KO_FIN = ['', 'k', 'k', 'k', 'n', 'n', 'n', 't', 'l', 'k', 'm', 'l', 'l',
+           'l', 'p', 'l', 'm', 'p', 'p', 't', 't', 'ng', 't', 't', 'k', 't',
+           'p', 't']
+# final before a silent ㅇ initial: (what stays, what moves to the next syllable)
+_KO_LIAISON = [('', ''), ('', 'g'), ('', 'kk'), ('k', 's'), ('', 'n'),
+               ('n', 'j'), ('', 'n'), ('', 'd'), ('', 'r'), ('l', 'g'),
+               ('l', 'm'), ('l', 'b'), ('l', 's'), ('l', 't'), ('l', 'p'),
+               ('', 'r'), ('', 'm'), ('', 'b'), ('p', 's'), ('', 's'),
+               ('', 'ss'), ('ng', ''), ('', 'j'), ('', 'ch'), ('', 'k'),
+               ('', 't'), ('', 'p'), ('', '')]
+_KO_FIN_H = {6: 'n', 15: 'l', 27: ''}           # ㄶ ㅀ ㅎ
+_KO_ASPIRATE = {0: 'k', 3: 't', 12: 'ch'}       # ㄱ ㄷ ㅈ after a final ㅎ
+
+
+def has_hangul(text):
+    """Check if text contains precomposed Hangul syllables."""
+    return any('가' <= char <= '힣' for char in text)
+
+
+def _romanize_hangul_run(run):
+    """Romanize a run of Hangul syllables (one word) applying the RR
+    sound-change rules across syllable boundaries."""
+    syl = []
+    for ch in run:
+        code = ord(ch) - 0xAC00
+        syl.append([code // 588, (code % 588) // 28, code % 28])
+    out = []
+    ini_rom = _KO_INI[syl[0][0]]
+    for i, (_, med, fin) in enumerate(syl):
+        if i + 1 == len(syl):
+            out.append(ini_rom + _KO_MED[med] + _KO_FIN[fin])
+            break
+        nxt_ini, nxt_med = syl[i + 1][0], syl[i + 1][1]
+        fs, ns = _KO_FIN[fin], _KO_INI[nxt_ini]
+        if fin == 0:
+            pass
+        elif nxt_ini == 11:                          # ㅇ: liaison
+            fs, ns = _KO_LIAISON[fin]
+            if nxt_med == 20 and fin in (7, 25, 13):  # ㄷ ㅌ ㄾ + 이: palatalize
+                ns = 'j' if fin == 7 else 'ch'
+        elif fin in _KO_FIN_H and nxt_ini in _KO_ASPIRATE:
+            fs, ns = _KO_FIN_H[fin], _KO_ASPIRATE[nxt_ini]
+        else:
+            if nxt_ini == 5:                         # ㄹ initial
+                if fs in ('n', 'l'):
+                    fs, ns = 'l', 'l'                # 신라 Silla, 한라 Halla
+                else:
+                    ns = 'n'                         # 종로 Jongno, 백록 Baengnok
+            elif nxt_ini == 2 and fs == 'l':
+                ns = 'l'                             # ㄹ+ㄴ -> ll
+            if ns in ('n', 'm'):
+                fs = {'k': 'ng', 't': 'n', 'p': 'm'}.get(fs, fs)
+        out.append(ini_rom + _KO_MED[med] + fs)
+        ini_rom = ns
+    return ''.join(out)
+
+
+def romanize_ko(text):
+    """Romanize Korean text (Hangul) using Revised Romanization; non-Hangul
+    parts (Latin, digits, punctuation) pass through unchanged."""
+    if not has_hangul(text):
+        return None
+    result = re.sub(r'[가-힣]+',
+                    lambda m: _romanize_hangul_run(m.group(0)), text)
+    # digit-led tokens stay lowercase, as in Korean addressing (15beon-gil)
+    roman = ' '.join(w if w[0].isdigit() else _capitalize_token(w)
+                     for w in result.split())
+    if is_latin_text(roman):
+        return roman
+    return None
+
+
 def extract_latin_part(text):
     """Extract Latin/English parts from mixed-script text."""
     # Matches: Latin chars (incl accents), numbers, common punctuation
@@ -770,6 +851,17 @@ def romanize_by_lang_tag(tags):
             if has_cyrtranslit:
                 return romanize_ru(tags['name:ru'])
 
+    elif READING_LANG == 'ko':
+        # Check for existing romanization tags
+        roman = _existing_roman_tag(tags, ('name:ko-Latn', 'name:ko_rm'), romanize_ko)
+        if roman:
+            return roman
+        # Try romanizing name:ko
+        if 'name:ko' in tags:
+            if tags['name:ko'].isascii():
+                return tags['name:ko']
+            return romanize_ko(tags['name:ko'])
+
     return None
 
 
@@ -791,8 +883,8 @@ def romanize_by_combined_rules(name):
     """
     Priority 8: romanize 'name' by its detected script.
 
-    The script is detected per object (kana, Han, Devanagari, Cyrillic,
-    Tibetan); READING_LANG is only a tie-breaker for scripts with more than
+    The script is detected per object (kana, Hangul, Han, Devanagari,
+    Cyrillic, Tibetan); READING_LANG is only a tie-breaker for scripts with more than
     one reading: Han (ja reading vs zh pinyin) and Devanagari (hi vs ne).
     Anything else - including multilingual regions where 'name' has no single
     language - falls through to generic transliteration.
@@ -811,6 +903,9 @@ def romanize_by_combined_rules(name):
     if has_japanese_kana(name):
         # kana is unambiguously Japanese, whatever the region
         result = romanize_ja(name) or romanize_ja_janome(name)
+    elif has_hangul(name):
+        # Hangul is unambiguously Korean, whatever the region
+        result = romanize_ko(name)
     elif has_chinese_chars(name):
         # Han without kana: Japanese reading only where the region says so
         if READING_LANG == 'ja':
@@ -972,11 +1067,12 @@ def complete_name_zh(d):
     Priority order depends on READING_LANG:
     - READING_LANG=zh (Taiwan): wikidata(zh) -> wikipedia(zh title) -> name (if CJK/Latin)
                                -> name:zh-Hant* -> name:zh-Hans*(->Trad) -> name:cn(->Trad)
-                               -> name:ja (filtered, jp2t) -> brand:wikidata(zh) -> name:en
+                               -> name:ja (filtered, jp2t) -> name:ko-Hani
+                               -> brand:wikidata(zh) -> name:en
     - All others:              wikidata(zh) -> wikipedia(zh title) -> name:zh-Hant*
                                -> name:zh-Hans*(->Trad) -> name:cn(->Trad)
-                               -> name:ja (filtered, jp2t) -> name (if CJK/Latin)
-                               -> brand:wikidata(zh) -> name:en
+                               -> name:ja (filtered, jp2t) -> name:ko-Hani
+                               -> name (if CJK/Latin) -> brand:wikidata(zh) -> name:en
     where name:zh-Hant* = first of name:zh-Hant / name:zh-Hant-TW / name:zh-TW / name:zh-HK
     and   name:zh-Hans* = first of name:zh-Hans / name:zh-CN
 
@@ -1005,6 +1101,11 @@ def complete_name_zh(d):
     # name:ja is usable after kana mapping (ノ->之 etc.) if the rest is
     # Chinese+Latin only; shinjitai is converted to Traditional (広沢 -> 廣澤)
     name_ja = ja_name_to_zh(d.get('name:ja', '').strip())
+
+    # Korean hanja spelling (濟州, 漢拏山) is Traditional-form Han already
+    name_ko_hani = d.get('name:ko-Hani', '').strip() or None
+    if name_ko_hani and not is_chinese_latin_only(name_ko_hani):
+        name_ko_hani = None
 
     # Wikidata Traditional-Chinese label (normalized at cache-build time, but
     # upstream zh-tw labels occasionally contain Simplified chars - re-normalize)
@@ -1040,13 +1141,14 @@ def complete_name_zh(d):
     if READING_LANG == 'zh':
         candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'), (name_filtered, 'name'),
                       (name_hant, 'name:zh-Hant'), (name_hans_t, 'name:zh-Hans'),
-                      (name_cn_t, 'name:cn'), (name_ja, 'name:ja'), (brand_zh, 'brand'),
+                      (name_cn_t, 'name:cn'), (name_ja, 'name:ja'),
+                      (name_ko_hani, 'name:ko-Hani'), (brand_zh, 'brand'),
                       (name_ja_mixed, 'name-kana'), (name_en, 'name:en')]
     else:
         candidates = [(wd_zh, 'wikidata'), (wp_zh, 'wikipedia'),
                       (name_hant, 'name:zh-Hant'), (name_hans_t, 'name:zh-Hans'),
                       (name_cn_t, 'name:cn'), (name_ja, 'name:ja'),
-                      (name_filtered, 'name'), (brand_zh, 'brand'),
+                      (name_ko_hani, 'name:ko-Hani'), (name_filtered, 'name'), (brand_zh, 'brand'),
                       (name_ja_mixed, 'name-kana'), (name_en, 'name:en')]
 
     for value, source in candidates:
@@ -1119,7 +1221,7 @@ def print_stats():
     # Stable, priority-ordered source list (union of both tags' sources)
     order = ['wikidata', 'wikipedia', 'int_name', 'latin_name', 'brand', 'romanize',
              'other_name', 'name', 'name-kana', 'name:zh-Hant', 'name:zh-Hans',
-             'name:cn', 'name:ja', 'name:en']
+             'name:cn', 'name:ja', 'name:ko-Hani', 'name:en']
     print("=== complete_name.py fill summary (READING_LANG=%s, wikidata=%s) ==="
           % (READING_LANG, 'on' if has_wikidata else 'off'), file=sys.stderr)
     for tag in ('name:en', 'name:zh'):
