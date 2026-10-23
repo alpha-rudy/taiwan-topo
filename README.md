@@ -1,5 +1,25 @@
 # *Taiwan TOPO* Taiwan Hiking/Geocaching Maps
 
+## 給 App 開發者 / For app developers
+
+魯地圖歡迎 App 使用，免費或收費、有沒有廣告都可以，只要遵守以下幾點：
+
+1. **不透過下載魯地圖收費。** 地圖檔、DEM 與樣式（theme）都可以讓使用者在 App 內直接下載，但不能對下載本身收費。
+2. **標明出處。** 在 App 中標示魯地圖，並附上說明網頁 https://rudymap.tw 。
+3. **下載一律連 https://rudymap.tw 。** 不要直接連鏡像站；rudymap.tw 會依各站狀況分流。
+4. **User-Agent 帶上 App 名稱。** 格式是 `AppName/版本 (+聯絡網址)`，例如 `MyHikingApp/2.1.0 (+https://example.com/contact)`。查詢更新與實際下載的請求都要帶。查有沒有新版用 HEAD，每個檔案只 GET 一次，續傳直接連轉址後的鏡像站網址。細節見 https://oslab.tw/rudymap/developers 。
+
+其他問題請開 issue。
+
+Apps are welcome to use Rudy Map, free or paid, with or without ads, as long as they:
+
+1. **Do not charge for downloading Rudy Map.** Users may download the maps, DEM and themes from inside the app, but the download itself must not be sold.
+2. **Credit Rudy Map** in the app, with a link to https://rudymap.tw .
+3. **Download through https://rudymap.tw**, never from a mirror directly; rudymap.tw spreads downloads across the mirrors.
+4. **Name the app in the User-Agent**, as `AppName/version (+contact URL)`, e.g. `MyHikingApp/2.1.0 (+https://example.com/contact)`, on both update checks and downloads. Check for updates with HEAD, GET each file once, and resume against the mirror URL you were redirected to. Details: https://oslab.tw/rudymap/developers .
+
+For anything else, please open an issue.
+
 ## Usage
 
     $ make SUITE=taiwan_bw gmapsupp   ### make a Garmin handheld map
