@@ -1,5 +1,5 @@
-Hong Kong Region
-================
+Harbour & Hills - Hong Kong
+===========================
 
 AW3D30.OSM - Hong-Kong TOPO v__version__
 
@@ -13,6 +13,61 @@ An offline map for Garmin / Android / iOS.
 This map covers all of Hong Kong — Hong Kong Island, Kowloon, the New Territories, and the outlying islands including Lantau — with full coverage of the four major long-distance trails: the MacLehose, Wilson, Hong Kong, and Lantau Trails.
 
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
+
+### MacLehose Trail
+
+The MacLehose Trail (麥理浩徑) is Hong Kong's first long-distance trail. It opened in 1979 and is named after Governor Sir Murray MacLehose, who championed the creation of the country parks. The trail crosses the New Territories from Pak Tam Chung in Sai Kung in the east to Tuen Mun in the west, linking eight country parks. National Geographic named it one of the world's dream hiking trails, and it is the traditional course of the annual 100km Trailwalker charity race.
+
+* The trail
+  * Approx. 100km in total, divided into 10 stages of 4.6 to 15.6km each.
+  * The terrain is hilly throughout. Most stage ends are served by bus or minibus, so the trail is easy to walk in stages.
+
+* Stages
+  1. Stage 1 (Pak Tam Chung - Long Ke, 10.6km): along High Island Reservoir, past the hexagonal volcanic columns of the East Dam (UNESCO Global Geopark); mostly on concrete road.
+  2. Stage 2 (Long Ke - Pak Tam Au, 13.5km): over Sai Wan Shan and past the Tai Long Wan beaches of Sai Wan and Ham Tin; the most scenic stage of the trail.
+  3. Stage 3 (Pak Tam Au - Kei Ling Ha, 10.2km): over Ngau Yee Shek Shan and Kai Kung Shan with constant climbs and descents; widely considered the toughest stage.
+  4. Stage 4 (Kei Ling Ha - Sha Tin Pass, 12.7km): along the flanks of Ma On Shan to the Ngong Ping plateau and over Wan Kuk Shan to Sha Tin Pass, with views over Port Shelter and Tolo Harbour.
+  5. Stage 5 (Sha Tin Pass - Tai Po Road, 10.6km): past the north side of Lion Rock and over Beacon Hill, with World War II pillboxes along the way; wild monkeys are common.
+  6. Stage 6 (Tai Po Road - Shing Mun, 4.6km): the shortest stage, past Kowloon Reservoir and the Shing Mun Redoubt on Smugglers' Ridge (part of the Gin Drinker's Line) to Shing Mun Reservoir.
+  7. Stage 7 (Shing Mun - Lead Mine Pass, 6.2km): steep climbs over Needle Hill and Grassy Hill.
+  8. Stage 8 (Lead Mine Pass - Route Twisk, 9.7km): around Tai Mo Shan (957m), Hong Kong's highest peak; the highest stage of the trail, with occasional frost in winter.
+  9. Stage 9 (Route Twisk - Tin Fu Tsai, 6.3km): easy woodland tracks through Tai Lam Country Park.
+  10. Stage 10 (Tin Fu Tsai - Tuen Mun, 15.6km): the longest stage, through the Tai Lam Chung Reservoir catchment to the finish in Tuen Mun.
+
+* Distance posts and waymarks
+  * Distance posts stand every 500m along the whole trail, numbered M001 (Pak Tam Chung) to M200 (Tuen Mun).
+  * The post number gives your location when calling for help; note the post numbers at each stage's start and end before you set out.
+
+### Wilson Trail
+
+The Wilson Trail (衛奕信徑) is named after Governor Sir David Wilson and opened in 1996. It runs north from Stanley on the south side of Hong Kong Island, through Kowloon, to Nam Chung in the northeast New Territories. It is the only long-distance trail in Hong Kong that crosses Victoria Harbour, and it crosses the east-west MacLehose Trail.
+
+* The trail
+  * Approx. 78km in total, divided into 10 stages of approx. 4.8 to 10km each.
+  * Between the end of Stage 2 at Quarry Bay and the start of Stage 3 at Lam Tin, take the MTR across the harbour.
+  * Stages 5 and 6 partly share the route of the MacLehose Trail, and part of Stage 2 is shared with the Hong Kong Trail.
+
+* Stages
+  1. Stage 1 (Stanley Gap Road - Wong Nai Chung Gap, approx. 4.8km): over The Twins and Violet Hill, famous for long flights of steep steps; short but strenuous.
+  2. Stage 2 (Wong Nai Chung Gap - Quarry Bay, approx. 7km): over Jardine's Lookout and Siu Ma Shan, past pillboxes and battlefield relics of the 1941 Battle of Hong Kong.
+  3. Stage 3 (Lam Tin - Tseng Lan Shue, approx. 9km): over Devil's Peak and Black Hill. The British-built Devil's Peak Redoubt on the summit looks over Lei Yue Mun and the eastern entrance of Victoria Harbour.
+  4. Stage 4 (Tseng Lan Shue - Sha Tin Pass, approx. 8km): past Tung Yeung Shan, Tate's Cairn and the Kowloon Peak viewpoint, with views over urban Kowloon.
+  5. Stage 5 (Sha Tin Pass - Tai Po Road, approx. 8km): partly shared with the MacLehose Trail, mostly along the hillsides.
+  6. Stage 6 (Tai Po Road - Shing Mun, approx. 5.3km): past Kowloon Reservoir and Shing Mun Reservoir, roughly parallel to MacLehose Stage 6.
+  7. Stage 7 (Shing Mun - Tai Po, approx. 10km): via Lead Mine Pass, descending towards Tai Po.
+  8. Stage 8 (Tai Po - Cloudy Hill, approx. 9km): over Cloudy Hill, passing the old village of Wun Yiu.
+  9. Stage 9 (Cloudy Hill - Pat Sin Leng, approx. 10km): along the Pat Sin Leng ridge over Wong Leng (639m), Shun Yeung Fung (590m) and the other peaks of the "Eight Immortals"; the most spectacular and most demanding stage.
+  10. Stage 10 (Pat Sin Leng - Nam Chung, approx. 6.7km): past the Sir Edward Youde Memorial Pavilion viewpoint near Hsien Ku Fung, then down to the finish at Nam Chung.
+
+* Distance posts and waymarks
+  * As on the MacLehose Trail, distance posts stand every 500m, numbered with a W prefix (starting at W001 in Stanley). Where the trail shares the MacLehose route, some posts carry the MacLehose M numbers instead.
+
+### MacLehose and Wilson Trails: tips for using this map
+
+* All 10 stages of both trails are tagged completely in OSM, so this map highlights them as hiking routes.
+* The contour lines and hillshading help you read the climbs on each stage, especially the steep ones such as MacLehose Stages 3, 7 and 8 and Wilson Stages 1 and 9.
+* Summer (May to September) is hot and humid, and is also the typhoon and rainstorm season. The trails have little shade, so protect yourself from the sun, drink plenty of water, and follow the Hong Kong Observatory's weather warnings. October to March is cooler and drier and is the best hiking season, but it is also the peak season for hill fires.
+* Sections are sometimes closed or rerouted for works or landslides. Always follow the notices of the Agriculture, Fisheries and Conservation Department and the signs on site.
 
 ### Famous Peaks
 
