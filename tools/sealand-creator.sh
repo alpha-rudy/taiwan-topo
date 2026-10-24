@@ -146,7 +146,13 @@ else
 
   # Land (nosea) - clip land polygons to bounding box and convert to OSM
 
-  ogr2ogr -overwrite -progress -skipfailures -clipsrc $LEFT $BOTTOM $RIGHT $TOP "$WORK_PATH/land.shp" "$DATA_PATH/land-polygons-split-4326/land_polygons.shp"
+  ogr2ogr -overwrite -progress -skipfailures -clipsrc $LEFT $BOTTOM $RIGHT $TOP "$WORK_PATH/land_clip.shp" "$DATA_PATH/land-polygons-split-4326/land_polygons.shp"
+  # Clipping can turn a land polygon into a MultiPolygon (e.g. the New
+  # Territories piece clipped by the Hong Kong bbox), which shape2osm.py
+  # silently skips as a "Degenerate ring" - explode them into single
+  # Polygons. Must be a separate pass: with -clipsrc in the same call GDAL
+  # explodes first and the clip re-creates the MultiPolygons.
+  ogr2ogr -overwrite -skipfailures -explodecollections -nlt POLYGON "$WORK_PATH/land.shp" "$WORK_PATH/land_clip.shp"
   python3 shape2osm.py -l "$WORK_PATH/land" "$WORK_PATH/land.shp"
 
   # Merge all land OSM files into one nosea file

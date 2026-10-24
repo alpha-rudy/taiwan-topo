@@ -34,7 +34,8 @@
 #     3    130e9   gianttree   precompiled/TFRI_Taiwan_GiantTree-ren.osm
 #     4    140e9   meta        meta/meta.osm version stamp
 #     5    150e9   gpx         GPX overlay / waypoint appends
-#    6-8   160e9   (reserved for future sources)
+#     6    160e9   frame       mapsforge sea frame (tools/mapsforge-input-build.sh)
+#    7-8   170e9   (reserved for future sources)
 #     9    190e9   fallback    used when no namespace is given
 #
 # The same layout applies to node, way and relation ids; way and relation counts
@@ -68,6 +69,7 @@ block_for() {
         gianttree) echo 3 ;;
         meta)      echo 4 ;;
         gpx)       echo 5 ;;
+        frame)     echo 6 ;;
         fallback)  echo 9 ;;
         *)         echo "" ;;
     esac

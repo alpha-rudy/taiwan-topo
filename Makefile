@@ -240,6 +240,23 @@ OSMIUM_BOUNDING := --bbox $(LEFT),$(BOTTOM),$(RIGHT),$(TOP)
 OSMOSIS_BOUNDING := --bounding-box left=$(LEFT) bottom=$(BOTTOM) right=$(RIGHT) top=$(TOP) completeWays=yes completeRelations=yes clipIncompleteEntities=false
 endif
 
+# Map frame (left,bottom,right,top) for mapsforge / PMTiles: the suite bbox, else
+# the extent of POLY_FILE. The land-sea layer is drawn to the frame instead of
+# being clipped by the bbox / polygon (see tools/mapsforge-input-build.sh), and
+# the mapsforge writer and tilemaker use it as the map bounds.
+ifneq (,$(and $(strip $(LEFT)),$(strip $(RIGHT)),$(strip $(BOTTOM)),$(strip $(TOP))))
+MAP_FRAME := $(strip $(LEFT)),$(strip $(BOTTOM)),$(strip $(RIGHT)),$(strip $(TOP))
+else ifneq (,$(strip $(POLY_FILE)))
+MAP_FRAME := $(shell awk 'NF == 2 && $$1 + 0 == $$1 { x = $$1 + 0; y = $$2 + 0; \
+	if (!n++) { l = r = x; b = t = y } \
+	if (x < l) l = x; if (x > r) r = x; if (y < b) b = y; if (y > t) t = y } \
+	END { if (n) printf "%.6f,%.6f,%.6f,%.6f", l, b, r, t }' $(POLIES_DIR)/$(POLY_FILE))
+endif
+comma := ,
+# mapsforge writer order: minLat,minLon,maxLat,maxLon
+MAP_FRAME_WORDS = $(subst $(comma), ,$(MAP_FRAME))
+MAP_FRAME_LATLON = $(word 2,$(MAP_FRAME_WORDS)),$(word 1,$(MAP_FRAME_WORDS)),$(word 4,$(MAP_FRAME_WORDS)),$(word 3,$(MAP_FRAME_WORDS))
+
 all: $(TARGETS)
 
 clean:
@@ -792,7 +809,7 @@ $(MAPSFORGE_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(MAPSFORGE_MIX) $(ADS_O
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@
-	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(MAPSFORGE_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@"
+	$(TOOLS_DIR)/mapsforge-input-build.sh "$<" "$(META)" "$(MAPSFORGE_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$(BUILD_DIR)" "$@" "$(MAP_FRAME)"
 
 
 #==============================================================================
@@ -880,12 +897,12 @@ $(WITH_GPX).map: $(MAPSFORGE_PBF) $(TAG_MAPPING) $(GPX_BASE_EXT)
 			"$(WITH_GPX)-add.pbf" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
-			"$(OSMOSIS_BOUNDING)" \
+			"$(if $(MAP_FRAME),,$(OSMOSIS_BOUNDING))" \
 			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
 			"$(VERSION)  /  (c) Map: Rudy; GPX: $(notdir $(WITH_GPX))" \
-			"" \
+			"$(if $(MAP_FRAME),bbox=$(MAP_FRAME_LATLON))" \
 		> /dev/null 2> /dev/null
 
 
@@ -927,12 +944,12 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$(MAPSFORGE_PBF)" \
 			"$@" \
 			"$(OSMOSIS_CMD)" \
-			"$(OSMOSIS_BOUNDING)" \
+			"$(if $(MAP_FRAME),,$(OSMOSIS_BOUNDING))" \
 			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
 			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))" \
-			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12"
+			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12$(if $(MAP_FRAME), bbox=$(MAP_FRAME_LATLON))"
 
 .PHONY: pmtiles
 pmtiles: $(PMTILES)
@@ -946,7 +963,8 @@ $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS)
 		"$(TILEMAKER_CMD)" \
 		"$(PMTILES_CONFIG)" \
 		"$(PMTILES_PROCESS)" \
-		"$(VERSION)"
+		"$(VERSION)" \
+		"$(MAP_FRAME)"
 
 .PHONY: dem
 dem: $(DEM_PMTILES)
