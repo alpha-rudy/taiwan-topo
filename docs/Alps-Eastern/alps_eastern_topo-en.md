@@ -112,7 +112,7 @@ This region spans Italy's South Tyrol and Trentino, Austria's Tyrol and Salzburg
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM, aw3d30-4.1
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_dem-cedric.xml)
   * Map data update
     * ![Map](images/Locus.jpeg =36x) Update
@@ -129,7 +129,7 @@ This region spans Italy's South Tyrol and Trentino, Austria's Tyrol and Salzburg
       > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
       > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2025, click to download then install manually
+    * ![DEM](images/Cartograph_dem.png =36x) DEM, aw3d30-4.1, click to download then install manually
       > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_dem.cpkg)
   * Map data update
     * ![Map](images/Cartograph.png =36x) Update

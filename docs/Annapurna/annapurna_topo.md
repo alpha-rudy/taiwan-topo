@@ -118,7 +118,7 @@ AW3D30.OSM - Annapurna TOPO v__version__
       > [[自動分流]](locus-actions://https/rudymap.tw/annapurna_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
       > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025 (25MB)
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM, aw3d30-4.1 (25MB)
       > [[自動分流]](locus-actions://https/rudymap.tw/annapurna_dem-cedric.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新 (295MB)
@@ -135,7 +135,7 @@ AW3D30.OSM - Annapurna TOPO v__version__
       > [[自動分流]](cartograph-map://rudymap.tw/Annapurna_carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
       > [[自動分流]](cartograph-map://rudymap.tw/Annapurna_carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2025, 請點選下載，並手動安裝 (46MB)
+    * ![DEM](images/Cartograph_dem.png =36x) DEM, aw3d30-4.1, 請點選下載，並手動安裝 (46MB)
       > [[自動分流]](cartograph-map://rudymap.tw/Annapurna_carto_dem.cpkg)
   * 圖資更新
     * ![Map](images/Cartograph.png =36x) 更新 (320MB)

@@ -133,7 +133,7 @@ EN_TRANSLATIONS = {
     "安卓 11(含) 以後：安裝示範影片：": "Android 11 and later: installation demo video: ",
     "安卓 10(含) 以前：安裝示範影片：": "Android 10 and earlier: installation demo video: ",
     "請點選下載，並手動安裝": "Click to download, then install manually",
-    "DEM mix v2025, 請點選下載，並手動安裝": "DEM mix, v2025, click to download then install manually",
+    "DEM, aw3d30-4.1, 請點選下載，並手動安裝": "DEM, aw3d30-4.1, click to download then install manually",
     "分開安裝": "Install separately",
     "圖資更新": "Map data update",
     "首次安裝": "First-time install",
@@ -282,7 +282,7 @@ AW3D30.OSM - {region} TOPO v__version__
       > [[自動分流]](locus-actions://https/rudymap.tw/{region_lower}_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
       > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM, aw3d30-4.1
       > [[自動分流]](locus-actions://https/rudymap.tw/{region_lower}_dem-cedric.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新
@@ -299,7 +299,7 @@ AW3D30.OSM - {region} TOPO v__version__
       > [[自動分流]](cartograph-map://rudymap.tw/{region}_carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
       > [[自動分流]](cartograph-map://rudymap.tw/{region}_carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2025, 請點選下載，並手動安裝
+    * ![DEM](images/Cartograph_dem.png =36x) DEM, aw3d30-4.1, 請點選下載，並手動安裝
       > [[自動分流]](cartograph-map://rudymap.tw/{region}_carto_dem.cpkg)
   * 圖資更新
     * ![Map](images/Cartograph.png =36x) 更新

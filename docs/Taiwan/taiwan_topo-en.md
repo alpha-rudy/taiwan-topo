@@ -79,7 +79,7 @@ For hiking and geocaching on Garmin / Android / iOS!
     > [[Auto-mirror]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
     > [[Auto-mirror]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2025, Click to download, then install manually (46MB)
+  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026, Click to download, then install manually (46MB)
     > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map Auto Install
@@ -90,7 +90,7 @@ For hiking and geocaching on Garmin / Android / iOS!
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025 (46MB)
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026 (46MB)
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
   * Map data update
     * ![Map](images/Locus.jpeg =36x) Update (298MB)
@@ -107,7 +107,7 @@ For hiking and geocaching on Garmin / Android / iOS!
       > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
       > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2025, click to download then install manually (46MB)
+    * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2026, click to download then install manually (46MB)
       > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
   * Map data update
     * ![Map](images/Cartograph.png =36x) Update (320MB)
@@ -150,9 +150,9 @@ For hiking and geocaching on Garmin / Android / iOS!
     > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
     > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2025, 30m for the Taiwan main island, 90m for outlying islands, a balanced file size (46MB)
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026, 30m for the Taiwan main island, 90m for outlying islands, a balanced file size (46MB)
     > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2025, 90m resolution throughout, lower resolution, smallest file size (8MB)
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026, 90m resolution throughout, lower resolution, smallest file size (8MB)
     > [[Auto-mirror]](https://rudymap.tw/v1/hgt90.zip)
   * Overlay-only styles
     * BN Style, for dark-base map overlays (e.g. satellite imagery) (0.4MB)

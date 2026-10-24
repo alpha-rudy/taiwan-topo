@@ -118,7 +118,7 @@ This region has Nepal's most well-developed and scenically diverse trekking rout
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/annapurna_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025 (25MB)
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM, aw3d30-4.1 (25MB)
       > [[Auto-mirror]](locus-actions://https/rudymap.tw/annapurna_dem-cedric.xml)
   * Map data update
     * ![Map](images/Locus.jpeg =36x) Update (295MB)
@@ -135,7 +135,7 @@ This region has Nepal's most well-developed and scenically diverse trekking rout
       > [[Auto-mirror]](cartograph-map://rudymap.tw/Annapurna_carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
       > [[Auto-mirror]](cartograph-map://rudymap.tw/Annapurna_carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2025, click to download then install manually (46MB)
+    * ![DEM](images/Cartograph_dem.png =36x) DEM, aw3d30-4.1, click to download then install manually (46MB)
       > [[Auto-mirror]](cartograph-map://rudymap.tw/Annapurna_carto_dem.cpkg)
   * Map data update
     * ![Map](images/Cartograph.png =36x) Update (320MB)

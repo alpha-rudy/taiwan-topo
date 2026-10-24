@@ -79,7 +79,7 @@ MOI.OSM - Taiwan TOPO
     > [[自動分流]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
     > [[自動分流]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2025, 請點選下載，並手動安裝 (46MB)
+  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026, 請點選下載，並手動安裝 (46MB)
     > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
@@ -90,7 +90,7 @@ MOI.OSM - Taiwan TOPO
       > [[自動分流]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
       > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025 (46MB)
+    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026 (46MB)
       > [[自動分流]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新 (298MB)
@@ -107,7 +107,7 @@ MOI.OSM - Taiwan TOPO
       > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
       > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2025, 請點選下載，並手動安裝 (46MB)
+    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2026, 請點選下載，並手動安裝 (46MB)
       > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
   * 圖資更新
     * ![Map](images/Cartograph.png =36x) 更新 (320MB)
@@ -150,9 +150,9 @@ MOI.OSM - Taiwan TOPO
     > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
     > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2025, 台灣本島30m, 離島90m, 適當大小 (46MB)
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026, 台灣本島30m, 離島90m, 適當大小 (46MB)
     > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2025, 全部90m, 解析度低，檔案最小 (8MB)
+  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026, 全部90m, 解析度低，檔案最小 (8MB)
     > [[自動分流]](https://rudymap.tw/v1/hgt90.zip)
   * 疊圖專用 Styles
     * BN Style, 給深色地圖疊圖 (例：衛星地圖) (0.4MB)
