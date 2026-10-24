@@ -13,9 +13,7 @@ HGT_ZIP_TEMPLATE = "{REGION_LOWER}_hgtmix.zip"
 HGT_DEST_TEMPLATE = "{REGION_LOWER}_hgt.zip"
 
 PROVIDERS = {
-    "cedric": "https://rudymap.tw/",
-    "happyman": "https://map.happyman.idv.tw/rudy/",
-    "kcwu": "https://moi.kcwu.csie.org/"
+    "cedric": "https://rudymap.tw/"
 }
 
 VARIANTS = ["all", "map", "dem", "upgrade"]

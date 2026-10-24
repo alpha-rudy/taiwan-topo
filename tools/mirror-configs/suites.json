@@ -51,17 +51,7 @@
         "extra/Compartment.map.zip",
         "hgtmix.zip",
         "hgt90.zip",
-        "legend_V1R1.pdf",
-        "locus_map-happyman.xml",
-        "locus_style-happyman.xml",
-        "locus_dem-happyman.xml",
-        "locus_upgrade-happyman.xml",
-        "locus_all-happyman.xml",
-        "locus_map-happyman.xml",
-        "locus_style-kcwu.xml",
-        "locus_dem-kcwu.xml",
-        "locus_upgrade-kcwu.xml",
-        "locus_all-kcwu.xml"
+        "legend_V1R1.pdf"
     ],
     "check_today": false
 }

@@ -6,18 +6,19 @@ MOI.OSM - Taiwan TOPO v__version__, released every Thursday
 For hiking and geocaching on Garmin / Android / iOS!
 
 * Related Links
-  * RudyMap Mirror Selector (Cedric Shih)
-    * https://rudymap.tw/
+  * Info Page: https://rudymap.tw/taiwan_topo-en.html
+  * RudyMap Load Balancer (Cedric Shih)
+    * rudymap.tw
     * https://rudymap.tw/app (dedicated mobile offline app)
-  * Info pages:
-    * https://moi.kcwu.csie.org/taiwan_topo-en.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/taiwan_topo-en.html (mirror Happyman)
+  * RudyMap Mirrors:
+    * kcwu, moi.kcwu.csie.org
+    * happyman, map.happyman.idv.tw
+    * peakit (山盒), rudy.peakitcdn.com
+    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
   * Beta version (released Mon/Wed/Sat):
     * https://rudymap.tw/drops/beta.html (Auto-mirror)
-    * https://moi.kcwu.csie.org/drops/beta.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/drops/beta.html (mirror Happyman)
   * Legend guide by Aniu: [Legend V1R3](./legend_V1R3.pdf)
 
 * Maps for other overseas mountain regions (irregular release schedule) are still under construction; scroll down to before the "Notes" section.
@@ -31,320 +32,200 @@ For hiking and geocaching on Garmin / Android / iOS!
     > Installation demo video: https://youtu.be/g8b15RPZ7nA
   * Classic version
     * All-in-one (345MB)
-      > [[Auto-mirror]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip) /
-      > [[mirror kcwu]](wadi-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.zip) /
-      > [[mirror Happyman]](wadi-all://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.zip)
+      > [[Auto-mirror]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
     * Offline map (298MB)
-      > [[Auto-mirror]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+      > [[Auto-mirror]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * Elevation (DEM) file (46MB)
-      > [[Auto-mirror]](wadi-hgt://rudymap.tw/v1/hgtmix.zip) /
-      > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/hgtmix.zip) /
-      > [[mirror Happyman]](wadi-hgt://map.happyman.idv.tw/rudy/hgtmix.zip)
+      > [[Auto-mirror]](wadi-hgt://rudymap.tw/v1/hgtmix.zip)
   * Lite version
     * All-in-one (174MB)
-      > [[Auto-mirror]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip) /
-      > [[mirror kcwu]](wadi-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.zip) /
-      > [[mirror Happyman]](wadi-all://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite.zip)
+      > [[Auto-mirror]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
     * Offline map (168MB)
-      > [[Auto-mirror]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
+      > [[Auto-mirror]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
     * Elevation (DEM) file (6MB)
-      > [[Auto-mirror]](wadi-hgt://rudymap.tw/v1/hgt90.zip) /
-      > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/hgt90.zip) /
-      > [[mirror Happyman]](wadi-hgt://map.happyman.idv.tw/rudy/hgt90.zip)
+      > [[Auto-mirror]](wadi-hgt://rudymap.tw/v1/hgt90.zip)
 
 * ![GTS](images/GTS.png =36x) GTS (Green Wild Trails) Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/JsvP61CErYY
   * Classic version
     * All-in-one (345MB)
-      > [[Auto-mirror]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip) /
-      > [[mirror kcwu]](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.zip) /
-      > [[mirror Happyman]](gts-all://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.zip)
+      > [[Auto-mirror]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
     * Offline map (298MB)
-      > [[Auto-mirror]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+      > [[Auto-mirror]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](gts-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * Elevation (DEM) file (46MB)
-      > [[Auto-mirror]](gts-hgt://rudymap.tw/v1/hgtmix.zip) /
-      > [[mirror kcwu]](gts-hgt://moi.kcwu.csie.org/hgtmix.zip) /
-      > [[mirror Happyman]](gts-hgt://map.happyman.idv.tw/rudy/hgtmix.zip)
+      > [[Auto-mirror]](gts-hgt://rudymap.tw/v1/hgtmix.zip)
   * Lite version
     * All-in-one (174MB)
-      > [[Auto-mirror]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip) /
-      > [[mirror kcwu]](gts-all://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.zip) /
-      > [[mirror Happyman]](gts-all://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite.zip)
+      > [[Auto-mirror]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
     * Offline map (168MB)
-      > [[Auto-mirror]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
+      > [[Auto-mirror]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Lite_style.zip) /
-      > [[mirror Happyman]](gts-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
+      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
     * Elevation (DEM) file (6MB)
-      > [[Auto-mirror]](gts-hgt://rudymap.tw/v1/hgt90.zip) /
-      > [[mirror kcwu]](gts-hgt://moi.kcwu.csie.org/hgt90.zip) /
-      > [[mirror Happyman]](gts-hgt://map.happyman.idv.tw/rudy/hgt90.zip)
+      > [[Auto-mirror]](gts-hgt://rudymap.tw/v1/hgt90.zip)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Android 11 and later: installation demo video: https://youtu.be/8hwJr4jMsE0 <br />
     > Android 10 and earlier: installation demo video: https://youtu.be/GbBaePfk4cE
   * ![Map](images/OruxMaps_map.jpeg =36x) Map (298MB)
-    > [[Auto-mirror]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+    > [[Auto-mirror]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[Auto-mirror]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2025, Click to download, then install manually (46MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/hgtmix.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/hgtmix.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/rb1Hb6dkGkw
   * Install separately
     * ![Map](images/Locus_map.jpeg =36x) Map (298MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_map-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_map-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_map-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
     * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025 (46MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_dem-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_dem-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
   * Map data update
     * ![Map](images/Locus.jpeg =36x) Update (298MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_upgrade-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_upgrade-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_upgrade-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_upgrade-cedric.xml)
   * All-in-one
     * ![Map](images/Locus.jpeg =36x) First-time install (345MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_all-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_all-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_all-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_all-cedric.xml)
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/FDa2Qb9wxUY
   * Install separately
     * ![Map](images/Cartograph_map.png =36x) Map (298MB)
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_map.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_map.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_map.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_style.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_style.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_style.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
     * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2025, click to download then install manually (46MB)
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_dem.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_dem.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
   * Map data update
     * ![Map](images/Cartograph.png =36x) Update (320MB)
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_upgrade.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_upgrade.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg)
   * All-in-one
     * ![Map](images/Cartograph.png =36x) First-time install (345MB)
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_all.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/carto_all.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/carto_all.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_all.cpkg)
 
 * Extra Offline Layer Zone
   * Map data downloads
     * Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
       > All GPX track files collected by the map generator, rendered as an offline map
     * Markchoo.map: Markchoo's Compilation of Greater & Lesser Hundred Peaks V2 (2023.06.23), [release notes](https://www.markchoo.com.tw/doc/762)
-      > [[Auto-mirror]](https://rudymap.tw/v1/extra/Markchoo.map.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Markchoo.map.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/Markchoo.map.zip)
+      > [[Auto-mirror]](https://rudymap.tw/v1/extra/Markchoo.map.zip)
     * Compartment.map: Forestry and Nature Conservation Agency compartment boundaries v2022.04.17
-      > [[Auto-mirror]](https://rudymap.tw/v1/extra/Compartment.map.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/Compartment.map.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/Compartment.map.zip)
+      > [[Auto-mirror]](https://rudymap.tw/v1/extra/Compartment.map.zip)
     * NPA_Taiwan_ADShelter.map: Taiwan air-raid shelters offline map v2025.06.27
-      > [[Auto-mirror]](https://rudymap.tw/extra/NPA_Taiwan_ADShelter.map.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/extra/NPA_Taiwan_ADShelter.map.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/extra/NPA_Taiwan_ADShelter.map.zip)
+      > [[Auto-mirror]](https://rudymap.tw/extra/NPA_Taiwan_ADShelter.map.zip)
     * ...
       > (more offline layers to come in the future)
   * Style dedicated to the Extra layer
     * ![Style](images/Cartograph_style.png =36x) Extra Style (only needed for Cartograph; OruxMaps and Locus can use the original style directly)
-      > [[Auto-mirror]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_extra_style.zip) /
-      > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
-      > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
+      > [[Auto-mirror]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_extra_style.zip)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge Manual download, install yourself
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Manual installation guide for OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     > * Manual installation guide for Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map (298MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
   * ![POIv3](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal POIv3 (55MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
   * ![POIv2](images/Android.png =36x) Cartograph POIv2 (45MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
   * ![LOCUS_POI](images/Android.png =36x) Locus POI (25MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy.db.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
   * ![Style](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![Style](images/Android.png =36x) Locus Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2025, 30m for the Taiwan main island, 90m for outlying islands, a balanced file size (46MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/hgtmix.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/hgtmix.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip)
   * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2025, 90m resolution throughout, lower resolution, smallest file size (8MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/hgt90.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/hgt90.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/hgt90.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/hgt90.zip)
   * Overlay-only styles
     * BN Style, for dark-base map overlays (e.g. satellite imagery) (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_bn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_bn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_bn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_bn_style.zip)
     * DN Style, for light-base map overlays (e.g. general digital maps) (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_dn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_dn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_dn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_dn_style.zip)
     * TN Style, for elevation/relief map overlays (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_tn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_tn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_tn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_tn_style.zip)
     * Extra Style, for Cartograph Extra layer overlays (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_extra_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_extra_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw - Taiwan TOPO (for smaller screens)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_small.jpeg =36x) bw (210MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_bw.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_zh_bw.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw.img.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw3D - Taiwan TOPO (for smaller screens)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_small.jpeg =36x) bw3D (211MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_bw3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_zh_bw3D.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw3D.img.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.odc - Taiwan TOPO (for larger screens)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) odc (210MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_odc.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_zh_odc.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc.img.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.odc3D - Taiwan TOPO (for larger screens)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) odc3D (211MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_odc3D.img.zip) / 
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_zh_odc3D.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc3D.img.zip)
   * ![Map](images/Windows.png =36x) odc3D (227MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_odc3D.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_MOI_Taiwan_TOPO_odc3D.exe) / 
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_MOI_Taiwan_TOPO_odc3D.exe)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_odc3D.exe)
   * ![Map](images/macOS.png =36x) odc3D (227MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_odc3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Taiwan_moi_zh_odc3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Taiwan_moi_zh_odc3D.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_odc3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp - Taiwan TOPO (for PC/Mac BaseCamp)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Windows.png =36x) camp (210MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_MOI_Taiwan_TOPO_camp.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_MOI_Taiwan_TOPO_camp.exe)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp.exe)
   * ![Map](images/macOS.png =36x) camp (210MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_camp.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Taiwan_moi_zh_camp.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Taiwan_moi_zh_camp.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_camp.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Taiwan TOPO (for PC/Mac BaseCamp)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D (211MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_zh_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_zh_camp3D.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) camp3D (227MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_MOI_Taiwan_TOPO_camp3D.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_MOI_Taiwan_TOPO_camp3D.exe)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D.exe)
   * ![Map](images/macOS.png =36x) camp3D (227MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Taiwan_moi_zh_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Taiwan_moi_zh_camp3D.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_camp3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Taiwan TOPO
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_small.jpeg =36x) en_bw (211MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_en_bw.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Taiwan_moi_en_bw.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Taiwan_moi_en_bw.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_en_bw.img.zip)
   * ![Map](images/Windows.png =36x) en_camp3D (227MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_MOI_Taiwan_TOPO_camp3D_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
   * ![Map](images/macOS.png =36x) en_camp3D (227MB)
-    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Taiwan_moi_en_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Taiwan_moi_en_camp3D.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip)
 
 ## Other Overseas Mountain Regions (irregular release schedule)
 

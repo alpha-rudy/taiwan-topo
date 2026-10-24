@@ -327,10 +327,6 @@ install:
 		cat docs/$(REGION)/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
 		markdown -f +autolink > $(BUILD_DIR)/beta.article && \
 		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
-	-[ -f docs/$(REGION)/local.md ] && \
-		cat docs/$(REGION)/local.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-		markdown -f +autolink > $(BUILD_DIR)/local.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/local.article" > $(INSTALL_DIR)/local.html
 	-[ -d docs/$(REGION)/gts ] && cp -r docs/$(REGION)/gts $(INSTALL_DIR) && \
 		cat docs/$(REGION)/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cp -r $(BUILD_DIR)/{*.zip,*.exe} $(INSTALL_DIR)

@@ -49,11 +49,14 @@ This region spans Italy's South Tyrol and Trentino, Austria's Tyrol and Salzburg
 * 1956 - Cortina d'Ampezzo Winter Olympics: Italy's first time hosting the Winter Olympics, propelling the Dolomites onto the international stage; in 2026, Cortina co-hosted the Winter Olympics again with Milan, returning to the world stage six decades later.
 
 * Related Links
-  * RudyMap Mirror Selector (Cedric Shih)
-    * https://rudymap.tw/
-  * Info pages:
-    * https://moi.kcwu.csie.org/alps_eastern_topo-en.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/alps_eastern_topo-en.html (mirror Happyman)
+  * Info Page: https://rudymap.tw/alps_eastern_topo-en.html
+  * RudyMap Load Balancer (Cedric Shih)
+    * rudymap.tw
+  * RudyMap Mirrors:
+    * kcwu, moi.kcwu.csie.org
+    * happyman, map.happyman.idv.tw
+    * peakit (山盒), rudy.peakitcdn.com
+    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
@@ -69,201 +72,123 @@ This region spans Italy's South Tyrol and Trentino, Austria's Tyrol and Salzburg
     > Installation demo video: https://youtu.be/g8b15RPZ7nA
   * Classic version
     * All-in-one
-      > [[Auto-mirror]](wadi-all://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip) /
-      > [[mirror kcwu]](wadi-all://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip) /
-      > [[mirror Happyman]](wadi-all://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip)
+      > [[Auto-mirror]](wadi-all://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip)
     * Offline map
-      > [[Auto-mirror]](wadi-map://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
+      > [[Auto-mirror]](wadi-map://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * Elevation (DEM) file
-      > [[Auto-mirror]](wadi-hgt://rudymap.tw/alps_eastern_hgtmix.zip) /
-      > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/alps_eastern_hgtmix.zip) /
-      > [[mirror Happyman]](wadi-hgt://map.happyman.idv.tw/rudy/alps_eastern_hgtmix.zip)
+      > [[Auto-mirror]](wadi-hgt://rudymap.tw/alps_eastern_hgtmix.zip)
 
 * ![GTS](images/GTS.png =36x) GTS (Green Wild Trails) Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/JsvP61CErYY
   * Classic version
     * All-in-one
-      > [[Auto-mirror]](gts-all://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip) /
-      > [[mirror kcwu]](gts-all://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip) /
-      > [[mirror Happyman]](gts-all://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip)
+      > [[Auto-mirror]](gts-all://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.zip)
     * Offline map
-      > [[Auto-mirror]](gts-map://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
+      > [[Auto-mirror]](gts-map://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](gts-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * Elevation (DEM) file
-      > [[Auto-mirror]](gts-hgt://rudymap.tw/alps_eastern_hgtmix.zip) /
-      > [[mirror kcwu]](gts-hgt://moi.kcwu.csie.org/alps_eastern_hgtmix.zip) /
-      > [[mirror Happyman]](gts-hgt://map.happyman.idv.tw/rudy/alps_eastern_hgtmix.zip)
+      > [[Auto-mirror]](gts-hgt://rudymap.tw/alps_eastern_hgtmix.zip)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Android 11 and later: installation demo video: https://youtu.be/8hwJr4jMsE0 <br />
     > Android 10 and earlier: installation demo video: https://youtu.be/GbBaePfk4cE
   * ![Map](images/OruxMaps_map.jpeg =36x) Map
-    > [[Auto-mirror]](orux-map://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
+    > [[Auto-mirror]](orux-map://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[Auto-mirror]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/OruxMaps_dem.jpeg =36x) Click to download, then install manually
-    > [[Auto-mirror]](https://rudymap.tw/alps_eastern_hgtmix.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/alps_eastern_hgtmix.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/alps_eastern_hgtmix.zip)
+    > [[Auto-mirror]](https://rudymap.tw/alps_eastern_hgtmix.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/rb1Hb6dkGkw
   * Install separately
     * ![Map](images/Locus_map.jpeg =36x) Map
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_map-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/alps_eastern_map-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/alps_eastern_map-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
     * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_dem-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/alps_eastern_dem-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/alps_eastern_dem-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_dem-cedric.xml)
   * Map data update
     * ![Map](images/Locus.jpeg =36x) Update
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_upgrade-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/alps_eastern_upgrade-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/alps_eastern_upgrade-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_upgrade-cedric.xml)
   * All-in-one
     * ![Map](images/Locus.jpeg =36x) First-time install
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_all-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/alps_eastern_all-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/alps_eastern_all-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/alps_eastern_all-cedric.xml)
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/FDa2Qb9wxUY
   * Install separately
     * ![Map](images/Cartograph_map.png =36x) Map
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_map.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Alps-Eastern_carto_map.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Alps-Eastern_carto_map.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_style.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Alps-Eastern_carto_style.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Alps-Eastern_carto_style.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_style.cpkg)
     * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2025, click to download then install manually
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_dem.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Alps-Eastern_carto_dem.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Alps-Eastern_carto_dem.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_dem.cpkg)
   * Map data update
     * ![Map](images/Cartograph.png =36x) Update
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_upgrade.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Alps-Eastern_carto_upgrade.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Alps-Eastern_carto_upgrade.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_upgrade.cpkg)
   * All-in-one
     * ![Map](images/Cartograph.png =36x) First-time install
-      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_all.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Alps-Eastern_carto_all.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Alps-Eastern_carto_all.cpkg)
+      > [[Auto-mirror]](cartograph-map://rudymap.tw/Alps-Eastern_carto_all.cpkg)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge Manual download, install yourself
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Manual installation guide for OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     > * Manual installation guide for Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map
-    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
+    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.map.zip)
   * ![POIv3](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal POIv3
-    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.poi.zip)
+    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.poi.zip)
   * ![POIv2](images/Android.png =36x) Cartograph POIv2
-    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy_v2.poi.zip)
+    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy_v2.poi.zip)
   * ![LOCUS_POI](images/Android.png =36x) Locus POI
-    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.db.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.db.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.db.zip)
+    > [[Auto-mirror]](https://rudymap.tw/AW3D30_OSM_Alps-Eastern_TOPO_Rudy.db.zip)
   * ![Style](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![Style](images/Android.png =36x) Locus Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) 30m HGT
-    > [[Auto-mirror]](https://rudymap.tw/alps_eastern_hgtmix.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/alps_eastern_hgtmix.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/alps_eastern_hgtmix.zip)
+    > [[Auto-mirror]](https://rudymap.tw/alps_eastern_hgtmix.zip)
   * Overlay-only styles
     * BN Style, for dark-base map overlays (e.g. satellite imagery) (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_bn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_bn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_bn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_bn_style.zip)
     * DN Style, for light-base map overlays (e.g. general digital maps) (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_dn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_dn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_dn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_dn_style.zip)
     * TN Style, for elevation/relief map overlays (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_tn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_tn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_tn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_tn_style.zip)
     * Extra Style, for Cartograph Extra layer overlays (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_extra_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_extra_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Alps-Eastern Region (for PC/Mac BaseCamp)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Alps-Eastern_aw3d30_zh_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Alps-Eastern_aw3d30_zh_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Alps-Eastern_aw3d30_zh_camp3D.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Alps-Eastern_aw3d30_zh_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) camp3D
-    > [[Auto-mirror]](https://rudymap.tw/Install_AW3D30_Alps-Eastern_TOPO_camp3D.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Alps-Eastern_TOPO_camp3D.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Alps-Eastern_TOPO_camp3D.exe)
+    > [[Auto-mirror]](https://rudymap.tw/Install_AW3D30_Alps-Eastern_TOPO_camp3D.exe)
   * ![Map](images/macOS.png =36x) camp3D
-    > [[Auto-mirror]](https://rudymap.tw/Alps-Eastern_aw3d30_zh_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Alps-Eastern_aw3d30_zh_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Alps-Eastern_aw3d30_zh_camp3D.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/Alps-Eastern_aw3d30_zh_camp3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Alps-Eastern Region
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Alps-Eastern_aw3d30_en_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Alps-Eastern_aw3d30_en_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Alps-Eastern_aw3d30_en_camp3D.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Alps-Eastern_aw3d30_en_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) en_camp3D
-    > [[Auto-mirror]](https://rudymap.tw/Install_AW3D30_Alps-Eastern_TOPO_camp3D_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Alps-Eastern_TOPO_camp3D_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Alps-Eastern_TOPO_camp3D_en.exe)
+    > [[Auto-mirror]](https://rudymap.tw/Install_AW3D30_Alps-Eastern_TOPO_camp3D_en.exe)
   * ![Map](images/macOS.png =36x) en_camp3D
-    > [[Auto-mirror]](https://rudymap.tw/Alps-Eastern_aw3d30_en_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Alps-Eastern_aw3d30_en_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Alps-Eastern_aw3d30_en_camp3D.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/Alps-Eastern_aw3d30_en_camp3D.gmap.zip)
 
 ## Copyright Notice
 

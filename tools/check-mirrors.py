@@ -20,7 +20,8 @@ MIRRORS = {
     "happyman": "https://map.happyman.idv.tw/rudy",
     "kcwu": "https://moi.kcwu.csie.org",
     # "basecamp": "http://rudy.basecamp.tw",
-    "cedric": "https://d3r5lsn28erp7o.cloudfront.net",
+    "peakit": "https://rudy.peakitcdn.com",
+    "oslab": "https://d3r5lsn28erp7o.cloudfront.net",
     "rudymap": "https://rudymap.tw"
 }
 
@@ -91,17 +92,7 @@ files = [
     "extra/Compartment.map.zip",
     "hgtmix.zip",
     "hgt90.zip",
-    "legend_V1R1.pdf",
-    "locus_map-happyman.xml",
-    "locus_style-happyman.xml",
-    "locus_dem-happyman.xml",
-    "locus_upgrade-happyman.xml",
-    "locus_all-happyman.xml",
-    "locus_map-happyman.xml",
-    "locus_style-kcwu.xml",
-    "locus_dem-kcwu.xml",
-    "locus_upgrade-kcwu.xml",
-    "locus_all-kcwu.xml"
+    "legend_V1R1.pdf"
 ]
 
 
@@ -208,16 +199,17 @@ def get_mirror_names():
 @click.option('--mirror', '-m', type=str, help='Check specific mirror URL only (deprecated, use mirror options below)')
 @click.option('--happyman', is_flag=True, help='Check happyman mirror only')
 @click.option('--kcwu', is_flag=True, help='Check kcwu mirror only')
-@click.option('--cedric', is_flag=True, help='Check cedric mirror only')
+@click.option('--peakit', is_flag=True, help='Check peakit mirror only')
+@click.option('--oslab', is_flag=True, help='Check oslab mirror only')
 @click.option('--rudymap', is_flag=True, help='Check rudymap mirror only')
-def main(daily, suites, fujisan, kumano, annapurna, kashmir, world, suite, list_suites, speed, mirror, happyman, kcwu, cedric, rudymap):
+def main(daily, suites, fujisan, kumano, annapurna, kashmir, world, suite, list_suites, speed, mirror, happyman, kcwu, peakit, oslab, rudymap):
     """Check mirror servers for Taiwan TOPO map files.
 
     \b
     Two-dimensional selection:
       - Suite dimension: --daily, --suites, --fujisan, --kumano, --annapurna, --kashmir
                          or use --suite <name> for any suite with a config file
-      - Mirror dimension: --happyman, --kcwu, --cedric, --rudymap
+      - Mirror dimension: --happyman, --kcwu, --peakit, --oslab, --rudymap
 
     \b
     Examples:
@@ -291,7 +283,8 @@ def main(daily, suites, fujisan, kumano, annapurna, kashmir, world, suite, list_
     mirror_flags = {
         "happyman": happyman,
         "kcwu": kcwu,
-        "cedric": cedric,
+        "peakit": peakit,
+        "oslab": oslab,
         "rudymap": rudymap
     }
     

@@ -383,12 +383,12 @@ Generate Locus Map auto-install XML files:
 | `--region-lower` | Lowercase identifier | `nikko_oze` |
 
 **Output**: Creates files in `auto-install/locus/Nikko-Oze/`:
-- `nikko_oze_all-{provider}.xml` - Full install for each mirror
-- `nikko_oze_map-{provider}.xml` - Map-only install
-- `nikko_oze_dem-{provider}.xml` - DEM-only install
-- `nikko_oze_upgrade-{provider}.xml` - Upgrade install
+- `nikko_oze_all-cedric.xml` - Full install
+- `nikko_oze_map-cedric.xml` - Map-only install
+- `nikko_oze_dem-cedric.xml` - DEM-only install
+- `nikko_oze_upgrade-cedric.xml` - Upgrade install
 
-Providers: `cedric`, `happyman`, `kcwu`
+Provider: `cedric` (rudymap.tw load balancer)
 
 ---
 
@@ -608,11 +608,9 @@ taiwan-topo/
 │   │   └── upgrade.json
 │   └── locus/Nikko-Oze/
 │       ├── nikko_oze_all-cedric.xml
-│       ├── nikko_oze_all-happyman.xml
-│       ├── nikko_oze_all-kcwu.xml
-│       ├── nikko_oze_map-*.xml
-│       ├── nikko_oze_dem-*.xml
-│       └── nikko_oze_upgrade-*.xml
+│       ├── nikko_oze_map-cedric.xml
+│       ├── nikko_oze_dem-cedric.xml
+│       └── nikko_oze_upgrade-cedric.xml
 └── tools/mirror-configs/
     └── nikko_oze.json                         # Mirror checking config
 ```

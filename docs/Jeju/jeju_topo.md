@@ -91,11 +91,14 @@ AW3D30.OSM - Jeju TOPO v__version__
 * 2007 年列入世界自然遺產：「濟州火山島和熔岩洞窟」（漢拏山、城山日出峰、拒文岳熔岩洞窟系統）列入聯合國教科文組織世界自然遺產；2016 年濟州海女文化列入人類非物質文化遺產。
 
 * 相關網頁
+  * 說明網頁: https://rudymap.tw/jeju_topo.html
   * 魯地圖分流器 (Cedric Shih)
-    * https://rudymap.tw/
-  * 說明網頁:
-    * https://moi.kcwu.csie.org/jeju_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/jeju_topo.html (mirror Happyman)
+    * rudymap.tw
+  * 魯地圖鏡像站
+    * kcwu, moi.kcwu.csie.org
+    * happyman, map.happyman.idv.tw
+    * peakit (山盒), rudy.peakitcdn.com
+    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
@@ -111,201 +114,123 @@ AW3D30.OSM - Jeju TOPO v__version__
     > 安裝示範影片：https://youtu.be/g8b15RPZ7nA
   * 傳統版
     * 三合一
-      > [[自動分流]](wadi-all://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.zip) /
-      > [[mirror kcwu]](wadi-all://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.zip) /
-      > [[mirror Happyman]](wadi-all://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.zip)
+      > [[自動分流]](wadi-all://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.zip)
     * 離線地圖
-      > [[自動分流]](wadi-map://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
+      > [[自動分流]](wadi-map://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > [[自動分流]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[自動分流]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * 高程檔
-      > [[自動分流]](wadi-hgt://rudymap.tw/jeju_hgtmix.zip) /
-      > [[mirror kcwu]](wadi-hgt://moi.kcwu.csie.org/jeju_hgtmix.zip) /
-      > [[mirror Happyman]](wadi-hgt://map.happyman.idv.tw/rudy/jeju_hgtmix.zip)
+      > [[自動分流]](wadi-hgt://rudymap.tw/jeju_hgtmix.zip)
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安裝示範影片：https://youtu.be/JsvP61CErYY
   * 傳統版
     * 三合一
-      > [[自動分流]](gts-all://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.zip) /
-      > [[mirror kcwu]](gts-all://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.zip) /
-      > [[mirror Happyman]](gts-all://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.zip)
+      > [[自動分流]](gts-all://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.zip)
     * 離線地圖
-      > [[自動分流]](gts-map://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
+      > [[自動分流]](gts-map://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > [[自動分流]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](gts-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[自動分流]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
     * 高程檔
-      > [[自動分流]](gts-hgt://rudymap.tw/jeju_hgtmix.zip) /
-      > [[mirror kcwu]](gts-hgt://moi.kcwu.csie.org/jeju_hgtmix.zip) /
-      > [[mirror Happyman]](gts-hgt://map.happyman.idv.tw/rudy/jeju_hgtmix.zip)
+      > [[自動分流]](gts-hgt://rudymap.tw/jeju_hgtmix.zip)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps (歐魯妹) 自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安卓 11(含) 以後：安裝示範影片：https://youtu.be/8hwJr4jMsE0 <br />
     > 安卓 10(含) 以前：安裝示範影片：https://youtu.be/GbBaePfk4cE
   * ![Map](images/OruxMaps_map.jpeg =36x) Map
-    > [[自動分流]](orux-map://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
+    > [[自動分流]](orux-map://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[自動分流]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[自動分流]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/OruxMaps_dem.jpeg =36x) 請點選下載，並手動安裝
-    > [[自動分流]](https://rudymap.tw/jeju_hgtmix.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/jeju_hgtmix.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/jeju_hgtmix.zip)
+    > [[自動分流]](https://rudymap.tw/jeju_hgtmix.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
   * 分開安裝
     * ![Map](images/Locus_map.jpeg =36x) Map
-      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_map-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/jeju_map-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/jeju_map-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
     * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2025
-      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_dem-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/jeju_dem-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/jeju_dem-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_dem-cedric.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新
-      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_upgrade-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/jeju_upgrade-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/jeju_upgrade-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_upgrade-cedric.xml)
   * 三合一
     * ![Map](images/Locus.jpeg =36x) 首次安裝
-      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_all-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/jeju_all-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/jeju_all-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/jeju_all-cedric.xml)
 
 * ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
   * 分開安裝
     * ![Map](images/Cartograph_map.png =36x) Map
-      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_map.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Jeju_carto_map.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Jeju_carto_map.cpkg)
+      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_map.cpkg)
     * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
-      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_style.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Jeju_carto_style.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Jeju_carto_style.cpkg)
+      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_style.cpkg)
     * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2025, 請點選下載，並手動安裝
-      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_dem.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Jeju_carto_dem.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Jeju_carto_dem.cpkg)
+      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_dem.cpkg)
   * 圖資更新
     * ![Map](images/Cartograph.png =36x) 更新
-      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_upgrade.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Jeju_carto_upgrade.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Jeju_carto_upgrade.cpkg)
+      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_upgrade.cpkg)
   * 三合一
     * ![Map](images/Cartograph.png =36x) 首次安裝
-      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_all.cpkg) /
-      > [[mirror kcwu]](cartograph-map://moi.kcwu.csie.org/Jeju_carto_all.cpkg) /
-      > [[mirror Happyman]](cartograph-map://map.happyman.idv.tw/rudy/Jeju_carto_all.cpkg)
+      > [[自動分流]](cartograph-map://rudymap.tw/Jeju_carto_all.cpkg)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge 手動下載自行安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     > * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
+    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.map.zip)
   * ![POIv3](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 POIv3
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.poi.zip)
+    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.poi.zip)
   * ![POIv2](images/Android.png =36x) Cartograph POIv2
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy_v2.poi.zip)
+    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy_v2.poi.zip)
   * ![LOCUS_POI](images/Android.png =36x) Locus POI
-    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.db.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/AW3D30_OSM_Jeju_TOPO_Rudy.db.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/AW3D30_OSM_Jeju_TOPO_Rudy.db.zip)
+    > [[自動分流]](https://rudymap.tw/AW3D30_OSM_Jeju_TOPO_Rudy.db.zip)
   * ![Style](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![Style](images/Android.png =36x) Locus Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) 30m HGT
-    > [[自動分流]](https://rudymap.tw/jeju_hgtmix.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/jeju_hgtmix.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/jeju_hgtmix.zip)
+    > [[自動分流]](https://rudymap.tw/jeju_hgtmix.zip)
   * 疊圖專用 Styles
     * BN Style, 給深色地圖疊圖 (例：衛星地圖) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_bn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_bn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_bn_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_bn_style.zip)
     * DN Style, 給淡色地圖疊圖 (例：通用電子地圖) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_dn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_dn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_dn_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_dn_style.zip)
     * TN Style, 給高度圖疊圖 (例：Relief Map) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_tn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_tn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_tn_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_tn_style.zip)
     * Extra Style, 給 Cartograph Extra 圖層疊圖 (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_extra_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_extra_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Jeju Island（適合 PC/Mac BaseCamp）
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Jeju_aw3d30_zh_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Jeju_aw3d30_zh_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Jeju_aw3d30_zh_camp3D.img.zip)
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Jeju_aw3d30_zh_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Jeju_TOPO_camp3D.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Jeju_TOPO_camp3D.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Jeju_TOPO_camp3D.exe)
+    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Jeju_TOPO_camp3D.exe)
   * ![Map](images/macOS.png =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/Jeju_aw3d30_zh_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Jeju_aw3d30_zh_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Jeju_aw3d30_zh_camp3D.gmap.zip)
+    > [[自動分流]](https://rudymap.tw/Jeju_aw3d30_zh_camp3D.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Jeju Island
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp3D
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Jeju_aw3d30_en_camp3D.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Jeju_aw3d30_en_camp3D.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Jeju_aw3d30_en_camp3D.img.zip)
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Jeju_aw3d30_en_camp3D.img.zip)
   * ![Map](images/Windows.png =36x) en_camp3D
-    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Jeju_TOPO_camp3D_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_AW3D30_Jeju_TOPO_camp3D_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_AW3D30_Jeju_TOPO_camp3D_en.exe)
+    > [[自動分流]](https://rudymap.tw/Install_AW3D30_Jeju_TOPO_camp3D_en.exe)
   * ![Map](images/macOS.png =36x) en_camp3D
-    > [[自動分流]](https://rudymap.tw/Jeju_aw3d30_en_camp3D.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Jeju_aw3d30_en_camp3D.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Jeju_aw3d30_en_camp3D.gmap.zip)
+    > [[自動分流]](https://rudymap.tw/Jeju_aw3d30_en_camp3D.gmap.zip)
 
 ## 版權宣告
 

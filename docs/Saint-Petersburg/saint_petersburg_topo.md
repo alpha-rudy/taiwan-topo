@@ -67,11 +67,14 @@ OSM - Saint-Petersburg TOPO v__version__
 * 1941-1944 年列寧格勒圍城戰：納粹德軍圍困本市長達 872 天，逾百萬市民死於飢寒與砲擊，是人類歷史上最慘烈的圍城戰之一，也是蘇聯衛國戰爭的重要象徵。
 
 * 相關網頁
+  * 說明網頁: https://rudymap.tw/saint_petersburg_topo.html
   * 魯地圖分流器 (Cedric Shih)
-    * https://rudymap.tw/
-  * 說明網頁:
-    * https://moi.kcwu.csie.org/saint_petersburg_topo.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/saint_petersburg_topo.html (mirror Happyman)
+    * rudymap.tw
+  * 魯地圖鏡像站
+    * kcwu, moi.kcwu.csie.org
+    * happyman, map.happyman.idv.tw
+    * peakit (山盒), rudy.peakitcdn.com
+    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
   * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
   * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
@@ -86,141 +89,89 @@ OSM - Saint-Petersburg TOPO v__version__
     > 安裝示範影片：https://youtu.be/g8b15RPZ7nA
   * 傳統版
     * 離線地圖
-      > [[自動分流]](wadi-map://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
+      > [[自動分流]](wadi-map://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > [[自動分流]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[自動分流]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安裝示範影片：https://youtu.be/JsvP61CErYY
   * 傳統版
     * 離線地圖
-      > [[自動分流]](gts-map://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
+      > [[自動分流]](gts-map://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
     * 風格主題 (0.4MB)
-      > [[自動分流]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](gts-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[自動分流]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps (歐魯妹) 自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安卓 11(含) 以後：安裝示範影片：https://youtu.be/8hwJr4jMsE0 <br />
     > 安卓 10(含) 以前：安裝示範影片：https://youtu.be/GbBaePfk4cE
   * ![Map](images/OruxMaps_map.jpeg =36x) Map
-    > [[自動分流]](orux-map://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
+    > [[自動分流]](orux-map://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[自動分流]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[自動分流]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
   * 分開安裝
     * ![Map](images/Locus_map.jpeg =36x) Map
-      > [[自動分流]](locus-actions://https/rudymap.tw/saint_petersburg_map-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/saint_petersburg_map-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/saint_petersburg_map-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/saint_petersburg_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
   * 圖資更新
     * ![Map](images/Locus.jpeg =36x) 更新
-      > [[自動分流]](locus-actions://https/rudymap.tw/saint_petersburg_upgrade-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/saint_petersburg_upgrade-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/saint_petersburg_upgrade-happyman.xml)
+      > [[自動分流]](locus-actions://https/rudymap.tw/saint_petersburg_upgrade-cedric.xml)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge 手動下載自行安裝
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     > * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map
-    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.map.zip)
   * ![POIv3](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 POIv3
-    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy.poi.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.poi.zip)
   * ![POIv2](images/Android.png =36x) Cartograph POIv2
-    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy_v2.poi.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy_v2.poi.zip)
   * ![LOCUS_POI](images/Android.png =36x) Locus POI
-    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.db.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Saint-Petersburg_TOPO_Rudy.db.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Saint-Petersburg_TOPO_Rudy.db.zip)
+    > [[自動分流]](https://rudymap.tw/OSM_Saint-Petersburg_TOPO_Rudy.db.zip)
   * ![Style](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![Style](images/Android.png =36x) Locus Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[自動分流]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * 疊圖專用 Styles
     * BN Style, 給深色地圖疊圖 (例：衛星地圖) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_bn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_bn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_bn_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_bn_style.zip)
     * DN Style, 給淡色地圖疊圖 (例：通用電子地圖) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_dn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_dn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_dn_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_dn_style.zip)
     * TN Style, 給高度圖疊圖 (例：Relief Map) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_tn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_tn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_tn_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_tn_style.zip)
     * Extra Style, 給 Cartograph Extra 圖層疊圖 (0.4MB)
-      > [[自動分流]](https://rudymap.tw/MOI_OSM_extra_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
+      > [[自動分流]](https://rudymap.tw/MOI_OSM_extra_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp - Saint Petersburg Region（適合 PC/Mac BaseCamp）
-  * 安裝時，請隨意點選任一站台就可以 (不用重複點選)
+  * 安裝時，點選下方連結即可
     > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Saint-Petersburg_zh_camp.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Saint-Petersburg_zh_camp.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Saint-Petersburg_zh_camp.img.zip)
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Saint-Petersburg_zh_camp.img.zip)
   * ![Map](images/Windows.png =36x) camp
-    > [[自動分流]](https://rudymap.tw/Install_Saint-Petersburg_TOPO_camp.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_Saint-Petersburg_TOPO_camp.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_Saint-Petersburg_TOPO_camp.exe)
+    > [[自動分流]](https://rudymap.tw/Install_Saint-Petersburg_TOPO_camp.exe)
   * ![Map](images/macOS.png =36x) camp
-    > [[自動分流]](https://rudymap.tw/Saint-Petersburg_zh_camp.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Saint-Petersburg_zh_camp.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Saint-Petersburg_zh_camp.gmap.zip)
+    > [[自動分流]](https://rudymap.tw/Saint-Petersburg_zh_camp.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Saint Petersburg Region
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp
-    > [[自動分流]](https://rudymap.tw/gmapsupp_Saint-Petersburg_en_camp.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Saint-Petersburg_en_camp.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Saint-Petersburg_en_camp.img.zip)
+    > [[自動分流]](https://rudymap.tw/gmapsupp_Saint-Petersburg_en_camp.img.zip)
   * ![Map](images/Windows.png =36x) en_camp
-    > [[自動分流]](https://rudymap.tw/Install_Saint-Petersburg_TOPO_camp_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_Saint-Petersburg_TOPO_camp_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_Saint-Petersburg_TOPO_camp_en.exe)
+    > [[自動分流]](https://rudymap.tw/Install_Saint-Petersburg_TOPO_camp_en.exe)
   * ![Map](images/macOS.png =36x) en_camp
-    > [[自動分流]](https://rudymap.tw/Saint-Petersburg_en_camp.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Saint-Petersburg_en_camp.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Saint-Petersburg_en_camp.gmap.zip)
+    > [[自動分流]](https://rudymap.tw/Saint-Petersburg_en_camp.gmap.zip)
 
 ## 版權宣告
 

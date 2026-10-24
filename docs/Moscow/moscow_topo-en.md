@@ -59,11 +59,14 @@ Moscow is a wonderfully walkable city: the center radiates outward from the Krem
 * 1941-1942 - The Battle of Moscow: during WWII, German forces advanced to within a few dozen kilometers of the city - the furthest point reached on the Eastern Front - before the Soviet Red Army launched a counteroffensive that turned the tide of the war.
 
 * Related Links
-  * RudyMap Mirror Selector (Cedric Shih)
-    * https://rudymap.tw/
-  * Info pages:
-    * https://moi.kcwu.csie.org/moscow_topo-en.html (mirror kcwu)
-    * https://map.happyman.idv.tw/rudy/moscow_topo-en.html (mirror Happyman)
+  * Info Page: https://rudymap.tw/moscow_topo-en.html
+  * RudyMap Load Balancer (Cedric Shih)
+    * rudymap.tw
+  * RudyMap Mirrors:
+    * kcwu, moi.kcwu.csie.org
+    * happyman, map.happyman.idv.tw
+    * peakit (山盒), rudy.peakitcdn.com
+    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
   * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
   * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
@@ -78,141 +81,89 @@ Moscow is a wonderfully walkable city: the center radiates outward from the Krem
     > Installation demo video: https://youtu.be/g8b15RPZ7nA
   * Classic version
     * Offline map
-      > [[Auto-mirror]](wadi-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](wadi-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](wadi-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
+      > [[Auto-mirror]](wadi-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](wadi-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](wadi-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[Auto-mirror]](wadi-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![GTS](images/GTS.png =36x) GTS (Green Wild Trails) Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/JsvP61CErYY
   * Classic version
     * Offline map
-      > [[Auto-mirror]](gts-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror kcwu]](gts-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
-      > [[mirror Happyman]](gts-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
+      > [[Auto-mirror]](gts-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip)
     * Style theme (0.4MB)
-      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror kcwu]](gts-mapthemes://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-      > [[mirror Happyman]](gts-mapthemes://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+      > [[Auto-mirror]](gts-mapthemes://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Android 11 and later: installation demo video: https://youtu.be/8hwJr4jMsE0 <br />
     > Android 10 and earlier: installation demo video: https://youtu.be/GbBaePfk4cE
   * ![Map](images/OruxMaps_map.jpeg =36x) Map
-    > [[Auto-mirror]](orux-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](orux-map://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](orux-map://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
+    > [[Auto-mirror]](orux-map://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip)
   * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[Auto-mirror]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](orux-mf-theme://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](orux-mf-theme://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](orux-mf-theme://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
 
 * ![Locus Map](images/Locus.jpeg =36x) Locus Map Auto Install
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > Installation demo video: https://youtu.be/rb1Hb6dkGkw
   * Install separately
     * ![Map](images/Locus_map.jpeg =36x) Map
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/moscow_map-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/moscow_map-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/moscow_map-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/moscow_map-cedric.xml)
     * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/locus_style-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/locus_style-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
   * Map data update
     * ![Map](images/Locus.jpeg =36x) Update
-      > [[Auto-mirror]](locus-actions://https/rudymap.tw/moscow_upgrade-cedric.xml) /
-      > [[mirror kcwu]](locus-actions://http/moi.kcwu.csie.org/moscow_upgrade-kcwu.xml) /
-      > [[mirror Happyman]](locus-actions://http/map.happyman.idv.tw/rudy/moscow_upgrade-happyman.xml)
+      > [[Auto-mirror]](locus-actions://https/rudymap.tw/moscow_upgrade-cedric.xml)
 
 * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge Manual download, install yourself
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Manual installation guide for OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
     > * Manual installation guide for Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
   * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map
-    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.map.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.map.zip)
+    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.map.zip)
   * ![POIv3](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal POIv3
-    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.poi.zip)
+    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.poi.zip)
   * ![POIv2](images/Android.png =36x) Cartograph POIv2
-    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy_v2.poi.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy_v2.poi.zip)
+    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy_v2.poi.zip)
   * ![LOCUS_POI](images/Android.png =36x) Locus POI
-    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.db.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/OSM_Moscow_TOPO_Rudy.db.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/OSM_Moscow_TOPO_Rudy.db.zip)
+    > [[Auto-mirror]](https://rudymap.tw/OSM_Moscow_TOPO_Rudy.db.zip)
   * ![Style](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * ![Style](images/Android.png =36x) Locus Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
   * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+    > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
   * Overlay-only styles
     * BN Style, for dark-base map overlays (e.g. satellite imagery) (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_bn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_bn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_bn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_bn_style.zip)
     * DN Style, for light-base map overlays (e.g. general digital maps) (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_dn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_dn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_dn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_dn_style.zip)
     * TN Style, for elevation/relief map overlays (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_tn_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_tn_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_tn_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_tn_style.zip)
     * Extra Style, for Cartograph Extra layer overlays (0.4MB)
-      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_extra_style.zip) /
-      > [[mirror kcwu]](https://moi.kcwu.csie.org/MOI_OSM_extra_style.zip) /
-      > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/MOI_OSM_extra_style.zip)
+      > [[Auto-mirror]](https://rudymap.tw/MOI_OSM_extra_style.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp - Moscow Region (for PC/Mac BaseCamp)
-  * Click any one of the mirrors below to install (no need to click more than one)
+  * Click the link below to install
     > * Windows platform: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * macOS platform: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp
-    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Moscow_zh_camp.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Moscow_zh_camp.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Moscow_zh_camp.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Moscow_zh_camp.img.zip)
   * ![Map](images/Windows.png =36x) camp
-    > [[Auto-mirror]](https://rudymap.tw/Install_Moscow_TOPO_camp.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_Moscow_TOPO_camp.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_Moscow_TOPO_camp.exe)
+    > [[Auto-mirror]](https://rudymap.tw/Install_Moscow_TOPO_camp.exe)
   * ![Map](images/macOS.png =36x) camp
-    > [[Auto-mirror]](https://rudymap.tw/Moscow_zh_camp.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Moscow_zh_camp.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Moscow_zh_camp.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/Moscow_zh_camp.gmap.zip)
 
 * ![Map](images/Garmin.png =x36) Garmin English Maps - Moscow Region
   * Clip on one of mirrors to download
     > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
     > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
   * ![Map](images/Garmin_large.jpeg =36x) camp
-    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Moscow_en_camp.img.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/gmapsupp_Moscow_en_camp.img.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/gmapsupp_Moscow_en_camp.img.zip)
+    > [[Auto-mirror]](https://rudymap.tw/gmapsupp_Moscow_en_camp.img.zip)
   * ![Map](images/Windows.png =36x) en_camp
-    > [[Auto-mirror]](https://rudymap.tw/Install_Moscow_TOPO_camp_en.exe) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Install_Moscow_TOPO_camp_en.exe) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Install_Moscow_TOPO_camp_en.exe)
+    > [[Auto-mirror]](https://rudymap.tw/Install_Moscow_TOPO_camp_en.exe)
   * ![Map](images/macOS.png =36x) en_camp
-    > [[Auto-mirror]](https://rudymap.tw/Moscow_en_camp.gmap.zip) /
-    > [[mirror kcwu]](https://moi.kcwu.csie.org/Moscow_en_camp.gmap.zip) /
-    > [[mirror Happyman]](https://map.happyman.idv.tw/rudy/Moscow_en_camp.gmap.zip)
+    > [[Auto-mirror]](https://rudymap.tw/Moscow_en_camp.gmap.zip)
 
 ## Copyright Notice
 
