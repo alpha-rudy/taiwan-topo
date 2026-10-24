@@ -10,6 +10,19 @@ OSM - Moscow TOPO v__version__
 * 緯度範圍: N55.46 ~ N56.01
 * 經度範圍: E37.24 ~ 38.02
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/moscow_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名徒步散步的路線
@@ -57,18 +70,6 @@ OSM - Moscow TOPO v__version__
 * 1712 年遷都聖彼得堡：彼得大帝將首都遷往新建的聖彼得堡，莫斯科的政治地位一度式微，直到 1918 年蘇維埃政權才將首都遷回莫斯科。
 * 1812 年拿破崙入侵與莫斯科大火：法軍攻佔莫斯科後不久，城內爆發神秘大火，燒毀大半城區，拿破崙被迫在寒冬中撤軍，此役成為其帝國由盛轉衰的轉捩點。
 * 1941-1942 年莫斯科保衛戰：第二次世界大戰期間，德軍一度逼近至莫斯科市郊數十公里處，是納粹德國在東線的最遠推進，蘇聯紅軍隨後展開反攻，扭轉戰局。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/moscow_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

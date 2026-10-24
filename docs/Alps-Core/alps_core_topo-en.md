@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N45.8 ~ N47.3
 * Longitude range: E7.15~ E10.75
 
+## Related Links
+
+* Info Page: https://rudymap.tw/alps_core_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -47,18 +60,6 @@ This region is centered on Switzerland, extending east to include the canton of 
 * 1858 - First ascent of the Eiger: made by Charles Barrington with guides Christian Almer and Peter Bohren.
 * 1938 - First ascent of the Eiger North Face: a German-Austrian team of four, led by Anderl Heckmair, conquered the face long known as the "Mordwand" (Murder Wall); two years earlier, in 1936, Toni Kurz died attempting the same wall in a tragedy watched in full through telescopes by guests at the Kleine Scheidegg hotel below - one of the most famous accidents in mountaineering history.
 * 1850 - First ascent of Piz Bernina: made by Swiss surveyor Johann Coaz, establishing the peak as the easternmost 4,000m summit in the entire Alps.
-
-* Related Links
-  * Info Page: https://rudymap.tw/alps_core_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

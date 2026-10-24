@@ -10,6 +10,19 @@ AW3D30.OSM - Alps-Fareast TOPO v__version__
 * 緯度範圍: N46.3 ~ N47.85
 * 經度範圍: E13.9 ~ E15.9
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/alps_fareast_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -46,18 +59,6 @@ AW3D30.OSM - Alps-Fareast TOPO v__version__
 * 20 世紀初拉克斯山攀岩倫理論戰：奧地利傳奇攀岩家保羅‧普魯斯 (Paul Preuss) 在拉克斯與施內山一帶大力推行「自由攀登」，反對過度依賴岩釘輔助，引發著名的「岩釘之爭」(Mauerhakenstreit)，深深影響現代自由攀登倫理的發展。
 * 厄爾茨礦山千年開採史：此地鐵礦開採可追溯至中世紀，是歐洲少數持續開採超過千年的礦山，長期支撐奧地利的鋼鐵工業。
 * 第二次世界大戰期間，大高原一帶曾是斯洛維尼亞游擊隊的活動範圍，傳統牧人木屋聚落多次遭戰火波及後重建。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/alps_fareast_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

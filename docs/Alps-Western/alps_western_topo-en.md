@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N44.0 ~ N46.2
 * Longitude range: E6.0 ~ E8.0
 
+## Related Links
+
+* Info Page: https://rudymap.tw/alps_western_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -47,18 +60,6 @@ This region covers the core of the Western Alps, spanning eastern France, the Sw
 * 1865 - First ascent of the Matterhorn: Edward Whymper led the team that made the first ascent, but on the descent the rope broke, sending four climbers to their deaths in a major mountaineering disaster; the tragedy also marked the symbolic end of the famous "Golden Age of Alpinism" (1854-1865).
 * 1856 - Gran Paradiso designated a royal hunting reserve: established by King Victor Emmanuel II of Italy to protect the endangered Alpine ibex, it became Italy's first national park in 1922.
 * 1924 - The first Winter Olympics held in Chamonix: cementing Chamonix's international status as one of the birthplaces of modern mountaineering and skiing.
-
-* Related Links
-  * Info Page: https://rudymap.tw/alps_western_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

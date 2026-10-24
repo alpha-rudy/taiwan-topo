@@ -10,6 +10,19 @@ AW3D30.OSM - Alps-Eastern TOPO v__version__
 * 緯度範圍: N45.8 ~ N47.55
 * 經度範圍: E10.5 ~ E14.0
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/alps_eastern_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -47,18 +60,6 @@ AW3D30.OSM - Alps-Eastern TOPO v__version__
 * 1800 年大格洛克納峰首登：由格爾克教區主教發起的科學考察隊完成首登，是阿爾卑斯山早期由教會與貴族贊助登山活動的代表案例。
 * 1915-1917 年多洛米蒂「白色戰爭」(Guerra Bianca)：第一次世界大戰期間，義大利與奧匈帝國軍隊在多洛米蒂海拔數千公尺的岩壁與冰河間激戰，雙方鑿建大量戰壕與隧道；今日不少熱門的鋼纜攀岩步道 (Via Ferrata)，如拉加祖伊隧道 (Lagazuoi Tunnels)，即改建自當年的軍用坑道。
 * 1956 年科爾蒂納丹佩佐冬季奧運：義大利首次主辦冬季奧運，讓多洛米蒂躍上國際舞台；2026 年科爾蒂納再度與米蘭共同主辦冬奧，時隔一甲子重返世界舞台。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/alps_eastern_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

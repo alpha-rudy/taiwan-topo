@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
   * Latitude range: N36.50 ~ N37.47
   * Longitude range: E138.68 ~ E139.86
 
+## Related Links
+
+* Info Page: https://rudymap.tw/nikko_oze_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 ### Famous Peaks
 
 1. Nikko area (mainly Tochigi Prefecture)
@@ -61,18 +74,6 @@ An offline map for Garmin / Android / iOS.
 * 1949-1996 - The Oze conservation movement: the government's original plans to build a road and dam across Ozegahara were met with sustained grassroots opposition; the plans were eventually withdrawn entirely, making Oze a pioneering case in Japan's nature conservation history.
 
 ## Installation / Download Links
-
-* Related Links
-  * Info Page: https://rudymap.tw/nikko_oze_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -5,22 +5,22 @@ MOI.OSM - Taiwan TOPO
 
 適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！
 
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/taiwan_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-    * https://rudymap.tw/app (手機離線 APP 專用)
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
-  * Beta 版（每周一、三、六發行）:
-    * https://rudymap.tw/drops/beta.html (自動分流)
-  * 阿牛兄的圖例說明: [圖例 V1R3版](./legend_V1R3.pdf)
+## 相關網頁
 
+* 說明網頁: https://rudymap.tw/taiwan_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+  * https://rudymap.tw/app (手機離線 APP 專用)
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+* Beta 版（每周一、三、六發行）:
+  * https://rudymap.tw/drops/beta.html (自動分流)
+* 阿牛兄的圖例說明: [圖例 V1R3版](./legend_V1R3.pdf)
 * 其他國外山區 (不固定發行) 的地圖仍在建構中，請拉到網頁後面，"說明" 之前。
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
@@ -227,6 +227,7 @@ MOI.OSM - Taiwan TOPO
   * ![Map](images/macOS.png =36x) en_camp3D (227MB)
     > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip)
 
+
 ## 其他國外山區 (不固定發行)
 
 若有地圖已經涵蓋到，但是沒有列上來的步道，請到社群反應。
@@ -329,6 +330,7 @@ MOI.OSM - Taiwan TOPO
     * 緯度範圍: N33.108 ~ N34.018
     * 經度範圍: E126.138 ~ E126.978
 
+
 ## 說明
 
 魯地圖 (MOI.OSM) 每週四發行，使用當日 OSM 圖資。山友只需登山前下載，或每季更新一次，不用週週更新。
@@ -345,7 +347,6 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 ## 注意事項
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
-
 * Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph Maps、山林日誌。
 
 

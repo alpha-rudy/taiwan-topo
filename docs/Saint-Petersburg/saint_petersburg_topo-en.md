@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N59.69 ~ N60.15
 * Longitude range: E29.99 ~ E30.62
 
+## Related Links
+
+* Info Page: https://rudymap.tw/saint_petersburg_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Walking Routes
@@ -65,18 +78,6 @@ St. Petersburg is built across more than forty islands in the Neva River delta, 
 * 1905 - "Bloody Sunday": troops opened fire on petitioners in front of the Winter Palace, igniting the Revolution of 1905 and sowing the seeds for the eventual overthrow of the tsarist system.
 * 1917 - The October Revolution: Bolshevik forces stormed the Winter Palace, with the cruiser Aurora firing a blank shot as the signal for the uprising, and the Soviet government was born; the city's name would later change to Petrograd (1914) and Leningrad (1924), before reverting to St. Petersburg after the Soviet collapse in 1991.
 * 1941-1944 - The Siege of Leningrad: Nazi German forces besieged the city for 872 days, during which over a million residents died of starvation, cold, and bombardment - one of the most devastating sieges in human history, and a defining symbol of the Soviet fight in WWII.
-
-* Related Links
-  * Info Page: https://rudymap.tw/saint_petersburg_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

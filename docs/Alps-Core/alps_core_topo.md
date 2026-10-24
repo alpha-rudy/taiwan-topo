@@ -10,6 +10,19 @@ AW3D30.OSM - Alps-Core TOPO v__version__
 * 緯度範圍: N45.8 ~ N47.3
 * 經度範圍: E7.15~ E10.75
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/alps_core_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -47,18 +60,6 @@ AW3D30.OSM - Alps-Core TOPO v__version__
 * 1858 年艾格峰首登：Charles Barrington 與嚮導 Christian Almer、Peter Bohren 完成首登。
 * 1938 年艾格峰北壁首登：Anderl Heckmair 等四人組成的德奧聯隊，攻克了素有「死亡之壁」(Mordwand) 之稱的艾格峰北壁；此前 1936 年 Toni Kurz 在此壁嘗試時罹難的悲劇，曾被山下 Kleine Scheidegg 旅館的遊客以望遠鏡目睹全程，是登山史上最著名的山難事件之一。
 * 1850 年伯連納峰首登：由瑞士測量師 Johann Coaz 完成，確立此峰為整條阿爾卑斯山脈最東端的四千米巨峰。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/alps_core_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

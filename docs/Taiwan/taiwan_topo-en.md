@@ -5,22 +5,22 @@ MOI.OSM - Taiwan TOPO v__version__, released every Thursday
 
 For hiking and geocaching on Garmin / Android / iOS!
 
-* Related Links
-  * Info Page: https://rudymap.tw/taiwan_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-    * https://rudymap.tw/app (dedicated mobile offline app)
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
-  * Beta version (released Mon/Wed/Sat):
-    * https://rudymap.tw/drops/beta.html (Auto-mirror)
-  * Legend guide by Aniu: [Legend V1R3](./legend_V1R3.pdf)
+## Related Links
 
+* Info Page: https://rudymap.tw/taiwan_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+  * https://rudymap.tw/app (dedicated mobile offline app)
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+* Beta version (released Mon/Wed/Sat):
+  * https://rudymap.tw/drops/beta.html (Auto-mirror)
+* Legend guide by Aniu: [Legend V1R3](./legend_V1R3.pdf)
 * Maps for other overseas mountain regions (irregular release schedule) are still under construction; scroll down to before the "Notes" section.
 
 * ![HikingJournal](images/hj.png =36x) Auto Install

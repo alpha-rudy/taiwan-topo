@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers the entire island of Shikoku, Japan, including Tokushima, Kagawa, Ehime, and Kochi prefectures, along with the Ishizuchi and Tsurugi mountain ranges.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/shikoku_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -52,18 +65,6 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
 * Chosokabe Motochika's unification of Shikoku during the Sengoku period: the Tosa (present-day Kochi) daimyo Chosokabe Motochika nearly unified all of Shikoku by around 1585, only to be defeated that same year by Toyotomi Hideyoshi's Shikoku Campaign, which reduced his domain to Tosa alone.
 * The 1867-1868 Meiji Restoration and Sakamoto Ryoma: the Tosa-born reformer Sakamoto Ryoma helped broker the Satsuma-Choshu Alliance and pushed for the shogun's restoration of power to the emperor, becoming a key figure in ending the Edo shogunate and launching the Meiji Restoration; his hometown of Kochi still honors him today.
 * The 1918 premiere of Beethoven's Ninth Symphony at the Bando POW camp: during World War I, German prisoners of war were held at the Bando POW camp in Naruto, Tokushima. Thanks to the camp's humane treatment and encouragement of cultural activities, the prisoners staged Japan's first full performance of Beethoven's Ninth Symphony there in 1918.
-
-* Related Links
-  * Info Page: https://rudymap.tw/shikoku_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

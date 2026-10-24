@@ -12,6 +12,19 @@ AW3D30.OSM - Shikoku TOPO v__version__
 
 本地圖涵蓋日本四國全境，包括德島、香川、愛媛、高知四縣，以及石鎚山系與剣山系兩大山脈。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/shikoku_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -52,18 +65,6 @@ AW3D30.OSM - Shikoku TOPO v__version__
 * 戰國時代長宗我部元親統一四國：土佐（今高知）大名長宗我部元親於 1585 年前後幾乎統一整個四國，同年遭豐臣秀吉發動「四國征伐」擊敗，領地被削減僅餘土佐一國。
 * 1867-1868 年明治維新與坂本龍馬：出身土佐藩的志士坂本龍馬促成薩長同盟、推動大政奉還，是終結江戶幕府、開啟明治維新的關鍵人物之一，其故鄉高知至今仍以他為榮。
 * 1918 年阪東俘虜收容所首演貝多芬第九號交響曲：第一次世界大戰期間，德國戰俘被收容於德島鳴門的阪東俘虜收容所，因所方待遇人道且鼓勵文化活動，戰俘於 1918 年在此舉行日本史上首次貝多芬《第九號交響曲》全曲演出。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/shikoku_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

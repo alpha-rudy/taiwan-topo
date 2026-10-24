@@ -12,6 +12,19 @@ AW3D30.OSM - Kita-Alps TOPO v__version__
 
 本地圖涵蓋日本北阿爾卑斯（飛驒山脈）全域，橫跨長野、富山、岐阜、新潟四縣，北起親不知的日本海岸，南至乘鞍岳，包含立山黑部、白馬後立山、槍・穗高連峰與上高地，並涵蓋松本、大町、富山、高山等主要登山門戶。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/kita_alps_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -83,18 +96,6 @@ AW3D30.OSM - Kita-Alps TOPO v__version__
 * 1956–1963 年黑部川第四發電所（黑四水壩）工程：在無道路的黑部峽谷深處施工，動員延べ一千萬人次、171 人殉職，後由電影《黑部的太陽》記錄，其工程道路即今日立山黑部阿爾卑斯路線的一部分。
 * 1963 年薬師岳遭難事故：愛知大學山岳部 13 名學生於冬季風雪中在薬師岳一帶全員罹難，是日本戰後最重大的山難之一，此後日本大學山岳社團的冬季登山制度大幅改革。
 * 1934 年中部山岳國立公園指定，成為日本最早的國立公園之一；2016 年起「山之日」（8 月 11 日）成為日本國定假日，其首屆中央儀式即在上高地舉行。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/kita_alps_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

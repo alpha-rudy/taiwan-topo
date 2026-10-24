@@ -12,6 +12,19 @@ AW3D30.OSM - Minami-Alps TOPO v__version__
 
 本地圖涵蓋日本南阿爾卑斯（赤石山脈）全域，北起甲斐駒ヶ岳，南至光岳，包含白根三山、鳳凰三山與塩見・悪沢・赤石・聖岳主稜，東側涵蓋甲府盆地西緣與身延山地，西側達伊那谷南部與飯田。主要登山門戶為甲府・韮崎（廣河原、夜叉神峠）、伊那（北沢峠）、飯田（易老渡、鳥倉）與靜岡側的畑薙・井川。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/minami_alps_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -68,18 +81,6 @@ AW3D30.OSM - Minami-Alps TOPO v__version__
 * 1964 年南阿爾卑斯國立公園指定，涵蓋山梨、長野、靜岡三縣的主稜地帶。
 * 2014 年南阿爾卑斯登錄為聯合國教科文組織生態園區（UNESCO Eco Park），表彰其三千公尺稜線與山麓聚落共存的自然文化景觀。
 * リニア中央新幹線南阿爾卑斯隧道：2010 年代起於山脈正下方開挖的長大隧道，因大井川水量減少疑慮引發靜岡縣的長期爭議，是日本重大的環境議題之一。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/minami_alps_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

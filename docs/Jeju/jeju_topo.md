@@ -12,6 +12,19 @@ AW3D30.OSM - Jeju TOPO v__version__
 
 本地圖涵蓋韓國濟州特別自治道全境，包括濟州島本島、牛島、飛揚島、加波島、馬羅島，以及北方的楸子群島。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/jeju_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 濟州偶來小路 (Jeju Olle Trail)
@@ -89,18 +102,6 @@ AW3D30.OSM - Jeju TOPO v__version__
 * 1840-1848 年金正喜流放：朝鮮書法家秋史金正喜被流放至濟州大靜，在此完成「秋史體」書風，並繪成名作《歲寒圖》。
 * 1948 年濟州四・三事件：自 1948 年 4 月 3 日起持續至 1954 年的武裝衝突與軍警鎮壓，造成數萬名島民罹難，長期被列為禁忌；今設有濟州四・三和平公園以資紀念。
 * 2007 年列入世界自然遺產：「濟州火山島和熔岩洞窟」（漢拏山、城山日出峰、拒文岳熔岩洞窟系統）列入聯合國教科文組織世界自然遺產；2016 年濟州海女文化列入人類非物質文化遺產。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/jeju_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

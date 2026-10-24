@@ -12,6 +12,19 @@ AW3D30.OSM - Yakushima TOPO v__version__
 
 本地圖涵蓋日本九州南方的大隅諸島，包括屋久島（1993 年登錄 UNESCO 世界自然遺產）、種子島與口永良部島。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/yakushima_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -57,18 +70,6 @@ AW3D30.OSM - Yakushima TOPO v__version__
 * 白谷雲水峽有三條主要路線：彌生杉路線（約 1 小時）、奉行杉路線（約 3 小時）、太鼓岩往返路線（約 6 小時）；沿途景點包括さつき吊橋、くぐり杉、白谷小屋與辻峠。
 * 由苔之森經辻峠續行約 30 分鐘可登上太鼓岩，俯瞰奧岳群峰與一望無際的原始森林，春櫻秋楓四季各有風情。
 * 相關影片：[Princess Mononoke: A Documentary Across Japan's Most Sacred Island](https://youtu.be/JZVW6f8g6m8)（Midnight Kotatsu）
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/yakushima_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N46.3 ~ N47.85
 * Longitude range: E13.9 ~ E15.9
 
+## Related Links
+
+* Info Page: https://rudymap.tw/alps_fareast_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -46,18 +59,6 @@ This region lies at the far eastern edge of the Alps, running from the Kamnik-Sa
 * Early 20th century - The Rax climbing ethics debate: legendary Austrian climber Paul Preuss championed "free climbing" around Rax and Schneeberg, opposing excessive reliance on pitons; this sparked the famous "Mauerhakenstreit" (piton controversy), which profoundly shaped the development of modern free-climbing ethics.
 * Erzberg's thousand-year mining history: iron ore has been mined here since the Middle Ages, making it one of the few mines in Europe worked continuously for over a millennium, long underpinning Austria's steel industry.
 * During WWII, the Velika Planina area was an operating ground for Slovenian partisan forces; the traditional herders' hut settlement was damaged by the fighting on several occasions and rebuilt afterward.
-
-* Related Links
-  * Info Page: https://rudymap.tw/alps_fareast_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

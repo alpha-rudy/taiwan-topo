@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers the entire Kita Alps (Northern Japanese Alps / Hida Mountains) across Nagano, Toyama, Gifu and Niigata prefectures, from the Sea of Japan coast at Oyashirazu in the north to Mount Norikura in the south, including Tateyama-Kurobe, the Ushiro-Tateyama ridge, the Yari-Hotaka range and Kamikochi, together with the main gateway towns of Matsumoto, Omachi, Toyama and Takayama.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/kita_alps_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -83,18 +96,6 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
 * 1956-1963: construction of the Kurobe No. 4 hydroelectric dam deep in the roadless Kurobe Gorge required some ten million worker-days and cost 171 lives; it was later dramatised in the film *Kurobe no Taiyo*, and its construction road forms part of today's Tateyama Kurobe Alpine Route.
 * 1963: the Mount Yakushi disaster, in which all 13 students of the Aichi University alpine club died in a winter storm - one of Japan's worst post-war mountaineering accidents, after which university club winter climbing was thoroughly reformed.
 * 1934: designation of Chubu-Sangaku National Park, one of Japan's earliest national parks. In 2016 Japan made 11 August a national holiday, "Mountain Day", and held the first national ceremony in Kamikochi.
-
-* Related Links
-  * Info Page: https://rudymap.tw/kita_alps_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -12,6 +12,19 @@ AW3D30.OSM - Chuo-Alps TOPO v__version__
 
 本地圖涵蓋日本中央阿爾卑斯（木曾山脈）全域，北起經ヶ岳，南至惠那山，包含木曾駒ヶ岳、寶劍岳、空木岳等主稜，並涵蓋西側的獨立火山御嶽山、木曾谷（中山道木曾路）與東側的伊那谷，主要登山門戶為駒ヶ根、伊那、飯田、木曾福島與中津川。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/chuo_alps_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -70,18 +83,6 @@ AW3D30.OSM - Chuo-Alps TOPO v__version__
 * 1967 年駒ヶ岳纜車通車，使中央阿爾卑斯成為日本最容易親近的三千公尺級山域之一。
 * 1984 年長野縣西部地震（M6.8）：震央位於王滝村，引發御嶽山南面大規模山體崩塌「御嶽崩」，造成 29 人死亡・失蹤。
 * 2014 年 9 月 27 日御嶽山噴發：正值秋季登山旺季的水蒸氣噴發，造成 58 人死亡、5 人失蹤，是日本戰後最嚴重的火山災害，此後日本大幅強化活火山的觀測與避難體制。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/chuo_alps_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

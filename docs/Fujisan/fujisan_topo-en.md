@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N34.30 ~ N35.95
 * Longitude range: E138.35 ~ E139.55
 
+## Related Links
+
+* Info Page: https://rudymap.tw/fujisan_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 ### Famous Peaks
 
 * Mount Fuji
@@ -67,18 +80,6 @@ An offline map for Garmin / Android / iOS.
 * 2013 - Mount Fuji inscribed as a UNESCO World Heritage Site: listed under the title "Fujisan, sacred place and source of artistic inspiration," cementing its status as one of Japan's most important cultural landmarks.
 
 ## Installation / Download Links
-
-* Related Links
-  * Info Page: https://rudymap.tw/fujisan_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

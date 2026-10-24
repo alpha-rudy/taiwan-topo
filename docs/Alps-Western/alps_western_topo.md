@@ -10,6 +10,19 @@ AW3D30.OSM - Alps-Western TOPO v__version__
 * 緯度範圍: N44.0 ~ N46.2
 * 經度範圍: E6.0 ~ E8.0
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/alps_western_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -47,18 +60,6 @@ AW3D30.OSM - Alps-Western TOPO v__version__
 * 1865 年馬特洪峰首登：Edward Whymper 率隊完成首登，卻在下山途中繩索斷裂，造成四人墜落罹難的重大山難，這場悲劇也象徵著名的「阿爾卑斯登山黃金年代」(1854-1865) 就此告終。
 * 1856 年大帕拉迪索設立皇家狩獵保護區：義大利國王維托里奧‧埃馬努埃萊二世為保育瀕危的阿爾卑斯岩羚羊而劃設，1922 年進一步成為義大利第一座國家公園。
 * 1924 年首屆冬季奧運在霞慕尼舉行：確立了霞慕尼作為現代登山與滑雪運動發源地之一的國際地位。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/alps_western_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

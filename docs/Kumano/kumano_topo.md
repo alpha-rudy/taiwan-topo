@@ -10,6 +10,19 @@ AW3D30.OSM - Kumano Kodo TOPO v__version__
 * 緯度範圍: N33.0 ~ N35.0
 * 經度範圍: E135.0 ~ E137.0
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/kumano_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 ### 著名的山頭 (Famous Peaks)
 
 * 大峰山脈（紀伊山地核心，修驗道靈場）
@@ -54,18 +67,6 @@ AW3D30.OSM - Kumano Kodo TOPO v__version__
 * 2015 年熊野古道與聖雅各朝聖之路締結姊妹道：兩條全球僅有的 UNESCO 認證朝聖路線正式締結姊妹關係，推出雙印章護照，鼓勵朝聖者同時走完兩地路線。
 
 ## 安裝/下載連結
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/kumano_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

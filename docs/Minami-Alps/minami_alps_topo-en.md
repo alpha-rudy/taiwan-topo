@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers the whole of the Minami Alps (Southern Japanese Alps / Akaishi Mountains), from Mount Kaikoma in the north to Mount Tekari in the south, including the Shirane Sanzan, the Hoo Sanzan and the Shiomi-Warusawa-Akaishi-Hijiri main ridge, with the western rim of the Kofu basin and the Minobu hills to the east and the southern Ina valley and Iida to the west. The main gateways are Kofu and Nirasaki (Hirogawara, Yashajin Pass), Ina (Kitazawa Pass), Iida (Yorodo, Torikura) and Hatanagi / Ikawa on the Shizuoka side.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/minami_alps_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -68,18 +81,6 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
 * 1964: designation of Minami Alps National Park, spanning the main ridge across Yamanashi, Nagano and Shizuoka.
 * 2014: the Southern Alps were registered as a UNESCO Biosphere Reserve (Eco Park), recognising the coexistence of the 3,000m ridgeline and the mountain-foot communities.
 * The Chuo Shinkansen (maglev) Southern Alps tunnel, bored directly beneath the range since the 2010s, has caused a long-running dispute with Shizuoka Prefecture over reduced flow in the Oi river - one of Japan's major environmental controversies.
-
-* Related Links
-  * Info Page: https://rudymap.tw/minami_alps_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

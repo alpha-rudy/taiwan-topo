@@ -10,6 +10,19 @@ AW3D30.OSM - Kashmir Kodo TOPO v__version__
 * 緯度範圍: N34.0 ~ N34.75
 * 經度範圍: E74.5 ~ E75.5
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/kashmir_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -50,18 +63,6 @@ AW3D30.OSM - Kashmir Kodo TOPO v__version__
 * 1846 年阿姆利則條約：英國東印度公司將喀什米爾谷地轉讓予查謨土邦王公古拉伯・辛格，自此奠定查謨與喀什米爾土邦的疆域雛形。
 
 ## 安裝/下載連結
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/kashmir_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers the Ōsumi Islands south of Kyushu, Japan, including Yakushima (inscribed as a UNESCO World Natural Heritage Site in 1993), Tanegashima, and Kuchinoerabujima.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/yakushima_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -57,18 +70,6 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
 * Shiratani Unsuikyo has three main routes: the Yayoi Sugi route (about 1 hour), the Bugyo Sugi route (about 3 hours), and the Taikoiwa round trip (about 6 hours); highlights along the way include the Satsuki Suspension Bridge, Kuguri Sugi, Shiratani Hut, and Tsuji Pass.
 * From the Moss Forest, continuing about 30 minutes past Tsuji Pass leads up to Taikoiwa, with views over the Oku-dake peaks and endless primeval forest - spring cherry blossoms and autumn foliage each lending their own seasonal character.
 * Related video: [Princess Mononoke: A Documentary Across Japan's Most Sacred Island](https://youtu.be/JZVW6f8g6m8) (Midnight Kotatsu)
-
-* Related Links
-  * Info Page: https://rudymap.tw/yakushima_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

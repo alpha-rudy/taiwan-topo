@@ -10,6 +10,19 @@ AW3D30.OSM - Fujisan TOPO v__version__
 * 緯度範圍: N34.30 ~ N35.95
 * 經度範圍: E138.35 ~ E139.55
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/fujisan_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 ### 著名的山頭 (Famous Peaks)
 
 * 富士山
@@ -67,18 +80,6 @@ AW3D30.OSM - Fujisan TOPO v__version__
 * 2013 年富士山登錄 UNESCO 世界文化遺產：以「信仰的對象與藝術的泉源」之名列入，是日本重要的文化地標。
 
 ## 安裝/下載連結
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/fujisan_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

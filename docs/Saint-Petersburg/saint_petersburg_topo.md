@@ -10,6 +10,19 @@ OSM - Saint-Petersburg TOPO v__version__
 * 緯度範圍: N59.69 ~ N60.15
 * 經度範圍: E29.99 ~ E30.62
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/saint_petersburg_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名徒步散步的路線
@@ -65,18 +78,6 @@ OSM - Saint-Petersburg TOPO v__version__
 * 1905 年「流血星期日」：軍隊在冬宮廣場前對請願群眾開槍鎮壓，引爆 1905 年革命，也埋下日後推翻沙皇體制的種子。
 * 1917 年十月革命：布爾什維克黨人攻佔冬宮，阿芙樂爾號巡洋艦鳴放空砲作為起義信號，蘇維埃政權自此誕生；城市名稱也歷經彼得格勒 (1914)、列寧格勒 (1924)，至 1991 年蘇聯解體後才恢復聖彼得堡舊名。
 * 1941-1944 年列寧格勒圍城戰：納粹德軍圍困本市長達 872 天，逾百萬市民死於飢寒與砲擊，是人類歷史上最慘烈的圍城戰之一，也是蘇聯衛國戰爭的重要象徵。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/saint_petersburg_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

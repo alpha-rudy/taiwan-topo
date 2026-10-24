@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N34.0 ~ N34.75
 * Longitude range: E74.5 ~ E75.5
 
+## Related Links
+
+* Info Page: https://rudymap.tw/kashmir_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -50,18 +63,6 @@ This region has some of the Indian Himalaya's most classic alpine-lake treks, kn
 * 1846 - The Treaty of Amritsar: the British East India Company transferred the Kashmir Valley to Maharaja Gulab Singh of Jammu, establishing the territorial foundation of the princely state of Jammu and Kashmir.
 
 ## Installation / Download Links
-
-* Related Links
-  * Info Page: https://rudymap.tw/kashmir_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N55.46 ~ N56.01
 * Longitude range: E37.24 ~ 38.02
 
+## Related Links
+
+* Info Page: https://rudymap.tw/moscow_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Walking Routes
@@ -57,18 +70,6 @@ Moscow is a wonderfully walkable city: the center radiates outward from the Krem
 * 1712 - The capital moves to St. Petersburg: Peter the Great relocated the capital to his newly built city of St. Petersburg, and Moscow's political standing waned until the Soviet government moved the capital back to Moscow in 1918.
 * 1812 - Napoleon's invasion and the Great Fire of Moscow: shortly after French forces occupied Moscow, a mysterious fire broke out and destroyed much of the city; Napoleon was forced to retreat in the depths of winter, a turning point that marked the decline of his empire.
 * 1941-1942 - The Battle of Moscow: during WWII, German forces advanced to within a few dozen kilometers of the city - the furthest point reached on the Eastern Front - before the Soviet Red Army launched a counteroffensive that turned the tide of the war.
-
-* Related Links
-  * Info Page: https://rudymap.tw/moscow_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N33.0 ~ N35.0
 * Longitude range: E135.0 ~ E137.0
 
+## Related Links
+
+* Info Page: https://rudymap.tw/kumano_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 ### Famous Peaks
 
 * Ōmine Mountains (the core of the Kii Mountain Range, a sacred Shugendō training ground)
@@ -54,18 +67,6 @@ An offline map for Garmin / Android / iOS.
 * 2015 - Kumano Kodo and the Camino de Santiago become sister pilgrimage routes: the world's only two UNESCO-recognized pilgrimage routes formalized a sister relationship, launching a dual-stamp passport that encourages pilgrims to walk both.
 
 ## Installation / Download Links
-
-* Related Links
-  * Info Page: https://rudymap.tw/kumano_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers all of Hong Kong — Hong Kong Island, Kowloon, the New Territories, and the outlying islands including Lantau — with full coverage of the four major long-distance trails: the MacLehose, Wilson, Hong Kong, and Lantau Trails.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/hong_kong_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### MacLehose Trail
@@ -118,18 +131,6 @@ The Wilson Trail (衛奕信徑) is named after Governor Sir David Wilson and ope
 * The 1941 Battle of Hong Kong: Japanese forces attacked Hong Kong in December 1941; after the Gin Drinker's Line - a defensive line running across the hills of the New Territories - fell, the garrison surrendered on "Black Christmas", December 25, beginning the "three years and eight months" of Japanese occupation. The trenches of the Shing Mun Redoubt along stage 6 of the MacLehose Trail remain clearly visible today.
 * 1976 - the creation of the Country Parks: under Governor Murray MacLehose, the Country Parks Ordinance was enacted in 1976 and the first parks designated from the following year; today country parks and special areas cover about 40% of Hong Kong's land, a model of nature coexisting with a high-density city. The MacLehose Trail, opened in 1979, is named after him.
 * The 1997 Handover: on July 1, Britain transferred sovereignty over Hong Kong to the People's Republic of China, and Hong Kong became a Special Administrative Region - where, under "One Country, Two Systems", the cityscape of Victoria Harbour and the wild trails of the country parks continue to coexist.
-
-* Related Links
-  * Info Page: https://rudymap.tw/hong_kong_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -110,7 +110,7 @@ EN_TRANSLATIONS = {
     "### 著名景點": "### Famous Sights",
     "### 歷史事件": "### Historical Events",
     "## 安裝/下載連結": "## Installation / Download Links",
-    "* 相關網頁": "* Related Links",
+    "## 相關網頁": "## Related Links",
     "魯地圖分流器 (Cedric Shih)": "RudyMap Load Balancer (Cedric Shih)",
     "魯地圖鏡像站": "RudyMap Mirrors:",
     "說明網頁:": "Info Page:",
@@ -208,6 +208,19 @@ AW3D30.OSM - {region} TOPO v__version__
 * 緯度範圍: Nxx.xx ~ Nyy.yy
 * 經度範圍: Eaa.aa ~ Ebb.bb
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/{region_lower}_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 著名的山頭 (Famous Peaks)
@@ -217,18 +230,6 @@ AW3D30.OSM - {region} TOPO v__version__
 ### 著名景點
 
 ### 歷史事件
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/{region_lower}_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

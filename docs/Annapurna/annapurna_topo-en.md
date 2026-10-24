@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N28.0 ~ N29.0
 * Longitude range: E83.0 ~ E85.0
 
+## Related Links
+
+* Info Page: https://rudymap.tw/annapurna_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 ### Famous Peaks
 
 This region is home to numerous giants over 7,000m, several exceeding 8,000m:
@@ -53,18 +66,6 @@ This region has Nepal's most well-developed and scenically diverse trekking rout
 * 1957 - Machhapuchchre's near ascent: a British expedition turned back roughly 50m from the summit out of respect for local belief that the peak is sacred to Shiva; it remains formally unclimbed to this day.
 
 ## Installation / Download Links
-
-* Related Links
-  * Info Page: https://rudymap.tw/annapurna_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers all of Jeju Special Self-Governing Province, South Korea: the main island of Jeju, Udo, Biyangdo, Gapado, Marado, and the Chuja Islands to the north.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/jeju_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Jeju Olle Trail
@@ -89,18 +102,6 @@ The Jeju Olle Trail (제주 올레길) is the main reason to use this map. "Olle
 * The 1840-1848 exile of Kim Jeong-hui: the Joseon calligrapher Chusa Kim Jeong-hui was exiled to Daejeong on Jeju, where he perfected his "Chusa style" of calligraphy and painted his masterpiece "Sehando".
 * The 1948 Jeju April 3 Incident: an armed uprising and a military and police crackdown that began on April 3, 1948 and lasted until 1954 killed tens of thousands of islanders, and remained a taboo subject for decades. It is commemorated today at the Jeju April 3rd Peace Park.
 * The 2007 World Natural Heritage listing: "Jeju Volcanic Island and Lava Tubes" (Hallasan, Seongsan Ilchulbong and the Geomunoreum lava tube system) was inscribed as a UNESCO World Natural Heritage site; in 2016 the culture of the Jeju haenyeo was inscribed on the Intangible Cultural Heritage list.
-
-* Related Links
-  * Info Page: https://rudymap.tw/jeju_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -10,6 +10,19 @@ An offline map for Garmin / Android / iOS.
 * Latitude range: N45.8 ~ N47.55
 * Longitude range: E10.5 ~ E14.0
 
+## Related Links
+
+* Info Page: https://rudymap.tw/alps_eastern_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -47,18 +60,6 @@ This region spans Italy's South Tyrol and Trentino, Austria's Tyrol and Salzburg
 * 1800 - First ascent of Grossglockner: a scientific expedition organized by the Bishop of Gurk made the first ascent, a representative example of early Alpine climbing sponsored by the church and nobility.
 * 1915-1917 - The "White War" (Guerra Bianca) in the Dolomites: during WWI, Italian and Austro-Hungarian troops fought fiercely amid the rock walls and glaciers thousands of meters up in the Dolomites, carving extensive trenches and tunnels; many of today's popular via ferratas, such as the Lagazuoi Tunnels, were converted from these wartime military passages.
 * 1956 - Cortina d'Ampezzo Winter Olympics: Italy's first time hosting the Winter Olympics, propelling the Dolomites onto the international stage; in 2026, Cortina co-hosted the Winter Olympics again with Milan, returning to the world stage six decades later.
-
-* Related Links
-  * Info Page: https://rudymap.tw/alps_eastern_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

@@ -10,6 +10,19 @@ AW3D30.OSM - Nikko-Oze TOPO v__version__
   * 緯度範圍: N36.50 ~ N37.47
   * 經度範圍: E138.68 ~ E139.86
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/nikko_oze_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 ### 著名的山頭 (Famous Peaks)
 
 1. 日光地區（栃木縣為主）
@@ -61,18 +74,6 @@ AW3D30.OSM - Nikko-Oze TOPO v__version__
 * 1949-1996 年尾瀨保育運動：政府原計畫在尾瀨之原修建道路與水壩，遭民間發起長期保育抗爭，最終計畫全數撤回，尾瀨因此被視為日本自然保育運動的先驅案例。
 
 ## 安裝/下載連結
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/nikko_oze_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖

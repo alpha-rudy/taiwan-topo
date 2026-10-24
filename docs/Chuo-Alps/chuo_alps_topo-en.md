@@ -12,6 +12,19 @@ An offline map for Garmin / Android / iOS.
 
 This map covers the whole of the Chuo Alps (Central Japanese Alps / Kiso Mountains), from Mount Kyo in the north to Mount Ena in the south, including the main ridge of Mount Kisokoma, Mount Hoken and Mount Utsugi, together with the free-standing volcano Mount Ontake to the west, the Kiso valley (the Kisoji section of the Nakasendo) and the Ina valley to the east. The main gateway towns are Komagane, Ina, Iida, Kiso-Fukushima and Nakatsugawa.
 
+## Related Links
+
+* Info Page: https://rudymap.tw/chuo_alps_topo-en.html
+* RudyMap Load Balancer (Cedric Shih)
+  * rudymap.tw
+* RudyMap Mirrors:
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
+* Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
+
 Note: the descriptions below were AI-generated. Please report any errors to the RudyMap community and we'll fix them as soon as possible. Thanks!  ^^
 
 ### Famous Peaks
@@ -70,18 +83,6 @@ Note: the descriptions below were AI-generated. Please report any errors to the 
 * 1967: the opening of the Komagatake Ropeway made the Central Alps one of the most accessible 3,000m-class ranges in Japan.
 * 1984: the Naganoken-Seibu earthquake (M6.8), centred on Otaki village, triggered the massive "Ontake collapse" on the southern flank of the volcano, killing or leaving missing 29 people.
 * 27 September 2014: the phreatic eruption of Mount Ontake struck at the height of the autumn climbing season, killing 58 people with 5 missing - Japan's deadliest volcanic disaster since the war - and led to a major strengthening of volcano monitoring and evacuation systems nationwide.
-
-* Related Links
-  * Info Page: https://rudymap.tw/chuo_alps_topo-en.html
-  * RudyMap Load Balancer (Cedric Shih)
-    * rudymap.tw
-  * RudyMap Mirrors:
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
-  * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 
 * ![HikingJournal](images/hj.png =36x) Auto Install
   * Install the map directly within the app

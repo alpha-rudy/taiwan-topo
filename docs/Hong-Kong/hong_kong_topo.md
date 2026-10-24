@@ -12,6 +12,19 @@ AW3D30.OSM - Hong-Kong TOPO v__version__
 
 本地圖涵蓋香港全境，包括香港島、九龍、新界，以及大嶼山等離島，並完整收錄麥理浩徑、衛奕信徑、港島徑、鳳凰徑四大長途遠足徑。
 
+## 相關網頁
+
+* 說明網頁: https://rudymap.tw/hong_kong_topo.html
+* 魯地圖分流器 (Cedric Shih)
+  * rudymap.tw
+* 魯地圖鏡像站
+  * kcwu, moi.kcwu.csie.org
+  * happyman, map.happyman.idv.tw
+  * peakit (山盒), rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
+* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
+
 請注意，以下介紹內容為 AI 產生，若有錯誤請回報到魯地圖社群，我們會儘快更正。謝謝！  ^^
 
 ### 麥理浩徑 (MacLehose Trail)
@@ -118,18 +131,6 @@ AW3D30.OSM - Hong-Kong TOPO v__version__
 * 1941 年香港保衛戰：二戰期間日軍於 1941 年 12 月進攻香港，橫跨新界山嶺的醉酒灣防線（Gin Drinker's Line）失守後，守軍於 12 月 25 日「黑色聖誕節」投降，香港進入「三年零八個月」的日佔時期。麥理浩徑第六段沿線的城門碉堡戰壕遺跡至今仍清晰可見。
 * 1976 年郊野公園設立：港督麥理浩任內制定《郊野公園條例》，翌年起陸續劃定郊野公園，如今郊野公園及特別地區約佔全港土地四成，是高密度城市與自然共存的典範；1979 年啟用的麥理浩徑即以他命名。
 * 1997 年香港回歸：7 月 1 日英國將香港主權移交中華人民共和國，香港成為特別行政區，「一國兩制」下維多利亞港兩岸的城市景觀與郊野山徑並存至今。
-
-* 相關網頁
-  * 說明網頁: https://rudymap.tw/hong_kong_topo.html
-  * 魯地圖分流器 (Cedric Shih)
-    * rudymap.tw
-  * 魯地圖鏡像站
-    * kcwu, moi.kcwu.csie.org
-    * happyman, map.happyman.idv.tw
-    * peakit (山盒), rudy.peakitcdn.com
-    * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-  * 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-  * 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
 
 * ![山林日誌](images/hj.png =36x) 自動安裝
   * 請於 APP 內直接安裝地圖
