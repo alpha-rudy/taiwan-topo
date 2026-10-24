@@ -352,6 +352,12 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 ## 重大修改歷程
 * 2026, 10/8
   * DTM 套用內政部地政司 Taiwan DTM 20m v2026
+    * 台灣本島(taiwan)、蘭嶼(lanyu)、綠島(ludao)、琉球(liuqiu): MOI DLA v2026 20m
+    * 龜山島(guishan): MOI DLA v2020 20m
+    * 澎湖群島(penghu): MOI DLA v2025 20m
+    * 金門群島(kinmen): MOI DLA v2026 20m
+    * 樂山基地(leshan): MOI DLA v2016 20m
+    * 馬祖(matsu)、烏坵(wuqiu)、北方三島(n3islets): JAXA AW3D30 v4.1
 * 2026, 1/8
   * 增加 foreign topos 國外登山地圖
 * 2026, 1/5

@@ -352,6 +352,12 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 ## Major Revision History
 * 2026, 10/8
   * DTM updated to MOI Department of Land Administration Taiwan DTM 20m v2026
+    * taiwan main island, lanyu, ludao, liuqiu: MOI DLA v2026 20m
+    * guishan: MOI DLA v2020 20m
+    * penghu: MOI DLA v2025 20m
+    * kinmen: MOI DLA v2026 20m
+    * leshan army base: MOI DLA v2016 20m
+    * matsu, wuqiu, n3islets: JAXA AW3D30 v4.1
 * 2026, 1/8
   * Added foreign topo maps for overseas mountain regions
 * 2026, 1/5
