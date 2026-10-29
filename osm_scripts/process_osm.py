@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import math
 import sys
 import osmium
 
 hknetworks = {}
 national_park = {}
 strict_protected = {}
+summit_boards = {}
 
 
 class NationalParkLoader(osmium.SimpleHandler):
@@ -26,6 +28,25 @@ class StrictProtectedLoader(osmium.SimpleHandler):
             for m in r.members:
                 if m.role == 'outer' and m.type == 'w':
                     strict_protected[m.ref] = ways
+
+class SummitBoardLoader(osmium.SimpleHandler):
+    def node(self, n):
+        lon, lat = n.location.lon, n.location.lat
+        summit_boards.setdefault((int(lon * 100), int(lat * 100)), []).append((lon, lat))
+
+
+def near_summit_board(lon, lat, radius=100):
+    # grid cells are 0.01 deg (~1 km), so the 3x3 neighbourhood covers radius
+    cx, cy = int(lon * 100), int(lat * 100)
+    for i in (-1, 0, 1):
+        for j in (-1, 0, 1):
+            for x, y in summit_boards.get((cx + i, cy + j), ()):
+                dx = (x - lon) * math.cos(math.radians(lat)) * 111320
+                dy = (y - lat) * 110540
+                if math.hypot(dx, dy) < radius:
+                    return True
+    return False
+
 
 def round_float(value):
     try:
@@ -65,7 +86,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if tags.get('man_made', '') == 'summit_board':
             self.handle_summit_board(tags)
         elif tags.get('natural', '') == 'peak':
-            self.handle_peak(tags)
+            self.handle_peak(tags, n.location)
         elif tags.get('natural', '') == 'spring' and \
                 tags.get('drinking_water', '') == 'yes':
             self.handle_drinking_spring(tags)
@@ -231,11 +252,14 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['name'] = name
             tags['name:en'] = name
 
-    def handle_peak(self, tags):
+    def handle_peak(self, tags, location):
         tags.pop('name', None)
         tags.pop('name:en', None)
         tags.pop('name:zh', None)
         tags['is_in'] = 'taiwan'
+        # the nearby summit_board already shows ele in its name
+        if near_summit_board(location.lon, location.lat):
+            tags.pop('ele', None)
 
     def handle_summit_board(self, tags):
         ref = tags.get('ref')
@@ -378,6 +402,7 @@ def main():
     hknetworks_file = f"{prefix}_hknetworks.osm" if prefix else "hknetworks.osm"
     national_park_file = f"{prefix}_national_park.osm" if prefix else "national_park.osm"
     strict_protected_file = f"{prefix}_strict_protected.osm" if prefix else "strict_protected.osm"
+    summit_board_file = f"{prefix}_summit_board.osm" if prefix else "summit_board.osm"
 
     nknetwork_loader = HknetworkLoader()
     nknetwork_loader.apply_file(hknetworks_file)
@@ -387,6 +412,9 @@ def main():
 
     strict_protected_loader = StrictProtectedLoader()
     strict_protected_loader.apply_file(strict_protected_file)
+
+    summit_board_loader = SummitBoardLoader()
+    summit_board_loader.apply_file(summit_board_file)
 
     writer = osmium.SimpleWriter(outfile)
     mapsforge_handler = MapsforgeHandler(writer)

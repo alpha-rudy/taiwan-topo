@@ -37,6 +37,14 @@ osmfilter \
     --keep-relations='type=boundary and boundary=protected_area and protect_class=1 and name=' \
     "$infile" -o="${prefix}_strict_protected.osm"
 
+osmfilter \
+    --drop-ways \
+    --drop-relations \
+    --drop-version \
+    --ignore-dependencies \
+    --keep-nodes='man_made=summit_board' \
+    "$infile" -o="${prefix}_summit_board.osm"
+
 filtered_o5m="${prefix}_filtered.o5m"
 filtered_pbf="${prefix}_filtered.osm.pbf"
 # NB: name:zh is intentionally KEPT (do not add it back to --drop-tags). mapsforge renders
@@ -55,4 +63,4 @@ script_dir="$(dirname $0)"
 python3 "$script_dir/process_osm.py" "$filtered_pbf" "$outfile" "$prefix"
 
 # Cleanup intermediate files
-rm -f "${prefix}_hknetworks.osm" "${prefix}_national_park.osm" "${prefix}_strict_protected.osm" "$filtered_o5m" "$filtered_pbf"
+rm -f "${prefix}_hknetworks.osm" "${prefix}_national_park.osm" "${prefix}_strict_protected.osm" "${prefix}_summit_board.osm" "$filtered_o5m" "$filtered_pbf"
