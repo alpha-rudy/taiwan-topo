@@ -240,7 +240,6 @@ class MapsforgeHandler(osmium.SimpleHandler):
     def handle_summit_board(self, tags):
         ref = tags.get('ref')
         name = tags.get('name')
-        name_en = tags.get('name:en')
         if ref is not None:
             if name is None or '百岳#' not in ref:
                 del tags['ref']
@@ -273,10 +272,12 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
         ele = tags.get('ele')
         if ele is not None and name is not None:
-            ele = round_float(ele)
+            ele = round_float(ele.split(';')[0])
             if ele is not None:
-                tags['name'] = '%s, %sm' % (name, ele)
-                tags['name:en'] = '%s, %sm' % (name_en, ele)
+                # name:zh too: complete_name.py fills it, and zh-preferring apps read it
+                for k in ('name', 'name:en', 'name:zh'):
+                    if tags.get(k):
+                        tags[k] = '%s, %sm' % (tags[k], ele)
 
     def handle_hknetwork_node(self, id, tags):
         for network in hknetworks[id]:
