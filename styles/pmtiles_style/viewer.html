@@ -26,10 +26,16 @@
     // serving the repo root, use absolute paths, e.g.:
     //   viewer.html?pmtiles=/build-taiwan/MOI_OSM_Taiwan_TOPO_Rudy.pmtiles
     //              &dem=/build-taiwan/dem/taiwan_dem.pmtiles
+    // Glyphs are looked for in glyphs/ next to the vector archive (make glyphs).
     const params = new URLSearchParams(location.search);
     const pmtilesUrl = params.get("pmtiles") || "./MOI_OSM_Taiwan_TOPO_Rudy.pmtiles";
     // Default the DEM to a sibling of the vector archive (same folder).
     const demUrl = params.get("dem") || pmtilesUrl.replace(/[^/]+$/, "taiwan_dem.pmtiles");
+    // Glyphs (make glyphs) default to a glyphs/ folder next to the vector
+    // archive; ?glyphs=<url with {fontstack} and {range}> points elsewhere.
+    // MapLibre needs an absolute URL, and the braces must stay unencoded.
+    const glyphsUrl = params.get("glyphs") ||
+      new URL(pmtilesUrl.replace(/[^/]+$/, ""), location.href).href + "glyphs/{fontstack}/{range}.pbf";
 
     async function main() {
       if (typeof maplibregl === "undefined" || typeof pmtiles === "undefined") {
@@ -42,6 +48,7 @@
       catch (e) { return say("Could not load style.json next to this page: " + e, true); }
       style.sources.topo.url = "pmtiles://" + pmtilesUrl;
       if (style.sources.dem) style.sources.dem.url = "pmtiles://" + demUrl;
+      style.glyphs = glyphsUrl;
 
       const protocol = new pmtiles.Protocol();
       maplibregl.addProtocol("pmtiles", protocol.tile);

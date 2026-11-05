@@ -2,9 +2,9 @@
   "version": 8,
   "name": "Taiwan TOPO (Mapsforge look + hillshade)",
   "metadata": {
-    "comment": "MapLibre GL style for the Taiwan-TOPO custom PMTiles schema. Mirrors styles/mapsforge_style/MOI_OSM.xml: dark stepped contours revealed per-zoom, plus hillshading from a terrain-RGB DEM PMTiles. The viewer rewrites the source URLs."
+    "comment": "MapLibre GL style for the Taiwan-TOPO custom PMTiles schema. Mirrors styles/mapsforge_style/MOI_OSM.xml: dark stepped contours revealed per-zoom, plus hillshading from a terrain-RGB DEM PMTiles. The viewer rewrites the source and glyphs URLs; glyphs come from make glyphs."
   },
-  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "glyphs": "glyphs/{fontstack}/{range}.pbf",
   "sources": {
     "topo": {
       "type": "vector",
@@ -21,6 +21,22 @@
   "layers": [
     { "id": "background", "type": "background", "paint": { "background-color": "#f7f6f1" } },
 
+    {
+      "id": "sea",
+      "type": "fill",
+      "source": "topo",
+      "source-layer": "water",
+      "filter": ["==", ["get", "class"], "sea"],
+      "paint": { "fill-color": "#b3ddff" }
+    },
+    {
+      "id": "land",
+      "type": "fill",
+      "source": "topo",
+      "source-layer": "water",
+      "filter": ["==", ["get", "class"], "nosea"],
+      "paint": { "fill-color": "#f7f6f1" }
+    },
     {
       "id": "landcover",
       "type": "fill",
@@ -49,6 +65,7 @@
       "type": "fill",
       "source": "topo",
       "source-layer": "water",
+      "filter": ["!", ["in", ["get", "class"], ["literal", ["sea", "nosea"]]]],
       "paint": { "fill-color": "#b3ddff" }
     },
     {
@@ -257,14 +274,31 @@
       "type": "symbol",
       "source": "topo",
       "source-layer": "ele_point",
-      "filter": ["in", ["get", "class"], ["literal", ["peak", "volcano", "saddle", "mountain_pass"]]],
+      "filter": ["all",
+        ["in", ["get", "class"], ["literal", ["summit_board", "peak", "volcano", "saddle", "mountain_pass", "survey_point", "ele_marker"]]],
+        ["any", ["has", "name"], ["has", "ele"]]],
       "layout": {
-        "text-field": ["case", ["has", "name"],
-          ["concat", ["get", "name"], "\n", ["to-string", ["round", ["get", "ele"]]], " m"],
-          ["concat", ["to-string", ["round", ["get", "ele"]]], " m"]],
-        "text-font": ["Noto Sans Regular"], "text-size": 11, "text-anchor": "left", "text-offset": [0.6, 0]
+        "symbol-sort-key": ["match", ["get", "class"],
+          "summit_board", ["coalesce", ["get", "zl"], 3],
+          "peak", 4, "volcano", 4, "saddle", 4, "mountain_pass", 4,
+          "survey_point", 6,
+          5],
+        "text-field": ["case",
+          ["==", ["get", "class"], "summit_board"], ["get", "name"],
+          ["all", ["has", "name"], ["!=", ["get", "class"], "survey_point"], ["has", "ele"]],
+            ["concat", ["get", "name"], "\n", ["to-string", ["get", "ele"]], " m"],
+          ["all", ["has", "name"], ["!=", ["get", "class"], "survey_point"]], ["get", "name"],
+          ["concat", ["to-string", ["get", "ele"]], " m"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": ["case", ["all", ["==", ["get", "class"], "summit_board"], ["<=", ["coalesce", ["get", "zl"], 3], 1]], 12, 11],
+        "text-anchor": "left",
+        "text-offset": [0.6, 0]
       },
-      "paint": { "text-color": "#5a3a1a", "text-halo-color": "#ffffff", "text-halo-width": 1.2 }
+      "paint": {
+        "text-color": "#5a3a1a",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.2
+      }
     },
     {
       "id": "poi",

@@ -43,7 +43,11 @@ end
 local hiking_networks = { iwn=true, nwn=true, rwn=true, lwn=true, uwn=true }
 local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=true }
 
-local water_natural    = { water=true, sea=true, bay=true, wetland=true, spring=false }
+-- sea and nosea are the land/sea mask, as in the Mapsforge build: the frame is
+-- one natural=sea polygon and the land is drawn back over it from natural=nosea
+-- polygons (tools/sealand-creator.sh). Both go to the water layer with their
+-- class, and style.json paints nosea in the land colour right after sea.
+local water_natural    = { water=true, sea=true, nosea=true, bay=true, wetland=true, spring=false }
 local landcover_natural= { wood=true, scrub=true, grassland=true, heath=true,
                            bare_rock=true, scree=true, fell=true, glacier=true }
 local landcover_landuse= { forest=true, farmland=true, farmyard=true, meadow=true,
@@ -125,18 +129,40 @@ function node_function()
     end
 
     -- peaks / elevation markers
+    -- The summit name lives on man_made=summit_board, not on the peak:
+    -- process_osm.py writes "<name>, <ele>m" there with zl (0 = 玉山, 雪山主峰,
+    -- 北大武山; 1 = 百岳; 2 = 小百岳) and cat, and strips the name (and,
+    -- near a board, the ele) from natural=peak. Survey points carry a
+    -- descriptive name ("三等三角點 6303") that the Mapsforge theme does not
+    -- print. style.json uses class and zl to rank and word the labels.
     local natural = Find("natural")
     local ele = Find("ele")
+    local man_made = Find("man_made")
+    local is_board = (man_made == "summit_board")
     local is_peak = (natural == "peak" or natural == "volcano" or
                      natural == "saddle" or Find("mountain_pass") == "yes")
-    if is_peak or ele ~= "" then
+    if is_board or is_peak or ele ~= "" then
         Layer("ele_point", false)
-        if is_peak then Attribute("class", natural ~= "" and natural or "mountain_pass")
+        local zl = tonumber(Find("zl"))
+        if is_board then
+            Attribute("class", "summit_board")
+            if zl ~= nil then AttributeNumeric("zl", zl) end
+            local cat = Find("cat")
+            if cat ~= "" then Attribute("cat", cat) end
+        elseif is_peak then Attribute("class", natural ~= "" and natural or "mountain_pass")
+        elseif man_made == "survey_point" then Attribute("class", "survey_point")
         else Attribute("class", "ele_marker") end
         set_names()
         local elenum = tonumber(ele)
         if elenum ~= nil then
             AttributeNumeric("ele", math.floor(elenum + 0.5))
+        end
+        if is_board then
+            -- tag-mapping.xml: summit boards appear by zl, as in the theme
+            if zl == 0 then MinZoom(7)
+            elseif zl == 1 or zl == 2 then MinZoom(10)
+            else MinZoom(12) end
+        elseif elenum ~= nil then
             -- higher summits/markers appear earlier
             local z = 14
             if elenum >= 3000 then z = 11
@@ -146,8 +172,6 @@ function node_function()
         else
             MinZoom(is_peak and 12 or 14)
         end
-        if not is_peak then return end
-        -- a named peak is worth keeping as POI too? keep it single-layer.
         return
     end
 

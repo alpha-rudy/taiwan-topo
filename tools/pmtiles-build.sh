@@ -12,6 +12,15 @@
 #   2. The PBF contains a few dangling node references (the upstream osmosis
 #      step keeps incomplete entities). Rather than rewrite the data, we pass
 #      tilemaker --skip-integrity so it tolerates the missing refs.
+#   3. The contour and elevation payload carries node ids far above OSM's
+#      (around 1.6e11 for a region with contours), past what tilemaker's
+#      sorted node store can index: it aborts with "SortedNodeStore: unexpected
+#      groupIndex". The sorted PBF is renumbered from 1 with osmium, which
+#      keeps the order and every reference; the vector schema carries no ids.
+#   4. tilemaker refuses ways of more than 2,000 nodes, and the natural=nosea
+#      land polygons of the land/sea scheme are kept whole, so a coastline
+#      ring can be far longer. tools/split-long-ways.py turns each such ring
+#      into chained pieces under a multipolygon relation.
 #
 # Usage: pmtiles-build.sh <input_pbf> <output_pmtiles> <tilemaker_cmd> \
 #                         <config_json> <process_lua> <version> [bbox] [extra_opts]
@@ -56,7 +65,9 @@ fi
 
 CONFIG_RUNTIME="$CONFIG_JSON"
 SORTED_PBF="${OUTPUT_PMTILES%.pmtiles}.sort.tmp.pbf"
-cleanup() { rm -f "$SORTED_PBF"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
+RENUMBERED_PBF="${OUTPUT_PMTILES%.pmtiles}.renum.tmp.pbf"
+SPLIT_PBF="${OUTPUT_PMTILES%.pmtiles}.split.tmp.pbf"
+cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
 trap cleanup EXIT
 
 # tilemaker reads several config strings (name/version/description) without
@@ -70,18 +81,26 @@ fi
 # 1. Sort into tilemaker's expected type+id order.
 "$OSMIUM_CMD" sort "$INPUT_PBF" -o "$SORTED_PBF" -O
 
-# 2. Derive the bounding box from the data if not supplied (the prepared PBF
+# 2. Renumber from 1 so tilemaker's node store can index every node.
+"$OSMIUM_CMD" renumber "$SORTED_PBF" -o "$RENUMBERED_PBF" -O
+rm -f "$SORTED_PBF"
+
+# 3. Split rings longer than tilemaker's 2,000-node limit.
+python3 "$(dirname "$0")/split-long-ways.py" "$RENUMBERED_PBF" "$SPLIT_PBF"
+rm -f "$RENUMBERED_PBF"
+
+# 4. Derive the bounding box from the data if not supplied (the prepared PBF
 #    has no bbox in its header). osmium prints "(minlon,minlat,maxlon,maxlat)";
 #    strip the parentheses for tilemaker.
 if [ -z "$BBOX" ]; then
-    BBOX="$("$OSMIUM_CMD" fileinfo -e -g data.bbox "$SORTED_PBF" | tr -d '()')"
+    BBOX="$("$OSMIUM_CMD" fileinfo -e -g data.bbox "$SPLIT_PBF" | tr -d '()')"
 fi
 
 rm -f "$OUTPUT_PMTILES"
 
 # --skip-integrity: tolerate the dangling node references noted above.
 "$TILEMAKER_CMD" \
-    --input "$SORTED_PBF" \
+    --input "$SPLIT_PBF" \
     --output "$OUTPUT_PMTILES" \
     --config "$CONFIG_RUNTIME" \
     --process "$PROCESS_LUA" \

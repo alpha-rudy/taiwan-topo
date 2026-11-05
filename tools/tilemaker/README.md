@@ -18,9 +18,12 @@ If you run `make` directly (no container), provide a tilemaker binary either at
 
 ## Notes on the input data (already handled by tools/pmtiles-build.sh)
 
-The prepared `$(MAPSFORGE_PBF)` needs two adaptations, both done automatically
+The prepared `$(MAPSFORGE_PBF)` needs three adaptations, all done automatically
 by the build wrapper:
   - it is **sorted** with `osmium sort` (tilemaker streams nodes in type+id order);
+  - it is **renumbered** from 1 with `osmium renumber`: the contour and
+    elevation payload carries node ids around 1.6e11, which tilemaker's sorted
+    node store cannot index ("SortedNodeStore: unexpected groupIndex");
   - tilemaker is run with **`--skip-integrity`** because the PBF carries a few
     dangling node references (the upstream osmosis step keeps incomplete
     entities). osmconvert `--drop-broken-refs` is *not* usable here — it drops
