@@ -35,7 +35,7 @@
     // archive; ?glyphs=<url with {fontstack} and {range}> points elsewhere.
     // MapLibre needs an absolute URL, and the braces must stay unencoded.
     const glyphsUrl = params.get("glyphs") ||
-      new URL(pmtilesUrl.replace(/[^/]+$/, ""), location.href).href + "glyphs/{fontstack}/{range}.pbf";
+      new URL(".", new URL(pmtilesUrl, location.href)).href + "glyphs/{fontstack}/{range}.pbf";
 
     async function main() {
       if (typeof maplibregl === "undefined" || typeof pmtiles === "undefined") {
