@@ -198,6 +198,14 @@ PMTILES_PROCESS := $(ROOT_DIR)/osm_scripts/pmtiles/process.lua
 REGION_LOWER := $(shell echo $(REGION) | tr A-Z a-z)
 DEM_PMTILES := $(BUILD_DIR)/dem/$(REGION_LOWER)_dem.pmtiles
 GOPMTILES_CMD ?= $(if $(wildcard $(TOOLS_DIR)/go-pmtiles/pmtiles),$(TOOLS_DIR)/go-pmtiles/pmtiles,pmtiles)
+# Glyphs for the PMTiles style's text ("Noto Sans Regular", Latin and CJK):
+# openmaptiles/fonts v2.0, SIL OFL. Pinned by checksum; served next to the
+# .pmtiles as glyphs/{fontstack}/{range}.pbf (see styles/pmtiles_style).
+GLYPHS_URL := https://github.com/openmaptiles/fonts/releases/download/v2.0/noto-sans.zip
+GLYPHS_SHA256 := d117316544b43a5dde7ee761b36e17701e9f85574e181d76a74814240fdbaf34
+GLYPHS_ZIP := $(DOWNLOAD_DIR)/openmaptiles-fonts-v2.0-noto-sans.zip
+GLYPHS_DIR := $(BUILD_DIR)/glyphs
+GLYPHS := $(GLYPHS_DIR)/.unpacked
 DEM_MIN_ZOOM ?= 6
 DEM_MAX_ZOOM ?= 13
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
@@ -961,6 +969,22 @@ $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS)
 		"$(PMTILES_PROCESS)" \
 		"$(VERSION)" \
 		"$(MAP_FRAME)"
+
+.PHONY: glyphs
+glyphs: $(GLYPHS)
+$(GLYPHS): $(GLYPHS_ZIP)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	rm -rf $(GLYPHS_DIR)
+	mkdir -p $(GLYPHS_DIR)
+	unzip -q $< 'Noto Sans Regular/*' -d $(GLYPHS_DIR)
+	touch $@
+
+$(GLYPHS_ZIP):
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(DOWNLOAD_DIR)
+	curl --fail --location $(GLYPHS_URL) -o $@.tmp
+	echo '$(GLYPHS_SHA256)  $@.tmp' | sha256sum -c -
+	mv $@.tmp $@
 
 .PHONY: dem
 dem: $(DEM_PMTILES)
