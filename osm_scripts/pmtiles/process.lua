@@ -50,6 +50,30 @@ local hiking_poi_keys = { "tourism", "amenity", "natural", "man_made", "highway"
                           "shelter_type", "drinking_water", "access", "reservation",
                           "winter_room", "tower", "checkpoint:type", "highlight" }
 
+-- Values tag-mapping.xml keeps on POIs, per key (equivalent-values included):
+-- Mapsforge drops every other value, and the theme's rules are written for
+-- what is left, so the hiking POIs carry only these. Read from the mapping
+-- itself, next to this directory, so the two cannot drift apart.
+local poi_mapping = (function()
+    local dir = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$") or "."
+    local f = assert(io.open(dir .. "/../tag-mapping.xml", "r"), "tag-mapping.xml not found")
+    local xml = f:read("*a")
+    f:close()
+    local pois = assert(xml:match("<pois>(.-)</pois>"), "no <pois> in tag-mapping.xml")
+    local m = {}
+    for tag in pois:gmatch("<osm%-tag%s[^>]*>") do
+        local k = tag:match("key='([^']*)'")
+        local v = tag:match("value='([^']*)'")
+        if k and v then
+            m[k] = m[k] or {}
+            m[k][v] = true
+            local eq = tag:match("equivalent%-values='([^']*)'")
+            if eq then for e in eq:gmatch("[^,]+") do m[k][e] = true end end
+        end
+    end
+    return m
+end)()
+
 local function hiking_poi_minzoom()
     local z = nil
     for k, vals in pairs(hiking_poi_zoom) do
@@ -206,7 +230,17 @@ function node_function()
         Layer("poi", false)
         for _, k in ipairs(hiking_poi_keys) do
             local v = Find(k)
-            if v ~= "" then Attribute(k, v) end
+            if v ~= "" and poi_mapping[k] and poi_mapping[k][v] then Attribute(k, v) end
+        end
+        -- class / subclass as for the other POIs, so the plain name label can
+        -- still show the subtypes the icon layers do not draw
+        for _, k in ipairs({ "amenity", "tourism", "man_made", "information", "highway", "natural" }) do
+            local v = Find(k)
+            if v ~= "" then
+                Attribute("class", k)
+                Attribute("subclass", v)
+                break
+            end
         end
         local zl = tonumber(Find("zl"))
         if zl ~= nil then AttributeNumeric("zl", zl) end
