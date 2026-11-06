@@ -225,8 +225,11 @@ function way_function()
         if highlight == "yes" then Attribute("highlight", "yes") end
         local ref = Find("ref")
         if ref ~= "" then Attribute("ref", ref) end
+        -- the theme draws routes only where the way is not a tunnel
+        local rt = Find("tunnel")
+        if rt ~= "" and rt ~= "no" then Attribute("tunnel", "yes") end
         set_names()
-        MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11
+        MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11 (config.json allows 10)
         -- a hiking way may also be a path; fall through to draw the way too
     end
 
