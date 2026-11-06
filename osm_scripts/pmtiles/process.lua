@@ -370,6 +370,7 @@ function way_function()
         local tunnel, bridge = Find("tunnel"), Find("bridge")
         if tunnel ~= "" and tunnel ~= "no" then Attribute("tunnel", "yes") end
         if bridge ~= "" and bridge ~= "no" then Attribute("bridge", "yes") end
+        if Find("area") == "yes" then Attribute("area", "yes") end
         -- the tag values the Mapsforge theme tests for trails and tracks; other
         -- values are dropped by tag-mapping.xml, so they are left out here too
         local sac = Find("sac_scale")
