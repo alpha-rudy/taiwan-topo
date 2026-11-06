@@ -206,6 +206,9 @@ GLYPHS_SHA256 := d117316544b43a5dde7ee761b36e17701e9f85574e181d76a74814240fdbaf3
 GLYPHS_ZIP := $(DOWNLOAD_DIR)/openmaptiles-fonts-v2.0-noto-sans.zip
 GLYPHS_DIR := $(BUILD_DIR)/glyphs
 GLYPHS := $(GLYPHS_DIR)/.unpacked
+PMTILES_STYLE := $(ROOT_DIR)/styles/pmtiles_style/style.json
+SPRITE_DIR := $(BUILD_DIR)/sprite
+SPRITE := $(SPRITE_DIR)/sprite.json
 DEM_MIN_ZOOM ?= 6
 DEM_MAX_ZOOM ?= 13
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
@@ -985,6 +988,15 @@ $(GLYPHS_ZIP):
 	curl --fail --location $(GLYPHS_URL) -o $@.tmp
 	echo '$(GLYPHS_SHA256)  $@.tmp' | sha256sum -c -
 	mv $@.tmp $@
+
+# Icons for the PMTiles style: the Mapsforge theme's own symbols, rendered at
+# the sizes style.json asks for and served as sprite/sprite*.{png,json} next to
+# the .pmtiles (see tools/pmtiles-sprite.py).
+.PHONY: sprite
+sprite: $(SPRITE)
+$(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm_res/*)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	python3 $(TOOLS_DIR)/pmtiles-sprite.py $(PMTILES_STYLE) $(ROOT_DIR)/styles/mapsforge_style/moiosm_res $(SPRITE_DIR)
 
 .PHONY: dem
 dem: $(DEM_PMTILES)

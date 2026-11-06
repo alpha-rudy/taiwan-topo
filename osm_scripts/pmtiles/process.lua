@@ -36,6 +36,29 @@ local function in_set(value, set)
     return value ~= "" and set[value] == true
 end
 
+-- hiking POIs: (key, value) -> MapLibre minzoom, from MOI_OSM.xml's first zoom
+-- for the symbol and tag-mapping.xml's zoom-appear, whichever is later, minus one
+local hiking_poi_zoom = {
+    tourism = { alpine_hut=12, wilderness_hut=12, camp_site=12, viewpoint=13, information=13 },
+    amenity = { shelter=12, drinking_water=13, toilets=13 },
+    natural = { spring=13 },
+    man_made = { water_well=13 },
+    highway = { trailhead=14 },
+    information = { guidepost=14, trail_milestone=14 },
+}
+local hiking_poi_keys = { "tourism", "amenity", "natural", "man_made", "highway", "information",
+                          "shelter_type", "drinking_water", "access", "reservation",
+                          "winter_room", "tower", "checkpoint:type", "highlight" }
+
+local function hiking_poi_minzoom()
+    local z = nil
+    for k, vals in pairs(hiking_poi_zoom) do
+        local mz = vals[Find(k)]
+        if mz ~= nil and (z == nil or mz < z) then z = mz end
+    end
+    return z
+end
+
 -- ---------------------------------------------------------------------------
 -- lookup tables
 -- ---------------------------------------------------------------------------
@@ -142,14 +165,15 @@ function node_function()
     -- 北大武山; 1 = 百岳; 2 = 小百岳) and cat, and strips the name (and,
     -- near a board, the ele) from natural=peak. Survey points carry a
     -- descriptive name ("三等三角點 6303") that the Mapsforge theme does not
-    -- print. style.json uses class and zl to rank and word the labels.
+    -- print. style.json draws them with the theme's symbols and captions.
     local natural = Find("natural")
     local ele = Find("ele")
     local man_made = Find("man_made")
     local is_board = (man_made == "summit_board")
     local is_peak = (natural == "peak" or natural == "volcano" or
                      natural == "saddle" or Find("mountain_pass") == "yes")
-    if is_board or is_peak or ele ~= "" then
+    local elenum = tonumber(ele)
+    if is_board or is_peak then
         Layer("ele_point", false)
         local zl = tonumber(Find("zl"))
         if is_board then
@@ -157,29 +181,48 @@ function node_function()
             if zl ~= nil then AttributeNumeric("zl", zl) end
             local cat = Find("cat")
             if cat ~= "" then Attribute("cat", cat) end
-        elseif is_peak then Attribute("class", natural ~= "" and natural or "mountain_pass")
-        elseif man_made == "survey_point" then Attribute("class", "survey_point")
-        else Attribute("class", "ele_marker") end
-        set_names()
-        local elenum = tonumber(ele)
-        if elenum ~= nil then
-            AttributeNumeric("ele", math.floor(elenum + 0.5))
-        end
-        if is_board then
-            -- tag-mapping.xml: summit boards appear by zl, as in the theme
-            if zl == 0 then MinZoom(7)
-            elseif zl == 1 or zl == 2 then MinZoom(10)
-            else MinZoom(12) end
-        elseif elenum ~= nil then
-            -- higher summits/markers appear earlier
-            local z = 14
-            if elenum >= 3000 then z = 11
-            elseif elenum >= 2000 then z = 12
-            elseif elenum >= 1000 then z = 13 end
-            MinZoom(is_peak and z or math.max(z, 12))
         else
-            MinZoom(is_peak and 12 or 14)
+            Attribute("class", natural ~= "" and natural or "mountain_pass")
         end
+        if Find("is_in") == "taiwan" then Attribute("is_in", "taiwan") end
+        set_names()
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        -- The first MapLibre zoom the theme draws them at (Mapsforge zoom - 1):
+        -- boards by zl, named peaks and volcanoes at 11, the other peaks at 12.
+        if is_board then
+            if zl == 0 then MinZoom(6)
+            elseif zl == 1 or zl == 2 then MinZoom(9)
+            else MinZoom(11) end
+        elseif natural == "volcano" or Find("name") ~= "" then MinZoom(11)
+        else MinZoom(12) end
+        return
+    end
+
+    -- hiking POIs, drawn with the theme's symbols. They carry the raw tags the
+    -- theme tests; MinZoom is the later of the theme's first zoom and the tag
+    -- mapping's zoom-appear, minus one (MapLibre zoom = Mapsforge zoom - 1).
+    local hz = hiking_poi_minzoom()
+    if hz ~= nil then
+        Layer("poi", false)
+        for _, k in ipairs(hiking_poi_keys) do
+            local v = Find(k)
+            if v ~= "" then Attribute(k, v) end
+        end
+        local zl = tonumber(Find("zl"))
+        if zl ~= nil then AttributeNumeric("zl", zl) end
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        set_names()
+        MinZoom(hz)
+        return
+    end
+
+    -- other elevation markers and survey points
+    if ele ~= "" then
+        Layer("ele_point", false)
+        Attribute("class", man_made == "survey_point" and "survey_point" or "ele_marker")
+        set_names()
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        MinZoom(12)
         return
     end
 
