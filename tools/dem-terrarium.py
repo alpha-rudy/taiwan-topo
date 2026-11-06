@@ -4,9 +4,9 @@ place as Terrarium-encoded lossless WebP, the format style.json declares for
 its raster-dem source ("encoding": "terrarium").
 
 Terrarium stores whole metres in R and G (elevation + 32768 = R * 256 + G)
-and the fraction in B. The HGT source is whole metres and rio rgbify samples it
-nearest-neighbour, so every value is a whole metre: B is always 0, and the
-tiles compress to well under half the Mapbox PNGs with the same elevations.
+and the fraction in B. rio rgbify resamples bilinearly into the HGT's own
+integer type (int16), so every value it writes is a whole metre: B is always
+0, and the tiles compress to well under half the Mapbox PNGs with the same elevations.
 A tile whose elevations are not whole metres is an error, not rounded away.
 
 Usage: dem-terrarium.py <tiles.mbtiles>

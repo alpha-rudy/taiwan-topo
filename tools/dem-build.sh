@@ -5,9 +5,10 @@
 #           → dem-terrarium.py (Terrarium, lossless WebP) → go-pmtiles convert
 #
 # The output PMTiles uses Terrarium encoding in lossless WebP tiles, as the
-# raster-dem source in styles/pmtiles_style/style.json declares. The source
-# HGT is whole metres, so this keeps every elevation in well under half the
-# size of Mapbox terrain-RGB PNGs.
+# raster-dem source in styles/pmtiles_style/style.json declares. rio-rgbify
+# writes the HGT's integer type, so every elevation is a whole metre and the
+# Terrarium tiles keep all of them in well under half the size of Mapbox
+# terrain-RGB PNGs.
 #
 # Usage: dem-build.sh <hgt_zip> <output_pmtiles> <gopmtiles_cmd> [min_z] [max_z]
 #

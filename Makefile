@@ -208,9 +208,9 @@ GLYPHS_DIR := $(BUILD_DIR)/glyphs
 GLYPHS := $(GLYPHS_DIR)/.unpacked
 DEM_MIN_ZOOM ?= 6
 # Stop at z12. The HGT is 1 arc-second (~28 m); in Taiwan 512 px tiles are
-# ~38 m/px at z12 and ~19 m/px at z13, so z13 tiles only repeat source
-# pixels (nearest-neighbour), which shows as blocks in the hillshade;
-# MapLibre overzooms z12 smoothly instead.
+# ~38 m/px at z12 and ~19 m/px at z13, so z13 adds no source detail. In
+# side-by-side renders, z12 overzoomed by MapLibre looked the same as z13
+# tiles or slightly smoother, at under half the size.
 DEM_MAX_ZOOM ?= 12
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
