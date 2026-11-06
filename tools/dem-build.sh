@@ -60,7 +60,11 @@ mkdir -p "$TMP_HGT"
 unzip -j "$HGT_ZIP" '*.hgt' -d "$TMP_HGT"
 
 echo "DEM: building GDAL VRT mosaic..."
-gdalbuildvrt "$VRT" "$TMP_HGT"/*.hgt
+# Where no HGT tile covers the area (open sea), the mosaic would carry the HGT
+# nodata value, -32768, and the hillshade would draw a cliff along every edge
+# of the HGT coverage. Make the mosaic's nodata 0 so uncovered areas read as
+# sea level.
+gdalbuildvrt -vrtnodata 0 "$VRT" "$TMP_HGT"/*.hgt
 
 # rio is rasterio's CLI. A pip rasterio installs a `rio` executable, but the
 # Debian python3-rasterio package (used in the Docker image) does not. Its
@@ -82,8 +86,12 @@ echo "DEM: running rio-rgbify (z${MIN_Z}-${MAX_Z}, terrain-RGB PNG)..."
 # filter (ignore::rasterio.errors.NotGeoreferencedWarning) is parsed at
 # interpreter startup and fails to import rasterio then ("invalid -W option"),
 # so it silently does nothing. A message regex needs no import and just works.
+# -b -10000 -i 0.1 is the Mapbox terrain-RGB encoding that style.json declares
+# ("encoding": "mapbox"). rio-rgbify's own defaults are base 0, interval 1,
+# which MapLibre would read as a tenth of the real relief.
 PYTHONWARNINGS="ignore:Dataset has no geotransform" \
 "${RIO_CMD[@]}" rgbify \
+    -b -10000 -i 0.1 \
     --min-z "$MIN_Z" \
     --max-z "$MAX_Z" \
     "$VRT" "$MBTILES"
