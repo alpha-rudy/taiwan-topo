@@ -36,11 +36,63 @@ local function in_set(value, set)
     return value ~= "" and set[value] == true
 end
 
+-- hiking POIs: (key, value) -> MapLibre minzoom, from MOI_OSM.xml's first zoom
+-- for the symbol and tag-mapping.xml's zoom-appear, whichever is later, minus one
+local hiking_poi_zoom = {
+    tourism = { alpine_hut=12, wilderness_hut=12, camp_site=12, viewpoint=13, information=13 },
+    amenity = { shelter=12, drinking_water=13, toilets=13 },
+    natural = { spring=13 },
+    man_made = { water_well=13 },
+    highway = { trailhead=14 },
+    information = { guidepost=14, trail_milestone=14 },
+}
+local hiking_poi_keys = { "tourism", "amenity", "natural", "man_made", "highway", "information",
+                          "shelter_type", "drinking_water", "access", "reservation",
+                          "winter_room", "tower", "checkpoint:type", "highlight" }
+
+-- Values tag-mapping.xml keeps on POIs, per key (equivalent-values included):
+-- Mapsforge drops every other value, and the theme's rules are written for
+-- what is left, so the hiking POIs carry only these. Read from the mapping
+-- itself, next to this directory, so the two cannot drift apart.
+local poi_mapping = (function()
+    local dir = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$") or "."
+    local f = assert(io.open(dir .. "/../tag-mapping.xml", "r"), "tag-mapping.xml not found")
+    local xml = f:read("*a")
+    f:close()
+    local pois = assert(xml:match("<pois>(.-)</pois>"), "no <pois> in tag-mapping.xml")
+    local m = {}
+    for tag in pois:gmatch("<osm%-tag%s[^>]*>") do
+        local k = tag:match("key='([^']*)'")
+        local v = tag:match("value='([^']*)'")
+        if k and v then
+            m[k] = m[k] or {}
+            m[k][v] = true
+            local eq = tag:match("equivalent%-values='([^']*)'")
+            if eq then for e in eq:gmatch("[^,]+") do m[k][e] = true end end
+        end
+    end
+    return m
+end)()
+
+local function hiking_poi_minzoom()
+    local z = nil
+    for k, vals in pairs(hiking_poi_zoom) do
+        local mz = vals[Find(k)]
+        if mz ~= nil and (z == nil or mz < z) then z = mz end
+    end
+    return z
+end
+
 -- ---------------------------------------------------------------------------
 -- lookup tables
 -- ---------------------------------------------------------------------------
 
 local hiking_networks = { iwn=true, nwn=true, rwn=true, lwn=true, uwn=true }
+local trail_sac_scale = { hiking=true, mountain_hiking=true, demanding_mountain_hiking=true,
+                          alpine_hiking=true, demanding_alpine_hiking=true, difficult_alpine_hiking=true }
+local trail_visibility = { excellent=true, good=true, intermediate=true, bad=true, horrible=true, no=true }
+local tracktypes = { grade1=true, grade2=true, grade3=true, grade4=true, grade5=true }
+local trail_access = { destination=true, private=true, no=true }
 local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=true }
 
 -- sea and nosea are the land/sea mask, as in the Mapsforge build: the frame is
@@ -58,13 +110,17 @@ local landcover_leisure= { park=true, nature_reserve=true, garden=true,
                            golf_course=true, pitch=true }
 
 local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
+local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
 
--- highway class -> minzoom
+-- highway class -> minzoom. Trails and tracks (path, footway, steps,
+-- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
+-- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
+-- Z+1, and the style draws them from there. The other classes are unchanged.
 local highway_minzoom = {
     motorway=8, trunk=8, primary=9, secondary=10, tertiary=11,
     unclassified=12, residential=12, service=13, living_street=13,
-    track=12, path=13, footway=13, cycleway=13, steps=14, pedestrian=13,
-    bridleway=13, via_ferrata=13
+    track=12, path=12, footway=12, cycleway=13, steps=12, pedestrian=13,
+    bridleway=11, byway=12, via_ferrata=13
 }
 
 -- place class -> minzoom
@@ -134,14 +190,15 @@ function node_function()
     -- 北大武山; 1 = 百岳; 2 = 小百岳) and cat, and strips the name (and,
     -- near a board, the ele) from natural=peak. Survey points carry a
     -- descriptive name ("三等三角點 6303") that the Mapsforge theme does not
-    -- print. style.json uses class and zl to rank and word the labels.
+    -- print. style.json draws them with the theme's symbols and captions.
     local natural = Find("natural")
     local ele = Find("ele")
     local man_made = Find("man_made")
     local is_board = (man_made == "summit_board")
     local is_peak = (natural == "peak" or natural == "volcano" or
                      natural == "saddle" or Find("mountain_pass") == "yes")
-    if is_board or is_peak or ele ~= "" then
+    local elenum = tonumber(ele)
+    if is_board or is_peak then
         Layer("ele_point", false)
         local zl = tonumber(Find("zl"))
         if is_board then
@@ -149,29 +206,58 @@ function node_function()
             if zl ~= nil then AttributeNumeric("zl", zl) end
             local cat = Find("cat")
             if cat ~= "" then Attribute("cat", cat) end
-        elseif is_peak then Attribute("class", natural ~= "" and natural or "mountain_pass")
-        elseif man_made == "survey_point" then Attribute("class", "survey_point")
-        else Attribute("class", "ele_marker") end
-        set_names()
-        local elenum = tonumber(ele)
-        if elenum ~= nil then
-            AttributeNumeric("ele", math.floor(elenum + 0.5))
-        end
-        if is_board then
-            -- tag-mapping.xml: summit boards appear by zl, as in the theme
-            if zl == 0 then MinZoom(7)
-            elseif zl == 1 or zl == 2 then MinZoom(10)
-            else MinZoom(12) end
-        elseif elenum ~= nil then
-            -- higher summits/markers appear earlier
-            local z = 14
-            if elenum >= 3000 then z = 11
-            elseif elenum >= 2000 then z = 12
-            elseif elenum >= 1000 then z = 13 end
-            MinZoom(is_peak and z or math.max(z, 12))
         else
-            MinZoom(is_peak and 12 or 14)
+            Attribute("class", natural ~= "" and natural or "mountain_pass")
         end
+        if Find("is_in") == "taiwan" then Attribute("is_in", "taiwan") end
+        set_names()
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        -- The first MapLibre zoom the theme draws them at (Mapsforge zoom - 1):
+        -- boards by zl, named peaks and volcanoes at 11, the other peaks at 12.
+        if is_board then
+            if zl == 0 then MinZoom(6)
+            elseif zl == 1 or zl == 2 then MinZoom(9)
+            else MinZoom(11) end
+        elseif natural == "volcano" or Find("name") ~= "" then MinZoom(11)
+        else MinZoom(12) end
+        return
+    end
+
+    -- hiking POIs, drawn with the theme's symbols. They carry the raw tags the
+    -- theme tests; MinZoom is the later of the theme's first zoom and the tag
+    -- mapping's zoom-appear, minus one (MapLibre zoom = Mapsforge zoom - 1).
+    local hz = hiking_poi_minzoom()
+    if hz ~= nil then
+        Layer("poi", false)
+        for _, k in ipairs(hiking_poi_keys) do
+            local v = Find(k)
+            if v ~= "" and poi_mapping[k] and poi_mapping[k][v] then Attribute(k, v) end
+        end
+        -- class / subclass as for the other POIs, so the plain name label can
+        -- still show the subtypes the icon layers do not draw
+        for _, k in ipairs({ "amenity", "tourism", "man_made", "information", "highway", "natural" }) do
+            local v = Find(k)
+            if v ~= "" then
+                Attribute("class", k)
+                Attribute("subclass", v)
+                break
+            end
+        end
+        local zl = tonumber(Find("zl"))
+        if zl ~= nil then AttributeNumeric("zl", zl) end
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        set_names()
+        MinZoom(hz)
+        return
+    end
+
+    -- other elevation markers and survey points
+    if ele ~= "" then
+        Layer("ele_point", false)
+        Attribute("class", man_made == "survey_point" and "survey_point" or "ele_marker")
+        set_names()
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        MinZoom(12)
         return
     end
 
@@ -213,9 +299,15 @@ function way_function()
     -- hiking routes (member ways carry hknetwork / highlight from process_osm.py)
     if in_set(hknet, hiking_networks) or highlight == "yes" then
         Layer("hiking_route", false)
-        Attribute("network", hknet ~= "" and hknet or "highlight")
+        if in_set(hknet, hiking_networks) then Attribute("network", hknet) end
+        if highlight == "yes" then Attribute("highlight", "yes") end
+        local ref = Find("ref")
+        if ref ~= "" then Attribute("ref", ref) end
+        -- the theme draws routes only where the way is not a tunnel
+        local rt = Find("tunnel")
+        if rt ~= "" and rt ~= "no" then Attribute("tunnel", "yes") end
         set_names()
-        MinZoom(11)
+        MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11 (config.json allows 10)
         -- a hiking way may also be a path; fall through to draw the way too
     end
 
@@ -240,8 +332,8 @@ function way_function()
         Layer("waterway", false)
         Attribute("class", waterway)
         set_names()
-        local z = (waterway == "river") and 9 or 12
-        MinZoom(z)
+        -- tag-mapping.xml zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
+        MinZoom(waterway_minzoom[waterway])
         return
     end
 
@@ -275,10 +367,20 @@ function way_function()
         Layer("transportation", false)
         Attribute("class", highway)
         set_names()
-        if Find("tunnel") ~= "" then Attribute("tunnel", "yes") end
-        if Find("bridge") ~= "" then Attribute("bridge", "yes") end
+        local tunnel, bridge = Find("tunnel"), Find("bridge")
+        if tunnel ~= "" and tunnel ~= "no" then Attribute("tunnel", "yes") end
+        if bridge ~= "" and bridge ~= "no" then Attribute("bridge", "yes") end
+        if Find("area") == "yes" then Attribute("area", "yes") end
+        -- the tag values the Mapsforge theme tests for trails and tracks; other
+        -- values are dropped by tag-mapping.xml, so they are left out here too
         local sac = Find("sac_scale")
-        if sac ~= "" then Attribute("sac_scale", sac) end
+        if trail_sac_scale[sac] then Attribute("sac_scale", sac) end
+        local tv = Find("trail_visibility")
+        if trail_visibility[tv] then Attribute("trail_visibility", tv) end
+        local tt = Find("tracktype")
+        if tracktypes[tt] then Attribute("tracktype", tt) end
+        local access = Find("access")
+        if trail_access[access] then Attribute("access", access) end
         MinZoom(highway_minzoom[highway] or 13)
         return
     end
