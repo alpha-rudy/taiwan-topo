@@ -41,6 +41,11 @@ end
 -- ---------------------------------------------------------------------------
 
 local hiking_networks = { iwn=true, nwn=true, rwn=true, lwn=true, uwn=true }
+local trail_sac_scale = { hiking=true, mountain_hiking=true, demanding_mountain_hiking=true,
+                          alpine_hiking=true, demanding_alpine_hiking=true, difficult_alpine_hiking=true }
+local trail_visibility = { excellent=true, good=true, intermediate=true, bad=true, horrible=true, no=true }
+local tracktypes = { grade1=true, grade2=true, grade3=true, grade4=true, grade5=true }
+local trail_access = { destination=true, private=true, no=true }
 local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=true }
 
 -- sea and nosea are the land/sea mask, as in the Mapsforge build: the frame is
@@ -59,12 +64,15 @@ local landcover_leisure= { park=true, nature_reserve=true, garden=true,
 
 local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
 
--- highway class -> minzoom
+-- highway class -> minzoom. Trails and tracks (path, footway, steps,
+-- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
+-- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
+-- Z+1, and the style draws them from there. The other classes are unchanged.
 local highway_minzoom = {
     motorway=8, trunk=8, primary=9, secondary=10, tertiary=11,
     unclassified=12, residential=12, service=13, living_street=13,
-    track=12, path=13, footway=13, cycleway=13, steps=14, pedestrian=13,
-    bridleway=13, via_ferrata=13
+    track=12, path=12, footway=12, cycleway=13, steps=12, pedestrian=13,
+    bridleway=11, byway=12, via_ferrata=13
 }
 
 -- place class -> minzoom
@@ -213,9 +221,15 @@ function way_function()
     -- hiking routes (member ways carry hknetwork / highlight from process_osm.py)
     if in_set(hknet, hiking_networks) or highlight == "yes" then
         Layer("hiking_route", false)
-        Attribute("network", hknet ~= "" and hknet or "highlight")
+        if in_set(hknet, hiking_networks) then Attribute("network", hknet) end
+        if highlight == "yes" then Attribute("highlight", "yes") end
+        local ref = Find("ref")
+        if ref ~= "" then Attribute("ref", ref) end
+        -- the theme draws routes only where the way is not a tunnel
+        local rt = Find("tunnel")
+        if rt ~= "" and rt ~= "no" then Attribute("tunnel", "yes") end
         set_names()
-        MinZoom(11)
+        MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11 (config.json allows 10)
         -- a hiking way may also be a path; fall through to draw the way too
     end
 
@@ -275,10 +289,19 @@ function way_function()
         Layer("transportation", false)
         Attribute("class", highway)
         set_names()
-        if Find("tunnel") ~= "" then Attribute("tunnel", "yes") end
-        if Find("bridge") ~= "" then Attribute("bridge", "yes") end
+        local tunnel, bridge = Find("tunnel"), Find("bridge")
+        if tunnel ~= "" and tunnel ~= "no" then Attribute("tunnel", "yes") end
+        if bridge ~= "" and bridge ~= "no" then Attribute("bridge", "yes") end
+        -- the tag values the Mapsforge theme tests for trails and tracks; other
+        -- values are dropped by tag-mapping.xml, so they are left out here too
         local sac = Find("sac_scale")
-        if sac ~= "" then Attribute("sac_scale", sac) end
+        if trail_sac_scale[sac] then Attribute("sac_scale", sac) end
+        local tv = Find("trail_visibility")
+        if trail_visibility[tv] then Attribute("trail_visibility", tv) end
+        local tt = Find("tracktype")
+        if tracktypes[tt] then Attribute("tracktype", tt) end
+        local access = Find("access")
+        if trail_access[access] then Attribute("access", access) end
         MinZoom(highway_minzoom[highway] or 13)
         return
     end
