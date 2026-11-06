@@ -78,18 +78,19 @@ local place_minzoom = {
 -- contour handling
 -- ---------------------------------------------------------------------------
 
--- Each contour_* key carries an "elevation_*" class. MinZoom is the OSM tag
--- mapping's zoom-appear (osm_scripts/tag-mapping.xml) CLAMPED to the tile
--- maxzoom of 14: intervals that the Mapsforge theme only draws above z14
--- (160m at 15, 80m at 16, ext minor at 15) are still stored in the z14 tiles
--- so the style can reveal them via client overzoom, exactly like Mapsforge
--- stores them in its base-14 zoom interval. The "interval" + "class"
--- attributes let style.json reproduce the per-zoom contour rules.
+-- Each contour_* key carries an "elevation_*" class and an ele. MinZoom is the
+-- OSM tag mapping's zoom-appear (osm_scripts/tag-mapping.xml) minus one, since
+-- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
+-- Z+1. It is clamped to the tile maxzoom of 14; finer intervals are revealed by
+-- client overzoom, as Mapsforge stores them in its base-14 zoom interval.
+-- contour_ext holds the drawn lines. contour_80m .. contour_1280m are coarser
+-- lines that the Mapsforge theme never strokes: it only writes their ele along
+-- them (pathText), and style.json does the same.
 local contour_specs = {
-    { key="contour_ext",   zoom={ elevation_major=8,  elevation_medium=12, elevation_sub=14, elevation_minor=14 } },
-    { key="contour_1280m", zoom={ elevation_major=11 } },
-    { key="contour_640m",  zoom={ elevation_major=13, elevation_medium=13 } },
-    { key="contour_320m",  zoom={ elevation_major=14, elevation_medium=14, elevation_minor=14 } },
+    { key="contour_ext",   zoom={ elevation_major=7,  elevation_medium=11, elevation_sub=13, elevation_minor=14 } },
+    { key="contour_1280m", zoom={ elevation_major=10 } },
+    { key="contour_640m",  zoom={ elevation_major=12, elevation_medium=12 } },
+    { key="contour_320m",  zoom={ elevation_major=13, elevation_medium=13, elevation_minor=13 } },
     { key="contour_160m",  zoom={ elevation_major=14, elevation_medium=14, elevation_minor=14 } },
     { key="contour_80m",   zoom={ elevation_major=14, elevation_medium=14, elevation_minor=14 } },
 }
@@ -103,6 +104,8 @@ local function handle_contour()
                 Layer("contour", false)
                 Attribute("class", cls)
                 Attribute("interval", spec.key)
+                local ele = tonumber(Find("ele"))
+                if ele ~= nil then AttributeNumeric("ele", ele) end
                 MinZoom(z)
             end
             return true   -- a contour way is only a contour
