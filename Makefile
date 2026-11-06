@@ -207,7 +207,11 @@ GLYPHS_ZIP := $(DOWNLOAD_DIR)/openmaptiles-fonts-v2.0-noto-sans.zip
 GLYPHS_DIR := $(BUILD_DIR)/glyphs
 GLYPHS := $(GLYPHS_DIR)/.unpacked
 DEM_MIN_ZOOM ?= 6
-DEM_MAX_ZOOM ?= 13
+# Stop at z12. The HGT is 1 arc-second (~28 m); in Taiwan 512 px tiles are
+# ~38 m/px at z12 and ~19 m/px at z13, so z13 adds no source detail. In
+# side-by-side renders, z12 overzoomed by MapLibre looked the same as z13
+# tiles or slightly smoother, at under half the size.
+DEM_MAX_ZOOM ?= 12
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 

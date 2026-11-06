@@ -15,7 +15,7 @@
       "type": "raster-dem",
       "url": "pmtiles://taiwan_dem.pmtiles",
       "tileSize": 512,
-      "encoding": "mapbox"
+      "encoding": "terrarium"
     }
   },
   "layers": [
