@@ -110,6 +110,7 @@ local landcover_leisure= { park=true, nature_reserve=true, garden=true,
                            golf_course=true, pitch=true }
 
 local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
+local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
 
 -- highway class -> minzoom. Trails and tracks (path, footway, steps,
 -- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
@@ -331,8 +332,8 @@ function way_function()
         Layer("waterway", false)
         Attribute("class", waterway)
         set_names()
-        local z = (waterway == "river") and 9 or 12
-        MinZoom(z)
+        -- tag-mapping.xml zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
+        MinZoom(waterway_minzoom[waterway])
         return
     end
 
