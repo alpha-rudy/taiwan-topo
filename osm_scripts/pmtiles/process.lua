@@ -231,6 +231,21 @@ local landcover_attr_keys = {
     "leaf_type", "access", "boundary"
 }
 
+-- open line features the theme draws (cliffs, gorges, pipelines, power lines,
+-- walls, fences, dams, runway lines, ferries ...): key -> stored value -> first
+-- MapLibre zoom, the later of the theme's first zoom and zoom-appear, minus one
+local line_feature_minzoom = {
+    ["natural"] = { ["cliff"]=11, ["crevasse"]=11, ["gorge"]=11 },
+    ["man_made"] = { ["dyke"]=14, ["embankment"]=14, ["groyne"]=14, ["pier"]=11, ["pipeline"]=11 },
+    ["power"] = { ["line"]=14, ["minor_line"]=11 },
+    ["barrier"] = { ["city_wall"]=12, ["fence"]=12, ["retaining_wall"]=13, ["wall"]=13 },
+    ["building"] = { ["wall"]=14 },
+    ["waterway"] = { ["dam"]=11, ["dock"]=9, ["weir"]=13 },
+    ["lock"] = { ["yes"]=12 },
+    ["aeroway"] = { ["apron"]=11, ["runway"]=9, ["taxiway"]=9 },
+    ["route"] = { ["ferry"]=6 },
+}
+
 -- ---------------------------------------------------------------------------
 -- lookup tables
 -- ---------------------------------------------------------------------------
@@ -535,6 +550,27 @@ function way_function()
             if h ~= nil then Attribute("historic", h) end
             MinZoom(way_mapping.building[b] - 1)
         end
+    end
+
+    -- open line features: the keys the theme tests, stored as Mapsforge
+    -- stores them (closed ways too: a fence around a field is still a fence)
+    local fz = nil
+    for k, vals in pairs(line_feature_minzoom) do
+        local cv = way_canon[k] and way_canon[k][Find(k)]
+        local z = cv and vals[cv]
+        if z ~= nil and (fz == nil or z < fz) then fz = z end
+    end
+    if fz ~= nil then
+        Layer("line_feature", false)
+        for k, vals in pairs(line_feature_minzoom) do
+            local cv = way_canon[k] and way_canon[k][Find(k)]
+            if cv ~= nil and vals[cv] then Attribute(k, cv) end
+        end
+        set_tunnel_bridge()
+        if Find("location") == "underground" then Attribute("location", "underground") end
+        -- the theme labels only cliffs and pipelines
+        if Find("natural") == "cliff" or Find("man_made") == "pipeline" then set_names() end
+        MinZoom(fz)
     end
 
     -- transportation (roads / trails / rail / aerialway)
