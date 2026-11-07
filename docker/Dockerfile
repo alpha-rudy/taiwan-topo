@@ -30,6 +30,7 @@ RUN dpkg --add-architecture i386 && \
         gdal-bin \
         git \
         libc6:i386 libncurses6:i386 libstdc++6:i386 \
+        librsvg2-bin \
         libsqlite3-mod-spatialite \
         locales \
         make \
