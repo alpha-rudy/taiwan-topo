@@ -15,7 +15,8 @@
 node_keys = {
     "place", "ele", "natural", "amenity", "tourism", "shop", "historic",
     "man_made", "leisure", "information", "mountain_pass", "emergency",
-    "barrier", "highway", "railway", "aerialway"
+    "barrier", "highway", "railway", "aerialway",
+    "safety_rope", "ladder", "rungs"
 }
 
 -- ---------------------------------------------------------------------------
@@ -244,6 +245,9 @@ local line_feature_minzoom = {
     ["lock"] = { ["yes"]=12 },
     ["aeroway"] = { ["apron"]=11, ["runway"]=9, ["taxiway"]=9 },
     ["route"] = { ["ferry"]=6 },
+    ["safety_rope"] = { ["sr_yes"]=14 },
+    ["ladder"] = { ["ld_yes"]=14 },
+    ["rungs"] = { ["rn_yes"]=14 },
 }
 
 -- ---------------------------------------------------------------------------
@@ -370,6 +374,21 @@ function node_function()
         else MinZoom(12) end
         return
     end
+
+    -- trail aids (safety ropes, ladders, rungs): the theme puts the same
+    -- symbol on nodes and ways; ways go to line_feature. No return: the node
+    -- may also be a hiking POI.
+    local az = nil
+    for _, k in ipairs({ "safety_rope", "ladder", "rungs" }) do
+        local cv = poi_canon[k] and poi_canon[k][Find(k)]
+        if cv ~= nil then
+            if az == nil then Layer("poi", false) end
+            Attribute(k, cv)
+            local z = line_feature_minzoom[k][cv]
+            if az == nil or z < az then az = z end
+        end
+    end
+    if az ~= nil then MinZoom(az) end
 
     -- hiking POIs, drawn with the theme's symbols. They carry the raw tags the
     -- theme tests; MinZoom is the later of the theme's first zoom and the tag
