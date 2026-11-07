@@ -177,22 +177,19 @@
       }
     },
 
-    {
-      "id": "boundary-protected",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "boundary",
-      "filter": ["in", ["get", "class"], ["literal", ["national_park", "protected_area"]]],
-      "paint": { "line-color": "#5e9a4a", "line-width": 1.4, "line-dasharray": [4, 2], "line-opacity": 0.6 }
-    },
-    {
-      "id": "boundary-admin",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "boundary",
-      "filter": ["==", ["get", "class"], "administrative"],
-      "paint": { "line-color": "#9e7bb5", "line-width": 1, "line-dasharray": [3, 2, 1, 2], "line-opacity": 0.7 }
-    },
+    {"id": "boundary-316", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 6, "maxzoom": 8, "layout": {"line-cap": "round", "line-join": "round"}, "paint": {"line-color": "rgba(64,128,0,0.627)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 2.0, 23, 259.4927]}},
+    {"id": "boundary-317", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 8, "maxzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(64,128,0,0.439)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 6.0, 23, 778.478]}},
+    {"id": "boundary-318", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 8, "maxzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(64,128,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.7, 23, 90.8224], "line-dasharray": [5.3571, 1.7857]}},
+    {"id": "boundary-319", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 8, "maxzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(32,64,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 2.1, 23, 272.4673], "line-dasharray": [0.0, 0.744, 0.2976, 1.3393, 0.0, 2.381]}},
+    {"id": "boundary-320", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(64,128,0,0.251)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 6.0, 23, 778.478]}},
+    {"id": "boundary-321", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(64,128,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.3, 23, 38.9239], "line-dasharray": [12.5, 4.1667]}},
+    {"id": "boundary-322", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "national_park"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(32,64,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.9, 23, 116.7717], "line-dasharray": [0.0, 1.7361, 0.6944, 3.125, 0.0, 5.5556]}},
+    {"id": "boundary-323", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 10, "maxzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(48,96,0,0.439)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 3.0, 23, 389.239]}},
+    {"id": "boundary-324", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 10, "maxzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(48,96,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.7, 23, 90.8224], "line-dasharray": [5.3571, 1.7857]}},
+    {"id": "boundary-325", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 10, "maxzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(32,64,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 2.1, 23, 272.4673], "line-dasharray": [0.0, 0.744, 0.2976, 1.3393, 0.0, 2.381]}},
+    {"id": "boundary-326", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(48,96,0,0.251)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 3.0, 23, 389.239]}},
+    {"id": "boundary-327", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(48,96,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.3, 23, 38.9239], "line-dasharray": [12.5, 4.1667]}},
+    {"id": "boundary-328", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(32,64,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.9, 23, 116.7717], "line-dasharray": [0.0, 1.7361, 0.6944, 3.125, 0.0, 5.5556]}},
 
     {
       "id": "contour-1280",

@@ -516,19 +516,27 @@ function way_function()
         end
     end
 
-    -- boundaries (national parks, protected areas, admin)
-    if boundary == "national_park" or boundary == "protected_area" or
-       boundary == "administrative" then
+    -- boundaries: only what tag-mapping.xml keeps, from its zoom-appear
+    -- minus one. boundary=administrative itself is disabled there; admin
+    -- borders come in through admin_level (2, 4-8: no villages).
+    local bz, al = nil, nil
+    if boundary == "administrative" then
+        al = way_canon.admin_level[Find("admin_level")]
+        if al ~= nil then bz = way_mapping.admin_level[Find("admin_level")] end
+    elseif way_canon.boundary[boundary] ~= nil then
+        bz = way_mapping.boundary[boundary]
+    end
+    if bz ~= nil then
         Layer("boundary", false)
-        Attribute("class", boundary)
+        Attribute("class", way_canon.boundary[boundary] or boundary)
+        if al ~= nil then Attribute("admin_level", al) end
         local pc = Find("protect_class")
         if pc ~= "" then Attribute("protect_class", pc) end
-        local al = Find("admin_level")
-        if al ~= "" then Attribute("admin_level", al) end
         set_names()
-        MinZoom(boundary == "administrative" and 8 or 9)
+        MinZoom(bz - 1)
         return
     end
+    if boundary == "administrative" then return end
 
     -- transportation (roads / trails / rail / aerialway)
     -- roads and trails: only the values tag-mapping.xml keeps, from its
