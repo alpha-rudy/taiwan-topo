@@ -98,11 +98,14 @@ local function set_way_details(keys)
     end
 end
 
--- tunnel / bridge as the theme reads them: present for any value but "no"
+-- tunnel / bridge as the theme reads them: present for any value but "no";
+-- closed for the theme's closed="yes|no" rules (a raceway or platform drawn as
+-- a ring is an area there, not a line)
 local function set_tunnel_bridge()
     local tunnel, bridge = Find("tunnel"), Find("bridge")
     if tunnel ~= "" and tunnel ~= "no" then Attribute("tunnel", "yes") end
     if bridge ~= "" and bridge ~= "no" then Attribute("bridge", "yes") end
+    if IsClosed() then Attribute("closed", "yes") end
 end
 
 local function hiking_poi_minzoom()
@@ -466,7 +469,7 @@ function way_function()
     if rz ~= nil then
         Layer("transportation", false)
         Attribute("class", "railway")
-        Attribute("subclass", railway)
+        Attribute("subclass", way_canon.railway[railway])   -- e.g. monorail as narrow_gauge
         set_names()
         set_tunnel_bridge()
         if Find("area") == "yes" then Attribute("area", "yes") end
