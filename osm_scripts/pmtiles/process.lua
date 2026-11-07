@@ -85,7 +85,25 @@ end
 -- poi_canon maps a raw value to the value Mapsforge stores for it (an
 -- equivalent value such as amenity=clinic is stored as hospital).
 local poi_mapping, poi_canon = read_mapping("pois")
-local way_mapping = read_mapping("ways")
+local way_mapping, way_canon = read_mapping("ways")
+
+-- Road and railway keys the theme tests, stored as Mapsforge stores them (the
+-- tag mapping's main value, e.g. surface=paved as smooth_paved) and only when
+-- the mapping keeps the value.
+local way_detail_keys = { "surface", "service", "cycleway", "foot", "ford", "embankment" }
+local function set_way_details(keys)
+    for _, k in ipairs(keys) do
+        local cv = way_canon[k] and way_canon[k][Find(k)]
+        if cv ~= nil then Attribute(k, cv) end
+    end
+end
+
+-- tunnel / bridge as the theme reads them: present for any value but "no"
+local function set_tunnel_bridge()
+    local tunnel, bridge = Find("tunnel"), Find("bridge")
+    if tunnel ~= "" and tunnel ~= "no" then Attribute("tunnel", "yes") end
+    if bridge ~= "" and bridge ~= "no" then Attribute("bridge", "yes") end
+end
 
 local function hiking_poi_minzoom()
     local z = nil
@@ -169,12 +187,6 @@ local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
 -- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
 -- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
 -- Z+1, and the style draws them from there. The other classes are unchanged.
-local highway_minzoom = {
-    motorway=8, trunk=8, primary=9, secondary=10, tertiary=11,
-    unclassified=12, residential=12, service=13, living_street=13,
-    track=12, path=12, footway=12, cycleway=13, steps=12, pedestrian=13,
-    bridleway=11, byway=12, via_ferrata=13
-}
 
 -- place class -> minzoom
 local place_minzoom = {
@@ -425,14 +437,16 @@ function way_function()
     end
 
     -- transportation (roads / trails / rail / aerialway)
-    if highway ~= "" then
+    -- roads and trails: only the values tag-mapping.xml keeps, from its
+    -- zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
+    local hz = way_mapping.highway[highway]
+    if hz ~= nil then
         Layer("transportation", false)
         Attribute("class", highway)
         set_names()
-        local tunnel, bridge = Find("tunnel"), Find("bridge")
-        if tunnel ~= "" and tunnel ~= "no" then Attribute("tunnel", "yes") end
-        if bridge ~= "" and bridge ~= "no" then Attribute("bridge", "yes") end
+        set_tunnel_bridge()
         if Find("area") == "yes" then Attribute("area", "yes") end
+        set_way_details(way_detail_keys)
         -- the tag values the Mapsforge theme tests for trails and tracks; other
         -- values are dropped by tag-mapping.xml, so they are left out here too
         local sac = Find("sac_scale")
@@ -443,17 +457,21 @@ function way_function()
         if tracktypes[tt] then Attribute("tracktype", tt) end
         local access = Find("access")
         if trail_access[access] then Attribute("access", access) end
-        MinZoom(highway_minzoom[highway] or 13)
+        MinZoom(hz - 1)
         return
     end
     -- railways: only the values tag-mapping.xml keeps, as in the Mapsforge map
     -- (no proposed, construction or razed lines)
-    if railway ~= "" and way_mapping.railway[railway] ~= nil then
+    local rz = way_mapping.railway[railway]
+    if rz ~= nil then
         Layer("transportation", false)
         Attribute("class", "railway")
         Attribute("subclass", railway)
         set_names()
-        MinZoom(11)
+        set_tunnel_bridge()
+        if Find("area") == "yes" then Attribute("area", "yes") end
+        set_way_details({ "gauge" })
+        MinZoom(rz - 1)   -- rail from 6, the others from 11
         return
     end
     local aerialway = Find("aerialway")
