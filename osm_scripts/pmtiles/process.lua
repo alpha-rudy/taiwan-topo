@@ -50,29 +50,38 @@ local hiking_poi_keys = { "tourism", "amenity", "natural", "man_made", "highway"
                           "shelter_type", "drinking_water", "access", "reservation",
                           "winter_room", "tower", "checkpoint:type", "highlight" }
 
--- Values tag-mapping.xml keeps on POIs, per key (equivalent-values included):
--- Mapsforge drops every other value, and the theme's rules are written for
--- what is left, so the hiking POIs carry only these. Read from the mapping
--- itself, next to this directory, so the two cannot drift apart.
-local poi_mapping = (function()
+-- Values tag-mapping.xml keeps, per key (equivalent-values included), mapped
+-- to their zoom-appear (0 when the mapping gives none): Mapsforge drops every
+-- other value, and the theme's rules are written for what is left. Read from
+-- the mapping itself, next to this directory, so the two cannot drift apart.
+local tag_mapping_xml = (function()
     local dir = debug.getinfo(1, "S").source:match("^@(.*)/[^/]*$") or "."
     local f = assert(io.open(dir .. "/../tag-mapping.xml", "r"), "tag-mapping.xml not found")
     local xml = f:read("*a")
     f:close()
-    local pois = assert(xml:match("<pois>(.-)</pois>"), "no <pois> in tag-mapping.xml")
+    return xml
+end)()
+
+local function read_mapping(section)
+    local body = assert(tag_mapping_xml:match("<" .. section .. ">(.-)</" .. section .. ">"),
+                        "no <" .. section .. "> in tag-mapping.xml")
     local m = {}
-    for tag in pois:gmatch("<osm%-tag%s[^>]*>") do
+    for tag in body:gmatch("<osm%-tag%s[^>]*>") do
         local k = tag:match("key='([^']*)'")
         local v = tag:match("value='([^']*)'")
         if k and v then
+            local za = tonumber(tag:match("zoom%-appear='([^']*)'")) or 0
             m[k] = m[k] or {}
-            m[k][v] = true
+            m[k][v] = za
             local eq = tag:match("equivalent%-values='([^']*)'")
-            if eq then for e in eq:gmatch("[^,]+") do m[k][e] = true end end
+            if eq then for e in eq:gmatch("[^,]+") do m[k][e] = za end end
         end
     end
     return m
-end)()
+end
+
+local poi_mapping = read_mapping("pois")
+local way_mapping = read_mapping("ways")
 
 local function hiking_poi_minzoom()
     local z = nil
@@ -82,6 +91,46 @@ local function hiking_poi_minzoom()
     end
     return z
 end
+
+-- Generic POIs the theme labels: (key, value) -> the first Mapsforge zoom of
+-- the value's caption in MOI_OSM.xml (hiking style and the overlays it turns
+-- on). Mapsforge shows a POI only when the tag mapping keeps it and the theme
+-- draws it, so the other POIs (shops, restaurants, air-raid shelters, ...) are
+-- left out of the tiles.
+local generic_poi_theme_zoom = {
+    amenity = {
+        bench=14, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, cinema=14,
+        college=14, doctors=14, drinking_water=14, embassy=14, ferry_terminal=14,
+        fire_station=14, fountain=14, hospital=14, kindergarten=14, library=14, pharmacy=14,
+        place_of_worship=14, police=14, recycling=14, school=14, shelter=13, shower=14,
+        telephone=14, theatre=14, toilets=14, university=14, water_point=14
+    },
+    tourism = {
+        alpine_hut=13, attraction=14, camp_site=13, information=14, museum=14, picnic_site=14,
+        picnic_table=14, viewpoint=13, wilderness_hut=13, zoo=14
+    },
+    historic = {
+        archaeological_site=14, castle=14, memorial=14, monument=14, ruins=14, wayside_cross=14,
+        wayside_shrine=14
+    },
+    man_made = {
+        communications_tower=14, lighthouse=14, summit_board=7, tower=14, water_well=14,
+        windmill=14
+    },
+    leisure = {
+        golf=14, golf_course=14, picnic_site=14, picnic_table=14, playground=14, slipway=14,
+        sports_centre=14, stadium=14, water_park=14
+    },
+    information = {
+        board=14, guidepost=14, mobile=14, office=14, terminal=14, trail_milestone=15
+    },
+    emergency = {
+        defibrillator=14, landing_site=14, phone=14
+    },
+    barrier = {
+        border_control=14
+    },
+}
 
 -- ---------------------------------------------------------------------------
 -- lookup tables
@@ -261,17 +310,21 @@ function node_function()
         return
     end
 
-    -- generic POIs
+    -- generic POIs: the first key whose value the theme labels. MinZoom is the
+    -- later of the theme's caption zoom and the tag mapping's zoom-appear,
+    -- minus one (MapLibre zoom = Mapsforge zoom - 1), at most the layer's 14.
     local poi_keys = { "amenity", "tourism", "shop", "historic", "man_made",
                        "leisure", "information", "emergency", "barrier" }
     for _, k in ipairs(poi_keys) do
         local v = Find(k)
-        if v ~= "" then
+        local tz = generic_poi_theme_zoom[k] and generic_poi_theme_zoom[k][v]
+        local za = poi_mapping[k] and poi_mapping[k][v]
+        if tz ~= nil and za ~= nil then
             Layer("poi", false)
             Attribute("class", k)
             Attribute("subclass", v)
             set_names()
-            MinZoom(13)
+            MinZoom(math.min(math.max(tz, za) - 1, 14))
             return
         end
     end
@@ -384,7 +437,9 @@ function way_function()
         MinZoom(highway_minzoom[highway] or 13)
         return
     end
-    if railway ~= "" then
+    -- railways: only the values tag-mapping.xml keeps, as in the Mapsforge map
+    -- (no proposed, construction or razed lines)
+    if railway ~= "" and way_mapping.railway[railway] ~= nil then
         Layer("transportation", false)
         Attribute("class", "railway")
         Attribute("subclass", railway)
