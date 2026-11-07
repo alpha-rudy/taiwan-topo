@@ -65,22 +65,26 @@ end)()
 local function read_mapping(section)
     local body = assert(tag_mapping_xml:match("<" .. section .. ">(.-)</" .. section .. ">"),
                         "no <" .. section .. "> in tag-mapping.xml")
-    local m = {}
+    local m, canon = {}, {}
     for tag in body:gmatch("<osm%-tag%s[^>]*>") do
         local k = tag:match("key='([^']*)'")
         local v = tag:match("value='([^']*)'")
         if k and v then
             local za = tonumber(tag:match("zoom%-appear='([^']*)'")) or 0
             m[k] = m[k] or {}
+            canon[k] = canon[k] or {}
             m[k][v] = za
+            canon[k][v] = v
             local eq = tag:match("equivalent%-values='([^']*)'")
-            if eq then for e in eq:gmatch("[^,]+") do m[k][e] = za end end
+            if eq then for e in eq:gmatch("[^,]+") do m[k][e] = za; canon[k][e] = v end end
         end
     end
-    return m
+    return m, canon
 end
 
-local poi_mapping = read_mapping("pois")
+-- poi_canon maps a raw value to the value Mapsforge stores for it (an
+-- equivalent value such as amenity=clinic is stored as hospital).
+local poi_mapping, poi_canon = read_mapping("pois")
 local way_mapping = read_mapping("ways")
 
 local function hiking_poi_minzoom()
@@ -310,21 +314,26 @@ function node_function()
         return
     end
 
-    -- generic POIs: the first key whose value the theme labels. MinZoom is the
-    -- later of the theme's caption zoom and the tag mapping's zoom-appear,
-    -- minus one (MapLibre zoom = Mapsforge zoom - 1), at most the layer's 14.
+    -- generic POIs: the first key whose value the theme labels, looked up by
+    -- the value Mapsforge stores. They show from the later of the theme's
+    -- caption zoom and the tag mapping's zoom-appear, minus one (MapLibre zoom
+    -- = Mapsforge zoom - 1). Tiles stop at 14, so a later zoom is carried as
+    -- minzoom for style.json to test.
     local poi_keys = { "amenity", "tourism", "shop", "historic", "man_made",
                        "leisure", "information", "emergency", "barrier" }
     for _, k in ipairs(poi_keys) do
         local v = Find(k)
-        local tz = generic_poi_theme_zoom[k] and generic_poi_theme_zoom[k][v]
         local za = poi_mapping[k] and poi_mapping[k][v]
+        local cv = poi_canon[k] and poi_canon[k][v]
+        local tz = cv and generic_poi_theme_zoom[k] and generic_poi_theme_zoom[k][cv]
         if tz ~= nil and za ~= nil then
+            local z = math.max(tz, za) - 1
             Layer("poi", false)
             Attribute("class", k)
             Attribute("subclass", v)
             set_names()
-            MinZoom(math.min(math.max(tz, za) - 1, 14))
+            MinZoom(math.min(z, 14))
+            if z > 14 then AttributeNumeric("minzoom", z) end
             return
         end
     end
