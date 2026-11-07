@@ -36,6 +36,10 @@
     // MapLibre needs an absolute URL, and the braces must stay unencoded.
     const glyphsUrl = params.get("glyphs") ||
       new URL(".", new URL(pmtilesUrl, location.href)).href + "glyphs/{fontstack}/{range}.pbf";
+    // The sprite (make sprite) sits in sprite/ next to the archive too;
+    // ?sprite=<url without .json/.png> points elsewhere.
+    const spriteUrl = params.get("sprite") ||
+      new URL(".", new URL(pmtilesUrl, location.href)).href + "sprite/sprite";
 
     async function main() {
       if (typeof maplibregl === "undefined" || typeof pmtiles === "undefined") {
@@ -49,6 +53,7 @@
       style.sources.topo.url = "pmtiles://" + pmtilesUrl;
       if (style.sources.dem) style.sources.dem.url = "pmtiles://" + demUrl;
       style.glyphs = glyphsUrl;
+      style.sprite = spriteUrl;
 
       const protocol = new pmtiles.Protocol();
       maplibregl.addProtocol("pmtiles", protocol.tile);
