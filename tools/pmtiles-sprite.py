@@ -3,10 +3,10 @@
 
 Usage: pmtiles-sprite.py <style.json> <icon_dir> <out_dir>
 
-Every icon-image in the style is named "<file stem>-<px>": a file in
-<icon_dir> (the Mapsforge theme's moiosm_res/, .svg or .png) drawn <px> pixels
-high, which is the theme's symbol size times tiles.rudymap.tw's symbol-scale of
-1.5. The icons are rendered with rsvg-convert (SVG) or Pillow (PNG) and packed
+Every icon-image and fill-pattern in the style is named "<file stem>-<px>": a
+file in <icon_dir> (the Mapsforge theme's moiosm_res/, .svg or .png) drawn <px>
+pixels high, which is the theme's symbol size times tiles.rudymap.tw's
+symbol-scale of 1.5. The icons are rendered with rsvg-convert (SVG) or Pillow (PNG) and packed
 into <out_dir>/sprite.png + sprite.json, and twice the size into
 sprite@2x.png + sprite@2x.json.
 """
@@ -26,7 +26,7 @@ ROW_WIDTH = 512
 def icon_names(node, out):
     if isinstance(node, dict):
         for k, v in node.items():
-            if k == "icon-image" and isinstance(v, str):
+            if k in ("icon-image", "fill-pattern") and isinstance(v, str):
                 out.add(v)
             else:
                 icon_names(v, out)
@@ -53,7 +53,7 @@ def main():
     for n in names:
         m = NAME.match(n)
         if not m:
-            sys.exit("icon-image %r is not <file stem>-<px>" % n)
+            sys.exit("icon-image / fill-pattern %r is not <file stem>-<px>" % n)
         stem, px = m.group(1), int(m.group(2))
         for ext in (".svg", ".png"):
             p = os.path.join(icon_dir, stem + ext)

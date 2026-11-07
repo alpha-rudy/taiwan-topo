@@ -157,6 +157,79 @@ local generic_poi_theme_zoom = {
     },
 }
 
+-- Areas the theme fills (MOI_OSM.xml area rules, hiking style): key -> the
+-- values Mapsforge stores for them. A closed way or multipolygon with one of
+-- these goes to the landcover layer with every key in landcover_attr_keys the
+-- theme's rules test, stored as Mapsforge stores it (tag mapping main value).
+local landcover_theme = {
+    ["landuse"] = {
+        ["allotments"]=true, ["brownfield"]=true, ["cemetery"]=true, ["commercial"]=true,
+        ["construction"]=true, ["farm"]=true, ["farmland"]=true, ["farmyard"]=true,
+        ["forest"]=true, ["grass"]=true, ["greenfield"]=true, ["industrial"]=true,
+        ["landfill"]=true, ["meadow"]=true, ["orchard"]=true, ["quarry"]=true, ["railway"]=true,
+        ["recreation_ground"]=true, ["residential"]=true, ["retail"]=true,
+        ["village_green"]=true, ["vineyard"]=true, ["wood"]=true
+    },
+    ["natural"] = {
+        ["beach"]=true, ["cliff"]=true, ["crater"]=true, ["crevasse"]=true, ["desert"]=true,
+        ["fell"]=true, ["glacier"]=true, ["grassland"]=true, ["heath"]=true, ["marsh"]=true,
+        ["rock"]=true, ["sand"]=true, ["scree"]=true, ["scrub"]=true, ["shingle"]=true,
+        ["wetland"]=true, ["wood"]=true
+    },
+    ["leisure"] = {
+        ["common"]=true, ["dog_park"]=true, ["garden"]=true, ["golf_course"]=true,
+        ["park"]=true, ["pitch"]=true, ["playground"]=true, ["sports_centre"]=true,
+        ["stadium"]=true, ["swimming_pool"]=true, ["water_park"]=true
+    },
+    ["amenity"] = {
+        ["college"]=true, ["doctors"]=true, ["fountain"]=true, ["grave_yard"]=true,
+        ["parking"]=true, ["place_of_worship"]=true, ["restaurant"]=true, ["school"]=true,
+        ["shelter"]=true, ["theatre"]=true, ["toilets"]=true, ["university"]=true
+    },
+    ["aeroway"] = {
+        ["aerodrome"]=true, ["apron"]=true, ["helipad"]=true, ["runway"]=true, ["terminal"]=true
+    },
+    ["tourism"] = {
+        ["alpine_hut"]=true, ["attraction"]=true, ["camp_site"]=true, ["caravan_site"]=true,
+        ["hostel"]=true, ["hotel"]=true, ["picnic_site"]=true, ["zoo"]=true
+    },
+    ["power"] = {
+        ["generator"]=true, ["plant"]=true, ["station"]=true
+    },
+    ["sport"] = {
+        ["shooting"]=true, ["swimming"]=true, ["tennis"]=true
+    },
+    ["historic"] = {
+        ["archaeological_site"]=true, ["castle"]=true, ["memorial"]=true, ["monument"]=true,
+        ["ruins"]=true
+    },
+    ["man_made"] = {
+        ["embankment"]=true, ["pier"]=true
+    },
+    ["shop"] = {
+        ["bakery"]=true, ["beverages"]=true, ["bicycle"]=true, ["car"]=true,
+        ["convenience"]=true, ["doityourself"]=true, ["mall"]=true, ["sports"]=true,
+        ["supermarket"]=true
+    },
+    ["railway"] = {
+        ["station"]=true
+    },
+    ["information"] = {
+        ["office"]=true
+    },
+    ["piste:type"] = {
+        ["downhill"]=true, ["sled"]=true
+    },
+    ["emergency"] = {
+        ["landing_site"]=true
+    },
+}
+local landcover_attr_keys = {
+    "landuse", "natural", "leisure", "amenity", "aeroway", "tourism", "power", "sport",
+    "historic", "man_made", "shop", "railway", "information", "piste:type", "emergency", "wood",
+    "leaf_type", "access", "boundary"
+}
+
 -- ---------------------------------------------------------------------------
 -- lookup tables
 -- ---------------------------------------------------------------------------
@@ -173,16 +246,7 @@ local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=
 -- one natural=sea polygon and the land is drawn back over it from natural=nosea
 -- polygons (tools/sealand-creator.sh). Both go to the water layer with their
 -- class, and style.json paints nosea in the land colour right after sea.
-local water_natural    = { water=true, sea=true, nosea=true, bay=true, wetland=true, spring=false }
-local landcover_natural= { wood=true, scrub=true, grassland=true, heath=true,
-                           bare_rock=true, scree=true, fell=true, glacier=true }
-local landcover_landuse= { forest=true, farmland=true, farmyard=true, meadow=true,
-                           grass=true, orchard=true, residential=true,
-                           industrial=true, commercial=true, cemetery=true,
-                           quarry=true, reservoir=false }
-local landcover_leisure= { park=true, nature_reserve=true, garden=true,
-                           golf_course=true, pitch=true }
-
+local water_natural    = { water=true, sea=true, nosea=true, bay=true, spring=false }
 local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
 local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
 
@@ -414,15 +478,35 @@ function way_function()
         return
     end
 
-    -- landcover areas
-    if in_set(natural, landcover_natural) or in_set(landuse, landcover_landuse)
-       or in_set(leisure, landcover_leisure) then
-        Layer("landcover", true)
-        local cls = (natural ~= "" and landcover_natural[natural]) and natural
-                 or (landuse ~= "" and landcover_landuse[landuse]) and landuse
-                 or leisure
-        Attribute("class", cls)
-        return
+    -- land use and land cover areas the theme fills, and buildings
+    if IsClosed() or IsMultiPolygon() then
+        local lz = nil   -- earliest zoom-appear of a key the theme fills
+        for k, vals in pairs(landcover_theme) do
+            local raw = Find(k)
+            local cv = way_canon[k] and way_canon[k][raw]
+            if cv ~= nil and vals[cv] then
+                local za = way_mapping[k][raw]
+                if za == 0 then za = 14 end
+                if lz == nil or za < lz then lz = za end
+            end
+        end
+        local b = Find("building")
+        local bv = way_canon.building[b]
+        if lz ~= nil then
+            Layer("landcover", true)
+            for _, k in ipairs(landcover_attr_keys) do
+                local cv = way_canon[k] and way_canon[k][Find(k)]
+                if cv ~= nil then Attribute(k, cv) end
+            end
+            if bv ~= nil then Attribute("building", bv) end
+            MinZoom(lz - 1)
+        end
+        if bv ~= nil then
+            Layer("building", true)
+            local h = way_canon.historic[Find("historic")]
+            if h ~= nil then Attribute("historic", h) end
+            MinZoom(way_mapping.building[b] - 1)
+        end
     end
 
     -- boundaries (national parks, protected areas, admin)
