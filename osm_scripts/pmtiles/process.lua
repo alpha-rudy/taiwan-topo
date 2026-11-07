@@ -461,6 +461,27 @@ function way_function()
         MinZoom(12)
     end
 
+    -- boundaries: only what tag-mapping.xml keeps, from its zoom-appear
+    -- minus one. boundary=administrative itself is disabled there; admin
+    -- borders come in through admin_level (1, 2, 4-8: no villages). No
+    -- return: a border that is also a river or a road is drawn as both.
+    local bz, al = nil, nil
+    if boundary == "administrative" then
+        al = way_canon.admin_level[Find("admin_level")]
+        if al ~= nil then bz = way_mapping.admin_level[Find("admin_level")] end
+    elseif way_canon.boundary[boundary] ~= nil then
+        bz = way_mapping.boundary[boundary]
+    end
+    if bz ~= nil then
+        Layer("boundary", false)
+        Attribute("class", way_canon.boundary[boundary] or boundary)
+        if al ~= nil then Attribute("admin_level", al) end
+        local pc = Find("protect_class")
+        if pc ~= "" then Attribute("protect_class", pc) end
+        set_names()
+        MinZoom(bz - 1)
+    end
+
     -- water areas
     if in_set(natural, water_natural) or landuse == "reservoir" or
        landuse == "basin" or Find("waterway") == "riverbank" then
@@ -515,28 +536,6 @@ function way_function()
             MinZoom(way_mapping.building[b] - 1)
         end
     end
-
-    -- boundaries: only what tag-mapping.xml keeps, from its zoom-appear
-    -- minus one. boundary=administrative itself is disabled there; admin
-    -- borders come in through admin_level (2, 4-8: no villages).
-    local bz, al = nil, nil
-    if boundary == "administrative" then
-        al = way_canon.admin_level[Find("admin_level")]
-        if al ~= nil then bz = way_mapping.admin_level[Find("admin_level")] end
-    elseif way_canon.boundary[boundary] ~= nil then
-        bz = way_mapping.boundary[boundary]
-    end
-    if bz ~= nil then
-        Layer("boundary", false)
-        Attribute("class", way_canon.boundary[boundary] or boundary)
-        if al ~= nil then Attribute("admin_level", al) end
-        local pc = Find("protect_class")
-        if pc ~= "" then Attribute("protect_class", pc) end
-        set_names()
-        MinZoom(bz - 1)
-        return
-    end
-    if boundary == "administrative" then return end
 
     -- transportation (roads / trails / rail / aerialway)
     -- roads and trails: only the values tag-mapping.xml keeps, from its
