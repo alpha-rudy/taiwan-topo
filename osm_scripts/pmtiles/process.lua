@@ -497,6 +497,28 @@ function way_function()
         MinZoom(bz - 1)
     end
 
+    -- open line features: the keys the theme tests, stored as Mapsforge
+    -- stores them (closed ways too: a fence around a field is still a fence).
+    -- Before the water / waterway returns: a lock is also a canal.
+    local fz = nil
+    for k, vals in pairs(line_feature_minzoom) do
+        local cv = way_canon[k] and way_canon[k][Find(k)]
+        local z = cv and vals[cv]
+        if z ~= nil and (fz == nil or z < fz) then fz = z end
+    end
+    if fz ~= nil then
+        Layer("line_feature", false)
+        for k, vals in pairs(line_feature_minzoom) do
+            local cv = way_canon[k] and way_canon[k][Find(k)]
+            if cv ~= nil and vals[cv] then Attribute(k, cv) end
+        end
+        set_tunnel_bridge()
+        if Find("location") == "underground" then Attribute("location", "underground") end
+        -- the theme labels only cliffs and pipelines
+        if Find("natural") == "cliff" or Find("man_made") == "pipeline" then set_names() end
+        MinZoom(fz)
+    end
+
     -- water areas
     if in_set(natural, water_natural) or landuse == "reservoir" or
        landuse == "basin" or Find("waterway") == "riverbank" then
@@ -550,27 +572,6 @@ function way_function()
             if h ~= nil then Attribute("historic", h) end
             MinZoom(way_mapping.building[b] - 1)
         end
-    end
-
-    -- open line features: the keys the theme tests, stored as Mapsforge
-    -- stores them (closed ways too: a fence around a field is still a fence)
-    local fz = nil
-    for k, vals in pairs(line_feature_minzoom) do
-        local cv = way_canon[k] and way_canon[k][Find(k)]
-        local z = cv and vals[cv]
-        if z ~= nil and (fz == nil or z < fz) then fz = z end
-    end
-    if fz ~= nil then
-        Layer("line_feature", false)
-        for k, vals in pairs(line_feature_minzoom) do
-            local cv = way_canon[k] and way_canon[k][Find(k)]
-            if cv ~= nil and vals[cv] then Attribute(k, cv) end
-        end
-        set_tunnel_bridge()
-        if Find("location") == "underground" then Attribute("location", "underground") end
-        -- the theme labels only cliffs and pipelines
-        if Find("natural") == "cliff" or Find("man_made") == "pipeline" then set_names() end
-        MinZoom(fz)
     end
 
     -- transportation (roads / trails / rail / aerialway)
