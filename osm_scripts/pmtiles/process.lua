@@ -67,15 +67,16 @@ local function read_mapping(section)
                         "no <" .. section .. "> in tag-mapping.xml")
     local m, canon = {}, {}
     for tag in body:gmatch("<osm%-tag%s[^>]*>") do
-        local k = tag:match("key='([^']*)'")
-        local v = tag:match("value='([^']*)'")
+        -- attributes are quoted with ' or " (both occur in tag-mapping.xml)
+        local k = tag:match("key=[\"']([^\"']*)[\"']")
+        local v = tag:match("value=[\"']([^\"']*)[\"']")
         if k and v then
-            local za = tonumber(tag:match("zoom%-appear='([^']*)'")) or 0
+            local za = tonumber(tag:match("zoom%-appear=[\"']([^\"']*)[\"']")) or 0
             m[k] = m[k] or {}
             canon[k] = canon[k] or {}
             m[k][v] = za
             canon[k][v] = v
-            local eq = tag:match("equivalent%-values='([^']*)'")
+            local eq = tag:match("equivalent%-values=[\"']([^\"']*)[\"']")
             if eq then for e in eq:gmatch("[^,]+") do m[k][e] = za; canon[k][e] = v end end
         end
     end
@@ -499,7 +500,13 @@ function way_function()
                 if cv ~= nil then Attribute(k, cv) end
             end
             if bv ~= nil then Attribute("building", bv) end
-            MinZoom(lz - 1)
+            -- the theme's parent rules also test tunnel and area
+            local t = Find("tunnel")
+            if t ~= "" and t ~= "no" then Attribute("tunnel", "yes") end
+            if way_canon.area[Find("area")] ~= nil then Attribute("area", "yes") end
+            -- tiles stop at 14: a later zoom is carried as minzoom for style.json
+            MinZoom(math.min(lz - 1, 14))
+            if lz - 1 > 14 then AttributeNumeric("minzoom", lz - 1) end
         end
         if bv ~= nil then
             Layer("building", true)
