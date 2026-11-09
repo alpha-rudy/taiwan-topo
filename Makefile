@@ -205,7 +205,8 @@ GLYPHS_URL := https://github.com/openmaptiles/fonts/releases/download/v2.0/noto-
 GLYPHS_SHA256 := d117316544b43a5dde7ee761b36e17701e9f85574e181d76a74814240fdbaf34
 GLYPHS_ZIP := $(DOWNLOAD_DIR)/openmaptiles-fonts-v2.0-noto-sans.zip
 GLYPHS_DIR := $(BUILD_DIR)/glyphs
-GLYPHS := $(GLYPHS_DIR)/.unpacked
+# The stamp names the faces unpacked, so changing the set re-unpacks an existing build.
+GLYPHS := $(GLYPHS_DIR)/.unpacked-regular-bold-italic
 PMTILES_STYLE := $(ROOT_DIR)/styles/pmtiles_style/style.json
 SPRITE_DIR := $(BUILD_DIR)/sprite
 SPRITE := $(SPRITE_DIR)/sprite.json
