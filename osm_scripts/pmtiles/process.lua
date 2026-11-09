@@ -110,13 +110,38 @@ local function set_tunnel_bridge()
     if IsClosed() then Attribute("closed", "yes") end
 end
 
-local function hiking_poi_minzoom()
+-- mapping: the tag-mapping section the feature is stored under (pois for
+-- nodes, ways for areas); a value it does not keep is not in the map file.
+local function hiking_poi_minzoom(mapping)
     local z = nil
     for k, vals in pairs(hiking_poi_zoom) do
-        local mz = vals[Find(k)]
-        if mz ~= nil and (z == nil or mz < z) then z = mz end
+        local v = Find(k)
+        local mz = vals[v]
+        if mz ~= nil and mapping[k] and mapping[k][v] and (z == nil or mz < z) then z = mz end
     end
     return z
+end
+
+-- The raw tags the theme tests, class / subclass as for the other POIs (so
+-- the plain name label can still show the subtypes the icon layers do not
+-- draw), zl, ele and names.
+local function hiking_poi_attributes(mapping, elenum)
+    for _, k in ipairs(hiking_poi_keys) do
+        local v = Find(k)
+        if v ~= "" and mapping[k] and mapping[k][v] then Attribute(k, v) end
+    end
+    for _, k in ipairs({ "amenity", "tourism", "man_made", "information", "highway", "natural" }) do
+        local v = Find(k)
+        if v ~= "" then
+            Attribute("class", k)
+            Attribute("subclass", v)
+            break
+        end
+    end
+    local zl = tonumber(Find("zl"))
+    if zl ~= nil then AttributeNumeric("zl", zl) end
+    if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+    set_names()
 end
 
 -- Generic POIs the theme labels: (key, value) -> the first Mapsforge zoom of
@@ -395,27 +420,10 @@ function node_function()
     -- hiking POIs, drawn with the theme's symbols. They carry the raw tags the
     -- theme tests; MinZoom is the later of the theme's first zoom and the tag
     -- mapping's zoom-appear, minus one (MapLibre zoom = Mapsforge zoom - 1).
-    local hz = hiking_poi_minzoom()
+    local hz = hiking_poi_minzoom(poi_mapping)
     if hz ~= nil then
         Layer("poi", false)
-        for _, k in ipairs(hiking_poi_keys) do
-            local v = Find(k)
-            if v ~= "" and poi_mapping[k] and poi_mapping[k][v] then Attribute(k, v) end
-        end
-        -- class / subclass as for the other POIs, so the plain name label can
-        -- still show the subtypes the icon layers do not draw
-        for _, k in ipairs({ "amenity", "tourism", "man_made", "information", "highway", "natural" }) do
-            local v = Find(k)
-            if v ~= "" then
-                Attribute("class", k)
-                Attribute("subclass", v)
-                break
-            end
-        end
-        local zl = tonumber(Find("zl"))
-        if zl ~= nil then AttributeNumeric("zl", zl) end
-        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
-        set_names()
+        hiking_poi_attributes(poi_mapping, elenum)
         MinZoom(hz)
         return
     end
@@ -499,6 +507,20 @@ function way_function()
             MinZoom(10)
         end
         -- a hiking way may also be a path; fall through to draw the way too
+    end
+
+    -- hiking POIs mapped as areas (huts drawn as buildings, campsites, ...):
+    -- Mapsforge keeps the tags the ways section keeps and draws the theme's
+    -- symbol and caption (rules for any element) at the area's label point.
+    -- One point at the area's centroid, with the attributes a node gets; no
+    -- return, the area is still drawn as a building or land cover.
+    if IsClosed() or IsMultiPolygon() then
+        local az = hiking_poi_minzoom(way_mapping)
+        if az ~= nil then
+            LayerAsCentroid("poi")
+            hiking_poi_attributes(way_mapping, tonumber(Find("ele")))
+            MinZoom(az)
+        end
     end
 
     -- cycle routes
