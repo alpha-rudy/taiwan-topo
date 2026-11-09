@@ -979,7 +979,7 @@ $(GLYPHS): $(GLYPHS_ZIP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	rm -rf $(GLYPHS_DIR)
 	mkdir -p $(GLYPHS_DIR)
-	unzip -q $< 'Noto Sans Regular/*' -d $(GLYPHS_DIR)
+	unzip -q $< 'Noto Sans Regular/*' 'Noto Sans Bold/*' 'Noto Sans Italic/*' -d $(GLYPHS_DIR)
 	touch $@
 
 $(GLYPHS_ZIP):
