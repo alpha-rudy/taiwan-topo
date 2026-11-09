@@ -318,10 +318,10 @@ end
 
 function node_function()
     -- places (labels): the values the tag mapping keeps, under its main
-    -- value, from its zoom-appear minus one. The tag mapping does not keep
-    -- capital, so it is not stored. The theme labels a locality only when the
-    -- map file has no mountain_pass, natural or tourism on it; such a node
-    -- goes on to be that feature.
+    -- value, from its zoom-appear minus one, with capital as the mapping
+    -- keeps it (2, yes being its equivalent, or 4). The theme labels a
+    -- locality only when the map file has no mountain_pass, natural or
+    -- tourism on it; such a node goes on to be that feature.
     local place = Find("place")
     local pcv = poi_canon.place[place]
     local function kept(k) return poi_canon[k] ~= nil and poi_canon[k][Find(k)] ~= nil end
@@ -330,6 +330,8 @@ function node_function()
         Layer("place", false)
         Attribute("class", pcv)
         set_names()
+        local cap = poi_canon.capital[Find("capital")]
+        if cap ~= nil then Attribute("capital", cap) end
         local elenum = tonumber(Find("ele"))
         if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
         MinZoom(poi_mapping.place[place] - 1)
