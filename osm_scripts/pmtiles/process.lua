@@ -494,18 +494,10 @@ function way_function()
         if rt ~= "" and rt ~= "no" then Attribute("tunnel", "yes") end
         set_names()
         MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11 (config.json allows 10)
-        -- The theme writes the ref once per way, level, at the way's centre
-        -- (a caption, not text along the line), so short ways get one too.
-        -- route_label carries that point; not for tunnels or areas, as the
-        -- theme's caption rules test.
-        local area = Find("area")
-        if ref ~= "" and (rt == "" or rt == "no") and (area == "" or area == "no") then
-            LayerAsCentroid("route_label")
-            if in_set(hknet, hiking_networks) then Attribute("network", hknet) end
-            if highlight == "yes" then Attribute("highlight", "yes") end
-            Attribute("ref", ref)
-            MinZoom(10)
-        end
+        -- The theme writes the ref once per way, level, at the centre of the
+        -- way's bounding box (a caption, not text along the line). Those
+        -- points are the route_label layer, written by tools/route-labels.py:
+        -- this profile cannot read a way's coordinates.
         -- a hiking way may also be a path; fall through to draw the way too
     end
 
