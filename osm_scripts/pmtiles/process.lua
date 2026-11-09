@@ -274,12 +274,6 @@ local waterway_class   = { river=true, stream=true, canal=true, drain=true }
 -- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
 -- Z+1, and the style draws them from there. The other classes are unchanged.
 
--- place class -> minzoom
-local place_minzoom = {
-    country=4, state=5, region=6, county=7, city=7, town=9,
-    village=11, hamlet=12, suburb=11, neighbourhood=13, locality=13,
-    isolated_dwelling=14, island=8, islet=12
-}
 
 -- ---------------------------------------------------------------------------
 -- contour handling
@@ -323,15 +317,22 @@ end
 -- ---------------------------------------------------------------------------
 
 function node_function()
-    -- places (labels)
+    -- places (labels): the values the tag mapping keeps, under its main
+    -- value, from its zoom-appear minus one. The tag mapping does not keep
+    -- capital, so it is not stored. The theme labels a locality only when the
+    -- map file has no mountain_pass, natural or tourism on it; such a node
+    -- goes on to be that feature.
     local place = Find("place")
-    if place ~= "" then
+    local pcv = poi_canon.place[place]
+    local function kept(k) return poi_canon[k] ~= nil and poi_canon[k][Find(k)] ~= nil end
+    if pcv ~= nil and not (pcv == "locality" and
+            (kept("mountain_pass") or kept("natural") or kept("tourism"))) then
         Layer("place", false)
-        Attribute("class", place)
+        Attribute("class", pcv)
         set_names()
-        local cap = Find("capital")
-        if cap ~= "" then Attribute("capital", cap) end
-        MinZoom(place_minzoom[place] or 13)
+        local elenum = tonumber(Find("ele"))
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        MinZoom(poi_mapping.place[place] - 1)
         return
     end
 
