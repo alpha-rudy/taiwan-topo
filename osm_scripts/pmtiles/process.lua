@@ -267,20 +267,13 @@ local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=
 -- polygons (tools/sealand-creator.sh). Both go to the water layer with their
 -- class, and style.json paints nosea in the land colour right after sea.
 local water_natural    = { water=true, sea=true, nosea=true, bay=true, spring=false }
-local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
-local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
+local waterway_class   = { river=true, stream=true, canal=true, drain=true }
 
 -- highway class -> minzoom. Trails and tracks (path, footway, steps,
 -- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
 -- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
 -- Z+1, and the style draws them from there. The other classes are unchanged.
 
--- place class -> minzoom
-local place_minzoom = {
-    country=4, state=5, region=6, county=7, city=7, town=9,
-    village=11, hamlet=12, suburb=11, neighbourhood=13, locality=13,
-    isolated_dwelling=14, island=8, islet=12
-}
 
 -- ---------------------------------------------------------------------------
 -- contour handling
@@ -327,15 +320,24 @@ end
 -- ---------------------------------------------------------------------------
 
 function node_function()
-    -- places (labels)
+    -- places (labels): the values the tag mapping keeps, under its main
+    -- value, from its zoom-appear minus one, with capital as the mapping
+    -- keeps it (2, yes being its equivalent, or 4). The theme labels a
+    -- locality only when the map file has no mountain_pass, natural or
+    -- tourism on it; such a node goes on to be that feature.
     local place = Find("place")
-    if place ~= "" then
+    local pcv = poi_canon.place[place]
+    local function kept(k) return poi_canon[k] ~= nil and poi_canon[k][Find(k)] ~= nil end
+    if pcv ~= nil and not (pcv == "locality" and
+            (kept("mountain_pass") or kept("natural") or kept("tourism"))) then
         Layer("place", false)
-        Attribute("class", place)
+        Attribute("class", pcv)
         set_names()
-        local cap = Find("capital")
-        if cap ~= "" then Attribute("capital", cap) end
-        MinZoom(place_minzoom[place] or 13)
+        local cap = poi_canon.capital[Find("capital")]
+        if cap ~= nil then Attribute("capital", cap) end
+        local elenum = tonumber(Find("ele"))
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        MinZoom(poi_mapping.place[place] - 1)
         return
     end
 
@@ -549,13 +551,16 @@ function way_function()
         return
     end
 
-    -- waterways (lines)
-    if in_set(waterway, waterway_class) then
+    -- waterways (lines), under the tag mapping's main value (a ditch is a
+    -- drain there), with tunnel / bridge for the theme's dashes and casings
+    local wcv = way_canon.waterway[waterway]
+    if wcv ~= nil and waterway_class[wcv] then
         Layer("waterway", false)
-        Attribute("class", waterway)
+        Attribute("class", wcv)
+        set_tunnel_bridge()
         set_names()
         -- tag-mapping.xml zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
-        MinZoom(waterway_minzoom[waterway])
+        MinZoom(way_mapping.waterway[waterway] - 1)
         return
     end
 
