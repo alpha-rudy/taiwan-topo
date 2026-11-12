@@ -542,7 +542,6 @@ end
 -- The generic POI values whose theme rules also fire on an area's label
 -- point (not e="node", not closed="no"), at their first Mapsforge zoom.
 local generic_area_poi_zoom = {
-    bBoxWeight = { large=13, mid=13, small=13, tiny=13, xlarge=13, xsmall=13, xxlarge=13, xxxlarge=13 },
     waterway = { rapids=9, waterfall=9, weir=14 },
     natural = { rapids=9, waterfall=9 },
     shelter_type = { basic_hut=13 },
@@ -568,8 +567,13 @@ local generic_area_poi_zoom = {
     ["generator:source"] = { coal=14, gas=14, hydro=14, nuclear=14, tidal=14, wind=14 },
 }
 
+-- Lookup keys for areas: the generic ones, then the keys only areas use.
+local generic_area_poi_lookup_keys = {}
+for _, k in ipairs(generic_poi_lookup_keys) do table.insert(generic_area_poi_lookup_keys, k) end
+for _, k in ipairs({ "via_ferrata_flag", "climbing", "building", "bridge" }) do table.insert(generic_area_poi_lookup_keys, k) end
+
 local function generic_area_poi()
-    for _, k in ipairs(generic_poi_lookup_keys) do
+    for _, k in ipairs(generic_area_poi_lookup_keys) do
         local v = Find(k)
         local za = way_mapping[k] and way_mapping[k][v]
         local cv = way_canon[k] and way_canon[k][v]
