@@ -57,15 +57,15 @@
       const styleCats = md["taiwan-topo:style-cats"] || [];
       const on = {};
       for (const o of overlays) on[o.id] = o.enabled;
-      const ownVisibility = {};
-      for (const l of style.layers) ownVisibility[l.id] = (l.layout && l.layout.visibility) || "visible";
       const apply = () => {
         const active = new Set(styleCats);
         for (const o of overlays) if (on[o.id]) o.cats.forEach((c) => active.add(c));
         for (const l of style.layers) {
           const cats = l.metadata && l.metadata["taiwan-topo:cats"];
           if (!cats) continue;
-          const shown = ownVisibility[l.id] !== "none" && cats.every((c) => active.has(c));
+          // the cats decide: a layer of an overlay that is off by default
+          // starts hidden in style.json and shows once that overlay is on
+          const shown = cats.every((c) => active.has(c));
           map.setLayoutProperty(l.id, "visibility", shown ? "visible" : "none");
         }
       };
