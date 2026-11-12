@@ -22,6 +22,11 @@
 #      ring can be far longer. tools/split-long-ways.py turns each such ring
 #      into chained pieces under a multipolygon relation.
 #
+# One layer does not come from process.lua: route_label, the hiking-route
+# captions, needs each way's bounding-box centre, which tilemaker's Lua API
+# cannot compute. tools/route-labels.py writes those points as GeoJSON and the
+# config's "__route_labels__" placeholder is replaced with that file's path.
+#
 # Usage: pmtiles-build.sh <input_pbf> <output_pmtiles> <tilemaker_cmd> \
 #                         <config_json> <process_lua> <version> [bbox] [extra_opts]
 #
@@ -30,7 +35,8 @@
 #   output_pmtiles  - Output .pmtiles file
 #   tilemaker_cmd   - Path to the tilemaker binary
 #   config_json     - tilemaker layer config. Any "__version__" placeholder is
-#                     substituted with <version>.
+#                     substituted with <version>, "__route_labels__" with the
+#                     route label GeoJSON written by tools/route-labels.py.
 #   process_lua     - tilemaker profile (process.lua)
 #   version         - Build version string (substituted into the config)
 #   bbox            - Optional "minlon,minlat,maxlon,maxlat". If empty, it is
@@ -67,15 +73,19 @@ CONFIG_RUNTIME="$CONFIG_JSON"
 SORTED_PBF="${OUTPUT_PMTILES%.pmtiles}.sort.tmp.pbf"
 RENUMBERED_PBF="${OUTPUT_PMTILES%.pmtiles}.renum.tmp.pbf"
 SPLIT_PBF="${OUTPUT_PMTILES%.pmtiles}.split.tmp.pbf"
-cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
+ROUTE_LABELS="$(cd "$(dirname "$OUTPUT_PMTILES")" && pwd)/$(basename "${OUTPUT_PMTILES%.pmtiles}").route-labels.tmp.geojson"
+cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
 trap cleanup EXIT
 
 # tilemaker reads several config strings (name/version/description) without
 # null-checking and segfaults if any is absent. Substitute the build version
-# into a temp copy so the placeholder is never left empty.
-if grep -q '__version__' "$CONFIG_JSON"; then
+# into a temp copy so the placeholder is never left empty, and the route
+# label file's absolute path (tilemaker resolves a relative source against its
+# working directory).
+if grep -q -e '__version__' -e '__route_labels__' "$CONFIG_JSON"; then
     CONFIG_RUNTIME="$(mktemp "${TMPDIR:-/tmp}/pmtiles-config.XXXXXX.json")"
-    sed -e "s/__version__/${VERSION:-dev}/g" "$CONFIG_JSON" > "$CONFIG_RUNTIME"
+    sed -e "s/__version__/${VERSION:-dev}/g" \
+        -e "s|__route_labels__|${ROUTE_LABELS}|g" "$CONFIG_JSON" > "$CONFIG_RUNTIME"
 fi
 
 # 1. Sort into tilemaker's expected type+id order.
@@ -88,6 +98,9 @@ rm -f "$SORTED_PBF"
 # 3. Split rings longer than tilemaker's 2,000-node limit.
 python3 "$(dirname "$0")/split-long-ways.py" "$RENUMBERED_PBF" "$SPLIT_PBF"
 rm -f "$RENUMBERED_PBF"
+
+# 3b. Route label points (see the note above).
+python3 "$(dirname "$0")/route-labels.py" "$SPLIT_PBF" "$ROUTE_LABELS"
 
 # 4. Derive the bounding box from the data if not supplied (the prepared PBF
 #    has no bbox in its header). osmium prints "(minlon,minlat,maxlon,maxlat)";

@@ -12,11 +12,16 @@
     #hud { position: absolute; top: 8px; left: 8px; z-index: 1; background: rgba(255,255,255,.9);
            font: 12px/1.4 sans-serif; padding: 6px 10px; border-radius: 4px; max-width: 70ch; }
     .err { color: #b00; }
+    #layers { position: absolute; top: 8px; right: 50px; z-index: 1; background: rgba(255,255,255,.95);
+              font: 13px/1.5 sans-serif; padding: 4px 10px; border-radius: 4px; max-height: 80vh; overflow: auto; }
+    #layers summary { cursor: pointer; }
+    #layers label { display: block; white-space: nowrap; }
   </style>
 </head>
 <body>
   <div id="map"></div>
   <div id="hud">starting…</div>
+  <details id="layers" hidden><summary>圖層 Layers</summary></details>
   <script>
     const hud = document.getElementById("hud");
     const say = (html, isErr) => { hud.innerHTML = html; hud.classList.toggle("err", !!isErr); };
@@ -41,6 +46,43 @@
     const spriteUrl = params.get("sprite") ||
       new URL(".", new URL(pmtilesUrl, location.href)).href + "sprite/sprite";
 
+    // Overlay switches, as in the Mapsforge theme's style menu. style.json's
+    // metadata lists the overlays and each layer the theme cats it needs; a
+    // layer is drawn when every one of its cats is active, and a cat is active
+    // when the style has it or a switched-on overlay holds it.
+    function overlayMenu(map, style) {
+      const md = style.metadata || {};
+      const overlays = md["taiwan-topo:overlays"];
+      if (!overlays || !overlays.length) return;
+      const styleCats = md["taiwan-topo:style-cats"] || [];
+      const on = {};
+      for (const o of overlays) on[o.id] = o.enabled;
+      const ownVisibility = {};
+      for (const l of style.layers) ownVisibility[l.id] = (l.layout && l.layout.visibility) || "visible";
+      const apply = () => {
+        const active = new Set(styleCats);
+        for (const o of overlays) if (on[o.id]) o.cats.forEach((c) => active.add(c));
+        for (const l of style.layers) {
+          const cats = l.metadata && l.metadata["taiwan-topo:cats"];
+          if (!cats) continue;
+          const shown = ownVisibility[l.id] !== "none" && cats.every((c) => active.has(c));
+          map.setLayoutProperty(l.id, "visibility", shown ? "visible" : "none");
+        }
+      };
+      const box = document.getElementById("layers");
+      for (const o of overlays) {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = o.enabled;
+        input.onchange = () => { on[o.id] = input.checked; apply(); };
+        label.append(input, " " + (o.name.zh || o.name.en || o.id));
+        box.append(label);
+      }
+      box.hidden = false;
+      apply();
+    }
+
     async function main() {
       if (typeof maplibregl === "undefined" || typeof pmtiles === "undefined") {
         return say("CDN libraries (maplibre-gl / pmtiles) did not load. Is the browser online / not blocking unpkg.com?", true);
@@ -61,6 +103,7 @@
       const map = new maplibregl.Map({
         container: "map", style, center: [120.96, 23.7], zoom: 7, hash: true, maxZoom: 20
       });
+      map.on("load", () => overlayMenu(map, style));
       map.addControl(new maplibregl.NavigationControl());
       map.addControl(new maplibregl.ScaleControl());
       say("Taiwan TOPO — " + pmtilesUrl);
