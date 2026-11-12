@@ -133,9 +133,9 @@
       "type": "hillshade",
       "source": "dem",
       "paint": {
-        "hillshade-exaggeration": 0.45,
+        "hillshade-exaggeration": 0.4,
         "hillshade-shadow-color": "#5a5240",
-        "hillshade-highlight-color": "#ffffff",
+        "hillshade-highlight-color": "rgba(255,255,255,0)",
         "hillshade-accent-color": "#6b6450",
         "hillshade-illumination-direction": 315,
         "hillshade-illumination-anchor": "viewport"
