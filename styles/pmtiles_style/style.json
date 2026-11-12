@@ -16,7 +16,7 @@
       "type": "raster-dem",
       "url": "pmtiles://taiwan_dem.pmtiles",
       "tileSize": 512,
-      "encoding": "mapbox"
+      "encoding": "terrarium"
     }
   },
   "layers": [
@@ -200,109 +200,34 @@
     {"id": "boundary-327", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(48,96,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.3, 23, 38.9239], "line-dasharray": [12.5, 4.1667]}},
     {"id": "boundary-328", "type": "line", "source": "topo", "source-layer": "boundary", "filter": ["==", ["get", "class"], "strict_protected"], "minzoom": 13, "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(32,64,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.9, 23, 116.7717], "line-dasharray": [0.0, 1.7361, 0.6944, 3.125, 0.0, 5.5556]}},
 
-    {
-      "id": "contour-1280",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["==", ["get", "interval"], "contour_1280m"],
-      "minzoom": 11, "maxzoom": 13,
-      "layout": { "line-join": "round" },
-      "paint": { "line-color": "#000000", "line-width": 0.5, "line-opacity": 0.7 }
-    },
-    {
-      "id": "contour-640",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["==", ["get", "interval"], "contour_640m"],
-      "minzoom": 13, "maxzoom": 14,
-      "layout": { "line-join": "round" },
-      "paint": { "line-color": "#000000", "line-width": 0.5, "line-opacity": 0.7 }
-    },
-    {
-      "id": "contour-320",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["==", ["get", "interval"], "contour_320m"],
-      "minzoom": 14, "maxzoom": 15,
-      "layout": { "line-join": "round" },
-      "paint": {
-        "line-color": ["match", ["get", "class"], "elevation_major", "#000000", "#1a1a1a"],
-        "line-width": ["match", ["get", "class"], "elevation_major", 0.5, 0.35],
-        "line-opacity": 0.7
-      }
-    },
-    {
-      "id": "contour-160",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["==", ["get", "interval"], "contour_160m"],
-      "minzoom": 15, "maxzoom": 16,
-      "layout": { "line-join": "round" },
-      "paint": {
-        "line-color": ["match", ["get", "class"], "elevation_major", "#000000", "elevation_medium", "#1a1a1a", "#2a2a2a"],
-        "line-width": ["match", ["get", "class"], "elevation_major", 0.45, 0.3],
-        "line-opacity": 0.7
-      }
-    },
-    {
-      "id": "contour-80",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["==", ["get", "interval"], "contour_80m"],
-      "minzoom": 16,
-      "layout": { "line-join": "round" },
-      "paint": {
-        "line-color": ["match", ["get", "class"], "elevation_major", "#000000", "elevation_medium", "#1a1a1a", "#2a2a2a"],
-        "line-width": ["interpolate", ["linear"], ["zoom"], 16, 0.25, 20, 0.8],
-        "line-opacity": 0.7
-      }
-    },
-
-    {
-      "id": "contour-ext-minor",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_minor"]],
-      "minzoom": 15,
-      "layout": { "line-join": "round" },
-      "paint": { "line-color": "#3a3a3a", "line-width": ["interpolate", ["linear"], ["zoom"], 15, 0.12, 18, 0.4, 20, 0.7], "line-opacity": 0.6 }
-    },
-    {
-      "id": "contour-ext-sub",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_sub"]],
-      "minzoom": 14,
-      "layout": { "line-join": "round" },
-      "paint": { "line-color": "#2a2a2a", "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.16, 18, 0.5, 20, 0.9], "line-opacity": 0.65 }
-    },
-    {
-      "id": "contour-ext-medium",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_medium"]],
-      "minzoom": 12,
-      "layout": { "line-join": "round" },
-      "paint": { "line-color": "#1a1a1a", "line-width": ["interpolate", ["linear"], ["zoom"], 12, 0.2, 16, 0.5, 20, 1.1], "line-opacity": 0.7 }
-    },
-    {
-      "id": "contour-ext-major",
-      "type": "line",
-      "source": "topo",
-      "source-layer": "contour",
-      "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"]],
-      "minzoom": 9,
-      "layout": { "line-join": "round" },
-      "paint": { "line-color": "#000000", "line-width": ["interpolate", ["linear"], ["zoom"], 9, 0.35, 14, 0.55, 16, 0.9, 20, 2.2], "line-opacity": 0.75 }
-    },
+    {"id": "contour-ext-major-z9-10", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"], ["in", ["get", "ele"], ["literal", [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]]]], "minzoom": 8, "maxzoom": 10, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], 8000, "rgba(0,0,0,1.0)", 7000, "rgba(0,0,0,1.0)", 6000, "rgba(0,0,0,1.0)", 5000, "rgba(0,0,0,1.0)", 4000, "rgba(0,0,0,1.0)", 3000, "rgba(0,0,0,1.0)", 2000, "rgba(17,17,17,0.933)", 1000, "rgba(34,34,34,0.867)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], 8000, 1.8, 7000, 1.6, 6000, 1.4, 5000, 1.2, 4000, 1.0, 3000, 0.8, 2000, 0.6, 1000, 0.4, 0], 23, ["*", ["match", ["get", "ele"], 8000, 1.8, 7000, 1.6, 6000, 1.4, 5000, 1.2, 4000, 1.0, 3000, 0.8, 2000, 0.6, 1000, 0.4, 0], 129.7463]]}},
+    {"id": "contour-ext-major-z11-11", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"], ["in", ["get", "ele"], ["literal", [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500]]]], "minzoom": 10, "maxzoom": 11, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], 8000, "rgba(0,0,0,1.0)", 7000, "rgba(0,0,0,1.0)", 6000, "rgba(0,0,0,1.0)", 5000, "rgba(0,0,0,1.0)", 4000, "rgba(0,0,0,1.0)", 3000, "rgba(0,0,0,1.0)", 2000, "rgba(17,17,17,0.933)", 1000, "rgba(34,34,34,0.867)", 8500, "rgba(0,0,0,1.0)", 7500, "rgba(0,0,0,1.0)", 6500, "rgba(0,0,0,1.0)", 5500, "rgba(0,0,0,1.0)", 4500, "rgba(0,0,0,1.0)", 3500, "rgba(0,0,0,1.0)", 2500, "rgba(17,17,17,0.933)", 1500, "rgba(34,34,34,0.867)", 500, "rgba(51,51,51,0.8)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], 8000, 1.8, 7000, 1.6, 6000, 1.4, 5000, 1.2, 4000, 1.0, 3000, 0.8, 2000, 0.6, 1000, 0.6, 8500, 0.9, 7500, 0.8, 6500, 0.7, 5500, 0.6, 4500, 0.5, 3500, 0.4, 2500, 0.4, 1500, 0.4, 500, 0.4, 0], 23, ["*", ["match", ["get", "ele"], 8000, 1.8, 7000, 1.6, 6000, 1.4, 5000, 1.2, 4000, 1.0, 3000, 0.8, 2000, 0.6, 1000, 0.6, 8500, 0.9, 7500, 0.8, 6500, 0.7, 5500, 0.6, 4500, 0.5, 3500, 0.4, 2500, 0.4, 1500, 0.4, 500, 0.4, 0], 129.7463]]}},
+    {"id": "contour-ext-major-medium-z12-12", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["in", ["get", "class"], ["literal", ["elevation_major", "elevation_medium"]]], ["in", ["get", "ele"], ["literal", [200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800]]]], "minzoom": 11, "maxzoom": 12, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], 8000, "rgba(0,0,0,1.0)", 7000, "rgba(0,0,0,1.0)", 6000, "rgba(0,0,0,1.0)", 5000, "rgba(0,0,0,1.0)", 4000, "rgba(0,0,0,1.0)", 3000, "rgba(0,0,0,1.0)", 2000, "rgba(17,17,17,0.933)", 1000, "rgba(34,34,34,0.867)", [8800, 8600, 8400, 8200], "rgba(0,0,0,1.0)", [7800, 7600, 7400, 7200], "rgba(0,0,0,1.0)", [6800, 6600, 6400, 6200], "rgba(0,0,0,1.0)", [5800, 5600, 5400, 5200], "rgba(0,0,0,1.0)", [4800, 4600, 4400, 4200], "rgba(0,0,0,1.0)", [3800, 3600, 3400, 3200], "rgba(0,0,0,1.0)", [2800, 2600, 2400, 2200], "rgba(17,17,17,0.933)", [1800, 1600, 1400, 1200], "rgba(34,34,34,0.867)", [800, 600, 400, 200], "rgba(51,51,51,0.8)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], 8000, 1.2, 7000, 1.07, 6000, 0.95, 5000, 0.82, 4000, 0.7, 3000, 0.57, 2000, 0.43, 1000, 0.43, [8800, 8600, 8400, 8200], 0.6, [7800, 7600, 7400, 7200], 0.54, [6800, 6600, 6400, 6200], 0.48, [5800, 5600, 5400, 5200], 0.41, [4800, 4600, 4400, 4200], 0.35, [3800, 3600, 3400, 3200], 0.29, [2800, 2600, 2400, 2200], 0.29, [1800, 1600, 1400, 1200], 0.29, [800, 600, 400, 200], 0.29, 0], 23, ["*", ["match", ["get", "ele"], 8000, 1.2, 7000, 1.07, 6000, 0.95, 5000, 0.82, 4000, 0.7, 3000, 0.57, 2000, 0.43, 1000, 0.43, [8800, 8600, 8400, 8200], 0.6, [7800, 7600, 7400, 7200], 0.54, [6800, 6600, 6400, 6200], 0.48, [5800, 5600, 5400, 5200], 0.41, [4800, 4600, 4400, 4200], 0.35, [3800, 3600, 3400, 3200], 0.29, [2800, 2600, 2400, 2200], 0.29, [1800, 1600, 1400, 1200], 0.29, [800, 600, 400, 200], 0.29, 0], 129.7463]]}},
+    {"id": "contour-ext-major-medium-z13-13", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["in", ["get", "class"], ["literal", ["elevation_major", "elevation_medium"]]], ["in", ["get", "ele"], ["literal", [200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800]]]], "minzoom": 12, "maxzoom": 13, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], 8000, "rgba(0,0,0,1.0)", 7000, "rgba(0,0,0,1.0)", 6000, "rgba(0,0,0,1.0)", 5000, "rgba(0,0,0,1.0)", 4000, "rgba(0,0,0,1.0)", 3000, "rgba(0,0,0,1.0)", 2000, "rgba(17,17,17,0.933)", 1000, "rgba(34,34,34,0.867)", [8800, 8600, 8400, 8200], "rgba(0,0,0,1.0)", [7800, 7600, 7400, 7200], "rgba(0,0,0,1.0)", [6800, 6600, 6400, 6200], "rgba(0,0,0,1.0)", [5800, 5600, 5400, 5200], "rgba(0,0,0,1.0)", [4800, 4600, 4400, 4200], "rgba(0,0,0,1.0)", [3800, 3600, 3400, 3200], "rgba(0,0,0,1.0)", [2800, 2600, 2400, 2200], "rgba(17,17,17,0.933)", [1800, 1600, 1400, 1200], "rgba(34,34,34,0.867)", [800, 600, 400, 200], "rgba(51,51,51,0.8)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], 8000, 1.0, 7000, 0.88, 6000, 0.76, 5000, 0.65, 4000, 0.53, 3000, 0.41, 2000, 0.41, 1000, 0.41, [8800, 8600, 8400, 8200], 0.5, [7800, 7600, 7400, 7200], 0.44, [6800, 6600, 6400, 6200], 0.38, [5800, 5600, 5400, 5200], 0.32, [4800, 4600, 4400, 4200], 0.31, [3800, 3600, 3400, 3200], 0.31, [2800, 2600, 2400, 2200], 0.31, [1800, 1600, 1400, 1200], 0.31, [800, 600, 400, 200], 0.31, 0], 23, ["*", ["match", ["get", "ele"], 8000, 1.0, 7000, 0.88, 6000, 0.76, 5000, 0.65, 4000, 0.53, 3000, 0.41, 2000, 0.41, 1000, 0.41, [8800, 8600, 8400, 8200], 0.5, [7800, 7600, 7400, 7200], 0.44, [6800, 6600, 6400, 6200], 0.38, [5800, 5600, 5400, 5200], 0.32, [4800, 4600, 4400, 4200], 0.31, [3800, 3600, 3400, 3200], 0.31, [2800, 2600, 2400, 2200], 0.31, [1800, 1600, 1400, 1200], 0.31, [800, 600, 400, 200], 0.31, 0], 129.7463]]}},
+    {"id": "contour-ext-major-z14-14", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"], ["in", ["get", "ele"], ["literal", [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500]]]], "minzoom": 13, "maxzoom": 14, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], 8000, "rgba(0,0,0,1.0)", 7000, "rgba(0,0,0,1.0)", 6000, "rgba(0,0,0,1.0)", 5000, "rgba(0,0,0,1.0)", 4000, "rgba(0,0,0,1.0)", 3000, "rgba(0,0,0,1.0)", 2000, "rgba(17,17,17,0.933)", 1000, "rgba(34,34,34,0.867)", 8500, "rgba(0,0,0,1.0)", 7500, "rgba(0,0,0,1.0)", 6500, "rgba(0,0,0,1.0)", 5500, "rgba(0,0,0,1.0)", 4500, "rgba(0,0,0,1.0)", 3500, "rgba(0,0,0,1.0)", 2500, "rgba(17,17,17,0.933)", 1500, "rgba(34,34,34,0.867)", 500, "rgba(51,51,51,0.8)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], 8000, 0.55, 7000, 0.5, 6000, 0.45, 5000, 0.4, 4000, 0.35, 3000, 0.31, 2000, 0.31, 1000, 0.31, 8500, 0.28, 7500, 0.26, 6500, 0.26, 5500, 0.26, 4500, 0.26, 3500, 0.26, 2500, 0.26, 1500, 0.26, 500, 0.26, 0], 23, ["*", ["match", ["get", "ele"], 8000, 0.55, 7000, 0.5, 6000, 0.45, 5000, 0.4, 4000, 0.35, 3000, 0.31, 2000, 0.31, 1000, 0.31, 8500, 0.28, 7500, 0.26, 6500, 0.26, 5500, 0.26, 4500, 0.26, 3500, 0.26, 2500, 0.26, 1500, 0.26, 500, 0.26, 0], 129.7463]]}},
+    {"id": "contour-ext-medium-z14-14", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_medium"], ["in", ["get", "ele"], ["literal", [100, 200, 300, 400, 600, 700, 800, 900, 1100, 1200, 1300, 1400, 1600, 1700, 1800, 1900, 2100, 2200, 2300, 2400, 2600, 2700, 2800, 2900, 3100, 3200, 3300, 3400, 3600, 3700, 3800, 3900, 4100, 4200, 4300, 4400, 4600, 4700, 4800, 4900, 5100, 5200, 5300, 5400, 5600, 5700, 5800, 5900, 6100, 6200, 6300, 6400, 6600, 6700, 6800, 6900, 7100, 7200, 7300, 7400, 7600, 7700, 7800, 7900, 8100, 8200, 8300, 8400, 8600, 8700, 8800, 8900]]]], "minzoom": 13, "maxzoom": 14, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], [8900, 8800, 8700, 8600, 8400, 8300, 8200, 8100], "rgba(0,0,0,1.0)", [7900, 7800, 7700, 7600, 7400, 7300, 7200, 7100], "rgba(0,0,0,1.0)", [6900, 6800, 6700, 6600, 6400, 6300, 6200, 6100], "rgba(0,0,0,1.0)", [5900, 5800, 5700, 5600, 5400, 5300, 5200, 5100], "rgba(0,0,0,1.0)", [4900, 4800, 4700, 4600, 4400, 4300, 4200, 4100], "rgba(0,0,0,1.0)", [3900, 3800, 3700, 3600, 3400, 3300, 3200, 3100], "rgba(0,0,0,1.0)", [2900, 2800, 2700, 2600, 2400, 2300, 2200, 2100], "rgba(17,17,17,0.933)", [1900, 1800, 1700, 1600, 1400, 1300, 1200, 1100], "rgba(34,34,34,0.867)", [900, 800, 700, 600, 400, 300, 200, 100], "rgba(51,51,51,0.8)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], [8900, 8800, 8700, 8600, 8400, 8300, 8200, 8100], 0.2, [7900, 7800, 7700, 7600, 7400, 7300, 7200, 7100], 0.2, [6900, 6800, 6700, 6600, 6400, 6300, 6200, 6100], 0.2, [5900, 5800, 5700, 5600, 5400, 5300, 5200, 5100], 0.2, [4900, 4800, 4700, 4600, 4400, 4300, 4200, 4100], 0.2, [3900, 3800, 3700, 3600, 3400, 3300, 3200, 3100], 0.2, [2900, 2800, 2700, 2600, 2400, 2300, 2200, 2100], 0.2, [1900, 1800, 1700, 1600, 1400, 1300, 1200, 1100], 0.2, [900, 800, 700, 600, 400, 300, 200, 100], 0.2, 0], 23, ["*", ["match", ["get", "ele"], [8900, 8800, 8700, 8600, 8400, 8300, 8200, 8100], 0.2, [7900, 7800, 7700, 7600, 7400, 7300, 7200, 7100], 0.2, [6900, 6800, 6700, 6600, 6400, 6300, 6200, 6100], 0.2, [5900, 5800, 5700, 5600, 5400, 5300, 5200, 5100], 0.2, [4900, 4800, 4700, 4600, 4400, 4300, 4200, 4100], 0.2, [3900, 3800, 3700, 3600, 3400, 3300, 3200, 3100], 0.2, [2900, 2800, 2700, 2600, 2400, 2300, 2200, 2100], 0.2, [1900, 1800, 1700, 1600, 1400, 1300, 1200, 1100], 0.2, [900, 800, 700, 600, 400, 300, 200, 100], 0.2, 0], 129.7463]]}},
+    {"id": "contour-ext-sub-z14-14", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_sub"]], "minzoom": 13, "maxzoom": 14, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(51,51,51,0.8)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.12, 23, 15.5696]}},
+    {"id": "contour-ext-major-z15-15", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 14, "maxzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(0,0,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.21, 23, 27.2467]}},
+    {"id": "contour-ext-medium-z15-15", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_medium"]], "minzoom": 14, "maxzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(17,17,17,0.933)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.16, 23, 20.7594]}},
+    {"id": "contour-ext-sub-z15-15", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_sub"]], "minzoom": 14, "maxzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(34,34,34,0.867)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.12, 23, 15.5696]}},
+    {"id": "contour-ext-minor-z15-15", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_minor"]], "minzoom": 14, "maxzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(51,51,51,0.8)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.08, 23, 10.3797]}},
+    {"id": "contour-ext-major-z16+", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(0,0,0,1.0)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.18, 23, 23.3543]}},
+    {"id": "contour-ext-medium-z16+", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_medium"]], "minzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(17,17,17,0.933)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.12, 23, 15.5696]}},
+    {"id": "contour-ext-sub-z16+", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_sub"]], "minzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(34,34,34,0.867)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.08, 23, 10.3797]}},
+    {"id": "contour-ext-minor-z16+", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_minor"]], "minzoom": 15, "layout": {"line-join": "round"}, "paint": {"line-color": "rgba(51,51,51,0.8)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.06, 23, 7.7848]}},
+    {"id": "contour-label-1280m-major-z11-12", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_1280m"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 10, "maxzoom": 12, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 13.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-640m-major-z13-13", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_640m"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 12, "maxzoom": 13, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-320m-medium-z14-14", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_320m"], ["==", ["get", "class"], "elevation_medium"]], "minzoom": 13, "maxzoom": 14, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 13.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-320m-major-z14-14", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_320m"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 13, "maxzoom": 14, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-160m-minor-z15-15", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_160m"], ["==", ["get", "class"], "elevation_minor"]], "minzoom": 14, "maxzoom": 15, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 13.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-160m-medium-z15-15", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_160m"], ["==", ["get", "class"], "elevation_medium"]], "minzoom": 14, "maxzoom": 15, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-160m-major-z15-15", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_160m"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 14, "maxzoom": 15, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-80m-minor-z16-16", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_80m"], ["==", ["get", "class"], "elevation_minor"]], "minzoom": 15, "maxzoom": 16, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 13.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-80m-medium-z16-16", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_80m"], ["==", ["get", "class"], "elevation_medium"]], "minzoom": 15, "maxzoom": 16, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-80m-major-z16-16", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_80m"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 15, "maxzoom": 16, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-ext-sub-z17+", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_sub"]], "minzoom": 16, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 13.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-ext-medium-z17+", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_medium"]], "minzoom": 16, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
+    {"id": "contour-label-ext-major-z17+", "type": "symbol", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"]], "minzoom": 16, "layout": {"symbol-placement": "line", "text-field": ["to-string", ["get", "ele"]], "text-font": ["Noto Sans Regular"], "text-size": 16.5}, "paint": {"text-color": "#222222", "text-halo-color": "#DDDDDD", "text-halo-width": 0.75}},
 
     {"id": "trail-72", "source": "topo", "source-layer": "transportation", "filter": ["all", ["has", "tunnel"], ["in", ["get", "class"], ["literal", ["bridleway", "footway", "path", "steps"]]]], "minzoom": 12, "type": "line", "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(0,0,0,0.188)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.2, 23, 25.9493], "line-dasharray": ["step", ["zoom"], ["literal", [53.333, 10.0]], 13, ["literal", [35.556, 6.667]], 14, ["literal", [23.704, 4.444]], 15, ["literal", [15.802, 2.963]], 16, ["literal", [10.535, 1.975]], 17, ["literal", [7.023, 1.317]], 18, ["literal", [4.682, 0.878]], 19, ["literal", [3.121, 0.585]], 20, ["literal", [2.081, 0.39]], 21, ["literal", [1.387, 0.26]]], "line-offset": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.23, 23, 29.8417]}},
     {"id": "trail-73", "source": "topo", "source-layer": "transportation", "filter": ["all", ["has", "tunnel"], ["in", ["get", "class"], ["literal", ["bridleway", "footway", "path", "steps"]]]], "minzoom": 12, "type": "line", "layout": {"line-cap": "butt", "line-join": "round"}, "paint": {"line-color": "rgba(255,255,255,0.502)", "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.2, 23, 25.9493], "line-dasharray": ["step", ["zoom"], ["literal", [0.0, 53.333, 10.0, 0.0]], 13, ["literal", [0.0, 35.556, 6.667, 0.0]], 14, ["literal", [0.0, 23.704, 4.444, 0.0]], 15, ["literal", [0.0, 15.802, 2.963, 0.0]], 16, ["literal", [0.0, 10.535, 1.975, 0.0]], 17, ["literal", [0.0, 7.023, 1.317, 0.0]], 18, ["literal", [0.0, 4.682, 0.878, 0.0]], 19, ["literal", [0.0, 3.121, 0.585, 0.0]], 20, ["literal", [0.0, 2.081, 0.39, 0.0]], 21, ["literal", [0.0, 1.387, 0.26, 0.0]]], "line-offset": ["interpolate", ["exponential", 1.5], ["zoom"], 11, 0.23, 23, 29.8417]}},
