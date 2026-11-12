@@ -240,6 +240,14 @@ local generic_poi_theme_zoom = {
     },
 }
 
+-- The keys a generic POI is looked up by, in order: the first one whose
+-- value the table above lists decides the POI's class.
+local generic_poi_lookup_keys = {
+    "amenity", "tourism", "historic", "man_made", "leisure", "information", "emergency", "barrier",
+    "aeroway", "natural", "landuse", "mountain_pass", "waterway", "shelter_type", "tower", "sport",
+    "highway", "railway", "station", "ford", "generator:source", "power"
+}
+
 -- Areas the theme fills (MOI_OSM.xml area rules, hiking style): key -> the
 -- values Mapsforge stores for them. A closed way or multipolygon with one of
 -- these goes to the landcover layer with every key in landcover_attr_keys the
@@ -493,7 +501,7 @@ function node_function()
     -- caption zoom and the tag mapping's zoom-appear, minus one (MapLibre zoom
     -- = Mapsforge zoom - 1). Tiles stop at 14, so a later zoom is carried as
     -- minzoom for style.json to test.
-    local poi_keys = { "amenity", "tourism", "historic", "man_made", "leisure", "information", "emergency", "barrier", "aeroway", "natural", "landuse", "mountain_pass", "waterway", "shelter_type", "tower", "sport", "highway", "railway", "station", "ford", "generator:source", "power" }
+    local poi_keys = generic_poi_lookup_keys
     for _, k in ipairs(poi_keys) do
         local v = Find(k)
         local za = poi_mapping[k] and poi_mapping[k][v]
@@ -523,6 +531,66 @@ end
 -- ---------------------------------------------------------------------------
 -- way entry point
 -- ---------------------------------------------------------------------------
+
+-- Generic POIs mapped as areas (hospitals, schools, stations drawn as
+-- buildings or land use): as for hiking POIs, Mapsforge draws the theme's
+-- symbol and caption at the area's label point. One point at the centroid,
+-- looked up in the ways section of the tag mapping, with the attributes a
+-- generic POI node gets plus is_area, which keeps the theme's node-only
+-- rules off it.
+-- The generic POI values whose theme rules also fire on an area's label
+-- point (not e="node", not closed="no"), at their first Mapsforge zoom.
+local generic_area_poi_zoom = {
+    natural = { bay=13, cape=13, cave_entrance=9, geyser=9, hot_spring=9, mountain_area=13, mountain_range=13, rapids=9, waterfall=9 },
+    mountain_pass = { yes=9 },
+    waterway = { rapids=9, waterfall=9, weir=14 },
+    shelter_type = { basic_hut=13 },
+    tower = { communication=14, observation=13 },
+    sport = { climbing=13 },
+    leisure = { picnic_table=14, playground=14, slipway=14, water_park=14 },
+    amenity = { bench=14, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, cinema=14, doctors=14, embassy=14, ferry_terminal=14, fire_station=14, fountain=14, hospital=14, kindergarten=14, library=14, pharmacy=14, place_of_worship=14, police=14, recycling=14, school=14, shower=14, telephone=14, theatre=14, university=14 },
+    emergency = { defibrillator=14, landing_site=14, phone=14, portable_altitude_chamber=14 },
+    highway = { bus_stop=15, emergency_access_point=14, ford=14, traffic_signals=14 },
+    tourism = { attraction=14, museum=14, picnic_site=14, zoo=14 },
+    historic = { archaeological_site=14, castle=14, memorial=14, monument=14, ruins=14, wayside_cross=14, wayside_shrine=14 },
+    information = { board=14, office=14, terminal=14 },
+    railway = { crossing=14, halt=14, level_crossing=14, station=14 },
+    station = { light_rail=14, subway=14 },
+    aeroway = { aerodrome=14, airport=14, helipad=14 },
+    ford = { fd_yes=14 },
+    barrier = { block=14, bollard=14, border_control=14, chain=14, cycle_barrier=14, gate=14, kissing_gate=14, lift_gate=14, stile=14, turnstile=14 },
+    man_made = { communications_tower=14, lighthouse=14, tower=14, windmill=14 },
+    ["generator:source"] = { coal=14, gas=14, hydro=14, nuclear=14, tidal=14, wind=14 },
+    power = { tower=15 },
+}
+
+local function generic_area_poi()
+    for _, k in ipairs(generic_poi_lookup_keys) do
+        local v = Find(k)
+        local za = way_mapping[k] and way_mapping[k][v]
+        local cv = way_canon[k] and way_canon[k][v]
+        local tz = cv and generic_area_poi_zoom[k] and generic_area_poi_zoom[k][cv]
+        if tz ~= nil and za ~= nil then
+            local z = math.max(tz, za) - 1
+            LayerAsCentroid("poi")
+            Attribute("is_area", "yes")
+            Attribute("class", k)
+            Attribute("subclass", v)
+            set_names()
+            for _, tk in ipairs(generic_poi_tag_keys) do
+                local tv = Find(tk)
+                if tv ~= "" and way_mapping[tk] and way_mapping[tk][tv] then Attribute(tk, tv) end
+            end
+            local zl = tonumber(Find("zl"))
+            if zl ~= nil then AttributeNumeric("zl", zl) end
+            local en = tonumber(Find("ele"))
+            if en ~= nil then AttributeNumeric("ele", math.floor(en + 0.5)) end
+            MinZoom(math.min(z, 14))
+            if z > 14 then AttributeNumeric("minzoom", z) end
+            return
+        end
+    end
+end
 
 function way_function()
     -- contours first (dense, cheap to reject)
@@ -569,6 +637,8 @@ function way_function()
             LayerAsCentroid("poi")
             hiking_poi_attributes(way_mapping, tonumber(Find("ele")))
             MinZoom(az)
+        else
+            generic_area_poi()
         end
     end
 
