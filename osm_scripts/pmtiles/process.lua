@@ -15,8 +15,9 @@
 node_keys = {
     "place", "ele", "natural", "amenity", "tourism", "shop", "historic",
     "man_made", "leisure", "information", "mountain_pass", "emergency",
-    "barrier", "highway", "railway", "aerialway",
-    "safety_rope", "ladder", "rungs"
+    "barrier", "highway", "railway", "aerialway", "safety_rope", "ladder",
+    "rungs", "aeroway", "landuse", "waterway", "shelter_type", "tower", "sport",
+    "station", "ford", "generator:source", "power"
 }
 
 -- ---------------------------------------------------------------------------
@@ -198,7 +199,8 @@ local generic_poi_theme_zoom = {
     },
     natural = {
         bay=13, canyon=13, cape=13, cave_entrance=9, desert=13, fjord=13, geyser=9, glacier=13,
-        hot_spring=9, mountain_area=13, mountain_range=13, peninsula=13, tree=17, valley=13
+        hot_spring=9, mountain_area=13, mountain_range=13, peninsula=13, rapids=9, tree=17,
+        valley=13, water=13, waterfall=9, wood=13
     },
     landuse = {
         basin=13, forest=13, orchard=13, reservoir=13
@@ -226,6 +228,9 @@ local generic_poi_theme_zoom = {
     },
     station = {
         light_rail=14, subway=14
+    },
+    ford = {
+        fd_yes=14
     },
     ["generator:source"] = {
         coal=14, gas=14, hydro=14, nuclear=14, tidal=14, wind=14
@@ -488,7 +493,7 @@ function node_function()
     -- caption zoom and the tag mapping's zoom-appear, minus one (MapLibre zoom
     -- = Mapsforge zoom - 1). Tiles stop at 14, so a later zoom is carried as
     -- minzoom for style.json to test.
-    local poi_keys = { "amenity", "tourism", "historic", "man_made", "leisure", "information", "emergency", "barrier", "aeroway", "natural", "landuse", "mountain_pass", "waterway", "shelter_type", "tower", "sport", "highway", "railway", "station", "generator:source", "power" }
+    local poi_keys = { "amenity", "tourism", "historic", "man_made", "leisure", "information", "emergency", "barrier", "aeroway", "natural", "landuse", "mountain_pass", "waterway", "shelter_type", "tower", "sport", "highway", "railway", "station", "ford", "generator:source", "power" }
     for _, k in ipairs(poi_keys) do
         local v = Find(k)
         local za = poi_mapping[k] and poi_mapping[k][v]

@@ -13,7 +13,7 @@
     "hiking_route":   { "minzoom": 10, "maxzoom": 14 },
     "route_label":    { "minzoom": 10, "maxzoom": 14, "source": "__route_labels__", "source_columns": ["network", "highlight", "ref"] },
     "cycle_route":    { "minzoom": 12, "maxzoom": 14 },
-    "poi":            { "minzoom": 12, "maxzoom": 14 }
+    "poi":            { "minzoom": 9,  "maxzoom": 14 }
   },
   "settings": {
     "minzoom": 4,
