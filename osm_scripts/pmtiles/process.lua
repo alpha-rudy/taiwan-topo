@@ -15,8 +15,9 @@
 node_keys = {
     "place", "ele", "natural", "amenity", "tourism", "shop", "historic",
     "man_made", "leisure", "information", "mountain_pass", "emergency",
-    "barrier", "highway", "railway", "aerialway",
-    "safety_rope", "ladder", "rungs"
+    "barrier", "highway", "railway", "aerialway", "safety_rope", "ladder",
+    "rungs", "aeroway", "landuse", "waterway", "shelter_type", "tower", "sport",
+    "station", "ford", "generator:source", "power"
 }
 
 -- ---------------------------------------------------------------------------
@@ -110,27 +111,62 @@ local function set_tunnel_bridge()
     if IsClosed() then Attribute("closed", "yes") end
 end
 
-local function hiking_poi_minzoom()
+-- mapping: the tag-mapping section the feature is stored under (pois for
+-- nodes, ways for areas); a value it does not keep is not in the map file.
+local function hiking_poi_minzoom(mapping)
     local z = nil
     for k, vals in pairs(hiking_poi_zoom) do
-        local mz = vals[Find(k)]
-        if mz ~= nil and (z == nil or mz < z) then z = mz end
+        local v = Find(k)
+        local mz = vals[v]
+        if mz ~= nil and mapping[k] and mapping[k][v] and (z == nil or mz < z) then z = mz end
     end
     return z
 end
 
--- Generic POIs the theme labels: (key, value) -> the first Mapsforge zoom of
--- the value's caption in MOI_OSM.xml (hiking style and the overlays it turns
--- on). Mapsforge shows a POI only when the tag mapping keeps it and the theme
--- draws it, so the other POIs (shops, restaurants, air-raid shelters, ...) are
--- left out of the tiles.
+-- The raw tags the theme tests, class / subclass as for the other POIs (so
+-- the plain name label can still show the subtypes the icon layers do not
+-- draw), zl, ele and names.
+local function hiking_poi_attributes(mapping, elenum)
+    for _, k in ipairs(hiking_poi_keys) do
+        local v = Find(k)
+        if v ~= "" and mapping[k] and mapping[k][v] then Attribute(k, v) end
+    end
+    for _, k in ipairs({ "amenity", "tourism", "man_made", "information", "highway", "natural" }) do
+        local v = Find(k)
+        if v ~= "" then
+            Attribute("class", k)
+            Attribute("subclass", v)
+            break
+        end
+    end
+    local zl = tonumber(Find("zl"))
+    if zl ~= nil then AttributeNumeric("zl", zl) end
+    if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+    set_names()
+end
+
+-- Raw tags the theme's generic POI rules test, written when the tag mapping
+-- keeps the value (Mapsforge drops the others).
+local generic_poi_tag_keys = {
+    "aeroway", "natural", "landuse", "amenity", "mountain_pass", "waterway", "man_made",
+    "survey_point", "shelter_type", "tower", "sport", "leisure", "emergency", "highway",
+    "drinking_water", "tourism", "access", "historic", "information", "memorial", "shelter",
+    "railway", "network", "station", "ford", "barrier", "religion", "generator:source", "power"
+}
+
+-- Generic POIs the theme draws: (key, value) -> the first Mapsforge zoom of a
+-- symbol or caption rule for the value in MOI_OSM.xml (hiking style and the
+-- overlays it turns on, plus survey points, whose overlay is off by default).
+-- Mapsforge shows a POI only when the tag mapping keeps it and the theme draws
+-- it, so the other POIs (shops, restaurants, air-raid shelters, ...) are left
+-- out of the tiles.
 local generic_poi_theme_zoom = {
     amenity = {
         bench=14, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, cinema=14,
-        college=14, doctors=14, drinking_water=14, embassy=14, ferry_terminal=14,
-        fire_station=14, fountain=14, hospital=14, kindergarten=14, library=14, pharmacy=14,
-        place_of_worship=14, police=14, recycling=14, school=14, shelter=13, shower=14,
-        telephone=14, theatre=14, toilets=14, university=14, water_point=14
+        college=14, doctors=14, drinking_water=14, embassy=14, ferry_terminal=14, fire_station=14,
+        fountain=14, hospital=14, kindergarten=14, library=14, pharmacy=14, place_of_worship=14,
+        police=14, recycling=14, school=14, shelter=13, shower=14, telephone=14, theatre=14,
+        toilets=14, university=14, water_point=14
     },
     tourism = {
         alpine_hut=13, attraction=14, camp_site=13, information=14, museum=14, picnic_site=14,
@@ -141,8 +177,8 @@ local generic_poi_theme_zoom = {
         wayside_shrine=14
     },
     man_made = {
-        communications_tower=14, lighthouse=14, summit_board=7, tower=14, water_well=14,
-        windmill=14
+        communications_tower=14, lighthouse=14, summit_board=7, survey_point=10, tower=14,
+        water_well=14, windmill=14
     },
     leisure = {
         golf=14, golf_course=14, picnic_site=14, picnic_table=14, playground=14, slipway=14,
@@ -152,10 +188,55 @@ local generic_poi_theme_zoom = {
         board=14, guidepost=14, mobile=14, office=14, terminal=14, trail_milestone=15
     },
     emergency = {
-        defibrillator=14, landing_site=14, phone=14
+        defibrillator=14, landing_site=14, phone=14, portable_altitude_chamber=14
     },
     barrier = {
-        border_control=14
+        block=14, bollard=14, border_control=14, chain=14, cycle_barrier=14, gate=14,
+        kissing_gate=14, lift_gate=14, stile=14, turnstile=14
+    },
+    aeroway = {
+        aerodrome=14, airport=14, gate=9, helipad=14
+    },
+    natural = {
+        bay=13, canyon=13, cape=13, cave_entrance=9, desert=13, fjord=13, geyser=9, glacier=13,
+        hot_spring=9, mountain_area=13, mountain_range=13, peninsula=13, rapids=9, tree=17,
+        valley=13, water=13, waterfall=9, wood=13
+    },
+    landuse = {
+        basin=13, forest=13, orchard=13, reservoir=13
+    },
+    mountain_pass = {
+        yes=9
+    },
+    waterway = {
+        rapids=9, waterfall=9, weir=14
+    },
+    shelter_type = {
+        basic_hut=13
+    },
+    tower = {
+        communication=14, observation=13
+    },
+    sport = {
+        climbing=13, swimming=14
+    },
+    highway = {
+        bus_stop=15, emergency_access_point=14, ford=14, traffic_signals=14
+    },
+    railway = {
+        crossing=14, halt=14, level_crossing=14, station=14
+    },
+    station = {
+        light_rail=14, subway=14
+    },
+    ford = {
+        fd_yes=14
+    },
+    ["generator:source"] = {
+        coal=14, gas=14, hydro=14, nuclear=14, tidal=14, wind=14
+    },
+    power = {
+        tower=15
     },
 }
 
@@ -267,20 +348,13 @@ local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=
 -- polygons (tools/sealand-creator.sh). Both go to the water layer with their
 -- class, and style.json paints nosea in the land colour right after sea.
 local water_natural    = { water=true, sea=true, nosea=true, bay=true, spring=false }
-local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
-local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
+local waterway_class   = { river=true, stream=true, canal=true, drain=true }
 
 -- highway class -> minzoom. Trails and tracks (path, footway, steps,
 -- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
 -- MapLibre's 512 px tiles show at zoom Z what Mapsforge's 256 px tiles show at
 -- Z+1, and the style draws them from there. The other classes are unchanged.
 
--- place class -> minzoom
-local place_minzoom = {
-    country=4, state=5, region=6, county=7, city=7, town=9,
-    village=11, hamlet=12, suburb=11, neighbourhood=13, locality=13,
-    isolated_dwelling=14, island=8, islet=12
-}
 
 -- ---------------------------------------------------------------------------
 -- contour handling
@@ -327,15 +401,24 @@ end
 -- ---------------------------------------------------------------------------
 
 function node_function()
-    -- places (labels)
+    -- places (labels): the values the tag mapping keeps, under its main
+    -- value, from its zoom-appear minus one, with capital as the mapping
+    -- keeps it (2, yes being its equivalent, or 4). The theme labels a
+    -- locality only when the map file has no mountain_pass, natural or
+    -- tourism on it; such a node goes on to be that feature.
     local place = Find("place")
-    if place ~= "" then
+    local pcv = poi_canon.place[place]
+    local function kept(k) return poi_canon[k] ~= nil and poi_canon[k][Find(k)] ~= nil end
+    if pcv ~= nil and not (pcv == "locality" and
+            (kept("mountain_pass") or kept("natural") or kept("tourism"))) then
         Layer("place", false)
-        Attribute("class", place)
+        Attribute("class", pcv)
         set_names()
-        local cap = Find("capital")
-        if cap ~= "" then Attribute("capital", cap) end
-        MinZoom(place_minzoom[place] or 13)
+        local cap = poi_canon.capital[Find("capital")]
+        if cap ~= nil then Attribute("capital", cap) end
+        local elenum = tonumber(Find("ele"))
+        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
+        MinZoom(poi_mapping.place[place] - 1)
         return
     end
 
@@ -343,15 +426,16 @@ function node_function()
     -- The summit name lives on man_made=summit_board, not on the peak:
     -- process_osm.py writes "<name>, <ele>m" there with zl (0 = 玉山, 雪山主峰,
     -- 北大武山; 1 = 百岳; 2 = 小百岳) and cat, and strips the name (and,
-    -- near a board, the ele) from natural=peak. Survey points carry a
-    -- descriptive name ("三等三角點 6303") that the Mapsforge theme does not
-    -- print. style.json draws them with the theme's symbols and captions.
+    -- near a board, the ele) from natural=peak. style.json draws them with
+    -- the theme's symbols and captions.
     local natural = Find("natural")
     local ele = Find("ele")
     local man_made = Find("man_made")
     local is_board = (man_made == "summit_board")
-    local is_peak = (natural == "peak" or natural == "volcano" or
-                     natural == "saddle" or Find("mountain_pass") == "yes")
+    -- Mountain passes and survey points are generic POIs below, drawn by the
+    -- theme's own rules; saddles are not in tag-mapping.xml, so the Mapsforge
+    -- map never has them.
+    local is_peak = (natural == "peak" or natural == "volcano")
     local elenum = tonumber(ele)
     if is_board or is_peak then
         Layer("ele_point", false)
@@ -362,7 +446,7 @@ function node_function()
             local cat = Find("cat")
             if cat ~= "" then Attribute("cat", cat) end
         else
-            Attribute("class", natural ~= "" and natural or "mountain_pass")
+            Attribute("class", natural)
         end
         if Find("is_in") == "taiwan" then Attribute("is_in", "taiwan") end
         set_names()
@@ -396,38 +480,11 @@ function node_function()
     -- hiking POIs, drawn with the theme's symbols. They carry the raw tags the
     -- theme tests; MinZoom is the later of the theme's first zoom and the tag
     -- mapping's zoom-appear, minus one (MapLibre zoom = Mapsforge zoom - 1).
-    local hz = hiking_poi_minzoom()
+    local hz = hiking_poi_minzoom(poi_mapping)
     if hz ~= nil then
         Layer("poi", false)
-        for _, k in ipairs(hiking_poi_keys) do
-            local v = Find(k)
-            if v ~= "" and poi_mapping[k] and poi_mapping[k][v] then Attribute(k, v) end
-        end
-        -- class / subclass as for the other POIs, so the plain name label can
-        -- still show the subtypes the icon layers do not draw
-        for _, k in ipairs({ "amenity", "tourism", "man_made", "information", "highway", "natural" }) do
-            local v = Find(k)
-            if v ~= "" then
-                Attribute("class", k)
-                Attribute("subclass", v)
-                break
-            end
-        end
-        local zl = tonumber(Find("zl"))
-        if zl ~= nil then AttributeNumeric("zl", zl) end
-        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
-        set_names()
+        hiking_poi_attributes(poi_mapping, elenum)
         MinZoom(hz)
-        return
-    end
-
-    -- other elevation markers and survey points
-    if ele ~= "" then
-        Layer("ele_point", false)
-        Attribute("class", man_made == "survey_point" and "survey_point" or "ele_marker")
-        set_names()
-        if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
-        MinZoom(12)
         return
     end
 
@@ -436,8 +493,7 @@ function node_function()
     -- caption zoom and the tag mapping's zoom-appear, minus one (MapLibre zoom
     -- = Mapsforge zoom - 1). Tiles stop at 14, so a later zoom is carried as
     -- minzoom for style.json to test.
-    local poi_keys = { "amenity", "tourism", "shop", "historic", "man_made",
-                       "leisure", "information", "emergency", "barrier" }
+    local poi_keys = { "amenity", "tourism", "historic", "man_made", "leisure", "information", "emergency", "barrier", "aeroway", "natural", "landuse", "mountain_pass", "waterway", "shelter_type", "tower", "sport", "highway", "railway", "station", "ford", "generator:source", "power" }
     for _, k in ipairs(poi_keys) do
         local v = Find(k)
         local za = poi_mapping[k] and poi_mapping[k][v]
@@ -449,6 +505,14 @@ function node_function()
             Attribute("class", k)
             Attribute("subclass", v)
             set_names()
+            for _, tk in ipairs(generic_poi_tag_keys) do
+                local tv = Find(tk)
+                if tv ~= "" and poi_mapping[tk] and poi_mapping[tk][tv] then Attribute(tk, tv) end
+            end
+            local zl = tonumber(Find("zl"))
+            if zl ~= nil then AttributeNumeric("zl", zl) end
+            local en = tonumber(Find("ele"))
+            if en ~= nil then AttributeNumeric("ele", math.floor(en + 0.5)) end
             MinZoom(math.min(z, 14))
             if z > 14 then AttributeNumeric("minzoom", z) end
             return
@@ -487,7 +551,25 @@ function way_function()
         if rt ~= "" and rt ~= "no" then Attribute("tunnel", "yes") end
         set_names()
         MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11 (config.json allows 10)
+        -- The theme writes the ref once per way, level, at the centre of the
+        -- way's bounding box (a caption, not text along the line). Those
+        -- points are the route_label layer, written by tools/route-labels.py:
+        -- this profile cannot read a way's coordinates.
         -- a hiking way may also be a path; fall through to draw the way too
+    end
+
+    -- hiking POIs mapped as areas (huts drawn as buildings, campsites, ...):
+    -- Mapsforge keeps the tags the ways section keeps and draws the theme's
+    -- symbol and caption (rules for any element) at the area's label point.
+    -- One point at the area's centroid, with the attributes a node gets; no
+    -- return, the area is still drawn as a building or land cover.
+    if IsClosed() or IsMultiPolygon() then
+        local az = hiking_poi_minzoom(way_mapping)
+        if az ~= nil then
+            LayerAsCentroid("poi")
+            hiking_poi_attributes(way_mapping, tonumber(Find("ele")))
+            MinZoom(az)
+        end
     end
 
     -- cycle routes
@@ -549,13 +631,16 @@ function way_function()
         return
     end
 
-    -- waterways (lines)
-    if in_set(waterway, waterway_class) then
+    -- waterways (lines), under the tag mapping's main value (a ditch is a
+    -- drain there), with tunnel / bridge for the theme's dashes and casings
+    local wcv = way_canon.waterway[waterway]
+    if wcv ~= nil and waterway_class[wcv] then
         Layer("waterway", false)
-        Attribute("class", waterway)
+        Attribute("class", wcv)
+        set_tunnel_bridge()
         set_names()
         -- tag-mapping.xml zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
-        MinZoom(waterway_minzoom[waterway])
+        MinZoom(way_mapping.waterway[waterway] - 1)
         return
     end
 
