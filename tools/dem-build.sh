@@ -1,10 +1,14 @@
 #!/bin/bash
 # dem-build.sh - Build terrain-RGB PMTiles from a HGT elevation zip.
 #
-# Pipeline: HGT zip → gdalbuildvrt → rio-rgbify (terrain-RGB MBTiles) → go-pmtiles convert
+# Pipeline: HGT zip → gdalbuildvrt → rio-rgbify (terrain-RGB MBTiles)
+#           → dem-terrarium.py (Terrarium, lossless WebP) → go-pmtiles convert
 #
-# The output PMTiles uses Mapbox terrain-RGB encoding (R,G,B channels encode
-# elevation) and is readable by MapLibre GL JS raster-dem sources.
+# The output PMTiles uses Terrarium encoding in lossless WebP tiles, as the
+# raster-dem source in styles/pmtiles_style/style.json declares. rio-rgbify
+# writes the HGT's integer type, so every elevation is a whole metre and the
+# Terrarium tiles keep all of them in well under half the size of Mapbox
+# terrain-RGB PNGs.
 #
 # Usage: dem-build.sh <hgt_zip> <output_pmtiles> <gopmtiles_cmd> [min_z] [max_z]
 #
@@ -13,7 +17,7 @@
 #   output_pmtiles  - Output .pmtiles file (directory will be created)
 #   gopmtiles_cmd   - Path to go-pmtiles binary (or "pmtiles" if on PATH)
 #   min_z           - Minimum output zoom (default: 6)
-#   max_z           - Maximum output zoom (default: 13)
+#   max_z           - Maximum output zoom (default: 12; see Makefile DEM_MAX_ZOOM)
 #
 # Dependencies (must be on PATH or pre-installed):
 #   gdalbuildvrt    - from gdal-bin (Ubuntu: apt-get install gdal-bin)
@@ -26,7 +30,7 @@ HGT_ZIP="$1"
 OUTPUT_PMTILES="$2"
 GOPMTILES_CMD="$3"
 MIN_Z="${4:-6}"
-MAX_Z="${5:-13}"
+MAX_Z="${5:-12}"
 
 if [ -z "$HGT_ZIP" ] || [ -z "$OUTPUT_PMTILES" ] || [ -z "$GOPMTILES_CMD" ]; then
     echo "Usage: $0 <hgt_zip> <output_pmtiles> <gopmtiles_cmd> [min_z] [max_z]" >&2
@@ -60,7 +64,11 @@ mkdir -p "$TMP_HGT"
 unzip -j "$HGT_ZIP" '*.hgt' -d "$TMP_HGT"
 
 echo "DEM: building GDAL VRT mosaic..."
-gdalbuildvrt "$VRT" "$TMP_HGT"/*.hgt
+# Where no HGT tile covers the area (open sea), the mosaic would carry the HGT
+# nodata value, -32768, and the hillshade would draw a cliff along every edge
+# of the HGT coverage. Make the mosaic's nodata 0 so uncovered areas read as
+# sea level.
+gdalbuildvrt -vrtnodata 0 "$VRT" "$TMP_HGT"/*.hgt
 
 # rio is rasterio's CLI. A pip rasterio installs a `rio` executable, but the
 # Debian python3-rasterio package (used in the Docker image) does not. Its
@@ -82,11 +90,17 @@ echo "DEM: running rio-rgbify (z${MIN_Z}-${MAX_Z}, terrain-RGB PNG)..."
 # filter (ignore::rasterio.errors.NotGeoreferencedWarning) is parsed at
 # interpreter startup and fails to import rasterio then ("invalid -W option"),
 # so it silently does nothing. A message regex needs no import and just works.
+# -b -10000 -i 0.1 is the Mapbox terrain-RGB encoding that dem-terrarium.py
+# reads back. rio-rgbify's own defaults (base 0, interval 1) are not a
+# standard encoding.
 PYTHONWARNINGS="ignore:Dataset has no geotransform" \
 "${RIO_CMD[@]}" rgbify \
+    -b -10000 -i 0.1 \
     --min-z "$MIN_Z" \
     --max-z "$MAX_Z" \
     "$VRT" "$MBTILES"
+
+python3 "$(dirname "$0")/dem-terrarium.py" "$MBTILES"
 
 echo "DEM: converting MBTiles → PMTiles..."
 rm -f "$OUTPUT_PMTILES"
