@@ -38,12 +38,13 @@ local function in_set(value, set)
     return value ~= "" and set[value] == true
 end
 
--- hiking POIs: (key, value) -> MapLibre minzoom, from MOI_OSM.xml's first zoom
--- for the symbol and tag-mapping.xml's zoom-appear, whichever is later, minus one
+-- hiking POIs: (key, value) -> MapLibre minzoom, from the first zoom MOI_OSM.xml
+-- or the paper theme (MOI_OSM_twmap.xml) draws it and tag-mapping.xml's
+-- zoom-appear, whichever is later, minus one (paper draws springs from z9)
 local hiking_poi_zoom = {
     tourism = { alpine_hut=12, wilderness_hut=12, camp_site=12, viewpoint=13, information=13 },
     amenity = { shelter=12, drinking_water=13, toilets=13 },
-    natural = { spring=13 },
+    natural = { spring=12 },
     man_made = { water_well=13 },
     highway = { trailhead=14 },
     information = { guidepost=14, trail_milestone=14 },
@@ -152,7 +153,7 @@ local generic_poi_tag_keys = {
     "survey_point", "shelter_type", "via_ferrata_flag", "tower", "sport", "climbing", "leisure",
     "emergency", "highway", "building", "drinking_water", "tourism", "access", "historic",
     "information", "memorial", "shelter", "railway", "network", "station", "ford", "bridge",
-    "barrier", "religion", "generator:source", "power"
+    "barrier", "religion", "generator:source", "power", "shop"
 }
 
 -- Generic POIs the theme draws: (key, value) -> the first Mapsforge zoom of a

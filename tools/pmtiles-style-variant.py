@@ -478,10 +478,17 @@ def main():
                 skipped[(r["instr"],) + tuple("%s=%s" % t for t in r["tests"][:1])] += 1
                 continue
             m_of[lid] = r["m"]
-            key = order_key(lid)
             run = [k for k, x in enumerate(out) if re.fullmatch(r"(poi|place)-x?\d+", x["id"]) and x["id"] in m_of
                    and x.get("source-layer") == "poi"]
-            at = next((k for k in run if order_key(out[k]["id"]) > key), run[-1] + 1)
+            if lay["type"] == "circle":
+                # circles are shapes, drawn in rule order under the run's labels:
+                # a spring's ring comes before the dot that marks drinking_water
+                circles = [k for k in run if out[k]["type"] == "circle"]
+                at = next((k for k in circles if m_of[out[k]["id"]] > r["m"]),
+                          circles[-1] + 1 if circles else run[0])
+            else:
+                key = order_key(lid)
+                at = next((k for k in run if out[k]["type"] != "circle" and order_key(out[k]["id"]) > key), run[-1] + 1)
             out.insert(at, lay)
             made[j] = [(lay, None, "poi")]
             need(j)
@@ -540,6 +547,34 @@ def main():
         out[k:e] = sorted(out[k:e], key=lambda x: m_of[x["id"]])
         k = e
     used = {B[j]["m"] for j in made}
+    # The land / sea mask and the water areas are one layer each, not one per
+    # rule: they take the fill of the rules they stand for, when the main
+    # style's colour is that of the main theme's rule (so a hand-picked colour
+    # stays) and the sibling's rules agree on one colour.
+    def area_fill(rows, tests):
+        fills = []
+        for r in sorted((r for r in rows if r["instr"] == "area" and r["n"] is not None
+                         and r["tests"] and r["tests"][-1] in tests), key=lambda r: r["zmin"]):
+            if r["attrs"].get("fill") and rgba(r["attrs"]["fill"]) not in fills:
+                fills.append(rgba(r["attrs"]["fill"]))
+        return fills
+
+    def same_colour(a, b):
+        if a.startswith("#"):
+            a = rgba(a)
+        return a.replace(" ", "") == b.replace(" ", "")
+
+    for lid, tests in (("sea", [("natural", "sea")]), ("land", [("natural", "nosea")]),
+                       ("water", [("natural", "water"), ("waterway", "riverbank"), ("landuse", "reservoir|basin")])):
+        lay = next((x for x in out if x["id"] == lid), None)
+        fa, fb = area_fill(A, tests), area_fill(B, tests)
+        if lay is None or not fa or not fb or not same_colour(lay["paint"]["fill-color"], fa[0]):
+            continue
+        if not same_colour(fb[0], fa[0]):
+            lay["paint"] = dict(lay["paint"], **{"fill-color": fb[0]})
+        if len(fb) > 1:
+            print("note: %s takes %s; the sibling's rules also use %s" % (lid, fb[0], fb[1:]), file=sys.stderr)
+
     # contours: the main style's own block stays when the sibling draws them
     # the same; otherwise both runs (lines, then labels) are rebuilt from it
     def contour_sig(rows):
