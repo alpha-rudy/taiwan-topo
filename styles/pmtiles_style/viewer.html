@@ -41,10 +41,13 @@
     // MapLibre needs an absolute URL, and the braces must stay unencoded.
     const glyphsUrl = params.get("glyphs") ||
       new URL(".", new URL(pmtilesUrl, location.href)).href + "glyphs/{fontstack}/{range}.pbf";
+    // ?style=paper draws the paper theme (paper.json next to this page) on the
+    // same archive; its icons are in sprite-paper/ (make sprite_paper).
+    const paper = params.get("style") === "paper";
     // The sprite (make sprite) sits in sprite/ next to the archive too;
     // ?sprite=<url without .json/.png> points elsewhere.
     const spriteUrl = params.get("sprite") ||
-      new URL(".", new URL(pmtilesUrl, location.href)).href + "sprite/sprite";
+      new URL(".", new URL(pmtilesUrl, location.href)).href + (paper ? "sprite-paper/sprite" : "sprite/sprite");
 
     // Overlay switches, as in the Mapsforge theme's style menu. style.json's
     // metadata lists the overlays and each layer the theme cats it needs; a
@@ -90,8 +93,9 @@
 
       // Load the topo style and point its source at the archive.
       let style;
-      try { style = await (await fetch("./style.json?t=" + Date.now(), { cache: "no-store" })).json(); }
-      catch (e) { return say("Could not load style.json next to this page: " + e, true); }
+      const styleFile = paper ? "paper.json" : "style.json";
+      try { style = await (await fetch("./" + styleFile + "?t=" + Date.now(), { cache: "no-store" })).json(); }
+      catch (e) { return say("Could not load " + styleFile + " next to this page: " + e, true); }
       style.sources.topo.url = "pmtiles://" + pmtilesUrl;
       if (style.sources.dem) style.sources.dem.url = "pmtiles://" + demUrl;
       style.glyphs = glyphsUrl;

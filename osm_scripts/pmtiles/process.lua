@@ -163,11 +163,12 @@ local generic_poi_tag_keys = {
 -- out of the tiles.
 local generic_poi_theme_zoom = {
     amenity = {
-        bench=14, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, cinema=14,
-        college=14, doctors=14, drinking_water=14, embassy=14, ferry_terminal=14, fire_station=14,
-        fountain=14, hospital=14, kindergarten=14, library=14, pharmacy=14, place_of_worship=14,
-        police=14, recycling=14, school=14, shelter=13, shower=14, telephone=14, theatre=14,
-        toilets=14, university=14, water_point=14
+        bar=16, bench=14, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, biergarten=16,
+        bus_station=14, cafe=16, cinema=14, college=14, doctors=14, drinking_water=14, embassy=14,
+        fast_food=16, ferry_terminal=14, fire_station=14, fountain=14, fuel=14, hospital=14,
+        kindergarten=14, library=14, parking=14, pharmacy=14, place_of_worship=14, police=14,
+        pub=16, recycling=14, restaurant=16, school=14, shelter=13, shower=14, telephone=14,
+        theatre=14, toilets=14, university=14, water_point=14
     },
     tourism = {
         alpine_hut=13, attraction=14, camp_site=13, information=14, museum=14, picnic_site=14,
@@ -199,9 +200,9 @@ local generic_poi_theme_zoom = {
         aerodrome=14, airport=14, gate=9, helipad=14
     },
     natural = {
-        bay=13, canyon=13, cape=13, cave_entrance=9, desert=13, fjord=13, geyser=9, glacier=13,
-        hot_spring=9, mountain_area=13, mountain_range=13, peninsula=13, rapids=9, tree=17,
-        valley=13, water=13, waterfall=9, wood=13
+        bay=13, canyon=13, cape=13, cave_entrance=9, desert=13, fjord=13, geyser=9, giant_tree=11,
+        glacier=13, hot_spring=9, mountain_area=13, mountain_range=13, peninsula=13, rapids=9,
+        tree=17, valley=13, water=13, waterfall=9, wood=13
     },
     landuse = {
         basin=13, forest=13, orchard=13, reservoir=13
@@ -239,6 +240,9 @@ local generic_poi_theme_zoom = {
     power = {
         tower=15
     },
+    shop = {
+        car=14
+    },
 }
 
 -- The keys a generic POI is looked up by, in order: the first one whose
@@ -246,7 +250,7 @@ local generic_poi_theme_zoom = {
 local generic_poi_lookup_keys = {
     "amenity", "tourism", "historic", "man_made", "leisure", "information", "emergency", "barrier",
     "aeroway", "natural", "landuse", "mountain_pass", "waterway", "shelter_type", "tower", "sport",
-    "highway", "railway", "station", "ford", "generator:source", "power"
+    "highway", "railway", "station", "ford", "generator:source", "power", "shop"
 }
 
 -- Areas the theme fills (MOI_OSM.xml area rules, hiking style): key -> the
@@ -380,7 +384,7 @@ local waterway_class   = { river=true, stream=true, canal=true, drain=true }
 local contour_specs = {
     { key="contour_ext",   zoom={ elevation_major=7,  elevation_medium=11, elevation_sub=13, elevation_minor=14 } },
     { key="contour_1280m", zoom={ elevation_major=10 } },
-    { key="contour_640m",  zoom={ elevation_major=12, elevation_medium=12 } },
+    { key="contour_640m",  zoom={ elevation_major=11, elevation_medium=12 } },
     { key="contour_320m",  zoom={ elevation_major=13, elevation_medium=13, elevation_minor=13 } },
     { key="contour_160m",  zoom={ elevation_major=14, elevation_medium=14, elevation_minor=14 } },
     { key="contour_80m",   zoom={ elevation_major=14, elevation_medium=14, elevation_minor=14 } },
@@ -550,7 +554,7 @@ local generic_area_poi_zoom = {
     sport = { climbing=13, golf=14, shooting=14, soccer=14, tennis=14 },
     climbing = { cl_yes=13 },
     leisure = { golf_course=14, playground=14, slipway=14, sports_centre=14, stadium=14, water_park=14 },
-    amenity = { bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, college=14, doctors=14, embassy=14, ferry_terminal=14, fountain=14, hospital=14, kindergarten=14, pharmacy=14, place_of_worship=14, police=14, recycling=14, school=14, shower=14, theatre=14, university=14 },
+    amenity = { bar=16, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, biergarten=16, bus_station=14, cafe=16, college=14, doctors=14, embassy=14, fast_food=16, ferry_terminal=14, fountain=14, fuel=14, hospital=14, kindergarten=14, parking=14, pharmacy=14, place_of_worship=14, police=14, pub=16, recycling=14, restaurant=16, school=14, shower=14, theatre=14, university=14 },
     emergency = { landing_site=14 },
     building = { church=14, embassy=14, library=14, museum=14, ruins=14, temple=14 },
     tourism = { attraction=14, museum=14, picnic_site=14, zoo=14 },
@@ -565,6 +569,7 @@ local generic_area_poi_zoom = {
     man_made = { communications_tower=14, tower=14 },
     landuse = { farmyard=14 },
     ["generator:source"] = { coal=14, gas=14, hydro=14, nuclear=14, tidal=14, wind=14 },
+    shop = { car=14 },
 }
 
 -- Lookup keys for areas: the generic ones, then the keys only areas use.

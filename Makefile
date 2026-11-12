@@ -210,6 +210,12 @@ GLYPHS := $(GLYPHS_DIR)/.unpacked-regular-bold-italic
 PMTILES_STYLE := $(ROOT_DIR)/styles/pmtiles_style/style.json
 SPRITE_DIR := $(BUILD_DIR)/sprite
 SPRITE := $(SPRITE_DIR)/sprite.json
+# The paper style (styles/twmap_style) drawn on the same tiles: paper.json is
+# derived from style.json by tools/pmtiles-style-variant.py (make paper_style)
+# and committed; its icons are the paper theme's own (make sprite_paper).
+PMTILES_PAPER_STYLE := $(ROOT_DIR)/styles/pmtiles_style/paper.json
+SPRITE_PAPER_DIR := $(BUILD_DIR)/sprite-paper
+SPRITE_PAPER := $(SPRITE_PAPER_DIR)/sprite.json
 DEM_MIN_ZOOM ?= 6
 # Stop at z12. The HGT is 1 arc-second (~28 m); in Taiwan 512 px tiles are
 # ~38 m/px at z12 and ~19 m/px at z13, so z13 adds no source detail. In
@@ -1002,6 +1008,29 @@ sprite: $(SPRITE)
 $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm_res/*)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	python3 $(TOOLS_DIR)/pmtiles-sprite.py $(PMTILES_STYLE) $(ROOT_DIR)/styles/mapsforge_style/moiosm_res $(SPRITE_DIR)
+
+# Regenerate paper.json after style.json, MOI_OSM.xml or MOI_OSM_twmap.xml
+# changes. The tool first derives style.json from its own theme, which must
+# give style.json back unchanged, then derives the paper style.
+.PHONY: paper_style
+paper_style:
+	mkdir -p $(BUILD_DIR)
+	python3 $(TOOLS_DIR)/pmtiles-style-variant.py --mapping $(TAG_MAPPING) \
+		$(ROOT_DIR)/styles/mapsforge_style/MOI_OSM.xml $(PMTILES_STYLE) \
+		$(ROOT_DIR)/styles/mapsforge_style/MOI_OSM.xml $(BUILD_DIR)/style-identity.json
+	python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1])) != json.load(open(sys.argv[2])))' \
+		$(PMTILES_STYLE) $(BUILD_DIR)/style-identity.json \
+		|| { echo "style.json does not derive back from MOI_OSM.xml unchanged" >&2; exit 1; }
+	python3 $(TOOLS_DIR)/pmtiles-style-variant.py --mapping $(TAG_MAPPING) --hide hillshade \
+		--sprite sprite-paper/sprite \
+		$(ROOT_DIR)/styles/mapsforge_style/MOI_OSM.xml $(PMTILES_STYLE) \
+		$(ROOT_DIR)/styles/twmap_style/MOI_OSM_twmap.xml $(PMTILES_PAPER_STYLE)
+
+.PHONY: sprite_paper
+sprite_paper: $(SPRITE_PAPER)
+$(SPRITE_PAPER): $(PMTILES_PAPER_STYLE) $(wildcard $(ROOT_DIR)/styles/twmap_style/moiosm_twmap/*)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	python3 $(TOOLS_DIR)/pmtiles-sprite.py $(PMTILES_PAPER_STYLE) $(ROOT_DIR)/styles/twmap_style/moiosm_twmap $(SPRITE_PAPER_DIR)
 
 .PHONY: dem
 dem: $(DEM_PMTILES)
