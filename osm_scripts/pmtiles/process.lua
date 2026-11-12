@@ -149,9 +149,10 @@ end
 -- keeps the value (Mapsforge drops the others).
 local generic_poi_tag_keys = {
     "aeroway", "natural", "landuse", "amenity", "mountain_pass", "waterway", "man_made",
-    "survey_point", "shelter_type", "tower", "sport", "leisure", "emergency", "highway",
-    "drinking_water", "tourism", "access", "historic", "information", "memorial", "shelter",
-    "railway", "network", "station", "ford", "barrier", "religion", "generator:source", "power"
+    "survey_point", "shelter_type", "via_ferrata_flag", "tower", "sport", "climbing", "leisure",
+    "emergency", "highway", "building", "drinking_water", "tourism", "access", "historic",
+    "information", "memorial", "shelter", "railway", "network", "station", "ford", "bridge",
+    "barrier", "religion", "generator:source", "power"
 }
 
 -- Generic POIs the theme draws: (key, value) -> the first Mapsforge zoom of a
@@ -541,27 +542,30 @@ end
 -- The generic POI values whose theme rules also fire on an area's label
 -- point (not e="node", not closed="no"), at their first Mapsforge zoom.
 local generic_area_poi_zoom = {
-    natural = { bay=13, cape=13, cave_entrance=9, geyser=9, hot_spring=9, mountain_area=13, mountain_range=13, rapids=9, waterfall=9 },
-    mountain_pass = { yes=9 },
+    bBoxWeight = { large=13, mid=13, small=13, tiny=13, xlarge=13, xsmall=13, xxlarge=13, xxxlarge=13 },
     waterway = { rapids=9, waterfall=9, weir=14 },
+    natural = { rapids=9, waterfall=9 },
     shelter_type = { basic_hut=13 },
+    via_ferrata_flag = { set=13 },
     tower = { communication=14, observation=13 },
-    sport = { climbing=13 },
-    leisure = { picnic_table=14, playground=14, slipway=14, water_park=14 },
-    amenity = { bench=14, bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, cinema=14, doctors=14, embassy=14, ferry_terminal=14, fire_station=14, fountain=14, hospital=14, kindergarten=14, library=14, pharmacy=14, place_of_worship=14, police=14, recycling=14, school=14, shower=14, telephone=14, theatre=14, university=14 },
-    emergency = { defibrillator=14, landing_site=14, phone=14, portable_altitude_chamber=14 },
-    highway = { bus_stop=15, emergency_access_point=14, ford=14, traffic_signals=14 },
+    sport = { climbing=13, golf=14, shooting=14, soccer=14, tennis=14 },
+    climbing = { cl_yes=13 },
+    leisure = { golf_course=14, playground=14, slipway=14, sports_centre=14, stadium=14, water_park=14 },
+    amenity = { bicycle_rental_Moovo=15, bicycle_rental_YouBike=15, bus_station=14, college=14, doctors=14, embassy=14, ferry_terminal=14, fountain=14, hospital=14, kindergarten=14, pharmacy=14, place_of_worship=14, police=14, recycling=14, school=14, shower=14, theatre=14, university=14 },
+    emergency = { landing_site=14 },
+    building = { church=14, embassy=14, library=14, museum=14, ruins=14, temple=14 },
     tourism = { attraction=14, museum=14, picnic_site=14, zoo=14 },
-    historic = { archaeological_site=14, castle=14, memorial=14, monument=14, ruins=14, wayside_cross=14, wayside_shrine=14 },
-    information = { board=14, office=14, terminal=14 },
-    railway = { crossing=14, halt=14, level_crossing=14, station=14 },
-    station = { light_rail=14, subway=14 },
-    aeroway = { aerodrome=14, airport=14, helipad=14 },
+    historic = { archaeological_site=14, castle=14, memorial=14, monument=14, ruins=14 },
+    information = { office=14 },
+    railway = { station=14 },
+    aeroway = { aerodrome=14, helipad=14 },
+    highway = { ford=14 },
     ford = { fd_yes=14 },
-    barrier = { block=14, bollard=14, border_control=14, chain=14, cycle_barrier=14, gate=14, kissing_gate=14, lift_gate=14, stile=14, turnstile=14 },
-    man_made = { communications_tower=14, lighthouse=14, tower=14, windmill=14 },
+    bridge = { movable=14 },
+    barrier = { block=14 },
+    man_made = { communications_tower=14, tower=14 },
+    landuse = { farmyard=14 },
     ["generator:source"] = { coal=14, gas=14, hydro=14, nuclear=14, tidal=14, wind=14 },
-    power = { tower=15 },
 }
 
 local function generic_area_poi()
