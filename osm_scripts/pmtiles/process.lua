@@ -267,8 +267,7 @@ local cycle_networks  = { icn=true, ncn=true, rcn=true, lcn=true, ucn=true, mtb=
 -- polygons (tools/sealand-creator.sh). Both go to the water layer with their
 -- class, and style.json paints nosea in the land colour right after sea.
 local water_natural    = { water=true, sea=true, nosea=true, bay=true, spring=false }
-local waterway_class   = { river=true, stream=true, canal=true, drain=true, ditch=true }
-local waterway_minzoom = { river=6, canal=9, stream=11, drain=11, ditch=11 }
+local waterway_class   = { river=true, stream=true, canal=true, drain=true }
 
 -- highway class -> minzoom. Trails and tracks (path, footway, steps,
 -- bridleway, byway, track) use the tag mapping's zoom-appear minus one:
@@ -549,13 +548,16 @@ function way_function()
         return
     end
 
-    -- waterways (lines)
-    if in_set(waterway, waterway_class) then
+    -- waterways (lines), under the tag mapping's main value (a ditch is a
+    -- drain there), with tunnel / bridge for the theme's dashes and casings
+    local wcv = way_canon.waterway[waterway]
+    if wcv ~= nil and waterway_class[wcv] then
         Layer("waterway", false)
-        Attribute("class", waterway)
+        Attribute("class", wcv)
+        set_tunnel_bridge()
         set_names()
         -- tag-mapping.xml zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
-        MinZoom(waterway_minzoom[waterway])
+        MinZoom(way_mapping.waterway[waterway] - 1)
         return
     end
 
