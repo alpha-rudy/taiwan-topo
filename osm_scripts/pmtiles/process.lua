@@ -30,10 +30,20 @@ node_keys = {
 -- early (tools/pmtiles-zoom-shift.py), and a map at zoom Z draws the tiles of
 -- zoom floor(Z): what the style draws from Z - 0.5 must already be in the
 -- tiles of Z - 1. config.json's layer minzooms lead by the same zoom.
+--
+-- Not the features that crowd city tiles: streets and the generic amenity and
+-- shop POIs. Led, they made Taipei's z11 tile five times larger (service and
+-- residential roads) and its z13 tile half again (amenities), on the city
+-- tiles phones parse slowest. They keep the style's own zoom: in the half
+-- level before it they are simply not drawn yet, as before.
 local TILE_LEAD = 1
-local function min_zoom(z)
-    MinZoom(math.max(z - TILE_LEAD, 0))
+local function min_zoom(z, dense)
+    MinZoom(math.max(z - (dense and 0 or TILE_LEAD), 0))
 end
+local dense_highways = {
+    service = true, residential = true, living_street = true, pedestrian = true, cycleway = true
+}
+local dense_poi_classes = { amenity = true, shop = true }
 
 -- Copy localized names produced upstream (name / name:en / name:zh).
 local function set_names()
@@ -538,7 +548,7 @@ function node_function()
             if zl ~= nil then AttributeNumeric("zl", zl) end
             local en = tonumber(Find("ele"))
             if en ~= nil then AttributeNumeric("ele", math.floor(en + 0.5)) end
-            min_zoom(math.min(z, 14))
+            min_zoom(math.min(z, 14), dense_poi_classes[k])
             if z > 14 then AttributeNumeric("minzoom", z) end
             return
         end
@@ -610,7 +620,7 @@ local function generic_area_poi()
             if zl ~= nil then AttributeNumeric("zl", zl) end
             local en = tonumber(Find("ele"))
             if en ~= nil then AttributeNumeric("ele", math.floor(en + 0.5)) end
-            min_zoom(math.min(z, 14))
+            min_zoom(math.min(z, 14), dense_poi_classes[k])
             if z > 14 then AttributeNumeric("minzoom", z) end
             return
         end
@@ -797,7 +807,7 @@ function way_function()
         if tracktypes[tt] then Attribute("tracktype", tt) end
         local access = Find("access")
         if trail_access[access] then Attribute("access", access) end
-        min_zoom(hz - 1)
+        min_zoom(hz - 1, dense_highways[highway])
         return
     end
     -- railways: only the values tag-mapping.xml keeps, as in the Mapsforge map
