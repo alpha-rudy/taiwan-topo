@@ -214,6 +214,13 @@ SPRITE := $(SPRITE_DIR)/sprite.json
 # derived from style.json by tools/pmtiles-style-variant.py (make paper_style)
 # and committed; its icons are the paper theme's own (make sprite_paper).
 PMTILES_PAPER_STYLE := $(ROOT_DIR)/styles/pmtiles_style/paper.json
+# The styles as published, served next to the .pmtiles: style.json and
+# paper.json moved half a zoom level early, so each theme zoom appears where a
+# 256 px raster map of the same theme shows it in MapLibre (make pmtiles_styles,
+# tools/pmtiles-zoom-shift.py). The tiles carry each feature one zoom early to
+# match (process.lua TILE_LEAD).
+PMTILES_ZOOM_SHIFT := 0.5
+PMTILES_STYLES_DIR := $(BUILD_DIR)/pmtiles-styles
 SPRITE_PAPER_DIR := $(BUILD_DIR)/sprite-paper
 SPRITE_PAPER := $(SPRITE_PAPER_DIR)/sprite.json
 DEM_MIN_ZOOM ?= 6
@@ -1025,6 +1032,15 @@ paper_style:
 		--sprite sprite-paper/sprite \
 		$(ROOT_DIR)/styles/mapsforge_style/MOI_OSM.xml $(PMTILES_STYLE) \
 		$(ROOT_DIR)/styles/twmap_style/MOI_OSM_twmap.xml $(PMTILES_PAPER_STYLE)
+
+.PHONY: pmtiles_styles
+pmtiles_styles: $(PMTILES_STYLES_DIR)/style.json $(PMTILES_STYLES_DIR)/paper.json $(PMTILES_STYLES_DIR)/viewer.html
+$(PMTILES_STYLES_DIR)/%.json: $(ROOT_DIR)/styles/pmtiles_style/%.json $(TOOLS_DIR)/pmtiles-zoom-shift.py
+	mkdir -p $(dir $@)
+	python3 $(TOOLS_DIR)/pmtiles-zoom-shift.py $(PMTILES_ZOOM_SHIFT) $< $@
+$(PMTILES_STYLES_DIR)/viewer.html: $(ROOT_DIR)/styles/pmtiles_style/viewer.html
+	mkdir -p $(dir $@)
+	cp $< $@
 
 .PHONY: sprite_paper
 sprite_paper: $(SPRITE_PAPER)

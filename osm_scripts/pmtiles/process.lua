@@ -24,6 +24,17 @@ node_keys = {
 -- helpers
 -- ---------------------------------------------------------------------------
 
+-- Each feature goes into the tiles one zoom before the first zoom its style
+-- layers draw it at. The zooms in this file are the style's own (theme zoom
+-- minus one), but the published style shows every theme zoom half a level
+-- early (tools/pmtiles-zoom-shift.py), and a map at zoom Z draws the tiles of
+-- zoom floor(Z): what the style draws from Z - 0.5 must already be in the
+-- tiles of Z - 1. config.json's layer minzooms lead by the same zoom.
+local TILE_LEAD = 1
+local function min_zoom(z)
+    MinZoom(math.max(z - TILE_LEAD, 0))
+end
+
 -- Copy localized names produced upstream (name / name:en / name:zh).
 local function set_names()
     local n = Find("name")
@@ -402,7 +413,7 @@ local function handle_contour()
                 Attribute("interval", spec.key)
                 local ele = tonumber(Find("ele"))
                 if ele ~= nil then AttributeNumeric("ele", ele) end
-                MinZoom(z)
+                min_zoom(z)
             end
             return true   -- a contour way is only a contour
         end
@@ -432,7 +443,7 @@ function node_function()
         if cap ~= nil then Attribute("capital", cap) end
         local elenum = tonumber(Find("ele"))
         if elenum ~= nil then AttributeNumeric("ele", math.floor(elenum + 0.5)) end
-        MinZoom(poi_mapping.place[place] - 1)
+        min_zoom(poi_mapping.place[place] - 1)
         return
     end
 
@@ -468,11 +479,11 @@ function node_function()
         -- The first MapLibre zoom the theme draws them at (Mapsforge zoom - 1):
         -- boards by zl, named peaks and volcanoes at 11, the other peaks at 12.
         if is_board then
-            if zl == 0 then MinZoom(6)
-            elseif zl == 1 or zl == 2 then MinZoom(9)
-            else MinZoom(11) end
-        elseif natural == "volcano" or Find("name") ~= "" then MinZoom(11)
-        else MinZoom(12) end
+            if zl == 0 then min_zoom(6)
+            elseif zl == 1 or zl == 2 then min_zoom(9)
+            else min_zoom(11) end
+        elseif natural == "volcano" or Find("name") ~= "" then min_zoom(11)
+        else min_zoom(12) end
         return
     end
 
@@ -489,7 +500,7 @@ function node_function()
             if az == nil or z < az then az = z end
         end
     end
-    if az ~= nil then MinZoom(az) end
+    if az ~= nil then min_zoom(az) end
 
     -- hiking POIs, drawn with the theme's symbols. They carry the raw tags the
     -- theme tests; MinZoom is the later of the theme's first zoom and the tag
@@ -498,7 +509,7 @@ function node_function()
     if hz ~= nil then
         Layer("poi", false)
         hiking_poi_attributes(poi_mapping, elenum)
-        MinZoom(hz)
+        min_zoom(hz)
         return
     end
 
@@ -527,7 +538,7 @@ function node_function()
             if zl ~= nil then AttributeNumeric("zl", zl) end
             local en = tonumber(Find("ele"))
             if en ~= nil then AttributeNumeric("ele", math.floor(en + 0.5)) end
-            MinZoom(math.min(z, 14))
+            min_zoom(math.min(z, 14))
             if z > 14 then AttributeNumeric("minzoom", z) end
             return
         end
@@ -599,7 +610,7 @@ local function generic_area_poi()
             if zl ~= nil then AttributeNumeric("zl", zl) end
             local en = tonumber(Find("ele"))
             if en ~= nil then AttributeNumeric("ele", math.floor(en + 0.5)) end
-            MinZoom(math.min(z, 14))
+            min_zoom(math.min(z, 14))
             if z > 14 then AttributeNumeric("minzoom", z) end
             return
         end
@@ -632,7 +643,7 @@ function way_function()
         local rt = Find("tunnel")
         if rt ~= "" and rt ~= "no" then Attribute("tunnel", "yes") end
         set_names()
-        MinZoom(10)   -- tag mapping: hknetwork / highlight appear at 11 (config.json allows 10)
+        min_zoom(10)   -- tag mapping: hknetwork / highlight appear at 11
         -- The theme writes the ref once per way, level, at the centre of the
         -- way's bounding box (a caption, not text along the line). Those
         -- points are the route_label layer, written by tools/route-labels.py:
@@ -650,7 +661,7 @@ function way_function()
         if az ~= nil then
             LayerAsCentroid("poi")
             hiking_poi_attributes(way_mapping, tonumber(Find("ele")))
-            MinZoom(az)
+            min_zoom(az)
         else
             generic_area_poi()
         end
@@ -661,7 +672,7 @@ function way_function()
         Layer("cycle_route", false)
         Attribute("network", cycnet)
         set_names()
-        MinZoom(12)
+        min_zoom(12)
     end
 
     -- boundaries: only what tag-mapping.xml keeps, from its zoom-appear
@@ -682,7 +693,7 @@ function way_function()
         local pc = Find("protect_class")
         if pc ~= "" then Attribute("protect_class", pc) end
         set_names()
-        MinZoom(bz - 1)
+        min_zoom(bz - 1)
     end
 
     -- open line features: the keys the theme tests, stored as Mapsforge
@@ -704,7 +715,7 @@ function way_function()
         if Find("location") == "underground" then Attribute("location", "underground") end
         -- the theme labels only cliffs and pipelines
         if Find("natural") == "cliff" or Find("man_made") == "pipeline" then set_names() end
-        MinZoom(fz)
+        min_zoom(fz)
     end
 
     -- water areas
@@ -724,7 +735,7 @@ function way_function()
         set_tunnel_bridge()
         set_names()
         -- tag-mapping.xml zoom-appear minus one (MapLibre zoom = Mapsforge zoom - 1)
-        MinZoom(way_mapping.waterway[waterway] - 1)
+        min_zoom(way_mapping.waterway[waterway] - 1)
         return
     end
 
@@ -754,14 +765,14 @@ function way_function()
             if t ~= "" and t ~= "no" then Attribute("tunnel", "yes") end
             if way_canon.area[Find("area")] ~= nil then Attribute("area", "yes") end
             -- tiles stop at 14: a later zoom is carried as minzoom for style.json
-            MinZoom(math.min(lz - 1, 14))
+            min_zoom(math.min(lz - 1, 14))
             if lz - 1 > 14 then AttributeNumeric("minzoom", lz - 1) end
         end
         if bv ~= nil then
             Layer("building", true)
             local h = way_canon.historic[Find("historic")]
             if h ~= nil then Attribute("historic", h) end
-            MinZoom(way_mapping.building[b] - 1)
+            min_zoom(way_mapping.building[b] - 1)
         end
     end
 
@@ -786,7 +797,7 @@ function way_function()
         if tracktypes[tt] then Attribute("tracktype", tt) end
         local access = Find("access")
         if trail_access[access] then Attribute("access", access) end
-        MinZoom(hz - 1)
+        min_zoom(hz - 1)
         return
     end
     -- railways: only the values tag-mapping.xml keeps, as in the Mapsforge map
@@ -800,7 +811,7 @@ function way_function()
         set_tunnel_bridge()
         if Find("area") == "yes" then Attribute("area", "yes") end
         set_way_details({ "gauge" })
-        MinZoom(rz - 1)   -- rail from 6, the others from 11
+        min_zoom(rz - 1)   -- rail from 6, the others from 11
         return
     end
     local aerialway = Find("aerialway")
@@ -809,7 +820,7 @@ function way_function()
         Attribute("class", "aerialway")
         Attribute("subclass", aerialway)
         set_names()
-        MinZoom(12)
+        min_zoom(12)
         return
     end
 end
