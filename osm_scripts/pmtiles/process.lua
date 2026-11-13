@@ -31,10 +31,10 @@ node_keys = {
 -- zoom floor(Z): what the style draws from Z - 0.5 must already be in the
 -- tiles of Z - 1. config.json's layer minzooms lead by the same zoom.
 --
--- Not the features that crowd city tiles: streets and the generic amenity and
--- shop POIs. Led, they made Taipei's z11 tile five times larger (service and
--- residential roads) and its z13 tile half again (amenities), on the city
--- tiles phones parse slowest. They keep the style's own zoom: in the half
+-- Not the features that crowd city tiles: streets, buildings, and the generic
+-- amenity and shop POIs. Led, they made Taipei's z11 tile five times larger
+-- (service and residential roads) and its z13 tile half again (amenities), on
+-- the city tiles phones parse slowest. They keep the style's own zoom: in the half
 -- level before it they are simply not drawn yet, as before.
 local TILE_LEAD = 1
 local function min_zoom(z, dense)
@@ -782,7 +782,7 @@ function way_function()
             Layer("building", true)
             local h = way_canon.historic[Find("historic")]
             if h ~= nil then Attribute("historic", h) end
-            min_zoom(way_mapping.building[b] - 1)
+            min_zoom(way_mapping.building[b] - 1, true)   -- dense: see TILE_LEAD
         end
     end
 
