@@ -354,7 +354,9 @@ install:
 	cp -r $(BUILD_DIR)/{*.zip,*.exe} $(INSTALL_DIR)
 	-cp hgt/$(SUITE)_hgt*.zip $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
+	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
+	-cd $(INSTALL_DIR) && md5sum *.pmtiles >> md5sum.txt
 
 .PHONY: exps
 exps:
@@ -371,6 +373,9 @@ daily:
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
+	# Vector tiles (MapLibre). Leading '-': a failed PMTiles build must not hold
+	# back the Mapsforge/Garmin release; install then just has no .pmtiles.
+	-$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan pmtiles
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 .PHONY: world_suites
