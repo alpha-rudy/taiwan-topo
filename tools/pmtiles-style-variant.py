@@ -274,7 +274,10 @@ def contour_layers(rows):
             lines.append(lay)
         elif r["instr"] == "pathText":
             lay["type"] = "symbol"
-            lay["layout"] = {"symbol-placement": "line", "text-field": ["to-string", ["get", a["k"]]],
+            # Spacing and bend as style.json's contour labels: the theme sets no
+            # repeat-gap, so Mapsforge repeats a label about every 130 px.
+            lay["layout"] = {"symbol-placement": "line", "symbol-spacing": 130, "text-max-angle": 90,
+                             "text-field": ["to-string", ["get", a["k"]]],
                              "text-font": [FACE[a.get("font-style", "normal")]], "text-size": float(a["font-size"]) * SCALE}
             lay["paint"] = {"text-color": rgba(a.get("fill", "#000000")), "text-halo-color": rgba(a.get("stroke", "#FFFFFF")),
                             "text-halo-width": float(a.get("stroke-width", 1)) * SCALE / 2}
