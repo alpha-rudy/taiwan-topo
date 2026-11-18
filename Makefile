@@ -373,9 +373,10 @@ daily:
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan styles
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan mapsforge_zip poi_zip poi_v2_zip locus_poi_zip
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan_bc_dem gmap nsis
-	# Vector tiles (MapLibre). Leading '-': a failed PMTiles build must not hold
-	# back the Mapsforge/Garmin release; install then just has no .pmtiles.
-	-$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan pmtiles
+	# Vector tiles (MapLibre). A failed PMTiles build must not hold back the
+	# Mapsforge/Garmin release, and must not let install ship last week's
+	# .pmtiles either: on failure the output is removed and install skips it.
+	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan SUITE=taiwan pmtiles || rm -f $(ROOT_DIR)/build-taiwan/*.pmtiles
 	$(MAKE) BUILD_DIR=$(ROOT_DIR)/build-taiwan INSTALL_DIR=$(INSTALL_DIR) SUITE=taiwan install
 
 .PHONY: world_suites
