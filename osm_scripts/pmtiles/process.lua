@@ -17,7 +17,7 @@ node_keys = {
     "man_made", "leisure", "information", "mountain_pass", "emergency",
     "barrier", "highway", "railway", "aerialway", "safety_rope", "ladder",
     "rungs", "aeroway", "landuse", "waterway", "shelter_type", "tower", "sport",
-    "station", "ford", "generator:source", "power"
+    "station", "ford", "generator:source", "power", "meta"
 }
 
 -- ---------------------------------------------------------------------------
@@ -415,6 +415,16 @@ end
 -- ---------------------------------------------------------------------------
 
 function node_function()
+    -- The map's version stamp (meta/meta.osm, placed at sea off the south-west
+    -- coast with this build's version in its name), as the theme captions it.
+    if Find("meta") == "map_version" then
+        Layer("place", false)
+        Attribute("class", "map_version")
+        set_names()
+        MinZoom(6)
+        return
+    end
+
     -- places (labels): the values the tag mapping keeps, under its main
     -- value, from its zoom-appear minus one, with capital as the mapping
     -- keeps it (2, yes being its equivalent, or 4). The theme labels a
