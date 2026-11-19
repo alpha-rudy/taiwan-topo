@@ -1023,7 +1023,7 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 PMTILES_STYLE_ZIP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_pmtiles_style.zip
 .PHONY: pmtiles_style_zip
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
-$(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER)
+$(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) styles/mapsforge_style/License.txt
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	-rm -f $@
 	rm -rf $(BUILD_DIR)/pmtiles_style
