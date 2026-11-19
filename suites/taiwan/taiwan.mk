@@ -16,7 +16,7 @@ NAME_MAPSFORGE := $(DEM_NAME)_OSM_$(REGION)_TOPO_Rudy
 NAME_CARTO := carto
 HGT := $(ROOT_DIR)/hgt/hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
-TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map pmtiles
+TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map pmtiles pmtiles_style_zip
 endif
 
 # Suite lists for batch builds
