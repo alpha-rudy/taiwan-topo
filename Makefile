@@ -1015,6 +1015,23 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	python3 $(TOOLS_DIR)/pmtiles-sprite.py $(PMTILES_STYLE) $(ROOT_DIR)/styles/mapsforge_style/moiosm_res $(SPRITE_DIR)
 
+# The PMTiles styles in one zip, published beside the .pmtiles as each Mapsforge
+# _style.zip is beside its map: style.json and paper.json with their sprites.
+# Built with the archive each week, so a style and the tiles it draws match.
+# Their archive, DEM, glyphs and sprite paths are names relative to the
+# archive's folder, which the viewer and the apps point at their own copies.
+PMTILES_STYLE_ZIP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_pmtiles_style.zip
+.PHONY: pmtiles_style_zip
+pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
+$(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	-rm -f $@
+	rm -rf $(BUILD_DIR)/pmtiles_style
+	mkdir -p $(BUILD_DIR)/pmtiles_style
+	cp -a $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) styles/mapsforge_style/License.txt $(SPRITE_DIR) $(SPRITE_PAPER_DIR) \
+		$(BUILD_DIR)/pmtiles_style/
+	cd $(BUILD_DIR)/pmtiles_style && $(ZIP_CMD) $@ *
+
 # Regenerate paper.json after style.json, MOI_OSM.xml or MOI_OSM_twmap.xml
 # changes. The tool first derives style.json from its own theme, which must
 # give style.json back unchanged, then derives the paper style.
