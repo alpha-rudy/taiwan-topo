@@ -351,6 +351,8 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 重大修改歷程
+* 2026, 11/19
+  * 感謝 Cedric 兄，所有區域支援 pmtiles
 * 2026, 10/8
   * DTM 套用內政部地政司 Taiwan DTM 20m v2026
     * 台灣本島(taiwan)、蘭嶼(lanyu)、綠島(ludao)、琉球(liuqiu): MOI DLA v2026 20m

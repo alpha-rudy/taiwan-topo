@@ -350,6 +350,8 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 
 
 ## Major Revision History
+* 2026, 11/19
+  * Thanks to Cedric, all regions support pmtiles
 * 2026, 10/8
   * DTM updated to MOI Department of Land Administration Taiwan DTM 20m v2026
     * taiwan main island, lanyu, ludao, liuqiu: MOI DLA v2026 20m
