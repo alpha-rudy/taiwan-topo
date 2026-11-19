@@ -978,9 +978,12 @@ pmtiles: $(PMTILES)
 # PMTiles for a suite's TARGETS and for daily. A failed vector build must not
 # hold back the suite's Mapsforge/Garmin files, nor let install ship a partial
 # .pmtiles or last week's: on failure the output is removed, and install skips it.
+# The input it shares with Mapsforge is built here, by this make, so a parallel
+# build (-j) never runs its recipe twice at once.
 .PHONY: pmtiles_optional
-pmtiles_optional:
+pmtiles_optional: $(MAPSFORGE_PBF)
 	$(MAKE) pmtiles || rm -f $(PMTILES)
+
 $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
