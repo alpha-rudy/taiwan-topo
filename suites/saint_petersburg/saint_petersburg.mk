@@ -17,7 +17,7 @@ NAME_CARTO := $(REGION)_carto
 # locally (normally carried by the kcwu ele_*_mix.pbf, which this suite omits)
 LANDSEA := true
 TOPO_PAGE := saint_petersburg_topo
-TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip locus_map pmtiles
+TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip locus_map pmtiles_optional
 endif
 
 # Suite lists for batch builds

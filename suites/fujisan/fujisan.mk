@@ -18,7 +18,7 @@ NAME_CARTO := $(REGION)_carto
 HGT := $(ROOT_DIR)/hgt/fujisan_hgtmix.zip
 GTS_STYLE = $(HS_STYLE)
 TOPO_PAGE := fujisan_topo
-TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map pmtiles
+TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map pmtiles_optional
 endif
 
 # Suite lists for batch builds
