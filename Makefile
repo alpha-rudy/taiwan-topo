@@ -1022,7 +1022,8 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 # Their archive, DEM, glyphs and sprite paths are names relative to the
 # archive's folder, which the viewer and the apps point at their own copies.
 # An offline app draws CJK text with the phone's own font, so the zip carries
-# only the Latin glyphs (0-255: digits, ASCII, Latin-1) of each fontstack.
+# only the Latin glyphs (0-255: digits, ASCII, Latin-1) of each fontstack,
+# with the fonts' SIL OFL license as glyphs/LICENSE.txt.
 # version.txt and each style's metadata "taiwan-topo:version" hold VERSION, as
 # the archive's metadata "version" does (tools/pmtiles-style-pack.py); the
 # version stamp rebuilds the zip once a day, as it does the map data.
@@ -1031,7 +1032,8 @@ PMTILES_STYLE_GLYPH_RANGES := 0-255
 .PHONY: pmtiles_style_zip
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
 $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) $(GLYPHS) \
-		styles/mapsforge_style/License.txt $(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP)
+		styles/mapsforge_style/License.txt styles/pmtiles_style/glyphs-LICENSE.txt \
+		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	-rm -f $@
 	rm -rf $(BUILD_DIR)/pmtiles_style
@@ -1039,6 +1041,7 @@ $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE
 	cp -a styles/mapsforge_style/License.txt $(SPRITE_DIR) $(SPRITE_PAPER_DIR) $(BUILD_DIR)/pmtiles_style/
 	python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
 		$(PMTILES_STYLE_GLYPH_RANGES) $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE)
+	cp styles/pmtiles_style/glyphs-LICENSE.txt $(BUILD_DIR)/pmtiles_style/glyphs/LICENSE.txt
 	cd $(BUILD_DIR)/pmtiles_style && $(ZIP_CMD) $@ *
 
 # Regenerate paper.json after style.json, MOI_OSM.xml or MOI_OSM_twmap.xml
