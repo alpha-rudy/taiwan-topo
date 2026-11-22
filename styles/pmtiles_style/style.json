@@ -22,7 +22,8 @@
       {"id": "elmt-emergency-h", "name": {"zh": "緊急設施", "en": "emergency"}, "enabled": true, "cats": ["emergency"]},
       {"id": "elmt-tourism-h", "name": {"zh": "旅遊和人文", "en": "tourism + culture"}, "enabled": true, "cats": ["tourism", "viewpoint"]},
       {"id": "elmt-pubtrans-h", "name": {"zh": "大眾運輸", "en": "public transport"}, "enabled": true, "cats": ["pubtrans", "aerway"]},
-      {"id": "elmt-buildings-h", "name": {"zh": "特殊建築物", "en": "special buildings"}, "enabled": true, "cats": ["buildings"]}
+      {"id": "elmt-buildings-h", "name": {"zh": "特殊建築物", "en": "special buildings"}, "enabled": true, "cats": ["buildings"]},
+      {"id": "elmt-hillshade", "name": {"zh": "地形陰影", "en": "hillshade"}, "enabled": true, "cats": ["hillshade"]}
     ]
   },
   "glyphs": "glyphs/{fontstack}/{range}.pbf",
@@ -139,7 +140,8 @@
         "hillshade-accent-color": "#6b6450",
         "hillshade-illumination-direction": 315,
         "hillshade-illumination-anchor": "viewport"
-      }
+      },
+      "metadata": {"taiwan-topo:cats": ["hillshade"]}
     },
 
     {"id": "contour-ext-major-z9-10", "type": "line", "source": "topo", "source-layer": "contour", "filter": ["all", ["==", ["get", "interval"], "contour_ext"], ["==", ["get", "class"], "elevation_major"], ["in", ["get", "ele"], ["literal", [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]]]], "minzoom": 8, "maxzoom": 10, "layout": {"line-join": "round"}, "paint": {"line-color": ["match", ["get", "ele"], 8000, "rgba(0,0,0,1.0)", 7000, "rgba(0,0,0,1.0)", 6000, "rgba(0,0,0,1.0)", 5000, "rgba(0,0,0,1.0)", 4000, "rgba(0,0,0,1.0)", 3000, "rgba(0,0,0,1.0)", 2000, "rgba(17,17,17,0.933)", 1000, "rgba(34,34,34,0.867)", "rgba(0,0,0,0)"], "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 11, ["match", ["get", "ele"], 8000, 1.8, 7000, 1.6, 6000, 1.4, 5000, 1.2, 4000, 1.0, 3000, 0.8, 2000, 0.6, 1000, 0.4, 0], 23, ["*", ["match", ["get", "ele"], 8000, 1.8, 7000, 1.6, 6000, 1.4, 5000, 1.2, 4000, 1.0, 3000, 0.8, 2000, 0.6, 1000, 0.4, 0], 129.7463]]}, "metadata": {"taiwan-topo:cats": ["contour"]}},
