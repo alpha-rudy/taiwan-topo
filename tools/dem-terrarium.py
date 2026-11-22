@@ -9,13 +9,18 @@ integer type (int16), so every value it writes is a whole metre: B is always
 0, and the tiles compress to well under half the Mapbox PNGs with the same elevations.
 A tile whose elevations are not whole metres is an error, not rounded away.
 
-Usage: dem-terrarium.py <tiles.mbtiles>
+rio rgbify writes no bounds, so go-pmtiles would give the archive a whole-world
+header. Write the source mosaic's extent as bounds (and its middle as center)
+so the PMTiles header says where the elevations are.
+
+Usage: dem-terrarium.py <tiles.mbtiles> <source.vrt>
 """
 import io
 import sqlite3
 import sys
 
 import numpy as np
+import rasterio
 from PIL import Image
 
 
@@ -34,6 +39,16 @@ def main():
         db.execute("UPDATE tiles SET tile_data = ? WHERE zoom_level = ? AND tile_column = ? AND tile_row = ?",
                    (buf.getvalue(), z, x, y))
     db.execute("UPDATE metadata SET value = 'webp' WHERE name = 'format'")
+    with rasterio.open(sys.argv[2]) as src:
+        if src.crs is None or not src.crs.is_geographic:
+            sys.exit("%s is not in geographic coordinates" % sys.argv[2])
+        w, s, e, n = src.bounds
+    min_z = db.execute("SELECT MIN(zoom_level) FROM tiles").fetchone()[0]
+    db.execute("DELETE FROM metadata WHERE name IN ('bounds', 'center')")
+    db.executemany("INSERT INTO metadata (name, value) VALUES (?, ?)", [
+        ("bounds", "%.6f,%.6f,%.6f,%.6f" % (w, s, e, n)),
+        ("center", "%.6f,%.6f,%d" % ((w + e) / 2, (s + n) / 2, min_z)),
+    ])
     db.commit()
     db.execute("VACUUM")
     db.close()
