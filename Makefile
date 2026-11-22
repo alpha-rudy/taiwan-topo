@@ -355,6 +355,7 @@ install:
 	-cp hgt/$(SUITE)_hgt*.zip $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
+	-cp $(BUILD_DIR)/dem/*.pmtiles $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	-cd $(INSTALL_DIR) && md5sum *.pmtiles >> md5sum.txt
 
