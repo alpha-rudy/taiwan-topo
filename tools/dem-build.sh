@@ -100,7 +100,7 @@ PYTHONWARNINGS="ignore:Dataset has no geotransform" \
     --max-z "$MAX_Z" \
     "$VRT" "$MBTILES"
 
-python3 "$(dirname "$0")/dem-terrarium.py" "$MBTILES"
+python3 "$(dirname "$0")/dem-terrarium.py" "$MBTILES" "$VRT"
 
 echo "DEM: converting MBTiles → PMTiles..."
 rm -f "$OUTPUT_PMTILES"
