@@ -1034,13 +1034,13 @@ PMTILES_STYLE_GLYPH_RANGES := 0-255
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
 $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) $(GLYPHS) \
 		styles/mapsforge_style/License.txt styles/pmtiles_style/glyphs-LICENSE.txt \
-		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP)
+		$(TOOLS_DIR)/pmtiles-style-pack.py $(DEM_PMTILES) $(VERSION_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	-rm -f $@
 	rm -rf $(BUILD_DIR)/pmtiles_style
 	mkdir -p $(BUILD_DIR)/pmtiles_style
 	cp -a styles/mapsforge_style/License.txt $(SPRITE_DIR) $(SPRITE_PAPER_DIR) $(BUILD_DIR)/pmtiles_style/
-	python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
+	python3 $(TOOLS_DIR)/pmtiles-style-pack.py --dem $(DEM_PMTILES) $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
 		$(PMTILES_STYLE_GLYPH_RANGES) $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE)
 	cp styles/pmtiles_style/glyphs-LICENSE.txt $(BUILD_DIR)/pmtiles_style/glyphs/LICENSE.txt
 	cd $(BUILD_DIR)/pmtiles_style && $(ZIP_CMD) $@ *
