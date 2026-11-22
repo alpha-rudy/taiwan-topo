@@ -219,7 +219,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if tags.get('name') is None:
             tags['name'] = '取水點'
         if tags.get('name:en') is None:
-            tags['name'] = 'water'
+            tags['name:en'] = 'water'
 
     def handle_bus_platform(self, tags):
         tags['highway'] = 'bus_stop'
