@@ -44,6 +44,10 @@ from pmtiles_theme import FACE, SCALE, all_rows, icon_name, rgba  # noqa: E402
 SKIP_CATS = {"waypoint", "waypoint-label"}  # the app's own GPX waypoints
 # peaks and summit boards are the ele_point layers, paired above like any other
 ELE_POINT = {("man_made", "summit_board"), ("natural", "peak"), ("natural", "volcano")}
+# overlays the theme's stylemenu has no entry for: in Mapsforge apps hillshading
+# is an app setting, not a theme category. Listed after the theme's overlays when
+# some layer carries their cats; on by default unless --hide hides those layers.
+EXTRA_OVERLAYS = [{"id": "elmt-hillshade", "name": {"zh": "地形陰影", "en": "hillshade"}, "cats": ["hillshade"]}]
 
 WIDTH_K = 1.5 ** 12  # line widths grow 1.5x per zoom from z11 to z23
 MAXZ = 22
@@ -634,6 +638,14 @@ def main():
             x["metadata"] = md
         else:
             x.pop("metadata", None)
+    for ex in EXTRA_OVERLAYS:
+        lids = [lid for lid, cs in lcats.items() if any(c in ex["cats"] for c in cs)]
+        if lids:
+            ovs.append({"id": ex["id"], "name": ex["name"],
+                        "enabled": not all(lid in o.hide for lid in lids), "cats": ex["cats"]})
+    for lid in o.hide:
+        lay = next(x for x in out if x["id"] == lid)
+        lay.setdefault("layout", {})["visibility"] = "none"
 
     def drawn(on):
         act = set(style_cats)
@@ -656,9 +668,6 @@ def main():
                                     "rather than editing it." % os.path.basename(o.theme))
     s["metadata"]["taiwan-topo:style-cats"] = style_cats
     s["metadata"]["taiwan-topo:overlays"] = keep_ovs
-    for lid in o.hide:
-        lay = next(x for x in out if x["id"] == lid)
-        lay.setdefault("layout", {})["visibility"] = "none"
     s["layers"] = out
     if o.sprite:
         s["sprite"] = o.sprite
