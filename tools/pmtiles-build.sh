@@ -43,6 +43,13 @@
 #                     derived from the sorted PBF's data extent (the prepared
 #                     PBF has no bbox in its header).
 #   extra_opts      - Optional extra tilemaker flags (e.g. "--store /path")
+#
+# The archive's JSON metadata also carries "version": <version>, the same
+# string as the map's version stamp and the style zip's version.txt, so an app
+# can tell whether an archive and a style come from the same build. tilemaker
+# 3.1 writes only name, description, attribution and vector_layers to PMTiles
+# metadata (a "version" in the config is dropped), so it is added afterwards
+# with go-pmtiles' edit ($GOPMTILES_CMD, default "pmtiles").
 
 set -e
 
@@ -56,6 +63,7 @@ BBOX="$7"
 EXTRA_OPTS="$8"
 
 OSMIUM_CMD="${OSMIUM_CMD:-osmium}"
+GOPMTILES_CMD="${GOPMTILES_CMD:-pmtiles}"
 
 if [ -z "$INPUT_PBF" ] || [ -z "$OUTPUT_PMTILES" ] || [ -z "$TILEMAKER_CMD" ] \
    || [ -z "$CONFIG_JSON" ] || [ -z "$PROCESS_LUA" ]; then
@@ -74,7 +82,8 @@ SORTED_PBF="${OUTPUT_PMTILES%.pmtiles}.sort.tmp.pbf"
 RENUMBERED_PBF="${OUTPUT_PMTILES%.pmtiles}.renum.tmp.pbf"
 SPLIT_PBF="${OUTPUT_PMTILES%.pmtiles}.split.tmp.pbf"
 ROUTE_LABELS="$(cd "$(dirname "$OUTPUT_PMTILES")" && pwd)/$(basename "${OUTPUT_PMTILES%.pmtiles}").route-labels.tmp.geojson"
-cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
+METADATA_JSON="${OUTPUT_PMTILES%.pmtiles}.metadata.tmp.json"
+cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS" "$METADATA_JSON"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
 trap cleanup EXIT
 
 # tilemaker reads several config strings (name/version/description) without
@@ -122,3 +131,16 @@ rm -f "$OUTPUT_PMTILES"
     $EXTRA_OPTS
 
 test -s "$OUTPUT_PMTILES" || { echo "ERROR: tilemaker produced no output ($OUTPUT_PMTILES)" >&2; exit 1; }
+
+# 5. The build version in the archive's metadata (see the note above).
+"$GOPMTILES_CMD" show --metadata "$OUTPUT_PMTILES" > "$METADATA_JSON"
+python3 - "$METADATA_JSON" "${VERSION:-dev}" <<'PY'
+import json, sys
+path, version = sys.argv[1:3]
+with open(path) as f:
+    meta = json.load(f)
+meta["version"] = version
+with open(path, "w") as f:
+    json.dump(meta, f, ensure_ascii=False)
+PY
+"$GOPMTILES_CMD" edit --quiet "$OUTPUT_PMTILES" --metadata="$METADATA_JSON"
