@@ -109,6 +109,8 @@ Using a Wrapper Script:
 3. **下載一律連 https://rudymap.tw 。** 不要直接連鏡像站；rudymap.tw 會依各站狀況分流。
 4. **User-Agent 帶上 App 名稱。** 格式是 `AppName/版本 (+聯絡網址)`，例如 `MyHikingApp/2.1.0 (+https://example.com/contact)`。查詢更新與實際下載的請求都要帶。查有沒有新版用 HEAD，每個檔案只 GET 一次，續傳直接連轉址後的鏡像站網址。細節見 https://oslab.tw/rudymap/developers 。
 
+向量版（PMTiles）怎麼在網頁和 App 上顯示，見 [docs/PMTILES.md](docs/PMTILES.md)。
+
 其他問題請開 issue。
 
 Apps are welcome to use Rudy Map, free or paid, with or without ads, as long as they:
@@ -117,5 +119,7 @@ Apps are welcome to use Rudy Map, free or paid, with or without ads, as long as 
 2. **Credit Rudy Map** in the app, with a link to https://rudymap.tw .
 3. **Download through https://rudymap.tw**, never from a mirror directly; rudymap.tw spreads downloads across the mirrors.
 4. **Name the app in the User-Agent**, as `AppName/version (+contact URL)`, e.g. `MyHikingApp/2.1.0 (+https://example.com/contact)`, on both update checks and downloads. Check for updates with HEAD, GET each file once, and resume against the mirror URL you were redirected to. Details: https://oslab.tw/rudymap/developers .
+
+To show the vector map (PMTiles) on a web page or in an app, see [docs/PMTILES.md](docs/PMTILES.md).
 
 For anything else, please open an issue.
