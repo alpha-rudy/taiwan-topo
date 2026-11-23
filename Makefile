@@ -1037,7 +1037,7 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 # An offline app draws CJK text with the phone's own font, so the zip carries
 # only the Latin glyphs (0-255: digits, ASCII, Latin-1) of each fontstack,
 # with the fonts' SIL OFL license as glyphs/LICENSE.txt.
-# version.txt and each style's metadata "rudymap:version" hold VERSION, as
+# version.txt and each style's metadata "taiwan-topo:version" hold VERSION, as
 # the archive's metadata "version" does (tools/pmtiles-style-pack.py); the
 # version stamp rebuilds the zip once a day, as it does the map data.
 PMTILES_STYLE_ZIP := $(BUILD_DIR)/rudymap_pmtiles_style.zip

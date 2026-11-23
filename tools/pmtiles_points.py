@@ -164,7 +164,7 @@ class Points:
             lay["layout"] = layout
             lay["paint"] = paint
         if cats:
-            lay["metadata"] = {"rudymap:cats": cats}
+            lay["metadata"] = {"taiwan-topo:cats": cats}
         if r["n"] is None:
             lay["layout"]["visibility"] = "none"
         if not lay["layout"]:

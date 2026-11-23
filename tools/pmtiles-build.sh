@@ -54,7 +54,7 @@
 # Every region draws with one shared style (rudymap_pmtiles_style.zip), so what
 # differs per region travels in the archive's own metadata instead:
 #   PMTILES_ATTRIBUTION  replaces "attribution", e.g. naming the region's DEM.
-#   PMTILES_DEM          the region's DEM archive: "rudymap:dem_version" is the
+#   PMTILES_DEM          the region's DEM archive: "taiwan-topo:dem_version" is the
 #                        first 16 hex digits of its SHA-256. The DEM build is
 #                        deterministic, so this changes only when the elevations
 #                        do; an app can skip downloading the DEM while it stays
@@ -160,7 +160,7 @@ if dem:
     with open(dem, "rb") as f:
         for block in iter(lambda: f.read(1 << 20), b""):
             h.update(block)
-    meta["rudymap:dem_version"] = h.hexdigest()[:16]
+    meta["taiwan-topo:dem_version"] = h.hexdigest()[:16]
 with open(path, "w") as f:
     json.dump(meta, f, ensure_ascii=False)
 PY

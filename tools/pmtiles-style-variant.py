@@ -288,7 +288,7 @@ def contour_layers(rows):
             labels.append(lay)
         else:
             sys.exit("contour rule %d draws %s" % (r["m"], r["instr"]))
-        lay["metadata"] = {"rudymap:cats": ["contour"]}
+        lay["metadata"] = {"taiwan-topo:cats": ["contour"]}
         if r["n"] is None:
             lay["layout"]["visibility"] = "none"
     return lines, labels
@@ -628,11 +628,11 @@ def main():
         elif x["id"] in m_of:
             cs = list(dict.fromkeys(c for c in row_of_m[m_of[x["id"]]]["cats"] if c not in style_cats))
         else:
-            cs = list((x.get("metadata") or {}).get("rudymap:cats", []))
+            cs = list((x.get("metadata") or {}).get("taiwan-topo:cats", []))
         md = dict(x.get("metadata") or {})
-        md.pop("rudymap:cats", None)
+        md.pop("taiwan-topo:cats", None)
         if cs:
-            md["rudymap:cats"] = cs
+            md["taiwan-topo:cats"] = cs
             lcats[x["id"]] = cs
         if md:
             x["metadata"] = md
@@ -666,8 +666,8 @@ def main():
         s["metadata"]["comment"] = ("MapLibre GL style for the Taiwan-TOPO PMTiles schema in the %s theme, derived from "
                                     "style.json by tools/pmtiles-style-variant.py (make paper_style); regenerate it "
                                     "rather than editing it." % os.path.basename(o.theme))
-    s["metadata"]["rudymap:style-cats"] = style_cats
-    s["metadata"]["rudymap:overlays"] = keep_ovs
+    s["metadata"]["taiwan-topo:style-cats"] = style_cats
+    s["metadata"]["taiwan-topo:overlays"] = keep_ovs
     s["layers"] = out
     if o.sprite:
         s["sprite"] = o.sprite

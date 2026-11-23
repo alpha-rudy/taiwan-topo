@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fill the PMTiles style zip's folder: the styles, their Latin glyphs, the version.
 
-Writes each style into OUT_DIR with metadata "rudymap:version" set to
+Writes each style into OUT_DIR with metadata "taiwan-topo:version" set to
 VERSION, copies the glyph ranges RANGES (comma-separated, e.g. 0-255) of every
 fontstack the styles name from GLYPHS_DIR into OUT_DIR/glyphs/<fontstack>/,
 and writes VERSION to OUT_DIR/version.txt. An offline app draws CJK text with
@@ -28,7 +28,7 @@ def main(argv):
     for path in styles:
         with open(path) as f:
             style = json.load(f)
-        style.setdefault("metadata", {})["rudymap:version"] = version
+        style.setdefault("metadata", {})["taiwan-topo:version"] = version
         for layer in style["layers"]:
             stack = layer.get("layout", {}).get("text-font")
             if stack:
