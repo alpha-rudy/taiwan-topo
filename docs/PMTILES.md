@@ -15,9 +15,9 @@ Each release has three files for the vector map:
 | `MOI_OSM_Taiwan_TOPO_Rudy_pmtiles_style.zip` | The styles and what they need: `style.json` (the Mapsforge look), `paper.json` (the paper look), `sprite/` and `sprite-paper/` (icons), `glyphs/` (Latin text), `version.txt`, `License.txt`. |
 | `taiwan_dem.pmtiles` | Elevations for hillshading: Terrarium-encoded 512 px raster tiles, zoom 6–12. Optional. |
 
-The zip's glyphs cover only the Latin range (`0-255.pbf` of each font). Chinese,
-Japanese and Korean text is drawn with the device's own fonts; see
-[CJK text](#cjk-text).
+The zip's glyphs cover only the Latin range (`0-255.pbf` of each font), for apps that
+draw Chinese, Japanese and Korean text with the device's own fonts. A web page needs
+the full glyph set; see [Text and glyphs](#text-and-glyphs).
 
 ## How a style finds its data
 
@@ -31,8 +31,8 @@ A MapLibre style must name its sources, so `style.json` and `paper.json` have tw
 Every layer refers to a source by its id, never by a file name. The URLs in the
 files, like `glyphs` (`glyphs/{fontstack}/{range}.pbf`) and `sprite` (`sprite/sprite`,
 or `sprite-paper/sprite` in `paper.json`), are names relative to the folder that
-holds the files. They are defaults, so the style opens as it is when everything sits
-in one folder.
+holds the files. They say where each file sits in the zip and beside it, but MapLibre
+needs complete URLs, so a consumer always replaces them.
 
 What a web page or an app does, before it hands the style to MapLibre:
 
@@ -51,6 +51,12 @@ The same steps let one style draw any archive built with this project's schema.
 Unzip the style zip next to the two archives on your server. The server must answer
 HTTP Range requests, which PMTiles reads with. If the page is on another origin, it
 must also allow that origin with CORS.
+
+Serve the full glyph set too, not only the zip's Latin glyphs: the
+[openmaptiles/fonts v2.0](https://github.com/openmaptiles/fonts/releases/tag/v2.0)
+`noto-sans.zip`, faces `Noto Sans Regular`, `Noto Sans Bold` and `Noto Sans Italic`
+(what `make glyphs` unpacks into `glyphs/`). See [Text and glyphs](#text-and-glyphs)
+for why.
 
 ```html
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
@@ -94,20 +100,31 @@ Then point every URL at a local file:
 After this rewrite the map makes no network request, so it works offline. It needs a
 MapLibre Native release that reads `pmtiles://` sources.
 
-## CJK text
+## Text and glyphs
 
-The style zip carries Latin glyphs only, because CJK glyph files are large and every
-phone and browser already has CJK fonts. MapLibre draws CJK characters with a local
-font when its `localIdeographFontFamily` option is set:
+MapLibre draws a character either with a local font or with a glyph from the style's
+`glyphs` URL. Only ideographs, kana and hangul can be drawn locally. Everything else,
+including CJK and full-width punctuation such as `（` and `・`, comes from the glyph
+URL, one file per block of 256 characters.
 
-- MapLibre GL JS sets it to `sans-serif` by default. Setting it to `false` makes the
-  map ask the glyph URL for CJK characters, and the labels come out blank.
-- In MapLibre Native, check that the map options set it. Some SDK wrappers leave it
-  unset. CJK labels then come out blank while Latin text and numbers still show.
+The style zip carries only the Latin block (`0-255.pbf`). That keeps an offline package
+small, and phones already have CJK fonts, but it means:
 
-Only ideographs, kana and hangul are drawn with the local font. Other characters
-outside the Latin range, such as full-width punctuation, have no glyphs in the zip and
-are left out of the label.
+- **On a web page**, serve the full glyph set (see [above](#on-a-web-page-maplibre-gl-js)).
+  MapLibre GL JS 4.7.1 does not skip a glyph file it cannot load: the request error
+  fails the whole tile, so one label with a full-width bracket can leave a tile
+  blank. GL JS draws ideographs, kana and hangul locally by default
+  (`localIdeographFontFamily: "sans-serif"`); setting it to `false` sends those to the
+  glyph URL as well.
+- **In an app**, turn local drawing on, or CJK labels come out blank:
+  - Android: the map options' `localIdeographFontFamily`. Map options built in code
+    may leave it unset, and so may SDK wrappers.
+  - iOS: on by default with the system fonts; the `MLNIdeographicFontFamilyName`
+    Info.plist key changes or disables it.
+
+  Characters outside the Latin block that are not drawn locally have no glyph file in
+  the zip. Check how your SDK handles a missing glyph file, with names that contain
+  full-width punctuation, or ship the blocks those names need.
 
 ## Versions
 
