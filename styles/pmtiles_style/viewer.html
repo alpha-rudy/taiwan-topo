@@ -55,16 +55,16 @@
     // when the style has it or a switched-on overlay holds it.
     function overlayMenu(map, style) {
       const md = style.metadata || {};
-      const overlays = md["taiwan-topo:overlays"];
+      const overlays = md["rudymap:overlays"];
       if (!overlays || !overlays.length) return;
-      const styleCats = md["taiwan-topo:style-cats"] || [];
+      const styleCats = md["rudymap:style-cats"] || [];
       const on = {};
       for (const o of overlays) on[o.id] = o.enabled;
       const apply = () => {
         const active = new Set(styleCats);
         for (const o of overlays) if (on[o.id]) o.cats.forEach((c) => active.add(c));
         for (const l of style.layers) {
-          const cats = l.metadata && l.metadata["taiwan-topo:cats"];
+          const cats = l.metadata && l.metadata["rudymap:cats"];
           if (!cats) continue;
           // the cats decide: a layer of an overlay that is off by default
           // starts hidden in style.json and shows once that overlay is on
