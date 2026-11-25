@@ -9,6 +9,17 @@ export PATH=~/bin:$PATH
 export JAVA8_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 export RCLONE_OPTS="--checksum --transfers 1 --checkers 1 --tpslimit 12 --low-level-retries 10"
 
+# A second copy of each drop on Cloudflare R2 (data.rudymap.tw), for mirrors
+# that sync from there instead of Dropbox. Only when this machine's rclone
+# config has a remote named rudyr2 (see docker/README.md); without it the build
+# does what it did before. Dropbox stays the release: a failed R2 upload is
+# reported and does not fail the build.
+upload_r2() {
+    if rclone listremotes | grep -qx 'rudyr2:'; then
+        rclone copy ${RCLONE_OPTS} . "rudyr2:share-mapdata/$1" || echo "R2 upload to share-mapdata/$1 failed"
+    fi
+}
+
 date > log/mem_$(date +%d).log
 while sleep 10; do { date +'DS: %H:%M:%S'; free -h; df -h /; } >> log/mem_$(date +%d).log; done > /dev/null 2> /dev/null &
 # background logging is fine, as build machine would be shutdown after building
@@ -29,6 +40,7 @@ if [[ "${TARGET}" == *"suites"* ]]; then
     cd ${INSTALL_DIR}
     tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
     rclone copy ${RCLONE_OPTS} . rudybox:Apps/share-mapdata/
+    upload_r2
     echo "Completed with weekly drop."
 elif [ "${TARGET}" == "daily" ]; then
     ./tools/docker-make INSTALL_DIR=/workspace/${INSTALL_DIR} ${TARGET}
@@ -36,12 +48,14 @@ elif [ "${TARGET}" == "daily" ]; then
     cd ${INSTALL_DIR}
     tree -L 1 -H . | sed -e 's,<br>.*href="\./.*/".*</a>.*<br>,<br>,' -e 's,<a .*href="\.".*>\.</a>,,' > files.html
     rclone copy ${RCLONE_OPTS} . rudybox:Apps/share-mapdata/drops/
+    upload_r2 drops/
     echo "Completed with daily drop."
 elif [ "${TARGET}" == "world" ]; then
     for i in annapurna alps_core alps_western alps_eastern alps_fareast elbrus fujisan kashmir kumano nikko_oze; do
     	./tools/docker-make ${i}_suites
         cd install-${i}
         rclone copy ${RCLONE_OPTS} . rudybox:Apps/share-mapdata/
+        upload_r2
 	cd ..
     done
     echo "Completed with weekly world drop."
