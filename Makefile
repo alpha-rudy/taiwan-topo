@@ -350,6 +350,42 @@ topo.md:
 		fi
 	cp -a docs/images $(BUILD_DIR)/
 
+.PHONY: legend_samples legend legend_check
+legend_samples:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	python3 $(TOOLS_DIR)/capture_legend_samples.py \
+		--catalog docs/legend/catalog.toml \
+		--style $(PMTILES_STYLE) \
+		--res-dir styles/mapsforge_style/moiosm_res \
+		--out-dir $(DOWNLOAD_DIR)/legend_samples \
+		$(if $(wildcard $(PMTILES)),--pmtiles $(PMTILES)) \
+		$(if $(wildcard $(DEM_PMTILES)),--dem $(DEM_PMTILES))
+
+legend:
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(BUILD_DIR)
+	python3 $(TOOLS_DIR)/build_legend.py \
+		--catalog docs/legend/catalog.toml \
+		--theme styles/mapsforge_style/MOI_OSM.xml \
+		--res-dir styles/mapsforge_style/moiosm_res \
+		--templates-dir docs/legend \
+		--samples-dir $(DOWNLOAD_DIR)/legend_samples \
+		$(if $(wildcard $(PMTILES)),--pmtiles $(PMTILES)) \
+		--out-dir $(BUILD_DIR) \
+		--version "$(VERSION)"
+
+legend_check:
+	python3 $(TOOLS_DIR)/build_legend.py \
+		--catalog docs/legend/catalog.toml \
+		--theme styles/mapsforge_style/MOI_OSM.xml \
+		--res-dir styles/mapsforge_style/moiosm_res \
+		--templates-dir docs/legend \
+		--samples-dir $(DOWNLOAD_DIR)/legend_samples \
+		$(if $(wildcard $(PMTILES)),--pmtiles $(PMTILES)) \
+		--out-dir $(BUILD_DIR) \
+		--version "$(VERSION)" \
+		--no-pdf --check-coverage
+
 .PHONY: install
 install:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -399,6 +435,8 @@ install:
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/dem/*.pmtiles $(INSTALL_DIR)
+	-cp $(BUILD_DIR)/legend.html $(BUILD_DIR)/legend_detail.pdf $(BUILD_DIR)/legend_compact.pdf $(BUILD_DIR)/legend_onepage.pdf $(INSTALL_DIR)
+	-cp -r $(BUILD_DIR)/legend_samples $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
 	-cd $(INSTALL_DIR) && md5sum *.pmtiles >> md5sum.txt
 
