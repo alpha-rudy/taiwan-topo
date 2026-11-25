@@ -321,6 +321,29 @@ local landcover_theme = {
         ["landing_site"]=true
     },
 }
+-- Areas the theme draws under area=yes or area:highway=pedestrian (a square, a
+-- paved yard, steps mapped as an area) and the access textures over them. Most
+-- have no land cover key, so they go to the landcover layer on their own; the
+-- theme fills a highway area only for these values.
+local highway_area_values = {
+    path=true, track=true, footway=true, pedestrian=true, service=true, unclassified=true,
+    residential=true, road=true, living_street=true, steps=true
+}
+local area_access_values = { destination=true, private=true, acc_no=true }
+local function highway_area_zoom()
+    local z = way_mapping["area:highway"][Find("area:highway")]
+    local a = Find("area")
+    if way_canon.area[a] ~= nil then
+        local hv = way_canon.highway[Find("highway")]
+        local av = way_canon.access[Find("access")]
+        if (hv ~= nil and highway_area_values[hv]) or (av ~= nil and area_access_values[av]) then
+            local az = way_mapping.area[a]
+            if z == nil or az < z then z = az end
+        end
+    end
+    return z
+end
+
 local landcover_attr_keys = {
     "landuse", "natural", "leisure", "amenity", "aeroway", "tourism", "power", "sport",
     "historic", "man_made", "shop", "railway", "information", "piste:type", "emergency", "wood",
@@ -750,6 +773,8 @@ function way_function()
                 if lz == nil or za < lz then lz = za end
             end
         end
+        local hz = highway_area_zoom()
+        if hz ~= nil and (lz == nil or hz < lz) then lz = hz end
         local b = Find("building")
         local bv = way_canon.building[b]
         if lz ~= nil then
@@ -759,6 +784,13 @@ function way_function()
                 if cv ~= nil then Attribute(k, cv) end
             end
             if bv ~= nil then Attribute("building", bv) end
+            if hz ~= nil then
+                local hv = way_canon.highway[Find("highway")]
+                if hv ~= nil then Attribute("highway", hv) end
+                local ah = way_canon["area:highway"][Find("area:highway")]
+                if ah ~= nil then Attribute("area:highway", ah) end
+                set_names()   -- the theme captions these areas
+            end
             -- the theme's parent rules also test tunnel and area
             local t = Find("tunnel")
             if t ~= "" and t ~= "no" then Attribute("tunnel", "yes") end
@@ -796,6 +828,9 @@ function way_function()
         if tracktypes[tt] then Attribute("tracktype", tt) end
         local access = Find("access")
         if trail_access[access] then Attribute("access", access) end
+        -- the theme draws arrows along oneway=yes and oneway=-1
+        local ow = way_canon.oneway[Find("oneway")]
+        if ow == "yes" or ow == "-1" then Attribute("oneway", ow) end
         MinZoom(hz - 1)
         return
     end
