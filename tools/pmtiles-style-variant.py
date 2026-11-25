@@ -181,6 +181,11 @@ def restyle(lay, a, b, symA, symB, problems):
         elif "stroke-dasharray" in changed:
             pa.pop("line-dasharray", None)
             done.add("stroke-dasharray")
+        if "line-pattern" in pa and {"src", "symbol-width", "symbol-height"} & changed:
+            # a texture along the line (<line src=...>): the sprite of each style draws the
+            # pattern from its own theme's file of that name
+            pa["line-pattern"] = icon_name(B)
+            done |= {"src", "symbol-width", "symbol-height"} & changed
         if ins == "area":
             done |= {"fill", "src"} & changed  # the area's outline layer
     elif t == "fill":
