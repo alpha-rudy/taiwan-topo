@@ -1022,13 +1022,15 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 .PHONY: pmtiles
 pmtiles: $(PMTILES)
 # The archive names the region's DEM in its attribution and carries the DEM's
-# content version (tools/pmtiles-build.sh), so the shared style needs neither.
-# The DEM is an order-only prerequisite: it is built first, and a rebuilt DEM
-# reaches the archive's metadata with the next archive build (weekly, with the
-# map data), not by rebuilding the archive on its own.
+# content version (tools/pmtiles-build.sh), so the shared style needs neither:
+# its sources carry no attribution, and a viewer shows the archive's own
+# (pmtiles.Protocol({metadata: true}) in MapLibre GL JS).
+# The DEM is a prerequisite: a rebuilt DEM rebuilds the archive, so an archive
+# and the DEM published beside it always agree on dem_version. A build machine
+# without the region's DEM builds it first.
 PMTILES_DEM := $(if $(HGT),$(DEM_PMTILES))
 PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors$(if $(DEM_NAME),; DEM: $(DEM_NAME))
-$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py | $(PMTILES_DEM)
+$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
