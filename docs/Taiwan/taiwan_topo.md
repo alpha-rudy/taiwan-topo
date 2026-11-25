@@ -1,254 +1,251 @@
-MOI.OSM - Taiwan TOPO
-=====================
+魯地圖 — MOI.OSM Taiwan TOPO
+=============================
 
-每週四發行 MOI.OSM - Taiwan TOPO v__version__
+每週四發行 魯地圖 (MOI.OSM - Taiwan TOPO) v__version__
 
-適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！
+台灣免費開源離線登山地圖，適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！
 
-## 相關網頁
+[圖例 V1R3](./legend_V1R3.pdf) · [線上圖磚](https://tiles.rudymap.tw) · [手機專頁](https://rudymap.tw/app) · [Beta 版](https://rudymap.tw/drops/beta.html) · [臉書社團](https://www.facebook.com/groups/taiwan.topo) · [GitHub](https://github.com/alpha-rudy/taiwan-topo)
 
-* 說明網頁: https://rudymap.tw/taiwan_topo.html
-* 魯地圖分流器 (Cedric Shih)
-  * rudymap.tw
-  * https://rudymap.tw/app (手機離線 APP 專用)
-* 魯地圖鏡像站
-  * kcwu, moi.kcwu.csie.org
-  * happyman, map.happyman.idv.tw
-  * peakit (山盒), rudy.peakitcdn.com
-  * oslab (Outdoor Safety Lab), d3r5lsn28erp7o.cloudfront.net
-* 使用討論（臉書社團）: https://www.facebook.com/groups/taiwan.topo
-* 開發網站（GitHub）: https://github.com/alpha-rudy/taiwan-topo
-* Beta 版（每周一、三、六發行）:
-  * https://rudymap.tw/drops/beta.html (自動分流)
-* 阿牛兄的圖例說明: [圖例 V1R3版](./legend_V1R3.pdf)
-* 其他國外山區 (不固定發行) 的地圖仍在建構中，請拉到網頁後面，"說明" 之前。
+## 手機 App 自動安裝
 
-* ![山林日誌](images/hj.png =36x) 自動安裝
-  * 請於 APP 內直接安裝地圖
-    > 安裝示範影片：https://youtu.be/HP6BXKdBUvg
+* 新手選版指南
+  > 若您正用手機瀏覽，也可直接前往手機離線 APP 專用頁：https://rudymap.tw/app <br />
+  > 首次安裝建議直接選擇「三合一」（含離線地圖、風格主題與高程檔）；日後更新圖資只需更新「離線地圖／更新」即可。傳統版（10m 等高線）地形細節較豐富，推薦優先使用；手機空間有限再選輕量版（20m 等高線）。
 
-* ![蛙弟](images/wadi.png =36x) 自動安裝
-  * 點選下列連結來啟動安裝，也可於 APP 內直接下載來安裝地圖
-    > 安裝示範影片：https://youtu.be/g8b15RPZ7nA
-  * 傳統版
-    * 三合一 (345MB)
-      > [[自動分流]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
-    * 離線地圖 (298MB)
-      > [[自動分流]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-    * 風格主題 (0.4MB)
-      > [[自動分流]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-    * 高程檔 (46MB)
-      > [[自動分流]](wadi-hgt://rudymap.tw/v1/hgtmix.zip)
-  * 輕量版
-    * 三合一 (174MB)
-      > [[自動分流]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
-    * 離線地圖 (168MB)
-      > [[自動分流]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
-    * 風格主題 (0.4MB)
-      > [[自動分流]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
-    * 高程檔 (6MB)
-      > [[自動分流]](wadi-hgt://rudymap.tw/v1/hgt90.zip)
+### ![山林日誌](images/hj.png =36x) 山林日誌（iOS）
 
-* ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤自動安裝
-  * 安裝時，點選下方連結即可
-    > 安裝示範影片：https://youtu.be/JsvP61CErYY
-  * 傳統版
-    * 三合一 (345MB)
-      > [[自動分流]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
-    * 離線地圖 (298MB)
-      > [[自動分流]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-    * 風格主題 (0.4MB)
-      > [[自動分流]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-    * 高程檔 (46MB)
-      > [[自動分流]](gts-hgt://rudymap.tw/v1/hgtmix.zip)
-  * 輕量版
-    * 三合一 (174MB)
-      > [[自動分流]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
-    * 離線地圖 (168MB)
-      > [[自動分流]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
-    * 風格主題 (0.4MB)
-      > [[自動分流]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
-    * 高程檔 (6MB)
-      > [[自動分流]](gts-hgt://rudymap.tw/v1/hgt90.zip)
+* 請於 APP 內直接安裝地圖
+  > 安裝示範影片：https://youtu.be/HP6BXKdBUvg
 
-* ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps (歐魯妹) 自動安裝
-  * 安裝時，點選下方連結即可
-    > 安卓 11(含) 以後：安裝示範影片：https://youtu.be/8hwJr4jMsE0 <br />
-    > 安卓 10(含) 以前：安裝示範影片：https://youtu.be/GbBaePfk4cE
-  * ![Map](images/OruxMaps_map.jpeg =36x) Map (298MB)
-    > [[自動分流]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
-    > [[自動分流]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026, 請點選下載，並手動安裝 (46MB)
-    > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
+### ![蛙弟](images/wadi.png =36x) 蛙弟（iOS / Android）
 
-* ![Locus Map](images/Locus.jpeg =36x) Locus Map 自動安裝
-  * 安裝時，點選下方連結即可
-    > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
-  * 分開安裝
-    * ![Map](images/Locus_map.jpeg =36x) Map (298MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
-    * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-    * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026 (46MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
-  * 圖資更新
-    * ![Map](images/Locus.jpeg =36x) 更新 (298MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_upgrade-cedric.xml)
-  * 三合一
-    * ![Map](images/Locus.jpeg =36x) 首次安裝 (345MB)
-      > [[自動分流]](locus-actions://https/rudymap.tw/locus_all-cedric.xml)
+* 點選下列連結啟動安裝，或於 APP 內直接下載
+  > 安裝示範影片：https://youtu.be/g8b15RPZ7nA
+* 傳統版（10m 等高線，細緻推薦）
+  * 三合一 (345MB)
+    > [[自動分流]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
+  * 離線地圖 (298MB)
+    > [[自動分流]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+  * 風格主題 (0.4MB)
+    > [[自動分流]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+  * 高程檔 (46MB)
+    > [[自動分流]](wadi-hgt://rudymap.tw/v1/hgtmix.zip)
+* 輕量版（20m 等高線，省空間）
+  * 三合一 (174MB)
+    > [[自動分流]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
+  * 離線地圖 (168MB)
+    > [[自動分流]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
+  * 風格主題 (0.4MB)
+    > [[自動分流]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
+  * 高程檔 (6MB)
+    > [[自動分流]](wadi-hgt://rudymap.tw/v1/hgt90.zip)
 
-* ![Cartograph](images/Cartograph.png =36x) iOS/Android Cartograph Maps 自動安裝
-  * 安裝時，點選下方連結即可
-    > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
-  * 分開安裝
-    * ![Map](images/Cartograph_map.png =36x) Map (298MB)
-      > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
-    * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
-      > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
-    * ![DEM](images/Cartograph_dem.png =36x) DEM mix v2026, 請點選下載，並手動安裝 (46MB)
-      > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
-  * 圖資更新
-    * ![Map](images/Cartograph.png =36x) 更新 (320MB)
-      > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg)
-  * 三合一
-    * ![Map](images/Cartograph.png =36x) 首次安裝 (345MB)
-      > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_all.cpkg)
+### ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤（Android）
 
-* Extra 離線圖層專區
-  * 圖資下載
-    * Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
-      > 所有地圖產生器所蒐集之行跡檔，以離線圖資產出
-    * Markchoo.map: 馬克褚的大小百岳合輯 V2 (2023.06.23)，[版本解說](https://www.markchoo.com.tw/doc/762)
-      > [[自動分流]](https://rudymap.tw/v1/extra/Markchoo.map.zip)
-    * Compartment.map: 林業保育署林班地 v2022.04.17
-      > [[自動分流]](https://rudymap.tw/v1/extra/Compartment.map.zip)
-    * NPA_Taiwan_ADShelter.map: 台灣防空避難離線地圖 v2025.06.27
-      > [[自動分流]](https://rudymap.tw/extra/NPA_Taiwan_ADShelter.map.zip)
-    * ...
-      > (期待將來有更多的離線圖層可以使用)
-  * Extra 圖層專用 Style
-    * ![Style](images/Cartograph_style.png =36x) Extra Style (只有 Cartograph 需要，OruxMaps 與 Locus 可直接使用原來的 Style)
-      > [[自動分流]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_extra_style.zip)
+* 安裝時，點選下方連結即可
+  > 安裝示範影片：https://youtu.be/JsvP61CErYY
+* 傳統版（10m 等高線，細緻推薦）
+  * 三合一 (345MB)
+    > [[自動分流]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
+  * 離線地圖 (298MB)
+    > [[自動分流]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+  * 風格主題 (0.4MB)
+    > [[自動分流]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+  * 高程檔 (46MB)
+    > [[自動分流]](gts-hgt://rudymap.tw/v1/hgtmix.zip)
+* 輕量版（20m 等高線，省空間）
+  * 三合一 (174MB)
+    > [[自動分流]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
+  * 離線地圖 (168MB)
+    > [[自動分流]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
+  * 風格主題 (0.4MB)
+    > [[自動分流]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
+  * 高程檔 (6MB)
+    > [[自動分流]](gts-hgt://rudymap.tw/v1/hgt90.zip)
 
-* ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge 手動下載自行安裝
-  * 安裝時，點選下方連結即可
-    > * 手動安裝給 OruxMaps: https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
-    > * 手動安裝給 Locus Map: https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
-  * ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Map (298MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * ![POIv3](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 POIv3 (55MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * ![POIv2](images/Android.png =36x) Cartograph POIv2 (45MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
-  * ![LOCUS_POI](images/Android.png =36x) Locus POI (25MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
-  * ![Style](images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/山林日誌 Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![Style](images/Android.png =36x) Locus Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-  * ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Cartograph Maps Style (0.4MB)
-    > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026, 台灣本島30m, 離島90m, 適當大小 (46MB)
-    > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
-  * ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026, 全部90m, 解析度低，檔案最小 (8MB)
-    > [[自動分流]](https://rudymap.tw/v1/hgt90.zip)
-  * 疊圖專用 Styles
-    * BN Style, 給深色地圖疊圖 (例：衛星地圖) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_bn_style.zip)
-    * DN Style, 給淡色地圖疊圖 (例：通用電子地圖) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_dn_style.zip)
-    * TN Style, 給高度圖疊圖 (例：Relief Map) (0.4MB)
-      > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_tn_style.zip)
-    * Extra Style, 給 Cartograph Extra 圖層疊圖 (0.4MB)
-      > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_extra_style.zip)
+### ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 歐魯妹（Android）
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw - Taiwan TOPO（適合較小螢幕）
-  * 安裝時，點選下方連結即可
-    > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_small.jpeg =36x) bw (210MB)
-    > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw.img.zip)
+* 安裝時，點選下方連結即可
+  > 安卓 11(含) 以後示範影片：https://youtu.be/8hwJr4jMsE0 <br />
+  > 舊版安卓 (10 以下) 示範影片：https://youtu.be/GbBaePfk4cE
+* ![Map](images/OruxMaps_map.jpeg =36x) Map (298MB)
+  > [[自動分流]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+* ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
+  > [[自動分流]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+* ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026（點選下載後手動安裝） (46MB)
+  > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.bw3D - Taiwan TOPO（適合較小螢幕）
-  * 安裝時，點選下方連結即可
-    > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_small.jpeg =36x) bw3D (211MB)
-    > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw3D.img.zip)
+### ![Locus Map](images/Locus.jpeg =36x) Locus Map（Android）
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.odc - Taiwan TOPO（適合較大螢幕）
-  * 安裝時，點選下方連結即可
-    > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_large.jpeg =36x) odc (210MB)
-    > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc.img.zip)
+* 安裝時，點選下方連結即可
+  > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
+* 三合一（推薦首次安裝）
+  * ![Map](images/Locus.jpeg =36x) 首次安裝 (345MB)
+    > [[自動分流]](locus-actions://https/rudymap.tw/locus_all-cedric.xml)
+* 圖資更新
+  * ![Map](images/Locus.jpeg =36x) 更新 (298MB)
+    > [[自動分流]](locus-actions://https/rudymap.tw/locus_upgrade-cedric.xml)
+* 分開安裝
+  * ![Map](images/Locus_map.jpeg =36x) Map (298MB)
+    > [[自動分流]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
+  * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
+    > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
+  * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026 (46MB)
+    > [[自動分流]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.odc3D - Taiwan TOPO（適合較大螢幕）
-  * 安裝時，點選下方連結即可
-    > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_large.jpeg =36x) odc3D (211MB)
-    > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc3D.img.zip)
-  * ![Map](images/Windows.png =36x) odc3D (227MB)
-    > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_odc3D.exe)
-  * ![Map](images/macOS.png =36x) odc3D (227MB)
-    > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_odc3D.gmap.zip)
+### ![Cartograph](images/Cartograph.png =36x) Cartograph Maps（iOS / Android）
 
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp - Taiwan TOPO（適合 PC/Mac BaseCamp）
-  * 安裝時，點選下方連結即可
-    > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Windows.png =36x) camp (210MB)
+* 安裝時，點選下方連結即可
+  > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
+* 三合一（推薦首次安裝）
+  * ![Map](images/Cartograph.png =36x) 首次安裝 (345MB)
+    > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_all.cpkg)
+* 圖資更新
+  * ![Map](images/Cartograph.png =36x) 更新 (320MB)
+    > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg)
+* 分開安裝
+  * ![Map](images/Cartograph_map.png =36x) Map (298MB)
+    > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
+  * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
+    > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
+  * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2026 (46MB)
+    > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
+
+
+## ![Garmin](images/Garmin.png =x36) Garmin 離線地圖
+
+* 選檔說明與安裝教學
+  > * **版本差異**：**3D** 版本內含高程 DEM（支援山形陰影與路線海拔剖面）；無 3D 為純等高線版。
+  > * **檔案格式**：`.img.zip` 供 Garmin 手持機／手錶直接解壓放進裝置；`.exe` 供 Windows BaseCamp 安裝；`.gmap.zip` 供 macOS BaseCamp 安裝。
+  > * Windows 安裝示範：https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
+  > * macOS 安裝示範：https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
+
+### MOI.OSM.bw / bw3D（小螢幕手持機／手錶）
+
+* ![Map](images/Garmin_small.jpeg =36x) bw（2D，手持機 / 手錶） (210MB)
+  > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw.img.zip)
+* ![Map](images/Garmin_small.jpeg =36x) bw3D（含 3D 高程，手持機 / 手錶） (211MB)
+  > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw3D.img.zip)
+
+### MOI.OSM.odc / odc3D（大螢幕手持機）
+
+* ![Map](images/Garmin_large.jpeg =36x) odc（2D，手持機） (210MB)
+  > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc.img.zip)
+* ![Map](images/Garmin_large.jpeg =36x) odc3D（含 3D 高程，手持機） (211MB)
+  > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc3D.img.zip)
+* ![Map](images/Windows.png =36x) odc3D（Windows BaseCamp） (227MB)
+  > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_odc3D.exe)
+* ![Map](images/macOS.png =36x) odc3D（macOS BaseCamp） (227MB)
+  > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_odc3D.gmap.zip)
+
+### MOI.OSM.camp / camp3D（PC / Mac BaseCamp 規劃用）
+
+* 2D 版 (camp)
+  * ![Map](images/Windows.png =36x) camp（Windows BaseCamp） (210MB)
     > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp.exe)
-  * ![Map](images/macOS.png =36x) camp (210MB)
+  * ![Map](images/macOS.png =36x) camp（macOS BaseCamp） (210MB)
     > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_camp.gmap.zip)
-
-* ![Map](images/Garmin.png =x36) Garmin MOI.OSM.camp3D - Taiwan TOPO（適合 PC/Mac BaseCamp）
-  * 安裝時，點選下方連結即可
-    > * Windows 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * macOS 平台: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_large.jpeg =36x) camp3D (211MB)
+* 3D 版 (camp3D，含高程)
+  * ![Map](images/Garmin_large.jpeg =36x) camp3D（大螢幕手持機） (211MB)
     > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_camp3D.img.zip)
-  * ![Map](images/Windows.png =36x) camp3D (227MB)
+  * ![Map](images/Windows.png =36x) camp3D（Windows BaseCamp） (227MB)
     > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D.exe)
-  * ![Map](images/macOS.png =36x) camp3D (227MB)
+  * ![Map](images/macOS.png =36x) camp3D（macOS BaseCamp） (227MB)
     > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_camp3D.gmap.zip)
 
-* ![Map](images/Garmin.png =x36) Garmin English Maps - Taiwan TOPO
-  * Clip on one of mirrors to download
-    > * Installation demo on Windows: https://www.facebook.com/groups/taiwan.topo/permalink/726308367524779
-    > * Installation demo on macOS: https://www.facebook.com/groups/taiwan.topo/permalink/726303937525222
-  * ![Map](images/Garmin_small.jpeg =36x) en_bw (211MB)
-    > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_en_bw.img.zip)
-  * ![Map](images/Windows.png =36x) en_camp3D (227MB)
-    > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
-  * ![Map](images/macOS.png =36x) en_camp3D (227MB)
-    > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip)
+### Garmin English Maps - Taiwan TOPO
+
+* ![Map](images/Garmin_small.jpeg =36x) en_bw（小螢幕手持機 / 手錶） (211MB)
+  > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_en_bw.img.zip)
+* ![Map](images/Windows.png =36x) en_camp3D（Windows BaseCamp） (227MB)
+  > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
+* ![Map](images/macOS.png =36x) en_camp3D（macOS BaseCamp） (227MB)
+  > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip)
+
+
+## ![Android](images/Android.png =36x)![iOS](images/macOS.png =36x) Mapsforge 手動下載自行安裝
+
+* 手動安裝教學
+  > * 手動安裝給 OruxMaps：https://www.facebook.com/groups/taiwan.topo/permalink/702707949884821
+  > * 手動安裝給 Locus Map：https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903
+
+### 主地圖與高程檔 (Map & DEM)
+
+* ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) 台灣離線地圖 Map (298MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026（台灣本島 30m、離島 90m，推薦） (46MB)
+  > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
+* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026（全區 90m，檔案最小） (6MB)
+  > [[自動分流]](https://rudymap.tw/v1/hgt90.zip)
+
+### 離線搜尋地標 (POI)
+
+* ![POIv3](images/Android.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / 山林日誌 POIv3 (55MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+* ![POIv2](images/Android.png =36x) Cartograph POIv2 (45MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
+* ![LOCUS_POI](images/Android.png =36x) Locus Map POI (25MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
+
+### 標準風格主題 (Style)
+
+* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / 山林日誌 / Cartograph Style (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+* ![Style](images/Android.png =36x) Locus Map Style (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) TWMAP Style（紙本地圖風格） (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_twmap_style.zip)
+
+### 疊圖專用風格 (Overlay Styles)
+
+* BN Style，給深色地圖疊圖（例：衛星地圖） (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_bn_style.zip)
+* DN Style，給淡色地圖疊圖（例：通用電子地圖） (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_dn_style.zip)
+* TN Style，給高度圖疊圖（例：Relief Map） (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_tn_style.zip)
+* Extra Style，給 Cartograph Extra 圖層疊圖 (0.4MB)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_extra_style.zip)
+
+
+## PMTiles 向量圖磚
+
+* 適用支援 MapLibre / PMTiles 的離線地圖 App 與網頁檢視器
+  > 每週隨正式版同步產出向量圖磚、風格檔（含原版與紙本風格）與 Terrarium 高程圖磚。
+* 台灣向量圖磚 (MOI_OSM_Taiwan_TOPO_Rudy.pmtiles)
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.pmtiles)
+* PMTiles 風格主題包（含 style.json、paper.json、圖示與英數字型）
+  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_pmtiles_style.zip)
+* 台灣 DEM 高程圖磚 (taiwan_dem.pmtiles)
+  > [[自動分流]](https://rudymap.tw/v1/taiwan_dem.pmtiles)
+
+
+## Extra 離線圖層專區
+
+### 圖資下載
+
+* Happyman.map: https://map.happyman.idv.tw/~mountain/gpx_map/
+  > 所有地圖產生器所蒐集之行跡檔，以離線圖資產出
+* Markchoo.map: 馬克褚的大小百岳合輯 V2 (2023.06.23)，[版本解說](https://www.markchoo.com.tw/doc/762)
+  > [[自動分流]](https://rudymap.tw/v1/extra/Markchoo.map.zip)
+* Compartment.map: 林業保育署林班地 v2022.04.17
+  > [[自動分流]](https://rudymap.tw/v1/extra/Compartment.map.zip)
+* NPA_Taiwan_ADShelter.map: 台灣防空避難離線地圖 v2025.06.27
+  > [[自動分流]](https://rudymap.tw/extra/NPA_Taiwan_ADShelter.map.zip)
+
+### Extra 圖層專用 Style
+
+* ![Style](images/Cartograph_style.png =36x) Extra Style（僅 Cartograph 需要；OruxMaps 與 Locus 可直接使用原來的 Style）
+  > [[自動分流]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_extra_style.zip)
 
 
 ## 其他國外山區 (不固定發行)
 
-若有地圖已經涵蓋到，但是沒有列上來的步道，請到社群反應。
+若有地圖已經涵蓋到，但是沒有列上來的步道，或需要擴大範圍來涵蓋附近的長距離步道，歡迎到社群反應，謝謝！
 
-或需要擴大範圍來涵蓋附近的長距離步道，也請到社群反應。謝謝！  ^^
+### 日本
 
-* Kumano Kodo, 熊野古道
-  * https://rudymap.tw/kumano_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N33.0 ~ N35.0
-    * 經度範圍: E135.0 ~ E137.0
-* Annapurna, 安娜普納
-  * https://rudymap.tw/annapurna_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N28.0 ~ N29.0
-    * 經度範圍: E83.0 ~ E85.0
-* Kashmir, 喀什米爾
-  * https://rudymap.tw/kashmir_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N34.0 ~ N34.75
-    * 經度範圍: E74.5 ~ E75.5
 * Fujisan, 富士山
   * https://rudymap.tw/fujisan_topo.html
   * 地圖範圍：
@@ -259,51 +256,6 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N36.50 ~ N37.47
     * 經度範圍: E138.68 ~ E139.86
-* Elbrus, 厄爾布魯士 (俄羅斯高加索)
-  * https://rudymap.tw/elbrus_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N43.10 ~ N43.75
-    * 經度範圍: E41.90 ~ E43.80
-* Alps Core, 阿爾卑斯核心 (伯恩高地－恩加丁區)
-  * https://rudymap.tw/alps_core_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N45.80 ~ N47.30
-    * 經度範圍: E7.15 ~ E10.75
-* Alps Eastern, 東阿爾卑斯 (多洛米蒂－高陶恩區)
-  * https://rudymap.tw/alps_eastern_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N45.80 ~ N47.55
-    * 經度範圍: E10.50 ~ E14.00
-* Alps Western, 西阿爾卑斯 (白朗峰－馬特洪峰區)
-  * https://rudymap.tw/alps_western_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N44.00 ~ N46.20
-    * 經度範圍: E6.00 ~ E8.00
-* Alps Fareast, 遠東阿爾卑斯 (卡姆尼克－維也納近郊區)
-  * https://rudymap.tw/alps_fareast_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N46.30 ~ N47.85
-    * 經度範圍: E13.90 ~ E15.90
-* Yakushima, 屋久島地區 (含種子島、口永良部島)
-  * https://rudymap.tw/yakushima_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N30.16 ~ N30.93
-    * 經度範圍: E129.83 ~ E131.16
-* Moscow, 莫斯科地區 (俄羅斯，無等高線與 HGT)
-  * https://rudymap.tw/moscow_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N54.94 ~ N56.48
-    * 經度範圍: E36.03 ~ E39.00
-* Saint Petersburg, 聖彼得堡地區 (俄羅斯，無等高線與 HGT)
-  * https://rudymap.tw/saint_petersburg_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N59.69 ~ N60.15
-    * 經度範圍: E29.99 ~ E30.62
-* Shikoku, 四國地區
-  * https://rudymap.tw/shikoku_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N32.702 ~ N34.428
-    * 經度範圍: E132.000 ~ E134.846
 * Kita Alps, 北阿爾卑斯 (飛驒山脈・立山黑部)
   * https://rudymap.tw/kita_alps_topo.html
   * 地圖範圍：
@@ -319,6 +271,24 @@ MOI.OSM - Taiwan TOPO
   * 地圖範圍：
     * 緯度範圍: N35.15 ~ N35.90
     * 經度範圍: E137.70 ~ E138.65
+* Kumano Kodo, 熊野古道
+  * https://rudymap.tw/kumano_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N33.0 ~ N35.0
+    * 經度範圍: E135.0 ~ E137.0
+* Shikoku, 四國地區
+  * https://rudymap.tw/shikoku_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N32.702 ~ N34.428
+    * 經度範圍: E132.000 ~ E134.846
+* Yakushima, 屋久島地區 (含種子島、口永良部島)
+  * https://rudymap.tw/yakushima_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N30.16 ~ N30.93
+    * 經度範圍: E129.83 ~ E131.16
+
+### 香港・韓國
+
 * Hong Kong, 香港
   * https://rudymap.tw/hong_kong_topo.html
   * 地圖範圍：
@@ -330,6 +300,60 @@ MOI.OSM - Taiwan TOPO
     * 緯度範圍: N33.108 ~ N34.018
     * 經度範圍: E126.138 ~ E126.978
 
+### 南亞（尼泊爾・印度）
+
+* Annapurna, 安娜普納
+  * https://rudymap.tw/annapurna_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N28.0 ~ N29.0
+    * 經度範圍: E83.0 ~ E85.0
+* Kashmir, 喀什米爾
+  * https://rudymap.tw/kashmir_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N34.0 ~ N34.75
+    * 經度範圍: E74.5 ~ E75.5
+
+### 歐洲（阿爾卑斯）
+
+* Alps Western, 西阿爾卑斯 (白朗峰－馬特洪峰區)
+  * https://rudymap.tw/alps_western_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N44.00 ~ N46.20
+    * 經度範圍: E6.00 ~ E8.00
+* Alps Core, 阿爾卑斯核心 (伯恩高地－恩加丁區)
+  * https://rudymap.tw/alps_core_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N45.80 ~ N47.30
+    * 經度範圍: E7.15 ~ E10.75
+* Alps Eastern, 東阿爾卑斯 (多洛米蒂－高陶恩區)
+  * https://rudymap.tw/alps_eastern_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N45.80 ~ N47.55
+    * 經度範圍: E10.50 ~ E14.00
+* Alps Fareast, 遠東阿爾卑斯 (卡姆尼克－維也納近郊區)
+  * https://rudymap.tw/alps_fareast_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N46.30 ~ N47.85
+    * 經度範圍: E13.90 ~ E15.90
+
+### 俄羅斯
+
+* Elbrus, 厄爾布魯士 (俄羅斯高加索)
+  * https://rudymap.tw/elbrus_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N43.10 ~ N43.75
+    * 經度範圍: E41.90 ~ E43.80
+* Moscow, 莫斯科地區 (俄羅斯，無等高線與 HGT)
+  * https://rudymap.tw/moscow_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N54.94 ~ N56.48
+    * 經度範圍: E36.03 ~ E39.00
+* Saint Petersburg, 聖彼得堡地區 (俄羅斯，無等高線與 HGT)
+  * https://rudymap.tw/saint_petersburg_topo.html
+  * 地圖範圍：
+    * 緯度範圍: N59.69 ~ N60.15
+    * 經度範圍: E29.99 ~ E30.62
+
 
 ## 說明
 
@@ -337,7 +361,7 @@ MOI.OSM - Taiwan TOPO
 
 OSM 是自由且開源的圖資，由默默耕耘的 [OpenStreetMap 台灣](http://openstreetmap.tw) 圖客辛苦共筆繪製而成。圖資的正確性需要由山友們一起來維護，有興趣請上 OSM Taiwan 網站來瞭解如何回報或更新地圖的錯誤。
 
-等高線的製作主要基於 "內政部 20 公尺網格數值地形模型資料" ([data.moi.gov.tw](https://data.moi.gov.tw/))，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應勘誤，以提供大家討論與參考。本電子地圖適用各式台灣登山活動，但長天數山林活動仍建議列印出紙本地圖來備用 ([地圖產生器](https://map.happyman.idv.tw/~happyman/twmap3))。
+等高線的製作主要基於「內政部 20 公尺網格數值地形模型資料」([data.moi.gov.tw](https://data.moi.gov.tw/))，準確性可用來做一般登山參考。但仍可能有錯誤的地方，歡迎山友反應勘誤，以提供大家討論與參考。本電子地圖適用各式台灣登山活動，但長天數山林活動仍建議列印出紙本地圖來備用 ([地圖產生器](https://map.happyman.idv.tw/~happyman/twmap3))。
 
 Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocaching) 風格樣式。若有建議，歡迎在 [魯地圖臉書社團](https://www.facebook.com/groups/taiwan.topo) 上反應。
 
@@ -347,7 +371,24 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 ## 注意事項
 
 * macOS BaseCamp 的 map installer 需事先安裝 Garmin MapInstall and MapManager。請先安裝這軟體之後，解壓縮就可以雙擊安裝地圖。
-* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在安卓手機上有：Oruxmaps、Locus Map、GTs 綠野遊蹤、Wadi 蛙弟！在 iOS Cartograph Maps、山林日誌。
+* Mapsforge 離線地圖的安裝依每個 APP 會有所不同。目前已經測試過，在 Android 手機上有：OruxMaps、Locus Map、GTS 綠野遊蹤、Wadi 蛙弟；在 iOS 上有：Cartograph Maps、山林日誌。
+
+
+## 相關資源與鏡像站
+
+* 線上圖磚服務：https://tiles.rudymap.tw
+* 使用討論（臉書社團）：https://www.facebook.com/groups/taiwan.topo
+* 開發網站（GitHub）：https://github.com/alpha-rudy/taiwan-topo
+* 阿牛兄的圖例說明：[圖例 V1R3 版](./legend_V1R3.pdf)
+* Beta 版（每週一、三、六發行）：https://rudymap.tw/drops/beta.html
+* 魯地圖分流器 (Cedric Shih) — 一般使用點選本頁「自動分流」按鈕即可自動導向可用鏡像站
+  * rudymap.tw
+  * https://rudymap.tw/app （手機離線 APP 專用）
+* 魯地圖鏡像站
+  * kcwu: moi.kcwu.csie.org
+  * happyman: map.happyman.idv.tw
+  * peakit (山盒): rudy.peakitcdn.com
+  * oslab (Outdoor Safety Lab): d3r5lsn28erp7o.cloudfront.net
 
 
 ## 重大修改歷程
@@ -368,7 +409,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 * 2025, 11/13
   * DTM 套用內政部地政司 Taiwan DTM 20m v2025
 * 2025, 6/26
-  * 增加 NPA 台灣防空避難離圖層 v2025.06.25
+  * 增加 NPA 台灣防空避難離線圖層 v2025.06.25
 * 2024, 8/15
   * DTM 套用內政部地政司 Taiwan DTM 20m v2024
   * DTM 套用 AW3D30 v4.1
@@ -431,7 +472,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 * 2016, 12/1
   * 增加大小百岳的顯示
   * 微調 Locus style 線的寬度，使其跟 Orux 上顯示同寬
-  * 在增加一 zoom level 等高線數值的顯示
+  * 再增加一 zoom level 等高線數值的顯示
   * 增加版本資訊
 * 2016, 11/24
   * 增加 Mapsforge 等高線的數值顯示
@@ -453,7 +494,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
   * 修正路線海拔剖面圖無法正確顯示的問題
   * 調整等高線的樣式
   * 增加 Re17 顯示台灣三個主要山頭
-  * 修正登高線在島嶼邊緣有斷線的問題
+  * 修正等高線在島嶼邊緣有斷線的問題
   * 調整水路的配色
 * 2016, 10/6
   * 依據北三兄的建議，調整道路配色
@@ -462,7 +503,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
   * 修正界線 label 有時不會顯示的問題
   * 依據北三兄的建議，調整國家公園界線的紋路
   * 支援 Windows BaseCamp map installer
-  * 支援 Mac BaseCamp map installer 
+  * 支援 Mac BaseCamp map installer
 * 2016, 9/27
   * 區分台灣鐵路與台灣高鐵的顏色
   * 微調 Re23, Re24 等高線，讓等高線可以清楚顯示
@@ -494,7 +535,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 ## 版權宣告
 
-* OpenSteetMap
+* OpenStreetMap
 > © OpenStreetMap contributors <br />
 > 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
 > License: http://www.openstreetmap.org/copyright
@@ -503,16 +544,20 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 > 作品內含資訊取自「內政部警政署防空避難專區」[https://www.npa.gov.tw/](https://www.npa.gov.tw/) <br />
 > License: 內政部警政署民防指揮管制所版權所有
 
-* 內政部 20 公尺網格數值地形模型資料與 Rex OSM PBF
-> 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />
+* 農業部林業試驗所 (TFRI) 台灣巨木地圖
+> 作品內含台灣巨木點位資料取自農業部林業試驗所 (TFRI)。 <br />
+> Link: https://www.tfri.gov.tw/
+
+* 內政部地政司 20 公尺網格數值地形模型資料 (MOI DLA DTM 20m)
+> 本作品內含等高線與高程資訊取自內政部地政司全臺灣 20 公尺網格間距數值地形模型（DTM）資料（早期版本係基於 Rex OSM PBF 與 Chengtao Lin 修正成果）。 <br />
 > MOI Link: https://tgos.nat.gov.tw <br />
 > 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
 > Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
 > Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884 <br />
-> 範圍包含：台灣本島、澎湖、金門
+> 範圍包含：台灣本島、蘭嶼、綠島、琉球、龜山島、澎湖群島、金門群島
 
-* JAXA ALOS World 3D - 30m (AW3D30) Version 3.1.
-> 部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v3.1。 <br /> 
+* JAXA ALOS World 3D - 30m (AW3D30) Version 4.1
+> 部分範圍的等高線與 HGT DEM 來自於 JAXA AW3D30 v4.1。 <br />
 > 使用檔案：N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E120. <br />
 > 範圍包含：馬祖、烏坵、北方三島 <br />
 > Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
@@ -546,7 +591,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 
 ## 地圖版權與散佈說明
-    Copyright (c) 2016-2024 Rudy Chung
+    Copyright (c) 2016-2026 Rudy Chung
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -555,7 +600,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
         * Redistributions of source code must retain the above copyright
         notice, this list of conditions and the following disclaimer.
 
-        * Redistributions in binary form must reproduce the this copyright notice
+        * Redistributions in binary form must reproduce this copyright notice
         (or the HTTP link to this notice), this list of conditions and the
         following disclaimer in the documentation and/or other materials provided
         with the distribution.

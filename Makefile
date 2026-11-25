@@ -320,13 +320,34 @@ topo.md:
 	[ -n "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
 	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
-		cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(BUILD_DIR)/$(SUITE)_topo.html
+		if [ -f docs/$(REGION)/template.html ]; then \
+			python3 $(TOOLS_DIR)/render_topo_html.py \
+				--input docs/$(REGION)/$(SUITE)_topo.md \
+				--template docs/$(REGION)/template.html \
+				--output $(BUILD_DIR)/$(SUITE)_topo.html \
+				--version "$(VERSION)" \
+				--lang zh-Hant \
+				$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ); \
+		else \
+			cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
+			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(BUILD_DIR)/$(SUITE)_topo.html; \
+		fi
 	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
-		cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(BUILD_DIR)/$(SUITE)_topo-en.html
+		if [ -f docs/$(REGION)/template.html ]; then \
+			python3 $(TOOLS_DIR)/render_topo_html.py \
+				--input docs/$(REGION)/$(SUITE)_topo-en.md \
+				--template docs/$(REGION)/template.html \
+				--output $(BUILD_DIR)/$(SUITE)_topo-en.html \
+				--version "$(VERSION)" \
+				--lang en \
+				--alt-lang-href "$(SUITE)_topo.html" \
+				--alt-lang-label "繁體中文"; \
+		else \
+			cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
+			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(BUILD_DIR)/$(SUITE)_topo-en.html; \
+		fi
 	cp -a docs/images $(BUILD_DIR)/
 
 .PHONY: install
@@ -337,13 +358,34 @@ install:
 	mkdir -p $(INSTALL_DIR)
 	cp -r docs/images auto-install/locus/$(REGION)/*.xml $(INSTALL_DIR)
 	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
-		cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(INSTALL_DIR)/$(SUITE)_topo.html
+		if [ -f docs/$(REGION)/template.html ]; then \
+			python3 $(TOOLS_DIR)/render_topo_html.py \
+				--input docs/$(REGION)/$(SUITE)_topo.md \
+				--template docs/$(REGION)/template.html \
+				--output $(INSTALL_DIR)/$(SUITE)_topo.html \
+				--version "$(VERSION)" \
+				--lang zh-Hant \
+				$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ); \
+		else \
+			cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
+			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(INSTALL_DIR)/$(SUITE)_topo.html; \
+		fi
 	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
-		cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-		markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(INSTALL_DIR)/$(SUITE)_topo-en.html
+		if [ -f docs/$(REGION)/template.html ]; then \
+			python3 $(TOOLS_DIR)/render_topo_html.py \
+				--input docs/$(REGION)/$(SUITE)_topo-en.md \
+				--template docs/$(REGION)/template.html \
+				--output $(INSTALL_DIR)/$(SUITE)_topo-en.html \
+				--version "$(VERSION)" \
+				--lang en \
+				--alt-lang-href "$(SUITE)_topo.html" \
+				--alt-lang-label "繁體中文"; \
+		else \
+			cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
+			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(INSTALL_DIR)/$(SUITE)_topo-en.html; \
+		fi
 	-[ -f docs/$(REGION)/index.json ] && \
 		cat docs/$(REGION)/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 	-[ -f docs/$(REGION)/beta.md ] && \
