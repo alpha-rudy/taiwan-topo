@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>魯地圖圖例 — MOI.OSM Taiwan TOPO v{{VERSION}}</title>
+  <meta name="description" content="魯地圖 (MOI.OSM Taiwan TOPO) 自動產生地圖圖例，支援依顏色、形狀、類型與關鍵字快速反查地圖符號。">
+  <style>
+    :root {
+      --bg: #f5f7f5;
+      --surface: #ffffff;
+      --surface-subtle: #f0f4f1;
+      --border: #dce5de;
+      --border-strong: #c0d0c5;
+      --text: #18231e;
+      --text-muted: #51635a;
+      --accent: #246346;
+      --accent-hover: #1a4b34;
+      --accent-soft: #e3f2ea;
+      --accent-soft-text: #184e35;
+      --warn-bg: #fff3dc;
+      --warn-text: #8c4f05;
+      --link: #1d5d8c;
+      --shadow-sm: 0 1px 2px rgba(16, 36, 26, 0.05);
+      --shadow-md: 0 6px 18px rgba(16, 36, 26, 0.09);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --hero-bg-1: #163a2a;
+      --hero-bg-2: #255f44;
+      --nav-bg: rgba(245, 247, 245, 0.92);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f1512;
+        --surface: #17201c;
+        --surface-subtle: #1e2a25;
+        --border: #2a3932;
+        --border-strong: #3a4f45;
+        --text: #e8f0eb;
+        --text-muted: #9eb2a7;
+        --accent: #42a878;
+        --accent-hover: #56be8c;
+        --accent-soft: rgba(66, 168, 120, 0.16);
+        --accent-soft-text: #83dfb3;
+        --warn-bg: rgba(234, 179, 8, 0.16);
+        --warn-text: #facc15;
+        --link: #7bc0f2;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+        --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+        --hero-bg-1: #0e241a;
+        --hero-bg-2: #194230;
+        --nav-bg: rgba(15, 21, 18, 0.92);
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0f1512;
+      --surface: #17201c;
+      --surface-subtle: #1e2a25;
+      --border: #2a3932;
+      --border-strong: #3a4f45;
+      --text: #e8f0eb;
+      --text-muted: #9eb2a7;
+      --accent: #42a878;
+      --accent-hover: #56be8c;
+      --accent-soft: rgba(66, 168, 120, 0.16);
+      --accent-soft-text: #83dfb3;
+      --warn-bg: rgba(234, 179, 8, 0.16);
+      --warn-text: #facc15;
+      --link: #7bc0f2;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+      --hero-bg-1: #0e241a;
+      --hero-bg-2: #194230;
+      --nav-bg: rgba(15, 21, 18, 0.92);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero {
+      color: #f7fbf8;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.07' stroke-width='1.2'%3E%3Cpath d='M-20 40 C 50 10, 120 90, 200 50 S 300 20, 350 60'/%3E%3Cpath d='M-20 85 C 60 55, 130 135, 210 95 S 300 65, 350 105'/%3E%3Cpath d='M-20 130 C 70 100, 140 170, 220 135 S 310 110, 350 145'/%3E%3C/g%3E%3C/svg%3E"),
+        linear-gradient(135deg, var(--hero-bg-1) 0%, var(--hero-bg-2) 100%);
+      padding: 24px 16px 22px;
+    }
+    .hero-inner { max-width: 1120px; margin: 0 auto; }
+    .hero-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; flex-wrap: wrap; margin-bottom: 10px;
+    }
+    .version-pill {
+      display: inline-flex; align-items: center; padding: 3px 11px; border-radius: 999px;
+      background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.24);
+      font-size: 12.5px; font-weight: 600;
+    }
+    .hero-actions { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 5px; min-height: 32px;
+      padding: 4px 12px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.12);
+      color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .hero-btn:hover { background: rgba(255,255,255,0.24); text-decoration: none; }
+    .hero h1 { margin: 0 0 6px; font-size: clamp(1.4rem, 3.6vw, 1.95rem); font-weight: 800; line-height: 1.2; }
+    .hero p { margin: 0; color: rgba(247,251,248,0.88); font-size: 14.5px; }
+    .hero-pdf-bar {
+      display: flex; align-items: stretch; flex-wrap: wrap; gap: 10px;
+      margin-top: 16px;
+    }
+    .pdf-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.94); color: #163a2a;
+      border: 1px solid rgba(255,255,255,0.96);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+      transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+    }
+    .pdf-cta:hover {
+      background: #ffffff; text-decoration: none;
+      transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.22);
+    }
+    .pdf-cta-icon {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 7px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #e6f3ec; color: #1d5c3f;
+    }
+    .pdf-cta-text { display: flex; flex-direction: column; line-height: 1.25; }
+    .pdf-cta-title { font-size: 13.5px; font-weight: 800; color: #153526; }
+    .pdf-cta-sub { font-size: 11.5px; font-weight: 500; color: #4a6357; }
+    @media (max-width: 640px) {
+      .hero-pdf-bar { gap: 8px; }
+      .pdf-cta { flex: 1 1 calc(50% - 8px); padding: 7px 11px; }
+    }
+
+    /* Sticky Category Nav */
+    .section-nav {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--nav-bg); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .section-nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 7px 16px;
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .nav-pill {
+      flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 28px;
+      padding: 3px 10px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-size: 12.5px; font-weight: 600; white-space: nowrap;
+    }
+    .nav-pill:hover { background: var(--accent); border-color: var(--accent); color: #fff; text-decoration: none; }
+    @media (max-width: 640px) {
+      html { scroll-padding-top: 56px; }
+      .section-nav-inner {
+        flex-wrap: nowrap; overflow-x: auto;
+        -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+      }
+    }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 18px 16px 56px; }
+
+    /* Search & Filter Panel */
+    .filter-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .search-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+    .search-input {
+      flex: 1 1 260px; min-height: 42px; padding: 8px 15px; border-radius: 999px;
+      border: 1px solid var(--border-strong); background: var(--bg); color: var(--text);
+      font-size: 14.5px; outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .result-status { font-size: 13.5px; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+    .reset-btn {
+      min-height: 36px; padding: 4px 12px; border-radius: 999px;
+      border: 1px solid var(--border-strong); background: var(--surface-subtle);
+      color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .filter-group {
+      display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap;
+      padding-top: 9px; margin-top: 9px; border-top: 1px solid var(--border);
+    }
+    .filter-label {
+      flex: 0 0 74px; padding-top: 5px; font-size: 12.5px; font-weight: 700; color: var(--text-muted);
+    }
+    .filter-chips { flex: 1 1 200px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .filter-chip {
+      display: inline-flex; align-items: center; gap: 6px; min-height: 30px;
+      padding: 3px 11px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--surface-subtle);
+      color: var(--text); font-size: 12.5px; font-weight: 600; cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+    }
+    .filter-chip:hover { border-color: var(--accent); }
+    .filter-chip.is-active {
+      background: var(--accent); border-color: var(--accent); color: #ffffff;
+    }
+    .color-dot {
+      width: 11px; height: 11px; border-radius: 50%; display: inline-block;
+      border: 1px solid rgba(0, 0, 0, 0.22); flex-shrink: 0;
+    }
+
+    /* Sections & Cards */
+    .legend-section { margin-bottom: 34px; }
+    .legend-section.is-hidden { display: none; }
+    .section-head {
+      display: flex; align-items: center; gap: 10px;
+      padding-bottom: 6px; border-bottom: 2px solid var(--border); margin-bottom: 6px;
+    }
+    .section-head h2 { margin: 0; font-size: 1.25rem; font-weight: 800; }
+    .section-count {
+      padding: 1px 9px; border-radius: 999px; background: var(--accent-soft);
+      color: var(--accent-soft-text); font-size: 12.5px; font-weight: 700;
+    }
+    .section-desc { margin: 0 0 14px; font-size: 13.5px; color: var(--text-muted); }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: 14px;
+    }
+    .legend-card {
+      display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 13px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .legend-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-md); }
+    .legend-card.is-hidden { display: none; }
+
+    .visual-row {
+      display: flex; gap: 10px; align-items: stretch; margin-bottom: 10px;
+    }
+    .swatch-box {
+      position: relative; flex: 1 1 50%; min-width: 0; height: 82px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm); overflow: hidden;
+      border: 1px solid #d7dfd9; background: #f7f6f1;
+    }
+    .legend-svg { display: block; width: auto; height: 100%; max-width: 100%; max-height: 82px; }
+    .swatch-tag, .sample-tag {
+      position: absolute; left: 6px; bottom: 5px;
+      padding: 1px 6px; border-radius: 4px;
+      background: rgba(24, 35, 30, 0.72); color: #fff;
+      font-size: 10.5px; font-weight: 600; pointer-events: none;
+    }
+
+    .sample-box {
+      flex: 1 1 50%; min-width: 0; display: flex; flex-direction: column; gap: 4px;
+    }
+    .sample-thumb-btn {
+      position: relative; padding: 0; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); overflow: hidden; cursor: zoom-in;
+      background: #f7f6f1; display: block; width: 100%; height: 82px;
+    }
+    .sample-thumb-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sample-link { font-size: 12px; color: var(--link); display: inline-block; }
+    .sample-link-only {
+      flex: 1 1 50%; min-width: 0; display: flex; align-items: center; justify-content: center;
+      padding: 8px 10px; border-radius: var(--radius-sm);
+      border: 1px dashed var(--border); background: var(--surface-subtle);
+      text-align: center;
+    }
+
+    .card-body { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; }
+    .item-name { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.35; }
+    .item-desc { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
+    .item-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+    .meta-badge {
+      display: inline-block; padding: 1px 7px; border-radius: 6px;
+      background: var(--surface-subtle); color: var(--text-muted);
+      font-size: 11.5px; font-weight: 600;
+    }
+    .badge-geom { background: var(--accent-soft); color: var(--accent-soft-text); }
+    .badge-off { background: var(--warn-bg); color: var(--warn-text); }
+    .badge-tw-zero {
+      background: transparent; color: var(--text-muted);
+      border: 1px dashed var(--border-strong);
+    }
+    .item-tags { margin-top: auto; padding-top: 4px; }
+    .item-tags code {
+      font-size: 11px; color: var(--text-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      word-break: break-all;
+    }
+
+    .empty-state {
+      display: none; text-align: center; padding: 36px 16px;
+      background: var(--surface); border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md); color: var(--text-muted);
+    }
+
+    /* Dense secondary symbol cards */
+    .dense-block { margin-top: 14px; }
+    .dense-block.is-hidden { display: none; }
+    .dense-subhead {
+      font-size: 12.5px; font-weight: 700; color: var(--text-muted);
+      margin: 0 0 8px; padding-left: 8px; border-left: 3px solid var(--border-strong);
+    }
+    .dense-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 225px), 1fr));
+      gap: 9px;
+    }
+    .dense-card {
+      flex-direction: row; align-items: flex-start; gap: 10px;
+      padding: 9px 10px;
+    }
+    .dense-swatch {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm); overflow: hidden;
+      border: 1px solid #d7dfd9; background: #f7f6f1;
+    }
+    .dense-swatch-point { width: 42px; height: 42px; }
+    .dense-swatch-line, .dense-swatch-area { width: 68px; height: 32px; }
+    .dense-swatch .legend-svg { width: 100%; height: 100%; max-height: none; display: block; }
+    .dense-body { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 3px; }
+    .dense-name { margin: 0; font-size: 13.5px; font-weight: 700; line-height: 1.3; }
+    .dense-desc { margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+    /* Uncataloged MOI_OSM.xml fallback drawer (web only, collapsed by default) */
+    .uncataloged-drawer {
+      margin-top: 28px;
+      background: var(--surface);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+    }
+    .uncataloged-drawer > summary {
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      list-style: disclosure-closed;
+      user-select: none;
+    }
+    .uncataloged-drawer[open] > summary {
+      list-style: disclosure-open;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .uncat-note { margin: 0 0 12px; font-size: 12.5px; color: var(--text-muted); }
+    .uncat-group-head {
+      margin: 14px 0 8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .uncat-head-yes {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      border-left: 3px solid #d97706;
+    }
+    .uncat-head-no {
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      border-left: 3px solid var(--border-strong);
+    }
+    .badge-tw-yes { background: var(--accent-soft); color: var(--accent-soft-text); }
+    .badge-tile-yes { background: var(--accent-soft); color: var(--accent-soft-text); }
+    .badge-tile-no { background: var(--warn-bg); color: var(--warn-text); }
+    .diff-drawer { margin-top: 28px; }
+    .diff-drawer + .uncataloged-drawer { margin-top: 14px; }
+    .diff-overlay-sub {
+      margin: 10px 0 6px;
+      padding-left: 8px;
+      border-left: 3px solid var(--border-strong);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .diff-reason { font-size: 11.5px; color: var(--text-muted); line-height: 1.35; margin: 2px 0; }
+    .uncat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+      gap: 8px;
+    }
+    .uncat-card {
+      display: flex; align-items: center; gap: 9px;
+      padding: 7px 9px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface-subtle);
+    }
+    .uncat-swatch { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .uncat-svg { display: block; border-radius: 5px; border: 1px solid #d7dfd9; }
+    .uncat-body { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 3px; }
+    .uncat-name {
+      font-size: 12.5px; font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      word-break: break-all;
+    }
+
+    /* Lightbox modal for real map sample */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(10, 18, 14, 0.78);
+      display: none; align-items: center; justify-content: center; padding: 16px;
+    }
+    .modal-backdrop.is-open { display: flex; }
+    .modal-card {
+      max-width: 720px; width: 100%; background: var(--surface);
+      border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);
+    }
+    .modal-card img { width: 100%; height: auto; display: block; background: #f7f6f1; }
+    .modal-foot {
+      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .modal-title { font-weight: 700; font-size: 15px; }
+    .modal-sub { font-size: 13px; color: var(--text-muted); }
+    .modal-close {
+      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border-strong);
+      background: var(--surface-subtle); color: var(--text); font-weight: 600; cursor: pointer;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border); padding: 18px 16px 32px;
+      text-align: center; color: var(--text-muted); font-size: 12.5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-top">
+        <span class="version-pill">魯地圖圖例 · MOI.OSM v{{VERSION}}（自動產生，共 {{TOTAL}} 項）</span>
+        <div class="hero-actions">
+          <a class="hero-btn" href="taiwan_topo.html">← 回魯地圖下載頁</a>
+          <button type="button" id="theme-toggle" class="hero-btn" aria-label="切換深淺色">☾</button>
+        </div>
+      </div>
+      <h1>魯地圖 — MOI.OSM 完整地圖圖例</h1>
+      <p>直接由地圖樣式檔（MOI_OSM.xml）自動產生。可依分類瀏覽，或透過下方「顏色、形狀、類型」條件快速反查地圖符號。</p>
+      <div class="hero-pdf-bar" aria-label="列印與離線 PDF 下載">
+        <a class="pdf-cta" href="legend_onepage.pdf" target="_blank">
+          <span class="pdf-cta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+          <span class="pdf-cta-text">
+            <span class="pdf-cta-title">一頁速查表 PDF</span>
+            <span class="pdf-cta-sub">單面 A4 · {{COMPACT_COUNT}} 項登山核心</span>
+          </span>
+        </a>
+        <a class="pdf-cta" href="legend_compact.pdf" target="_blank">
+          <span class="pdf-cta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+          <span class="pdf-cta-text">
+            <span class="pdf-cta-title">2 頁速查表 PDF</span>
+            <span class="pdf-cta-sub">雙面 A4 · 含簡要文字說明</span>
+          </span>
+        </a>
+        <a class="pdf-cta" href="legend_detail.pdf" target="_blank">
+          <span class="pdf-cta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+          <span class="pdf-cta-text">
+            <span class="pdf-cta-title">完整詳細版 PDF</span>
+            <span class="pdf-cta-sub">全 {{TOTAL}} 項 · 含真實地圖範例</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="圖例分類">
+    <div class="section-nav-inner">
+      {{CAT_NAV}}
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="filter-panel" aria-label="圖例檢索條件">
+      <div class="search-row">
+        <input type="search" id="q" class="search-input" placeholder="輸入關鍵字反查（例：山屋、三角點、虛線、T5、水源、sac_scale）..." aria-label="關鍵字搜尋">
+        <span class="result-status" id="status">顯示 {{TOTAL}} / {{TOTAL}} 項</span>
+        <button type="button" id="reset-btn" class="reset-btn">重設條件</button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">圖徵類型</div>
+        <div class="filter-chips" id="geom-chips">
+          <button type="button" class="filter-chip is-active" data-geom="all">全部</button>
+          <button type="button" class="filter-chip" data-geom="line">線條（步道・道路・界線）</button>
+          <button type="button" class="filter-chip" data-geom="point">點／圖示（POI）</button>
+          <button type="button" class="filter-chip" data-geom="area">面／區域（地表）</button>
+          <button type="button" class="filter-chip" data-compact-only="1">僅看登山核心（{{COMPACT_COUNT}}）</button>
+          <button type="button" class="filter-chip" data-overlay-off="1">僅看「預設關閉」圖層</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">顏色反查</div>
+        <div class="filter-chips" id="color-chips">{{COLOR_PILLS}}</div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">形狀／線型</div>
+        <div class="filter-chips" id="shape-chips">{{SHAPE_PILLS}}</div>
+      </div>
+    </section>
+
+    <div id="legend-root">
+      {{SECTIONS}}
+    </div>
+    <div class="empty-state" id="empty-state">找不到符合所有篩選條件的圖例，請放寬顏色或形狀條件再試。</div>
+    {{PMTILES_DIFF_HTML}}
+    {{UNCATALOGED_HTML}}
+  </main>
+
+  <footer class="site-footer">
+    魯地圖 (MOI.OSM Taiwan TOPO) 自動產生圖例 · v{{VERSION}} · 樣式來源：MOI_OSM.xml（基於 OpenAndroMaps Elevate）
+  </footer>
+
+  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <img id="modal-img" src="" alt="">
+      <div class="modal-foot">
+        <div>
+          <div class="modal-title" id="modal-title"></div>
+          <div class="modal-sub" id="modal-place"></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <a id="modal-map" href="#" target="_blank" rel="noopener" style="font-weight:700;font-size:13.5px;">在線上地圖檢視 ↗</a>
+          <button type="button" class="modal-close" id="modal-close">關閉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var themeBtn = document.getElementById("theme-toggle");
+      if (themeBtn) {
+        var saved = null;
+        try { saved = localStorage.getItem("rudymap-theme"); } catch (e) {}
+        if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+        function isDark() {
+          var t = root.getAttribute("data-theme");
+          if (t === "dark") return true;
+          if (t === "light") return false;
+          return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+        function sync() { themeBtn.textContent = isDark() ? "☀" : "☾"; }
+        sync();
+        themeBtn.addEventListener("click", function () {
+          var next = isDark() ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("rudymap-theme", next); } catch (e) {}
+          sync();
+        });
+      }
+
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".legend-card"));
+      var sections = Array.prototype.slice.call(document.querySelectorAll(".legend-section"));
+      var qInput = document.getElementById("q");
+      var statusEl = document.getElementById("status");
+      var emptyEl = document.getElementById("empty-state");
+      var total = cards.length;
+
+      var state = {
+        geom: "all",
+        compactOnly: false,
+        overlayOffOnly: false,
+        colors: new Set(),
+        shapes: new Set()
+      };
+
+      function applyFilters() {
+        var q = qInput.value.trim().toLowerCase();
+        var terms = q ? q.split(/\s+/) : [];
+        var shown = 0;
+
+        cards.forEach(function (card) {
+          var ok = true;
+          if (state.geom !== "all" && card.getAttribute("data-geom") !== state.geom) ok = false;
+          if (ok && state.compactOnly && card.getAttribute("data-compact") !== "1") ok = false;
+          if (ok && state.overlayOffOnly && card.getAttribute("data-overlay") !== "off") ok = false;
+
+          if (ok && state.colors.size > 0) {
+            var cardColors = (card.getAttribute("data-colors") || "").split(",").filter(Boolean);
+            state.colors.forEach(function (c) {
+              if (cardColors.indexOf(c) === -1) ok = false;
+            });
+          }
+          if (ok && state.shapes.size > 0) {
+            var cardShapes = (card.getAttribute("data-shapes") || "").split(",").filter(Boolean);
+            state.shapes.forEach(function (s) {
+              if (cardShapes.indexOf(s) === -1) ok = false;
+            });
+          }
+          if (ok && terms.length > 0) {
+            var blob = card.getAttribute("data-search") || "";
+            for (var i = 0; i < terms.length; i++) {
+              if (blob.indexOf(terms[i]) === -1) { ok = false; break; }
+            }
+          }
+          card.classList.toggle("is-hidden", !ok);
+          if (ok) shown += 1;
+        });
+
+        sections.forEach(function (sec) {
+          var vis = sec.querySelectorAll(".legend-card:not(.is-hidden)").length;
+          sec.classList.toggle("is-hidden", vis === 0);
+          var badge = sec.querySelector(".section-count");
+          if (badge) badge.textContent = String(vis);
+          var denseBlk = sec.querySelector(".dense-block");
+          if (denseBlk) {
+            var dVis = denseBlk.querySelectorAll(".dense-card:not(.is-hidden)").length;
+            denseBlk.classList.toggle("is-hidden", dVis === 0);
+          }
+        });
+
+        statusEl.textContent = "顯示 " + shown + " / " + total + " 項";
+        emptyEl.style.display = shown === 0 ? "block" : "none";
+      }
+
+      qInput.addEventListener("input", applyFilters);
+
+      document.getElementById("geom-chips").addEventListener("click", function (ev) {
+        var btn = ev.target.closest("button");
+        if (!btn) return;
+        if (btn.hasAttribute("data-geom")) {
+          state.geom = btn.getAttribute("data-geom");
+          document.querySelectorAll("#geom-chips [data-geom]").forEach(function (b) {
+            b.classList.toggle("is-active", b === btn);
+          });
+        } else if (btn.hasAttribute("data-compact-only")) {
+          state.compactOnly = !state.compactOnly;
+          btn.classList.toggle("is-active", state.compactOnly);
+        } else if (btn.hasAttribute("data-overlay-off")) {
+          state.overlayOffOnly = !state.overlayOffOnly;
+          btn.classList.toggle("is-active", state.overlayOffOnly);
+        }
+        applyFilters();
+      });
+
+      document.getElementById("color-chips").addEventListener("click", function (ev) {
+        var btn = ev.target.closest("button");
+        if (!btn) return;
+        var c = btn.getAttribute("data-color");
+        if (state.colors.has(c)) state.colors.delete(c);
+        else state.colors.add(c);
+        btn.classList.toggle("is-active", state.colors.has(c));
+        applyFilters();
+      });
+
+      document.getElementById("shape-chips").addEventListener("click", function (ev) {
+        var btn = ev.target.closest("button");
+        if (!btn) return;
+        var s = btn.getAttribute("data-shape");
+        if (state.shapes.has(s)) state.shapes.delete(s);
+        else state.shapes.add(s);
+        btn.classList.toggle("is-active", state.shapes.has(s));
+        applyFilters();
+      });
+
+      document.getElementById("reset-btn").addEventListener("click", function () {
+        qInput.value = "";
+        state.geom = "all";
+        state.compactOnly = false;
+        state.overlayOffOnly = false;
+        state.colors.clear();
+        state.shapes.clear();
+        document.querySelectorAll(".filter-chip").forEach(function (b) {
+          b.classList.toggle("is-active", b.getAttribute("data-geom") === "all");
+        });
+        applyFilters();
+      });
+
+      // Sample Lightbox
+      var modal = document.getElementById("modal");
+      var modalImg = document.getElementById("modal-img");
+      var modalTitle = document.getElementById("modal-title");
+      var modalPlace = document.getElementById("modal-place");
+      var modalMap = document.getElementById("modal-map");
+
+      document.addEventListener("click", function (ev) {
+        var btn = ev.target.closest && ev.target.closest(".sample-thumb-btn");
+        if (!btn) return;
+        modalImg.src = btn.getAttribute("data-src");
+        modalTitle.textContent = btn.getAttribute("data-title");
+        modalPlace.textContent = "真實範例地點：" + (btn.getAttribute("data-place") || "");
+        modalMap.href = btn.getAttribute("data-map-url");
+        modal.classList.add("is-open");
+      });
+      document.getElementById("modal-close").addEventListener("click", function () {
+        modal.classList.remove("is-open");
+      });
+      modal.addEventListener("click", function (ev) {
+        if (ev.target === modal) modal.classList.remove("is-open");
+      });
+    })();
+  </script>
+</body>
+</html>

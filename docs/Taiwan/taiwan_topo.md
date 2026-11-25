@@ -5,7 +5,7 @@
 
 台灣免費開源離線登山地圖，適合用在 Garmin / Android / iOS 上，拿來登山與尋寶 (hiking/geocaching)！
 
-[圖例 V1R3](./legend_V1R3.pdf) · [線上圖磚](https://tiles.rudymap.tw) · [手機專頁](https://rudymap.tw/app) · [Beta 版](https://rudymap.tw/drops/beta.html) · [臉書社團](https://www.facebook.com/groups/taiwan.topo) · [GitHub](https://github.com/alpha-rudy/taiwan-topo)
+[圖例](./legend.html) · [線上圖磚](https://tiles.rudymap.tw) · [手機專頁](https://rudymap.tw/app) · [Beta 版](https://rudymap.tw/drops/beta.html) · [臉書社團](https://www.facebook.com/groups/taiwan.topo) · [GitHub](https://github.com/alpha-rudy/taiwan-topo)
 
 ## 手機 App 自動安裝
 
@@ -379,7 +379,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 * 線上圖磚服務：https://tiles.rudymap.tw
 * 使用討論（臉書社團）：https://www.facebook.com/groups/taiwan.topo
 * 開發網站（GitHub）：https://github.com/alpha-rudy/taiwan-topo
-* 阿牛兄的圖例說明：[圖例 V1R3 版](./legend_V1R3.pdf)
+* 地圖圖例（自動同步產生）：[互動檢索網頁](./legend.html) · [詳細版 PDF](./legend_detail.pdf) · [2 頁速查表 PDF](./legend_compact.pdf) · [1 頁速查表 PDF](./legend_onepage.pdf)（[舊版圖例 V1R3](./legend_V1R3.pdf)）
 * Beta 版（每週一、三、六發行）：https://rudymap.tw/drops/beta.html
 * 魯地圖分流器 (Cedric Shih) — 一般使用點選本頁「自動分流」按鈕即可自動導向可用鏡像站
   * rudymap.tw

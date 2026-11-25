@@ -1,0 +1,3090 @@
+# 魯地圖 (MOI.OSM Taiwan TOPO) 自動圖例設定檔
+#
+# 所有圖示外觀（顏色、線寬、虛線、紋理、SVG、縮放層級、圖層開關）
+# 皆由 tools/build_legend.py 直接從 styles/mapsforge_style/MOI_OSM.xml 自動抽取與繪製。
+#
+# 常用欄位說明（[[items]]）：
+# - compact (bool，預設 false)
+#     設為 true 時，該項目會收錄於 2 頁速查表 PDF（legend_compact.pdf），
+#     並在網頁版 legend.html 的「僅看登山核心」篩選條件中顯示。
+# - dense (bool，預設 false；亦可設於 [[categories]])
+#     設為 true 時，於網頁版與詳細版 PDF 採用緊湊多欄排版，不預留實景範例欄位，
+#     且 `--auto-discover` 會自動略過（適合次要生活／休閒／細分輔助圖示）。
+# - example (table，選填)
+#     指定實景地圖範例位置，格式為：
+#       example = { place = "地名", lat = 緯度, lon = 經度, zoom = 縮放, pin = false }
+#     - place：顯示於卡片與 PDF 的實景地名。
+#     - lat / lon / zoom：截圖起始座標與縮放層級。
+#     - pin (bool，預設 false)：設為 true 時鎖定於指定 (lat, lon) 直接驗證並截圖，
+#       不自動吸附至線段中點（適合像纜車橫槓等需精準對齊特定記號的線型）。
+#     - 若未填寫 example：
+#       1. 執行 `make legend_samples` 時會略過該項，不產生實景截圖；
+#          產出的網頁（legend.html）與詳細版 PDF（legend_detail.pdf）僅顯示簡化圖示，
+#          不顯示實景縮圖與地圖連結。
+#       2. 若要自動尋找台灣實景並補齊，可手動執行：
+#            python3 tools/capture_legend_samples.py --auto-discover --update-catalog
+#          程式會依序掃描台灣代表區域，找到並驗證繪製結果後自動截圖並將 example 寫回本檔。
+
+[[categories]]
+id = "trails"
+name = "登山步道與山徑"
+desc = "各類登山步道、難度分級、林道、路線標記與輔助設施。"
+
+[[categories]]
+id = "terrain"
+name = "等高線、地形與水域"
+desc = "等高線、懸崖、溪流、瀑布、溫泉與自然水體。"
+
+[[categories]]
+id = "landcover"
+name = "地表覆蓋與植被"
+desc = "森林種類、草地、裸岩、碎石坡、農地與台灣巨木。"
+
+[[categories]]
+id = "borders"
+name = "界線與管制區域"
+desc = "國家公園、保護區、林班地、行政區界與軍事管制區。"
+
+[[categories]]
+id = "peaks"
+name = "山頭、鞍部與基點"
+desc = "大小百岳、山頭、三角點、圖根點、水準點與觀景特徵。"
+
+[[categories]]
+id = "shelters"
+name = "山屋、營地與住宿"
+desc = "高山山屋、工寮、避難小屋、涼亭、營地與旅宿。"
+
+[[categories]]
+id = "emergency"
+name = "水源、緊急救援與通訊"
+desc = "飲用水、求救設施、醫療警消、直升機停機坪、防空避難與電信。"
+
+[[categories]]
+id = "roads"
+name = "道路、鐵路與大眾運輸"
+desc = "國道、省縣道、高鐵台鐵捷運、纜車、車站與交通設施。"
+
+[[categories]]
+id = "barriers"
+name = "障礙物與路障"
+desc = "柵欄、閘門、越柵梯、擋車柱與路況管制點。"
+
+[[categories]]
+id = "amenities"
+name = "公共設施、人文與生活服務"
+desc = "廁所、導覽、宗教古蹟、餐飲商店、休閒與電力設施。"
+
+[[categories]]
+id = "secondary"
+name = "其他次要商店、休閒與輔助圖示"
+desc = "次要生活商店、運動休閒、紀念物、發電廠與輔助交通符號（精簡密集排版，不另附實景範例）。"
+dense = true
+
+# === trails ===
+[[items]]
+id = "trail_hiking"
+category = "trails"
+name = "登山步道（一般路徑 T1–T4）"
+desc = "清楚可辨的一般登山步道與山徑（sac_scale T1–T4，路跡良好至中等）。"
+compact = true
+geom = "line"
+tags = { highway = "path", sac_scale = "hiking" }
+zoom = 15
+aliases = ["步道", "山徑", "T1", "T2", "T3", "T4", "紅虛線"]
+example = { place = "陽明山七星池步道", lat = 25.17519, lon = 121.55082, zoom = 16 }
+
+[[items]]
+id = "trail_steps"
+category = "trails"
+name = "階梯"
+desc = "登山石階、木棧階梯或陡坡階梯路段。"
+compact = true
+geom = "line"
+tags = { highway = "steps" }
+zoom = 16
+aliases = ["階梯", "木棧道", "石階", "紅點線"]
+example = { place = "象山親山步道階梯", lat = 25.02784, lon = 121.57150, zoom = 16 }
+
+[[items]]
+id = "trail_tough"
+category = "trails"
+name = "艱難路段（T5–T6／路跡不明）"
+desc = "難度高、曝露感強或路跡模糊的探勘級山徑。"
+compact = true
+geom = "line"
+tags = { highway = "path", sac_scale = "demanding_alpine_hiking" }
+zoom = 15
+aliases = ["艱難", "T5", "T6", "探勘", "路跡不明", "暗紅虛線"]
+example = { place = "劍龍稜艱難路段", lat = 25.11822, lon = 121.88465, zoom = 16 }
+
+[[items]]
+id = "trail_closed"
+category = "trails"
+name = "封閉／禁止通行路段"
+desc = "標記為禁止進入或已封閉的步道與道路。"
+compact = true
+geom = "line"
+tags = { highway = "path", access = "acc_no" }
+zoom = 15
+extra_cats = ["hike-no_access"]
+aliases = ["封閉", "禁止進入", "崩塌", "灰虛線"]
+example = { place = "蓮花池步道（已封閉）", lat = 24.21788, lon = 121.48155, zoom = 16 }
+
+[[items]]
+id = "route_hiking_network"
+category = "trails"
+name = "官方／長程登山路線強調"
+desc = "屬於國家級或區域級登山步道系統的路線光暈。"
+compact = true
+geom = "line"
+tags = { highway = "path", sac_scale = "hiking", hknetwork = "nwn" }
+zoom = 14
+aliases = ["國家步道", "長程縱走", "紅底光暈"]
+example = { place = "能高越嶺國家步道", lat = 24.04600, lon = 121.24947, zoom = 15 }
+
+[[items]]
+id = "track_grade1"
+category = "trails"
+name = "林道／產業道路（鋪面良好 grade1）"
+desc = "柏油或水泥鋪設的林道與產業道路，一般車輛多可通行。"
+compact = true
+geom = "line"
+tags = { highway = "track", tracktype = "grade1" }
+zoom = 15
+aliases = ["林道", "產道", "水泥路", "棕邊白線"]
+example = { place = "丹大林道", lat = 23.78674, lon = 121.01338, zoom = 16 }
+
+[[items]]
+id = "track_grade2"
+category = "trails"
+name = "林道／產業道路（壓實碎石 grade2）"
+desc = "碎石或土石壓實的林道，路況尚可。"
+compact = true
+geom = "line"
+tags = { highway = "track", tracktype = "grade2" }
+zoom = 15
+aliases = ["林道", "碎石路", "棕邊淺棕線"]
+example = { place = "彰化大村／員林實景", lat = 23.99673, lon = 120.56590, zoom = 15 }
+
+[[items]]
+id = "track_grade3"
+category = "trails"
+name = "林道（碎石土路 grade3）"
+desc = "碎石與泥土混合的林道，長虛線標示。"
+compact = true
+geom = "line"
+tags = { highway = "track", tracktype = "grade3" }
+zoom = 15
+aliases = ["林道", "土石林道", "棕虛線"]
+example = { place = "郡大林道", lat = 23.61848, lon = 120.92857, zoom = 15 }
+
+[[items]]
+id = "track_grade4"
+category = "trails"
+name = "林道（泥土顛簸 grade4）"
+desc = "以泥土為主、路況顛簸的廢棄或原始林道（長短交替虛線）。"
+compact = true
+geom = "line"
+tags = { highway = "track", tracktype = "grade4" }
+zoom = 15
+aliases = ["林道", "荒廢林道"]
+example = { place = "郡大林道（泥土顛簸段）", lat = 23.58419, lon = 120.98177, zoom = 15 }
+
+[[items]]
+id = "track_grade5"
+category = "trails"
+name = "林道（原始泥徑 grade5）"
+desc = "幾無鋪面、雜草叢生或僅剩路基的原始林道（短虛線）。"
+compact = true
+geom = "line"
+tags = { highway = "track", tracktype = "grade5" }
+zoom = 15
+aliases = ["林道", "荒廢林道", "短棕虛線"]
+example = { place = "舊台泥保線路", lat = 24.02100, lon = 121.57382, zoom = 15 }
+
+[[items]]
+id = "route_cycle"
+category = "trails"
+name = "自行車道"
+desc = "專用或標示的自行車路線（青／紫／洋紅光暈代表地方／區域／國家級）。"
+compact = false
+geom = "line"
+tags = { highway = "cycleway", network = "lcn" }
+zoom = 15
+extra_cats = ["c_routes"]
+aliases = ["單車道", "腳踏車"]
+example = { place = "淡水河濱自行車道", lat = 25.05565, lon = 121.50705, zoom = 15 }
+
+[[items]]
+id = "route_mtb"
+category = "trails"
+name = "登山自行車道 (MTB)"
+desc = "標記為登山車越野路線的路段（螢光黃綠光暈）。"
+compact = false
+geom = "line"
+tags = { highway = "track", network = "mtb" }
+zoom = 15
+extra_cats = ["mtb_routes"]
+aliases = ["MTB", "越野車"]
+
+[[items]]
+id = "poi_trailhead"
+category = "trails"
+name = "登山口"
+desc = "步道正式起點或登山入口位置。"
+compact = true
+geom = "point"
+tags = { highway = "trailhead", name = "塔塔加登山口" }
+sample_label = "登山口"
+shapes = ["person"]
+aliases = ["登山口", "起登點", "步道口"]
+example = { place = "七星山南峰登山口", lat = 25.16970, lon = 121.55211, zoom = 16 }
+
+[[items]]
+id = "poi_guidepost"
+category = "trails"
+name = "指標／路標"
+desc = "叉路方向指標牌或木樁路標。"
+compact = true
+geom = "point"
+tags = { tourism = "information", information = "guidepost" }
+shapes = ["flag"]
+aliases = ["路標", "指標", "叉路牌"]
+example = { place = "玉山步道 8K 指標", lat = 23.46595, lon = 120.94614, zoom = 17 }
+
+[[items]]
+id = "poi_milestone"
+category = "trails"
+name = "步道里程樁"
+desc = "步道沿線的里程標記（如 1K、2.5K）。"
+compact = true
+geom = "point"
+tags = { information = "trail_milestone", zl = "0", name = "3.5K" }
+sample_label = "3.5K"
+shapes = ["flag"]
+aliases = ["里程樁", "公里樁", "里程碑"]
+example = { place = "七星山步道 2K 里程樁", lat = 25.16778, lon = 121.55398, zoom = 16 }
+
+[[items]]
+id = "poi_stamp"
+category = "trails"
+name = "集章點／拓印柱"
+desc = "步道認證集章處或紀念拓印柱（棕色「印」字元符號）。"
+compact = true
+geom = "point"
+tags = { tourism = "information", highlight = "yes", "checkpoint:type" = "stamp" }
+shapes = ["letter"]
+aliases = ["拓印柱", "印章", "大縱走", "集章"]
+
+[[items]]
+id = "poi_safety_rope"
+category = "trails"
+name = "拉繩／確保繩"
+desc = "陡坡、岩壁或濕滑處設有確保繩或輔助拉繩。"
+compact = true
+geom = "point"
+tags = { safety_rope = "sr_yes" }
+aliases = ["拉繩", "繩索", "陡坡"]
+example = { place = "烏來拉繩路段", lat = 24.87735, lon = 121.52892, zoom = 17 }
+
+[[items]]
+id = "poi_ladder"
+category = "trails"
+name = "梯子／爬梯"
+desc = "需使用垂直梯子或鋁梯攀爬的路段。"
+compact = true
+geom = "point"
+tags = { ladder = "ld_yes" }
+aliases = ["梯子", "鐵梯", "木梯"]
+example = { place = "山區爬梯路段", lat = 23.66124, lon = 120.72785, zoom = 16 }
+
+[[items]]
+id = "poi_rungs"
+category = "trails"
+name = "岩壁腳踏點／鐵條"
+desc = "岩壁上釘設的金屬踏點或U型鋼釘。"
+compact = false
+geom = "point"
+tags = { rungs = "rn_yes" }
+aliases = ["踏點", "岩釘"]
+
+[[items]]
+id = "poi_via_ferrata"
+category = "trails"
+name = "鐵索攀岩路徑 (Via Ferrata)"
+desc = "設有固定鋼索與踏點的暴露岩壁路線，通常需吊帶確保。"
+compact = false
+geom = "point"
+tags = { via_ferrata_flag = "yes" }
+shapes = ["circle"]
+aliases = ["鐵索", "攀岩", "曝露"]
+
+[[items]]
+id = "poi_climbing"
+category = "trails"
+name = "攀岩場／攀登點"
+desc = "天然岩場或戶外攀岩地點。"
+compact = false
+geom = "point"
+tags = { sport = "climbing" }
+shapes = ["person"]
+aliases = ["攀岩", "抱石"]
+example = { place = "龍洞攀岩場", lat = 25.10931, lon = 121.92210, zoom = 16 }
+
+# === terrain ===
+[[items]]
+id = "contour_major"
+category = "terrain"
+name = "主等高線（計曲線，每 100m / 500m）"
+desc = "較粗並標註海拔數字的主等高線，方便快速判讀高度。"
+compact = true
+geom = "line"
+tags = { contour_ext = "elevation_major", ele = "2500" }
+zoom = 14
+sample_label = "2500"
+aliases = ["等高線", "計曲線", "粗等高線"]
+example = { place = "雪山圈谷等高線", lat = 24.37828, lon = 121.23562, zoom = 15 }
+
+[[items]]
+id = "contour_medium"
+category = "terrain"
+name = "中等高線（每 50m / 100m）"
+desc = "介於計曲線之間的輔助等高線。"
+compact = true
+geom = "line"
+tags = { contour_ext = "elevation_medium" }
+zoom = 15
+aliases = ["等高線", "50m等高線"]
+example = { place = "阿里山／奮起湖實景", lat = 23.51058, lon = 120.80397, zoom = 15 }
+
+[[items]]
+id = "contour_minor"
+category = "terrain"
+name = "次等高線（首曲線，每 10m / 20m）"
+desc = "最細密的等高線（傳統版 10m、輕量版 20m），用於細部地形判讀。"
+compact = true
+geom = "line"
+tags = { contour_ext = "elevation_minor" }
+zoom = 15
+aliases = ["等高線", "首曲線", "10m等高線", "細等高線"]
+example = { place = "大屯山／擎天崗實景", lat = 25.16636, lon = 121.54496, zoom = 15 }
+
+[[items]]
+id = "natural_cliff"
+category = "terrain"
+name = "懸崖／斷崖"
+desc = "帶朝下齒狀符號的陡峭崖壁或大崩壁，尖齒方向指向低處。"
+compact = true
+geom = "line"
+tags = { natural = "cliff" }
+zoom = 15
+aliases = ["斷崖", "崖壁", "崩壁", "鋸齒線"]
+example = { place = "太魯閣錐麓斷崖", lat = 24.17540, lon = 121.56282, zoom = 15 }
+
+[[items]]
+id = "water_stream"
+category = "terrain"
+name = "溪流／野溪"
+desc = "山區常見的小溪與支流（淺藍細線）。"
+compact = true
+geom = "line"
+tags = { waterway = "stream" }
+zoom = 15
+aliases = ["小溪", "溪谷", "野溪", "藍線"]
+example = { place = "武陵溪", lat = 24.35985, lon = 121.30549, zoom = 15 }
+
+[[items]]
+id = "water_river"
+category = "terrain"
+name = "河川／主溪"
+desc = "較寬的主要河川與溪流幹流（淺藍粗線）。"
+compact = true
+geom = "line"
+tags = { waterway = "river" }
+zoom = 15
+aliases = ["河流", "大溪", "粗藍線"]
+example = { place = "濁水溪", lat = 23.80532, lon = 121.00306, zoom = 14 }
+
+[[items]]
+id = "water_canal"
+category = "terrain"
+name = "運河／水圳"
+desc = "人工開鑿的灌溉水圳或渠道（帶灰邊藍線）。"
+compact = false
+geom = "line"
+tags = { waterway = "canal" }
+zoom = 15
+aliases = ["水圳", "渠道", "水溝"]
+example = { place = "員山子分洪道（瑞芳／平溪／劍龍稜）", lat = 25.12106, lon = 121.83988, zoom = 15 }
+
+[[items]]
+id = "water_weir_line"
+category = "terrain"
+name = "攔砂壩／水堰"
+desc = "橫跨溪流的攔砂壩或低矮水堰。"
+compact = false
+geom = "line"
+tags = { waterway = "weir" }
+zoom = 15
+aliases = ["攔砂壩", "水壩", "堰"]
+example = { place = "大屯山／擎天崗實景", lat = 25.17160, lon = 121.53939, zoom = 15 }
+
+[[items]]
+id = "area_water"
+category = "terrain"
+name = "湖泊／水庫／池塘"
+desc = "高山湖泊、水庫、潭水或蓄水池。"
+compact = true
+geom = "area"
+tags = { natural = "water" }
+zoom = 15
+aliases = ["湖", "高山湖", "水庫", "池", "藍面"]
+example = { place = "嘉明湖", lat = 23.29343, lon = 121.03404, zoom = 16 }
+
+[[items]]
+id = "poi_waterfall"
+category = "terrain"
+name = "瀑布"
+desc = "溪谷中的瀑布位置。"
+compact = true
+geom = "point"
+tags = { waterway = "waterfall", name = "十分瀑布" }
+shapes = ["water"]
+aliases = ["瀑布", "飛瀑"]
+example = { place = "十分瀑布", lat = 25.04896, lon = 121.78731, zoom = 16 }
+
+[[items]]
+id = "poi_spring"
+category = "terrain"
+name = "湧泉／天然泉水"
+desc = "山區天然湧泉或活水源（飲用前仍建議過濾或煮沸）。"
+compact = true
+geom = "point"
+tags = { natural = "spring", drinking_water = "yes" }
+shapes = ["water"]
+aliases = ["活水源", "泉水", "湧泉", "山泉"]
+example = { place = "玉山北峰鞍部水源", lat = 23.47514, lon = 120.96035, zoom = 16 }
+
+[[items]]
+id = "poi_hot_spring"
+category = "terrain"
+name = "溫泉／野溪溫泉"
+desc = "天然溫泉或野溪溫泉露頭。"
+compact = true
+geom = "point"
+tags = { natural = "hot_spring" }
+shapes = ["water"]
+aliases = ["野溪溫泉", "溫泉"]
+example = { place = "栗松溫泉", lat = 23.19666, lon = 121.03567, zoom = 16 }
+
+[[items]]
+id = "poi_geyser"
+category = "terrain"
+name = "噴氣孔／硫氣孔"
+desc = "火山地區地熱噴氣孔或間歇泉。"
+compact = false
+geom = "point"
+tags = { natural = "geyser" }
+shapes = ["water"]
+aliases = ["地熱", "硫磺", "小油坑"]
+example = { place = "噴氣孔圖示範例（台南）", lat = 23.00401, lon = 120.22253, zoom = 16 }
+
+[[items]]
+id = "poi_rapids"
+category = "terrain"
+name = "急流／湍流"
+desc = "溪床落差大、水流湍急的涉溪危險區。"
+compact = false
+geom = "point"
+tags = { waterway = "rapids" }
+shapes = ["water"]
+aliases = ["急流", "激流", "溯溪"]
+
+[[items]]
+id = "poi_ford"
+category = "terrain"
+name = "涉水點／過溪點"
+desc = "步道或林道需涉水橫越溪流的位置，豪雨時須特別注意水位。"
+compact = true
+geom = "point"
+tags = { highway = "ford" }
+shapes = ["water", "person"]
+aliases = ["過溪", "涉溪", "涉水"]
+example = { place = "高鐵桃園／青埔實景", lat = 25.01238, lon = 121.20795, zoom = 16 }
+
+[[items]]
+id = "poi_weir"
+category = "terrain"
+name = "攔砂壩／水門（點標記）"
+desc = "溪谷中的水堰或攔砂壩位置標示。"
+compact = false
+geom = "point"
+tags = { waterway = "weir" }
+shapes = ["water"]
+aliases = ["攔砂壩", "水堰"]
+example = { place = "立霧溪崩塌堰（太魯閣／錐麓／天祥）", lat = 24.17284, lon = 121.55934, zoom = 16 }
+
+# === landcover ===
+[[items]]
+id = "area_forest_deciduous"
+category = "landcover"
+name = "闊葉林"
+desc = "低中海拔常見的闊葉樹林（淺綠底搭配圓形樹冠紋理）。"
+compact = true
+geom = "area"
+tags = { landuse = "forest", leaf_type = "broadleaved" }
+zoom = 15
+aliases = ["森林", "樹林", "闊葉樹", "綠面"]
+example = { place = "台北車站／中正大安實景", lat = 25.04301, lon = 121.51542, zoom = 15 }
+
+[[items]]
+id = "area_forest_coniferous"
+category = "landcover"
+name = "針葉林"
+desc = "中高海拔常見的針葉樹林（淺綠底搭配松杉尖樹紋理）。"
+compact = true
+geom = "area"
+tags = { landuse = "forest", leaf_type = "needleleaved" }
+zoom = 15
+aliases = ["針葉樹", "松林", "冷杉", "鐵杉"]
+example = { place = "梨山／合歡山針葉林", lat = 24.18587, lon = 121.28566, zoom = 15 }
+
+[[items]]
+id = "area_forest_mixed"
+category = "landcover"
+name = "混合林／一般森林"
+desc = "針闊葉混合林或未標註樹種的林地。"
+compact = true
+geom = "area"
+tags = { landuse = "forest" }
+zoom = 15
+aliases = ["森林", "樹林", "雜木林"]
+example = { place = "溪頭森林區", lat = 23.66883, lon = 120.79654, zoom = 15 }
+
+[[items]]
+id = "area_scrub"
+category = "landcover"
+name = "灌木叢／箭竹林"
+desc = "高山箭竹林、玉山杜鵑或低矮灌叢區域。"
+compact = true
+geom = "area"
+tags = { natural = "scrub" }
+zoom = 15
+aliases = ["箭竹", "灌木", "矮叢"]
+example = { place = "高鐵桃園／青埔實景", lat = 25.00938, lon = 121.21517, zoom = 15 }
+
+[[items]]
+id = "area_grass"
+category = "landcover"
+name = "草地／高山草原"
+desc = "開闊草坡、牧場或公園綠地。"
+compact = true
+geom = "area"
+tags = { natural = "grassland" }
+zoom = 15
+aliases = ["草原", "草坡", "綠地"]
+example = { place = "擎天崗草原", lat = 25.16527, lon = 121.57344, zoom = 15 }
+
+[[items]]
+id = "area_rock"
+category = "landcover"
+name = "裸岩／岩盤"
+desc = "缺乏植被覆蓋的大片裸露岩層。"
+compact = true
+geom = "area"
+tags = { natural = "rock" }
+zoom = 15
+aliases = ["岩石", "裸岩", "岩壁"]
+example = { place = "大屯山／擎天崗實景", lat = 25.16447, lon = 121.54540, zoom = 15 }
+
+[[items]]
+id = "area_scree"
+category = "landcover"
+name = "碎石坡／崩塌地"
+desc = "鬆動碎石、岩屑坡或大崩塌區，行走容易滑動。"
+compact = true
+geom = "area"
+tags = { natural = "scree" }
+zoom = 15
+aliases = ["碎石", "崩塌", "落石坡"]
+example = { place = "七星山小油坑碎石區", lat = 25.17098, lon = 121.54862, zoom = 16 }
+
+[[items]]
+id = "area_marsh"
+category = "landcover"
+name = "沼澤／濕地"
+desc = "積水沼澤、泥炭濕地或高美／紅樹林等濕地區。"
+compact = true
+geom = "area"
+tags = { natural = "wetland" }
+zoom = 15
+aliases = ["濕地", "沼澤", "水窪"]
+example = { place = "夢幻湖濕地", lat = 25.16712, lon = 121.56010, zoom = 16 }
+
+[[items]]
+id = "area_heath"
+category = "landcover"
+name = "荒原／石楠矮灌"
+desc = "低矮灌木與草本混生的荒原或高原植被。"
+compact = false
+geom = "area"
+tags = { natural = "heath" }
+zoom = 15
+aliases = ["荒原", "矮灌"]
+example = { place = "高雄港／旗津／西子灣實景", lat = 22.61967, lon = 120.26626, zoom = 15 }
+
+[[items]]
+id = "area_fell"
+category = "landcover"
+name = "高山苔原／寒原"
+desc = "樹線以上的高山稀疏草本與裸地。"
+compact = false
+geom = "area"
+tags = { natural = "fell" }
+zoom = 15
+aliases = ["寒原", "樹線以上"]
+example = { place = "花蓮高山寒原", lat = 23.88226, lon = 121.60245, zoom = 15 }
+
+[[items]]
+id = "area_sand"
+category = "landcover"
+name = "沙灘／沙地"
+desc = "海岸沙灘、河床沙洲或沙丘。"
+compact = false
+geom = "area"
+tags = { natural = "beach" }
+zoom = 15
+aliases = ["沙灘", "海灘", "沙洲"]
+example = { place = "旗津海水浴場", lat = 22.61382, lon = 120.26324, zoom = 15 }
+
+[[items]]
+id = "area_orchard"
+category = "landcover"
+name = "果園／茶園"
+desc = "果樹園或山坡種植園區。"
+compact = false
+geom = "area"
+tags = { landuse = "orchard" }
+zoom = 15
+aliases = ["果園", "茶園", "農園"]
+example = { place = "南澳果園", lat = 24.48016, lon = 121.78379, zoom = 15 }
+
+[[items]]
+id = "area_vineyard"
+category = "landcover"
+name = "葡萄園"
+desc = "成列種植的葡萄園區。"
+compact = false
+geom = "area"
+tags = { landuse = "vineyard" }
+zoom = 15
+aliases = ["葡萄園"]
+example = { place = "彰化大村葡萄園", lat = 23.96235, lon = 120.54652, zoom = 15 }
+
+[[items]]
+id = "area_farmland"
+category = "landcover"
+name = "農田／耕地"
+desc = "水稻田、旱田或高山蔬菜農地。"
+compact = false
+geom = "area"
+tags = { landuse = "farmland" }
+zoom = 15
+aliases = ["農地", "稻田", "菜園"]
+example = { place = "宜蘭三星農田", lat = 24.66861, lon = 121.64304, zoom = 15 }
+
+[[items]]
+id = "area_cemetery"
+category = "landcover"
+name = "公墓／墓地"
+desc = "郊山步道旁常見的墓地區域（灰綠底十字紋理）。"
+compact = true
+geom = "area"
+tags = { landuse = "cemetery" }
+zoom = 15
+aliases = ["墳墓", "公墓", "夜總會"]
+example = { place = "象山／貓空／木柵實景", lat = 25.03064, lon = 121.57279, zoom = 15 }
+
+[[items]]
+id = "area_glacier"
+category = "landcover"
+name = "冰河／終年積雪"
+desc = "國外高山地圖常見的冰川或雪原區域。"
+compact = false
+geom = "area"
+tags = { natural = "glacier" }
+zoom = 15
+aliases = ["冰川", "雪地"]
+
+[[items]]
+id = "area_residential"
+category = "landcover"
+name = "住宅區／聚落"
+desc = "城鎮住宅區與鄉村聚落範圍。"
+compact = false
+geom = "area"
+tags = { landuse = "residential" }
+zoom = 15
+aliases = ["住宅", "部落", "市區"]
+example = { place = "象山／貓空／木柵實景", lat = 25.02779, lon = 121.57059, zoom = 15 }
+
+[[items]]
+id = "area_commercial"
+category = "landcover"
+name = "商業／工業區"
+desc = "工業區、商辦區或工地範圍。"
+compact = false
+geom = "area"
+tags = { landuse = "industrial" }
+zoom = 15
+aliases = ["工業區", "商業區"]
+example = { place = "台北車站／中正大安實景", lat = 25.04785, lon = 121.51623, zoom = 15 }
+
+[[items]]
+id = "poi_giant_tree"
+category = "landcover"
+name = "台灣巨木 (TFRI)"
+desc = "農業部林業試驗所「找樹的人」測繪之超高巨木。"
+compact = true
+geom = "point"
+tags = { natural = "giant_tree", name = "大安溪倚天劍" }
+extra_cats = ["giant_tree"]
+sample_label = "大安溪倚天劍"
+shapes = ["tree"]
+aliases = ["神木", "巨木", "找樹的人", "TFRI"]
+example = { place = "棲蘭三姐妹（台灣巨木）", lat = 24.51349, lon = 121.36625, zoom = 15 }
+
+# === borders ===
+[[items]]
+id = "border_national_park"
+category = "borders"
+name = "國家公園界線"
+desc = "玉山、雪霸、太魯閣、陽明山等國家公園範圍界線（寬亮綠半透明帶＋長虛線與間隔方點，帶寬為自然保留區的 2 倍，z7+ 顯示）。"
+compact = true
+geom = "line"
+tags = { boundary = "national_park" }
+zoom = 15
+aliases = ["國家公園", "綠界線", "寬綠帶"]
+example = { place = "玉山國家公園界線", lat = 23.46546, lon = 120.87988, zoom = 14 }
+
+[[items]]
+id = "border_protected"
+category = "borders"
+name = "自然保留區／嚴格保護區界線"
+desc = "自然保留區、生態保護區、野生動物保護區等管制邊界（較窄深綠半透明帶＋長虛線與間隔方點，帶寬僅國家公園的一半，z11+ 顯示）。"
+compact = true
+geom = "line"
+tags = { boundary = "strict_protected" }
+zoom = 15
+aliases = ["保留區", "保護區", "入山申請", "細深綠帶"]
+example = { place = "奇萊、太魯閣山群生態保護區", lat = 24.13413, lon = 121.28836, zoom = 15 }
+
+[[items]]
+id = "border_compartment"
+category = "borders"
+name = "林業保育署林班地界線"
+desc = "國有林事業區林班界線與編號（粉紫線）。"
+compact = true
+geom = "line"
+tags = { boundary = "forest_compartment" }
+zoom = 15
+aliases = ["林班地", "林務局", "粉紫線"]
+
+[[items]]
+id = "border_county"
+category = "borders"
+name = "縣市界線"
+desc = "直轄市與縣市行政區界線（寬紫帶＋較粗長虛線與方點，z7+ 顯示，寬度與線粗皆為鄉鎮市區界的 2 倍）。"
+compact = true
+geom = "line"
+tags = { admin_level = "4" }
+zoom = 15
+extra_cats = ["borders"]
+aliases = ["縣市界", "行政界", "紫界線", "寬紫帶"]
+example = { place = "南投／花蓮縣界（合歡山）", lat = 24.14002, lon = 121.28218, zoom = 14 }
+
+[[items]]
+id = "border_township"
+category = "borders"
+name = "鄉鎮市區界線"
+desc = "鄉、鎮、市、區行政邊界（細紫帶＋極細長虛線與小方點，z11+ 才顯示，寬度與線粗皆為縣市界的一半）。"
+compact = false
+geom = "line"
+tags = { admin_level = "7" }
+zoom = 15
+aliases = ["鄉鎮界", "區界", "細紫帶"]
+
+[[items]]
+id = "border_country"
+category = "borders"
+name = "國界"
+desc = "國家邊界（灰寬帶＋黑白相間虛線，常見於國外山區圖資）。"
+compact = false
+geom = "line"
+tags = { admin_level = "2" }
+zoom = 15
+aliases = ["國界", "邊境"]
+
+[[items]]
+id = "area_military"
+category = "borders"
+name = "軍事管制區"
+desc = "軍事營區或射擊演習管制區，嚴禁誤入（紅斜線紋理＋紅點虛線框）。"
+compact = true
+geom = "area"
+tags = { landuse = "military" }
+zoom = 15
+aliases = ["軍營", "管制區", "禁區", "紅斜線"]
+
+[[items]]
+id = "area_access_no"
+category = "borders"
+name = "禁止進入區域"
+desc = "標示為禁止通行或封閉的區域（灰色交叉斜紋）。"
+compact = false
+geom = "area"
+tags = { area = "yes", access = "acc_no" }
+zoom = 15
+aliases = ["禁入", "封閉區"]
+
+[[items]]
+id = "area_access_private"
+category = "borders"
+name = "私人領域"
+desc = "私人產權或須經許可方可進入之區域（橘紅斜紋）。"
+compact = false
+geom = "area"
+tags = { area = "yes", access = "private" }
+zoom = 15
+aliases = ["私人土地", "私地"]
+
+# === peaks ===
+[[items]]
+id = "poi_peak_baiyue"
+category = "peaks"
+name = "台灣百岳"
+desc = "台灣百岳山頭標誌（紅框圓圈內包黑框灰三角＋山名與海拔）。"
+compact = true
+geom = "point"
+tags = { man_made = "summit_board", zl = "0", name = "玉山", ele = "3952" }
+sample_label = "玉山 3952"
+shapes = ["triangle", "circle"]
+aliases = ["百岳", "高山", "紅三角"]
+example = { place = "玉山主峰", lat = 23.47000, lon = 120.95727, zoom = 15 }
+
+[[items]]
+id = "poi_peak_xiaobaiyue"
+category = "peaks"
+name = "台灣小百岳"
+desc = "台灣小百岳標誌（藍框圓圈內包黑框灰三角＋山名與海拔）。"
+compact = true
+geom = "point"
+tags = { man_made = "summit_board", zl = "2", name = "七星山", ele = "1120" }
+sample_label = "七星山 1120"
+shapes = ["triangle", "circle"]
+aliases = ["小百岳", "郊山", "橘三角"]
+example = { place = "七星山主峰", lat = 25.17070, lon = 121.55344, zoom = 15 }
+
+[[items]]
+id = "poi_peak_general"
+category = "peaks"
+name = "一般有名山頭"
+desc = "具名稱之一般山峰（z14+ 黑框灰底三角形＋山名與海拔）。"
+compact = true
+geom = "point"
+tags = { man_made = "summit_board", name = "小屯山, 877m", ele = "877" }
+sample_label = "小屯山, 877m"
+shapes = ["triangle"]
+aliases = ["山頭", "山峰", "棕三角"]
+example = { place = "陽明山小屯山", lat = 25.16601, lon = 121.51873, zoom = 15 }
+
+[[items]]
+id = "poi_peak_small"
+category = "peaks"
+name = "一般有名山頭（中縮放 z12–13）"
+desc = "中比例尺（z12–13）顯示的一般有名山峰（實心深灰小三角形＋山名與海拔，放大至 z14+ 轉為黑框灰三角）。"
+compact = false
+geom = "point"
+tags = { man_made = "summit_board", name = "小屯山, 877m", ele = "877" }
+zoom = 13
+sample_label = "小屯山, 877m"
+shapes = ["triangle"]
+aliases = ["小山頭", "山峰", "灰三角", "z12", "z13"]
+example = { place = "陽明山小屯山（中縮放）", lat = 25.16603, lon = 121.51872, zoom = 12 }
+
+[[items]]
+id = "poi_peak_noname"
+category = "peaks"
+name = "無名山頭／獨立高點"
+desc = "具獨立高度但無正式名稱的山頭點位（黑色 × 叉號＋海拔）。"
+compact = true
+geom = "point"
+tags = { natural = "peak", is_in = "taiwan", ele = "2415" }
+sample_label = "2415"
+shapes = ["cross"]
+aliases = ["獨立峰", "高點", "無名峰"]
+example = { place = "能高越嶺／天池山莊實景", lat = 24.04166, lon = 121.28551, zoom = 16 }
+
+[[items]]
+id = "poi_saddle"
+category = "peaks"
+name = "鞍部／埡口／越嶺點"
+desc = "兩山之間的鞍部或山路越嶺最高點（灰圓點）。"
+compact = true
+geom = "point"
+tags = { mountain_pass = "yes", name = "武嶺", ele = "3275" }
+sample_label = "武嶺 3275"
+shapes = ["circle"]
+aliases = ["鞍部", "埡口", "山口", "越嶺"]
+example = { place = "肉板峠（平溪越嶺鞍部）", lat = 25.03740, lon = 121.71675, zoom = 16 }
+
+[[items]]
+id = "poi_volcano"
+category = "peaks"
+name = "火山"
+desc = "火山口或火山峰標示（紅三角形）。"
+compact = false
+geom = "point"
+tags = { natural = "volcano", name = "富士山" }
+shapes = ["triangle"]
+aliases = ["火山", "火山口"]
+example = { place = "金露地熱口（大屯山／擎天崗）", lat = 25.16455, lon = 121.54532, zoom = 16 }
+
+[[items]]
+id = "poi_sp_trig"
+category = "peaks"
+name = "一等／二等／三等三角點"
+desc = "陸測部原點與一至三等三角點基石。"
+compact = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "trig_1st" }
+shapes = ["triangle"]
+aliases = ["三角點", "基點", "一等", "二等", "三等"]
+example = { place = "玉山一等三角點", lat = 23.47000, lon = 120.95726, zoom = 16 }
+
+[[items]]
+id = "poi_sp_trig_c"
+category = "peaks"
+name = "內補／聯勤補立三角點"
+desc = "內政部補立、聯勤測量隊等補設之三角點。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "trig_1st_IC" }
+shapes = ["triangle", "circle"]
+aliases = ["內補", "補立三角點", "基點"]
+example = { place = "三等三角點 內補234（台北車站／中正大安）", lat = 25.04619, lon = 121.51635, zoom = 16 }
+
+[[items]]
+id = "poi_sp_suppl"
+category = "peaks"
+name = "圖根點／補點"
+desc = "土地調查局圖根點與各機關圖根補點。"
+compact = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "suppl" }
+shapes = ["circle"]
+aliases = ["圖根點", "補點", "基點"]
+example = { place = "圖根點 倡(19)（桃園機場／中壢）", lat = 25.07481, lon = 121.23256, zoom = 16 }
+
+[[items]]
+id = "poi_sp_forest"
+category = "peaks"
+name = "森林三角點／專賣局／林產局基石"
+desc = "山字森林三角點、林野調查與樟林地界基石。"
+compact = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "forest_trig" }
+shapes = ["triangle", "letter"]
+aliases = ["山字三角點", "森林點", "專賣局"]
+example = { place = "阿里山森林補點 45（塔塔加／東埔）", lat = 23.48605, lon = 120.88641, zoom = 16 }
+
+[[items]]
+id = "poi_sp_mine"
+category = "peaks"
+name = "鑛務課基點"
+desc = "經濟部礦務局／總督府殖產局鑛務課基點。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "mine" }
+shapes = ["square"]
+aliases = ["鑛務課", "礦務課", "基點"]
+example = { place = "鑛務課 390（瑞芳／平溪／劍龍稜）", lat = 25.11762, lon = 121.84177, zoom = 16 }
+
+[[items]]
+id = "poi_sp_taiwanp"
+category = "peaks"
+name = "省政府／縣市政府圖根補點"
+desc = "台灣省政府、北市精幹點、各縣市圖根點。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "taiwanp" }
+shapes = ["circle"]
+aliases = ["省府點", "精幹點", "都市計畫樁"]
+example = { place = "北市地測精幹點 市295 七星山北（七星山／小油坑）", lat = 25.17256, lon = 121.55368, zoom = 16 }
+
+[[items]]
+id = "poi_sp_satellite"
+category = "peaks"
+name = "衛星控制點 (GPS)"
+desc = "內政部一至四等衛星控制點。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "satellite_1st" }
+shapes = ["triangle", "letter"]
+aliases = ["衛星點", "控制點", "GPS基點"]
+example = { place = "中研院衛星點 S027（塔塔加／東埔）", lat = 23.48379, lon = 120.88954, zoom = 16 }
+
+[[items]]
+id = "poi_sp_bm"
+category = "peaks"
+name = "水準點（新／舊／水利）"
+desc = "一等與二等水準點、內政部新水準點。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "bm_new" }
+shapes = ["square"]
+aliases = ["水準點", "高程點", "陸檢"]
+example = { place = "內政部水準點 X121（塔塔加／東埔）", lat = 23.48733, lon = 120.88982, zoom = 16 }
+
+[[items]]
+id = "poi_sp_navy_water"
+category = "peaks"
+name = "海軍三角點"
+desc = "海軍測量局／日治水路部設置之三角點基石（三角內含 m）；海軍補點與水利／水資會基點見下方次要符號。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "navy_trig_TW" }
+shapes = ["triangle", "letter"]
+aliases = ["海軍三角點", "海測", "水路部", "基點"]
+example = { place = "海軍三等三角點 T007（金山）", lat = 25.25444, lon = 121.57155, zoom = 16 }
+
+[[items]]
+id = "poi_sp_replica"
+category = "peaks"
+name = "複刻／重建基點"
+desc = "山友或單位補立之複刻基石。"
+compact = false
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "replica" }
+shapes = ["circle", "letter"]
+aliases = ["複刻點", "假基石"]
+example = { place = "野牛隊 10（複刻基石）", lat = 24.90201, lon = 121.51424, zoom = 16 }
+
+[[items]]
+id = "poi_viewpoint"
+category = "peaks"
+name = "觀景台／展望點"
+desc = "視野開闊的展望點或景觀台。"
+compact = true
+geom = "point"
+tags = { tourism = "viewpoint" }
+shapes = ["circle"]
+aliases = ["展望", "觀景", "瞭望"]
+example = { place = "奇萊鼻燈塔瞭望平台", lat = 24.01666, lon = 121.64341, zoom = 16 }
+
+[[items]]
+id = "poi_cave"
+category = "peaks"
+name = "洞穴入口"
+desc = "天然岩洞、海蝕洞或坑道口。"
+compact = false
+geom = "point"
+tags = { natural = "cave_entrance" }
+shapes = ["circle"]
+aliases = ["山洞", "岩洞", "洞口"]
+example = { place = "南澳海蝕洞", lat = 24.40146, lon = 121.78912, zoom = 16 }
+
+# === shelters ===
+[[items]]
+id = "poi_alpine_hut"
+category = "shelters"
+name = "山屋（有人管理／供宿）"
+desc = "國家公園或官方管理的正式山屋，如排雲山莊、三六九山莊等。"
+compact = true
+geom = "point"
+tags = { tourism = "alpine_hut", name = "排雲山莊" }
+sample_label = "排雲山莊"
+shapes = ["house", "person"]
+aliases = ["山莊", "山屋", "藍屋"]
+example = { place = "排雲山莊", lat = 23.46648, lon = 120.94984, zoom = 16 }
+
+[[items]]
+id = "poi_alpine_hut_private"
+category = "shelters"
+name = "私人／須預約山屋"
+desc = "私人經營、會員制或需特別申請許可的山屋（屋頂帶鑰匙符號）。"
+compact = false
+geom = "point"
+tags = { tourism = "alpine_hut", name = "私人山屋", access = "private" }
+shapes = ["house", "person"]
+aliases = ["私人山屋", "鑰匙山屋"]
+example = { place = "三六九山莊（施工管制）", lat = 24.39231, lon = 121.25481, zoom = 17 }
+
+[[items]]
+id = "poi_alpine_hut_winter"
+category = "shelters"
+name = "冬季山屋"
+desc = "冬季亦開放避難室的高山山屋（屋頂帶雪花符號，多見於國外山區）。"
+compact = false
+geom = "point"
+tags = { tourism = "alpine_hut", name = "冬季山屋", winter_room = "wr_yes" }
+shapes = ["house", "person"]
+aliases = ["冬季山屋", "雪花"]
+
+[[items]]
+id = "poi_wilderness_hut"
+category = "shelters"
+name = "無人山屋／獵寮"
+desc = "無人管理之簡易山屋、工寮或開放式山林小屋。"
+compact = true
+geom = "point"
+tags = { tourism = "wilderness_hut", name = "檜谷山莊" }
+shapes = ["house"]
+aliases = ["無人山屋", "工寮", "獵寮"]
+example = { place = "多加屯避難小屋", lat = 24.36821, lon = 121.37332, zoom = 16 }
+
+[[items]]
+id = "poi_wilderness_hut_private"
+category = "shelters"
+name = "私人無人山屋／工寮"
+desc = "私人或非對外開放之山屋與工寮（屋頂帶鑰匙符號）。"
+compact = false
+geom = "point"
+tags = { tourism = "wilderness_hut", access = "private" }
+shapes = ["house"]
+aliases = ["私人工寮", "鑰匙"]
+
+[[items]]
+id = "poi_shelter_basic_hut"
+category = "shelters"
+name = "簡易避難小屋"
+desc = "緊急避難用簡易木屋或鋁皮避難屋（無床鋪或極簡空間）。"
+compact = true
+geom = "point"
+tags = { amenity = "shelter", shelter_type = "basic_hut" }
+shapes = ["house"]
+aliases = ["避難屋", "避難山屋", "工寮"]
+example = { place = "避難山屋", lat = 24.51736, lon = 121.01954, zoom = 16 }
+
+[[items]]
+id = "poi_shelter"
+category = "shelters"
+name = "涼亭／遮雨棚"
+desc = "步道沿線可供避雨休息的涼亭或遮蔽設施。"
+compact = true
+geom = "point"
+tags = { amenity = "shelter" }
+shapes = ["house"]
+aliases = ["涼亭", "避雨亭", "休憩亭"]
+example = { place = "圓山步道涼亭", lat = 25.07440, lon = 121.53004, zoom = 17 }
+
+[[items]]
+id = "poi_shelter_picnic"
+category = "shelters"
+name = "野餐涼棚"
+desc = "設有桌椅可供用餐休息的有頂棚區。"
+compact = false
+geom = "point"
+tags = { amenity = "shelter", shelter_type = "picnic_shelter" }
+shapes = ["house"]
+aliases = ["野餐亭", "炊事亭"]
+example = { place = "蘊風亭（桃園虎頭山／桃園神社）", lat = 25.00022, lon = 121.32652, zoom = 16 }
+
+[[items]]
+id = "poi_shelter_rock"
+category = "shelters"
+name = "岩洞避難所"
+desc = "可遮風避雨的天然岩壁凹處或石洞。"
+compact = false
+geom = "point"
+tags = { amenity = "shelter", shelter_type = "rock_shelter" }
+shapes = ["house"]
+aliases = ["岩洞", "石窟", "避雨岩"]
+
+[[items]]
+id = "poi_camp_site"
+category = "shelters"
+name = "露營地／營地"
+desc = "高山紮營空地、帳篷營位或露營區（藍色帳篷符號）。"
+compact = true
+geom = "point"
+tags = { tourism = "camp_site" }
+shapes = ["triangle"]
+aliases = ["營地", "紮營", "帳篷", "露營區"]
+example = { place = "栗松溫泉營地", lat = 23.19664, lon = 121.03468, zoom = 16 }
+
+[[items]]
+id = "poi_caravan_site"
+category = "shelters"
+name = "露營車營地"
+desc = "供露營車停泊之營區。"
+compact = false
+geom = "point"
+tags = { tourism = "caravan_site" }
+shapes = ["transport"]
+aliases = ["露營車", "車泊"]
+
+[[items]]
+id = "poi_hotel"
+category = "shelters"
+name = "旅館／飯店"
+desc = "一般旅館與飯店。"
+compact = false
+geom = "point"
+tags = { tourism = "hotel" }
+aliases = ["飯店", "旅館", "住宿"]
+
+[[items]]
+id = "poi_hostel"
+category = "shelters"
+name = "青年旅舍／背包客棧"
+desc = "青年旅館或團體通舖住宿。"
+compact = false
+geom = "point"
+tags = { tourism = "hostel" }
+aliases = ["青旅", "背包客"]
+
+[[items]]
+id = "poi_chalet"
+category = "shelters"
+name = "民宿／小木屋"
+desc = "山區小木屋或渡假民宿。"
+compact = false
+geom = "point"
+tags = { tourism = "chalet" }
+shapes = ["house"]
+aliases = ["小木屋", "民宿"]
+
+[[items]]
+id = "poi_apartment"
+category = "shelters"
+name = "渡假公寓"
+desc = "日租或渡假公寓住宿。"
+compact = false
+geom = "point"
+tags = { tourism = "apartment" }
+shapes = ["house"]
+aliases = ["公寓", "住宿"]
+
+# === emergency ===
+[[items]]
+id = "poi_drinking_water"
+category = "emergency"
+name = "飲用水／給水站"
+desc = "明確標示可飲用的飲水機或給水站（棕色圓底白色水龍頭與水杯）。"
+compact = true
+geom = "point"
+tags = { amenity = "drinking_water" }
+shapes = ["water", "circle"]
+aliases = ["飲水機", "水龍頭", "補給水"]
+example = { place = "陽明山飲水點", lat = 25.16673, lon = 121.54727, zoom = 17 }
+
+[[items]]
+id = "poi_water_well_drinking"
+category = "emergency"
+name = "可飲用水井"
+desc = "標示為可飲用的水井。"
+compact = false
+geom = "point"
+tags = { man_made = "water_well", drinking_water = "yes" }
+shapes = ["water", "circle"]
+aliases = ["水井", "古井"]
+example = { place = "汐止加水站", lat = 25.06558, lon = 121.64187, zoom = 17 }
+
+[[items]]
+id = "poi_water_well"
+category = "emergency"
+name = "一般水井（非飲用）"
+desc = "未標示可生飲的水井或農用井。"
+compact = false
+geom = "point"
+tags = { man_made = "water_well" }
+shapes = ["water"]
+aliases = ["水井"]
+example = { place = "林田村－日本井", lat = 23.76782, lon = 121.47356, zoom = 16 }
+
+[[items]]
+id = "poi_fountain"
+category = "emergency"
+name = "噴泉／水池"
+desc = "景觀噴水池（通常不可直接飲用）。"
+compact = false
+geom = "point"
+tags = { amenity = "fountain" }
+shapes = ["water"]
+aliases = ["噴水池", "水池"]
+example = { place = "北醫神泉（象山／貓空／木柵）", lat = 25.02673, lon = 121.56241, zoom = 16 }
+
+[[items]]
+id = "poi_emergency_access"
+category = "emergency"
+name = "緊急救援定位點"
+desc = "官方編碼的緊急救護座標樁或救援會合點，報案時可回報編號。"
+compact = true
+geom = "point"
+tags = { highway = "emergency_access_point", zl = "0" }
+shapes = ["cross"]
+aliases = ["救援點", "定位樁", "緊急點"]
+example = { place = "樁4（五寮尖／滿月圓）", lat = 24.87769, lon = 121.37509, zoom = 16 }
+
+[[items]]
+id = "poi_emergency_phone"
+category = "emergency"
+name = "緊急求救電話"
+desc = "山區或道路旁的緊急專線電話（洋紅色話筒符號）。"
+compact = true
+geom = "point"
+tags = { emergency = "phone" }
+aliases = ["求救電話", "SOS"]
+example = { place = "淡水／八里／關渡實景", lat = 25.17431, lon = 121.44765, zoom = 16 }
+
+[[items]]
+id = "poi_defibrillator"
+category = "emergency"
+name = "AED 自動體外心臟電擊器"
+desc = "設有公眾急救 AED 的場所（紅心閃電符號）。"
+compact = true
+geom = "point"
+tags = { emergency = "defibrillator" }
+shapes = ["cross"]
+aliases = ["AED", "電擊器", "急救"]
+example = { place = "台北車站／中正大安實景", lat = 25.04792, lon = 121.51700, zoom = 16 }
+
+[[items]]
+id = "poi_hospital"
+category = "emergency"
+name = "醫院"
+desc = "設有急診或住院醫療服務之醫院（白底洋紅圓框內洋紅十字）。"
+compact = true
+geom = "point"
+tags = { amenity = "hospital" }
+shapes = ["cross", "circle"]
+aliases = ["醫院", "急診", "紅十字"]
+example = { place = "阿里山鄉香林聯合衛生室（阿里山／奮起湖）", lat = 23.50970, lon = 120.80231, zoom = 16 }
+
+[[items]]
+id = "poi_doctors"
+category = "emergency"
+name = "診所／衛生所"
+desc = "社區診所、山區衛生室或醫療站。"
+compact = false
+geom = "point"
+tags = { amenity = "doctors" }
+aliases = ["診所", "衛生所", "醫療站"]
+example = { place = "総新國際醫院（桃園機場／中壢）", lat = 25.08064, lon = 121.23790, zoom = 16 }
+
+[[items]]
+id = "poi_pharmacy"
+category = "emergency"
+name = "藥局"
+desc = "藥局與藥品補給點。"
+compact = false
+geom = "point"
+tags = { amenity = "pharmacy" }
+shapes = ["cross", "square"]
+aliases = ["藥局", "藥房"]
+example = { place = "立赫景福藥局（台北車站／中正大安）", lat = 25.04488, lon = 121.51697, zoom = 16 }
+
+[[items]]
+id = "poi_police"
+category = "emergency"
+name = "警察局／派出所／入山檢查哨"
+desc = "警察局、山區派出所與入山管制檢查站。"
+compact = true
+geom = "point"
+tags = { amenity = "police" }
+aliases = ["派出所", "警局", "檢查哨"]
+example = { place = "捷運警察隊（台北車站／中正大安）", lat = 25.04933, lon = 121.51885, zoom = 16 }
+
+[[items]]
+id = "poi_firestation"
+category = "emergency"
+name = "消防隊／搜救分隊"
+desc = "消防局或山難搜救分隊駐點。"
+compact = true
+geom = "point"
+tags = { amenity = "fire_station" }
+shapes = ["circle"]
+aliases = ["消防局", "搜救"]
+example = { place = "梨山消防分隊", lat = 24.25417, lon = 121.25607, zoom = 16 }
+
+[[items]]
+id = "poi_helipad"
+category = "emergency"
+name = "直升機停機坪／吊掛點"
+desc = "山區空勤總隊直升機起降場或緊急吊掛點（洋紅色直升機符號）。"
+compact = true
+geom = "point"
+tags = { aeroway = "helipad" }
+shapes = ["transport"]
+aliases = ["停機坪", "空勤", "吊掛", "H"]
+example = { place = "排雲／玉山停機坪", lat = 23.29589, lon = 121.03307, zoom = 17 }
+
+[[items]]
+id = "poi_ads"
+category = "emergency"
+name = "防空避難處所"
+desc = "內政部警政署防空避難位置（黃底紅邊或專屬符號）。"
+compact = false
+geom = "point"
+tags = { amenity = "air_defense_shelter", cap = "5000" }
+shapes = ["circle", "person"]
+aliases = ["防空避難", "防空洞", "NPA"]
+
+[[items]]
+id = "poi_comm_tower"
+category = "emergency"
+name = "通訊電信塔／助航站"
+desc = "山頂電信中繼站、雷達站或助航站，附近通常有較佳手機訊號。"
+compact = true
+geom = "point"
+tags = { tower = "communication" }
+shapes = ["tower"]
+aliases = ["電信塔", "基地台", "通訊點", "訊號"]
+example = { place = "反射板（瑞芳／平溪／劍龍稜）", lat = 25.11823, lon = 121.84586, zoom = 16 }
+
+[[items]]
+id = "poi_mast"
+category = "emergency"
+name = "行動基地台／天線桿"
+desc = "行動通訊天線桿。"
+compact = false
+geom = "point"
+tags = { man_made = "mast" }
+shapes = ["tower"]
+aliases = ["基地台", "訊號塔"]
+
+[[items]]
+id = "poi_telephone"
+category = "emergency"
+name = "公共電話"
+desc = "公用電話亭位置。"
+compact = false
+geom = "point"
+tags = { amenity = "telephone" }
+aliases = ["電話"]
+example = { place = "臺中市政府／大坑實景", lat = 24.16162, lon = 120.64726, zoom = 16 }
+
+# === roads ===
+[[items]]
+id = "road_motorway"
+category = "roads"
+name = "國道（高速公路）"
+desc = "高速公路主線（桃紅粗雙線＋黑外框）。"
+compact = true
+geom = "line"
+tags = { highway = "motorway", ref = "1" }
+zoom = 15
+sample_label = "1"
+aliases = ["國道", "高速公路", "桃紅線"]
+example = { place = "國道一號圓山交流道", lat = 25.07281, lon = 121.53155, zoom = 15 }
+
+[[items]]
+id = "road_trunk"
+category = "roads"
+name = "快速道路（省道快速公路）"
+desc = "東西向或台字號快速公路（粉紅粗線＋黑外框）。"
+compact = true
+geom = "line"
+tags = { highway = "trunk", ref = "台64" }
+zoom = 15
+sample_label = "台64"
+aliases = ["快速道路", "粉紅線"]
+example = { place = "市民大道高架道路（台北車站／中正大安）", lat = 25.04875, lon = 121.51702, zoom = 15 }
+
+[[items]]
+id = "road_primary"
+category = "roads"
+name = "省道"
+desc = "主要幹道與台字號省道（鮮黃粗線＋黑外框）。"
+compact = true
+geom = "line"
+tags = { highway = "primary", ref = "台14甲" }
+zoom = 15
+sample_label = "台14甲"
+aliases = ["省道", "台線", "黃線"]
+example = { place = "台14甲合歡山公路", lat = 24.13720, lon = 121.27563, zoom = 15 }
+
+[[items]]
+id = "road_secondary"
+category = "roads"
+name = "縣道／市道"
+desc = "縣道與重要連絡道路（橘黃粗線＋黑外框）。"
+compact = true
+geom = "line"
+tags = { highway = "secondary", ref = "縣120" }
+zoom = 15
+sample_label = "縣120"
+aliases = ["縣道", "市道", "橘黃線"]
+example = { place = "承德路一段（台北車站／中正大安）", lat = 25.04878, lon = 121.51637, zoom = 15 }
+
+[[items]]
+id = "road_tertiary"
+category = "roads"
+name = "鄉道／主要市區道路"
+desc = "鄉道、區道或較寬之聯絡道路（淡橘線）。"
+compact = true
+geom = "line"
+tags = { highway = "tertiary" }
+zoom = 15
+aliases = ["鄉道", "聯絡道", "淡橘線"]
+example = { place = "市民大道一段（台北車站／中正大安）", lat = 25.04879, lon = 121.51696, zoom = 15 }
+
+[[items]]
+id = "road_residential"
+category = "roads"
+name = "一般道路／巷弄"
+desc = "住宅區道路與鄉間小路（白芯灰邊線）。"
+compact = false
+geom = "line"
+tags = { highway = "residential" }
+zoom = 15
+aliases = ["巷弄", "一般道路", "白線"]
+example = { place = "承德路一段（台北車站／中正大安）", lat = 25.04791, lon = 121.51626, zoom = 15 }
+
+[[items]]
+id = "rail_hsr"
+category = "roads"
+name = "台灣高鐵"
+desc = "標準軌距高速鐵路（橘白相間軌道線）。"
+compact = true
+geom = "line"
+tags = { railway = "rail", gauge = "1435" }
+zoom = 15
+aliases = ["高鐵", "HSR", "橘白線"]
+example = { place = "高鐵新竹站附近", lat = 24.80772, lon = 121.03998, zoom = 15 }
+
+[[items]]
+id = "rail_tra"
+category = "roads"
+name = "台鐵／一般鐵路"
+desc = "傳統鐵路主線（黑白相間軌道線）。"
+compact = true
+geom = "line"
+tags = { railway = "rail" }
+zoom = 15
+aliases = ["台鐵", "火車", "黑白線"]
+example = { place = "六家線（新竹高鐵／竹北／內灣）", lat = 24.80759, lon = 121.03936, zoom = 15 }
+
+[[items]]
+id = "rail_subway"
+category = "roads"
+name = "捷運路線"
+desc = "都會區捷運軌道（藍紫相間線）。"
+compact = false
+geom = "line"
+tags = { railway = "subway" }
+zoom = 15
+aliases = ["捷運", "MRT"]
+example = { place = "捷運淡水信義線（淡水／八里／關渡）", lat = 25.16808, lon = 121.44528, zoom = 15 }
+
+[[items]]
+id = "rail_light_rail"
+category = "roads"
+name = "輕軌／路面電車路線"
+desc = "淡海輕軌、安坑輕軌、高雄輕軌等輕軌軌道（淡藍紫細線＋成對短橫槓）。"
+compact = false
+geom = "line"
+tags = { railway = "light_rail" }
+zoom = 15
+aliases = ["輕軌", "淡海輕軌", "安坑輕軌", "高雄輕軌", "LRT", "路面電車"]
+example = { place = "高雄輕軌（哈瑪星／駁二）", lat = 22.62001, lon = 120.28102, zoom = 15 }
+
+[[items]]
+id = "rail_narrow"
+category = "roads"
+name = "森林鐵路／窄軌觀光鐵道"
+desc = "阿里山森鐵、太平山蹦蹦車等窄軌鐵道（細黑白相間線）。"
+compact = false
+geom = "line"
+tags = { railway = "narrow_gauge" }
+zoom = 15
+aliases = ["阿里山火車", "森鐵", "窄軌"]
+example = { place = "阿里山線（阿里山／奮起湖）", lat = 23.51022, lon = 120.80462, zoom = 15 }
+
+[[items]]
+id = "rail_aerialway"
+category = "roads"
+name = "纜車／流籠／索道"
+desc = "觀光纜車、滑雪吊椅或山區運補流籠。"
+compact = true
+geom = "line"
+tags = { aerialway = "cable_car" }
+zoom = 15
+aliases = ["纜車", "貓空纜車", "流籠", "索道"]
+example = { place = "貓空纜車", lat = 24.99172, lon = 121.58357, zoom = 15, pin = true }
+
+[[items]]
+id = "rail_goods_lift"
+category = "roads"
+name = "貨運流籠"
+desc = "山區農產、林業或工程運補專用流籠索道。"
+compact = true
+geom = "line"
+tags = { aerialway = "goods" }
+zoom = 15
+aliases = ["流籠", "運補索道", "研海索道"]
+example = { place = "研海一號索道（太魯閣）", lat = 24.17102, lon = 121.51446, zoom = 15, pin = true }
+
+[[items]]
+id = "route_ferry"
+category = "roads"
+name = "渡輪航線"
+desc = "離島或河口客輪航線（灰色長虛線）。"
+compact = false
+geom = "line"
+tags = { route = "ferry" }
+zoom = 15
+aliases = ["渡輪", "客輪", "航線"]
+example = { place = "高雄港／旗津／西子灣實景", lat = 22.61606, lon = 120.27009, zoom = 15 }
+
+[[items]]
+id = "poi_thsr_station"
+category = "roads"
+name = "高鐵車站"
+desc = "台灣高鐵車站標誌。"
+compact = false
+geom = "point"
+tags = { railway = "station", network = "台灣高鐵" }
+shapes = ["transport"]
+aliases = ["高鐵站"]
+example = { place = "台北（台北車站／中正大安）", lat = 25.04756, lon = 121.51705, zoom = 16 }
+
+[[items]]
+id = "poi_tra_station"
+category = "roads"
+name = "台鐵車站"
+desc = "臺灣鐵路車站標誌。"
+compact = true
+geom = "point"
+tags = { railway = "station", network = "臺鐵" }
+shapes = ["transport"]
+aliases = ["火車站", "台鐵站"]
+example = { place = "瑞芳車站", lat = 25.10901, lon = 121.80656, zoom = 16 }
+
+[[items]]
+id = "poi_mrt_taipei"
+category = "roads"
+name = "臺北捷運站"
+desc = "臺北捷運（含未指定路網的預設捷運站）識別標誌。"
+compact = false
+geom = "point"
+tags = { station = "subway", network = "臺北捷運" }
+shapes = ["transport"]
+aliases = ["台北捷運", "捷運站", "北捷", "MRT"]
+example = { place = "象山（象山／貓空／木柵）", lat = 25.03287, lon = 121.56976, zoom = 16 }
+
+[[items]]
+id = "poi_mrt_new_taipei"
+category = "roads"
+name = "新北捷運站"
+desc = "新北捷運系統（淡海輕軌、安坑輕軌、環狀線等）專屬識別標誌。"
+compact = false
+geom = "point"
+tags = { station = "subway", network = "新北捷運" }
+shapes = ["transport"]
+aliases = ["新北捷運", "淡海輕軌", "安坑輕軌", "捷運站", "MRT"]
+example = { place = "新北捷運十四張站", lat = 24.98447, lon = 121.52759, zoom = 16 }
+
+[[items]]
+id = "poi_mrt_taoyuan"
+category = "roads"
+name = "桃園機場捷運站"
+desc = "桃園機場捷運線車站專屬識別標誌。"
+compact = false
+geom = "point"
+tags = { station = "subway", network = "桃園機場捷運" }
+shapes = ["transport"]
+aliases = ["桃園捷運", "機捷", "桃園機場捷運", "捷運站", "MRT"]
+example = { place = "機場捷運高鐵桃園站", lat = 25.01372, lon = 121.21414, zoom = 16 }
+
+[[items]]
+id = "poi_mrt_taichung"
+category = "roads"
+name = "臺中捷運站"
+desc = "臺中捷運系統車站專屬識別標誌。"
+compact = false
+geom = "point"
+tags = { station = "subway", network = "臺中捷運" }
+shapes = ["transport"]
+aliases = ["台中捷運", "中捷", "捷運站", "MRT"]
+example = { place = "臺中捷運市政府站", lat = 24.16210, lon = 120.64923, zoom = 16 }
+
+[[items]]
+id = "poi_mrt_kaohsiung"
+category = "roads"
+name = "高雄捷運站"
+desc = "高雄捷運（含高雄輕軌）車站專屬識別標誌。"
+compact = false
+geom = "point"
+tags = { station = "subway", network = "高雄捷運" }
+shapes = ["transport", "letter"]
+aliases = ["高雄捷運", "高捷", "捷運站", "MRT"]
+example = { place = "高雄捷運哈瑪星／鹽埕埔站", lat = 22.62161, lon = 120.27584, zoom = 16 }
+
+[[items]]
+id = "poi_bus_station"
+category = "roads"
+name = "客運轉運站／公車總站"
+desc = "較具規模的客運轉運站或公車總站。"
+compact = false
+geom = "point"
+tags = { amenity = "bus_station" }
+shapes = ["transport"]
+aliases = ["轉運站", "客運站"]
+example = { place = "阿里山轉運站（阿里山／奮起湖）", lat = 23.50844, lon = 120.80158, zoom = 16 }
+
+[[items]]
+id = "poi_bus_stop"
+category = "roads"
+name = "公車站牌"
+desc = "一般公車站（有候車亭者會帶小棚子）。"
+compact = true
+geom = "point"
+tags = { highway = "bus_stop" }
+shapes = ["transport"]
+aliases = ["公車站", "站牌"]
+example = { place = "桃園機場第二航廈（桃園機場／中壢）", lat = 25.07780, lon = 121.23277, zoom = 16 }
+
+[[items]]
+id = "poi_airport"
+category = "roads"
+name = "機場"
+desc = "民用或軍民合用航空站（藍色飛機符號）。"
+compact = false
+geom = "point"
+tags = { aeroway = "airport" }
+shapes = ["transport"]
+aliases = ["飛機場", "航空站"]
+example = { place = "臺北松山機場（松山機場／圓山）", lat = 25.06679, lon = 121.55337, zoom = 16 }
+
+[[items]]
+id = "poi_ferry_terminal"
+category = "roads"
+name = "渡輪碼頭"
+desc = "渡輪與離島交通船登船碼頭。"
+compact = false
+geom = "point"
+tags = { amenity = "ferry_terminal" }
+shapes = ["transport"]
+aliases = ["碼頭", "港口"]
+example = { place = "淡水渡船頭（淡水／八里／關渡）", lat = 25.16962, lon = 121.43905, zoom = 16 }
+
+[[items]]
+id = "poi_parking"
+category = "roads"
+name = "停車場"
+desc = "登山口或景點旁之公眾停車場（藍色 P 字元符號）。"
+compact = true
+geom = "point"
+tags = { amenity = "parking" }
+shapes = ["letter", "transport"]
+aliases = ["停車", "P"]
+
+[[items]]
+id = "poi_fuel"
+category = "roads"
+name = "加油站"
+desc = "汽機車加油站。"
+compact = false
+geom = "point"
+tags = { amenity = "fuel" }
+shapes = ["transport"]
+aliases = ["加油", "中油"]
+
+[[items]]
+id = "poi_youbike"
+category = "roads"
+name = "公共自行車租借站 (YouBike)"
+desc = "微笑單車 YouBike 等公共單車站點。"
+compact = false
+geom = "point"
+tags = { amenity = "bicycle_rental_YouBike" }
+shapes = ["transport"]
+aliases = ["YouBike", "Ubike", "單車站"]
+example = { place = "高鐵新竹站（新竹高鐵／竹北／內灣）", lat = 24.80617, lon = 121.04060, zoom = 16 }
+
+[[items]]
+id = "poi_rail_crossing"
+category = "roads"
+name = "鐵路平交道"
+desc = "道路與鐵路平面交叉口（X 字警告標誌）。"
+compact = false
+geom = "point"
+tags = { railway = "level_crossing" }
+shapes = ["cross"]
+aliases = ["平交道"]
+example = { place = "阿里山／奮起湖實景", lat = 23.51326, lon = 120.81048, zoom = 16 }
+
+[[items]]
+id = "poi_traffic_signal"
+category = "roads"
+name = "紅綠燈（交通號誌）"
+desc = "路口紅綠燈號誌。"
+compact = false
+geom = "point"
+tags = { highway = "traffic_signals" }
+shapes = ["transport"]
+aliases = ["紅綠燈", "號誌"]
+example = { place = "新竹高鐵／竹北／內灣實景", lat = 24.80729, lon = 121.04103, zoom = 16 }
+
+# === barriers ===
+[[items]]
+id = "poi_gate"
+category = "barriers"
+name = "鐵門／柵門"
+desc = "林道或步道上的管制鐵門（通常行人可側身或申請通過）。"
+compact = true
+geom = "point"
+tags = { barrier = "gate" }
+aliases = ["鐵門", "管制門", "柵欄"]
+example = { place = "台北車站／中正大安實景", lat = 25.04743, lon = 121.51876, zoom = 16 }
+
+[[items]]
+id = "poi_lift_gate"
+category = "barriers"
+name = "升降欄杆／鐵鍊路障"
+desc = "林道入口常見的車輛管制柵欄或鐵鍊。"
+compact = true
+geom = "point"
+tags = { barrier = "lift_gate" }
+aliases = ["柵欄", "欄杆", "鐵鍊"]
+example = { place = "新竹高鐵／竹北／內灣實景", lat = 24.80621, lon = 121.03999, zoom = 16 }
+
+[[items]]
+id = "poi_bollard"
+category = "barriers"
+name = "擋車柱"
+desc = "阻擋汽車進入但行人與單車可通過的車阻柱。"
+compact = false
+geom = "point"
+tags = { barrier = "bollard" }
+aliases = ["車阻", "柱子"]
+example = { place = "東北角／龍洞／鼻頭角實景", lat = 25.11620, lon = 121.91515, zoom = 16 }
+
+[[items]]
+id = "poi_block"
+category = "barriers"
+name = "巨石／水泥塊路障"
+desc = "以巨石或紐澤西護欄阻擋車輛進入之處。"
+compact = false
+geom = "point"
+tags = { barrier = "block" }
+shapes = ["square"]
+aliases = ["石塊", "護欄", "路障"]
+example = { place = "淡水／八里／關渡實景", lat = 25.16719, lon = 121.44741, zoom = 16 }
+
+[[items]]
+id = "poi_stile"
+category = "barriers"
+name = "越柵梯"
+desc = "翻越牧場圍籬或柵欄用的小階梯。"
+compact = false
+geom = "point"
+tags = { barrier = "stile" }
+aliases = ["越柵", "圍籬梯"]
+example = { place = "雙溪越柵梯", lat = 24.96176, lon = 121.83329, zoom = 17 }
+
+[[items]]
+id = "poi_cycle_barrier"
+category = "barriers"
+name = "防單車／機車柵欄"
+desc = "交錯式鐵欄，供行人通過但阻擋機車或單車騎入。"
+compact = false
+geom = "point"
+tags = { barrier = "cycle_barrier" }
+aliases = ["P字欄", "車阻"]
+example = { place = "台北車站／中正大安實景", lat = 25.04403, lon = 121.51571, zoom = 16 }
+
+[[items]]
+id = "poi_turnstile"
+category = "barriers"
+name = "旋轉閘門"
+desc = "園區出入口的旋轉式閘門。"
+compact = false
+geom = "point"
+tags = { barrier = "turnstile" }
+shapes = ["cross"]
+aliases = ["閘門"]
+example = { place = "臺鐵出站口（台北車站／中正大安）", lat = 25.04797, lon = 121.51642, zoom = 16 }
+
+# === amenities ===
+[[items]]
+id = "poi_toilets"
+category = "amenities"
+name = "廁所／公廁"
+desc = "登山口、山屋或園區內之公共廁所。"
+compact = true
+geom = "point"
+tags = { amenity = "toilets" }
+shapes = ["person", "circle"]
+aliases = ["洗手間", "WC", "公廁"]
+example = { place = "屎礐渡頭（淡水／八里／關渡）", lat = 25.16948, lon = 121.44069, zoom = 16 }
+
+[[items]]
+id = "poi_shower"
+category = "amenities"
+name = "淋浴間"
+desc = "露營區或遊客中心附設淋浴設施。"
+compact = false
+geom = "point"
+tags = { amenity = "shower" }
+shapes = ["water", "circle"]
+aliases = ["洗澡", "盥洗"]
+example = { place = "萬里海岸沖水站", lat = 25.16591, lon = 121.70646, zoom = 17 }
+
+[[items]]
+id = "poi_bench"
+category = "amenities"
+name = "休憩座椅"
+desc = "步道沿線的木椅或休息長椅。"
+compact = true
+geom = "point"
+tags = { amenity = "bench" }
+aliases = ["長椅", "休息椅"]
+example = { place = "四獸山步道意象拍照座椅（象山／貓空／木柵）", lat = 25.02749, lon = 121.57145, zoom = 16 }
+
+[[items]]
+id = "poi_picnic_site"
+category = "amenities"
+name = "野餐桌／休憩空地"
+desc = "設有野餐桌椅的戶外休息區。"
+compact = true
+geom = "point"
+tags = { tourism = "picnic_site" }
+aliases = ["野餐區", "休息區"]
+example = { place = "七星山／小油坑實景", lat = 25.16638, lon = 121.55404, zoom = 16 }
+
+[[items]]
+id = "poi_info_office"
+category = "amenities"
+name = "遊客中心／管理站"
+desc = "國家公園遊客中心、林業管理站或旅遊服務中心。"
+compact = true
+geom = "point"
+tags = { tourism = "information", information = "office" }
+shapes = ["circle", "letter"]
+aliases = ["遊客中心", "管理處", "服務台", "i"]
+example = { place = "瑞芳旅遊服務中心", lat = 25.10863, lon = 121.80611, zoom = 16 }
+
+[[items]]
+id = "poi_info_board"
+category = "amenities"
+name = "解說牌／導覽地圖牌"
+desc = "步道地圖告示牌或生態解說牌。"
+compact = true
+geom = "point"
+tags = { tourism = "information", information = "board" }
+shapes = ["square"]
+aliases = ["告示牌", "導覽牌", "解說牌"]
+example = { place = "避難收容場所（台北車站／中正大安）", lat = 25.05187, lon = 121.51710, zoom = 16 }
+
+[[items]]
+id = "poi_temple_buddhist"
+category = "amenities"
+name = "寺廟／道觀／佛寺"
+desc = "台灣山區與鄉鎮常見之廟宇、土地公廟與佛寺。"
+compact = true
+geom = "point"
+tags = { amenity = "place_of_worship", religion = "buddhist" }
+shapes = ["circle"]
+aliases = ["土地公廟", "廟", "寺廟", "佛寺"]
+example = { place = "淡水龍山寺（淡水／八里／關渡）", lat = 25.17009, lon = 121.44211, zoom = 16 }
+
+[[items]]
+id = "poi_church"
+category = "amenities"
+name = "教堂／教會"
+desc = "基督教或天主教堂（常見於原民部落）。"
+compact = false
+geom = "point"
+tags = { amenity = "place_of_worship", religion = "christian" }
+shapes = ["cross"]
+aliases = ["教堂", "教會"]
+example = { place = "天主教友誼教友活動中心（台北車站／中正大安）", lat = 25.04610, lon = 121.51931, zoom = 16 }
+
+[[items]]
+id = "poi_shinto"
+category = "amenities"
+name = "神社／鳥居"
+desc = "神社遺跡或日本山區神社（鳥居符號）。"
+compact = false
+geom = "point"
+tags = { amenity = "place_of_worship", religion = "shinto" }
+shapes = ["house"]
+aliases = ["神社", "鳥居"]
+example = { place = "台東鹿野神社", lat = 22.90488, lon = 121.12050, zoom = 16 }
+
+[[items]]
+id = "poi_wayside_shrine"
+category = "amenities"
+name = "路旁小祠／土地公／紀念碑"
+desc = "古道旁的小型福德祠、石敢當或路旁神龕。"
+compact = false
+geom = "point"
+tags = { historic = "wayside_shrine" }
+shapes = ["house"]
+aliases = ["小廟", "土地公", "石敢當"]
+example = { place = "第二山神廟（七星山／小油坑）", lat = 25.16956, lon = 121.55321, zoom = 16 }
+
+[[items]]
+id = "poi_ruins"
+category = "amenities"
+name = "遺址／古厝／廢墟"
+desc = "舊部落遺址、日治駐在所遺址或古厝遺跡。"
+compact = true
+geom = "point"
+tags = { historic = "ruins" }
+shapes = ["house"]
+aliases = ["駐在所", "舊部落", "古蹟", "遺跡"]
+example = { place = "台北西站A棟（舊國光客運台北東站）原址（台北車站／中正大安）", lat = 25.04720, lon = 121.51450, zoom = 16 }
+
+[[items]]
+id = "poi_castle"
+category = "amenities"
+name = "城堡／砲台／碉堡"
+desc = "歷史砲台、城門或要塞建築。"
+compact = false
+geom = "point"
+tags = { historic = "castle" }
+shapes = ["house"]
+aliases = ["砲台", "古堡", "城門"]
+example = { place = "岡山砲台碉堡", lat = 22.76798, lon = 120.25061, zoom = 16 }
+
+[[items]]
+id = "poi_memorial"
+category = "amenities"
+name = "紀念碑／紀念像"
+desc = "歷史紀念碑、殉難碑或地標雕像。"
+compact = true
+geom = "point"
+tags = { historic = "memorial" }
+shapes = ["square"]
+aliases = ["紀念碑", "石碑"]
+example = { place = "拉魯島（日月潭／溪頭／埔里）", lat = 23.85569, lon = 120.91130, zoom = 16 }
+
+[[items]]
+id = "poi_archaeological"
+category = "amenities"
+name = "考古遺址／舊社遺址"
+desc = "史前文化遺址、舊部落遺址或考古發掘現場。"
+compact = false
+geom = "point"
+tags = { historic = "archaeological_site" }
+aliases = ["史前遺址", "舊社", "考古", "流興社"]
+example = { place = "流興社 Ryohen（南澳古道）", lat = 24.44615, lon = 121.63211, zoom = 16 }
+
+[[items]]
+id = "poi_monument"
+category = "amenities"
+name = "紀念堂／大型紀念建築"
+desc = "具規模之歷史紀念建築、開路碑或古道地標。"
+compact = false
+geom = "point"
+tags = { historic = "monument" }
+shapes = ["house"]
+aliases = ["紀念堂", "開路碑", "紀念建築"]
+example = { place = "羅大春開路紀念碑（蘇花古道）", lat = 24.46322, lon = 121.80656, zoom = 16 }
+
+[[items]]
+id = "poi_wayside_cross"
+category = "amenities"
+name = "路旁十字架"
+desc = "道路或山徑旁豎立的歷史或宗教十字架。"
+compact = false
+geom = "point"
+tags = { historic = "wayside_cross" }
+shapes = ["cross"]
+aliases = ["十字架"]
+example = { place = "澎湖路旁十字架範例", lat = 23.21937, lon = 119.42912, zoom = 17 }
+
+[[items]]
+id = "poi_memorial_plaque"
+category = "amenities"
+name = "紀念銘牌"
+desc = "山徑或歷史現場之紀念牌匾、山難或事蹟解說碑。"
+compact = false
+geom = "point"
+tags = { historic = "memorial", memorial = "plaque" }
+shapes = ["square", "letter"]
+aliases = ["銘牌", "紀念牌"]
+example = { place = "高哲次等紀念碑（思源埡口）", lat = 24.38258, lon = 121.42554, zoom = 16 }
+
+[[items]]
+id = "poi_memorial_statue"
+category = "amenities"
+name = "紀念雕像"
+desc = "人物或歷史事件紀念銅像與雕塑。"
+compact = false
+geom = "point"
+tags = { historic = "memorial", memorial = "statue" }
+shapes = ["person"]
+aliases = ["雕像", "銅像"]
+example = { place = "八田與一雕像（烏山頭水庫）", lat = 23.20951, lon = 120.36894, zoom = 16 }
+
+[[items]]
+id = "poi_memorial_stone"
+category = "amenities"
+name = "紀念石碑"
+desc = "刻字紀念石碑、源頭碑或歷史界碑石。"
+compact = false
+geom = "point"
+tags = { historic = "memorial", memorial = "stone" }
+shapes = ["square"]
+aliases = ["石碑", "碑石"]
+example = { place = "七星潭海堤紀念碑", lat = 24.03274, lon = 121.62757, zoom = 17 }
+
+[[items]]
+id = "poi_memorial_war"
+category = "amenities"
+name = "戰爭紀念碑"
+desc = "歷史戰役、抗日或陣亡將士紀念碑。"
+compact = false
+geom = "point"
+tags = { historic = "memorial", memorial = "war_memorial" }
+shapes = ["square"]
+aliases = ["忠烈祠", "戰役碑", "抗日紀念碑"]
+example = { place = "噍吧哖抗日烈士紀念碑", lat = 23.03769, lon = 120.47926, zoom = 16 }
+
+[[items]]
+id = "poi_memorial_stolperstein"
+category = "amenities"
+name = "路面紀念磚"
+desc = "鑲嵌於地面的歷史紀念銅磚（歐洲常見，台灣目前無資料）。"
+compact = false
+geom = "point"
+tags = { historic = "memorial", memorial = "stolperstein" }
+shapes = ["square"]
+aliases = ["紀念磚"]
+
+[[items]]
+id = "area_attraction"
+category = "amenities"
+name = "古蹟／史蹟範圍"
+desc = "古蹟、考古遺址、砲台或紀念園區之紋理範圍。"
+compact = false
+geom = "area"
+tags = { historic = "archaeological_site" }
+zoom = 16
+aliases = ["史蹟範圍", "古蹟區", "遺址範圍"]
+example = { place = "漢本遺址範圍", lat = 24.32934, lon = 121.76537, zoom = 15 }
+
+[[items]]
+id = "poi_museum"
+category = "amenities"
+name = "博物館／展示館"
+desc = "博物館、紀念館或生態展示館。"
+compact = false
+geom = "point"
+tags = { tourism = "museum" }
+shapes = ["house"]
+aliases = ["博物館", "美術館"]
+example = { place = "臺灣漫畫基地（台北車站／中正大安）", lat = 25.05001, lon = 121.51608, zoom = 16 }
+
+[[items]]
+id = "poi_tower_observation"
+category = "amenities"
+name = "瞭望塔／森林防火瞭望台"
+desc = "登高望遠的景觀塔或森林防火瞭望台。"
+compact = false
+geom = "point"
+tags = { tower = "observation" }
+shapes = ["tower"]
+aliases = ["瞭望台", "觀景塔", "防火塔"]
+
+[[items]]
+id = "poi_lighthouse"
+category = "amenities"
+name = "燈塔"
+desc = "海岸燈塔地標（如富貴角、三貂角、鵝鑾鼻）。"
+compact = false
+geom = "point"
+tags = { man_made = "lighthouse" }
+shapes = ["tower"]
+aliases = ["燈塔", "海角"]
+example = { place = "日月潭土亭仔燈塔（日月潭／溪頭／埔里）", lat = 23.85469, lon = 120.92283, zoom = 16 }
+
+[[items]]
+id = "poi_school"
+category = "amenities"
+name = "學校／國小／中學"
+desc = "各級學校（山區部落國小常為重要地標與補給點）。"
+compact = true
+geom = "point"
+tags = { amenity = "school" }
+shapes = ["house", "letter"]
+aliases = ["國小", "國中", "學校"]
+example = { place = "建成國中（台北車站／中正大安）", lat = 25.05141, lon = 121.51919, zoom = 16 }
+
+[[items]]
+id = "poi_postoffice"
+category = "amenities"
+name = "郵局"
+desc = "中華郵政郵局據點。"
+compact = false
+geom = "point"
+tags = { amenity = "post_office" }
+shapes = ["circle", "square"]
+aliases = ["郵局"]
+
+[[items]]
+id = "poi_convenience"
+category = "amenities"
+name = "便利商店"
+desc = "7-11、全家等便利商店補給點。"
+compact = true
+geom = "point"
+tags = { shop = "convenience" }
+aliases = ["超商", "7-11", "全家", "補給"]
+
+[[items]]
+id = "poi_supermarket"
+category = "amenities"
+name = "超市／雜貨補給"
+desc = "超級市場或生鮮採買點。"
+compact = false
+geom = "point"
+tags = { shop = "supermarket" }
+aliases = ["超市", "全聯", "賣場"]
+
+[[items]]
+id = "poi_restaurant"
+category = "amenities"
+name = "餐廳／小吃"
+desc = "餐廳與用餐地點。"
+compact = false
+geom = "point"
+tags = { amenity = "restaurant" }
+aliases = ["餐廳", "吃飯", "小吃"]
+
+[[items]]
+id = "poi_cafe"
+category = "amenities"
+name = "咖啡廳／茶館"
+desc = "咖啡店與飲品休憩處。"
+compact = false
+geom = "point"
+tags = { amenity = "cafe" }
+aliases = ["咖啡", "茶坊"]
+
+[[items]]
+id = "poi_atm"
+category = "amenities"
+name = "ATM 提款機／銀行"
+desc = "自動提款機位置。"
+compact = false
+geom = "point"
+tags = { amenity = "atm" }
+shapes = ["square", "letter"]
+aliases = ["提款機", "領錢"]
+
+[[items]]
+id = "line_power"
+category = "amenities"
+name = "高壓電線"
+desc = "橫跨山嶺的台電高壓輸電線，常可作為山區定位參考（細灰線）。"
+compact = true
+geom = "line"
+tags = { power = "line" }
+zoom = 15
+aliases = ["高壓電線", "電線", "保線路"]
+example = { place = "象山／貓空／木柵實景", lat = 25.03137, lon = 121.57432, zoom = 15 }
+
+[[items]]
+id = "poi_power_tower"
+category = "amenities"
+name = "高壓電塔"
+desc = "台電高壓輸電鐵塔，電塔編號與保線路常為郊山重要地標（雙層「回」字形方框符號）。"
+compact = true
+geom = "point"
+tags = { power = "tower" }
+shapes = ["tower", "square"]
+aliases = ["電塔", "鐵塔", "保線路", "回字"]
+example = { place = "象山／貓空／木柵實景", lat = 25.03132, lon = 121.57417, zoom = 16 }
+
+[[items]]
+id = "area_building"
+category = "amenities"
+name = "一般建築物"
+desc = "房舍、工寮、農舍與城鎮建築輪廓。"
+compact = false
+geom = "area"
+tags = { building = "yes" }
+zoom = 16
+aliases = ["房子", "建物", "建築"]
+example = { place = "台北車站／中正大安實景", lat = 25.04765, lon = 121.51704, zoom = 16 }
+
+# === dense secondary hiking/survey items (placed inside emergency & peaks) ===
+[[items]]
+id = "poi_pac"
+category = "emergency"
+name = "攜帶式加壓艙 (PAC)"
+desc = "高山山屋配置之高山症緊急加壓治療裝備。"
+dense = true
+geom = "point"
+tags = { emergency = "portable_altitude_chamber" }
+shapes = ["cross", "letter"]
+aliases = ["PAC", "高山症", "加壓袋", "加壓艙"]
+
+[[items]]
+id = "poi_landing_site"
+category = "emergency"
+name = "緊急直升機起降場"
+desc = "無正式停機坪鋪面但可供搜救吊掛或降落的空地。"
+dense = true
+geom = "point"
+tags = { emergency = "landing_site" }
+shapes = ["transport"]
+aliases = ["起降點", "吊掛點", "緊急降落"]
+
+[[items]]
+id = "poi_mobile"
+category = "emergency"
+name = "手機訊號通訊點"
+desc = "標註有行動電話訊號（含電信商或 112）之山區位置。"
+compact = true
+geom = "point"
+tags = { tourism = "information", information = "mobile" }
+shapes = ["square"]
+aliases = ["通訊點", "手機訊號", "中華", "遠傳", "台哥大", "112"]
+
+[[items]]
+id = "poi_embassy"
+category = "emergency"
+name = "大使館／駐外代表處"
+desc = "外國使領館或駐台代表機構。"
+dense = true
+geom = "point"
+tags = { amenity = "embassy" }
+shapes = ["tree"]
+aliases = ["代表處", "領事館"]
+
+[[items]]
+id = "poi_summit_board"
+category = "peaks"
+name = "登頂牌／山頂標示"
+desc = "步道沿線登頂牌或小山頭標示點。"
+dense = true
+geom = "point"
+tags = { man_made = "summit_board", name = "登頂牌" }
+shapes = ["triangle"]
+aliases = ["登頂牌", "山頭牌"]
+
+[[items]]
+id = "poi_sp_bm_japan1"
+category = "peaks"
+name = "日治一等水準點"
+desc = "日治時期設置之一等水準基石。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "bm_japan1" }
+shapes = ["square"]
+aliases = ["水準點", "日治水準點"]
+
+[[items]]
+id = "poi_sp_bm_japan2"
+category = "peaks"
+name = "日治二等／舊水準點"
+desc = "日治二等、中研院、台電或港務等舊型水準點。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "bm_japan2" }
+shapes = ["square", "circle"]
+aliases = ["水準點", "舊水準點"]
+
+[[items]]
+id = "poi_sp_bm_water"
+category = "peaks"
+name = "水利／河川水準點"
+desc = "水利署、水庫或河川斷面樁水準點。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "bm_water" }
+shapes = ["square", "letter"]
+aliases = ["水利水準點", "河川斷面樁"]
+
+[[items]]
+id = "poi_sp_mine_suppl"
+category = "peaks"
+name = "鑛務課補點"
+desc = "鑛務課設置之輔助補點基石。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "mine_suppl" }
+shapes = ["square"]
+aliases = ["礦務課", "補點"]
+
+[[items]]
+id = "poi_sp_navy_suppl"
+category = "peaks"
+name = "海軍／軍方測量補點"
+desc = "海軍、軍管區、中研院或台電等測量補點。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "navy_suppl_TW" }
+shapes = ["circle", "letter"]
+aliases = ["海軍補點", "軍方基點"]
+
+[[items]]
+id = "poi_sp_polygon"
+category = "peaks"
+name = "導線點"
+desc = "精密導線測量控制點基石。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "polygon_TW" }
+shapes = ["circle"]
+aliases = ["導線點", "控制點"]
+
+[[items]]
+id = "poi_sp_water_trig"
+category = "peaks"
+name = "水利／水資會三角點"
+desc = "水利單位或水資會立設之三角點。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "water_trig" }
+shapes = ["triangle", "letter"]
+aliases = ["水資會", "水利三角點"]
+
+[[items]]
+id = "poi_sp_water_suppl"
+category = "peaks"
+name = "水利／水庫圖根補點"
+desc = "水源保護區、水庫或水利單位圖根補點。"
+dense = true
+geom = "point"
+tags = { man_made = "survey_point", survey_point = "water_suppl" }
+shapes = ["circle", "letter"]
+aliases = ["水庫補點", "水源保護區界樁"]
+
+# === secondary ===
+[[items]]
+id = "poi_bus_stop_shelter"
+category = "secondary"
+name = "候車亭公車站"
+desc = "設有遮雨棚或候車亭之公車站牌。"
+geom = "point"
+tags = { highway = "bus_stop", shelter = "yes" }
+shapes = ["transport"]
+aliases = ["候車亭", "公車亭"]
+
+[[items]]
+id = "poi_moovo_bike"
+category = "secondary"
+name = "Moovo 公共自行車"
+desc = "彰化、雲林等縣市 Moovo 公共自行車租借站。"
+geom = "point"
+tags = { amenity = "bicycle_rental_Moovo" }
+shapes = ["transport"]
+aliases = ["Moovo", "腳踏車"]
+
+[[items]]
+id = "poi_bicycle_rental"
+category = "secondary"
+name = "自行車租借"
+desc = "一般單車租借點。"
+geom = "point"
+tags = { amenity = "bicycle_rental" }
+shapes = ["transport"]
+aliases = ["租腳踏車", "單車租借"]
+
+[[items]]
+id = "poi_bicycle_shop"
+category = "secondary"
+name = "自行車行／補給"
+desc = "單車維修店或內胎自動販賣機。"
+geom = "point"
+tags = { shop = "bicycle" }
+shapes = ["transport"]
+aliases = ["車行", "修腳踏車"]
+
+[[items]]
+id = "poi_car_shop"
+category = "secondary"
+name = "汽車行／修配"
+desc = "汽車展售或維修保養據點。"
+geom = "point"
+tags = { shop = "car" }
+shapes = ["transport"]
+aliases = ["汽車維修", "保養廠"]
+
+[[items]]
+id = "poi_parking_private"
+category = "secondary"
+name = "私人／管制停車場"
+desc = "僅限住戶、會員或管制進出之停車場。"
+geom = "point"
+tags = { amenity = "parking", access = "private" }
+shapes = ["letter", "transport"]
+aliases = ["私人停車"]
+
+[[items]]
+id = "poi_railway_crossing_small"
+category = "secondary"
+name = "行人鐵道穿越點"
+desc = "行人或步道跨越鐵軌的無柵欄穿越處。"
+geom = "point"
+tags = { railway = "crossing" }
+shapes = ["cross", "person"]
+aliases = ["行人平交道", "跨越鐵軌"]
+
+[[items]]
+id = "poi_border_control"
+category = "secondary"
+name = "檢查哨／管制站"
+desc = "邊境通關或人員車輛檢查站。"
+geom = "point"
+tags = { barrier = "border_control" }
+shapes = ["person"]
+aliases = ["海關", "管制哨"]
+
+[[items]]
+id = "poi_bridge_movable"
+category = "secondary"
+name = "活動橋樑"
+desc = "可開啟、旋轉或升降的活動橋。"
+geom = "point"
+tags = { bridge = "movable" }
+shapes = ["transport"]
+aliases = ["旋轉橋", "開合橋"]
+
+[[items]]
+id = "poi_kissing_gate"
+category = "secondary"
+name = "防牲畜小門"
+desc = "供行人側身通過但阻擋牛羊或單車的門。"
+geom = "point"
+tags = { barrier = "kissing_gate" }
+aliases = ["防牛門", "小門"]
+
+[[items]]
+id = "line_oneway"
+category = "secondary"
+name = "單行道方向箭頭"
+desc = "沿道路繪製之單行道行車方向箭頭。"
+geom = "line"
+tags = { highway = "residential", oneway = "yes" }
+zoom = 16
+aliases = ["單行道", "箭頭"]
+
+[[items]]
+id = "rail_funicular"
+category = "secondary"
+name = "登山纜索鐵路"
+desc = "以鋼纜牽引之陡坡軌道車。"
+geom = "line"
+tags = { railway = "funicular" }
+zoom = 15
+aliases = ["纜車鐵路", "登山軌道車"]
+
+[[items]]
+id = "rail_gondola"
+category = "secondary"
+name = "箱型纜車 (Gondola)"
+desc = "循環式車廂纜車線與車廂圖示。"
+geom = "line"
+tags = { aerialway = "gondola" }
+zoom = 15
+aliases = ["貓空纜車", "日月潭纜車"]
+
+[[items]]
+id = "rail_chair_lift"
+category = "secondary"
+name = "吊椅纜車"
+desc = "開放式座椅纜車。"
+geom = "line"
+tags = { aerialway = "chair_lift" }
+zoom = 15
+aliases = ["吊椅", "滑雪纜車"]
+
+[[items]]
+id = "rail_drag_lift"
+category = "secondary"
+name = "拖曳式纜車"
+desc = "地面牽引索道或滑雪拖曳纜車。"
+geom = "line"
+tags = { aerialway = "drag_lift" }
+zoom = 15
+aliases = ["拖曳索道"]
+
+[[items]]
+id = "poi_attraction"
+category = "secondary"
+name = "觀光景點"
+desc = "標註為主要旅遊景點之地標。"
+geom = "point"
+tags = { tourism = "attraction" }
+aliases = ["景點", "地標"]
+
+[[items]]
+id = "poi_info_terminal"
+category = "secondary"
+name = "電子導覽機"
+desc = "互動式觸控旅遊資訊終端機。"
+geom = "point"
+tags = { information = "terminal" }
+shapes = ["square", "letter"]
+aliases = ["導覽機", "Kiosk"]
+
+[[items]]
+id = "poi_info_highlight"
+category = "secondary"
+name = "重要導覽資訊點"
+desc = "特別強調的旅遊或步道資訊站。"
+geom = "point"
+tags = { tourism = "information", highlight = "yes" }
+shapes = ["letter"]
+aliases = ["資訊點", "導覽"]
+
+[[items]]
+id = "poi_library"
+category = "secondary"
+name = "圖書館"
+desc = "公共或校園圖書館。"
+geom = "point"
+tags = { amenity = "library" }
+aliases = ["圖書館"]
+
+[[items]]
+id = "poi_cinema"
+category = "secondary"
+name = "電影院"
+desc = "電影院或戲院。"
+geom = "point"
+tags = { amenity = "cinema" }
+aliases = ["戲院", "影城"]
+
+[[items]]
+id = "poi_zoo"
+category = "secondary"
+name = "動物園"
+desc = "動物園或野生動物園區。"
+geom = "point"
+tags = { tourism = "zoo" }
+aliases = ["動物園"]
+
+[[items]]
+id = "poi_bank"
+category = "secondary"
+name = "銀行"
+desc = "銀行或農會信用部營業據點。"
+geom = "point"
+tags = { amenity = "bank" }
+shapes = ["house", "letter"]
+aliases = ["銀行", "農會"]
+
+[[items]]
+id = "poi_postbox"
+category = "secondary"
+name = "郵筒"
+desc = "路旁中華郵政信箱郵筒。"
+geom = "point"
+tags = { amenity = "post_box" }
+shapes = ["square"]
+aliases = ["郵筒", "信箱"]
+
+[[items]]
+id = "poi_bakery"
+category = "secondary"
+name = "麵包店／烘焙坊"
+desc = "麵包店或糕餅烘焙店（行動糧補給）。"
+geom = "point"
+tags = { shop = "bakery" }
+aliases = ["麵包", "烘焙"]
+
+[[items]]
+id = "poi_beverages"
+category = "secondary"
+name = "飲料／酒水店"
+desc = "手搖飲或酒水專賣店。"
+geom = "point"
+tags = { shop = "beverages" }
+aliases = ["飲料店", "酒類"]
+
+[[items]]
+id = "poi_books"
+category = "secondary"
+name = "書店"
+desc = "實體書店或書局。"
+geom = "point"
+tags = { shop = "books" }
+aliases = ["書局", "書店"]
+
+[[items]]
+id = "poi_butcher"
+category = "secondary"
+name = "肉舖"
+desc = "生鮮肉品專賣店。"
+geom = "point"
+tags = { shop = "butcher" }
+aliases = ["肉店"]
+
+[[items]]
+id = "poi_chemist"
+category = "secondary"
+name = "藥妝店"
+desc = "日用品與美妝藥妝店（如屈臣氏、康是美）。"
+geom = "point"
+tags = { shop = "chemist" }
+aliases = ["藥妝", "日用品"]
+
+[[items]]
+id = "poi_doityourself"
+category = "secondary"
+name = "五金行／DIY 賣場"
+desc = "五金百貨或居家修繕賣場。"
+geom = "point"
+tags = { shop = "doityourself" }
+aliases = ["五金", "特力屋", "小北"]
+
+[[items]]
+id = "poi_laundry"
+category = "secondary"
+name = "洗衣店"
+desc = "自助洗衣或乾洗店。"
+geom = "point"
+tags = { shop = "laundry" }
+shapes = ["square"]
+aliases = ["自助洗衣", "烘衣"]
+
+[[items]]
+id = "poi_mall"
+category = "secondary"
+name = "購物中心／百貨"
+desc = "大型購物中心或百貨商場。"
+geom = "point"
+tags = { shop = "mall" }
+aliases = ["百貨公司", "商場"]
+
+[[items]]
+id = "poi_marketplace"
+category = "secondary"
+name = "傳統市場／市集"
+desc = "早市、菜市場、農夫市集或夜市。"
+geom = "point"
+tags = { amenity = "marketplace" }
+shapes = ["house"]
+aliases = ["菜市場", "夜市", "市集"]
+
+[[items]]
+id = "poi_organic"
+category = "secondary"
+name = "有機食品店"
+desc = "有機農產或健康食品商店。"
+geom = "point"
+tags = { shop = "organic" }
+shapes = ["tree"]
+aliases = ["有機", "生機飲食"]
+
+[[items]]
+id = "poi_sports_shop"
+category = "secondary"
+name = "戶外／運動用品店"
+desc = "登山裝備、露營或運動用品店。"
+geom = "point"
+tags = { shop = "sports" }
+aliases = ["登山用品", "裝備店"]
+
+[[items]]
+id = "poi_travel_agency"
+category = "secondary"
+name = "旅行社"
+desc = "旅遊與票務代辦機構。"
+geom = "point"
+tags = { shop = "travel_agency" }
+shapes = ["transport"]
+aliases = ["旅行社"]
+
+[[items]]
+id = "poi_fastfood"
+category = "secondary"
+name = "速食店"
+desc = "速食餐飲或外帶簡餐店。"
+geom = "point"
+tags = { amenity = "fast_food" }
+aliases = ["速食", "麥當勞", "漢堡"]
+
+[[items]]
+id = "poi_bar"
+category = "secondary"
+name = "酒吧"
+desc = "夜間酒吧或調酒館。"
+geom = "point"
+tags = { amenity = "bar" }
+aliases = ["酒吧"]
+
+[[items]]
+id = "poi_pub"
+category = "secondary"
+name = "餐酒館／居酒屋"
+desc = "小酒館或餐酒館。"
+geom = "point"
+tags = { amenity = "pub" }
+aliases = ["酒館", "居酒屋"]
+
+[[items]]
+id = "poi_biergarten"
+category = "secondary"
+name = "露天啤酒屋"
+desc = "戶外啤酒花園或露天飲酒區。"
+geom = "point"
+tags = { amenity = "biergarten" }
+aliases = ["啤酒屋"]
+
+[[items]]
+id = "poi_playground"
+category = "secondary"
+name = "兒童遊戲場"
+desc = "公園或社區附設之兒童遊樂設施。"
+geom = "point"
+tags = { leisure = "playground" }
+shapes = ["person"]
+aliases = ["遊樂場", "溜滑梯", "盪鞦韆"]
+
+[[items]]
+id = "poi_gym"
+category = "secondary"
+name = "運動中心／體育館"
+desc = "國民運動中心或室內綜合運動館。"
+geom = "point"
+tags = { leisure = "sports_centre" }
+shapes = ["person"]
+aliases = ["體育館", "健身房"]
+
+[[items]]
+id = "poi_stadium"
+category = "secondary"
+name = "大型體育場"
+desc = "田徑場、棒球場或大型運動競技場。"
+geom = "point"
+tags = { leisure = "stadium" }
+shapes = ["circle"]
+aliases = ["棒球場", "運動場"]
+
+[[items]]
+id = "poi_soccer"
+category = "secondary"
+name = "足球場"
+desc = "足球場地標記。"
+geom = "point"
+tags = { sport = "soccer" }
+shapes = ["circle"]
+aliases = ["足球"]
+
+[[items]]
+id = "poi_tennis"
+category = "secondary"
+name = "網球場"
+desc = "網球場地標記。"
+geom = "point"
+tags = { sport = "tennis" }
+shapes = ["circle"]
+aliases = ["網球"]
+
+[[items]]
+id = "poi_golf"
+category = "secondary"
+name = "高爾夫球場"
+desc = "高爾夫球場或練習場。"
+geom = "point"
+tags = { sport = "golf" }
+shapes = ["flag", "person"]
+aliases = ["高爾夫"]
+
+[[items]]
+id = "poi_swimming_outdoor"
+category = "secondary"
+name = "露天泳池／水上樂園"
+desc = "戶外游泳池、戲水池或水上樂園。"
+geom = "point"
+tags = { leisure = "water_park" }
+shapes = ["water", "circle", "person"]
+aliases = ["游泳池", "水上樂園"]
+
+[[items]]
+id = "poi_shooting"
+category = "secondary"
+name = "射擊場／靶場"
+desc = "射擊運動場地或軍警靶場。"
+geom = "point"
+tags = { sport = "shooting" }
+shapes = ["person"]
+aliases = ["靶場", "射擊"]
+
+[[items]]
+id = "poi_slipway"
+category = "secondary"
+name = "船艇下水坡道"
+desc = "獨木舟、遊艇或漁船拖曳下水坡道。"
+geom = "point"
+tags = { leisure = "slipway" }
+shapes = ["water", "transport"]
+aliases = ["曳船道", "下水坡道"]
+
+[[items]]
+id = "poi_recycling"
+category = "secondary"
+name = "資源回收點"
+desc = "垃圾分類或資源回收站。"
+geom = "point"
+tags = { amenity = "recycling" }
+shapes = ["triangle"]
+aliases = ["回收", "垃圾桶"]
+
+[[items]]
+id = "poi_university"
+category = "secondary"
+name = "大學／大專院校"
+desc = "大學、學院或專科學校校區。"
+geom = "point"
+tags = { amenity = "university" }
+aliases = ["大學", "學院"]
+
+[[items]]
+id = "poi_kindergarten"
+category = "secondary"
+name = "幼兒園"
+desc = "幼兒園或托兒所。"
+geom = "point"
+tags = { amenity = "kindergarten" }
+shapes = ["square", "letter"]
+aliases = ["幼稚園", "托兒所"]
+
+[[items]]
+id = "poi_farmyard"
+category = "secondary"
+name = "農場／農舍聚落"
+desc = "農莊、畜牧場或農用設施建築群。"
+geom = "point"
+tags = { landuse = "farmyard" }
+shapes = ["house"]
+aliases = ["農場", "牧場"]
+
+[[items]]
+id = "poi_mosque"
+category = "secondary"
+name = "清真寺"
+desc = "伊斯蘭教清真寺。"
+geom = "point"
+tags = { amenity = "place_of_worship", religion = "muslim" }
+aliases = ["回教", "清真寺"]
+
+[[items]]
+id = "poi_hindu"
+category = "secondary"
+name = "印度教寺廟"
+desc = "印度教宗教場所。"
+geom = "point"
+tags = { amenity = "place_of_worship", religion = "hindu" }
+aliases = ["印度廟"]
+
+[[items]]
+id = "poi_synagogue"
+category = "secondary"
+name = "猶太會堂"
+desc = "猶太教宗教會堂。"
+geom = "point"
+tags = { amenity = "place_of_worship", religion = "jewish" }
+aliases = ["猶太教"]
+
+[[items]]
+id = "poi_place_of_worship"
+category = "secondary"
+name = "一般宗教場所"
+desc = "未細分教派的宗教禮拜場所。"
+geom = "point"
+tags = { amenity = "place_of_worship" }
+shapes = ["person"]
+aliases = ["宗教", "禮拜堂"]
+
+[[items]]
+id = "poi_power_water"
+category = "secondary"
+name = "水力／潮汐發電廠"
+desc = "水力發電廠或水壩發電機組（山區常見地標）。"
+geom = "point"
+tags = { "generator:source" = "hydro" }
+shapes = ["water"]
+aliases = ["水力發電", "電廠"]
+
+[[items]]
+id = "poi_power_wind"
+category = "secondary"
+name = "風力發電機"
+desc = "海岸或山稜風力發電風車（如竹南、高美、石門）。"
+geom = "point"
+tags = { "generator:source" = "wind" }
+shapes = ["tower"]
+aliases = ["風機", "風力發電"]
+
+[[items]]
+id = "poi_power_coal"
+category = "secondary"
+name = "燃煤火力發電廠"
+desc = "燃煤發電設施。"
+geom = "point"
+tags = { "generator:source" = "coal" }
+shapes = ["tower"]
+aliases = ["火力發電", "電廠"]
+
+[[items]]
+id = "poi_power_gas"
+category = "secondary"
+name = "燃氣發電廠"
+desc = "天然氣發電設施。"
+geom = "point"
+tags = { "generator:source" = "gas" }
+shapes = ["tower"]
+aliases = ["天然氣電廠"]
+
+[[items]]
+id = "poi_power_nuclear"
+category = "secondary"
+name = "核能發電廠"
+desc = "核能發電廠設施。"
+geom = "point"
+tags = { "generator:source" = "nuclear" }
+shapes = ["tower"]
+aliases = ["核電廠"]
+
+[[items]]
+id = "poi_windmill"
+category = "secondary"
+name = "傳統風車"
+desc = "景觀或農用傳統風車。"
+geom = "point"
+tags = { man_made = "windmill" }
+shapes = ["tower", "cross"]
+aliases = ["風車"]
+
+[[items]]
+id = "area_pedestrian"
+category = "secondary"
+name = "行人徒步廣場"
+desc = "行人專用廣場或徒步區鋪面紋理。"
+geom = "area"
+tags = { "area:highway" = "pedestrian" }
+zoom = 16
+aliases = ["徒步區", "廣場"]
+
+[[items]]
+id = "area_access_destination"
+category = "secondary"
+name = "僅限進出區域"
+desc = "僅供住戶或特定目的地進入之管制區紋理。"
+geom = "area"
+tags = { area = "yes", access = "destination" }
+zoom = 16
+aliases = ["限住戶", "僅限進出"]
+
+[[items]]
+id = "area_swimming_outdoor"
+category = "secondary"
+name = "露天泳池／戲水區範圍"
+desc = "戶外泳池或水上樂園水面波紋填滿。"
+geom = "area"
+tags = { leisure = "water_park" }
+zoom = 16
+aliases = ["泳池區", "戲水區"]

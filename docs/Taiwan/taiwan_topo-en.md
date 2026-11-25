@@ -5,7 +5,7 @@ RudyMap (MOI.OSM - Taiwan TOPO) v__version__, released every Thursday
 
 Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin / Android / iOS!
 
-[Legend V1R3](./legend_V1R3.pdf) · [Online Tiles](https://tiles.rudymap.tw) · [Mobile App Page](https://rudymap.tw/app) · [Beta Version](https://rudymap.tw/drops/beta.html) · [Facebook Group](https://www.facebook.com/groups/taiwan.topo) · [GitHub](https://github.com/alpha-rudy/taiwan-topo)
+[Legend](./legend.html) · [Online Tiles](https://tiles.rudymap.tw) · [Mobile App Page](https://rudymap.tw/app) · [Beta Version](https://rudymap.tw/drops/beta.html) · [Facebook Group](https://www.facebook.com/groups/taiwan.topo) · [GitHub](https://github.com/alpha-rudy/taiwan-topo)
 
 ## Mobile App Auto Install
 
@@ -378,7 +378,7 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 * Online tile service: https://tiles.rudymap.tw
 * Discussion (Facebook Group): https://www.facebook.com/groups/taiwan.topo
 * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
-* Legend guide by Aniu: [Legend V1R3](./legend_V1R3.pdf)
+* Map Legend (auto-generated): [Interactive Web Legend](./legend.html) · [Detailed PDF](./legend_detail.pdf) · [2-Page Compact PDF](./legend_compact.pdf) · [1-Page Cheat Sheet PDF](./legend_onepage.pdf) ([Legacy Legend V1R3](./legend_V1R3.pdf))
 * Beta version (released Mon/Wed/Sat): https://rudymap.tw/drops/beta.html
 * RudyMap Load Balancer (Cedric Shih) — tapping any Auto-mirror button on this page automatically routes to an available mirror
   * rudymap.tw
