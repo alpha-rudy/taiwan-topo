@@ -1,3 +1,6 @@
+FROM golang:1.25 AS mftool-builder
+RUN CGO_ENABLED=0 go install github.com/kcwu/mftool/cmd/mftool@634561e6821cb8f86c5106e220ce8b4839f9b983
+
 FROM ubuntu:26.04
 
 # Prevent interactive prompts during package installation
@@ -105,6 +108,7 @@ RUN set -e && \
     echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN mkdir -p /home/builder/bin
+COPY --from=mftool-builder /go/bin/mftool /usr/local/bin/mftool
 COPY --chown=builder:builder build.sh /home/builder/bin/build.sh
 RUN chmod +x /home/builder/bin/build.sh
 
