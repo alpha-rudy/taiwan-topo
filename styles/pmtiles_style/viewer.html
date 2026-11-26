@@ -101,7 +101,8 @@
       style.glyphs = glyphsUrl;
       style.sprite = spriteUrl;
 
-      const protocol = new pmtiles.Protocol();
+      // metadata: the archive's attribution (with its region's DEM) is the credit the map shows
+      const protocol = new pmtiles.Protocol({ metadata: true });
       maplibregl.addProtocol("pmtiles", protocol.tile);
 
       const map = new maplibregl.Map({

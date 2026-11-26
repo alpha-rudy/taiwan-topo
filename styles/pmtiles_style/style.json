@@ -37,8 +37,7 @@
   "sources": {
     "topo": {
       "type": "vector",
-      "url": "pmtiles://MOI_OSM_Taiwan_TOPO_Rudy.pmtiles",
-      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors; DEM: MOI"
+      "url": "pmtiles://MOI_OSM_Taiwan_TOPO_Rudy.pmtiles"
     },
     "dem": {
       "type": "raster-dem",

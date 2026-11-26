@@ -50,6 +50,15 @@
 # 3.1 writes only name, description, attribution and vector_layers to PMTiles
 # metadata (a "version" in the config is dropped), so it is added afterwards
 # with go-pmtiles' edit ($GOPMTILES_CMD, default "pmtiles").
+#
+# Every region draws with one shared style (rudymap_pmtiles_style.zip), so what
+# differs per region travels in the archive's own metadata instead:
+#   PMTILES_ATTRIBUTION  replaces "attribution", e.g. naming the region's DEM.
+#   PMTILES_DEM          the region's DEM archive: "taiwan-topo:dem_version" is the
+#                        first 16 hex digits of its SHA-256. The DEM build is
+#                        deterministic, so this changes only when the elevations
+#                        do; an app can skip downloading the DEM while it stays
+#                        the same, and check a downloaded DEM against it.
 
 set -e
 
@@ -132,14 +141,26 @@ rm -f "$OUTPUT_PMTILES"
 
 test -s "$OUTPUT_PMTILES" || { echo "ERROR: tilemaker produced no output ($OUTPUT_PMTILES)" >&2; exit 1; }
 
-# 5. The build version in the archive's metadata (see the note above).
+# 5. The build version, attribution and DEM version in the archive's metadata
+#    (see the notes above).
 "$GOPMTILES_CMD" show --metadata "$OUTPUT_PMTILES" > "$METADATA_JSON"
 python3 - "$METADATA_JSON" "${VERSION:-dev}" <<'PY'
-import json, sys
+import hashlib, json, os, sys
 path, version = sys.argv[1:3]
 with open(path) as f:
     meta = json.load(f)
 meta["version"] = version
+if os.environ.get("PMTILES_ATTRIBUTION"):
+    meta["attribution"] = os.environ["PMTILES_ATTRIBUTION"]
+dem = os.environ.get("PMTILES_DEM")
+if dem:
+    if not os.path.isfile(dem) or os.path.getsize(dem) == 0:
+        sys.exit("DEM archive missing or empty: %s" % dem)
+    h = hashlib.sha256()
+    with open(dem, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    meta["taiwan-topo:dem_version"] = h.hexdigest()[:16]
 with open(path, "w") as f:
     json.dump(meta, f, ensure_ascii=False)
 PY

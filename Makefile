@@ -1059,11 +1059,22 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 
 .PHONY: pmtiles
 pmtiles: $(PMTILES)
-$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py
+# The archive names the region's DEM in its attribution and carries the DEM's
+# content version (tools/pmtiles-build.sh), so the shared style needs neither:
+# its sources carry no attribution, and a viewer shows the archive's own
+# (pmtiles.Protocol({metadata: true}) in MapLibre GL JS).
+# The DEM is a prerequisite: a rebuilt DEM rebuilds the archive, so an archive
+# and the DEM published beside it always agree on dem_version. A build machine
+# without the region's DEM builds it first.
+PMTILES_DEM := $(if $(HGT),$(DEM_PMTILES))
+PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors$(if $(DEM_NAME),; DEM: $(DEM_NAME))
+$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
-	GOPMTILES_CMD="$(GOPMTILES_CMD)" $(TOOLS_DIR)/pmtiles-build.sh \
+	GOPMTILES_CMD="$(GOPMTILES_CMD)" PMTILES_DEM="$(PMTILES_DEM)" \
+	PMTILES_ATTRIBUTION='$(PMTILES_ATTRIBUTION)' \
+	$(TOOLS_DIR)/pmtiles-build.sh \
 		"$(MAPSFORGE_PBF)" \
 		"$@" \
 		"$(TILEMAKER_CMD)" \
@@ -1097,30 +1108,33 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	python3 $(TOOLS_DIR)/pmtiles-sprite.py $(PMTILES_STYLE) $(ROOT_DIR)/styles/mapsforge_style/moiosm_res $(SPRITE_DIR)
 
-# The PMTiles styles in one zip, published beside the .pmtiles as each Mapsforge
-# _style.zip is beside its map: style.json and paper.json with their sprites.
-# Built with the archive each week, so a style and the tiles it draws match.
+# The PMTiles styles in one zip, shared by every region as the Mapsforge theme
+# zip is: style.json and paper.json with their sprites. Built with Taiwan's
+# archive each week, so a style and the tiles it draws match.
 # Their archive, DEM, glyphs and sprite paths are names relative to the
-# archive's folder, which the viewer and the apps point at their own copies.
+# archive's folder, Taiwan's files by default. The viewer and the apps fill the
+# "topo" and "dem" sources by id with the region's own files, and drop "dem"
+# and the hillshade for a region without a DEM. What differs per region (the
+# DEM's credit and content version) is in each archive's metadata instead.
 # An offline app draws CJK text with the phone's own font, so the zip carries
 # only the Latin glyphs (0-255: digits, ASCII, Latin-1) of each fontstack,
 # with the fonts' SIL OFL license as glyphs/LICENSE.txt.
 # version.txt and each style's metadata "taiwan-topo:version" hold VERSION, as
 # the archive's metadata "version" does (tools/pmtiles-style-pack.py); the
 # version stamp rebuilds the zip once a day, as it does the map data.
-PMTILES_STYLE_ZIP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_pmtiles_style.zip
+PMTILES_STYLE_ZIP := $(BUILD_DIR)/rudymap_pmtiles_style.zip
 PMTILES_STYLE_GLYPH_RANGES := 0-255
 .PHONY: pmtiles_style_zip
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
 $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) $(GLYPHS) \
 		styles/mapsforge_style/License.txt styles/pmtiles_style/glyphs-LICENSE.txt \
-		$(TOOLS_DIR)/pmtiles-style-pack.py $(DEM_PMTILES) $(VERSION_STAMP)
+		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	-rm -f $@
 	rm -rf $(BUILD_DIR)/pmtiles_style
 	mkdir -p $(BUILD_DIR)/pmtiles_style
 	cp -a styles/mapsforge_style/License.txt $(SPRITE_DIR) $(SPRITE_PAPER_DIR) $(BUILD_DIR)/pmtiles_style/
-	python3 $(TOOLS_DIR)/pmtiles-style-pack.py --dem $(DEM_PMTILES) $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
+	python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
 		$(PMTILES_STYLE_GLYPH_RANGES) $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE)
 	cp styles/pmtiles_style/glyphs-LICENSE.txt $(BUILD_DIR)/pmtiles_style/glyphs/LICENSE.txt
 	cd $(BUILD_DIR)/pmtiles_style && $(ZIP_CMD) $@ *
