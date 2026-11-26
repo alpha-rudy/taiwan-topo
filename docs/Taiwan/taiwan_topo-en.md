@@ -216,7 +216,7 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 * Taiwan Vector Tiles (MOI_OSM_Taiwan_TOPO_Rudy.pmtiles)
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.pmtiles)
 * PMTiles Style Bundle (style.json, paper.json, sprites & Latin glyphs)
-  > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_pmtiles_style.zip)
+  > [[Auto-mirror]](https://rudymap.tw/v1/rudymap_pmtiles_style.zip)
 * Taiwan DEM Elevation Tiles (taiwan_dem.pmtiles)
   > [[Auto-mirror]](https://rudymap.tw/v1/taiwan_dem.pmtiles)
 
