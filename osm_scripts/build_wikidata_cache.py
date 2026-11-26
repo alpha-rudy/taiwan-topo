@@ -42,6 +42,16 @@ USER_AGENT = ('taiwan-topo name-completion cache '
 QID_KEYS = ('wikidata', 'brand:wikidata')
 
 
+def _extract_qids_from_tags(tags, qids):
+    for key in QID_KEYS:
+        v = tags.get(key)
+        if v:
+            for part in v.split(';'):
+                part = part.strip()
+                if QID_RE.match(part):
+                    qids.add(part)
+
+
 class QidCollector(osmium.SimpleHandler):
     """Collect the distinct, well-formed wikidata QIDs in an OSM file."""
 
@@ -49,23 +59,30 @@ class QidCollector(osmium.SimpleHandler):
         super().__init__()
         self.qids = set()
 
-    def _collect(self, o):
-        for key in QID_KEYS:
-            v = o.tags.get(key)
-            if v:
-                for part in v.split(';'):
-                    part = part.strip()
-                    if QID_RE.match(part):
-                        self.qids.add(part)
-
     def node(self, n):
-        self._collect(n)
+        _extract_qids_from_tags(n.tags, self.qids)
 
     def way(self, w):
-        self._collect(w)
+        _extract_qids_from_tags(w.tags, self.qids)
 
     def relation(self, r):
-        self._collect(r)
+        _extract_qids_from_tags(r.tags, self.qids)
+
+
+def collect_qids(infile):
+    """Collect distinct QIDs from infile, filtering in C++ when pyosmium >= 4."""
+    if hasattr(osmium, 'FileProcessor'):
+        from osmium.filter import KeyFilter
+
+        qids = set()
+        fp = osmium.FileProcessor(infile).with_filter(KeyFilter(*QID_KEYS))
+        for obj in fp:
+            _extract_qids_from_tags(obj.tags, qids)
+        return qids
+
+    collector = QidCollector()
+    collector.apply_file(infile)
+    return collector.qids
 
 
 def to_traditional(text):
@@ -157,11 +174,10 @@ def main():
     cached = {row[0] for row in conn.execute("SELECT qid FROM labels")}
 
     sys.stderr.write(f"scanning {infile} for wikidata QIDs...\n")
-    collector = QidCollector()
-    collector.apply_file(infile)
-    todo = sorted(collector.qids - cached)
+    found_qids = collect_qids(infile)
+    todo = sorted(found_qids - cached)
     sys.stderr.write(
-        f"{len(collector.qids)} QIDs found, {len(cached)} already cached, "
+        f"{len(found_qids)} QIDs found, {len(cached)} already cached, "
         f"{len(todo)} to fetch\n")
 
     if not todo:
