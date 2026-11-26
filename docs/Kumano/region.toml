@@ -1,0 +1,15 @@
+suite = "kumano"
+group = "japan"
+order = 60
+guide_kind = "region"
+ai_notice = false
+
+[zh]
+title = "Pilgrim's Path - Kumano Kodo / 靈場參詣道 - 熊野古道登山地圖（紀伊山地）"
+garmin_name = "Kumano TOPO"
+index_label = "Kumano Kodo, 熊野古道"
+
+[en]
+title = "Pilgrim's Path - Kumano Kodo"
+garmin_name = "Kumano TOPO"
+index_label = "Kumano Kodo"

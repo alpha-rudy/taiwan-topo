@@ -1,0 +1,15 @@
+suite = "chuo_alps"
+group = "japan"
+order = 40
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Kiso Range - Chuo Alps / 木曾山脈 - 中央阿爾卑斯登山地圖（駒岳・御嶽山）"
+garmin_name = "Chuo Alps"
+index_label = "Chuo Alps, 中央阿爾卑斯 (木曾山脈・御嶽山)"
+
+[en]
+title = "Kiso Range - Chuo Alps"
+garmin_name = "Chuo Alps"
+index_label = "Chuo Alps (Central Japanese Alps - Kiso Mountains, Mount Ontake)"

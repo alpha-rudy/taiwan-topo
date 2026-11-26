@@ -1,0 +1,15 @@
+suite = "elbrus"
+group = "russia"
+order = 10
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "EuroPeaks TOPO - Elbrus / 歐陸巔峰 - 厄爾布魯士登山地圖"
+garmin_name = "Elbrus Region"
+index_label = "Elbrus, 厄爾布魯士 (俄羅斯高加索)"
+
+[en]
+title = "EuroPeaks TOPO - Elbrus"
+garmin_name = "Elbrus Region"
+index_label = "Elbrus (Russian Caucasus)"

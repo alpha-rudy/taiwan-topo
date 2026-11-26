@@ -17,6 +17,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import region_doc
 import template_assets
 
 # ---------------------------------------------------------------------------
@@ -1101,19 +1102,59 @@ def render_document(
     )
 
 
+def _infer_docs_dir(source_path: Path) -> Path:
+    """Walk up from source_path to find the ``docs/`` directory containing ``shared/site.toml``."""
+    resolved = source_path.resolve()
+    for parent in resolved.parents:
+        if (parent / "shared" / "site.toml").exists():
+            return parent
+    return resolved.parent.parent
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Render TOPO Markdown documentation to modern HTML.")
-    parser.add_argument("--input", required=True, type=Path, help="Input Markdown file")
-    parser.add_argument("--template", required=True, type=Path, help="HTML template file")
-    parser.add_argument("--output", required=True, type=Path, help="Output HTML file")
-    parser.add_argument("--version", required=True, help="Map version string (e.g. 2026.11.24)")
-    parser.add_argument("--lang", default="zh-Hant", help="HTML lang attribute")
+    parser = argparse.ArgumentParser(description="Render TOPO documentation to modern HTML.")
+    src_group = parser.add_mutually_exclusive_group(required=True)
+    src_group.add_argument("--input", type=Path, help="Input Markdown file (supports <!-- include: ... -->)")
+    src_group.add_argument(
+        "--region-config",
+        type=Path,
+        help="Input region.toml file (assembled with guide*.md and docs/shared/site.toml)",
+    )
+    parser.add_argument("--docs-dir", type=Path, default=None, help="Root docs/ directory (auto-detected if omitted)")
+    parser.add_argument("--template", type=Path, help="HTML template file (required unless --dump-md)")
+    parser.add_argument("--output", type=Path, help="Output HTML file (required unless --dump-md)")
+    parser.add_argument("--version", default="dev", help="Map version string (e.g. 2026.11.24)")
+    parser.add_argument("--lang", default="zh-Hant", help="HTML lang attribute (zh-Hant or en)")
     parser.add_argument("--alt-lang-href", default="", help="Alternate language page href")
     parser.add_argument("--alt-lang-label", default="", help="Alternate language toggle label")
+    parser.add_argument(
+        "--dump-md",
+        action="store_true",
+        help="Print assembled/expanded Markdown to stdout instead of rendering HTML",
+    )
     args = parser.parse_args()
 
-    md_text = args.input.read_text(encoding="utf-8")
-    docs_dir = template_assets.infer_docs_dir(args.template)
+    source_path: Path = args.region_config or args.input
+    docs_dir = args.docs_dir or _infer_docs_dir(source_path)
+
+    if args.region_config is not None:
+        region_cfg = region_doc.load_region_config(args.region_config, docs_dir=docs_dir)
+        site_cfg = region_doc.load_site_config(docs_dir)
+        guide_name = "guide-en.md" if args.lang.lower().startswith("en") else "guide.md"
+        guide_path = args.region_config.parent / guide_name
+        guide_md = guide_path.read_text(encoding="utf-8") if guide_path.exists() else ""
+        md_text = region_doc.build_region_markdown(region_cfg, site_cfg, guide_md, args.lang)
+    else:
+        raw_md = args.input.read_text(encoding="utf-8")
+        md_text = region_doc.expand_includes(raw_md, docs_dir, args.lang)
+
+    if args.dump_md:
+        sys.stdout.write(md_text)
+        return
+
+    if not args.template or not args.output:
+        parser.error("--template and --output are required unless --dump-md is specified")
+
     template_html = template_assets.expand_template_assets(
         args.template.read_text(encoding="utf-8"),
         docs_dir,

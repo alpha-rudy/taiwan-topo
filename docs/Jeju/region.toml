@@ -1,0 +1,15 @@
+suite = "jeju"
+group = "hk_kr"
+order = 20
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Volcanic Island - Jeju / 火山之島 - 濟州島登山地圖（漢拏山・偶來小路）"
+garmin_name = "Jeju Island"
+index_label = "Jeju, 濟州島"
+
+[en]
+title = "Volcanic Island - Jeju"
+garmin_name = "Jeju Island"
+index_label = "Jeju"

@@ -1,0 +1,15 @@
+suite = "alps_western"
+group = "europe_alps"
+order = 10
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "EuroPeaks TOPO - Western Alps / 歐陸巔峰 - 西阿爾卑斯登山地圖（白朗峰－馬特洪峰區）"
+garmin_name = "Alps Western Region"
+index_label = "Alps Western, 西阿爾卑斯 (白朗峰－馬特洪峰區)"
+
+[en]
+title = "EuroPeaks TOPO - Western Alps"
+garmin_name = "Alps Western Region"
+index_label = "Alps Western (Mont Blanc - Matterhorn)"

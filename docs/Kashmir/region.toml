@@ -1,0 +1,15 @@
+suite = "kashmir"
+group = "south_asia"
+order = 20
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Paradise on Earth - Kashmir / 人間天堂 - 喀什米爾登山地圖（皮爾潘賈爾山脈）"
+garmin_name = "Kashmir TOPO"
+index_label = "Kashmir, 喀什米爾"
+
+[en]
+title = "Paradise on Earth - Kashmir"
+garmin_name = "Kashmir TOPO"
+index_label = "Kashmir"

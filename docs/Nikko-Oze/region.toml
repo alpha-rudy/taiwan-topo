@@ -1,0 +1,15 @@
+suite = "nikko_oze"
+group = "japan"
+order = 20
+guide_kind = "region"
+ai_notice = false
+
+[zh]
+title = "Shrine & Marshland - Nikko-Oze / 社寺與濕原 - 日光尾瀨登山地圖（栃木・群馬・福島）"
+garmin_name = "Nikko-Oze Region"
+index_label = "Nikko Oze, 日光尾瀨地區"
+
+[en]
+title = "Shrine & Marshland - Nikko-Oze"
+garmin_name = "Nikko-Oze Region"
+index_label = "Nikko Oze"

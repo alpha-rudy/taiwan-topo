@@ -1,0 +1,15 @@
+suite = "shikoku"
+group = "japan"
+order = 70
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Sacred Circuit - Shikoku / 靈場巡禮 - 四國登山地圖（德島・香川・愛媛・高知）"
+garmin_name = "Shikoku Region"
+index_label = "Shikoku, 四國地區"
+
+[en]
+title = "Sacred Circuit - Shikoku"
+garmin_name = "Shikoku Region"
+index_label = "Shikoku"
