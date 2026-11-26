@@ -24,7 +24,9 @@
         "Kumano_aw3d30_zh_camp3D.gmap.zip",
         "gmapsupp_Kumano_aw3d30_en_camp3D.img.zip",
         "Install_AW3D30_Kumano_TOPO_camp3D_en.exe",
-        "Kumano_aw3d30_en_camp3D.gmap.zip"
+        "Kumano_aw3d30_en_camp3D.gmap.zip",
+        "AW3D30_OSM_Kumano_TOPO_Rudy.pmtiles",
+        "kumano_dem.pmtiles"
     ],
     "exist_only": [
         "kumano_hgtmix.zip",

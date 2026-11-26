@@ -44,14 +44,21 @@
         "gmapsupp_Taiwan_moi_zh_odc3D.img.zip",
         "gmapsupp_Taiwan_moi_zh_bw3D.img.zip",
         "MOI_OSM_tn_style.zip",
-        "Taiwan_moi_zh_odc3D.gmap.zip"
+        "Taiwan_moi_zh_odc3D.gmap.zip",
+        "MOI_OSM_Taiwan_TOPO_Rudy.pmtiles",
+        "rudymap_pmtiles_style.zip",
+        "taiwan_dem.pmtiles"
     ],
     "exist_only": [
         "extra/Markchoo.map.zip",
         "extra/Compartment.map.zip",
         "hgtmix.zip",
         "hgt90.zip",
-        "legend_V1R1.pdf"
+        "legend_V1R1.pdf",
+        "legend.html",
+        "legend_detail.pdf",
+        "legend_compact.pdf",
+        "legend_onepage.pdf"
     ],
     "check_today": false
 }
