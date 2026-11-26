@@ -1,18 +1,19 @@
 ## QUICK-START
 
 ```bash
-# cd to root or this repo
-docker build docker/ -t rudymap:1.0
-docker run \
-    -it --rm \
-    --user $(id -u):$(id -g) \
-    -w /app \
-    -v `pwd`:/app \
-    -v /etc/passwd:/etc/passwd \
-    -v /etc/group:/etc/group 
-    rudymap:1.0 bash
+# From the repository root, build the taiwan-topo:latest image with your UID/GID:
+./tools/docker-build
 
-# Inside container
+# Run any make target directly via the wrapper script:
+./tools/docker-make SUITE=taiwan mapsforge
+
+# Or open an interactive shell inside the container:
+docker run -it --rm \
+    -v "$(pwd):/workspace" \
+    -u builder \
+    taiwan-topo:latest bash
+
+# Inside container:
 make SUITE=taiwan mapsforge
 ```
 
