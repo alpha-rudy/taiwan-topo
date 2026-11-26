@@ -5,8 +5,8 @@ The PMTiles build target (`make SUITE=<region> pmtiles`) runs tilemaker.
 ## In the Docker build (default)
 
 `./tools/docker-make ... pmtiles` already works out of the box: the
-`taiwan-topo` image builds tilemaker v3.1.0 from source (see `docker/Dockerfile`)
-and installs it to `/usr/local/bin/tilemaker`. `TILEMAKER_CMD` defaults to that
+`taiwan-topo` image installs `tilemaker` (v3.1.0) via `apt` (see
+`docker/Dockerfile`) at `/usr/bin/tilemaker`. `TILEMAKER_CMD` defaults to that
 PATH binary when no vendored copy exists. Nothing else to do.
 
 ## Outside Docker

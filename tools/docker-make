@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker run --rm -v $(pwd):/workspace -u builder taiwan-topo:latest make "$@"
+set -e
+
+docker run --rm -v "$(pwd):/workspace" -u builder taiwan-topo:latest make "$@"

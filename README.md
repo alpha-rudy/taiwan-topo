@@ -40,29 +40,26 @@
 
 ## Docker Usage
 
-Build with your user ID to avoid permission issues:
+Build the Docker image with your user ID to avoid permission issues:
 
 ```bash
-docker build \
-  --build-arg USER_ID=$(id -u) \
-  --build-arg GROUP_ID=$(id -g) \
-  -t taiwan-topo:latest .
+./tools/docker-build
 ```
 
-Running Make Commands Directly:
-    
-```bash
-docker run --rm \
-  -v $(pwd):/workspace \
-  -u builder \
-  taiwan-topo:latest \
-  make SUITE=taiwan mapsforge
-```
-
-Using a Wrapper Script:
+Using the Wrapper Script:
 
 ```bash
 ./tools/docker-make SUITE=taiwan mapsforge
+```
+
+Running Make Commands Directly:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/workspace" \
+  -u builder \
+  taiwan-topo:latest \
+  make SUITE=taiwan mapsforge
 ```
 
 ## SUITE list

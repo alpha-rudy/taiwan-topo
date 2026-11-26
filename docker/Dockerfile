@@ -80,10 +80,10 @@ ARG GROUP_ID=1000
 # default-java follows default-jre (OpenJDK 25 on 26.04).
 ENV JAVA_HOME=/usr/lib/jvm/default-java
 ENV JAVA8_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
 
 RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 RUN set -e && \
     # Create or modify group
     if getent group ${GROUP_ID} >/dev/null; then \
