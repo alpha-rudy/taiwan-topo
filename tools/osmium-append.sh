@@ -4,6 +4,7 @@
 # objects into a reserved, permanently OSM-free ID block.
 #
 # Usage: osmium-append.sh <target> <add> [namespace]
+#        osmium-append.sh <target> <add1> <ns1> [<add2> <ns2> ...]
 #
 # Env:
 #   OSMCONVERT_CMD - path to osmconvert binary (falls back to `osmconvert`
@@ -57,6 +58,7 @@ BLOCK_SIZE=10000000000
 
 usage() {
     echo "Usage: $0 <target> <add> [namespace]" >&2
+    echo "       $0 <target> <add1> <ns1> [<add2> <ns2> ...]" >&2
     exit 1
 }
 
@@ -75,25 +77,51 @@ block_for() {
     esac
 }
 
-if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
+if [ "$#" -lt 2 ]; then
     usage
 fi
 
 target="$1"
-add="$2"
-namespace="${3:-fallback}"
+shift
 
-[ -f "$target" ] || { echo "error: target file not found: $target" >&2; exit 1; }
-[ -f "$add" ] || { echo "error: add file not found: $add" >&2; exit 1; }
-
-block="$(block_for "$namespace")"
-if [ -z "$block" ]; then
-    echo "error: unknown ID namespace '$namespace' (see the ID LAYOUT table in $0)" >&2
-    exit 1
+adds=()
+namespaces=()
+if [ "$#" -eq 1 ]; then
+    adds+=("$1")
+    namespaces+=("fallback")
+elif [ $(($# % 2)) -eq 0 ]; then
+    while [ "$#" -gt 0 ]; do
+        adds+=("$1")
+        namespaces+=("$2")
+        shift 2
+    done
+else
+    usage
 fi
 
-base=$((SYNTHETIC_BASE + block * BLOCK_SIZE))
-limit=$((base + BLOCK_SIZE))
+[ -f "$target" ] || { echo "error: target file not found: $target" >&2; exit 1; }
+
+bases=()
+limits=()
+seen_ns=" "
+for i in "${!adds[@]}"; do
+    add="${adds[$i]}"
+    ns="${namespaces[$i]}"
+    [ -f "$add" ] || { echo "error: add file not found: $add" >&2; exit 1; }
+    block="$(block_for "$ns")"
+    if [ -z "$block" ]; then
+        echo "error: unknown ID namespace '$ns' (see the ID LAYOUT table in $0)" >&2
+        exit 1
+    fi
+    if [[ "$seen_ns" == *" $ns "* ]]; then
+        echo "error: duplicate ID namespace '$ns' in a single append call" >&2
+        exit 1
+    fi
+    seen_ns="${seen_ns}${ns} "
+    base=$((SYNTHETIC_BASE + block * BLOCK_SIZE))
+    bases+=("$base")
+    limits+=($((base + BLOCK_SIZE)))
+done
 
 # Largest id of each type currently in a file, as "node way relation".
 largest_ids() {
@@ -106,73 +134,84 @@ largest_ids() {
     echo "${n:-0} ${w:-0} ${r:-0}"
 }
 
-# Is any id of <file> inside the block [<base>, <limit>)?
-block_occupied() {
-    local f="$1" b="$2" l="$3"
-    local n w r id
-    read -r n w r <<<"$(largest_ids "$f")"
-
-    for id in "$n" "$w" "$r"; do
+# Guard 1: every requested block must still be free in the target. Scan the
+# target once for largest IDs and (only if needed) once with osmium getid.
+read -r t_n t_w t_r <<<"$(largest_ids "$target")"
+probe_ids=()
+probe_indices=()
+for i in "${!adds[@]}"; do
+    b="${bases[$i]}"
+    l="${limits[$i]}"
+    for id in "$t_n" "$t_w" "$t_r"; do
         if [ "$id" -ge "$b" ] && [ "$id" -lt "$l" ]; then
-            return 0
+            echo "error: ${target} already holds ids in the '${namespaces[$i]}' block [${b}, ${l}); refusing to append ${adds[$i]}" >&2
+            exit 1
         fi
     done
-
     # Every largest id sits outside the block - but if one sits ABOVE it, the block
     # itself may still be populated (a target that inherited several blocks, e.g.
     # the mapsforge input already carries adshelter+gianttree before 'mix' is
     # appended). osmium renumber always starts a block at exactly <base>, so
     # probing that single id settles the question exactly.
-    if [ "$n" -ge "$l" ] || [ "$w" -ge "$l" ] || [ "$r" -ge "$l" ]; then
-        # getid exits 1 when ANY requested id is missing, which is the normal case
-        # here (most sources contribute only nodes), so ignore its status and look
-        # at what it actually printed - at most three objects.
-        local probe
-        probe="$(osmium getid --no-progress -f osm "$f" "n$b" "w$b" "r$b" 2>/dev/null || true)"
-        if printf '%s' "$probe" | grep -qE '<(node|way|relation) id='; then
-            return 0
-        fi
+    if [ "$t_n" -ge "$l" ] || [ "$t_w" -ge "$l" ] || [ "$t_r" -ge "$l" ]; then
+        probe_ids+=("n$b" "w$b" "r$b")
+        probe_indices+=("$i")
     fi
+done
 
-    return 1
-}
-
-# Guard 1: the block must still be free in the target. A hit means this namespace
-# was already appended to this target, and renumbering again would overwrite it.
-if block_occupied "$target" "$base" "$limit"; then
-    echo "error: ${target} already holds ids in the '${namespace}' block [${base}, ${limit}); refusing to append ${add}" >&2
-    exit 1
+if [ "${#probe_ids[@]}" -gt 0 ]; then
+    # getid exits 1 when ANY requested id is missing, which is the normal case
+    # here (most sources contribute only nodes), so ignore its status and look
+    # at what it actually printed.
+    probe="$(osmium getid --no-progress -f osm "$target" "${probe_ids[@]}" 2>/dev/null || true)"
+    for i in "${probe_indices[@]}"; do
+        b="${bases[$i]}"
+        l="${limits[$i]}"
+        if printf '%s' "$probe" | grep -qE "<(node|way|relation) id=\"${b}\""; then
+            echo "error: ${target} already holds ids in the '${namespaces[$i]}' block [${b}, ${l}); refusing to append ${adds[$i]}" >&2
+            exit 1
+        fi
+    done
 fi
 
 ext="${target##*.}"
 tmp_dir="$(dirname "$target")"
-ren_file="${tmp_dir}/.append_$$_ren.pbf"
 mgr_file="${tmp_dir}/.append_$$_mgr.pbf"
+ren_files=()
 
 cleanup() {
-    rm -f "$ren_file" "$mgr_file"
+    rm -f "$mgr_file" "${ren_files[@]}"
 }
 trap cleanup EXIT
 
-echo "renumber ${add} into '${namespace}' block: ${base}"
-osmium renumber \
-    -s "${base},${base},${base}" \
-    "$add" \
-    -Oo "$ren_file"
+for i in "${!adds[@]}"; do
+    add="${adds[$i]}"
+    ns="${namespaces[$i]}"
+    base="${bases[$i]}"
+    limit="${limits[$i]}"
+    ren_file="${tmp_dir}/.append_$$_ren_${i}.pbf"
+    ren_files+=("$ren_file")
 
-# Guard 2: the renumbered payload must stay inside its block.
-read -r a_node a_way a_rel <<<"$(largest_ids "$ren_file")"
-for id in "$a_node" "$a_way" "$a_rel"; do
-    if [ "$id" -ge "$limit" ]; then
-        echo "error: ${add} overflows the '${namespace}' block [${base}, ${limit}); largest id ${id}" >&2
-        exit 1
-    fi
+    echo "renumber ${add} into '${ns}' block: ${base}"
+    osmium renumber \
+        -s "${base},${base},${base}" \
+        "$add" \
+        -Oo "$ren_file"
+
+    # Guard 2: the renumbered payload must stay inside its block.
+    read -r a_node a_way a_rel <<<"$(largest_ids "$ren_file")"
+    for id in "$a_node" "$a_way" "$a_rel"; do
+        if [ "$id" -ge "$limit" ]; then
+            echo "error: ${add} overflows the '${ns}' block [${base}, ${limit}); largest id ${id}" >&2
+            exit 1
+        fi
+    done
 done
 
-echo "merge: ${target} ${add}"
+echo "merge: ${target} ${adds[*]}"
 osmium merge \
     "$target" \
-    "$ren_file" \
+    "${ren_files[@]}" \
     -Oo "$mgr_file"
 
 if [ "$ext" == "pbf" ]; then

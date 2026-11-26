@@ -863,8 +863,9 @@ ifeq ($(EXTRACT_FILE),taiwan-latest)
 		$(OSMCONVERT_CLEAN) \
 		--out-o5m \
 		-o=$@
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ADS_OSM) adshelter
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ $(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm gianttree
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ \
+		$(ADS_OSM) adshelter \
+		$(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm gianttree
 else
 	$(OSMCONVERT_CMD) \
 		$< \
