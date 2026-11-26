@@ -1,0 +1,30 @@
+/* Shared base print styles & color tokens for all RudyMap legend PDF templates.
+ * Inlined at build time by tools/template_assets.py (expand_template_assets).
+ */
+
+:root {
+  --pdf-ink: #18231e;
+  --pdf-ink-strong: #14201b;
+  --pdf-muted: #52635b;
+  --pdf-subtle: #677a70;
+  --pdf-header-bg: #1b4332;
+  --pdf-accent: #246346;
+  --pdf-group-bg: #e6f0ea;
+  --pdf-group-ink: #163a2a;
+  --pdf-border: #dce5de;
+  --pdf-swatch-bg: #f7f6f1;
+  --pdf-swatch-border: #d4ddd7;
+  --pdf-warn-bg: #fff3dc;
+  --pdf-warn-text: #8c4f05;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans CJK TC", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: var(--pdf-ink);
+  background: #ffffff;
+}

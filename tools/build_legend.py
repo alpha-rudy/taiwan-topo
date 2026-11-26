@@ -35,6 +35,7 @@ _TOOLS_DIR = Path(__file__).resolve().parent
 if str(_TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(_TOOLS_DIR))
 import pmtiles_theme as pt
+import template_assets
 
 # ---------------------------------------------------------------------------
 # Color & shape taxonomies (used for web search filters)
@@ -2679,8 +2680,14 @@ def main() -> None:
         for png in samples_dir.glob("*.png"):
             shutil.copy2(png, dst_samples / png.name)
 
+    docs_dir = args.templates_dir.resolve().parent
+
+    def _load_tpl(name: str) -> str:
+        raw = (args.templates_dir / name).read_text(encoding="utf-8")
+        return template_assets.expand_template_assets(raw, docs_dir)
+
     # 1. Interactive web legend
-    web_tpl = (args.templates_dir / "template_web.html").read_text(encoding="utf-8")
+    web_tpl = _load_tpl("template_web.html")
     web_html = render_web_html(
         web_tpl, categories, entries, uncataloged, pmtiles_diffs, args.version, samples_dir, out_samples_rel
     )
@@ -2689,17 +2696,17 @@ def main() -> None:
     print(f"Wrote {web_out} ({len(web_html) // 1024} KB)")
 
     # 2. Detail PDF & Compact PDF
-    detail_tpl = (args.templates_dir / "template_pdf_detail.html").read_text(encoding="utf-8")
+    detail_tpl = _load_tpl("template_pdf_detail.html")
     detail_html = render_pdf_detail_html(detail_tpl, categories, entries, args.version, samples_dir)
     detail_html_out = args.out_dir / "legend_detail.html"
     detail_html_out.write_text(detail_html, encoding="utf-8")
 
-    compact_tpl = (args.templates_dir / "template_pdf_compact.html").read_text(encoding="utf-8")
+    compact_tpl = _load_tpl("template_pdf_compact.html")
     compact_html = render_pdf_compact_html(compact_tpl, categories, entries, args.version)
     compact_html_out = args.out_dir / "legend_compact.html"
     compact_html_out.write_text(compact_html, encoding="utf-8")
 
-    onepage_tpl = (args.templates_dir / "template_pdf_onepage.html").read_text(encoding="utf-8")
+    onepage_tpl = _load_tpl("template_pdf_onepage.html")
     onepage_html = render_pdf_onepage_html(onepage_tpl, categories, entries, args.version)
     onepage_html_out = args.out_dir / "legend_onepage.html"
     onepage_html_out.write_text(onepage_html, encoding="utf-8")
