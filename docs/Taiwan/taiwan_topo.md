@@ -216,7 +216,7 @@
 * 台灣向量圖磚 (MOI_OSM_Taiwan_TOPO_Rudy.pmtiles)
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.pmtiles)
 * PMTiles 風格主題包（含 style.json、paper.json、圖示與英數字型）
-  > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_pmtiles_style.zip)
+  > [[自動分流]](https://rudymap.tw/v1/rudymap_pmtiles_style.zip)
 * 台灣 DEM 高程圖磚 (taiwan_dem.pmtiles)
   > [[自動分流]](https://rudymap.tw/v1/taiwan_dem.pmtiles)
 
