@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 import math
 import sys
+
 import osmium
 
 hknetworks = {}
@@ -8,26 +8,49 @@ national_park = {}
 strict_protected = {}
 summit_boards = {}
 
+_ADDR_DROP_KEYS = (
+    'addr:TW:dataset',
+    'addr:country',
+    'addr:province',
+    'addr:city',
+    'addr:district',
+    'addr:postcode',
+    'addr:hamlet',
+    'addr:neighbourhood',
+    'addr:place',
+    'addr:street',
+    'addr:housenumber',
+    'addr:housenumber_1',
+    'addr:floor',
+    'addr:unit',
+)
+_TOUGH_VIS = frozenset(('bad', 'horrible', 'no'))
+_TOUGH_SAC = frozenset(('demanding_alpine_hiking', 'difficult_alpine_hiking'))
+_TRAIL_HW = frozenset(('footway', 'path'))
+_TOP_BAIYUE = frozenset(('玉山', '北大武山', '雪山主峰'))
+
 
 class NationalParkLoader(osmium.SimpleHandler):
     def relation(self, r):
         if not r.members:
             return
         if r.tags['boundary'] == 'national_park':
-            parks = dict([('name', r.tags['name']), ('name:en', r.tags['name:en'])])
+            parks = {'name': r.tags['name'], 'name:en': r.tags['name:en']}
             for m in r.members:
                 if m.role == 'outer' and m.type == 'w':
                     national_park[m.ref] = parks
+
 
 class StrictProtectedLoader(osmium.SimpleHandler):
     def relation(self, r):
         if not r.members:
             return
         if r.tags['boundary'] == 'protected_area' and r.tags['protect_class'] == '1':
-            ways = dict([('name', r.tags['name']), ('name:en', r.tags['name:en'])])
+            ways = {'name': r.tags['name'], 'name:en': r.tags['name:en']}
             for m in r.members:
                 if m.role == 'outer' and m.type == 'w':
                     strict_protected[m.ref] = ways
+
 
 class SummitBoardLoader(osmium.SimpleHandler):
     def node(self, n):
@@ -38,10 +61,14 @@ class SummitBoardLoader(osmium.SimpleHandler):
 def near_summit_board(lon, lat, radius=100):
     # grid cells are 0.01 deg (~1 km), so the 3x3 neighbourhood covers radius
     cx, cy = int(lon * 100), int(lat * 100)
+    cos_lat = math.cos(math.radians(lat)) * 111320
     for i in (-1, 0, 1):
         for j in (-1, 0, 1):
-            for x, y in summit_boards.get((cx + i, cy + j), ()):
-                dx = (x - lon) * math.cos(math.radians(lat)) * 111320
+            pts = summit_boards.get((cx + i, cy + j))
+            if not pts:
+                continue
+            for x, y in pts:
+                dx = (x - lon) * cos_lat
                 dy = (y - lat) * 110540
                 if math.hypot(dx, dy) < radius:
                     return True
@@ -50,7 +77,7 @@ def near_summit_board(lon, lat, radius=100):
 
 def round_float(value):
     try:
-        return str(int(round(float(value))))
+        return str(round(float(value)))
     except ValueError:
         return None
 
@@ -61,15 +88,18 @@ class HknetworkLoader(osmium.SimpleHandler):
             return
         if r.tags.get('access', '') == 'no':
             return
-        network = dict([('name', r.tags['name']), ('name:en', r.tags['name:en']), ('network', r.tags['network']), ('ref', r.tags.get('ref', ''))])
+        network = {
+            'name': r.tags['name'],
+            'name:en': r.tags['name:en'],
+            'network': r.tags['network'],
+            'ref': r.tags.get('ref', ''),
+        }
         for m in r.members:
-            if not hknetworks.get(m.ref):
-                hknetworks[m.ref] = []
-            hknetworks[m.ref].append(network)
+            hknetworks.setdefault(m.ref, []).append(network)
 
 
 def my_g_format(the_float):
-    return "{:.2f}".format(the_float).rstrip('0').rstrip('.')
+    return f"{the_float:.2f}".rstrip('0').rstrip('.')
 
 
 class MapsforgeHandler(osmium.SimpleHandler):
@@ -78,41 +108,51 @@ class MapsforgeHandler(osmium.SimpleHandler):
         self.writer = writer
 
     def node(self, n):
-        tags = dict((tag.k, tag.v) for tag in n.tags)
+        if len(n.tags) == 0:
+            if n.id not in hknetworks:
+                self.writer.add_node(n)
+                return
+            tags = {}
+        else:
+            tags = dict(n.tags)
 
         if n.id in hknetworks:
             self.handle_hknetwork_node(n.id, tags)
 
-        if tags.get('man_made', '') == 'summit_board':
-            self.handle_summit_board(tags)
-        elif tags.get('natural', '') == 'peak':
-            self.handle_peak(tags, n.location)
-        elif tags.get('natural', '') == 'spring' and \
-                tags.get('drinking_water', '') == 'yes':
-            self.handle_drinking_spring(tags)
-        elif tags.get('information', '') == 'mobile':
-            self.handle_mobile_sign(tags)
-        elif tags.get('highway', '') == 'milestone' and \
-                tags.get('tourism', '') == 'information' and \
-                tags.get('information', '') == 'route_marker':
-            self.handle_trail_milestone(tags)
-        elif tags.get('highway', '') == 'emergency_access_point':
-            self.handle_eap(tags)
-        elif tags.get('highway', '') == 'platform' and tags.get('bus', '') == 'yes':
-            self.handle_bus_platform(tags)
-        elif tags.get('amenity', '') == 'bicycle_rental':
-            self.handle_bicycle_rental(tags)
-        
-        if tags.get('addr:housenumber') != None:
-            self.handle_house_number(tags)
+        if tags:
+            if tags.get('man_made') == 'summit_board':
+                self.handle_summit_board(tags)
+            elif tags.get('natural') == 'peak':
+                self.handle_peak(tags, n.location)
+            elif tags.get('natural') == 'spring' and tags.get('drinking_water') == 'yes':
+                self.handle_drinking_spring(tags)
+            elif tags.get('information') == 'mobile':
+                self.handle_mobile_sign(tags)
+            elif (
+                tags.get('highway') == 'milestone'
+                and tags.get('tourism') == 'information'
+                and tags.get('information') == 'route_marker'
+            ):
+                self.handle_trail_milestone(tags)
+            elif tags.get('highway') == 'emergency_access_point':
+                self.handle_eap(tags)
+            elif tags.get('highway') == 'platform' and tags.get('bus') == 'yes':
+                self.handle_bus_platform(tags)
+            elif tags.get('amenity') == 'bicycle_rental':
+                self.handle_bicycle_rental(tags)
 
-        if len(tags) != 0:
-            tags['osm_id'] = "P/{}".format(n.id)
+            if 'addr:housenumber' in tags:
+                self.handle_house_number(tags)
+
+            tags['osm_id'] = f"P/{n.id}"
             n = n.replace(tags=tags)
         self.writer.add_node(n)
 
     def way(self, w):
-        tags = dict((tag.k, tag.v) for tag in w.tags)
+        if len(w.tags) == 0 and w.id not in national_park and w.id not in strict_protected:
+            self.writer.add_way(w)
+            return
+        tags = dict(w.tags)
 
         if w.id in hknetworks and 'highway' in tags:
             self.handle_hknetwork_way(w.id, tags)
@@ -121,35 +161,36 @@ class MapsforgeHandler(osmium.SimpleHandler):
         if w.id in strict_protected:
             self.handle_strict_protected(w.id, tags)
 
-        if tags.get('amenity', '') == 'bicycle_rental':
-            self.handle_bicycle_rental(tags)
-        elif tags.get('highway', '') in ['footway', 'path']:
-            if tags.get('access', '') == 'no':
-                self.handle_no_access_trail(tags)
-            elif tags.get('trail_visibility', '') in ['bad', 'horrible', 'no'] or \
-              tags.get('sac_scale', '') in ['demanding_alpine_hiking', 'difficult_alpine_hiking']:
-                self.handle_tough_trail(tags)
+        if tags:
+            if tags.get('amenity') == 'bicycle_rental':
+                self.handle_bicycle_rental(tags)
+            elif tags.get('highway') in _TRAIL_HW:
+                if tags.get('access') == 'no':
+                    self.handle_no_access_trail(tags)
+                elif tags.get('trail_visibility') in _TOUGH_VIS or tags.get('sac_scale') in _TOUGH_SAC:
+                    self.handle_tough_trail(tags)
 
-        if tags.get('addr:housenumber') != None:
-            self.handle_house_number(tags)
+            if 'addr:housenumber' in tags:
+                self.handle_house_number(tags)
 
-        if len(tags) != 0:
-            tags['osm_id'] = "W/{}".format(w.id)
+            tags['osm_id'] = f"W/{w.id}"
             w = w.replace(tags=tags)
         self.writer.add_way(w)
 
     def relation(self, r):
-        tags = dict((tag.k, tag.v) for tag in r.tags)
+        if len(r.tags) == 0:
+            self.writer.add_relation(r)
+            return
+        tags = dict(r.tags)
 
-        if tags.get('amenity', '') == 'bicycle_rental':
+        if tags.get('amenity') == 'bicycle_rental':
             self.handle_bicycle_rental(tags)
 
-        if tags.get('addr:housenumber') != None:
+        if 'addr:housenumber' in tags:
             self.handle_house_number(tags)
 
-        if len(tags) != 0:
-            tags['osm_id'] = "R/{}".format(r.id)
-            r = r.replace(tags=tags)
+        tags['osm_id'] = f"R/{r.id}"
+        r = r.replace(tags=tags)
         self.writer.add_relation(r)
 
     def handle_eap(self, tags):
@@ -282,7 +323,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
                 if has_baiyue:
                     # Baiyue takes priority
-                    if name in ['玉山', '北大武山', '雪山主峰']:
+                    if name in _TOP_BAIYUE:
                         tags['zl'] = '0'
                         tags['cat'] = 'baiyue'
                     else:
@@ -292,7 +333,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
                     tags['zl'] = '2'
                     tags['cat'] = 'xiaobaiyue'
 
-                tags['ref'] = '(%s)' % ref
+                tags['ref'] = f'({ref})'
 
         ele = tags.get('ele')
         if ele is not None and name is not None:
@@ -301,7 +342,7 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 # name:zh too: complete_name.py fills it, and zh-preferring apps read it
                 for k in ('name', 'name:en', 'name:zh'):
                     if tags.get(k):
-                        tags[k] = '%s, %sm' % (tags[k], ele)
+                        tags[k] = f'{tags[k]}, {ele}m'
 
     def handle_hknetwork_node(self, id, tags):
         for network in hknetworks[id]:
@@ -332,46 +373,21 @@ class MapsforgeHandler(osmium.SimpleHandler):
         elif 'moovo' in brand:
             tags['amenity'] = 'bicycle_rental_Moovo'
 
-    def is_only_addr_tags(self, tags):
-        only_addr = False  ## no tags mean no addr (False)
-        for tag in tags:
-            if tag.k.startswith('addr:'):
-                only_addr = True  ## accumulating in True
-                continue
-            else:       
-                only_addr = False  ## one other tags, no needd to go on
-                break
-        return only_addr
-
-        # these dataset come from city government
-        tags['place'] = 'address_holder'
-        tags.pop('addr:tw:dataset', None)
-
     def handle_house_number(self, tags):
-        if tags.get('addr:full') == None:
-            tags['addr:full'] =  tags.get('addr:city', '').replace('臺', '台') + \
-                tags.get('addr:district', '') + \
-                tags.get('addr:place', '') + \
-                tags.get('addr:street', '') + \
-                tags.get('addr:housenumber', '') + \
-                tags.get('addr:floor', '') + \
-                tags.get('addr:unit', '')
+        if tags.get('addr:full') is None:
+            tags['addr:full'] = (
+                tags.get('addr:city', '').replace('臺', '台')
+                + tags.get('addr:district', '')
+                + tags.get('addr:place', '')
+                + tags.get('addr:street', '')
+                + tags.get('addr:housenumber', '')
+                + tags.get('addr:floor', '')
+                + tags.get('addr:unit', '')
+            )
 
         # removes rest
-        tags.pop('addr:TW:dataset', None)
-        tags.pop('addr:country', None)
-        tags.pop('addr:province', None)
-        tags.pop('addr:city', None)
-        tags.pop('addr:district', None)
-        tags.pop('addr:postcode', None)
-        tags.pop('addr:hamlet', None)
-        tags.pop('addr:neighbourhood', None)
-        tags.pop('addr:place', None)
-        tags.pop('addr:street', None)
-        tags.pop('addr:housenumber', None)
-        tags.pop('addr:housenumber_1', None)
-        tags.pop('addr:floor', None)
-        tags.pop('addr:unit', None)
+        for k in _ADDR_DROP_KEYS:
+            tags.pop(k, None)
 
     def handle_tough_trail(self, tags):
         if 'name' in tags:
@@ -390,9 +406,10 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['name:en'] = '(closed)'
 
 
+
 def main():
     if len(sys.argv) < 3:
-        print("Usage: python %s <infile> <outfile> [prefix]" % sys.argv[0])
+        print(f"Usage: python {sys.argv[0]} <infile> <outfile> [prefix]")
         sys.exit(-1)
     infile = sys.argv[1]
     outfile = sys.argv[2]
