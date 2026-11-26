@@ -13,7 +13,7 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWRITER_THREADS = 8
+MAPWRITER_THREADS ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 8)
 # suggestion: doesn't matter
 SPLITTER_THREADS = 8
 # suggestion: CPU*1
