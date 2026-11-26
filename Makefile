@@ -1112,8 +1112,83 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 			"$(VERSION) / (c) Map: Happyman" \
 			""
 
+MFTOOL_CMD ?= $(shell command -v mftool 2>/dev/null)
+USE_MFTOOL ?= 1
+MAPSFORGE_USE_MFTOOL := $(if $(and $(filter 1,$(USE_MFTOOL)),$(MFTOOL_CMD),$(MAPSFORGE_MIX)),1,)
+MAPSFORGE_COMMENT = $(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))
+MAPSFORGE_EXTRA_OPTS = polylabel=false simplification-factor=2.5 simplification-max-zoom=12$(if $(MAP_FRAME), bbox=$(MAP_FRAME_LATLON))
+
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
+ifeq ($(MAPSFORGE_USE_MFTOOL),1)
+# Static elevation/landsea/frame layer cached under $(ELEVATIONS_DIR)/mapsforge_cache/
+# so it survives `make clean` and `distclean-extracts` (discarded by
+# `distclean-elevations` and `distclean`). The filename hashes bounding, frame,
+# languages and tag-mapping path so config changes invalidate cleanly, while
+# $(MAPSFORGE_MIX) and $(TAG_MAPPING) prerequisites catch file updates.
+MAPSFORGE_MIX_CACHE_DIR := $(ELEVATIONS_DIR)/mapsforge_cache
+MAPSFORGE_MIX_HASH := $(shell printf '%s\n' "$(MAPSFORGE_MIX)" "$(MAP_FRAME)" "$(OSMCONVERT_BOUNDING)" "$(OSMOSIS_BOUNDING)" "$(MAPSFORGE_NTL)" "$(TAG_MAPPING)" "$(MAPSFORGE_EXTRA_OPTS)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
+MAPSFORGE_MIX_MAP := $(MAPSFORGE_MIX_CACHE_DIR)/$(REGION)_$(basename $(notdir $(MAPSFORGE_MIX)))_$(MAPSFORGE_MIX_HASH).map
+MAPSFORGE_OSM_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_osm.osm.pbf
+MAPSFORGE_OSM_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_osm.map
+
+$(MAPSFORGE_MIX_MAP): $(MAPSFORGE_MIX) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-layer-pbf.sh $(TOOLS_DIR)/mapsforge-build.sh $(TOOLS_DIR)/frame-landsea.py
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
+	mkdir -p $(MAPSFORGE_MIX_CACHE_DIR) $(BUILD_DIR)
+	set -e; \
+	mix_pbf=$(BUILD_DIR)/$(REGION)_mix.$$$$.osm.pbf; \
+	mix_map=$@.$$$$.tmp; \
+	trap 'rm -f "$$mix_pbf" "$$mix_map"' EXIT; \
+	$(TOOLS_DIR)/mapsforge-layer-pbf.sh mix \
+		"$(MAPSFORGE_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$$mix_pbf" "$(MAP_FRAME)"; \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
+		$(TOOLS_DIR)/mapsforge-build.sh \
+			"$$mix_pbf" \
+			"$$mix_map" \
+			"$(OSMOSIS_CMD)" \
+			"$(if $(MAP_FRAME),,$(OSMOSIS_BOUNDING))" \
+			"$(MAPWRITER_THREADS)" \
+			"$(MAPSFORGE_NTL)" \
+			"$(TAG_MAPPING)" \
+			"$(MAPSFORGE_COMMENT)" \
+			"$(MAPSFORGE_EXTRA_OPTS)"; \
+	mv "$$mix_map" "$@"
+
+$(MAPSFORGE_OSM_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(TOOLS_DIR)/mapsforge-layer-pbf.sh
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(BUILD_DIR)
+	$(TOOLS_DIR)/mapsforge-layer-pbf.sh osm \
+		"$<" "$(META)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$@" "$(MAP_FRAME)"
+
+$(MAPSFORGE_OSM_MAP): $(MAPSFORGE_OSM_PBF) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-build.sh
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
+	mkdir -p $(BUILD_DIR)
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
+		$(TOOLS_DIR)/mapsforge-build.sh \
+			"$<" \
+			"$@" \
+			"$(OSMOSIS_CMD)" \
+			"$(if $(MAP_FRAME),,$(OSMOSIS_BOUNDING))" \
+			"$(MAPWRITER_THREADS)" \
+			"$(MAPSFORGE_NTL)" \
+			"$(TAG_MAPPING)" \
+			"$(MAPSFORGE_COMMENT)" \
+			"$(MAPSFORGE_EXTRA_OPTS)"
+
+$(MAPSFORGE): $(MAPSFORGE_OSM_MAP) $(MAPSFORGE_MIX_MAP)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(BUILD_DIR)
+	set -e; \
+	merged=$@.$$$$.tmp; \
+	trap 'rm -f "$$merged"' EXIT; \
+	$(MFTOOL_CMD) merge -f -o "$$merged" "$(MAPSFORGE_OSM_MAP)" "$(MAPSFORGE_MIX_MAP)"; \
+	mv "$$merged" "$@"
+else
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
@@ -1128,8 +1203,9 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
-			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))" \
-			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12$(if $(MAP_FRAME), bbox=$(MAP_FRAME_LATLON))"
+			"$(MAPSFORGE_COMMENT)" \
+			"$(MAPSFORGE_EXTRA_OPTS)"
+endif
 
 .PHONY: pmtiles
 pmtiles: $(PMTILES)
