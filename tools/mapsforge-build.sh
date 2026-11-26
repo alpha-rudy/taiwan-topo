@@ -41,8 +41,15 @@ if [ -n "$EXTRA_OPTS" ]; then
     EXTRA_ARGS="$EXTRA_OPTS"
 fi
 
+# Cap PBF reader worker threads to avoid excessive buffering memory while
+# keeping the downstream mapfile-writer data processor saturated.
+PBF_WORKERS="$THREADS"
+if [ "$PBF_WORKERS" -gt 8 ] 2>/dev/null; then
+    PBF_WORKERS=8
+fi
+
 sh "$OSMOSIS_CMD" \
-    --read-pbf "$INPUT_PBF" \
+    --read-pbf-fast workers="$PBF_WORKERS" "$INPUT_PBF" \
     $OSMOSIS_BOUNDING \
     --buffer \
     --mapfile-writer \
