@@ -87,9 +87,12 @@ def generate_config(suite_name, mk_config, label=None):
     # gts_all/carto_all dropped from TARGETS, e.g. moscow) omits the gts_all
     # zip, the CartoType .cpkg packages, the HGT zip, and the dem/all Locus XML.
     targets = mk_config.get('TARGETS', '')
+    target_set = set(targets.split())
     # If TARGETS is missing, fall back to the historical full set.
-    has_gts = ('gts_all' in targets) if targets else True
-    has_carto = ('carto_all' in targets) if targets else True
+    has_gts = ('gts_all' in target_set) if targets else True
+    has_carto = ('carto_all' in target_set) if targets else True
+    has_pmtiles = 'pmtiles' in target_set
+    has_dem = 'dem' in target_set
     has_hgt = 'HGT' in mk_config
 
     # A no-contour/no-HGT region ships without the DEM_NAME token in its file
@@ -147,6 +150,12 @@ def generate_config(suite_name, mk_config, label=None):
             f"Install_{dem_prefix}{region}_TOPO_{style_name}_en.exe",
             f"{region}_{dem_infix}en_{style_name}.gmap.zip",
         ])
+
+    # PMTiles vector tiles and Terrarium DEM tiles (Makefile uses lowercase REGION)
+    if has_pmtiles:
+        files.append(f"{base_name}.pmtiles")
+    if has_dem:
+        files.append(f"{region.lower()}_dem.pmtiles")
 
     # exist_only: HGT zip and the dem/all Locus XML only exist for regions that
     # ship elevation data.
@@ -264,14 +273,14 @@ Available suites: {', '.join(available_suites) if available_suites else '(none f
                 lang = mk_config.get('MAP_LANG', '?')
                 dem = mk_config.get('DEM_NAME', '?')
                 print(f"  {suite:15} REGION={region}, MAP_LANG={lang}, DEM={dem}")
-            except Exception as e:
+            except (OSError, ValueError) as e:
                 print(f"  {suite:15} (error: {e})")
         return 0
     
     # Require at least one suite
     if not args.suites:
         parser.print_help()
-        print(f"\nError: Please specify at least one suite name.", file=sys.stderr)
+        print("\nError: Please specify at least one suite name.", file=sys.stderr)
         print(f"Available suites: {', '.join(available_suites)}", file=sys.stderr)
         return 1
     
@@ -293,7 +302,7 @@ Available suites: {', '.join(available_suites) if available_suites else '(none f
             mk_config = parse_makefile(suite_name)
             config = generate_config(suite_name, mk_config, label=args.label)
             write_config(suite_name, config, output_dir=args.output_dir, dry_run=args.dry_run)
-        except Exception as e:
+        except (OSError, ValueError) as e:
             print(f"Error generating config for {suite_name}: {e}", file=sys.stderr)
             return 1
     

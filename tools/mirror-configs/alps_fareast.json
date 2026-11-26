@@ -24,7 +24,9 @@
         "Alps-Fareast_aw3d30_zh_camp3D.gmap.zip",
         "gmapsupp_Alps-Fareast_aw3d30_en_camp3D.img.zip",
         "Install_AW3D30_Alps-Fareast_TOPO_camp3D_en.exe",
-        "Alps-Fareast_aw3d30_en_camp3D.gmap.zip"
+        "Alps-Fareast_aw3d30_en_camp3D.gmap.zip",
+        "AW3D30_OSM_Alps-Fareast_TOPO_Rudy.pmtiles",
+        "alps-fareast_dem.pmtiles"
     ],
     "exist_only": [
         "alps_fareast_hgtmix.zip",

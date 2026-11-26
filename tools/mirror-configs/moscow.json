@@ -18,7 +18,8 @@
         "Moscow_zh_camp.gmap.zip",
         "gmapsupp_Moscow_en_camp.img.zip",
         "Install_Moscow_TOPO_camp_en.exe",
-        "Moscow_en_camp.gmap.zip"
+        "Moscow_en_camp.gmap.zip",
+        "OSM_Moscow_TOPO_Rudy.pmtiles"
     ],
     "exist_only": [
         "moscow_map-cedric.xml",

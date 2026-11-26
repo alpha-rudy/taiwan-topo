@@ -24,7 +24,9 @@
         "Alps-Core_aw3d30_zh_camp3D.gmap.zip",
         "gmapsupp_Alps-Core_aw3d30_en_camp3D.img.zip",
         "Install_AW3D30_Alps-Core_TOPO_camp3D_en.exe",
-        "Alps-Core_aw3d30_en_camp3D.gmap.zip"
+        "Alps-Core_aw3d30_en_camp3D.gmap.zip",
+        "AW3D30_OSM_Alps-Core_TOPO_Rudy.pmtiles",
+        "alps-core_dem.pmtiles"
     ],
     "exist_only": [
         "alps_core_hgtmix.zip",

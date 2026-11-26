@@ -18,7 +18,8 @@
         "Saint-Petersburg_zh_camp.gmap.zip",
         "gmapsupp_Saint-Petersburg_en_camp.img.zip",
         "Install_Saint-Petersburg_TOPO_camp_en.exe",
-        "Saint-Petersburg_en_camp.gmap.zip"
+        "Saint-Petersburg_en_camp.gmap.zip",
+        "OSM_Saint-Petersburg_TOPO_Rudy.pmtiles"
     ],
     "exist_only": [
         "saint_petersburg_map-cedric.xml",
