@@ -366,10 +366,10 @@ topo.md:
 	[ -n "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
 	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
-		if [ -f docs/$(REGION)/template.html ]; then \
+		if [ -f docs/template.html ]; then \
 			python3 $(TOOLS_DIR)/render_topo_html.py \
 				--input docs/$(REGION)/$(SUITE)_topo.md \
-				--template docs/$(REGION)/template.html \
+				--template docs/template.html \
 				--output $(BUILD_DIR)/$(SUITE)_topo.html \
 				--version "$(VERSION)" \
 				--lang zh-Hant \
@@ -380,10 +380,10 @@ topo.md:
 			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(BUILD_DIR)/$(SUITE)_topo.html; \
 		fi
 	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
-		if [ -f docs/$(REGION)/template.html ]; then \
+		if [ -f docs/template.html ]; then \
 			python3 $(TOOLS_DIR)/render_topo_html.py \
 				--input docs/$(REGION)/$(SUITE)_topo-en.md \
-				--template docs/$(REGION)/template.html \
+				--template docs/template.html \
 				--output $(BUILD_DIR)/$(SUITE)_topo-en.html \
 				--version "$(VERSION)" \
 				--lang en \
@@ -459,10 +459,10 @@ install:
 	mkdir -p $(INSTALL_DIR)
 	cp -r docs/images auto-install/locus/$(REGION)/*.xml $(INSTALL_DIR)
 	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
-		if [ -f docs/$(REGION)/template.html ]; then \
+		if [ -f docs/template.html ]; then \
 			python3 $(TOOLS_DIR)/render_topo_html.py \
 				--input docs/$(REGION)/$(SUITE)_topo.md \
-				--template docs/$(REGION)/template.html \
+				--template docs/template.html \
 				--output $(INSTALL_DIR)/$(SUITE)_topo.html \
 				--version "$(VERSION)" \
 				--lang zh-Hant \
@@ -473,10 +473,10 @@ install:
 			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(INSTALL_DIR)/$(SUITE)_topo.html; \
 		fi
 	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
-		if [ -f docs/$(REGION)/template.html ]; then \
+		if [ -f docs/template.html ]; then \
 			python3 $(TOOLS_DIR)/render_topo_html.py \
 				--input docs/$(REGION)/$(SUITE)_topo-en.md \
-				--template docs/$(REGION)/template.html \
+				--template docs/template.html \
 				--output $(INSTALL_DIR)/$(SUITE)_topo-en.html \
 				--version "$(VERSION)" \
 				--lang en \
@@ -490,9 +490,18 @@ install:
 	-[ -f docs/$(REGION)/index.json ] && \
 		cat docs/$(REGION)/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 	-[ -f docs/$(REGION)/beta.md ] && \
-		cat docs/$(REGION)/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-		markdown -f +autolink > $(BUILD_DIR)/beta.article && \
-		cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html
+		if [ -f docs/template.html ]; then \
+			python3 $(TOOLS_DIR)/render_topo_html.py \
+				--input docs/$(REGION)/beta.md \
+				--template docs/template.html \
+				--output $(INSTALL_DIR)/beta.html \
+				--version "$(VERSION)" \
+				--lang zh-Hant; \
+		else \
+			cat docs/$(REGION)/beta.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
+			markdown -f +autolink > $(BUILD_DIR)/beta.article && \
+			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/beta.article" > $(INSTALL_DIR)/beta.html; \
+		fi
 	-[ -d docs/$(REGION)/gts ] && cp -r docs/$(REGION)/gts $(INSTALL_DIR) && \
 		cat docs/$(REGION)/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cp -r $(BUILD_DIR)/{*.zip,*.exe} $(INSTALL_DIR)

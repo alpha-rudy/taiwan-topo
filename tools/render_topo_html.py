@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Render Taiwan TOPO Markdown documentation into a modern, self-contained HTML page.
+"""Render TOPO Markdown documentation into a modern, self-contained HTML page.
 
 Zero external dependencies (Python 3 standard library only). Supports the
-Markdown conventions used in docs/Taiwan/taiwan_topo*.md (including Discount's
-`=36x` / `=x36` image width/height syntax, autolinks, nested lists with
-blockquotes, and `[[自動分流]](url)` download links).
+Markdown conventions used in docs/*/*_topo*.md and docs/Taiwan/beta.md
+(including Discount's `=36x` / `=x36` image width/height syntax, autolinks,
+nested lists with blockquotes, and `[[自動分流]](url)` download links).
 """
 
 from __future__ import annotations
@@ -431,8 +431,10 @@ def extract_leading_images(text: str) -> tuple[list[str], str]:
 # ---------------------------------------------------------------------------
 
 _DL_LINK_RE = re.compile(r"^\[(?:\[)?([^\]]+?)(?:\])?\]\(([^)]+)\)$")
+_PASTE_URL_RE = re.compile(r"^(.+?)\s*[:：]\s*(https?://\S+)\s*$")
+_COORD_ITEM_RE = re.compile(r"^(?:緯度範圍|經度範圍|Latitude range|Longitude range)\s*[:：]")
 _SIZE_SUFFIX_RE = re.compile(r"^(.*?)\s*\(([^()]*?(?:MB|GB|KB))\)\s*$")
-_VERSION_RE = re.compile(r"(v\d{4}\.\d{2}\.\d{2})")
+_VERSION_RE = re.compile(r"(v\d{4}\.\d{2}\.\d{2}|v__version__)")
 _COPY_ICON_SVG = (
     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
     'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
@@ -544,12 +546,55 @@ def _flush_rows(parts: list[str], row_buf: list[str]) -> None:
         row_buf.clear()
 
 
+def _render_paste_url_row(label: str, url: str, is_en: bool) -> str:
+    esc_url = html.escape(url, quote=True)
+    copy_title = "Copy link" if is_en else "複製連結"
+    copied_msg = "Link copied" if is_en else "已複製下載連結"
+    return (
+        '<div class="dl-row">'
+        '<div class="dl-info"><div class="dl-text">'
+        f"{render_inline(label)}"
+        f'<div class="dl-desc"><a href="{esc_url}" target="_blank" rel="noopener">{html.escape(url)}</a></div>'
+        "</div></div>"
+        '<div class="dl-actions">'
+        f'<button type="button" class="copy-btn" data-url="{esc_url}" '
+        f'data-copied="{copied_msg}" title="{copy_title}" aria-label="{copy_title}">'
+        f"{_COPY_ICON_SVG}</button>"
+        "</div>"
+        "</div>"
+    )
+
+
+def _render_plain_list(block: BulletList) -> str:
+    tag = "ol" if block.ordered else "ul"
+    items_html: list[str] = []
+    for item in block.items:
+        inner = "".join(_render_generic_block(ch) for ch in item.children)
+        items_html.append(f"<li>{render_inline(item.text)}{inner}</li>")
+    return f'<{tag} class="plain-list">{"".join(items_html)}</{tag}>'
+
+
+def _has_card_special_items(block: BulletList) -> bool:
+    if _has_download_items(block):
+        return True
+    for item in block.items:
+        if item.children and all(isinstance(ch, Blockquote) for ch in item.children):
+            return True
+        if not item.children and _PASTE_URL_RE.match(item.text.strip()):
+            return True
+    return False
+
+
 def _render_card_body(blocks: list[Block], is_en: bool) -> str:
     """Render content inside a download card (tips, grouped download rows, plain items)."""
     parts: list[str] = []
     for block in blocks:
         if not isinstance(block, BulletList):
             parts.append(_render_generic_block(block))
+            continue
+
+        if not _has_card_special_items(block):
+            parts.append(_render_plain_list(block))
             continue
 
         row_buf: list[str] = []
@@ -559,6 +604,12 @@ def _render_card_body(blocks: list[Block], is_en: bool) -> str:
             if dl is not None:
                 row_buf.append(_render_download_row(item, dl[0], dl[1], is_en))
                 continue
+
+            if not item.children:
+                pm = _PASTE_URL_RE.match(item.text.strip())
+                if pm:
+                    row_buf.append(_render_paste_url_row(pm.group(1).strip(), pm.group(2).strip(), is_en))
+                    continue
 
             # Sub-group containing download items (e.g., 傳統版 / 輕量版 / 疊圖專用 Styles)
             if (
@@ -833,14 +884,23 @@ def _render_card_section(blocks: list[Block], is_en: bool) -> str:
         notice_parts: list[str] = []
         for blk in intro_blocks:
             if isinstance(blk, BulletList):
-                for item in blk.items:
-                    inner = "".join(
-                        "".join(_render_generic_block(gch) for gch in ch.children)
-                        if isinstance(ch, Blockquote)
-                        else _render_generic_block(ch)
-                        for ch in item.children
+                if all(not it.children and _COORD_ITEM_RE.match(it.text.strip()) for it in blk.items):
+                    pills = "".join(
+                        f'<span class="coord-pill">{html.escape(it.text.strip())}</span>'
+                        for it in blk.items
                     )
-                    notice_parts.append(f"<p><strong>{render_inline(item.text)}</strong></p>{inner}")
+                    notice_parts.append(f'<div class="region-coords">{pills}</div>')
+                elif all(not it.children for it in blk.items):
+                    notice_parts.append(_render_generic_block(blk))
+                else:
+                    for item in blk.items:
+                        inner = "".join(
+                            "".join(_render_generic_block(gch) for gch in ch.children)
+                            if isinstance(ch, Blockquote)
+                            else _render_generic_block(ch)
+                            for ch in item.children
+                        )
+                        notice_parts.append(f"<p><strong>{render_inline(item.text)}</strong></p>{inner}")
             else:
                 notice_parts.append(_render_generic_block(blk))
         out.append(f'<div class="section-notice">{"".join(notice_parts)}</div>')
@@ -862,18 +922,24 @@ def _nav_short_label(title_plain: str) -> str:
     short = re.sub(r"\s*[\(（][^()（）]*[\)）]\s*$", "", title_plain).strip()
     replacements = {
         "手機 App 自動安裝": "手機 App",
+        "手機離線地圖": "手機離線",
         "Extra 離線圖層專區": "Extra 圖層",
         "Mapsforge 手動下載自行安裝": "手動下載",
         "PMTiles 向量圖磚": "PMTiles",
         "Garmin 離線地圖": "Garmin",
         "其他國外山區": "國外山區",
+        "地圖範圍與地區介紹": "地區介紹",
+        "地圖範圍與城市介紹": "城市介紹",
         "相關資源與鏡像站": "相關資源",
+        "疊圖專用風格": "疊圖風格",
         "Mobile App Auto Install": "Mobile Apps",
         "Extra Offline Layer Zone": "Extra Layers",
         "Mapsforge Manual Download": "Manual Download",
         "PMTiles Vector Tiles": "PMTiles",
         "Garmin Offline Maps": "Garmin",
         "Other Overseas Mountain Regions": "Overseas",
+        "Map Coverage & Region Guide": "Region Guide",
+        "Map Coverage & City Guide": "City Guide",
         "Related Resources & Mirrors": "Resources",
         "Major Revision History": "History",
     }
@@ -928,7 +994,7 @@ def render_document(
     description_plain = hero_title
     for para in hero_paragraphs:
         joined = " ".join(para.lines)
-        if _VERSION_RE.search(joined):
+        if _VERSION_RE.search(joined) or (version and f"v{version}" in joined):
             version_badge = joined
         elif "](" in joined and "·" in joined:
             link_chips = [

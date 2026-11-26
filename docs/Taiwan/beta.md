@@ -1,87 +1,122 @@
-## 測試版：MOI.OSM - Taiwan TOPO
+魯地圖測試版 — MOI.OSM Taiwan TOPO (Beta)
+========================================
 
-(目前版本：Taiwan TOPO v__version__)
+測試版：MOI.OSM - Taiwan TOPO v__version__
 
-* ![Android](./images/Android.png =36x) Android, MOI.OSM - Taiwan TOPO v__version__
-  * [![Map](./images/Android.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![POI](./images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟 POIv3](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * [![POI](./images/Android.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
-  * [![POI](./images/Android.png =36x) Locus POI](./MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
-  * [![Style](./images/Android.png =36x) OruxMaps/綠野遊蹤/蛙弟/Cartograph Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * [![Style](./images/Android.png =36x) Locus Map Style](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-  * [![Style](./images/Android.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
-  * [![DEM](./images/Android.png =36x) DEM mix, v2026](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
-  * [![DEM](./images/Android.png =36x) DEM 90m, v2026](./hgt90.zip) 全部90m, 解析度低, 檔案最小
+每週一、三、六發行之開發測試版本，提供最新圖資與樣式預覽下載。
 
-* ![Apple](./images/macOS.png =36x) Apple, MOI.OSM - Taiwan TOPO v__version__
-  * [![Map](./images/macOS.png =36x) Mapsforge Map](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * [![POI](./images/macOS.png =36x) 山林日誌 POIv3](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-  * [![POI](./images/macOS.png =36x) Cartograph POIv2](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
-  * [![Style](./images/macOS.png =36x) Cartograph/山林日誌 Style](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * [![Style](./images/macOS.png =36x) TWMAP Style](./MOI_OSM_twmap_style.zip)
-  * [![DEM](./images/macOS.png =36x) DEM mix, v2026](./hgtmix.zip) 台灣本島30m, 離島90m, 適當大小
-  * [![DEM](./images/macOS.png =36x) DEM 90m, v2026](./hgt90.zip) 全部90m, 解析度低, 檔案最小
+[正式版主頁](https://rudymap.tw/taiwan_topo.html) · [圖例](https://rudymap.tw/legend.html) · [線上圖磚](https://tiles.rudymap.tw) · [臉書社團](https://www.facebook.com/groups/taiwan.topo) · [GitHub](https://github.com/alpha-rudy/taiwan-topo)
 
-* 疊圖專用 Styles
-  * [BN Style](./MOI_OSM_bn_style.zip) 給深色地圖疊圖 (例：衛星地圖)
-  * [DN Style](./MOI_OSM_dn_style.zip) 給淡色地圖疊圖 (例：通用電子地圖)
-  * [TN Style](./MOI_OSM_tn_style.zip) 給高度圖疊圖 (例：Relief Map)
-  * [EXTRA Style](./MOI_OSM_extra_style.zip) 給 Cartograph EXTRA 圖層疊圖, 手動安裝 (0.4MB)
+## ![Android](./images/Android.png =36x)![iOS](./images/macOS.png =36x) 手機離線地圖 (Mapsforge)
 
-* ![GMap](./images/Garmin.png =x36) Garmin camp3D style, MOI.OSM.camp3D v__version__
-  * [![Windows](./images/Windows.png =36x) camp3D](./Install_MOI_Taiwan_TOPO_camp3D.exe) 用在 Garmin Windows BaseCamp 
-  * [![macOS](./images/macOS.png =36x) camp3D](./Taiwan_moi_zh_camp3D.gmap.zip) 用在 Garmin BaseCamp for Mac
+### ![Android](./images/Android.png =36x) Android
 
+* ![Map](./images/Android.png =36x) Mapsforge Map
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+* ![POI](./images/Android.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 POIv3
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+* ![POI](./images/Android.png =36x) Cartograph POIv2
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
+* ![POI](./images/Android.png =36x) Locus POI
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
+* ![Style](./images/Android.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / Cartograph Style
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+* ![Style](./images/Android.png =36x) Locus Map Style
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
+* ![Style](./images/Android.png =36x) TWMAP Style
+  > [[下載]](./MOI_OSM_twmap_style.zip)
+* ![DEM](./images/Android.png =36x) DEM mix, v2026（台灣本島 30m、離島 90m，適當大小）
+  > [[下載]](./hgtmix.zip)
+* ![DEM](./images/Android.png =36x) DEM 90m, v2026（全部 90m，解析度低，檔案最小）
+  > [[下載]](./hgt90.zip)
 
-### 版權宣告
+### ![Apple](./images/macOS.png =36x) Apple (iOS)
 
-* OpenSteetMap
-> © OpenStreetMap contributors <br />
-> 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
-> License: http://www.openstreetmap.org/copyright
+* ![Map](./images/macOS.png =36x) Mapsforge Map
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
+* ![POI](./images/macOS.png =36x) 山林日誌 POIv3
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
+* ![POI](./images/macOS.png =36x) Cartograph POIv2
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
+* ![Style](./images/macOS.png =36x) Cartograph / 山林日誌 Style
+  > [[下載]](./MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
+* ![Style](./images/macOS.png =36x) TWMAP Style
+  > [[下載]](./MOI_OSM_twmap_style.zip)
+* ![DEM](./images/macOS.png =36x) DEM mix, v2026（台灣本島 30m、離島 90m，適當大小）
+  > [[下載]](./hgtmix.zip)
+* ![DEM](./images/macOS.png =36x) DEM 90m, v2026（全部 90m，解析度低，檔案最小）
+  > [[下載]](./hgt90.zip)
+
+### 疊圖專用風格 (Overlay Styles)
+
+* BN Style，給深色地圖疊圖（例：衛星地圖）
+  > [[下載]](./MOI_OSM_bn_style.zip)
+* DN Style，給淡色地圖疊圖（例：通用電子地圖）
+  > [[下載]](./MOI_OSM_dn_style.zip)
+* TN Style，給高度圖疊圖（例：Relief Map）
+  > [[下載]](./MOI_OSM_tn_style.zip)
+* EXTRA Style，給 Cartograph EXTRA 圖層疊圖，手動安裝 (0.4MB)
+  > [[下載]](./MOI_OSM_extra_style.zip)
+
+## ![GMap](./images/Garmin.png =x36) Garmin 離線地圖
+
+### MOI.OSM.camp3D (PC / Mac BaseCamp)
+
+* ![Windows](./images/Windows.png =36x) camp3D（用在 Garmin Windows BaseCamp）
+  > [[下載]](./Install_MOI_Taiwan_TOPO_camp3D.exe)
+* ![macOS](./images/macOS.png =36x) camp3D（用在 Garmin BaseCamp for Mac）
+  > [[下載]](./Taiwan_moi_zh_camp3D.gmap.zip)
+
+## 版權宣告
+
+* OpenStreetMap
+  > © OpenStreetMap contributors <br />
+  > 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
+  > License: http://www.openstreetmap.org/copyright
 
 * 內政部 20 公尺網格數值地形模型資料與 Rex OSM PBF
-> 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />
-> MOI Link: https://tgos.nat.gov.tw <br />
-> 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
-> Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
-> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884 <br />
-> 範圍包含：台灣本島、澎湖、金門
+  > 本作品內含等高線資訊取自 Rex OSM PBF 轉換全臺灣 20 公尺網格間距的數值地形模型（DTM）資料。 <br />
+  > MOI Link: https://tgos.nat.gov.tw <br />
+  > 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
+  > Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
+  > Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884 <br />
+  > 範圍包含：台灣本島、澎湖、金門
 
 * JAXA ALOS World 3D - 30m (AW3D30) Version 3.1.
-> 部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v3.1。 <br /> 
-> 使用檔案：N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E120. <br />
-> 範圍包含：馬祖、烏坵、北方三島 <br />
-> Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
+  > 部分範圍的等高線與 HGT DEM 來自於JAXA AW3D30 v3.1。 <br />
+  > 使用檔案：N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E120. <br />
+  > 範圍包含：馬祖、烏坵、北方三島 <br />
+  > Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
 
 * GMAP Styles and TYP
-> Garmin GMAP Styles and TYPs are origin from Freizeitkarte. <br />
-> Link: http://www.freizeitkarte-osm.de/garmin/en/index.html
+  > Garmin GMAP Styles and TYPs are origin from Freizeitkarte. <br />
+  > Link: http://www.freizeitkarte-osm.de/garmin/en/index.html
 
 * Mapsforge Style
-> Symbols/patterns/code is derived and based on OpenAndroMaps Elevate theme by Tobias Kühn. <br />
-> Link: http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme <br />
-> Detail Link: http://www.openandromaps.org/wp-content/users/tobias/licenses.txt <br />
-> Theme style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike License 3.0 Unported License. <br />
-> Link: http://creativecommons.org/licenses/by-nc-sa/3.0/
+  > Symbols/patterns/code is derived and based on OpenAndroMaps Elevate theme by Tobias Kühn. <br />
+  > Link: http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme <br />
+  > Detail Link: http://www.openandromaps.org/wp-content/users/tobias/licenses.txt <br />
+  > Theme style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike License 3.0 Unported License. <br />
+  > Link: http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 * Tool of Contour Lines: gdal and phyghtmap
-> Contour lines of this map were generated by using tools "gdal" and "phyghtmap". <br />
-> gdal Link: http://www.gdal.org <br />
-> gdal License: http://svn.osgeo.org/gdal/trunk/gdal/LICENSE.TXT <br />
-> phyghtmap Link: http://katze.tfiu.de/projects/phyghtmap/ <br />
-> phyghtmap License: http://gnu.org/licenses/gpl.html
+  > Contour lines of this map were generated by using tools "gdal" and "phyghtmap". <br />
+  > gdal Link: http://www.gdal.org <br />
+  > gdal License: http://svn.osgeo.org/gdal/trunk/gdal/LICENSE.TXT <br />
+  > phyghtmap Link: http://katze.tfiu.de/projects/phyghtmap/ <br />
+  > phyghtmap License: http://gnu.org/licenses/gpl.html
 
 * Tools of Maps: osm, mkgmap, and mapsforge
-> OSM Maps were built using the tools "osmosis" <br />
-> Link: http://wiki.openstreetmap.org/wiki/Osmosis <br />
-> GMAP Maps were built using the tools "splitter" and "mkgmap" <br />
-> Link: http://www.mkgmap.org.uk/ <br />
-> License: http://gnu.org/licenses/gpl.html <br />
-> Mapsforge Maps were built using the tools "Mapsforge Map-Writer" <br />
-> Link: https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
+  > OSM Maps were built using the tools "osmosis" <br />
+  > Link: http://wiki.openstreetmap.org/wiki/Osmosis <br />
+  > GMAP Maps were built using the tools "splitter" and "mkgmap" <br />
+  > Link: http://www.mkgmap.org.uk/ <br />
+  > License: http://gnu.org/licenses/gpl.html <br />
+  > Mapsforge Maps were built using the tools "Mapsforge Map-Writer" <br />
+  > Link: https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
 
-### 地圖版權與散佈說明
+## 地圖版權與散佈說明
+
     Copyright (c) 2016-2024 Rudy Chung
     All rights reserved.
 
@@ -91,7 +126,7 @@
         * Redistributions of source code must retain the above copyright
         notice, this list of conditions and the following disclaimer.
 
-        * Redistributions in binary form must reproduce the this copyright notice
+        * Redistributions in binary form must reproduce this copyright notice
         (or the HTTP link to this notice), this list of conditions and the
         following disclaimer in the documentation and/or other materials provided
         with the distribution.
@@ -100,7 +135,7 @@
         could be easily and clearly to be distinguished with this map.
 
         * Neither the name of Rudy Chung nor the names of its contributors may be
-        used to endorse or promote products derived from this software without 
+        used to endorse or promote products derived from this software without
         specific prior written permission.
 
     THIS MAP IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
