@@ -1,0 +1,15 @@
+suite = "hong_kong"
+group = "hk_kr"
+order = 10
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Harbour & Hills - Hong Kong / 山海之城 - 香港登山地圖（麥理浩徑・衛奕信徑）"
+garmin_name = "Hong Kong Region"
+index_label = "Hong Kong, 香港"
+
+[en]
+title = "Harbour & Hills - Hong Kong"
+garmin_name = "Hong Kong Region"
+index_label = "Hong Kong"

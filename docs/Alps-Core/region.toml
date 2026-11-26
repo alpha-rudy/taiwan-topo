@@ -1,0 +1,15 @@
+suite = "alps_core"
+group = "europe_alps"
+order = 20
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "EuroPeaks TOPO - Alps Core / 歐陸巔峰 - 阿爾卑斯核心登山地圖（伯恩高地－恩加丁區）"
+garmin_name = "Alps-Core Region"
+index_label = "Alps Core, 阿爾卑斯核心 (伯恩高地－恩加丁區)"
+
+[en]
+title = "EuroPeaks TOPO - Alps Core"
+garmin_name = "Alps-Core Region"
+index_label = "Alps Core (Bernese Oberland - Engadin)"

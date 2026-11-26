@@ -1,0 +1,15 @@
+suite = "yakushima"
+group = "japan"
+order = 80
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Mononoke Forest - Yakushima / 魔法之森 - 屋久島登山地圖（大隅諸島）"
+garmin_name = "Yakushima Region"
+index_label = "Yakushima, 屋久島地區 (含種子島、口永良部島)"
+
+[en]
+title = "Mononoke Forest - Yakushima"
+garmin_name = "Yakushima Region"
+index_label = "Yakushima (including Tanegashima and Kuchinoerabujima)"

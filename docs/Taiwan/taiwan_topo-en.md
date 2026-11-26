@@ -244,115 +244,7 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 
 If a map already covers an area but a trail isn't listed, or if you'd like the coverage expanded to include a nearby long-distance trail, please let the community know. Thanks!
 
-### Japan
-
-* Fujisan
-  * https://rudymap.tw/fujisan_topo-en.html
-  * Map coverage:
-    * Latitude range: N34.30 ~ N35.95
-    * Longitude range: E138.35 ~ E139.55
-* Nikko Oze
-  * https://rudymap.tw/nikko_oze_topo-en.html
-  * Map coverage:
-    * Latitude range: N36.50 ~ N37.47
-    * Longitude range: E138.68 ~ E139.86
-* Kita Alps (Northern Japanese Alps - Hida Mountains, Tateyama-Kurobe)
-  * https://rudymap.tw/kita_alps_topo-en.html
-  * Map coverage:
-    * Latitude range: N35.90 ~ N37.05
-    * Longitude range: E137.15 ~ E138.25
-* Chuo Alps (Central Japanese Alps - Kiso Mountains, Mount Ontake)
-  * https://rudymap.tw/chuo_alps_topo-en.html
-  * Map coverage:
-    * Latitude range: N35.35 ~ N36.05
-    * Longitude range: E137.30 ~ E138.10
-* Minami Alps (Southern Japanese Alps - Akaishi Mountains)
-  * https://rudymap.tw/minami_alps_topo-en.html
-  * Map coverage:
-    * Latitude range: N35.15 ~ N35.90
-    * Longitude range: E137.70 ~ E138.65
-* Kumano Kodo
-  * https://rudymap.tw/kumano_topo-en.html
-  * Map coverage:
-    * Latitude range: N33.0 ~ N35.0
-    * Longitude range: E135.0 ~ E137.0
-* Shikoku
-  * https://rudymap.tw/shikoku_topo-en.html
-  * Map coverage:
-    * Latitude range: N32.702 ~ N34.428
-    * Longitude range: E132.000 ~ E134.846
-* Yakushima (including Tanegashima and Kuchinoerabujima)
-  * https://rudymap.tw/yakushima_topo-en.html
-  * Map coverage:
-    * Latitude range: N30.16 ~ N30.93
-    * Longitude range: E129.83 ~ E131.16
-
-### Hong Kong & South Korea
-
-* Hong Kong
-  * https://rudymap.tw/hong_kong_topo-en.html
-  * Map coverage:
-    * Latitude range: N22.130 ~ N22.569
-    * Longitude range: E113.813 ~ E114.506
-* Jeju
-  * https://rudymap.tw/jeju_topo-en.html
-  * Map coverage:
-    * Latitude range: N33.108 ~ N34.018
-    * Longitude range: E126.138 ~ E126.978
-
-### South Asia (Nepal & India)
-
-* Annapurna
-  * https://rudymap.tw/annapurna_topo-en.html
-  * Map coverage:
-    * Latitude range: N28.0 ~ N29.0
-    * Longitude range: E83.0 ~ E85.0
-* Kashmir
-  * https://rudymap.tw/kashmir_topo-en.html
-  * Map coverage:
-    * Latitude range: N34.0 ~ N34.75
-    * Longitude range: E74.5 ~ E75.5
-
-### Europe (Alps)
-
-* Alps Western (Mont Blanc - Matterhorn)
-  * https://rudymap.tw/alps_western_topo-en.html
-  * Map coverage:
-    * Latitude range: N44.00 ~ N46.20
-    * Longitude range: E6.00 ~ E8.00
-* Alps Core (Bernese Oberland - Engadin)
-  * https://rudymap.tw/alps_core_topo-en.html
-  * Map coverage:
-    * Latitude range: N45.80 ~ N47.30
-    * Longitude range: E7.15 ~ E10.75
-* Alps Eastern (Dolomites - Hohe Tauern)
-  * https://rudymap.tw/alps_eastern_topo-en.html
-  * Map coverage:
-    * Latitude range: N45.80 ~ N47.55
-    * Longitude range: E10.50 ~ E14.00
-* Alps Fareast (Kamnik - Vienna Woods)
-  * https://rudymap.tw/alps_fareast_topo-en.html
-  * Map coverage:
-    * Latitude range: N46.30 ~ N47.85
-    * Longitude range: E13.90 ~ E15.90
-
-### Russia
-
-* Elbrus (Russian Caucasus)
-  * https://rudymap.tw/elbrus_topo-en.html
-  * Map coverage:
-    * Latitude range: N43.10 ~ N43.75
-    * Longitude range: E41.90 ~ E43.80
-* Moscow (Russia, no contour lines or HGT)
-  * https://rudymap.tw/moscow_topo-en.html
-  * Map coverage:
-    * Latitude range: N54.94 ~ N56.48
-    * Longitude range: E36.03 ~ E39.00
-* Saint Petersburg (Russia, no contour lines or HGT)
-  * https://rudymap.tw/saint_petersburg_topo-en.html
-  * Map coverage:
-    * Latitude range: N59.69 ~ N60.15
-    * Longitude range: E29.99 ~ E30.62
+<!-- include: overseas_regions -->
 
 ## About
 
@@ -380,14 +272,7 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 * Development site (GitHub): https://github.com/alpha-rudy/taiwan-topo
 * Map Legend (auto-generated): [Interactive Web Legend](./legend.html) · [Detailed PDF](./legend_detail.pdf) · [2-Page Compact PDF](./legend_compact.pdf) · [1-Page Cheat Sheet PDF](./legend_onepage.pdf) ([Legacy Legend V1R3](./legend_V1R3.pdf))
 * Beta version (released Mon/Wed/Sat): https://rudymap.tw/drops/beta.html
-* RudyMap Load Balancer (Cedric Shih) — tapping any Auto-mirror button on this page automatically routes to an available mirror
-  * rudymap.tw
-  * https://rudymap.tw/app (dedicated mobile offline app)
-* RudyMap Mirrors
-  * kcwu: moi.kcwu.csie.org
-  * happyman: map.happyman.idv.tw
-  * peakit (山盒): rudy.peakitcdn.com
-  * oslab (Outdoor Safety Lab): d3r5lsn28erp7o.cloudfront.net
+<!-- include: mirrors -->
 
 
 ## Major Revision History
@@ -536,90 +421,9 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 
 ## Copyright Notice
 
-* OpenStreetMap
-> © OpenStreetMap contributors <br />
-> This work contains information from “OpenStreetMap” [https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data), made available under the Open Database License (ODbL). <br />
-> License: http://www.openstreetmap.org/copyright
-
-* MOI National Police Agency Air-Raid Shelter Map
-> This work contains information from the "MOI National Police Agency Air-Raid Shelter Zone" [https://www.npa.gov.tw/](https://www.npa.gov.tw/) <br />
-> License: Copyright reserved by the MOI National Police Agency Civil Defense Command and Control Center
-
-* Taiwan Forestry Research Institute (TFRI) Giant Trees Map
-> This work contains Taiwan giant tree location data from the Taiwan Forestry Research Institute (TFRI), Ministry of Agriculture. <br />
-> Link: https://www.tfri.gov.tw/
-
-* MOI Department of Land Administration 20-Meter Grid DTM Data
-> This work's contour line and elevation information is derived from the MOI Department of Land Administration Taiwan-wide 20-meter grid digital terrain model (DTM) data (earlier versions built upon Rex's OSM PBF conversion and Chengtao Lin's refinements). <br />
-> MOI Link: https://tgos.nat.gov.tw <br />
-> Government Open Data License: http://data.gov.tw/node/18250 <br />
-> Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
-> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884 <br />
-> Coverage includes: Taiwan main island, Lanyu, Ludao, Liuqiu, Guishan, Penghu, Kinmen
-
-* JAXA ALOS World 3D - 30m (AW3D30) Version 4.1
-> Contour lines and HGT DEM for part of this coverage area are derived from JAXA AW3D30 v4.1. <br />
-> Files used: N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E120. <br />
-> Coverage includes: Matsu, Wuqiu, and the Beifang Sanhsing (Three Northern Islands) <br />
-> Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
-
-* GMAP Styles and TYP
-> Garmin GMAP Styles and TYPs are origin from Freizeitkarte. <br />
-> Link: http://www.freizeitkarte-osm.de/garmin/en/index.html
-
-* Mapsforge Style
-> Symbols/patterns/code is derived and based on OpenAndroMaps Elevate theme by Tobias Kühn. <br />
-> Link: http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme <br />
-> Detail Link: http://www.openandromaps.org/wp-content/users/tobias/licenses.txt <br />
-> Theme style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike License 3.0 Unported License. <br />
-> Link: http://creativecommons.org/licenses/by-nc-sa/3.0/
-
-* Tool of Contour Lines: gdal and phyghtmap
-> Contour lines of this map were generated by using tools "gdal" and "phyghtmap". <br />
-> gdal Link: http://www.gdal.org <br />
-> gdal License: http://svn.osgeo.org/gdal/trunk/gdal/LICENSE.TXT <br />
-> phyghtmap Link: http://katze.tfiu.de/projects/phyghtmap/ <br />
-> phyghtmap License: http://gnu.org/licenses/gpl.html
-
-* Tools of Maps: osm, mkgmap, and mapsforge
-> OSM Maps were built using the tools "osmosis" <br />
-> Link: http://wiki.openstreetmap.org/wiki/Osmosis <br />
-> GMAP Maps were built using the tools "splitter" and "mkgmap" <br />
-> Link: http://www.mkgmap.org.uk/ <br />
-> License: http://gnu.org/licenses/gpl.html <br />
-> Mapsforge Maps were built using the tools "Mapsforge Map-Writer" <br />
-> Link: https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
+<!-- include: taiwan_credits -->
 
 
 ## Map License and Distribution Notice
-    Copyright (c) 2016-2026 Rudy Chung
-    All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.
-
-        * Redistributions in binary form must reproduce this copyright notice
-        (or the HTTP link to this notice), this list of conditions and the
-        following disclaimer in the documentation and/or other materials provided
-        with the distribution.
-
-        * Redistributions with modification must use a different map name which
-        could be easily and clearly to be distinguished with this map.
-
-        * Neither the name of Rudy Chung nor the names of its contributors may be
-        used to endorse or promote products derived from this software without 
-        specific prior written permission.
-
-    THIS MAP IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL RUDY BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    MAP, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+<!-- include: license:2016-2026 -->

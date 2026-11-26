@@ -1,0 +1,15 @@
+suite = "fujisan"
+group = "japan"
+order = 10
+guide_kind = "region"
+ai_notice = false
+
+[zh]
+title = "Sacred Summit - Fujisan / 靈峰聖岳 - 富士山登山地圖（富士五湖・伊豆箱根）"
+garmin_name = "Fujisan TOPO"
+index_label = "Fujisan, 富士山"
+
+[en]
+title = "Sacred Summit - Fujisan"
+garmin_name = "Fujisan TOPO"
+index_label = "Fujisan"

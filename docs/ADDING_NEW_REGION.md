@@ -216,36 +216,27 @@ include $(wildcard $(ROOT_DIR)/suites/nikko_oze/*.mk)
 
 **Location**: Add after the last existing regional include in the Makefile (before `include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)`)
 
-No further Makefile change is needed to get `<suite>_topo-en.html` built and
-installed — the `topo.md` and `install` targets already look for
-`docs/$(REGION)/$(SUITE)_topo-en.md` generically (for every suite) and build
-it alongside `<suite>_topo.html` whenever that file exists.
+No further Makefile change is needed to get `<suite>_topo.html` and
+`<suite>_topo-en.html` built and installed — the `topo.md` and `install`
+targets automatically detect `docs/$(REGION)/region.toml` and assemble both
+language pages using `tools/render_topo_html.py`, `tools/region_doc.py`,
+`docs/shared/site.toml`, and `docs/$(REGION)/guide*.md`.
 
 ---
 
-### Step 2: Update Main Documentation
+### Step 2: Region Group Registration (Main Page Index)
 
-Edit `docs/Taiwan/taiwan_topo.md` to list the new region:
+The overseas region index on `docs/Taiwan/taiwan_topo.md` and
+`docs/Taiwan/taiwan_topo-en.md` is **auto-generated at build time** from every
+`docs/*/region.toml` via `<!-- include: overseas_regions -->`.
 
-```markdown
-* Nikko Oze, 日光尾瀨地區
-  * https://rudymap.tw/nikko_oze_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N36.50 ~ N37.47
-    * 經度範圍: E138.68 ~ E139.86
-```
-
-Add the same entry to `docs/Taiwan/taiwan_topo-en.md` (the pure-English
-counterpart of the main doc) — **link to the `-en.html` page**, not the
-Chinese one, so English readers stay on English pages:
-
-```markdown
-* Nikko Oze
-  * https://rudymap.tw/nikko_oze_topo-en.html
-  * Map coverage: 
-    * Latitude range: N36.50 ~ N37.47
-    * Longitude range: E138.68 ~ E139.86
-```
+You do **not** need to hand-edit `taiwan_topo.md` or `taiwan_topo-en.md`.
+Just set `suite`, `group`, `order`, and `[zh]/[en].index_label` in the
+new region's `docs/<Region>/region.toml` (Step 7) — `region`, `elevation`,
+`lat`/`lon` bounds, and `TARGETS` are automatically derived from
+`suites/<suite>/<suite>.mk`. If you are adding a brand-new geographic group not
+yet listed under `[[region_groups]]` in `docs/shared/site.toml`, add that group
+entry to `docs/shared/site.toml` once.
 
 ---
 
@@ -398,29 +389,30 @@ Provider: `cedric` (rudymap.tw load balancer)
 
 ### Step 7: Generate Region Documentation
 
-Generate the region's documentation page:
+Scaffold the region's documentation files:
 
 ```bash
 ./tools/generate_topo_md.py \
     --region Nikko-Oze \
     --region-lower nikko_oze \
-    --title "Nikko-Oze Region" \
-    --hgt-files "N36E138, N36E139, N36E140, N37E138, N37E139, N37E140"
+    --title "Shrine & Marshland - Nikko-Oze / 社寺與濕原 - 日光尾瀨登山地圖（栃木・群馬・福島）" \
+    --group japan
 ```
 
 **Parameters**:
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `--region` | Display name | `Nikko-Oze` |
-| `--region-lower` | Lowercase identifier | `nikko_oze` |
-| `--title` | Page title (used verbatim as the `<h1>` in **both** the Chinese and English doc — restyle either afterward if you want, e.g. a more evocative English title) | `Nikko-Oze Region` |
-| `--hgt-files` | Comma-separated HGT file list | `N36E138, N36E139, ...` |
+| `--region-lower` | Lowercase suite identifier | `nikko_oze` |
+| `--title` | Page title (can be refined separately for `[zh]` and `[en]` in `region.toml`) | `Nikko-Oze Region` |
+| `--group` | Geographic group ID in `docs/shared/site.toml` | `japan` |
 
-**Output**: Creates two files:
-- `docs/Nikko-Oze/nikko_oze_topo.md` — the primary (Chinese) doc
-- `docs/Nikko-Oze/nikko_oze_topo-en.md` — a pure-English counterpart, generated automatically by translating the shared boilerplate (installation instructions, mirror links, copyright notices, etc.) via a dictionary in `generate_topo_md.py`. Its "Info pages" mirror links already point at its own `_topo-en.html`, not the Chinese page.
+**Output**: Creates three concise files under `docs/Nikko-Oze/`:
+- `docs/Nikko-Oze/region.toml` — presentation metadata (titles, Garmin display names, Taiwan index labels, group/order); build facts (`REGION`, `LEFT`/`RIGHT`/`BOTTOM`/`TOP`, `HGT` tile list, `TARGETS`) are read automatically from `suites/<suite>/<suite>.mk` and `hgt/<suite>_hgtmix.zip` at render time
+- `docs/Nikko-Oze/guide.md` — Traditional Chinese prose sections only (Famous Peaks, Trekking Routes, Famous Sights, Historical Events)
+- `docs/Nikko-Oze/guide-en.md` — English prose counterpart
 
-Both files start with **empty** `### 著名的山頭 (Famous Peaks)` / `### 著名的健行路線 (Famous Trekking Routes)` / `### 著名景點` / `### 歷史事件` sections (`### Famous Peaks` / `### Famous Trekking Routes` / `### Famous Sights` / `### Historical Events` in the English file) — write the region's peaks/routes/sights/historical-events content into the Chinese file first, then translate that same content into the English file. This is manual/AI-assisted work; the generator only produces the shared boilerplate around it. See the existing `docs/*/*_topo.md` + `*_topo-en.md` pairs for the expected style and level of detail.
+All shared download links, mobile app instructions, mirrors, copyright credits, and BSD license text are assembled automatically at build time from `docs/shared/site.toml` and `tools/region_doc.py`. Fill in the prose sections in `guide.md` and `guide-en.md` (manual/AI-assisted); see existing `docs/*/region.toml` + `guide*.md` for examples.
 
 ---
 
@@ -478,9 +470,9 @@ All files synced successfully!
 
 Note: `generate_checking.py` always checks both `<suite>_topo.html` and
 `<suite>_topo-en.html` on every mirror — make sure Step 8's `install` build
-actually produced the `-en.html` (i.e. `docs/<Region>/<suite>_topo-en.md`
-exists from Step 7) before syncing, or this check will report the English
-page as missing on all mirrors.
+actually produced the `-en.html` (i.e. `docs/<Region>/region.toml` exists
+from Step 7) before syncing, or this check will report the English page as
+missing on all mirrors.
 
 ---
 
@@ -555,11 +547,11 @@ named output directly — no hand-editing required:
     --extract-file central-fed-district-latest \
     --left 36.03 --right 39.00 --bottom 54.94 --top 56.48 --no-elevation
 
-# Documentation: strips all HGT/DEM/contour/CartoType blocks + credits and drops
-# the DEM_NAME token / uses the "camp" style in file names. Produces both
-# moscow_topo.md and moscow_topo-en.md with the same blocks stripped.
+# Documentation: creates docs/Moscow/region.toml (guide_kind = "city"),
+# guide.md, and guide-en.md. Build facts (elevation = false, bounds, TARGETS)
+# are read automatically from suites/moscow/moscow.mk at render time.
 ./tools/generate_topo_md.py --region Moscow --region-lower moscow \
-    --title "Moscow Region" --no-elevation
+    --title "CityTour - Moscow Core" --group russia --no-elevation
 
 # Locus XML: only the map + upgrade variants (skips dem / all) with the no-DEM name.
 ./tools/generate_locus_xml.py --region Moscow --region-lower moscow --no-elevation
@@ -594,10 +586,9 @@ After completing all steps, the following files should be created:
 taiwan-topo/
 ├── Makefile                                    # Updated with include
 ├── docs/
-│   ├── Taiwan/taiwan_topo.md                   # Updated with region link
-│   ├── Taiwan/taiwan_topo-en.md                # Updated with region link (-en.html)
-│   ├── Nikko-Oze/nikko_oze_topo.md            # New documentation (zh)
-│   └── Nikko-Oze/nikko_oze_topo-en.md         # New documentation (en)
+│   ├── Nikko-Oze/region.toml                   # Region metadata (also feeds Taiwan main page index)
+│   ├── Nikko-Oze/guide.md                      # Region guide prose (zh)
+│   └── Nikko-Oze/guide-en.md                   # Region guide prose (en)
 ├── hgt/
 │   └── nikko_oze_hgtmix.zip                   # Elevation data
 ├── suites/nikko_oze/
@@ -634,8 +625,7 @@ added Nikko Oze region
 - Generated suite definitions (nikko_oze/*.mk)
 - Generated CartoType configurations (auto-install/carto/Nikko-Oze/)
 - Generated Locus XML files (auto-install/locus/Nikko-Oze/)
-- Created documentation (docs/Nikko-Oze/nikko_oze_topo.md + nikko_oze_topo-en.md)
-- Updated docs/Taiwan/taiwan_topo.md and taiwan_topo-en.md with the new region link
+- Created documentation (docs/Nikko-Oze/region.toml + guide.md + guide-en.md)
 - Added mirror checking config (tools/mirror-configs/nikko_oze.json)
 ```
 

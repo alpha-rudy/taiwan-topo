@@ -1,0 +1,15 @@
+suite = "annapurna"
+group = "south_asia"
+order = 10
+guide_kind = "region"
+ai_notice = false
+
+[zh]
+title = "Himalayas TOPO - Annapurna / 喜馬拉雅 - 安娜普納登山地圖"
+garmin_name = "Annapurna TOPO"
+index_label = "Annapurna, 安娜普納"
+
+[en]
+title = "Himalayas TOPO - Annapurna"
+garmin_name = "Annapurna TOPO"
+index_label = "Annapurna"

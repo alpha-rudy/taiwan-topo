@@ -1,0 +1,15 @@
+suite = "alps_eastern"
+group = "europe_alps"
+order = 30
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "EuroPeaks TOPO - Eastern Alps / 歐陸巔峰 - 東阿爾卑斯登山地圖（多洛米蒂－高陶恩區）"
+garmin_name = "Alps-Eastern Region"
+index_label = "Alps Eastern, 東阿爾卑斯 (多洛米蒂－高陶恩區)"
+
+[en]
+title = "EuroPeaks TOPO - Eastern Alps"
+garmin_name = "Alps-Eastern Region"
+index_label = "Alps Eastern (Dolomites - Hohe Tauern)"

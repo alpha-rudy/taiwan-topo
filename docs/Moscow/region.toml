@@ -1,0 +1,15 @@
+suite = "moscow"
+group = "russia"
+order = 20
+guide_kind = "city"
+ai_notice = true
+
+[zh]
+title = "CityTour - Moscow Core / 城市漫遊 - 莫斯科核心區"
+garmin_name = "Moscow Region"
+index_label = "Moscow, 莫斯科地區 (俄羅斯，無等高線與 HGT)"
+
+[en]
+title = "CityTour - Moscow Core"
+garmin_name = "Moscow Region"
+index_label = "Moscow (Russia, no contour lines or HGT)"

@@ -244,115 +244,7 @@
 
 若有地圖已經涵蓋到，但是沒有列上來的步道，或需要擴大範圍來涵蓋附近的長距離步道，歡迎到社群反應，謝謝！
 
-### 日本
-
-* Fujisan, 富士山
-  * https://rudymap.tw/fujisan_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N34.30 ~ N35.95
-    * 經度範圍: E138.35 ~ E139.55
-* Nikko Oze, 日光尾瀨地區
-  * https://rudymap.tw/nikko_oze_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N36.50 ~ N37.47
-    * 經度範圍: E138.68 ~ E139.86
-* Kita Alps, 北阿爾卑斯 (飛驒山脈・立山黑部)
-  * https://rudymap.tw/kita_alps_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N35.90 ~ N37.05
-    * 經度範圍: E137.15 ~ E138.25
-* Chuo Alps, 中央阿爾卑斯 (木曾山脈・御嶽山)
-  * https://rudymap.tw/chuo_alps_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N35.35 ~ N36.05
-    * 經度範圍: E137.30 ~ E138.10
-* Minami Alps, 南阿爾卑斯 (赤石山脈)
-  * https://rudymap.tw/minami_alps_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N35.15 ~ N35.90
-    * 經度範圍: E137.70 ~ E138.65
-* Kumano Kodo, 熊野古道
-  * https://rudymap.tw/kumano_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N33.0 ~ N35.0
-    * 經度範圍: E135.0 ~ E137.0
-* Shikoku, 四國地區
-  * https://rudymap.tw/shikoku_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N32.702 ~ N34.428
-    * 經度範圍: E132.000 ~ E134.846
-* Yakushima, 屋久島地區 (含種子島、口永良部島)
-  * https://rudymap.tw/yakushima_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N30.16 ~ N30.93
-    * 經度範圍: E129.83 ~ E131.16
-
-### 香港・韓國
-
-* Hong Kong, 香港
-  * https://rudymap.tw/hong_kong_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N22.130 ~ N22.569
-    * 經度範圍: E113.813 ~ E114.506
-* Jeju, 濟州島
-  * https://rudymap.tw/jeju_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N33.108 ~ N34.018
-    * 經度範圍: E126.138 ~ E126.978
-
-### 南亞（尼泊爾・印度）
-
-* Annapurna, 安娜普納
-  * https://rudymap.tw/annapurna_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N28.0 ~ N29.0
-    * 經度範圍: E83.0 ~ E85.0
-* Kashmir, 喀什米爾
-  * https://rudymap.tw/kashmir_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N34.0 ~ N34.75
-    * 經度範圍: E74.5 ~ E75.5
-
-### 歐洲（阿爾卑斯）
-
-* Alps Western, 西阿爾卑斯 (白朗峰－馬特洪峰區)
-  * https://rudymap.tw/alps_western_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N44.00 ~ N46.20
-    * 經度範圍: E6.00 ~ E8.00
-* Alps Core, 阿爾卑斯核心 (伯恩高地－恩加丁區)
-  * https://rudymap.tw/alps_core_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N45.80 ~ N47.30
-    * 經度範圍: E7.15 ~ E10.75
-* Alps Eastern, 東阿爾卑斯 (多洛米蒂－高陶恩區)
-  * https://rudymap.tw/alps_eastern_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N45.80 ~ N47.55
-    * 經度範圍: E10.50 ~ E14.00
-* Alps Fareast, 遠東阿爾卑斯 (卡姆尼克－維也納近郊區)
-  * https://rudymap.tw/alps_fareast_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N46.30 ~ N47.85
-    * 經度範圍: E13.90 ~ E15.90
-
-### 俄羅斯
-
-* Elbrus, 厄爾布魯士 (俄羅斯高加索)
-  * https://rudymap.tw/elbrus_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N43.10 ~ N43.75
-    * 經度範圍: E41.90 ~ E43.80
-* Moscow, 莫斯科地區 (俄羅斯，無等高線與 HGT)
-  * https://rudymap.tw/moscow_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N54.94 ~ N56.48
-    * 經度範圍: E36.03 ~ E39.00
-* Saint Petersburg, 聖彼得堡地區 (俄羅斯，無等高線與 HGT)
-  * https://rudymap.tw/saint_petersburg_topo.html
-  * 地圖範圍：
-    * 緯度範圍: N59.69 ~ N60.15
-    * 經度範圍: E29.99 ~ E30.62
+<!-- include: overseas_regions -->
 
 
 ## 說明
@@ -381,14 +273,7 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 * 開發網站（GitHub）：https://github.com/alpha-rudy/taiwan-topo
 * 地圖圖例（自動同步產生）：[互動檢索網頁](./legend.html) · [詳細版 PDF](./legend_detail.pdf) · [2 頁速查表 PDF](./legend_compact.pdf) · [1 頁速查表 PDF](./legend_onepage.pdf)（[舊版圖例 V1R3](./legend_V1R3.pdf)）
 * Beta 版（每週一、三、六發行）：https://rudymap.tw/drops/beta.html
-* 魯地圖分流器 (Cedric Shih) — 一般使用點選本頁「自動分流」按鈕即可自動導向可用鏡像站
-  * rudymap.tw
-  * https://rudymap.tw/app （手機離線 APP 專用）
-* 魯地圖鏡像站
-  * kcwu: moi.kcwu.csie.org
-  * happyman: map.happyman.idv.tw
-  * peakit (山盒): rudy.peakitcdn.com
-  * oslab (Outdoor Safety Lab): d3r5lsn28erp7o.cloudfront.net
+<!-- include: mirrors -->
 
 
 ## 重大修改歷程
@@ -537,90 +422,9 @@ Style 由綬草北三兄與我共同設定適合登山與尋寶 (hiking/geocachi
 
 ## 版權宣告
 
-* OpenStreetMap
-> © OpenStreetMap contributors <br />
-> 本作品內含部份資訊取自「OpenStreetMap」[https://wiki.openstreetmap.org/wiki/Downloading_data](https://wiki.openstreetmap.org/wiki/Downloading_data)，該資料庫以開放資料庫授權條款 (Open Database License, ODbL) 進行提供。 <br />
-> License: http://www.openstreetmap.org/copyright
-
-* 內政部警政署防空避難地圖
-> 作品內含資訊取自「內政部警政署防空避難專區」[https://www.npa.gov.tw/](https://www.npa.gov.tw/) <br />
-> License: 內政部警政署民防指揮管制所版權所有
-
-* 農業部林業試驗所 (TFRI) 台灣巨木地圖
-> 作品內含台灣巨木點位資料取自農業部林業試驗所 (TFRI)。 <br />
-> Link: https://www.tfri.gov.tw/
-
-* 內政部地政司 20 公尺網格數值地形模型資料 (MOI DLA DTM 20m)
-> 本作品內含等高線與高程資訊取自內政部地政司全臺灣 20 公尺網格間距數值地形模型（DTM）資料（早期版本係基於 Rex OSM PBF 與 Chengtao Lin 修正成果）。 <br />
-> MOI Link: https://tgos.nat.gov.tw <br />
-> 政府資料開放授權條款: http://data.gov.tw/node/18250 <br />
-> Rex's OSM PBF Link: http://blog.nutsfactory.net/2016/09/14/taiwan-moi-20m-dtm <br />
-> Chengtao Lin Refined Link: http://nbviewer.jupyter.org/gist/mutolisp/71cd2e39bdb5b0952dbf464d5b92d884 <br />
-> 範圍包含：台灣本島、蘭嶼、綠島、琉球、龜山島、澎湖群島、金門群島
-
-* JAXA ALOS World 3D - 30m (AW3D30) Version 4.1
-> 部分範圍的等高線與 HGT DEM 來自於 JAXA AW3D30 v4.1。 <br />
-> 使用檔案：N20E116, N24E118, N24E119, N25E119, N25E122, N26E119, N26E120. <br />
-> 範圍包含：馬祖、烏坵、北方三島 <br />
-> Link: http://www.eorc.jaxa.jp/ALOS/en/aw3d30/index.htm
-
-* GMAP Styles and TYP
-> Garmin GMAP Styles and TYPs are origin from Freizeitkarte. <br />
-> Link: http://www.freizeitkarte-osm.de/garmin/en/index.html
-
-* Mapsforge Style
-> Symbols/patterns/code is derived and based on OpenAndroMaps Elevate theme by Tobias Kühn. <br />
-> Link: http://www.openandromaps.org/en/legend/elevate-mountain-hike-theme <br />
-> Detail Link: http://www.openandromaps.org/wp-content/users/tobias/licenses.txt <br />
-> Theme style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike License 3.0 Unported License. <br />
-> Link: http://creativecommons.org/licenses/by-nc-sa/3.0/
-
-* Tool of Contour Lines: gdal and phyghtmap
-> Contour lines of this map were generated by using tools "gdal" and "phyghtmap". <br />
-> gdal Link: http://www.gdal.org <br />
-> gdal License: http://svn.osgeo.org/gdal/trunk/gdal/LICENSE.TXT <br />
-> phyghtmap Link: http://katze.tfiu.de/projects/phyghtmap/ <br />
-> phyghtmap License: http://gnu.org/licenses/gpl.html
-
-* Tools of Maps: osm, mkgmap, and mapsforge
-> OSM Maps were built using the tools "osmosis" <br />
-> Link: http://wiki.openstreetmap.org/wiki/Osmosis <br />
-> GMAP Maps were built using the tools "splitter" and "mkgmap" <br />
-> Link: http://www.mkgmap.org.uk/ <br />
-> License: http://gnu.org/licenses/gpl.html <br />
-> Mapsforge Maps were built using the tools "Mapsforge Map-Writer" <br />
-> Link: https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
+<!-- include: taiwan_credits -->
 
 
 ## 地圖版權與散佈說明
-    Copyright (c) 2016-2026 Rudy Chung
-    All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.
-
-        * Redistributions in binary form must reproduce this copyright notice
-        (or the HTTP link to this notice), this list of conditions and the
-        following disclaimer in the documentation and/or other materials provided
-        with the distribution.
-
-        * Redistributions with modification must use a different map name which
-        could be easily and clearly to be distinguished with this map.
-
-        * Neither the name of Rudy Chung nor the names of its contributors may be
-        used to endorse or promote products derived from this software without 
-        specific prior written permission.
-
-    THIS MAP IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL RUDY BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    MAP, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+<!-- include: license:2016-2026 -->

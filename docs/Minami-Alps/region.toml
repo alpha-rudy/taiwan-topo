@@ -1,0 +1,15 @@
+suite = "minami_alps"
+group = "japan"
+order = 50
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Southern Ridge - Minami Alps / 赤石山脈 - 南阿爾卑斯登山地圖（白根三山・赤石岳）"
+garmin_name = "Minami Alps"
+index_label = "Minami Alps, 南阿爾卑斯 (赤石山脈)"
+
+[en]
+title = "Southern Ridge - Minami Alps"
+garmin_name = "Minami Alps"
+index_label = "Minami Alps (Southern Japanese Alps - Akaishi Mountains)"

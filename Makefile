@@ -360,40 +360,51 @@ distclean:
 	-rm -rf $(BUILD_DIR)*
 	-rm -rf $(DOWNLOAD_DIR)
 
+define RENDER_TOPO_PAGES
+	if [ -f docs/$(REGION)/region.toml ]; then \
+		python3 $(TOOLS_DIR)/render_topo_html.py \
+			--region-config docs/$(REGION)/region.toml \
+			--template docs/template.html \
+			--output $(1)/$(SUITE)_topo.html \
+			--version "$(VERSION)" \
+			--lang zh-Hant \
+			--alt-lang-href "$(SUITE)_topo-en.html" \
+			--alt-lang-label "English"; \
+		python3 $(TOOLS_DIR)/render_topo_html.py \
+			--region-config docs/$(REGION)/region.toml \
+			--template docs/template.html \
+			--output $(1)/$(SUITE)_topo-en.html \
+			--version "$(VERSION)" \
+			--lang en \
+			--alt-lang-href "$(SUITE)_topo.html" \
+			--alt-lang-label "繁體中文"; \
+	elif [ -f docs/$(REGION)/$(SUITE)_topo.md ]; then \
+		python3 $(TOOLS_DIR)/render_topo_html.py \
+			--input docs/$(REGION)/$(SUITE)_topo.md \
+			--template docs/template.html \
+			--output $(1)/$(SUITE)_topo.html \
+			--version "$(VERSION)" \
+			--lang zh-Hant \
+			$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ); \
+		if [ -f docs/$(REGION)/$(SUITE)_topo-en.md ]; then \
+			python3 $(TOOLS_DIR)/render_topo_html.py \
+				--input docs/$(REGION)/$(SUITE)_topo-en.md \
+				--template docs/template.html \
+				--output $(1)/$(SUITE)_topo-en.html \
+				--version "$(VERSION)" \
+				--lang en \
+				--alt-lang-href "$(SUITE)_topo.html" \
+				--alt-lang-label "繁體中文"; \
+		fi; \
+	fi
+endef
+
 .PHONY: topo.md
 topo.md:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
 	mkdir -p $(BUILD_DIR)
-	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
-		if [ -f docs/template.html ]; then \
-			python3 $(TOOLS_DIR)/render_topo_html.py \
-				--input docs/$(REGION)/$(SUITE)_topo.md \
-				--template docs/template.html \
-				--output $(BUILD_DIR)/$(SUITE)_topo.html \
-				--version "$(VERSION)" \
-				--lang zh-Hant \
-				$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ); \
-		else \
-			cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
-			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(BUILD_DIR)/$(SUITE)_topo.html; \
-		fi
-	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
-		if [ -f docs/template.html ]; then \
-			python3 $(TOOLS_DIR)/render_topo_html.py \
-				--input docs/$(REGION)/$(SUITE)_topo-en.md \
-				--template docs/template.html \
-				--output $(BUILD_DIR)/$(SUITE)_topo-en.html \
-				--version "$(VERSION)" \
-				--lang en \
-				--alt-lang-href "$(SUITE)_topo.html" \
-				--alt-lang-label "繁體中文"; \
-		else \
-			cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
-			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(BUILD_DIR)/$(SUITE)_topo-en.html; \
-		fi
+	$(call RENDER_TOPO_PAGES,$(BUILD_DIR))
 	cp -a docs/images $(BUILD_DIR)/
 
 # The PDF legend packed into the Mapsforge/Locus style zips (as MOI_OSM.pdf and
@@ -458,35 +469,7 @@ install:
 	rm -rf $(INSTALL_DIR)
 	mkdir -p $(INSTALL_DIR)
 	cp -r docs/images auto-install/locus/$(REGION)/*.xml $(INSTALL_DIR)
-	[ -f docs/$(REGION)/$(SUITE)_topo.md ] && \
-		if [ -f docs/template.html ]; then \
-			python3 $(TOOLS_DIR)/render_topo_html.py \
-				--input docs/$(REGION)/$(SUITE)_topo.md \
-				--template docs/template.html \
-				--output $(INSTALL_DIR)/$(SUITE)_topo.html \
-				--version "$(VERSION)" \
-				--lang zh-Hant \
-				$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ); \
-		else \
-			cat docs/$(REGION)/$(SUITE)_topo.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo.article && \
-			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo.article" > $(INSTALL_DIR)/$(SUITE)_topo.html; \
-		fi
-	-[ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && \
-		if [ -f docs/template.html ]; then \
-			python3 $(TOOLS_DIR)/render_topo_html.py \
-				--input docs/$(REGION)/$(SUITE)_topo-en.md \
-				--template docs/template.html \
-				--output $(INSTALL_DIR)/$(SUITE)_topo-en.html \
-				--version "$(VERSION)" \
-				--lang en \
-				--alt-lang-href "$(SUITE)_topo.html" \
-				--alt-lang-label "繁體中文"; \
-		else \
-			cat docs/$(REGION)/$(SUITE)_topo-en.md | $(SED_CMD) -e "s|__version__|$(VERSION)|g" | \
-			markdown -f +autolink > $(BUILD_DIR)/$(SUITE)_topo-en.article && \
-			cat docs/github_flavor.html | $(SED_CMD) "/__article_body__/ r $(BUILD_DIR)/$(SUITE)_topo-en.article" > $(INSTALL_DIR)/$(SUITE)_topo-en.html; \
-		fi
+	$(call RENDER_TOPO_PAGES,$(INSTALL_DIR))
 	-[ -f docs/$(REGION)/index.json ] && \
 		cat docs/$(REGION)/index.json | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/index.json
 	-[ -f docs/$(REGION)/beta.md ] && \

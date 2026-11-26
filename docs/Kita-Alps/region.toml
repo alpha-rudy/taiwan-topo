@@ -1,0 +1,15 @@
+suite = "kita_alps"
+group = "japan"
+order = 30
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "Roof of Japan - Kita Alps / 日本屋脊 - 北阿爾卑斯登山地圖（飛驒山脈・立山黑部）"
+garmin_name = "Kita Alps"
+index_label = "Kita Alps, 北阿爾卑斯 (飛驒山脈・立山黑部)"
+
+[en]
+title = "Roof of Japan - Kita Alps"
+garmin_name = "Kita Alps"
+index_label = "Kita Alps (Northern Japanese Alps - Hida Mountains, Tateyama-Kurobe)"

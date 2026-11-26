@@ -1,0 +1,15 @@
+suite = "alps_fareast"
+group = "europe_alps"
+order = 40
+guide_kind = "region"
+ai_notice = true
+
+[zh]
+title = "EuroPeaks TOPO - Far East Alps / 歐陸巔峰 - 遠東阿爾卑斯山脈（卡姆尼克－維也納近郊區）"
+garmin_name = "Far-Eastern Alps"
+index_label = "Alps Fareast, 遠東阿爾卑斯 (卡姆尼克－維也納近郊區)"
+
+[en]
+title = "EuroPeaks TOPO - Far East Alps"
+garmin_name = "Far-Eastern Alps"
+index_label = "Alps Fareast (Kamnik - Vienna Woods)"

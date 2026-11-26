@@ -1,0 +1,15 @@
+suite = "saint_petersburg"
+group = "russia"
+order = 30
+guide_kind = "city"
+ai_notice = true
+
+[zh]
+title = "CityTour - St Petersburg Core / 城市漫遊 - 聖彼得堡核心區"
+garmin_name = "Saint Petersburg Region"
+index_label = "Saint Petersburg, 聖彼得堡地區 (俄羅斯，無等高線與 HGT)"
+
+[en]
+title = "CityTour - St Petersburg Core"
+garmin_name = "Saint Petersburg Region"
+index_label = "Saint Petersburg (Russia, no contour lines or HGT)"
