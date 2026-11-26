@@ -6,131 +6,9 @@
   <title>{{TITLE}}</title>
   <meta name="description" content="{{DESCRIPTION}}">
   <style>
-    :root {
-      --bg: #f5f7f5;
-      --surface: #ffffff;
-      --surface-subtle: #f0f4f1;
-      --surface-hover: #e7efe9;
-      --border: #dce5de;
-      --border-strong: #c4d3c8;
-      --text: #18231e;
-      --text-muted: #51635a;
-      --accent: #246346;
-      --accent-hover: #1a4b34;
-      --accent-soft: #e3f2ea;
-      --accent-soft-text: #184e35;
-      --link: #1d5d8c;
-      --link-hover: #144366;
-      --badge-bg: #edf2ee;
-      --badge-text: #354b40;
-      --shadow-sm: 0 1px 2px rgba(16, 36, 26, 0.05);
-      --shadow-md: 0 4px 14px rgba(16, 36, 26, 0.07);
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 18px;
-      --hero-bg-1: #163a2a;
-      --hero-bg-2: #255f44;
-      --hero-text: #f7fbf8;
-      --hero-muted: rgba(247, 251, 248, 0.84);
-      --nav-bg: rgba(245, 247, 245, 0.9);
-    }
+    {{SHARED_THEME_CSS}}
 
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #0f1512;
-        --surface: #17201c;
-        --surface-subtle: #1e2a25;
-        --surface-hover: #25342e;
-        --border: #2a3932;
-        --border-strong: #3a4f45;
-        --text: #e8f0eb;
-        --text-muted: #9eb2a7;
-        --accent: #42a878;
-        --accent-hover: #56be8c;
-        --accent-soft: rgba(66, 168, 120, 0.16);
-        --accent-soft-text: #83dfb3;
-        --link: #7bc0f2;
-        --link-hover: #a5d5f8;
-        --badge-bg: #23312b;
-        --badge-text: #c2d4ca;
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
-        --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.32);
-        --hero-bg-1: #0e241a;
-        --hero-bg-2: #194230;
-        --nav-bg: rgba(15, 21, 18, 0.9);
-      }
-    }
-
-    :root[data-theme="dark"] {
-      --bg: #0f1512;
-      --surface: #17201c;
-      --surface-subtle: #1e2a25;
-      --surface-hover: #25342e;
-      --border: #2a3932;
-      --border-strong: #3a4f45;
-      --text: #e8f0eb;
-      --text-muted: #9eb2a7;
-      --accent: #42a878;
-      --accent-hover: #56be8c;
-      --accent-soft: rgba(66, 168, 120, 0.16);
-      --accent-soft-text: #83dfb3;
-      --link: #7bc0f2;
-      --link-hover: #a5d5f8;
-      --badge-bg: #23312b;
-      --badge-text: #c2d4ca;
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
-      --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.32);
-      --hero-bg-1: #0e241a;
-      --hero-bg-2: #194230;
-      --nav-bg: rgba(15, 21, 18, 0.9);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 68px;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Roboto, sans-serif;
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    a {
-      color: var(--link);
-      text-decoration: none;
-      overflow-wrap: anywhere;
-    }
-
-    a:hover {
-      color: var(--link-hover);
-      text-decoration: underline;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      vertical-align: middle;
-    }
-
-    /* Hero */
-    .hero {
-      position: relative;
-      color: var(--hero-text);
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.07' stroke-width='1.2'%3E%3Cpath d='M-20 40 C 50 10, 120 90, 200 50 S 300 20, 350 60'/%3E%3Cpath d='M-20 85 C 60 55, 130 135, 210 95 S 300 65, 350 105'/%3E%3Cpath d='M-20 130 C 70 100, 140 170, 220 135 S 310 110, 350 145'/%3E%3Cpath d='M-20 10 C 40 -10, 110 50, 190 15 S 290 -5, 350 25'/%3E%3C/g%3E%3C/svg%3E"),
-        linear-gradient(135deg, var(--hero-bg-1) 0%, var(--hero-bg-2) 100%);
-      padding: 28px 16px 26px;
-    }
-
+    /* Page-specific Hero layout */
     .hero-inner {
       max-width: 1040px;
       margin: 0 auto;
@@ -143,49 +21,6 @@
       gap: 12px;
       flex-wrap: wrap;
       margin-bottom: 12px;
-    }
-
-    .version-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-    }
-
-    .hero-actions {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      min-height: 34px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-
-    .hero-btn:hover {
-      background: rgba(255, 255, 255, 0.24);
-      color: #ffffff;
-      text-decoration: none;
     }
 
     .hero h1 {
@@ -992,34 +827,9 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    (function () {
-      var root = document.documentElement;
-      var themeBtn = document.getElementById("theme-toggle");
-      if (themeBtn) {
-        var saved = null;
-        try { saved = localStorage.getItem("rudymap-theme"); } catch (e) {}
-        if (saved === "dark" || saved === "light") {
-          root.setAttribute("data-theme", saved);
-        }
-        function isDark() {
-          var t = root.getAttribute("data-theme");
-          if (t === "dark") return true;
-          if (t === "light") return false;
-          return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        }
-        function syncThemeIcon() {
-          themeBtn.textContent = isDark() ? "☀" : "☾";
-          themeBtn.setAttribute("aria-label", isDark() ? "Switch to light theme" : "Switch to dark theme");
-        }
-        syncThemeIcon();
-        themeBtn.addEventListener("click", function () {
-          var next = isDark() ? "light" : "dark";
-          root.setAttribute("data-theme", next);
-          try { localStorage.setItem("rudymap-theme", next); } catch (e) {}
-          syncThemeIcon();
-        });
-      }
+    {{SHARED_THEME_JS}}
 
+    (function () {
       var searchInput = document.getElementById("region-search");
       var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-pill"));
       var regionGroups = Array.prototype.slice.call(document.querySelectorAll(".region-group"));

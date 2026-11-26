@@ -12,8 +12,12 @@ from __future__ import annotations
 import argparse
 import html
 import re
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import template_assets
 
 # ---------------------------------------------------------------------------
 # AST nodes
@@ -1043,7 +1047,11 @@ def main() -> None:
     args = parser.parse_args()
 
     md_text = args.input.read_text(encoding="utf-8")
-    template_html = args.template.read_text(encoding="utf-8")
+    docs_dir = template_assets.infer_docs_dir(args.template)
+    template_html = template_assets.expand_template_assets(
+        args.template.read_text(encoding="utf-8"),
+        docs_dir,
+    )
     rendered = render_document(
         md_text=md_text,
         template_html=template_html,

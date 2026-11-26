@@ -4,18 +4,14 @@
   <meta charset="utf-8">
   <title>魯地圖 — 登山圖例速查表 v{{VERSION}}</title>
   <style>
+    {{SHARED_PDF_CSS}}
     @page {
       size: A4 portrait;
       margin: 6.5mm 7.5mm 6.5mm 7.5mm;
     }
-    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: "Noto Sans CJK TC", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       font-size: 8.1pt;
       line-height: 1.24;
-      color: #18231e;
-      background: #ffffff;
     }
     .sheet {
       min-height: 280mm;
@@ -35,7 +31,7 @@
       gap: 8px;
       padding: 5px 11px;
       border-radius: 6px;
-      background: #1b4332;
+      background: var(--pdf-header-bg);
       color: #ffffff;
       margin-bottom: 5.5px;
       flex-shrink: 0;
