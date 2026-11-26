@@ -29,7 +29,6 @@ RUN dpkg --add-architecture i386 && \
         bzip2 \
         curl \
         default-jre-headless \
-        discount \
         gdal-bin \
         git \
         libc6:i386 libncurses6:i386 libstdc++6:i386 \

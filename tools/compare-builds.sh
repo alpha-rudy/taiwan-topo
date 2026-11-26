@@ -21,7 +21,7 @@ BINARY_EXTS="map|poi|img|db"
 # Intermediate build artifacts to exclude from comparison (contain BUILD_DIR paths)
 # These are generated config files, not final outputs
 # Note: Using -iname for case-insensitive matching where needed
-EXCLUDE_PATTERN=(-name '*.cfg' -o -name '*.args' -o -name '*.txt' -o -name '*.nsi' -o -name '.*.done' -o -iname '*.typ' -o -name '*.article' -o -name '*.list' -o -name '*.poly' -o -name '*.log')
+EXCLUDE_PATTERN=(-name '*.cfg' -o -name '*.args' -o -name '*.txt' -o -name '*.nsi' -o -name '.*.done' -o -iname '*.typ' -o -name '*.list' -o -name '*.poly' -o -name '*.log')
 
 echo "=========================================="
 echo "Comparing: $DIR1 vs $DIR2"
