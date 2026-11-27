@@ -922,7 +922,7 @@ $(WIKIDATA_CACHE): $(REGION_EXTRACT).osm.pbf osm_scripts/build_wikidata_cache.py
 
 .PHONY: named
 named: $(REGION_EXTRACT)_name.osm.pbf
-$(REGION_EXTRACT)_name.osm.pbf: $(REGION_EXTRACT).osm.pbf $(WIKIDATA_CACHE) osm_scripts/complete_name.py
+$(REGION_EXTRACT)_name.osm.pbf: $(REGION_EXTRACT).osm.pbf $(WIKIDATA_CACHE) osm_scripts/complete_name.py $(TOOLS_DIR)/pbf_utils.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
