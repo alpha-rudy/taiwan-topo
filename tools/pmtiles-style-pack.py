@@ -2,7 +2,8 @@
 """Fill the PMTiles style zip's folder: the styles, their Latin glyphs, the version.
 
 Writes each style into OUT_DIR with metadata "taiwan-topo:version" set to
-VERSION, copies the glyph ranges RANGES (comma-separated, e.g. 0-255) of every
+VERSION (and "taiwan-topo:schema" to the environment's PMTILES_SCHEMA, the code
+the archives carry too, see tools/pmtiles-schema-check.py), copies the glyph ranges RANGES (comma-separated, e.g. 0-255) of every
 fontstack the styles name from GLYPHS_DIR into OUT_DIR/glyphs/<fontstack>/,
 and writes VERSION to OUT_DIR/version.txt. An offline app draws CJK text with
 the phone's own font, so only the Latin ranges travel with the styles; a
@@ -29,6 +30,8 @@ def main(argv):
         with open(path) as f:
             style = json.load(f)
         style.setdefault("metadata", {})["taiwan-topo:version"] = version
+        if os.environ.get("PMTILES_SCHEMA"):
+            style["metadata"]["taiwan-topo:schema"] = int(os.environ["PMTILES_SCHEMA"])
         for layer in style["layers"]:
             stack = layer.get("layout", {}).get("text-font")
             if stack:

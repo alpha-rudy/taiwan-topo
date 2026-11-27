@@ -59,6 +59,9 @@
 #                        deterministic, so this changes only when the elevations
 #                        do; an app can skip downloading the DEM while it stays
 #                        the same, and check a downloaded DEM against it.
+#   PMTILES_SCHEMA       "taiwan-topo:schema", the code an archive and the shared
+#                        style both carry while each can draw the other (see the
+#                        Makefile and tools/pmtiles-schema-check.py).
 
 set -e
 
@@ -152,6 +155,8 @@ with open(path) as f:
 meta["version"] = version
 if os.environ.get("PMTILES_ATTRIBUTION"):
     meta["attribution"] = os.environ["PMTILES_ATTRIBUTION"]
+if os.environ.get("PMTILES_SCHEMA"):
+    meta["taiwan-topo:schema"] = int(os.environ["PMTILES_SCHEMA"])
 dem = os.environ.get("PMTILES_DEM")
 if dem:
     if not os.path.isfile(dem) or os.path.getsize(dem) == 0:
