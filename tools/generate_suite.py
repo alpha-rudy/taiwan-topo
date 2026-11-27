@@ -17,6 +17,7 @@ Usage:
     python3 tools/generate_suite.py \
         --region <RegionName> \
         --region-lower <region_lower> \
+        --name-zh <中文名稱> --name-en <English name> \
         --dem-name AW3D30 \
         --lang <lang_code> \
         --extract-file <country>-latest \
@@ -29,6 +30,7 @@ Example:
     python3 tools/generate_suite.py \\
         --region Everest \\
         --region-lower everest \\
+        --name-zh 聖母峰 --name-en Everest \\
         --dem-name AW3D30 \\
         --lang ne \\
         --extract-file nepal-latest \\
@@ -357,6 +359,7 @@ def main(region, region_lower, name_zh, name_en, dem_name, lang, extract_file, l
         print(f"  python3 tools/generate_suite.py \\")
         print(f"    --region {region} \\")
         print(f"    --region-lower {region_lower} \\")
+        print(f"    --name-zh {name_zh} --name-en '{name_en}' \\")
         print(f"    --lang {lang} \\")
         print(f"    --extract-file {extract_file} \\")
         print(f"    --left {left} --right {right} --bottom {bottom} --top {top}")
