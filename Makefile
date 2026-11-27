@@ -584,13 +584,14 @@ $(TN_STYLE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
+$(GTS_ALL).zip: $(MAPSFORGE) $(POI) $(GTS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
-	mkdir -p $(GTS_ALL)
+	mkdir -p $(GTS_ALL)/map
+	ln -f $(MAPSFORGE) $(GTS_ALL)/map/$(notdir $(MAPSFORGE)) 2>/dev/null || cp $(MAPSFORGE) $(GTS_ALL)/map/$(notdir $(MAPSFORGE))
+	ln -f $(POI) $(GTS_ALL)/map/$(notdir $(POI)) 2>/dev/null || cp $(POI) $(GTS_ALL)/map/$(notdir $(POI))
 	cd $(GTS_ALL) && \
-		$(UNZIP_CMD) $(MAPSFORGE_ZIP) -d map && \
 		$(UNZIP_CMD) $(GTS_STYLE) -d mapthemes && \
 		$(UNZIP_CMD) $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
@@ -601,19 +602,30 @@ carto_all: $(CARTO_ALL).zip
 $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
-	mkdir -p $(BUILD_DIR)/.poi_v2_stage
-	cp $(POI_V2) $(BUILD_DIR)/.poi_v2_stage/$(shell basename $(POI))
-	$(UNZIP_CMD) $(HGT) -d $(BUILD_DIR)
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_map.cpkg $(shell basename $(POI))
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_style.cpkg mapdetails.json $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt && rm -f mapdetails.json
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_upgrade.cpkg $(shell basename $(POI))
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_all.cpkg $(shell basename $(POI))
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
+	set -e; \
+	stage=$(BUILD_DIR)/.carto_stage.$$$$; \
+	trap 'rm -rf "$$stage"' EXIT; \
+	mkdir -p "$$stage"; \
+	rm -f $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg $(BUILD_DIR)/$(NAME_CARTO)_style.cpkg \
+		$(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg \
+		$(BUILD_DIR)/$(NAME_CARTO)_all.cpkg; \
+	ln -f $(MAPSFORGE) "$$stage/$(notdir $(MAPSFORGE))" 2>/dev/null || cp $(MAPSFORGE) "$$stage/$(notdir $(MAPSFORGE))"; \
+	ln -f $(POI_V2) "$$stage/$(notdir $(POI))" 2>/dev/null || cp $(POI_V2) "$$stage/$(notdir $(POI))"; \
+	ln -f $(HS_STYLE) "$$stage/$(notdir $(HS_STYLE))" 2>/dev/null || cp $(HS_STYLE) "$$stage/$(notdir $(HS_STYLE))"; \
+	$(UNZIP_CMD) $(HGT) -d "$$stage"; \
+	cd "$$stage"; \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg mapdetails.json $(notdir $(MAPSFORGE)) $(notdir $(POI)); \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_style.cpkg mapdetails.json $(notdir $(HS_STYLE)); \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt; \
+	cp $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg; \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(notdir $(HS_STYLE)); \
+	cp $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg $(BUILD_DIR)/$(NAME_CARTO)_all.cpkg; \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
@@ -971,11 +983,12 @@ $(POI_V2_ZIP): $(POI_V2) $(POI)
 	[ -f "$(POI)" ]
 	[ -f "$(POI_V2)" ]
 	-rm -rf $@
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
-	mkdir -p $(BUILD_DIR)/.poi_v2_stage
-	cp $(POI_V2) $(BUILD_DIR)/.poi_v2_stage/$(shell basename $(POI))
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) $@ $(shell basename $(POI))
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
+	set -e; \
+	stage=$(BUILD_DIR)/.poi_v2_zip_stage.$$$$; \
+	trap 'rm -rf "$$stage"' EXIT; \
+	mkdir -p "$$stage"; \
+	ln -f $(POI_V2) "$$stage/$(notdir $(POI))" 2>/dev/null || cp $(POI_V2) "$$stage/$(notdir $(POI))"; \
+	cd "$$stage" && $(ZIP_CMD) $@ $(notdir $(POI))
 
 
 GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm
