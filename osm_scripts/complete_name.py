@@ -6,6 +6,12 @@ import sqlite3
 import unicodedata
 from functools import lru_cache
 
+_TOOLS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'tools'))
+if _TOOLS_DIR not in sys.path:
+    sys.path.insert(0, _TOOLS_DIR)
+
+from pbf_utils import run_parallel_pbf
+
 # Import Chinese romanization
 try:
     from hanzi2reading.reading import Reading
@@ -147,7 +153,7 @@ def wikidata_label(tags, lang, key='wikidata'):
     key may also be 'brand:wikidata'; values can be ';'-separated QID lists, in
     which case the first valid QID is used.
     """
-    if not has_wikidata:
+    if not has_wikidata or _wikidata_conn is None:
         return None
     for part in tags.get(key, '').split(';'):
         qid = part.strip()
@@ -1344,11 +1350,43 @@ def run_parallel(infile, outfile, workers):
     writer.close()
 
 
+def _process_pbf_shard(args):
+    in_shard, out_shard = args
+    STATS['name:en'].clear()
+    STATS['name:zh'].clear()
+    writer = osmium.SimpleWriter(out_shard, overwrite=True)
+    fp = osmium.FileProcessor(in_shard).with_filter(_name_filter())
+    fp.handler_for_filtered(writer)
+    for o in fp:
+        if 'name:en' in o.tags and 'name:zh' in o.tags:
+            writer.add(o)
+        else:
+            writer.add(annotate(o))
+    writer.close()
+    return {
+        'name:en': dict(STATS['name:en']),
+        'name:zh': dict(STATS['name:zh']),
+    }
+
+
 if __name__ == '__main__':
     infile, outfile = sys.argv[1], sys.argv[2]
     workers = int(os.environ.get('NAME_WORKERS', '0')) or os.cpu_count() or 1
     if workers > 1 and hasattr(osmium, 'FileProcessor'):
-        run_parallel(infile, outfile, workers)
+        ran_parallel, shard_stats_list = run_parallel_pbf(
+            infile,
+            outfile,
+            _process_pbf_shard,
+            workers,
+            initializer=_worker_init,
+            tmp_prefix='.complete_name_',
+        )
+        if ran_parallel:
+            for shard_stats in shard_stats_list:
+                for tag, counts in shard_stats.items():
+                    STATS[tag].update(counts)
+        else:
+            run_parallel(infile, outfile, workers)
     else:
         writer = osmium.SimpleWriter(outfile)
         Complete_name_Handler(writer).apply_file(infile)
