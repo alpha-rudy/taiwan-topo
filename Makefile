@@ -398,7 +398,8 @@ legend_check:
 # rudymap_pmtiles_style/ is the PMTiles style zip's files, unpacked, for web
 # pages: a browser cannot read a zip, so a page loads style.json and its
 # sprites from there through the balancer, the way it reads the archives,
-# instead of hosting them.
+# instead of hosting them. Its glyphs/ also gets the ranges a browser does not
+# draw with its own font (PMTILES_WEB_GLYPH_RANGES); the zip keeps Latin only.
 install:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(INSTALL_DIR)" ] && [ -d "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
@@ -447,7 +448,8 @@ install:
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/dem/*.pmtiles $(INSTALL_DIR)
-	-[ -f $(PMTILES_STYLE_ZIP) ] && cp -r $(BUILD_DIR)/pmtiles_style $(INSTALL_DIR)/rudymap_pmtiles_style
+	-[ -f $(PMTILES_STYLE_ZIP) ] && cp -r $(BUILD_DIR)/pmtiles_style $(INSTALL_DIR)/rudymap_pmtiles_style && \
+		python3 $(TOOLS_DIR)/pmtiles-web-glyphs.py $(INSTALL_DIR)/rudymap_pmtiles_style/glyphs $(GLYPHS_DIR) $(PMTILES_WEB_GLYPH_RANGES)
 	-cp $(BUILD_DIR)/legend.html $(BUILD_DIR)/legend_detail.pdf $(BUILD_DIR)/legend_compact.pdf $(BUILD_DIR)/legend_onepage.pdf $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/legend_samples $(INSTALL_DIR)
 	cd $(INSTALL_DIR) && md5sum *.zip *.exe *.html *.xml > md5sum.txt
@@ -1137,6 +1139,7 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 # version stamp rebuilds the zip once a day, as it does the map data.
 PMTILES_STYLE_ZIP := $(BUILD_DIR)/rudymap_pmtiles_style.zip
 PMTILES_STYLE_GLYPH_RANGES := 0-255
+PMTILES_WEB_GLYPH_RANGES := $(ROOT_DIR)/styles/pmtiles_style/web-glyph-ranges.txt
 .PHONY: pmtiles_style_zip
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
 $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) $(GLYPHS) \
