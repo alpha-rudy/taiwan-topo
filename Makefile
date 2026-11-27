@@ -826,7 +826,7 @@ $(ELEVATION_MIX):
 		curl --fail --location $(ELEVATIONS_URL)/$(ELEVATION_MIX_FILE).md5 -o $(ELEVATION_MIX_FILE).md5 && \
 		md5sum -c $(ELEVATION_MIX_FILE).md5
 
-.DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT)_extra.o5m $(REGION_EXTRACT).o5m
+.DELETE_ON_ERROR: $(EXTRACT).o5m $(EXTRACT)_extra.osm.pbf $(REGION_EXTRACT).osm.pbf
 # Determine EXTRACT_URL and download method based on the EXTRACT_FILE
 ifeq ($(EXTRACT_FILE),taiwan-latest)
 EXTRACT_URL := http://osm.kcwu.csie.org/download/tw-extract/recent
@@ -855,42 +855,46 @@ endif
 # $(OSMCONVERT_CLEAN) must run BEFORE any osmium-append.sh call: the appends
 # renumber their payload just above the largest id present, so any dangling ref
 # left in the extract would be silently re-bound to appended data.
-$(EXTRACT)_extra.o5m: $(EXTRACT).o5m $(ADS_OSM)
+$(EXTRACT)_extra.osm.pbf: $(EXTRACT).o5m $(ADS_OSM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 ifeq ($(EXTRACT_FILE),taiwan-latest)
+	set -euo pipefail; \
+	clean_o5m=$(EXTRACT)_extra.$$$$.clean.o5m; \
+	trap 'rm -f "$$clean_o5m"' EXIT; \
 	$(OSMCONVERT_CMD) \
 		$< \
 		$(OSMCONVERT_CLEAN) \
 		--out-o5m \
-		-o=$@
-	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh $@ \
+		-o="$$clean_o5m"; \
+	OSMCONVERT_CMD=$(OSMCONVERT_CMD) bash $(TOOLS_DIR)/osmium-append.sh -o $@ "$$clean_o5m" \
 		$(ADS_OSM) adshelter \
 		$(ROOT_DIR)/precompiled/TFRI_Taiwan_GiantTree-ren.osm gianttree
 else
+	set -euo pipefail; \
 	$(OSMCONVERT_CMD) \
 		$< \
 		$(OSMCONVERT_CLEAN) \
 		--modify-tags="natural=peak man_made=summit_board" \
 		--out-o5m \
-		-o=$@
+		| osmium cat -F o5m -O -o $@ -
 endif
 
-$(REGION_EXTRACT).o5m: $(EXTRACT)_extra.o5m
+$(REGION_EXTRACT).osm.pbf: $(EXTRACT)_extra.osm.pbf
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
-	set -e; \
-	region_o5m=$(REGION_EXTRACT).$$$$.o5m.tmp; \
-	trap 'rm -f "$$region_o5m"' EXIT; \
-	rm -f "$$region_o5m" $@; \
+	set -euo pipefail; \
+	region_pbf=$(REGION_EXTRACT).$$$$.osm.pbf.tmp; \
+	trap 'rm -f "$$region_pbf"' EXIT; \
+	rm -f "$$region_pbf" $@; \
 	$(OSMCONVERT_CMD) \
 		--drop-version \
 		$(OSMCONVERT_BOUNDING) \
 		--out-o5m \
 		$< \
-		-o="$$region_o5m"; \
-	test -s "$$region_o5m" || { echo "ERROR: osmconvert produced no output ($$region_o5m)" >&2; exit 1; }; \
-	mv "$$region_o5m" $@
+		| osmium cat -F o5m -O -f pbf,add_metadata=false -o "$$region_pbf" -; \
+	test -s "$$region_pbf" || { echo "ERROR: osmconvert/osmium produced no output ($$region_pbf)" >&2; exit 1; }; \
+	mv "$$region_pbf" $@
 
 READING_LANG ?= $(MAP_LANG)
 
@@ -910,7 +914,7 @@ WIKIDATA_CACHE ?= $(WIKIDATA_DIR)/$(REGION)_wikidata.sqlite
 .PHONY: wikidata-cache
 wikidata-cache: $(WIKIDATA_CACHE)
 
-$(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m osm_scripts/build_wikidata_cache.py
+$(WIKIDATA_CACHE): $(REGION_EXTRACT).osm.pbf osm_scripts/build_wikidata_cache.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
@@ -918,7 +922,7 @@ $(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m osm_scripts/build_wikidata_cache.py
 
 .PHONY: named
 named: $(REGION_EXTRACT)_name.osm.pbf
-$(REGION_EXTRACT)_name.osm.pbf: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE) osm_scripts/complete_name.py
+$(REGION_EXTRACT)_name.osm.pbf: $(REGION_EXTRACT).osm.pbf $(WIKIDATA_CACHE) osm_scripts/complete_name.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
