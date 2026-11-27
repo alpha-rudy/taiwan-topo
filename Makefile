@@ -1081,12 +1081,25 @@ pmtiles: $(PMTILES)
 # without the region's DEM builds it first.
 PMTILES_DEM := $(if $(HGT),$(DEM_PMTILES))
 PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors$(if $(DEM_NAME),; DEM: $(DEM_NAME))
+# The schema code the archives and the shared style carry as "taiwan-topo:schema".
+# An app or a page pairs an archive with a style of another week while the codes
+# match, so raise it with any change after which one cannot draw the other: a
+# layer or a field the styles read renamed or removed, or a value they match
+# changed. Additions need no change. tools/pmtiles-schema-check.py fails the
+# archive's build when it no longer has what last release's styles read and the
+# code is unchanged; raising the code is always safe, downstream only pairs more
+# cautiously. PMTILES_LAST_RELEASE is where last release is read; empty skips that
+# comparison (an offline build).
+PMTILES_SCHEMA := 1
+PMTILES_LAST_RELEASE ?= https://rudymap.tw/v1/
+# The check reads the styles but is not a prerequisite: a style change alone does
+# not rebuild the archive.
 $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	GOPMTILES_CMD="$(GOPMTILES_CMD)" PMTILES_DEM="$(PMTILES_DEM)" \
-	PMTILES_ATTRIBUTION='$(PMTILES_ATTRIBUTION)' \
+	PMTILES_ATTRIBUTION='$(PMTILES_ATTRIBUTION)' PMTILES_SCHEMA='$(PMTILES_SCHEMA)' \
 	$(TOOLS_DIR)/pmtiles-build.sh \
 		"$(MAPSFORGE_PBF)" \
 		"$@" \
@@ -1095,6 +1108,9 @@ $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING)
 		"$(PMTILES_PROCESS)" \
 		"$(VERSION)" \
 		"$(MAP_FRAME)"
+	# A failed check removes the archive, so the next make checks it again.
+	python3 $(TOOLS_DIR)/pmtiles-schema-check.py "$@" "$(PMTILES_SCHEMA)" "$(PMTILES_LAST_RELEASE)" \
+		$(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) || { rm -f "$@"; exit 1; }
 
 .PHONY: glyphs
 glyphs: $(GLYPHS)
@@ -1147,7 +1163,7 @@ $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE
 	rm -rf $(BUILD_DIR)/pmtiles_style
 	mkdir -p $(BUILD_DIR)/pmtiles_style
 	cp -a styles/mapsforge_style/License.txt $(SPRITE_DIR) $(SPRITE_PAPER_DIR) $(BUILD_DIR)/pmtiles_style/
-	python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
+	PMTILES_SCHEMA='$(PMTILES_SCHEMA)' python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
 		$(PMTILES_STYLE_GLYPH_RANGES) $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE)
 	cp styles/pmtiles_style/glyphs-LICENSE.txt $(BUILD_DIR)/pmtiles_style/glyphs/LICENSE.txt
 	cd $(BUILD_DIR)/pmtiles_style && $(ZIP_CMD) $@ *
