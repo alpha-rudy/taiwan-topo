@@ -916,8 +916,8 @@ $(WIKIDATA_CACHE): $(REGION_EXTRACT).o5m osm_scripts/build_wikidata_cache.py
 	python3 $(ROOT_DIR)/osm_scripts/build_wikidata_cache.py $< "$@"
 
 .PHONY: named
-named: $(REGION_EXTRACT)_name.o5m
-$(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE) osm_scripts/complete_name.py
+named: $(REGION_EXTRACT)_name.osm.pbf
+$(REGION_EXTRACT)_name.osm.pbf: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE) osm_scripts/complete_name.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
@@ -927,11 +927,11 @@ $(REGION_EXTRACT)_name.o5m: $(REGION_EXTRACT).o5m $(WIKIDATA_CACHE) osm_scripts/
 	rm -f "$$name_pbf" $@; \
 	READING_LANG=$(READING_LANG) WIKIDATA_CACHE="$(WIKIDATA_CACHE)" python3 $(ROOT_DIR)/osm_scripts/complete_name.py $< "$$name_pbf"; \
 	test -s "$$name_pbf" || { echo "ERROR: complete_name.py produced no output ($$name_pbf)" >&2; exit 1; }; \
-	$(OSMCONVERT_CMD) "$$name_pbf" --out-o5m -o=$@
+	mv "$$name_pbf" $@
 
 .PHONY: sed
 sed: $(REGION_EXTRACT)-sed.osm.pbf
-$(REGION_EXTRACT)-sed.osm.pbf: $(REGION_EXTRACT)_name.o5m osm_scripts/process_osm.sh osm_scripts/process_osm.py
+$(REGION_EXTRACT)-sed.osm.pbf: $(REGION_EXTRACT)_name.osm.pbf osm_scripts/process_osm.sh osm_scripts/process_osm.py $(TOOLS_DIR)/pbf_utils.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(dir $@)
@@ -961,7 +961,7 @@ $(META): meta/meta.osm $(VERSION_STAMP)
 	-rm -rf $@
 	cd $(EXTRACT_DIR) && cat $(ROOT_DIR)/meta/meta.osm | $(SED_CMD) -e "s/__version__/$(VERSION)/g" > $@
 
-$(GMAP_INPUT): $(REGION_EXTRACT)_name.o5m $(if $(ELEVATION_FILE),$(ELEVATION))
+$(GMAP_INPUT): $(REGION_EXTRACT)_name.osm.pbf $(if $(ELEVATION_FILE),$(ELEVATION))
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	-rm -rf $@

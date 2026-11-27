@@ -1,7 +1,15 @@
 import math
+import os
 import sys
 
 import osmium
+import osmium.filter
+
+_TOOLS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'tools'))
+if _TOOLS_DIR not in sys.path:
+    sys.path.insert(0, _TOOLS_DIR)
+
+from pbf_utils import run_parallel_pbf
 
 hknetworks = {}
 national_park = {}
@@ -102,10 +110,71 @@ def my_g_format(the_float):
     return f"{the_float:.2f}".rstrip('0').rstrip('.')
 
 
+def _strip_disused_tags(tags):
+    disused = None
+    for k in tags:
+        if k.startswith('disused:'):
+            if disused is None:
+                disused = [k]
+            else:
+                disused.append(k)
+    if disused is not None:
+        for k in disused:
+            del tags[k]
+
+
+def _load_metadata_from_file(infile):
+    """Single C++-filtered pass to populate hknetworks, national_park,
+    strict_protected, and summit_boards directly from the input OSM file."""
+    fp = (
+        osmium.FileProcessor(infile)
+        .with_filter(osmium.filter.EntityFilter(osmium.osm.NODE | osmium.osm.RELATION))
+        .with_filter(osmium.filter.KeyFilter('route', 'boundary', 'man_made'))
+    )
+    for o in fp:
+        if isinstance(o, osmium.osm.Relation):
+            if not o.members:
+                continue
+            tags = o.tags
+            rtype = tags.get('type')
+            if (
+                rtype == 'route'
+                and tags.get('route') == 'hiking'
+                and 'name' in tags
+                and 'network' in tags
+            ):
+                if tags.get('access', '') == 'no':
+                    continue
+                network = {
+                    'name': tags['name'],
+                    'name:en': tags['name:en'],
+                    'network': tags['network'],
+                    'ref': tags.get('ref', ''),
+                }
+                for m in o.members:
+                    hknetworks.setdefault(m.ref, []).append(network)
+            elif rtype == 'boundary' and 'name' in tags:
+                boundary = tags.get('boundary')
+                if boundary == 'national_park':
+                    parks = {'name': tags['name'], 'name:en': tags['name:en']}
+                    for m in o.members:
+                        if m.role == 'outer' and m.type == 'w':
+                            national_park[m.ref] = parks
+                elif boundary == 'protected_area' and tags.get('protect_class') == '1':
+                    ways = {'name': tags['name'], 'name:en': tags['name:en']}
+                    for m in o.members:
+                        if m.role == 'outer' and m.type == 'w':
+                            strict_protected[m.ref] = ways
+        elif isinstance(o, osmium.osm.Node) and o.tags.get('man_made') == 'summit_board':
+            lon, lat = o.location.lon, o.location.lat
+            summit_boards.setdefault((int(lon * 100), int(lat * 100)), []).append((lon, lat))
+
+
 class MapsforgeHandler(osmium.SimpleHandler):
-    def __init__(self, writer):
+    def __init__(self, writer, strip_disused=False):
         osmium.SimpleHandler.__init__(self)
         self.writer = writer
+        self.strip_disused = strip_disused
 
     def node(self, n):
         if len(n.tags) == 0:
@@ -113,8 +182,12 @@ class MapsforgeHandler(osmium.SimpleHandler):
                 self.writer.add_node(n)
                 return
             tags = {}
+            had_tags = False
         else:
             tags = dict(n.tags)
+            had_tags = True
+            if self.strip_disused:
+                _strip_disused_tags(tags)
 
         if n.id in hknetworks:
             self.handle_hknetwork_node(n.id, tags)
@@ -146,13 +219,18 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
             tags['osm_id'] = f"P/{n.id}"
             n = n.replace(tags=tags)
+        elif had_tags:
+            n = n.replace(tags=tags)
         self.writer.add_node(n)
 
     def way(self, w):
         if len(w.tags) == 0 and w.id not in national_park and w.id not in strict_protected:
             self.writer.add_way(w)
             return
+        had_tags = len(w.tags) > 0
         tags = dict(w.tags)
+        if had_tags and self.strip_disused:
+            _strip_disused_tags(tags)
 
         if w.id in hknetworks and 'highway' in tags:
             self.handle_hknetwork_way(w.id, tags)
@@ -175,6 +253,8 @@ class MapsforgeHandler(osmium.SimpleHandler):
 
             tags['osm_id'] = f"W/{w.id}"
             w = w.replace(tags=tags)
+        elif had_tags:
+            w = w.replace(tags=tags)
         self.writer.add_way(w)
 
     def relation(self, r):
@@ -182,14 +262,17 @@ class MapsforgeHandler(osmium.SimpleHandler):
             self.writer.add_relation(r)
             return
         tags = dict(r.tags)
+        if self.strip_disused:
+            _strip_disused_tags(tags)
 
-        if tags.get('amenity') == 'bicycle_rental':
-            self.handle_bicycle_rental(tags)
+        if tags:
+            if tags.get('amenity') == 'bicycle_rental':
+                self.handle_bicycle_rental(tags)
 
-        if 'addr:housenumber' in tags:
-            self.handle_house_number(tags)
+            if 'addr:housenumber' in tags:
+                self.handle_house_number(tags)
 
-        tags['osm_id'] = f"R/{r.id}"
+            tags['osm_id'] = f"R/{r.id}"
         r = r.replace(tags=tags)
         self.writer.add_relation(r)
 
@@ -406,6 +489,18 @@ class MapsforgeHandler(osmium.SimpleHandler):
             tags['name:en'] = '(closed)'
 
 
+def _process_shard(args):
+    in_shard, out_shard, strip_disused = args
+    writer = osmium.SimpleWriter(out_shard, overwrite=True)
+    MapsforgeHandler(writer, strip_disused=strip_disused).apply_file(in_shard)
+    writer.close()
+
+
+def _run_serial(infile, outfile, strip_disused=False):
+    writer = osmium.SimpleWriter(outfile, overwrite=True)
+    MapsforgeHandler(writer, strip_disused=strip_disused).apply_file(infile)
+    writer.close()
+
 
 def main():
     if len(sys.argv) < 3:
@@ -413,30 +508,35 @@ def main():
         sys.exit(-1)
     infile = sys.argv[1]
     outfile = sys.argv[2]
-    prefix = sys.argv[3] if len(sys.argv) > 3 else ""
+    prefix = sys.argv[3] if len(sys.argv) > 3 else None
 
-    # Use prefixed filenames to avoid conflicts between regions
-    hknetworks_file = f"{prefix}_hknetworks.osm" if prefix else "hknetworks.osm"
-    national_park_file = f"{prefix}_national_park.osm" if prefix else "national_park.osm"
-    strict_protected_file = f"{prefix}_strict_protected.osm" if prefix else "strict_protected.osm"
-    summit_board_file = f"{prefix}_summit_board.osm" if prefix else "summit_board.osm"
+    if prefix is not None:
+        # Legacy mode: load metadata from pre-filtered osmfilter .osm files
+        hknetworks_file = f"{prefix}_hknetworks.osm" if prefix else "hknetworks.osm"
+        national_park_file = f"{prefix}_national_park.osm" if prefix else "national_park.osm"
+        strict_protected_file = f"{prefix}_strict_protected.osm" if prefix else "strict_protected.osm"
+        summit_board_file = f"{prefix}_summit_board.osm" if prefix else "summit_board.osm"
 
-    nknetwork_loader = HknetworkLoader()
-    nknetwork_loader.apply_file(hknetworks_file)
+        HknetworkLoader().apply_file(hknetworks_file)
+        NationalParkLoader().apply_file(national_park_file)
+        StrictProtectedLoader().apply_file(strict_protected_file)
+        SummitBoardLoader().apply_file(summit_board_file)
+        strip_disused = False
+    else:
+        _load_metadata_from_file(infile)
+        strip_disused = True
 
-    national_park_loader = NationalParkLoader()
-    national_park_loader.apply_file(national_park_file)
-
-    strict_protected_loader = StrictProtectedLoader()
-    strict_protected_loader.apply_file(strict_protected_file)
-
-    summit_board_loader = SummitBoardLoader()
-    summit_board_loader.apply_file(summit_board_file)
-
-    writer = osmium.SimpleWriter(outfile)
-    mapsforge_handler = MapsforgeHandler(writer)
-    mapsforge_handler.apply_file(infile)
-    writer.close()
+    workers = int(os.environ.get('PROCESS_OSM_WORKERS', '0')) or (os.cpu_count() or 1)
+    ran_parallel, _ = run_parallel_pbf(
+        infile,
+        outfile,
+        _process_shard,
+        workers,
+        extra_args=(strip_disused,),
+        tmp_prefix='.process_osm_',
+    )
+    if not ran_parallel:
+        _run_serial(infile, outfile, strip_disused=strip_disused)
 
 
 if __name__ == '__main__':

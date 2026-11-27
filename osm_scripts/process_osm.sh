@@ -10,57 +10,11 @@ fi
 
 rm -f "$outfile"
 
-# Generate unique prefix based on input filename to avoid conflicts between regions
-prefix=$(basename "$infile" .o5m)
-
-osmfilter \
-    --drop-nodes \
-    --drop-ways \
-    --drop-version \
-    --ignore-dependencies \
-    --keep-relations='type=route and route=hiking and name= and network=' \
-    "$infile" -o="${prefix}_hknetworks.osm"
-
-osmfilter \
-    --drop-nodes \
-    --drop-ways \
-    --drop-version \
-    --ignore-dependencies \
-    --keep-relations='type=boundary and boundary=national_park and name=' \
-    "$infile" -o="${prefix}_national_park.osm"
-
-osmfilter \
-    --drop-nodes \
-    --drop-ways \
-    --drop-version \
-    --ignore-dependencies \
-    --keep-relations='type=boundary and boundary=protected_area and protect_class=1 and name=' \
-    "$infile" -o="${prefix}_strict_protected.osm"
-
-osmfilter \
-    --drop-ways \
-    --drop-relations \
-    --drop-version \
-    --ignore-dependencies \
-    --keep-nodes='man_made=summit_board' \
-    "$infile" -o="${prefix}_summit_board.osm"
-
-filtered_o5m="${prefix}_filtered.o5m"
-filtered_pbf="${prefix}_filtered.osm.pbf"
-# NB: name:zh is intentionally KEPT (do not add it back to --drop-tags). mapsforge renders
-# Chinese via the name:zh tag (preferred-languages=zh,en) and complete_name.py no longer
-# overwrites `name` with the Chinese value, so dropping name:zh would leave the mapsforge
-# map with only the native `name` (e.g. French/German in the Alps). ref:zh is still dropped
-# because the pipeline does not complete it, so `ref` carries the rendered value.
-osmfilter \
-    --drop-version \
-    --ignore-dependencies \
-    --drop-tags='disused:*=' \
-    "$infile" -o="$filtered_o5m"
-${OSMCONVERT_CMD} "$filtered_o5m" -o="$filtered_pbf"
-
-script_dir="$(dirname $0)"
-python3 "$script_dir/process_osm.py" "$filtered_pbf" "$outfile" "$prefix"
-
-# Cleanup intermediate files
-rm -f "${prefix}_hknetworks.osm" "${prefix}_national_park.osm" "${prefix}_strict_protected.osm" "${prefix}_summit_board.osm" "$filtered_o5m" "$filtered_pbf"
+# NB: name:zh is intentionally KEPT (do not drop it). mapsforge renders Chinese
+# via the name:zh tag (preferred-languages=zh,en) and complete_name.py no longer
+# overwrites `name` with the Chinese value, so dropping name:zh would leave the
+# mapsforge map with only the native `name` (e.g. French/German in the Alps).
+# disused:* tags and metadata lookups (hknetworks, national_park,
+# strict_protected, summit_board) are handled directly inside process_osm.py.
+script_dir="$(dirname "$0")"
+python3 "$script_dir/process_osm.py" "$infile" "$outfile"
