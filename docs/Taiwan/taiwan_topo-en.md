@@ -391,6 +391,8 @@ RudyMap may be freely downloaded and shared with others (please use this page's 
 
 
 ## Major Revision History
+* 2026, 11/26
+  * Thanks to kcwu, rewrite portal pages and legends
 * 2026, 11/19
   * Thanks to Cedric, all regions support pmtiles
 * 2026, 10/8
