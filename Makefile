@@ -777,16 +777,16 @@ endif
 # Parameters: target_name, done_file, output_dir, style_dir, style_name, dem_config, extra_deps
 
 # map_hidem: High-resolution map with DEM (camping config)
-$(eval $(call MAP_BUILD,map_hidem,$(MAP_HIDEM),$(MAP_HIDEM_DIR),$(HR_STYLE_DIR),$(HR_STYLE),gmapdem_camp.cfg,$(GMAPDEM)))
+$(eval $(call MAP_BUILD,map_hidem,$(MAP_HIDEM),$(MAP_HIDEM_DIR),$(HR_STYLE_DIR),$(HR_STYLE),gmapdem_camp.cfg,$(GMAPDEM),pc))
 
 # map_lodem: Low-resolution map with DEM (standard config)
-$(eval $(call MAP_BUILD,map_lodem,$(MAP_LODEM),$(MAP_LODEM_DIR),$(LR_STYLE_DIR),$(LR_STYLE),gmapdem.cfg,$(GMAPDEM)))
+$(eval $(call MAP_BUILD,map_lodem,$(MAP_LODEM),$(MAP_LODEM_DIR),$(LR_STYLE_DIR),$(LR_STYLE),gmapdem.cfg,$(GMAPDEM),handheld))
 
 # map_nodem_hr: High-resolution map without DEM
-$(eval $(call MAP_BUILD,map_nodem_hr,$(MAP_NODEM_HR),$(MAP_NODEM_HR_DIR),$(HR_STYLE_DIR),$(HR_STYLE),,))
+$(eval $(call MAP_BUILD,map_nodem_hr,$(MAP_NODEM_HR),$(MAP_NODEM_HR_DIR),$(HR_STYLE_DIR),$(HR_STYLE),,,pc))
 
 # map_nodem_lr: Low-resolution map without DEM
-$(eval $(call MAP_BUILD,map_nodem_lr,$(MAP_NODEM_LR),$(MAP_NODEM_LR_DIR),$(LR_STYLE_DIR),$(LR_STYLE),,))
+$(eval $(call MAP_BUILD,map_nodem_lr,$(MAP_NODEM_LR),$(MAP_NODEM_LR_DIR),$(LR_STYLE_DIR),$(LR_STYLE),,,handheld))
 
 .DELETE_ON_ERROR: $(BOUNDS_ZIP)
 $(BOUNDS_ZIP):
