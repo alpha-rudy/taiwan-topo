@@ -709,8 +709,18 @@ $(POI_EXTRACT).osm.pbf: $(REGION_EXTRACT)-sed.osm.pbf
 # poi: Standard POI v3 database (fast parallel geo-tagging via poi-geotag.py)
 $(eval $(call POI_BUILD,poi,$(POI),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_MAPPING) $(TOOLS_DIR)/poi-geotag.py $(TOOLS_DIR)/pbf_utils.py,$(POI_MAPPING),$(OSMOSIS_CMD),,,false))
 
-# poi_v2: POI v2 database using Java 8 osmosis
+# poi_v2: POI v2 database converted losslessly from POI v3 (keeps identical
+# data and avoids running legacy Java 8 osmosis-0.48.3 a second time)
+ifeq ($(POI_V2_MAPPING),$(POI_MAPPING))
+.PHONY: poi_v2
+poi_v2: $(POI_V2)
+$(POI_V2): $(POI) $(TOOLS_DIR)/poi-v3-to-v2.py
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(BUILD_DIR)
+	python3 $(TOOLS_DIR)/poi-v3-to-v2.py "$<" "$@"
+else
 $(eval $(call POI_BUILD,poi_v2,$(POI_V2),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_V2_MAPPING),$(POI_V2_MAPPING),$(OSMOSIS_POI_V2_CMD),,JAVA_HOME=$(JAVA8_HOME) PATH=$(JAVA8_HOME)/bin:$$$$PATH))
+endif
 
 # addr: Address POI database from sed-processed extract using Java 8 osmosis
 $(eval $(call POI_BUILD,addr,$(ADDR),$(REGION_EXTRACT)-sed.osm.pbf,$(REGION_EXTRACT)-sed.osm.pbf $(ADDR_MAPPING),$(ADDR_MAPPING),$(OSMOSIS_POI_V2_CMD),,JAVA_HOME=$(JAVA8_HOME) PATH=$(JAVA8_HOME)/bin:$$$$PATH))
