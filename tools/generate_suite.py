@@ -39,6 +39,7 @@ Example:
 
 import glob
 import os
+import shlex
 import re
 
 import click
@@ -359,7 +360,7 @@ def main(region, region_lower, name_zh, name_en, dem_name, lang, extract_file, l
         print(f"  python3 tools/generate_suite.py \\")
         print(f"    --region {region} \\")
         print(f"    --region-lower {region_lower} \\")
-        print(f"    --name-zh {name_zh} --name-en '{name_en}' \\")
+        print(f"    --name-zh {shlex.quote(name_zh)} --name-en {shlex.quote(name_en)} \\")
         print(f"    --lang {lang} \\")
         print(f"    --extract-file {extract_file} \\")
         print(f"    --left {left} --right {right} --bottom {bottom} --top {top}")

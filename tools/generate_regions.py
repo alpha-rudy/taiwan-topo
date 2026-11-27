@@ -72,40 +72,52 @@ PMTILES = {
 def suite_vars(path):
     """The variables a suite file sets inside its ifeq block (VAR := value or VAR = value)."""
     found = {}
-    for line in path.read_text().splitlines():
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.split("#", 1)[0]  # a trailing make comment is not part of the value
         m = re.match(r"^([A-Z][A-Z0-9_]*)\s*:?=\s*(.*?)\s*$", line)
         if m and m.group(1) not in found:
             found[m.group(1)] = m.group(2)
     return found
 
 
-def expand(value, v):
-    return re.sub(r"\$\((\w+)\)", lambda m: v.get(m.group(1), m.group(0)), value)
+def expand(value, v, where):
+    """value with the suite file's own variables filled in; one left over is an error."""
+    out = re.sub(r"\$\((\w+)\)", lambda m: v.get(m.group(1), m.group(0)), value)
+    if "$(" in out:
+        raise ValueError("%s: cannot expand %r" % (where, value))
+    return out
 
 
-def mapsforge_map(map_id, v):
+def mapsforge_map(map_id, v, where):
     """The map, its package (gts_all) and its HGT, from one suite file's variables."""
-    name = expand(v["NAME_MAPSFORGE"], v)
+    name = expand(v["NAME_MAPSFORGE"], v, where)
     targets = v.get("TARGETS", "").split()
-    hgt = Path(expand(v["HGT"], v)).name if v.get("HGT") else None
+    # only the file name is listed; the directory ($(ROOT_DIR)/hgt) is the build's
+    hgt = Path(v["HGT"]).name if v.get("HGT") else None
     entry = {"id": map_id, "file": name + ".map.zip", "themes": MAP_THEMES[map_id]}
     package = None
     if "gts_all" in targets:
-        package = {"id": map_id, "file": name + ".zip", "map": map_id,
-                   "theme": GTS_THEMES.get(v.get("GTS_STYLE", "")), "dem": hgt}
+        theme = GTS_THEMES.get(v.get("GTS_STYLE", ""))
+        if not theme:
+            raise ValueError("%s: GTS_STYLE %r is not a theme the list knows" % (where, v.get("GTS_STYLE")))
+        package = {"id": map_id, "file": name + ".zip", "map": map_id, "theme": theme, "dem": hgt}
     return entry, package, hgt, name, targets
 
 
 def region(suite_dir):
-    v = suite_vars(suite_dir / (suite_dir.name + ".mk"))
-    if not (v.get("REGION_NAME_ZH") and v.get("REGION_NAME_EN")):
+    mk = suite_dir / (suite_dir.name + ".mk")
+    v = suite_vars(mk)
+    names = [v.get("REGION_NAME_ZH"), v.get("REGION_NAME_EN")]
+    if not any(names):
         return None
-    main, main_pkg, main_hgt, name, targets = mapsforge_map("rudy", v)
+    if not all(names):
+        raise ValueError("%s: REGION_NAME_ZH and REGION_NAME_EN go together" % mk)
+    main, main_pkg, main_hgt, name, targets = mapsforge_map("rudy", v, mk)
     main["default"] = True
     maps, packages, dems = [main], [main_pkg], [main_hgt]
     lite_mk = suite_dir / (suite_dir.name + "_lite.mk")
     if lite_mk.exists():
-        lite, lite_pkg, lite_hgt, _, _ = mapsforge_map("lite", suite_vars(lite_mk))
+        lite, lite_pkg, lite_hgt, _, _ = mapsforge_map("lite", suite_vars(lite_mk), lite_mk)
         maps.append(lite)
         packages.append(lite_pkg)
         dems.append(lite_hgt)
@@ -141,10 +153,10 @@ def main(argv):
            "regions": regions()}
     text = json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
     if args.output:
-        Path(args.output).write_text(text)
+        Path(args.output).write_text(text, encoding="utf-8")
     else:
         sys.stdout.write(text)
-    print("regions: %d listed" % len(doc["regions"]), file=sys.stderr)
+    print(f"regions: {len(doc['regions'])} listed", file=sys.stderr)
 
 
 if __name__ == "__main__":
