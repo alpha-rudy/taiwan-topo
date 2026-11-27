@@ -281,7 +281,29 @@ comma := ,
 MAP_FRAME_WORDS = $(subst $(comma), ,$(MAP_FRAME))
 MAP_FRAME_LATLON = $(word 2,$(MAP_FRAME_WORDS)),$(word 1,$(MAP_FRAME_WORDS)),$(word 4,$(MAP_FRAME_WORDS)),$(word 3,$(MAP_FRAME_WORDS))
 
+# Set PARALLEL_PMTILES=0 to disable running pmtiles in parallel with the rest
+# of the suite's low-memory targets (poi, locus_poi, styles, packaging).
+PARALLEL_PMTILES ?= 1
+HAS_PMTILES := $(if $(filter pmtiles,$(TARGETS)),1,)
+
+.PHONY: all all_pmtiles_prereqs all_no_pmtiles
+all_pmtiles_prereqs: $(REGION_EXTRACT)-sed.osm.pbf $(META) $(if $(HGT),$(DEM_PMTILES)) $(if $(filter mapsforge mapsforge_zip gts_all carto_all locus_map,$(TARGETS)),$(MAPSFORGE))
+all_no_pmtiles: $(filter-out pmtiles,$(TARGETS))
+
+ifeq ($(and $(filter 1,$(PARALLEL_PMTILES)),$(HAS_PMTILES)),1)
+all: all_pmtiles_prereqs
+	@set -e; \
+	kill_tree() { local pid="$$1" children child; children="$$(pgrep -P "$$pid" 2>/dev/null || true)"; kill "$$pid" 2>/dev/null || true; for child in $$children; do kill_tree "$$child"; done; }; \
+	pm_pid=""; \
+	trap '[ -n "$$pm_pid" ] && { kill_tree "$$pm_pid"; wait "$$pm_pid" 2>/dev/null || true; }' EXIT; \
+	$(MAKE) --no-print-directory pmtiles & \
+	pm_pid=$$!; \
+	$(MAKE) --no-print-directory all_no_pmtiles; \
+	wait "$$pm_pid"; \
+	trap - EXIT
+else
 all: $(TARGETS)
+endif
 
 # Helper targets used by SUITE_BUILD (macros.mk) to overlap single-threaded,
 # low-memory (~750 MiB) NSIS LZMA packaging with the next suite's build while
