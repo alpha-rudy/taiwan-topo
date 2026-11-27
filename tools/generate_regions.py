@@ -15,6 +15,24 @@ REGION_NAME_ZH and REGION_NAME_EN. Its Lite map comes from <id>_lite.mk beside
 it. Everything else is read from the suite files, so the list follows the
 suites and any build can publish the same list (Taiwan's weekly install does).
 
+What a downstream can rely on:
+- Every "id" (a region's, a map's, a theme's, a style's, a package's) stays
+  the same; a downstream may store them. A package's "map" and "theme", and a
+  map's "themes", are ids: of the region's mapsforge.maps and of the top-level
+  mapsforge.themes.
+- "schema_version" goes up only with a change a reader of the old shape would
+  misread (a field renamed, removed or given another meaning). New fields do
+  not raise it; a downstream ignores fields it does not know.
+- pmtiles.styles names files inside rudymap_pmtiles_style.zip, which are also
+  in the unpacked rudymap_pmtiles_style/ folder beside it.
+- A file listed may not exist yet: the list follows the suites, and a region
+  not rebuilt since a target was added has no such file (a 404) until it is.
+- Whether an archive and a style can be drawn together is in the files' own
+  metadata ("taiwan-topo:schema"), not here: the balancer sends each file to a
+  mirror up to date for that file, so the list and a file may be of different
+  weeks. If the list ever carries the code (pmtiles.schema), it only helps
+  decide whether to download.
+
 Usage: generate_regions.py [-o OUT.json]
 """
 import argparse
