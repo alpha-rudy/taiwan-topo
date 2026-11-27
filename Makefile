@@ -1068,8 +1068,9 @@ ifeq ($(MAPSFORGE_USE_MFTOOL),1)
 MAPSFORGE_MIX_CACHE_DIR := $(ELEVATIONS_DIR)/mapsforge_cache
 MAPSFORGE_MIX_HASH := $(shell printf '%s\n' "$(MAPSFORGE_MIX)" "$(MAP_FRAME)" "$(OSMCONVERT_BOUNDING)" "$(OSMOSIS_BOUNDING)" "$(MAPSFORGE_NTL)" "$(TAG_MAPPING)" "$(MAPSFORGE_EXTRA_OPTS)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
 MAPSFORGE_MIX_MAP := $(MAPSFORGE_MIX_CACHE_DIR)/$(REGION)_$(basename $(notdir $(MAPSFORGE_MIX)))_$(MAPSFORGE_MIX_HASH).map
-MAPSFORGE_OSM_PBF := $(BUILD_DIR)/$(NAME_MAPSFORGE)_osm.osm.pbf
-MAPSFORGE_OSM_MAP := $(BUILD_DIR)/$(NAME_MAPSFORGE)_osm.map
+MAPSFORGE_OSM_HASH := $(shell printf '%s\n' "$(MAP_FRAME)" "$(OSMCONVERT_BOUNDING)" "$(OSMOSIS_BOUNDING)" "$(MAPSFORGE_NTL)" "$(TAG_MAPPING)" "$(MAPSFORGE_EXTRA_OPTS)" "$(MAPSFORGE_COMMENT)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
+MAPSFORGE_OSM_PBF := $(BUILD_DIR)/$(REGION)_osm_$(MAPSFORGE_OSM_HASH).osm.pbf
+MAPSFORGE_OSM_MAP := $(BUILD_DIR)/$(REGION)_osm_$(MAPSFORGE_OSM_HASH).map
 
 $(MAPSFORGE_MIX_MAP): $(MAPSFORGE_MIX) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-layer-pbf.sh $(TOOLS_DIR)/mapsforge-build.sh $(TOOLS_DIR)/frame-landsea.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
