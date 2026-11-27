@@ -71,7 +71,8 @@ def find_next_mapid_pair(suites_dir="suites"):
 
 
 def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extract_file,
-                         left, right, bottom, top, no_elevation=False, landsea=False):
+                         left, right, bottom, top, no_elevation=False, landsea=False,
+                         name_zh="", name_en=""):
     """Create the base mapsforge suite .mk file.
 
     When no_elevation is True the region ships no contour/HGT data: the
@@ -111,6 +112,8 @@ def create_base_suite_mk(region, region_lower, dem_name, lang, code_page, extrac
     return f"""# Suite: {region_lower} - {region} {kind}
 ifeq ($(SUITE),{region_lower})
 REGION := {region}
+REGION_NAME_ZH := {name_zh}
+REGION_NAME_EN := {name_en}
 {dem_name_line}READING_LANG := {lang}
 MAP_LANG := zh
 CODE_PAGE := {code_page}
@@ -252,6 +255,10 @@ Suitable for offline use on Garmin, Android, and iOS devices.
 @click.command()
 @click.option('--region', required=True, help='Region name (e.g., Everest)')
 @click.option('--region-lower', required=True, help='Region name lowercase (e.g., everest)')
+@click.option('--name-zh', required=True,
+              help='Chinese name the regions list shows (rudymap_regions.json), e.g. 日光尾瀨')
+@click.option('--name-en', required=True,
+              help='English name the regions list shows, e.g. Nikko-Oze')
 @click.option('--dem-name', default='AW3D30', help='DEM name (default: AW3D30)')
 @click.option('--lang', required=True, help='Language code (e.g., ne, hi, ja)')
 @click.option('--extract-file', required=True, help='Geofabrik extract (e.g., nepal-latest)')
@@ -271,7 +278,7 @@ Suitable for offline use on Garmin, Android, and iOS devices.
                    '(requires --no-elevation; regions with contours get sea from the '
                    'kcwu mix file instead)')
 @click.option('--dry-run', is_flag=True, default=False, help='Show what would be created without creating files')
-def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom, top,
+def main(region, region_lower, name_zh, name_en, dem_name, lang, extract_file, left, right, bottom, top,
          code_page, mapid_native, mapid_english, no_elevation, landsea, dry_run):
     """Generate suite .mk files for a new TOPO map region."""
     
@@ -315,7 +322,8 @@ def main(region, region_lower, dem_name, lang, extract_file, left, right, bottom
     # Base mapsforge suite
     base_mk = create_base_suite_mk(region, region_lower, dem_name, lang, code_page,
                                    extract_file, left, right, bottom, top,
-                                   no_elevation=no_elevation, landsea=landsea)
+                                   no_elevation=no_elevation, landsea=landsea,
+                                   name_zh=name_zh, name_en=name_en)
     files_to_create[f"{suite_dir}/{region_lower}.mk"] = base_mk
 
     # Garmin suite (native language)
