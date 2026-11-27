@@ -1153,11 +1153,13 @@ PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStr
 # field gone only because no feature had it this time is let through by naming
 # it in PMTILES_SCHEMA_ALLOW (e.g. make ... PMTILES_SCHEMA_ALLOW='poi.climbing'),
 # after checking that is all it is. PMTILES_LAST_RELEASE is where last release
-# is read; empty skips that comparison (an offline build). The stamp makes a
-# changed code rebuild the archive and the style zip.
+# is read: the balancer's root, which reaches every region's files (its /v1/
+# lists Taiwan's only); empty skips that comparison (an offline build). The
+# stamp makes a changed code rebuild the archive and the style zip. A failed
+# check removes the archive, so the next make checks it again.
 PMTILES_SCHEMA := 1
 PMTILES_SCHEMA_ALLOW ?=
-PMTILES_LAST_RELEASE ?= https://rudymap.tw/v1/
+PMTILES_LAST_RELEASE ?= https://rudymap.tw/
 PMTILES_SCHEMA_STAMP := $(BUILD_DIR)/.pmtiles-schema-$(PMTILES_SCHEMA)
 $(PMTILES_SCHEMA_STAMP):
 	mkdir -p $(BUILD_DIR)
@@ -1180,7 +1182,6 @@ $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING)
 		"$(PMTILES_PROCESS)" \
 		"$(VERSION)" \
 		"$(MAP_FRAME)"
-	# A failed check removes the archive, so the next make checks it again.
 	PMTILES_SCHEMA_ALLOW='$(PMTILES_SCHEMA_ALLOW)' \
 	python3 $(TOOLS_DIR)/pmtiles-schema-check.py "$@" "$(PMTILES_SCHEMA)" "$(PMTILES_LAST_RELEASE)" \
 		$(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) || { rm -f "$@"; exit 1; }

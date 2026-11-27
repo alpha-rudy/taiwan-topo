@@ -12,7 +12,7 @@ fails the build when the code says "compatible" and the archive says otherwise:
 1. Every source-layer the styles name is in the new archive's vector_layers.
    tilemaker lists every layer in the config there, data or not.
 2. The new archive carries SCHEMA.
-3. Against last release (LAST_RELEASE, e.g. the balancer's https://rudymap.tw/v1/;
+3. Against last release (LAST_RELEASE, e.g. the balancer's https://rudymap.tw/;
    only the archive's header and metadata are read, and the style zip): with
    the same code, a layer or a field last release's styles read that last
    release's archive had and the new one lacks is a break. A code lower than
@@ -59,7 +59,7 @@ def fetch(url, start=None, end=None):
     with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
         data = r.read()
     # a server that ignores Range (a file: URL) sends the whole file
-    if start is not None and len(data) > end - start + 1:
+    if start is not None and end is not None and len(data) > end - start + 1:
         data = data[start:end + 1]
     return data
 
@@ -96,7 +96,11 @@ def _walk(e, out):
         if op in ("get", "has", "!has") and len(e) == 2 and isinstance(e[1], str):
             out.add(e[1])
         elif isinstance(op, str) and op in LEGACY_OPS and len(e) >= 2 \
-                and isinstance(e[1], str) and not e[1].startswith("$"):
+                and isinstance(e[1], str) and not e[1].startswith("$") \
+                and not any(isinstance(x, list) for x in e[2:]):
+            # a legacy filter compares its field with literals; with an
+            # expression after it (["in", "foot", ["get", "class"]]) the
+            # string is a literal, not a field
             out.add(e[1])
         for x in e[1:]:
             _walk(x, out)
@@ -131,9 +135,11 @@ def main(argv):
     if len(argv) < 4:
         sys.exit(__doc__)
     archive, schema, base, style_paths = argv[0], int(argv[1]), argv[2], argv[3:]
+    if base:
+        base = base.rstrip("/") + "/"
     styles = []
     for p in style_paths:
-        with open(p) as f:
+        with open(p, encoding="utf-8") as f:
             styles.append(json.load(f))
     new = local_metadata(archive)
     new_fields = fields(new)
