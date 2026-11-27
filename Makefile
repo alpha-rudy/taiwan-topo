@@ -706,8 +706,18 @@ $(POI_EXTRACT).osm.pbf: $(REGION_EXTRACT)-sed.osm.pbf
 # Using the POI_BUILD macro to create POI database targets.
 # Parameters: target, output, input, deps, mapping, osmosis_cmd, extra_opts, java_env
 
-# poi: Standard POI v3 database (fast parallel geo-tagging via poi-geotag.py)
-$(eval $(call POI_BUILD,poi,$(POI),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_MAPPING) $(TOOLS_DIR)/poi-geotag.py $(TOOLS_DIR)/pbf_utils.py,$(POI_MAPPING),$(OSMOSIS_CMD),,,false))
+# poi: Standard POI v3 database (fast parallel geo-tagging via poi-geotag.py).
+# Built under a region+mapping+bounding shared filename so sibling suites in the
+# same BUILD_DIR (e.g. taiwan and taiwan_lite) reuse the identical .poi file.
+POI_SHARED_HASH := $(shell printf '%s\n' "$(POI_MAPPING)" "$(OSMIUM_BOUNDING)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
+POI_SHARED := $(BUILD_DIR)/$(REGION)_poi_$(POI_SHARED_HASH).poi
+$(eval $(call POI_BUILD,poi_shared,$(POI_SHARED),$(POI_EXTRACT).osm.pbf,$(POI_EXTRACT).osm.pbf $(POI_MAPPING) $(TOOLS_DIR)/poi-geotag.py $(TOOLS_DIR)/pbf_utils.py,$(POI_MAPPING),$(OSMOSIS_CMD),,,false))
+.PHONY: poi
+poi: $(POI)
+$(POI): $(POI_SHARED)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(BUILD_DIR)
+	ln -f $< $@ 2>/dev/null || cp -f $< $@
 
 # poi_v2: POI v2 database converted losslessly from POI v3 (keeps identical
 # data and avoids running legacy Java 8 osmosis-0.48.3 a second time)
