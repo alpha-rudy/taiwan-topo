@@ -3,8 +3,8 @@
 # osmium-append.sh - Append an OSM file into a target, renumbering the added
 # objects into a reserved, permanently OSM-free ID block.
 #
-# Usage: osmium-append.sh <target> <add> [namespace]
-#        osmium-append.sh <target> <add1> <ns1> [<add2> <ns2> ...]
+# Usage: osmium-append.sh [-o <output>] <target> <add> [namespace]
+#        osmium-append.sh [-o <output>] <target> <add1> <ns1> [<add2> <ns2> ...]
 #
 # Env:
 #   OSMCONVERT_CMD - path to osmconvert binary (falls back to `osmconvert`
@@ -57,8 +57,8 @@ SYNTHETIC_BASE=100000000000
 BLOCK_SIZE=10000000000
 
 usage() {
-    echo "Usage: $0 <target> <add> [namespace]" >&2
-    echo "       $0 <target> <add1> <ns1> [<add2> <ns2> ...]" >&2
+    echo "Usage: $0 [-o <output>] <target> <add> [namespace]" >&2
+    echo "       $0 [-o <output>] <target> <add1> <ns1> [<add2> <ns2> ...]" >&2
     exit 1
 }
 
@@ -77,11 +77,19 @@ block_for() {
     esac
 }
 
+output=""
+if [ "${1:-}" = "-o" ]; then
+    [ "$#" -ge 4 ] || usage
+    output="$2"
+    shift 2
+fi
+
 if [ "$#" -lt 2 ]; then
     usage
 fi
 
 target="$1"
+output="${output:-$target}"
 shift
 
 adds=()
@@ -174,8 +182,8 @@ if [ "${#probe_ids[@]}" -gt 0 ]; then
     done
 fi
 
-ext="${target##*.}"
-tmp_dir="$(dirname "$target")"
+ext="${output##*.}"
+tmp_dir="$(dirname "$output")"
 mgr_file="${tmp_dir}/.append_$$_mgr.pbf"
 ren_files=()
 
@@ -215,7 +223,7 @@ osmium merge \
     -Oo "$mgr_file"
 
 if [ "$ext" == "pbf" ]; then
-    mv "$mgr_file" "$target"
+    mv "$mgr_file" "$output"
 else
-    "${OSMCONVERT_CMD:-osmconvert}" "$mgr_file" -o="$target"
+    "${OSMCONVERT_CMD:-osmconvert}" "$mgr_file" -o="$output"
 fi
