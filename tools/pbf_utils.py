@@ -16,6 +16,7 @@ import os
 import shutil
 import struct
 import tempfile
+import zlib
 
 DEFAULT_MIN_PARALLEL_BYTES = 4 * 1024 * 1024
 DEFAULT_CHUNKS_PER_WORKER = 8
@@ -101,6 +102,101 @@ def copy_range(src_f, dst_f, offset, length, buf_size=4 * 1024 * 1024):
             raise EOFError("Unexpected EOF while copying PBF byte range")
         dst_f.write(chunk)
         remaining -= len(chunk)
+
+
+def decompress_blob(raw_blob):
+    """Extract raw payload bytes from a serialized PBF `Blob` message."""
+    pos = 0
+    n = len(raw_blob)
+    raw = None
+    zlib_data = None
+    while pos < n:
+        tag, pos = read_varint(raw_blob, pos)
+        field_no = tag >> 3
+        wire_type = tag & 0x07
+        if wire_type == 2 and field_no == 1:
+            length, pos = read_varint(raw_blob, pos)
+            raw = raw_blob[pos : pos + length]
+            pos += length
+        elif wire_type == 2 and field_no == 3:
+            length, pos = read_varint(raw_blob, pos)
+            zlib_data = raw_blob[pos : pos + length]
+            pos += length
+        else:
+            pos = skip_field(raw_blob, pos, wire_type)
+    if raw is not None:
+        return raw
+    if zlib_data is not None:
+        return zlib.decompress(zlib_data)
+    raise ValueError("Unsupported or empty PBF Blob compression")
+
+
+def primitive_block_entity_types(raw_pblock):
+    """Return set of entity types (`'n'`, `'w'`, `'r'`) in a `PrimitiveBlock`."""
+    types = set()
+    pos = 0
+    n = len(raw_pblock)
+    while pos < n:
+        tag, pos = read_varint(raw_pblock, pos)
+        field_no = tag >> 3
+        wire_type = tag & 0x07
+        if wire_type == 2 and field_no == 2:
+            length, pos = read_varint(raw_pblock, pos)
+            end = pos + length
+            gpos = pos
+            while gpos < end:
+                gtag, gpos = read_varint(raw_pblock, gpos)
+                gfield = gtag >> 3
+                gwire = gtag & 0x07
+                if gfield in (1, 2):
+                    types.add("n")
+                elif gfield == 3:
+                    types.add("w")
+                elif gfield == 4:
+                    types.add("r")
+                gpos = skip_field(raw_pblock, gpos, gwire)
+            pos = end
+        else:
+            pos = skip_field(raw_pblock, pos, wire_type)
+    return types
+
+
+def read_block_entity_types(src_f, block):
+    """Return entity types (`'n'`, `'w'`, `'r'`) contained in an `OSMData` block."""
+    _, _, blob_start, blob_size, _ = block
+    src_f.seek(blob_start)
+    raw_blob = src_f.read(blob_size)
+    return primitive_block_entity_types(decompress_blob(raw_blob))
+
+
+def find_first_block_with_types(src_f, data_blocks, target_types):
+    """Binary-search sorted `data_blocks` (n < w < r) for first block matching `target_types`.
+
+    Returns index into `data_blocks`, or `len(data_blocks)` if none match.
+    """
+    rank = {"n": 0, "w": 1, "r": 2}
+    min_target_rank = min(rank[t] for t in target_types)
+    lo, hi = 0, len(data_blocks)
+    while lo < hi:
+        mid = (lo + hi) // 2
+        btypes = read_block_entity_types(src_f, data_blocks[mid])
+        max_rank = max((rank[t] for t in btypes), default=-1)
+        if max_rank >= min_target_rank:
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
+
+
+def write_pbf_block_slice(src_f, header_block, data_blocks, start_idx, end_idx, outfile):
+    """Write `header_block` + `data_blocks[start_idx:end_idx]` raw to `outfile`."""
+    with open(outfile, "wb") as dst_f:
+        _, h_start, _, _, h_len = header_block
+        copy_range(src_f, dst_f, h_start, h_len)
+        if start_idx < end_idx:
+            seg_start = data_blocks[start_idx][1]
+            seg_end = data_blocks[end_idx - 1][1] + data_blocks[end_idx - 1][4]
+            copy_range(src_f, dst_f, seg_start, seg_end - seg_start)
 
 
 def concat_pbf_shards(shard_paths, outfile):
