@@ -163,12 +163,11 @@ case "$MODE" in
         rm -f "$OUTPUT"
         trap cleanup EXIT
 
+        # SED_PBF (produced from $(REGION_EXTRACT)) is already clipped by
+        # OSMCONVERT_BOUNDING with version metadata dropped. Run Guard 1,
+        # meta renumber+clip, and (when FRAME is set) land/sea probe in parallel.
         check_target_block_free "$SED_PBF" meta "$META_BASE" &
         p_guard=$!
-
-        # shellcheck disable=SC2086
-        $OSMCONVERT_CMD $OSMCONVERT_BOUNDING "$SED_PBF" --out-o5m -o="$WORK_DIR/sed_clip.o5m" &
-        p_sedclip=$!
 
         (
             echo "renumber ${META} into 'meta' block: ${META_BASE}"
@@ -176,6 +175,7 @@ case "$MODE" in
             check_renumbered_within_block "$WORK_DIR/meta_ren.pbf" meta "$META_BASE"
             # shellcheck disable=SC2086
             $OSMCONVERT_CMD $OSMCONVERT_BOUNDING "$WORK_DIR/meta_ren.pbf" --out-o5m -o="$WORK_DIR/meta_clip.o5m"
+            osmium cat -O -f pbf,add_metadata=false -o "$WORK_DIR/meta_clip.osm.pbf" "$WORK_DIR/meta_clip.o5m"
         ) &
         p_meta=$!
 
@@ -186,28 +186,42 @@ case "$MODE" in
         fi
 
         wait "$p_guard"
-        wait "$p_sedclip"
         wait "$p_meta"
         if [ -n "$p_sedls" ]; then
             wait "$p_sedls"
         fi
 
-        SED_CLIP="$WORK_DIR/sed_clip.o5m"
-        EXTRA_INPUTS=()
+        SED_LS_WAYS=0
         if [ -n "$FRAME" ]; then
             SED_LS_WAYS="$(osmium fileinfo -e -g data.count.ways "$WORK_DIR/sed_landsea.pbf")"
-            if [ "$SED_LS_WAYS" -gt 0 ]; then
-                osmium tags-filter -O -o "$WORK_DIR/sed_nosea.pbf" "$WORK_DIR/sed_landsea.pbf" w/natural=nosea
-                SED_NOSEA_WAYS="$(osmium fileinfo -e -g data.count.ways "$WORK_DIR/sed_nosea.pbf")"
-                if [ "$SED_NOSEA_WAYS" -gt 0 ]; then
-                    EXTRA_INPUTS+=("$WORK_DIR/sed_nosea.pbf")
-                fi
-                osmium tags-filter -i -O -o "$WORK_DIR/sed_clip_nosea.pbf" "$SED_CLIP" w/natural=sea
-                SED_CLIP="$WORK_DIR/sed_clip_nosea.pbf"
-            fi
         fi
 
-        osmium merge -O -f pbf,add_metadata=false -o "$OUTPUT" "$SED_CLIP" "$WORK_DIR/meta_clip.o5m" "${EXTRA_INPUTS[@]}"
+        if [ "$SED_LS_WAYS" -eq 0 ] && [[ "$SED_PBF" == *.pbf ]]; then
+            # Fast path: zero-recompression PBF blob insertion of meta node(s)
+            set +e
+            python3 "${TOOLS_DIR}/pbf-insert-nodes.py" "$SED_PBF" "$WORK_DIR/meta_clip.osm.pbf" "$OUTPUT"
+            rc=$?
+            set -e
+            if [ "$rc" -eq 0 ]; then
+                exit 0
+            elif [ "$rc" -ne 2 ]; then
+                exit "$rc"
+            fi
+            # rc=2: fall back to osmium merge
+            osmium merge -O -f pbf,add_metadata=false -o "$OUTPUT" "$SED_PBF" "$WORK_DIR/meta_clip.osm.pbf"
+        elif [ "$SED_LS_WAYS" -eq 0 ]; then
+            osmium merge -O -f pbf,add_metadata=false -o "$OUTPUT" "$SED_PBF" "$WORK_DIR/meta_clip.osm.pbf"
+        else
+            # Rare path: SED_PBF itself contains natural=sea or natural=nosea
+            EXTRA_INPUTS=()
+            osmium tags-filter -O -o "$WORK_DIR/sed_nosea.pbf" "$WORK_DIR/sed_landsea.pbf" w/natural=nosea
+            SED_NOSEA_WAYS="$(osmium fileinfo -e -g data.count.ways "$WORK_DIR/sed_nosea.pbf")"
+            if [ "$SED_NOSEA_WAYS" -gt 0 ]; then
+                EXTRA_INPUTS+=("$WORK_DIR/sed_nosea.pbf")
+            fi
+            osmium tags-filter -i -O -o "$WORK_DIR/sed_no_sea.pbf" "$SED_PBF" w/natural=sea
+            osmium merge -O -f pbf,add_metadata=false -o "$OUTPUT" "$WORK_DIR/sed_no_sea.pbf" "$WORK_DIR/meta_clip.osm.pbf" "${EXTRA_INPUTS[@]}"
+        fi
         ;;
 
     *)

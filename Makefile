@@ -1199,7 +1199,7 @@ $(MAPSFORGE_MIX_MAP): $(MAPSFORGE_MIX) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-lay
 		[ "$$old" = "$@" ] || rm -f "$$old"; \
 	done
 
-$(MAPSFORGE_OSM_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(TOOLS_DIR)/mapsforge-layer-pbf.sh
+$(MAPSFORGE_OSM_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(TOOLS_DIR)/mapsforge-layer-pbf.sh $(TOOLS_DIR)/pbf-insert-nodes.py $(TOOLS_DIR)/pbf_utils.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
