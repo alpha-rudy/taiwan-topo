@@ -144,6 +144,7 @@ endef
 # $5 = style name variable (e.g., HR_STYLE)
 # $6 = DEM config file (e.g., gmapdem_camp.cfg, gmapdem.cfg, or empty for no DEM)
 # $7 = extra dependencies (e.g., $(GMAPDEM) or empty)
+# $8 = optional "handheld" mode (skips global index/TDB/overview rebuilt by gmapsupp)
 #
 define MAP_BUILD
 .PHONY: $1
@@ -184,6 +185,7 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 			-e "s|__name_short__|$$(NAME_SHORT)|g" \
 			-e "s|__name_word__|$$(NAME_WORD)|g" \
 			-e "s|__mapid__|$$(MAPID)|g" > mkgmap.cfg && \
+		$(if $(filter handheld,$8),$$(SED_CMD) -e '/^index$$$$/d' -e '/^tdbfile$$$$/d' -e '/^improve-overview$$$$/d' -e '/^overview-mapname=/d' -e '/^overview-mapnumber=/d' -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg &&) \
 		cat $$(TILES_DIR)/template.args | $$(SED_CMD) \
 			-e "s|input-file: \(.*\)|input-file: $$(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 		$(if $6,ln -s $$(GMAPDEM) ./moi-hgt.zip && $$(SED_CMD) "/__dem_section__/ r $$(ROOT_DIR)/mkgmaps/$6" -i mkgmap.cfg &&) \
