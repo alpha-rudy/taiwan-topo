@@ -83,7 +83,9 @@ else
     echo "ERROR: rio CLI not found (need rasterio + rio-rgbify)." >&2; exit 1
 fi
 
-echo "DEM: running rio-rgbify (z${MIN_Z}-${MAX_Z}, terrain-RGB PNG)..."
+DEM_WORKERS="${DEM_WORKERS:-$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)}"
+
+echo "DEM: running rio-rgbify (z${MIN_Z}-${MAX_Z}, terrain-RGB PNG, ${DEM_WORKERS} workers)..."
 # rio-rgbify writes every output tile as an in-memory dataset with no
 # geotransform, so rasterio emits one NotGeoreferencedWarning per tile
 # (thousands of lines). Filter by message text, not category: a category
@@ -95,12 +97,13 @@ echo "DEM: running rio-rgbify (z${MIN_Z}-${MAX_Z}, terrain-RGB PNG)..."
 # standard encoding.
 PYTHONWARNINGS="ignore:Dataset has no geotransform" \
 "${RIO_CMD[@]}" rgbify \
+    -j "$DEM_WORKERS" \
     -b -10000 -i 0.1 \
     --min-z "$MIN_Z" \
     --max-z "$MAX_Z" \
     "$VRT" "$MBTILES"
 
-python3 "$(dirname "$0")/dem-terrarium.py" "$MBTILES" "$VRT"
+DEM_WORKERS="$DEM_WORKERS" python3 "$(dirname "$0")/dem-terrarium.py" "$MBTILES" "$VRT"
 
 echo "DEM: converting MBTiles → PMTiles..."
 rm -f "$OUTPUT_PMTILES"
