@@ -223,6 +223,12 @@ DEM_MIN_ZOOM ?= 6
 # by MapLibre looked the same as z13 tiles or slightly smoother, at under half
 # the size.
 DEM_MAX_ZOOM ?= 12
+# Built DEMs are kept here, outside BUILD_DIR (which every build wipes), keyed by
+# the content of their inputs, so a build only re-runs the ~50 min DEM pipeline
+# when the HGT, the DEM tools or the zoom range changed. Reusing the same file
+# also keeps its dem_version, so apps don't re-download an unchanged DEM.
+# Empty disables the cache.
+DEM_CACHE_DIR ?= $(DOWNLOAD_DIR)/dem-cache
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
@@ -1181,12 +1187,23 @@ $(DEM_PMTILES): $(HGT) $(TOOLS_DIR)/dem-build.sh $(TOOLS_DIR)/dem-terrarium.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	[ -n "$(HGT)" ]
-	$(TOOLS_DIR)/dem-build.sh \
-		"$(HGT)" \
-		"$@" \
-		"$(GOPMTILES_CMD)" \
-		"$(DEM_MIN_ZOOM)" \
-		"$(DEM_MAX_ZOOM)"
+	key=$$( { sha256sum "$(HGT)" $(TOOLS_DIR)/dem-build.sh $(TOOLS_DIR)/dem-terrarium.py | cut -d' ' -f1; \
+		echo "$(DEM_MIN_ZOOM) $(DEM_MAX_ZOOM)"; } | sha256sum | cut -c1-16 ) && \
+	cached="$(DEM_CACHE_DIR)/$(basename $(notdir $@))-$$key.pmtiles" && \
+	if [ -n "$(DEM_CACHE_DIR)" ] && [ -s "$$cached" ]; then \
+		echo "DEM: reusing $$cached"; \
+		mkdir -p $(dir $@) && cp "$$cached" "$@.tmp" && mv "$@.tmp" "$@"; \
+	else \
+		$(TOOLS_DIR)/dem-build.sh \
+			"$(HGT)" \
+			"$@" \
+			"$(GOPMTILES_CMD)" \
+			"$(DEM_MIN_ZOOM)" \
+			"$(DEM_MAX_ZOOM)" && \
+		if [ -n "$(DEM_CACHE_DIR)" ]; then \
+			mkdir -p "$(DEM_CACHE_DIR)" && cp "$@" "$$cached.tmp" && mv "$$cached.tmp" "$$cached"; \
+		fi; \
+	fi
 
 # Generate polygon file from bounding box for splitter
 # Only created when BOUNDING_BOX is set (not POLY_FILE)
