@@ -62,7 +62,7 @@ $$($1_VAR):
 	cp -a $3 $$(BUILD_DIR)/$4
 	cat $3/$5 | \
 		$$(SED_CMD) -e "s/__version__/$$(VERSION)/g" > $$(BUILD_DIR)/$4/$5
-	cp docs/legend_V1R3.pdf $$(BUILD_DIR)/$4/$6
+	cp $$(STYLE_LEGEND_PDF) $$(BUILD_DIR)/$4/$6
 	cp docs/MOI_OSM.png $$(BUILD_DIR)/$4/$7
 	cd $$(BUILD_DIR)/$4 && $$(ZIP_CMD) $$@ *
 endef
@@ -89,7 +89,7 @@ $$($1_VAR):
 	cp -a $3 $$(BUILD_DIR)/$4
 	cat $3/$5 | \
 		$$(SED_CMD) -e "s/__version__/$$(VERSION)/g" > $$(BUILD_DIR)/$4/$5
-	cp docs/legend_V1R3.pdf $$(BUILD_DIR)/$4/$6
+	cp $$(STYLE_LEGEND_PDF) $$(BUILD_DIR)/$4/$6
 	cp docs/MOI_OSM.png $$(BUILD_DIR)/$4/$7
 	cd $$(BUILD_DIR) && $$(ZIP_CMD) $$@ $4/
 endef
@@ -123,7 +123,7 @@ $$($1_VAR):
 			-e "s,file:/moiosm_res,file:/$4,g" \
 			$6 \
 		> $$(BUILD_DIR)/$3/$5
-	$(if $7,cp docs/legend_V1R3.pdf $$(BUILD_DIR)/$3/$7)
+	$(if $7,cp $$(STYLE_LEGEND_PDF) $$(BUILD_DIR)/$3/$7)
 	$(if $8,cp docs/MOI_OSM.png $$(BUILD_DIR)/$3/$8)
 	cd $$(BUILD_DIR)/$3 && $$(ZIP_CMD) $$@ *
 endef

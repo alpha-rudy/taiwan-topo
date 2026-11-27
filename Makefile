@@ -350,6 +350,14 @@ topo.md:
 		fi
 	cp -a docs/images $(BUILD_DIR)/
 
+# The PDF legend packed into the Mapsforge/Locus style zips (as MOI_OSM.pdf and
+# MOI_OSM_Lite.pdf). It is committed rather than built: printing it needs
+# Chrome, which the build image does not have. After a change to the style or
+# docs/legend/catalog.toml, refresh it on a machine with Chrome:
+#   make SUITE=taiwan BUILD_DIR=<dir> PMTILES=<.pmtiles> DEM_PMTILES=<dem .pmtiles> legend_samples legend
+#   cp <dir>/legend_detail.pdf docs/legend/legend_detail.pdf
+STYLE_LEGEND_PDF := $(ROOT_DIR)/docs/legend/legend_detail.pdf
+
 .PHONY: legend_samples legend legend_check
 legend_samples:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -506,7 +514,7 @@ $(LITE_STYLE):
 			-e "/-- contours-begin --/,/-- contours-end --/d" \
 			-e "/-- contours-body --/ r styles/mapsforge_lite/Lite_contours.part" \
 		> $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.xml
-	cp docs/legend_V1R3.pdf $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.pdf
+	cp $(STYLE_LEGEND_PDF) $(BUILD_DIR)/mapsforge_lite/MOI_OSM_Lite.pdf
 	cd $(BUILD_DIR)/mapsforge_lite && \
 		$(ZIP_CMD) $@ *
 
