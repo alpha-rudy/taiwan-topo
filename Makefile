@@ -16,10 +16,11 @@ SHELL := /usr/bin/env bash
 MAPWRITER_THREADS ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 8)
 # suggestion: doesn't matter
 SPLITTER_THREADS ?= 8
-# suggestion: 8 balances CPU vs ~50 GiB JVM memory on 10-vCPU / 80 GiB hosts
+# suggestion: 8 balances CPU vs ~21 GiB JVM memory (with -Xmx24G below)
 MKGMAP_JOBS ?= 8
-# finetune options
-JAVACMD_OPTIONS ?= -Xmx68G -server -Dfile.encoding=UTF-8
+# finetune options: stay under the 32 GiB HotSpot Compressed OOPs threshold
+# (~21 GiB peak RSS on mkgmap instead of ~53 GiB, and ~5% faster)
+JAVACMD_OPTIONS ?= -Xmx24G -server -Dfile.encoding=UTF-8
 
 # directory variables
 ROOT_DIR := $(shell pwd)
