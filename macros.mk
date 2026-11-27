@@ -305,6 +305,7 @@ endef
 # $6 = osmosis command (e.g., $(OSMOSIS_CMD) or $(OSMOSIS_POI_V2_CMD))
 # $7 = extra read options (e.g., $(OSMOSIS_BOUNDING) or empty)
 # $8 = java environment prefix (e.g., empty or JAVA_HOME=... PATH=...)
+# $9 = geo-tags mode ("true" or "false"; default "true")
 #
 define POI_BUILD
 .PHONY: $1
@@ -312,19 +313,24 @@ $1: $2
 $2: $4
 	date +'DS: %H:%M:%S $$(shell basename $$@)'
 	mkdir -p $$(BUILD_DIR)
-	-rm -rf $$@
-	export JAVACMD_OPTIONS="-server" && \
-		$8 sh $6 \
-			--rb file="$3" \
-			$7 \
-			--poi-writer \
-				all-tags=true \
-				geo-tags=true \
-				names=false \
-				ways=true \
-				tag-conf-file="$5" \
-				comment="$$(VERSION)  /  (c) Map data: OSM contributors" \
-				file="$$@"
+	@set -e; \
+	poi_tmp="$$@.$$$$$$$$.tmp"; \
+	trap 'rm -f "$$$$poi_tmp"' EXIT; \
+	rm -rf "$$@" "$$$$poi_tmp"; \
+	export JAVACMD_OPTIONS="-server -Xmx8G"; \
+	$8 sh $6 \
+		--read-pbf-fast workers=$$(MAPWRITER_THREADS) file="$3" \
+		$7 \
+		--poi-writer \
+			all-tags=true \
+			geo-tags=$(if $9,$9,true) \
+			names=false \
+			ways=true \
+			tag-conf-file="$5" \
+			comment="$$(VERSION)  /  (c) Map data: OSM contributors" \
+			file="$$$$poi_tmp"; \
+	$(if $(filter false,$9),python3 $$(TOOLS_DIR)/poi-geotag.py "$3" "$$$$poi_tmp" && )mv "$$$$poi_tmp" "$$@"; \
+	trap - EXIT
 endef
 
 #==============================================================================
