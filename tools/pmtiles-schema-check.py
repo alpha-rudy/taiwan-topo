@@ -19,9 +19,17 @@ fails the build when the code says "compatible" and the archive says otherwise:
    last release's is an error. A higher one is a declared break, not compared.
 
 Fields come from the data: tilemaker lists a field only when a feature has it.
-A field that vanished because no feature had it this week reads as a break;
-raising the code is safe then too, downstream only pairs more cautiously.
-What this cannot see: a value the styles match that changed.
+A field that vanished because no feature had it this week reads as a break.
+Raising the code for that is not free (every region's archive built with the
+old code stops pairing with the new style until it is rebuilt), so a gone
+layer.field checked to be only data is named in the environment's
+PMTILES_SCHEMA_ALLOW (space- or comma-separated) and let through.
+
+What this cannot see: a value the styles match that changed, and a style that
+starts reading a field only the new archive has in place of one the old
+archive still carries. Additions are not breaks (an old archive just draws
+less with the new style), and a check cannot tell a replacement from one, so
+those stay a call for whoever makes the change.
 
 Last release that cannot be read, or carries no code yet, is reported and not
 compared. An empty LAST_RELEASE skips step 3 (an offline build).
@@ -169,15 +177,22 @@ def main(argv):
     dropped = []
     for name in sorted(set(used) & set(last_fields)):
         if name not in new_fields:
-            dropped.append("layer %r" % name)
+            dropped.append(name)
             continue
         for field in sorted((used[name] & last_fields[name]) - new_fields[name]):
             dropped.append("%s.%s" % (name, field))
+    allowed = set(re.split(r"[\s,]+", os.environ.get("PMTILES_SCHEMA_ALLOW", "").strip())) - {""}
+    let = [d for d in dropped if d in allowed]
+    dropped = [d for d in dropped if d not in allowed]
+    if let:
+        print("pmtiles schema check: gone but let through as data (PMTILES_SCHEMA_ALLOW): %s" % ", ".join(let),
+              file=sys.stderr)
     if dropped:
         sys.exit("pmtiles schema check: %s is still %d, but the archive no longer has what last release's "
-                 "styles read and its archive had: %s. Raise PMTILES_SCHEMA in the Makefile if that is a change; "
-                 "if it is only data (no feature had it this time), raising it is safe too."
-                 % (SCHEMA_KEY, schema, ", ".join(dropped)))
+                 "styles read and its archive had: %s. If that is a change, raise PMTILES_SCHEMA in the "
+                 "Makefile; if it is only data (no feature had it this time), name it in "
+                 "PMTILES_SCHEMA_ALLOW and build again."
+                 % (SCHEMA_KEY, schema, " ".join(dropped)))
     print("pmtiles schema check: %s %d, nothing last release's styles read is gone" % (SCHEMA_KEY, schema),
           file=sys.stderr)
 

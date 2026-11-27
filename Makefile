@@ -1146,16 +1146,27 @@ PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStr
 # An app or a page pairs an archive with a style of another week while the codes
 # match, so raise it with any change after which one cannot draw the other: a
 # layer or a field the styles read renamed or removed, or a value they match
-# changed. Additions need no change. tools/pmtiles-schema-check.py fails the
-# archive's build when it no longer has what last release's styles read and the
-# code is unchanged; raising the code is always safe, downstream only pairs more
-# cautiously. PMTILES_LAST_RELEASE is where last release is read; empty skips that
-# comparison (an offline build).
+# changed. Additions need no change. Raising it is not free: every region's
+# archive built with the old code stops pairing with the new style until that
+# region is rebuilt. tools/pmtiles-schema-check.py fails the archive's build when
+# it no longer has what last release's styles read and the code is unchanged. A
+# field gone only because no feature had it this time is let through by naming
+# it in PMTILES_SCHEMA_ALLOW (e.g. make ... PMTILES_SCHEMA_ALLOW='poi.climbing'),
+# after checking that is all it is. PMTILES_LAST_RELEASE is where last release
+# is read; empty skips that comparison (an offline build). The stamp makes a
+# changed code rebuild the archive and the style zip.
 PMTILES_SCHEMA := 1
+PMTILES_SCHEMA_ALLOW ?=
 PMTILES_LAST_RELEASE ?= https://rudymap.tw/v1/
+PMTILES_SCHEMA_STAMP := $(BUILD_DIR)/.pmtiles-schema-$(PMTILES_SCHEMA)
+$(PMTILES_SCHEMA_STAMP):
+	mkdir -p $(BUILD_DIR)
+	rm -f $(BUILD_DIR)/.pmtiles-schema-*
+	touch $@
 # The check reads the styles but is not a prerequisite: a style change alone does
 # not rebuild the archive.
-$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM)
+$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM) \
+		$(PMTILES_SCHEMA_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
@@ -1170,6 +1181,7 @@ $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING)
 		"$(VERSION)" \
 		"$(MAP_FRAME)"
 	# A failed check removes the archive, so the next make checks it again.
+	PMTILES_SCHEMA_ALLOW='$(PMTILES_SCHEMA_ALLOW)' \
 	python3 $(TOOLS_DIR)/pmtiles-schema-check.py "$@" "$(PMTILES_SCHEMA)" "$(PMTILES_LAST_RELEASE)" \
 		$(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) || { rm -f "$@"; exit 1; }
 
@@ -1219,7 +1231,7 @@ PMTILES_WEB_GLYPH_RANGES := $(ROOT_DIR)/styles/pmtiles_style/web-glyph-ranges.tx
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
 $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) $(GLYPHS) \
 		styles/mapsforge_style/License.txt styles/pmtiles_style/glyphs-LICENSE.txt \
-		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP)
+		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP) $(PMTILES_SCHEMA_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	-rm -f $@
 	rm -rf $(BUILD_DIR)/pmtiles_style
