@@ -182,6 +182,8 @@ def main():
 
     if not todo:
         conn.close()
+        # Refresh mtime so Make knows the cache is up-to-date with infile
+        os.utime(outdb, None)
         return
 
     session = requests.Session()
