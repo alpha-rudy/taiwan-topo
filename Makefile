@@ -15,9 +15,9 @@ SHELL := /usr/bin/env bash
 # suggestion: no more than CPU*2
 MAPWRITER_THREADS ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 8)
 # suggestion: doesn't matter
-SPLITTER_THREADS = 8
-# suggestion: CPU*1
-MKGMAP_JOBS = 8
+SPLITTER_THREADS ?= 8
+# suggestion: 8 balances CPU vs ~50 GiB JVM memory on 10-vCPU / 80 GiB hosts
+MKGMAP_JOBS ?= 8
 # finetune options
 JAVACMD_OPTIONS ?= -Xmx68G -server -Dfile.encoding=UTF-8
 
@@ -281,6 +281,14 @@ MAP_FRAME_WORDS = $(subst $(comma), ,$(MAP_FRAME))
 MAP_FRAME_LATLON = $(word 2,$(MAP_FRAME_WORDS)),$(word 1,$(MAP_FRAME_WORDS)),$(word 4,$(MAP_FRAME_WORDS)),$(word 3,$(MAP_FRAME_WORDS))
 
 all: $(TARGETS)
+
+# Helper targets used by SUITE_BUILD (macros.mk) to overlap single-threaded,
+# low-memory (~750 MiB) NSIS LZMA packaging with the next suite's build while
+# keeping heavy mkgmap invocations strictly serialized.
+.PHONY: all_no_nsis print_has_nsis
+all_no_nsis: $(filter-out nsis,$(TARGETS)) $(if $(filter nsis,$(TARGETS)),$(MAP_PC))
+print_has_nsis:
+	@echo $(if $(filter nsis,$(TARGETS)),yes,no)
 
 clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
