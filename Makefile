@@ -387,6 +387,10 @@ legend_check:
 		--no-pdf --check-coverage
 
 .PHONY: install
+# rudymap_pmtiles_style/ is the PMTiles style zip's files, unpacked, for web
+# pages: a browser cannot read a zip, so a page loads style.json and its
+# sprites from there through the balancer, the way it reads the archives,
+# instead of hosting them.
 install:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(INSTALL_DIR)" ] && [ -d "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
@@ -435,9 +439,6 @@ install:
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/dem/*.pmtiles $(INSTALL_DIR)
-	# The PMTiles style zip's files, unpacked, for web pages: a browser cannot
-	# read a zip, so a page loads style.json and its sprites from here through
-	# the balancer, the way it reads the archives, instead of hosting them.
 	-[ -f $(PMTILES_STYLE_ZIP) ] && cp -r $(BUILD_DIR)/pmtiles_style $(INSTALL_DIR)/rudymap_pmtiles_style
 	-cp $(BUILD_DIR)/legend.html $(BUILD_DIR)/legend_detail.pdf $(BUILD_DIR)/legend_compact.pdf $(BUILD_DIR)/legend_onepage.pdf $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/legend_samples $(INSTALL_DIR)
