@@ -360,6 +360,8 @@ distclean:
 	-rm -rf $(BUILD_DIR)*
 	-rm -rf $(DOWNLOAD_DIR)
 
+RENDER_SIZE_ARGS := --size-dir $(BUILD_DIR) --size-dir $(BUILD_DIR)/dem --size-dir $(ROOT_DIR)/hgt --size-dir $(ROOT_DIR)/build-taiwan
+
 define RENDER_TOPO_PAGES
 	if [ -f docs/$(REGION)/region.toml ]; then \
 		python3 $(TOOLS_DIR)/render_topo_html.py \
@@ -369,7 +371,8 @@ define RENDER_TOPO_PAGES
 			--version "$(VERSION)" \
 			--lang zh-Hant \
 			--alt-lang-href "$(SUITE)_topo-en.html" \
-			--alt-lang-label "English"; \
+			--alt-lang-label "English" \
+			$(RENDER_SIZE_ARGS); \
 		python3 $(TOOLS_DIR)/render_topo_html.py \
 			--region-config docs/$(REGION)/region.toml \
 			--template docs/template.html \
@@ -377,7 +380,8 @@ define RENDER_TOPO_PAGES
 			--version "$(VERSION)" \
 			--lang en \
 			--alt-lang-href "$(SUITE)_topo.html" \
-			--alt-lang-label "繁體中文"; \
+			--alt-lang-label "繁體中文" \
+			$(RENDER_SIZE_ARGS); \
 	elif [ -f docs/$(REGION)/$(SUITE)_topo.md ]; then \
 		python3 $(TOOLS_DIR)/render_topo_html.py \
 			--input docs/$(REGION)/$(SUITE)_topo.md \
@@ -385,7 +389,8 @@ define RENDER_TOPO_PAGES
 			--output $(1)/$(SUITE)_topo.html \
 			--version "$(VERSION)" \
 			--lang zh-Hant \
-			$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ); \
+			$$( [ -f docs/$(REGION)/$(SUITE)_topo-en.md ] && echo "--alt-lang-href $(SUITE)_topo-en.html --alt-lang-label English" ) \
+			$(RENDER_SIZE_ARGS); \
 		if [ -f docs/$(REGION)/$(SUITE)_topo-en.md ]; then \
 			python3 $(TOOLS_DIR)/render_topo_html.py \
 				--input docs/$(REGION)/$(SUITE)_topo-en.md \
@@ -394,7 +399,8 @@ define RENDER_TOPO_PAGES
 				--version "$(VERSION)" \
 				--lang en \
 				--alt-lang-href "$(SUITE)_topo.html" \
-				--alt-lang-label "繁體中文"; \
+				--alt-lang-label "繁體中文" \
+				$(RENDER_SIZE_ARGS); \
 		fi; \
 	fi
 endef
@@ -478,7 +484,8 @@ install:
 			--template docs/template.html \
 			--output $(INSTALL_DIR)/beta.html \
 			--version "$(VERSION)" \
-			--lang zh-Hant
+			--lang zh-Hant \
+			$(RENDER_SIZE_ARGS)
 	-[ -d docs/$(REGION)/gts ] && cp -r docs/$(REGION)/gts $(INSTALL_DIR) && \
 		cat docs/$(REGION)/gts/index.html | $(SED_CMD) -e "s|__version__|$(VERSION)|g" > $(INSTALL_DIR)/gts/index.html
 	cp -r $(BUILD_DIR)/{*.zip,*.exe} $(INSTALL_DIR)

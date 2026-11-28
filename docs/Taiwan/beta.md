@@ -55,7 +55,7 @@
   > [[下載]](./MOI_OSM_dn_style.zip)
 * TN Style，給高度圖疊圖（例：Relief Map）
   > [[下載]](./MOI_OSM_tn_style.zip)
-* EXTRA Style，給 Cartograph EXTRA 圖層疊圖，手動安裝 (0.4MB)
+* EXTRA Style，給 Cartograph EXTRA 圖層疊圖，手動安裝
   > [[下載]](./MOI_OSM_extra_style.zip)
 
 ## ![GMap](./images/Garmin.png =x36) Garmin 離線地圖
