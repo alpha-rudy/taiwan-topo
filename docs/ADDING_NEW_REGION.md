@@ -66,6 +66,7 @@ A suite is a specific build configuration for a region. Each region typically ha
 | **region_lower** | Lowercase identifier with underscores (e.g., `nikko_oze`) |
 | **DEM** | Digital Elevation Model - elevation data source |
 | **AW3D30** | ALOS World 3D 30m - high resolution DEM from JAXA |
+| **DEM_ATTRIBUTION** | Optional. Who made the elevations, as the map file's comment and the PMTiles attribution credit them (`DEM data:` / `DEM:`). Set it when the elevations come from more than `DEM_NAME` (Taiwan: `MOI, AW3D30 (JAXA)`); unset, it is `DEM_NAME`, and `AW3D30` is credited as `AW3D30 (JAXA)` |
 | **HGT** | Height file format for elevation data |
 | **MAPID** | Unique hexadecimal identifier for Garmin maps |
 | **CODE_PAGE** | Character encoding (65001 = UTF-8) |

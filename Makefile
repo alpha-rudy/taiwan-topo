@@ -1125,7 +1125,12 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 MFTOOL_CMD ?= $(shell command -v mftool 2>/dev/null)
 USE_MFTOOL ?= 1
 MAPSFORGE_USE_MFTOOL := $(if $(and $(filter 1,$(USE_MFTOOL)),$(MFTOOL_CMD),$(MAPSFORGE_MIX)),1,)
-MAPSFORGE_COMMENT = $(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))
+# Who made the elevations, in the map file's comment and the PMTiles attribution:
+# the suite's DEM_ATTRIBUTION when its elevations come from more than DEM_NAME
+# (Taiwan's: MOI, and AW3D30 for Matsu, Wuqiu and the northern islets), else
+# DEM_NAME, AW3D30 with its maker.
+DEM_CREDIT = $(or $(DEM_ATTRIBUTION),$(if $(filter AW3D30,$(DEM_NAME)),AW3D30 (JAXA),$(DEM_NAME)))
+MAPSFORGE_COMMENT = $(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_CREDIT),; DEM data: $(DEM_CREDIT))
 MAPSFORGE_EXTRA_OPTS = polylabel=false simplification-factor=2.5 simplification-max-zoom=12$(if $(MAP_FRAME), bbox=$(MAP_FRAME_LATLON))
 
 .PHONY: mapsforge
@@ -1231,7 +1236,7 @@ pmtiles: $(PMTILES)
 # and the DEM published beside it always agree on dem_version. A build machine
 # without the region's DEM builds it first.
 PMTILES_DEM := $(if $(HGT),$(DEM_PMTILES))
-PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors$(if $(DEM_NAME),; DEM: $(DEM_NAME))
+PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors$(if $(DEM_CREDIT),; DEM: $(DEM_CREDIT))
 # The schema code the archives and the shared style carry as "taiwan-topo:schema".
 # An app or a page pairs an archive with a style of another week while the codes
 # match, so raise it with any change after which one cannot draw the other: a
