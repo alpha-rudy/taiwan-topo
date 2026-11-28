@@ -21,6 +21,10 @@ MKGMAP_JOBS ?= 8
 # finetune options: stay under the 32 GiB HotSpot Compressed OOPs threshold
 # (~21 GiB peak RSS on mkgmap instead of ~53 GiB, and ~5% faster)
 JAVACMD_OPTIONS ?= -Xmx24G -server -Dfile.encoding=UTF-8
+# gmapsupp only builds the MDR index and packs precompiled .img tiles
+# (~1.4 GiB peak RSS on full Taiwan); cap heap at 4G so background gmapsupp
+# jobs do not contend with a foreground mkgmap MAP_BUILD (-Xmx24G).
+GMAPSUPP_JAVACMD_OPTIONS ?= -Xmx4G -server -Dfile.encoding=UTF-8
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -306,12 +310,17 @@ all: $(TARGETS)
 endif
 
 # Helper targets used by SUITE_BUILD (macros.mk) to overlap single-threaded,
-# low-memory (~750 MiB) NSIS LZMA packaging with the next suite's build while
-# keeping heavy mkgmap invocations strictly serialized.
-.PHONY: all_no_nsis print_has_nsis
+# low-memory packaging (gmapsupp + zip ~1.4 GiB, NSIS ~750 MiB) with subsequent
+# MAP_BUILD targets while keeping heavy mkgmap tile compilations serialized.
+.PHONY: map_hand all_no_nsis all_no_gmapsupp all_no_bg print_has_nsis print_has_gmapsupp_zip
+map_hand: $(MAP_HAND)
 all_no_nsis: $(filter-out nsis,$(TARGETS)) $(if $(filter nsis,$(TARGETS)),$(MAP_PC))
+all_no_gmapsupp: $(filter-out gmapsupp_zip,$(TARGETS))
+all_no_bg: $(filter-out nsis gmapsupp_zip,$(TARGETS)) $(if $(filter nsis,$(TARGETS)),$(MAP_PC))
 print_has_nsis:
 	@echo $(if $(filter nsis,$(TARGETS)),yes,no)
+print_has_gmapsupp_zip:
+	@echo $(if $(filter gmapsupp_zip,$(TARGETS)),yes,no)
 
 clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -731,7 +740,7 @@ $(GMAPSUPP): $(MAP_HAND)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_HAND_DIR) && \
-		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+		java $(GMAPSUPP_JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
 			--code-page=$(CODE_PAGE) \
 			--license-file=$(ROOT_DIR)/docs/license.txt \
 			--index \
