@@ -1255,10 +1255,19 @@ $(PMTILES_SCHEMA_STAMP):
 	mkdir -p $(BUILD_DIR)
 	rm -f $(BUILD_DIR)/.pmtiles-schema-*
 	touch $@
+# The attribution is written into the archive's metadata: a changed credit (a
+# suite's DEM_CREDIT) rebuilds the archive, as a changed schema code does. The
+# stamp is per region, in case regions share a BUILD_DIR.
+PMTILES_ATTRIBUTION_HASH := $(shell printf '%s' '$(PMTILES_ATTRIBUTION)' | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
+PMTILES_ATTRIBUTION_STAMP := $(BUILD_DIR)/.pmtiles-attribution-$(REGION_LOWER)-$(PMTILES_ATTRIBUTION_HASH)
+$(PMTILES_ATTRIBUTION_STAMP):
+	mkdir -p $(BUILD_DIR)
+	rm -f $(BUILD_DIR)/.pmtiles-attribution-$(REGION_LOWER)-*
+	touch $@
 # The check reads the styles but is not a prerequisite: a style change alone does
 # not rebuild the archive.
 $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM) \
-		$(PMTILES_SCHEMA_STAMP)
+		$(PMTILES_SCHEMA_STAMP) $(PMTILES_ATTRIBUTION_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
