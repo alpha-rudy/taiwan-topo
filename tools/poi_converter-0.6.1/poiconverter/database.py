@@ -1,8 +1,18 @@
 """
 Create database and write POIs into file
 """
-import spatialite
 import os
+
+import spatialite
+
+_DEFERRED_CREATE_PREFIXES = (
+    "SELECT CreateSpatialIndex('Points', 'geom')",
+    "CREATE INDEX idx_pkv_points_id ",
+    "CREATE INDEX idx_prs_points_id ",
+    "CREATE INDEX idx_prs_root ",
+    "CREATE INDEX idx_prs_root_sub ",
+)
+
 
 class Database:
     def __init__(self, init_file):
@@ -10,10 +20,13 @@ class Database:
         self.init_file = init_file
         self.batch_size = 10000
         self.batched_pois = []
+        self._deferred_sql = []
+        self._bulk_create = False
 
     def open_append(self):
         self.db = spatialite.connect(self.file_name)
         self.cursor = self.db.cursor()
+        self._bulk_create = False
         last_ROWID = self.cursor.execute("SELECT max(ROWID) from Points").fetchone()[0]
         if last_ROWID is None:
             self.first_free_points_id = 0
@@ -25,6 +38,11 @@ class Database:
             os.remove(self.file_name)
         self.db = spatialite.connect(self.file_name)
         self.cursor = self.db.cursor()
+        self._bulk_create = True
+        self.db.execute("PRAGMA synchronous = OFF")
+        self.db.execute("PRAGMA journal_mode = MEMORY")
+        self.db.execute("PRAGMA temp_store = MEMORY")
+        self.db.execute("PRAGMA cache_size = -131072")
         self.initialize_database()
         self.first_free_points_id = 0
 
@@ -40,23 +58,36 @@ class Database:
 
     def close(self):
         self.write_pois()
+        if self._bulk_create:
+            # Build Points spatial index and secondary indexes after bulk insert
+            for cmd in self._deferred_sql:
+                self.db.execute(cmd)
+            self._deferred_sql.clear()
         self.db.commit()
+        if self._bulk_create:
+            self.db.execute("PRAGMA journal_mode = DELETE")
+            self.db.execute("PRAGMA synchronous = FULL")
         self.db.close()
 
     def initialize_database(self):
         self.cursor = self.db.cursor()
-        with open(self.init_file,'r') as f:
+        self._deferred_sql = []
+        with open(self.init_file, 'r') as f:
             sql_commands = f.readlines()
-            sql = 'SELECT InitSpatialMetadata(1)'
-            result = self.db.execute(sql).fetchone()
+            self.db.execute('SELECT InitSpatialMetadata(1)').fetchone()
             for command in sql_commands:
-                if command.strip(): #skip empty lines
-                    result = self.db.execute(command)
+                stripped = command.strip()
+                if not stripped or stripped.startswith('--'):
+                    continue
+                if stripped.startswith(_DEFERRED_CREATE_PREFIXES):
+                    self._deferred_sql.append(stripped)
+                else:
+                    self.db.execute(stripped)
 
     def insert_pois(self, pois_with_ids):
         def iterator(pois_with_ids):
             for (id, poi) in pois_with_ids:
-                yield [id, poi.node_id, poi.osm_type, poi.name, "POINT({} {})".format(poi.lon, poi.lat)]
+                yield [id, poi.node_id, poi.osm_type, poi.name, f"POINT({poi.lon} {poi.lat})"]
 
         sql = "INSERT INTO 'Points'(ROWID, id, type, name, geom) VALUES(?,?,?,?, GEOMFROMTEXT(?,4326));"
         self.cursor.executemany(sql, iterator(pois_with_ids))
@@ -95,7 +126,7 @@ class Database:
     def insert_tags(self, pois_with_ids):
         def value_iterator(pois_with_ids):
             for (_, poi) in pois_with_ids:
-                for (k, v) in poi.tags.items():
+                for v in poi.tags.values():
                     yield [v]
 
         def pkv_iterator(pois_with_ids):
