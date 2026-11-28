@@ -1295,13 +1295,15 @@ $(PMTILES_ATTRIBUTION_STAMP):
 	touch $@
 # The check reads the styles but is not a prerequisite: a style change alone does
 # not rebuild the archive.
-$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(TOOLS_DIR)/pmtiles-merge-buildings.py $(PMTILES_DEM) \
+$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(TOOLS_DIR)/split-long-ways.py $(TOOLS_DIR)/pbf_utils.py $(TOOLS_DIR)/pmtiles-merge-buildings.py $(PMTILES_DEM) \
 		$(PMTILES_SCHEMA_STAMP) $(PMTILES_ATTRIBUTION_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	GOPMTILES_CMD="$(GOPMTILES_CMD)" PMTILES_DEM="$(PMTILES_DEM)" \
 	PMTILES_ATTRIBUTION='$(PMTILES_ATTRIBUTION)' PMTILES_SCHEMA='$(PMTILES_SCHEMA)' \
+	PMTILES_INPUT_SORTED=1 \
+	PMTILES_ROUTE_LABELS_PBF="$(REGION_EXTRACT)-sed.osm.pbf" \
 	$(TOOLS_DIR)/pmtiles-build.sh \
 		"$(MAPSFORGE_PBF)" \
 		"$@" \

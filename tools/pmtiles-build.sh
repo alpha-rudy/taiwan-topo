@@ -102,7 +102,15 @@ SPLIT_PBF="${OUTPUT_PMTILES%.pmtiles}.split.tmp.pbf"
 ROUTE_LABELS="$(cd "$(dirname "$OUTPUT_PMTILES")" && pwd)/$(basename "${OUTPUT_PMTILES%.pmtiles}").route-labels.tmp.geojson"
 METADATA_JSON="${OUTPUT_PMTILES%.pmtiles}.metadata.tmp.json"
 HEADER_JSON="${OUTPUT_PMTILES%.pmtiles}.header.tmp.json"
-cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS" "$METADATA_JSON" "$HEADER_JSON"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
+ROUTE_LABELS_PID=""
+cleanup() {
+    if [ -n "$ROUTE_LABELS_PID" ]; then
+        kill "$ROUTE_LABELS_PID" 2>/dev/null || true
+        wait "$ROUTE_LABELS_PID" 2>/dev/null || true
+    fi
+    rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS" "$METADATA_JSON" "$HEADER_JSON"
+    [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"
+}
 trap cleanup EXIT
 
 # tilemaker reads several config strings (name/version/description) without
@@ -116,19 +124,37 @@ if grep -q -e '__version__' -e '__route_labels__' "$CONFIG_JSON"; then
         -e "s|__route_labels__|${ROUTE_LABELS}|g" "$CONFIG_JSON" > "$CONFIG_RUNTIME"
 fi
 
-# 1. Sort into tilemaker's expected type+id order.
-"$OSMIUM_CMD" sort "$INPUT_PBF" -o "$SORTED_PBF" -O
+# 0. Start route label extraction in parallel if a pre-merged OSM-only PBF
+#    (without elevation/contours) was provided via PMTILES_ROUTE_LABELS_PBF.
+if [ -n "${PMTILES_ROUTE_LABELS_PBF:-}" ] && [ -f "$PMTILES_ROUTE_LABELS_PBF" ]; then
+    python3 "$(dirname "$0")/route-labels.py" "$PMTILES_ROUTE_LABELS_PBF" "$ROUTE_LABELS" &
+    ROUTE_LABELS_PID=$!
+fi
+
+# 1. Sort into tilemaker's expected type+id order (skip when caller guarantees
+#    Type_then_ID sorted input, e.g. from mapsforge-input-build.sh's osmium merge).
+if [ "${PMTILES_INPUT_SORTED:-0}" = "1" ]; then
+    RENUMBER_SRC="$INPUT_PBF"
+else
+    "$OSMIUM_CMD" sort "$INPUT_PBF" -o "$SORTED_PBF" -O
+    RENUMBER_SRC="$SORTED_PBF"
+fi
 
 # 2. Renumber from 1 so tilemaker's node store can index every node.
-"$OSMIUM_CMD" renumber "$SORTED_PBF" -o "$RENUMBERED_PBF" -O
+"$OSMIUM_CMD" renumber "$RENUMBER_SRC" -o "$RENUMBERED_PBF" -O
 rm -f "$SORTED_PBF"
 
 # 3. Split rings longer than tilemaker's 2,000-node limit.
 python3 "$(dirname "$0")/split-long-ways.py" "$RENUMBERED_PBF" "$SPLIT_PBF"
 rm -f "$RENUMBERED_PBF"
 
-# 3b. Route label points (see the note above).
-python3 "$(dirname "$0")/route-labels.py" "$SPLIT_PBF" "$ROUTE_LABELS"
+# 3b. Route label points (wait for parallel job or run on SPLIT_PBF).
+if [ -n "$ROUTE_LABELS_PID" ]; then
+    wait "$ROUTE_LABELS_PID"
+    ROUTE_LABELS_PID=""
+else
+    python3 "$(dirname "$0")/route-labels.py" "$SPLIT_PBF" "$ROUTE_LABELS"
+fi
 
 # 4. Derive the bounding box from the data if not supplied (the prepared PBF
 #    has no bbox in its header). osmium prints "(minlon,minlat,maxlon,maxlat)";
