@@ -1094,7 +1094,10 @@ $(MAPSFORGE_MIX_MAP): $(MAPSFORGE_MIX) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-lay
 			"$(TAG_MAPPING)" \
 			"$(MAPSFORGE_COMMENT)" \
 			"$(MAPSFORGE_EXTRA_OPTS)"; \
-	mv "$$mix_map" "$@"
+	mv "$$mix_map" "$@"; \
+	for old in $(MAPSFORGE_MIX_CACHE_DIR)/$(REGION)_$(basename $(notdir $(MAPSFORGE_MIX)))_*.map; do \
+		[ "$$old" = "$@" ] || rm -f "$$old"; \
+	done
 
 $(MAPSFORGE_OSM_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(TOOLS_DIR)/mapsforge-layer-pbf.sh
 	date +'DS: %H:%M:%S $(shell basename $@)'
