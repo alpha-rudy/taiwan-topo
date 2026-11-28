@@ -2,6 +2,7 @@
 ifeq ($(SUITE),taiwan_bc)
 REGION := Taiwan
 DEM_NAME := MOI
+DEM_ATTRIBUTION := MOI, AW3D30 (JAXA)
 MAP_LANG := zh
 CODE_PAGE := 65001
 ELEVATION_FILE = ele_taiwan_10_100_500-2026.pbf

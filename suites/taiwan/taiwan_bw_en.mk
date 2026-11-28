@@ -2,6 +2,7 @@
 ifeq ($(SUITE),taiwan_bw_en)
 REGION := Taiwan
 DEM_NAME := MOI
+DEM_ATTRIBUTION := MOI, AW3D30 (JAXA)
 READING_LANG := zh
 MAP_LANG := en
 CODE_PAGE := 1252
