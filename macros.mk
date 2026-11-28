@@ -263,26 +263,47 @@ endef
 #   2: suite list variable name (e.g., FUJISAN_SUITES)
 #   3: install directory path
 #   4: suite name for install target (usually same as region, e.g., fujisan)
-# Set PARALLEL_NSIS=0 to disable overlapping background NSIS packaging.
+# Set PARALLEL_NSIS=0 / PARALLEL_GMAPSUPP=0 to disable overlapping background
+# NSIS / gmapsupp_zip packaging with subsequent MAP_BUILD targets.
 PARALLEL_NSIS ?= 1
+PARALLEL_GMAPSUPP ?= 1
 
 define SUITE_BUILD
 .PHONY: $(1)_suites
 $(1)_suites:
 	@set -e; \
 	kill_tree() { local pid="$$$$1" children child; children="$$$$(pgrep -P "$$$$pid" 2>/dev/null || true)"; kill "$$$$pid" 2>/dev/null || true; for child in $$$$children; do kill_tree "$$$$child"; done; }; \
-	nsis_pids=""; \
-	trap 'for p in $$$$nsis_pids; do kill_tree "$$$$p"; done; wait 2>/dev/null || true' EXIT; \
+	bg_pids=""; \
+	trap 'for p in $$$$bg_pids; do kill_tree "$$$$p"; done; wait 2>/dev/null || true' EXIT; \
 	for suite in $$($(2)); do \
+		do_gmapsupp=no; do_nsis=no; \
+		if [ "$$(PARALLEL_GMAPSUPP)" = "1" ] && [ "$$$$($$(MAKE) --no-print-directory BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite print_has_gmapsupp_zip)" = "yes" ]; then \
+			do_gmapsupp=yes; \
+		fi; \
 		if [ "$$(PARALLEL_NSIS)" = "1" ] && [ "$$$$($$(MAKE) --no-print-directory BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite print_has_nsis)" = "yes" ]; then \
+			do_nsis=yes; \
+		fi; \
+		if [ "$$$$do_gmapsupp" = "yes" ] && [ "$$$$do_nsis" = "yes" ]; then \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite map_hand; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite gmapsupp_zip & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all_no_bg; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite nsis & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+		elif [ "$$$$do_gmapsupp" = "yes" ]; then \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite map_hand; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite gmapsupp_zip & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all_no_gmapsupp; \
+		elif [ "$$$$do_nsis" = "yes" ]; then \
 			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all_no_nsis; \
 			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite nsis & \
-			nsis_pids="$$$$nsis_pids $$$$!"; \
+			bg_pids="$$$$bg_pids $$$$!"; \
 		else \
 			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all; \
 		fi; \
 	done; \
-	for p in $$$$nsis_pids; do wait "$$$$p"; done; \
+	for p in $$$$bg_pids; do wait "$$$$p"; done; \
 	trap - EXIT
 	$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) INSTALL_DIR=$(3) SUITE=$(4) install
 endef
