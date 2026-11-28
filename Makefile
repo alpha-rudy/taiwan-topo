@@ -103,7 +103,12 @@ include $(wildcard $(ROOT_DIR)/suites/bbox/*.mk)
 MAP_LANG ?= $(LANG)
 
 # auto variables
+# Freeze VERSION at top-level make startup and export to sub-makes so a build
+# crossing midnight keeps one consistent version stamp across all suites.
+ifeq ($(strip $(VERSION)),)
 VERSION := $(shell date +%Y.%m.%d)
+endif
+export VERSION
 MAPID_LO_HEX := $(shell printf '%x' $(MAPID) | cut -c3-4)
 MAPID_HI_HEX := $(shell printf '%x' $(MAPID) | cut -c1-2)
 DUMMYID = 9999
