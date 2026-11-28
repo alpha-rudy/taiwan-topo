@@ -1307,6 +1307,11 @@ $(BBOX_POLY_FILE):
 	@echo "END" >> $@
 endif
 
+# splitter's default --search-limit is 200000; 500000 (2.5x) reliably finds a
+# "nice" tile layout across Taiwan and overseas regions in ~1-1.5s, whereas
+# 1000000000 spends ~98s backtracking on Taiwan without improving the split.
+SPLITTER_SEARCH_LIMIT ?= 500000
+
 $(COMMON_TILES): $(GMAP_INPUT) $(SEA_ZIP) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE))
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
@@ -1322,7 +1327,7 @@ $(COMMON_TILES): $(GMAP_INPUT) $(SEA_ZIP) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE)
 			--mapid=$(DUMMYID)0001 \
 			--max-areas=4096 \
 			--max-nodes=800000 \
-			--search-limit=1000000000 \
+			--search-limit=$(SPLITTER_SEARCH_LIMIT) \
 			--output=o5m \
 			--output-dir=$(COMMON_TILES_DIR) \
 			$(GMAP_INPUT)
