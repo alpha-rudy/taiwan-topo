@@ -1,6 +1,8 @@
 # Suite: shikoku - Shikoku mapsforge build
 ifeq ($(SUITE),shikoku)
 REGION := Shikoku
+REGION_NAME_ZH := 四國
+REGION_NAME_EN := Shikoku
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

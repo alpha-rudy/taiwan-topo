@@ -1,6 +1,8 @@
 # Suite: saint_petersburg - Saint-Petersburg mapsforge build, no contours / no DEM
 ifeq ($(SUITE),saint_petersburg)
 REGION := Saint-Petersburg
+REGION_NAME_ZH := 聖彼得堡核心區
+REGION_NAME_EN := St Petersburg Core
 READING_LANG := ru
 MAP_LANG := zh
 CODE_PAGE := 65001

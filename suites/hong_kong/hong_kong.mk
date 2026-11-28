@@ -1,6 +1,8 @@
 # Suite: hong_kong - Hong-Kong mapsforge build
 ifeq ($(SUITE),hong_kong)
 REGION := Hong-Kong
+REGION_NAME_ZH := 香港
+REGION_NAME_EN := Hong Kong
 DEM_NAME := AW3D30
 READING_LANG := zh
 MAP_LANG := zh

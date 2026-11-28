@@ -1,6 +1,8 @@
 # Suite: chuo_alps - Chuo-Alps mapsforge build
 ifeq ($(SUITE),chuo_alps)
 REGION := Chuo-Alps
+REGION_NAME_ZH := 中央阿爾卑斯
+REGION_NAME_EN := Chuo Alps
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

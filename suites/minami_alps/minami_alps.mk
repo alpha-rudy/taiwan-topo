@@ -1,6 +1,8 @@
 # Suite: minami_alps - Minami-Alps mapsforge build
 ifeq ($(SUITE),minami_alps)
 REGION := Minami-Alps
+REGION_NAME_ZH := 南阿爾卑斯
+REGION_NAME_EN := Minami Alps
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

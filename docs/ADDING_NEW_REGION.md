@@ -293,6 +293,8 @@ Run the suite generator to create Makefile definitions:
 ./tools/generate_suite.py \
     --region Nikko-Oze \
     --region-lower nikko_oze \
+    --name-zh 日光尾瀨 \
+    --name-en Nikko-Oze \
     --dem-name AW3D30 \
     --lang ja \
     --extract-file japan-latest \
@@ -310,6 +312,7 @@ Run the suite generator to create Makefile definitions:
 |-----------|-------------|---------|
 | `--region` | Display name | `Nikko-Oze` |
 | `--region-lower` | Lowercase identifier | `nikko_oze` |
+| `--name-zh` / `--name-en` | Names in the regions list (`rudymap_regions.json`); a suite without them is left out of the list | `日光尾瀨` / `Nikko-Oze` |
 | `--dem-name` | DEM source | `AW3D30` |
 | `--lang` | Native script language (becomes `NATIVE_LANG`) | `ja` (Japanese) |
 | `--extract-file` | OSM country extract | `japan-latest` |
@@ -546,7 +549,8 @@ named output directly — no hand-editing required:
 # Suites: omit ELEVATION_*/HGT/GMAPDEM/DEM_NAME, drop gts_all/carto_all, name the
 # Garmin suites _bc / _bc_en (nodem, "camp" style). MAPID pair auto-allocated.
 # Add --landsea for a coastal region (sea/nosea overlay from land-polygons).
-./tools/generate_suite.py --region Moscow --region-lower moscow --lang ru \
+./tools/generate_suite.py --region Moscow --region-lower moscow \
+    --name-zh 莫斯科核心區 --name-en "Moscow Core" --lang ru \
     --extract-file central-fed-district-latest \
     --left 36.03 --right 39.00 --bottom 54.94 --top 56.48 --no-elevation
 

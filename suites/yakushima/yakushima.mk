@@ -1,6 +1,8 @@
 # Suite: yakushima - Yakushima mapsforge build
 ifeq ($(SUITE),yakushima)
 REGION := Yakushima
+REGION_NAME_ZH := 屋久島
+REGION_NAME_EN := Yakushima
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh

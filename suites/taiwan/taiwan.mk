@@ -1,6 +1,8 @@
 # Suite: taiwan - Main Taiwan mapsforge build
 ifeq ($(SUITE),taiwan)
 REGION := Taiwan
+REGION_NAME_ZH := 台灣
+REGION_NAME_EN := Taiwan
 DEM_NAME := MOI
 MAP_LANG := zh
 CODE_PAGE := 950

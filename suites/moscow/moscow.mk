@@ -1,6 +1,8 @@
 # Suite: moscow - Moscow (Russia) mapsforge build, no contours / no DEM
 ifeq ($(SUITE),moscow)
 REGION := Moscow
+REGION_NAME_ZH := 莫斯科核心區
+REGION_NAME_EN := Moscow Core
 READING_LANG := ru
 MAP_LANG := zh
 CODE_PAGE := 65001

@@ -1,6 +1,8 @@
 # Suite: elbrus - Elbrus (Russia Caucasus) mapsforge build
 ifeq ($(SUITE),elbrus)
 REGION := Elbrus
+REGION_NAME_ZH := 厄爾布魯士
+REGION_NAME_EN := Elbrus
 DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 READING_LANG := ru

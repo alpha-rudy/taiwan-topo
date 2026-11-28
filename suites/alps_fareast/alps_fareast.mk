@@ -1,6 +1,8 @@
 # Suite: alps_fareast - Alps-Fareast mapsforge build
 ifeq ($(SUITE),alps_fareast)
 REGION := Alps-Fareast
+REGION_NAME_ZH := 遠東阿爾卑斯山脈
+REGION_NAME_EN := Far East Alps
 DESC_PREFIX := EuroPeak
 DEM_NAME := AW3D30
 READING_LANG := de

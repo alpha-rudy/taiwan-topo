@@ -1,6 +1,8 @@
 # Suite: fujisan - Fujisan (Japan) mapsforge build
 ifeq ($(SUITE),fujisan)
 REGION := Fujisan
+REGION_NAME_ZH := 富士山
+REGION_NAME_EN := Fujisan
 DEM_NAME := AW3D30
 READING_LANG := ja
 MAP_LANG := zh
