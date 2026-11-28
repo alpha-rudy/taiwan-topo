@@ -19,8 +19,11 @@ GTS_STYLE = $(HS_STYLE)
 TARGETS := styles mapsforge_zip poi_zip poi_v2_zip locus_poi_zip gts_all carto_all locus_map pmtiles pmtiles_style_zip dem
 endif
 
-# Suite lists for batch builds
-TAIWAN_SUITES := taiwan taiwan_lite taiwan_bw taiwan_odc taiwan_bc \
-                 taiwan_bw_dem taiwan_odc_dem taiwan_bc_dem taiwan_bc_dem_en taiwan_bw_en
+# Suite lists for batch builds (DEM suites run before no-DEM siblings so
+# compiled Garmin tiles can be cloned with --strip-dem; taiwan_bw_en runs last
+# to keep taiwan_bc's background NSIS build overlapped).
+TAIWAN_SUITES := taiwan taiwan_lite \
+                 taiwan_bc_dem taiwan_odc_dem taiwan_bc_dem_en taiwan_bc \
+                 taiwan_bw_dem taiwan_bw taiwan_odc taiwan_bw_en
 # Instantiate suite targets for each region
 $(eval $(call SUITE_BUILD,taiwan,TAIWAN_SUITES,$(INSTALL_DIR),taiwan))

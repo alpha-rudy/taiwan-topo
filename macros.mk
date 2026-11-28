@@ -177,15 +177,50 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 	@set -e; \
 	cache_dir="$$(BUILD_DIR)/$$(REGION)/gmap_tile_cache"; \
 	cache_key="$$$$(printf '%s\n' "$$(ELEVATION_FILE)" "$$(GMAPDEM)" "$5" "$6" "$$(CODE_PAGE)" "$$(NTL)" "$$(BOUNDING_BOX)" "$$(POLY_FILE)" "$$(LEFT)" "$$(BOTTOM)" "$$(RIGHT)" "$$(TOP)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-16)"; \
+	nodem_key="$$$$(printf '%s\n' "$$(ELEVATION_FILE)" "$5" "$$(CODE_PAGE)" "$$(NTL)" "$$(BOUNDING_BOX)" "$$(POLY_FILE)" "$$(LEFT)" "$$(BOTTOM)" "$$(RIGHT)" "$$(TOP)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-16)"; \
 	cache_meta="$$$$cache_dir/$$$$cache_key.env"; \
+	nodem_meta="$$$$cache_dir/nodem_$$$$nodem_key.env"; \
 	cloned=0; \
 	if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ] && [ "$8" = "handheld" ] && [ -f "$$$$cache_meta" ]; then \
-		src_dir=""; src_mapid=""; src_done=""; \
+		src_dir=""; src_mapid=""; src_done=""; src_ovm=""; \
 		. "$$$$cache_meta"; \
 		if [ -n "$$$$src_dir" ] && [ -d "$$$$src_dir" ] && [ -f "$$$$src_done" ] && [ ! "$$(COMMON_TILES)" -nt "$$$$src_done" ]; then \
 			echo "MAP_BUILD ($1): cloning compiled tiles from $$$$src_mapid -> $$(MAPID)"; \
 			python3 $$(TOOLS_DIR)/gmap-clone-tiles.py "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
 			cloned=1; \
+		fi; \
+	fi; \
+	if [ "$$$$cloned" -eq 0 ] && [ "$$(USE_GMAP_TILE_CACHE)" = "1" ] && [ -z "$6" ] && [ -f "$$$$nodem_meta" ]; then \
+		src_dir=""; src_mapid=""; src_done=""; src_ovm=""; \
+		. "$$$$nodem_meta"; \
+		if [ -n "$$$$src_dir" ] && [ -d "$$$$src_dir" ] && [ -f "$$$$src_done" ] && [ ! "$$(COMMON_TILES)" -nt "$$$$src_done" ]; then \
+			if [ "$8" = "handheld" ]; then \
+				echo "MAP_BUILD ($1): cloning compiled tiles (strip-dem) from $$$$src_mapid -> $$(MAPID)"; \
+				python3 $$(TOOLS_DIR)/gmap-clone-tiles.py --strip-dem "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
+				cloned=1; \
+			elif [ "$8" = "pc" ] && [ -n "$$$$src_ovm" ] && [ -d "$$$$src_ovm" ]; then \
+				echo "MAP_BUILD ($1): cloning PC tiles (strip-dem + ovm) from $$$$src_mapid -> $$(MAPID)"; \
+				python3 $$(TOOLS_DIR)/gmap-clone-tiles.py --strip-dem --ovm-dir "$$$$src_ovm" "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
+				cd $3 && \
+				java $$(JAVACMD_OPTIONS) -jar $$(MKGMAP_JAR) \
+					--code-page=$$(CODE_PAGE) \
+					--license-file="$$(ROOT_DIR)/docs/license.txt" \
+					--index \
+					--tdbfile \
+					--improve-overview \
+					--remove-ovm-work-files \
+					--show-profiles=1 \
+					--product-id=1 \
+					--family-id=$$(MAPID) \
+					--family-name="$$(NAME_SHORT)" \
+					--series-name="$$(NAME_SHORT)" \
+					--description="$$(NAME_LONG)" \
+					--overview-mapname="$$(NAME_WORD)" \
+					--overview-mapnumber=$$(MAPID)0000 \
+					--product-version="$$(VERSION)" \
+					$$(MAPID)*.img; \
+				cloned=1; \
+			fi; \
 		fi; \
 	fi; \
 	if [ "$$$$cloned" -eq 0 ]; then \
@@ -205,6 +240,7 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 				-e "s|__name_word__|$$(NAME_WORD)|g" \
 				-e "s|__mapid__|$$(MAPID)|g" > mkgmap.cfg && \
 			$(if $(filter handheld,$8),$$(SED_CMD) -e '/^index$$$$/d' -e '/^tdbfile$$$$/d' -e '/^improve-overview$$$$/d' -e '/^overview-mapname=/d' -e '/^overview-mapnumber=/d' -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg &&) \
+			$(if $(and $(filter pc,$8),$6),if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ]; then $$(SED_CMD) -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg; fi &&) \
 			cat $$(TILES_DIR)/template.args | $$(SED_CMD) \
 				-e "s|input-file: \(.*\)|input-file: $$(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
 			$(if $6,ln -s $$(GMAPDEM) ./moi-hgt.zip && $$(SED_CMD) "/__dem_section__/ r $$(ROOT_DIR)/mkgmaps/$6" -i mkgmap.cfg &&) \
@@ -215,8 +251,18 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 				--check-styles; \
 		if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ]; then \
 			mkdir -p "$$$$cache_dir"; \
-			printf 'src_dir=%q\nsrc_mapid=%q\nsrc_done=%q\n' "$3" "$$(MAPID)" "$2" > "$$$$cache_meta.tmp"; \
+			ovm_store=""; \
+			if [ "$8" = "pc" ] && [ -n "$6" ]; then \
+				ovm_store="$$$$cache_dir/ovm_$$$$nodem_key"; \
+				rm -rf "$$$$ovm_store" && mkdir -p "$$$$ovm_store"; \
+				mv $3/ovm_$$(MAPID)*.img "$$$$ovm_store/" 2>/dev/null || true; \
+			fi; \
+			printf 'src_dir=%q\nsrc_mapid=%q\nsrc_done=%q\nsrc_ovm=%q\n' "$3" "$$(MAPID)" "$2" "$$$$ovm_store" > "$$$$cache_meta.tmp"; \
 			mv "$$$$cache_meta.tmp" "$$$$cache_meta"; \
+			if [ -n "$6" ]; then \
+				cp "$$$$cache_meta" "$$$$nodem_meta.tmp"; \
+				mv "$$$$nodem_meta.tmp" "$$$$nodem_meta"; \
+			fi; \
 		fi; \
 	fi
 	touch $2

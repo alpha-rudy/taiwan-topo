@@ -28,6 +28,7 @@ OFFSET_MAP = (6, 7, 5, 11, 3, 10, 13, 12, 1, 15, 4, 14, 8, 0, 2, 9)
 
 FAT_OFFSET = 0x600
 FAT_RECORD_SIZE = 512
+MBR_SECTORS_OFFSET = 0x1BE + 12
 TRE_MAP_ID_OFFSET = 0x74
 TRE_MAP_VALUES_OFFSET = 0x9A
 TRE_MAP_VALUES_END = 0xAA
@@ -77,8 +78,20 @@ def calc_map_values(map_id: int, header_len: int) -> bytes:
     return struct.pack("<4I", *vals)
 
 
-def clone_tile_img(src_path: str, dst_path: str, old_mapname: str, new_mapname: str) -> None:
-    """Clone a single compiled Garmin tile .img with a new 8-digit mapname."""
+def clone_tile_img(
+    src_path: str,
+    dst_path: str,
+    old_mapname: str,
+    new_mapname: str,
+    *,
+    strip_dem: bool = False,
+) -> None:
+    """Clone a single compiled Garmin tile .img with a new 8-digit mapname.
+
+    When ``strip_dem`` is True, all ``DEM`` FAT entries and their data blocks
+    are removed and the remaining subfile blocks are compacted contiguously so
+    the output .img carries no dead DEM bytes.
+    """
     if len(old_mapname) != 8 or len(new_mapname) != 8 or not new_mapname.isdigit():
         raise ValueError(f"Expected 8-digit mapnames, got {old_mapname!r} -> {new_mapname!r}")
 
@@ -94,7 +107,7 @@ def clone_tile_img(src_path: str, dst_path: str, old_mapname: str, new_mapname: 
     new_id = int(new_mapname)
 
     min_data = len(data)
-    tre_first_block: int | None = None
+    fat_records: list[tuple[int, bytes, bytes, int, list[int]]] = []
     pos = FAT_OFFSET
     while pos + FAT_RECORD_SIZE <= min_data:
         rec = data[pos : pos + FAT_RECORD_SIZE]
@@ -105,11 +118,40 @@ def clone_tile_img(src_path: str, dst_path: str, old_mapname: str, new_mapname: 
             blocks = [b for b in struct.unpack_from("<240H", rec, 32) if b != 0xFFFF]
             if blocks and ext.strip():
                 min_data = min(min_data, blocks[0] * block_size)
+            fat_records.append((pos, name, ext, part, blocks))
+        pos += FAT_RECORD_SIZE
+
+    tre_first_block: int | None = None
+    if strip_dem:
+        first_data_block = min_data // block_size
+        out = bytearray(data[:min_data])
+        next_block = first_data_block
+
+        for rec_pos, name, ext, part, blocks in fat_records:
+            if name == old_b and ext == b"DEM":
+                out[rec_pos : rec_pos + FAT_RECORD_SIZE] = b"\x00" * FAT_RECORD_SIZE
+                continue
             if name == old_b:
-                data[pos + 1 : pos + 9] = new_b
+                out[rec_pos + 1 : rec_pos + 9] = new_b
+            new_blocks: list[int] = []
+            for blk in blocks:
+                out.extend(data[blk * block_size : (blk + 1) * block_size])
+                new_blocks.append(next_block)
+                next_block += 1
+            if name == old_b and ext == b"TRE" and part == 0 and new_blocks:
+                tre_first_block = new_blocks[0]
+            padded = new_blocks + [0xFFFF] * (240 - len(new_blocks))
+            struct.pack_into("<240H", out, rec_pos + 32, *padded)
+
+        # Update MBR total sector count to match compacted image length
+        struct.pack_into("<I", out, MBR_SECTORS_OFFSET, (len(out) // 512) + 1)
+        data = out
+    else:
+        for rec_pos, name, ext, part, blocks in fat_records:
+            if name == old_b:
+                data[rec_pos + 1 : rec_pos + 9] = new_b
                 if ext == b"TRE" and part == 0 and blocks:
                     tre_first_block = blocks[0]
-        pos += FAT_RECORD_SIZE
 
     if tre_first_block is None:
         raise ValueError(f"{src_path}: TRE subfile for {old_mapname} not found")
@@ -141,6 +183,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("src_mapid", help="4-digit source MAPID prefix (e.g. 4115)")
     parser.add_argument("dst_dir", help="Destination directory for cloned .img tiles")
     parser.add_argument("dst_mapid", help="4-digit destination MAPID prefix (e.g. 4114)")
+    parser.add_argument(
+        "--strip-dem",
+        action="store_true",
+        help="Strip DEM subfiles and compact remaining blocks",
+    )
+    parser.add_argument(
+        "--ovm-dir",
+        default="",
+        help="Optional directory with ovm_<src_mapid>xxxx.img work files to clone too",
+    )
     args = parser.parse_args(argv)
 
     if not re.fullmatch(r"\d{4}", args.src_mapid) or not re.fullmatch(r"\d{4}", args.dst_mapid):
@@ -161,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
         new_mn = args.dst_mapid + old_mn[4:]
         src_path = os.path.join(args.src_dir, entry)
         dst_path = os.path.join(args.dst_dir, f"{new_mn}.img")
-        clone_tile_img(src_path, dst_path, old_mn, new_mn)
+        clone_tile_img(src_path, dst_path, old_mn, new_mn, strip_dem=args.strip_dem)
         count += 1
 
     if count == 0:
@@ -171,8 +223,24 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 1
 
+    ovm_count = 0
+    if args.ovm_dir and os.path.isdir(args.ovm_dir):
+        ovm_re = re.compile(rf"^ovm_({re.escape(args.src_mapid)}\d{{4}})\.img$")
+        for entry in sorted(os.listdir(args.ovm_dir)):
+            m = ovm_re.match(entry)
+            if not m:
+                continue
+            old_mn = m.group(1)
+            new_mn = args.dst_mapid + old_mn[4:]
+            src_path = os.path.join(args.ovm_dir, entry)
+            dst_path = os.path.join(args.dst_dir, f"ovm_{new_mn}.img")
+            clone_tile_img(src_path, dst_path, old_mn, new_mn, strip_dem=False)
+            ovm_count += 1
+
+    mode = " (strip-dem)" if args.strip_dem else ""
+    ovm_msg = f" + {ovm_count} ovm" if ovm_count else ""
     print(
-        f"gmap-clone-tiles: cloned {count} tiles ({args.src_mapid} -> {args.dst_mapid})",
+        f"gmap-clone-tiles: cloned {count} tiles{ovm_msg}{mode} ({args.src_mapid} -> {args.dst_mapid})",
         file=sys.stderr,
     )
     return 0
