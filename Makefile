@@ -737,7 +737,7 @@ $(eval $(call POI_BUILD,addr,$(ADDR),$(REGION_EXTRACT)-sed.osm.pbf,$(REGION_EXTR
 
 .PHONY: locus_poi
 locus_poi: $(LOCUS_POI)
-$(LOCUS_POI): $(POI_V2)
+$(LOCUS_POI): $(POI)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(EXTRACT)" ]
 	mkdir -p $(BUILD_DIR)
