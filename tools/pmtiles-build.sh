@@ -140,6 +140,15 @@ fi
 rm -f "$OUTPUT_PMTILES"
 
 # --skip-integrity: tolerate the dangling node references noted above.
+# --compact: safe because step 2 always renumbers node IDs from 1.
+# --fast: faster tile generation and lower peak RSS in-memory unless the caller
+#         explicitly asks for disk-backed / sharded stores in EXTRA_OPTS.
+PERF_OPTS="--compact"
+case " $EXTRA_OPTS " in
+    *" --store "*|*" --shard-stores "*) ;;
+    *) PERF_OPTS="--fast --compact" ;;
+esac
+
 "$TILEMAKER_CMD" \
     --input "$SPLIT_PBF" \
     --output "$OUTPUT_PMTILES" \
@@ -147,9 +156,14 @@ rm -f "$OUTPUT_PMTILES"
     --process "$PROCESS_LUA" \
     --bbox "$BBOX" \
     --skip-integrity \
+    $PERF_OPTS \
     $EXTRA_OPTS
 
 test -s "$OUTPUT_PMTILES" || { echo "ERROR: tilemaker produced no output ($OUTPUT_PMTILES)" >&2; exit 1; }
+
+# 4b. Merge same-attribute building polygons into MultiPolygons at z12-z13
+#     in O(N) time, replacing tilemaker's slow Boost.Geometry polygon union.
+python3 "$(dirname "$0")/pmtiles-merge-buildings.py" "$OUTPUT_PMTILES"
 
 # 5. The build version, attribution and DEM version in the archive's metadata,
 #    and the header's centre (see the notes above).
