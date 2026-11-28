@@ -628,59 +628,61 @@ $(TN_STYLE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE) $(POI) $(GTS_STYLE) $(HGT)
+$(GTS_ALL).zip: $(MAPSFORGE) $(POI) $(GTS_STYLE) $(HGT) $(TOOLS_DIR)/zip-pack.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
-	mkdir -p $(GTS_ALL)/map
-	ln -f $(MAPSFORGE) $(GTS_ALL)/map/$(notdir $(MAPSFORGE)) 2>/dev/null || cp $(MAPSFORGE) $(GTS_ALL)/map/$(notdir $(MAPSFORGE))
-	ln -f $(POI) $(GTS_ALL)/map/$(notdir $(POI)) 2>/dev/null || cp $(POI) $(GTS_ALL)/map/$(notdir $(POI))
-	cd $(GTS_ALL) && \
-		$(UNZIP_CMD) $(GTS_STYLE) -d mapthemes && \
-		$(UNZIP_CMD) $(HGT) -d hgt && \
-		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
-	rm -rf $(GTS_ALL)
+	python3 $(TOOLS_DIR)/zip-pack.py $@ \
+		--copy-zip "$(HGT)" "hgt/" "*" \
+		--dir "map/" \
+		--reuse-file "$(MAPSFORGE)" "map/$(notdir $(MAPSFORGE))" "$(MAPSFORGE_ZIP)" "$(notdir $(MAPSFORGE))" \
+		--reuse-file "$(POI)" "map/$(notdir $(POI))" "$(MAPSFORGE_ZIP)" "$(notdir $(POI))" \
+		--copy-zip "$(GTS_STYLE)" "mapthemes/" "*"
 
 .PHONY: carto_all
 carto_all: $(CARTO_ALL).zip
-$(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
+$(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT) $(TOOLS_DIR)/zip-pack.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
 	set -e; \
-	stage=$(BUILD_DIR)/.carto_stage.$$$$; \
-	trap 'rm -rf "$$stage"' EXIT; \
-	mkdir -p "$$stage"; \
-	rm -f $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg $(BUILD_DIR)/$(NAME_CARTO)_style.cpkg \
-		$(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg \
-		$(BUILD_DIR)/$(NAME_CARTO)_all.cpkg; \
-	ln -f $(MAPSFORGE) "$$stage/$(notdir $(MAPSFORGE))" 2>/dev/null || cp $(MAPSFORGE) "$$stage/$(notdir $(MAPSFORGE))"; \
-	ln -f $(POI_V2) "$$stage/$(notdir $(POI))" 2>/dev/null || cp $(POI_V2) "$$stage/$(notdir $(POI))"; \
-	ln -f $(HS_STYLE) "$$stage/$(notdir $(HS_STYLE))" 2>/dev/null || cp $(HS_STYLE) "$$stage/$(notdir $(HS_STYLE))"; \
-	$(UNZIP_CMD) $(HGT) -d "$$stage"; \
-	cd "$$stage"; \
-	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json; \
-	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg mapdetails.json $(notdir $(MAPSFORGE)) $(notdir $(POI)); \
-	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json; \
-	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_style.cpkg mapdetails.json $(notdir $(HS_STYLE)); \
-	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json; \
-	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt; \
-	cp $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg; \
-	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json; \
-	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(notdir $(HS_STYLE)); \
-	cp $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg $(BUILD_DIR)/$(NAME_CARTO)_all.cpkg; \
-	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json; \
-	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt
+	carto_dir="$(ROOT_DIR)/auto-install/carto/$(REGION)"; \
+	c_map="$(BUILD_DIR)/$(NAME_CARTO)_map.cpkg"; \
+	c_style="$(BUILD_DIR)/$(NAME_CARTO)_style.cpkg"; \
+	c_dem="$(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg"; \
+	c_upgrade="$(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg"; \
+	c_all="$(BUILD_DIR)/$(NAME_CARTO)_all.cpkg"; \
+	rm -f "$$c_map" "$$c_style" "$$c_dem" "$$c_upgrade" "$$c_all"; \
+	python3 $(TOOLS_DIR)/zip-pack.py "$$c_map" \
+		--reuse-file "$(MAPSFORGE)" "$(notdir $(MAPSFORGE))" "$(MAPSFORGE_ZIP)" "$(notdir $(MAPSFORGE))" \
+		--reuse-file "$(POI_V2)" "$(notdir $(POI))" "$(POI_V2_ZIP)" "$(notdir $(POI))" \
+		--file "$$carto_dir/map.json" "mapdetails.json"; \
+	python3 $(TOOLS_DIR)/zip-pack.py "$$c_style" \
+		--file "$(HS_STYLE)" "$(notdir $(HS_STYLE))" \
+		--file "$$carto_dir/style.json" "mapdetails.json"; \
+	python3 $(TOOLS_DIR)/zip-pack.py "$$c_dem" \
+		--copy-zip "$(HGT)" "" "*.hgt" \
+		--file "$$carto_dir/dem.json" "mapdetails.json"; \
+	python3 $(TOOLS_DIR)/zip-pack.py "$$c_upgrade" \
+		--reuse-file "$(MAPSFORGE)" "$(notdir $(MAPSFORGE))" "$$c_map" "$(notdir $(MAPSFORGE))" \
+		--reuse-file "$(POI_V2)" "$(notdir $(POI))" "$$c_map" "$(notdir $(POI))" \
+		--reuse-file "$(HS_STYLE)" "$(notdir $(HS_STYLE))" "$$c_style" "$(notdir $(HS_STYLE))" \
+		--file "$$carto_dir/upgrade.json" "mapdetails.json"; \
+	python3 $(TOOLS_DIR)/zip-pack.py "$$c_all" \
+		--reuse-file "$(MAPSFORGE)" "$(notdir $(MAPSFORGE))" "$$c_upgrade" "$(notdir $(MAPSFORGE))" \
+		--reuse-file "$(POI_V2)" "$(notdir $(POI))" "$$c_upgrade" "$(notdir $(POI))" \
+		--reuse-file "$(HS_STYLE)" "$(notdir $(HS_STYLE))" "$$c_upgrade" "$(notdir $(HS_STYLE))" \
+		--copy-zip "$$c_dem" "" "*.hgt" \
+		--file "$$carto_dir/all.json" "mapdetails.json"
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
-$(LOCUS_MAP).zip: $(MAPSFORGE) $(LOCUS_POI) 
+$(LOCUS_MAP).zip: $(MAPSFORGE) $(LOCUS_POI) $(TOOLS_DIR)/zip-pack.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(LOCUS_MAP)" ]
 	@rm -rf $(LOCUS_MAP) $(LOCUS_MAP).zip
-	mkdir -p $(LOCUS_MAP)
-	cp $(MAPSFORGE) $(LOCUS_MAP)/$(shell basename $(MAPSFORGE:%.map=%.osm.map))
-	cp $(LOCUS_POI) $(LOCUS_MAP)/$(shell basename $(LOCUS_POI:%.db=%.osm.db))
-	cd $(LOCUS_MAP) && $(ZIP_CMD) $(LOCUS_MAP).zip *
+	python3 $(TOOLS_DIR)/zip-pack.py $@ \
+		--reuse-file "$(LOCUS_POI)" "$(notdir $(LOCUS_POI:%.db=%.osm.db))" "$(LOCUS_POI_ZIP)" "$(notdir $(LOCUS_POI))" \
+		--reuse-file "$(MAPSFORGE)" "$(notdir $(MAPSFORGE:%.map=%.osm.map))" "$(MAPSFORGE_ZIP)" "$(notdir $(MAPSFORGE))"
 
 .PHONY: nsis
 nsis: $(NSIS)
@@ -1008,8 +1010,14 @@ $(eval $(call ZIP_PACKAGE,gmapsupp_zip,$(GMAPSUPP_ZIP),$(GMAPSUPP),$(GMAPSUPP)))
 # mapsforge_zip: ZIP of mapsforge map and POI database
 $(eval $(call ZIP_PACKAGE,mapsforge_zip,$(MAPSFORGE_ZIP),$(MAPSFORGE) $(POI),$(MAPSFORGE) $(POI)))
 
-# poi_zip: ZIP of POI database only
-$(eval $(call ZIP_PACKAGE,poi_zip,$(POI_ZIP),$(POI),$(POI)))
+# poi_zip: ZIP of POI database only (reuses pre-compressed stream from mapsforge_zip when fresh)
+.PHONY: poi_zip
+poi_zip: $(POI_ZIP)
+$(POI_ZIP): $(POI) $(TOOLS_DIR)/zip-pack.py
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -d "$(BUILD_DIR)" ]
+	python3 $(TOOLS_DIR)/zip-pack.py $@ \
+		--reuse-file "$(POI)" "$(notdir $(POI))" "$(MAPSFORGE_ZIP)" "$(notdir $(POI))"
 
 # locus_poi_zip: ZIP of Locus-format POI database
 $(eval $(call ZIP_PACKAGE,locus_poi_zip,$(LOCUS_POI_ZIP),$(LOCUS_POI),$(LOCUS_POI)))
