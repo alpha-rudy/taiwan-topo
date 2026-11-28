@@ -1393,7 +1393,10 @@ $(DEM_PMTILES): $(HGT) $(TOOLS_DIR)/dem-build.sh $(TOOLS_DIR)/dem-terrarium.py
 			"$(DEM_MIN_ZOOM)" \
 			"$(DEM_MAX_ZOOM)" && \
 		if [ -n "$(DEM_CACHE_DIR)" ]; then \
-			mkdir -p "$(DEM_CACHE_DIR)" && cp "$@" "$$cached.tmp" && mv "$$cached.tmp" "$$cached"; \
+			mkdir -p "$(DEM_CACHE_DIR)" && cp "$@" "$$cached.tmp" && mv "$$cached.tmp" "$$cached" && \
+			for old in "$(DEM_CACHE_DIR)/$(basename $(notdir $@))-"*.pmtiles; do \
+				[ "$$old" = "$$cached" ] || rm -f "$$old"; \
+			done; \
 		fi; \
 	fi
 
