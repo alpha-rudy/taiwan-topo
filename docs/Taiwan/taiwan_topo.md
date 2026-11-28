@@ -23,22 +23,22 @@
 * 點選下列連結啟動安裝，或於 APP 內直接下載
   > 安裝示範影片：https://youtu.be/g8b15RPZ7nA
 * 傳統版（10m 等高線，細緻推薦）
-  * 三合一 (345MB)
+  * 三合一
     > [[自動分流]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
-  * 離線地圖 (298MB)
+  * 離線地圖
     > [[自動分流]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * 風格主題 (0.4MB)
+  * 風格主題
     > [[自動分流]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * 高程檔 (46MB)
+  * 高程檔
     > [[自動分流]](wadi-hgt://rudymap.tw/v1/hgtmix.zip)
 * 輕量版（20m 等高線，省空間）
-  * 三合一 (174MB)
+  * 三合一
     > [[自動分流]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
-  * 離線地圖 (168MB)
+  * 離線地圖
     > [[自動分流]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
-  * 風格主題 (0.4MB)
+  * 風格主題
     > [[自動分流]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
-  * 高程檔 (6MB)
+  * 高程檔
     > [[自動分流]](wadi-hgt://rudymap.tw/v1/hgt90.zip)
 
 ### ![綠野遊蹤](images/GTS.png =36x) 綠野遊蹤（Android）
@@ -46,22 +46,22 @@
 * 安裝時，點選下方連結即可
   > 安裝示範影片：https://youtu.be/JsvP61CErYY
 * 傳統版（10m 等高線，細緻推薦）
-  * 三合一 (345MB)
+  * 三合一
     > [[自動分流]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
-  * 離線地圖 (298MB)
+  * 離線地圖
     > [[自動分流]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * 風格主題 (0.4MB)
+  * 風格主題
     > [[自動分流]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * 高程檔 (46MB)
+  * 高程檔
     > [[自動分流]](gts-hgt://rudymap.tw/v1/hgtmix.zip)
 * 輕量版（20m 等高線，省空間）
-  * 三合一 (174MB)
+  * 三合一
     > [[自動分流]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
-  * 離線地圖 (168MB)
+  * 離線地圖
     > [[自動分流]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
-  * 風格主題 (0.4MB)
+  * 風格主題
     > [[自動分流]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
-  * 高程檔 (6MB)
+  * 高程檔
     > [[自動分流]](gts-hgt://rudymap.tw/v1/hgt90.zip)
 
 ### ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps 歐魯妹（Android）
@@ -69,11 +69,11 @@
 * 安裝時，點選下方連結即可
   > 安卓 11(含) 以後示範影片：https://youtu.be/8hwJr4jMsE0 <br />
   > 舊版安卓 (10 以下) 示範影片：https://youtu.be/GbBaePfk4cE
-* ![Map](images/OruxMaps_map.jpeg =36x) Map (298MB)
+* ![Map](images/OruxMaps_map.jpeg =36x) Map
   > [[自動分流]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-* ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
+* ![Style](images/OruxMaps_style.jpeg =36x) Style
   > [[自動分流]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-* ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026（點選下載後手動安裝） (46MB)
+* ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026（點選下載後手動安裝）
   > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
 
 ### ![Locus Map](images/Locus.jpeg =36x) Locus Map（Android）
@@ -81,17 +81,17 @@
 * 安裝時，點選下方連結即可
   > 安裝示範影片：https://youtu.be/rb1Hb6dkGkw
 * 三合一（推薦首次安裝）
-  * ![Map](images/Locus.jpeg =36x) 首次安裝 (345MB)
+  * ![Map](images/Locus.jpeg =36x) 首次安裝
     > [[自動分流]](locus-actions://https/rudymap.tw/locus_all-cedric.xml)
 * 圖資更新
-  * ![Map](images/Locus.jpeg =36x) 更新 (298MB)
+  * ![Map](images/Locus.jpeg =36x) 更新
     > [[自動分流]](locus-actions://https/rudymap.tw/locus_upgrade-cedric.xml)
 * 分開安裝
-  * ![Map](images/Locus_map.jpeg =36x) Map (298MB)
+  * ![Map](images/Locus_map.jpeg =36x) Map
     > [[自動分流]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
-  * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
+  * ![Style](images/Locus_style.jpeg =36x) Style
     > [[自動分流]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-  * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026 (46MB)
+  * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026
     > [[自動分流]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
 
 ### ![Cartograph](images/Cartograph.png =36x) Cartograph Maps（iOS / Android）
@@ -99,17 +99,17 @@
 * 安裝時，點選下方連結即可
   > 安裝示範影片：https://youtu.be/FDa2Qb9wxUY
 * 三合一（推薦首次安裝）
-  * ![Map](images/Cartograph.png =36x) 首次安裝 (345MB)
+  * ![Map](images/Cartograph.png =36x) 首次安裝
     > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_all.cpkg)
 * 圖資更新
-  * ![Map](images/Cartograph.png =36x) 更新 (320MB)
+  * ![Map](images/Cartograph.png =36x) 更新
     > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg)
 * 分開安裝
-  * ![Map](images/Cartograph_map.png =36x) Map (298MB)
+  * ![Map](images/Cartograph_map.png =36x) Map
     > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
-  * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
+  * ![Style](images/Cartograph_style.png =36x) Style
     > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
-  * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2026 (46MB)
+  * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2026
     > [[自動分流]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
 
 
@@ -123,44 +123,44 @@
 
 ### MOI.OSM.bw / bw3D（小螢幕手持機／手錶）
 
-* ![Map](images/Garmin_small.jpeg =36x) bw（2D，手持機 / 手錶） (210MB)
+* ![Map](images/Garmin_small.jpeg =36x) bw（2D，手持機 / 手錶）
   > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw.img.zip)
-* ![Map](images/Garmin_small.jpeg =36x) bw3D（含 3D 高程，手持機 / 手錶） (211MB)
+* ![Map](images/Garmin_small.jpeg =36x) bw3D（含 3D 高程，手持機 / 手錶）
   > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw3D.img.zip)
 
 ### MOI.OSM.odc / odc3D（大螢幕手持機）
 
-* ![Map](images/Garmin_large.jpeg =36x) odc（2D，手持機） (210MB)
+* ![Map](images/Garmin_large.jpeg =36x) odc（2D，手持機）
   > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc.img.zip)
-* ![Map](images/Garmin_large.jpeg =36x) odc3D（含 3D 高程，手持機） (211MB)
+* ![Map](images/Garmin_large.jpeg =36x) odc3D（含 3D 高程，手持機）
   > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc3D.img.zip)
-* ![Map](images/Windows.png =36x) odc3D（Windows BaseCamp） (227MB)
+* ![Map](images/Windows.png =36x) odc3D（Windows BaseCamp）
   > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_odc3D.exe)
-* ![Map](images/macOS.png =36x) odc3D（macOS BaseCamp） (227MB)
+* ![Map](images/macOS.png =36x) odc3D（macOS BaseCamp）
   > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_odc3D.gmap.zip)
 
 ### MOI.OSM.camp / camp3D（PC / Mac BaseCamp 規劃用）
 
 * 2D 版 (camp)
-  * ![Map](images/Windows.png =36x) camp（Windows BaseCamp） (210MB)
+  * ![Map](images/Windows.png =36x) camp（Windows BaseCamp）
     > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp.exe)
-  * ![Map](images/macOS.png =36x) camp（macOS BaseCamp） (210MB)
+  * ![Map](images/macOS.png =36x) camp（macOS BaseCamp）
     > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_camp.gmap.zip)
 * 3D 版 (camp3D，含高程)
-  * ![Map](images/Garmin_large.jpeg =36x) camp3D（大螢幕手持機） (211MB)
+  * ![Map](images/Garmin_large.jpeg =36x) camp3D（大螢幕手持機）
     > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_camp3D.img.zip)
-  * ![Map](images/Windows.png =36x) camp3D（Windows BaseCamp） (227MB)
+  * ![Map](images/Windows.png =36x) camp3D（Windows BaseCamp）
     > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D.exe)
-  * ![Map](images/macOS.png =36x) camp3D（macOS BaseCamp） (227MB)
+  * ![Map](images/macOS.png =36x) camp3D（macOS BaseCamp）
     > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_zh_camp3D.gmap.zip)
 
 ### Garmin English Maps - Taiwan TOPO
 
-* ![Map](images/Garmin_small.jpeg =36x) en_bw（小螢幕手持機 / 手錶） (211MB)
+* ![Map](images/Garmin_small.jpeg =36x) en_bw（小螢幕手持機 / 手錶）
   > [[自動分流]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_en_bw.img.zip)
-* ![Map](images/Windows.png =36x) en_camp3D（Windows BaseCamp） (227MB)
+* ![Map](images/Windows.png =36x) en_camp3D（Windows BaseCamp）
   > [[自動分流]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
-* ![Map](images/macOS.png =36x) en_camp3D（macOS BaseCamp） (227MB)
+* ![Map](images/macOS.png =36x) en_camp3D（macOS BaseCamp）
   > [[自動分流]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip)
 
 
@@ -172,40 +172,40 @@
 
 ### 主地圖與高程檔 (Map & DEM)
 
-* ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) 台灣離線地圖 Map (298MB)
+* ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) 台灣離線地圖 Map
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026（台灣本島 30m、離島 90m，推薦） (46MB)
+* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026（台灣本島 30m、離島 90m，推薦）
   > [[自動分流]](https://rudymap.tw/v1/hgtmix.zip)
-* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026（全區 90m，檔案最小） (6MB)
+* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026（全區 90m，檔案最小）
   > [[自動分流]](https://rudymap.tw/v1/hgt90.zip)
 
 ### 離線搜尋地標 (POI)
 
-* ![POIv3](images/Android.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / 山林日誌 POIv3 (55MB)
+* ![POIv3](images/Android.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / 山林日誌 POIv3
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-* ![POIv2](images/Android.png =36x) Cartograph POIv2 (45MB)
+* ![POIv2](images/Android.png =36x) Cartograph POIv2
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
-* ![LOCUS_POI](images/Android.png =36x) Locus Map POI (25MB)
+* ![LOCUS_POI](images/Android.png =36x) Locus Map POI
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
 
 ### 標準風格主題 (Style)
 
-* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / 山林日誌 / Cartograph Style (0.4MB)
+* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) OruxMaps / 綠野遊蹤 / 蛙弟 / 山林日誌 / Cartograph Style
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-* ![Style](images/Android.png =36x) Locus Map Style (0.4MB)
+* ![Style](images/Android.png =36x) Locus Map Style
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) TWMAP Style（紙本地圖風格） (0.4MB)
+* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) TWMAP Style（紙本地圖風格）
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_twmap_style.zip)
 
 ### 疊圖專用風格 (Overlay Styles)
 
-* BN Style，給深色地圖疊圖（例：衛星地圖） (0.4MB)
+* BN Style，給深色地圖疊圖（例：衛星地圖）
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_bn_style.zip)
-* DN Style，給淡色地圖疊圖（例：通用電子地圖） (0.4MB)
+* DN Style，給淡色地圖疊圖（例：通用電子地圖）
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_dn_style.zip)
-* TN Style，給高度圖疊圖（例：Relief Map） (0.4MB)
+* TN Style，給高度圖疊圖（例：Relief Map）
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_tn_style.zip)
-* Extra Style，給 Cartograph Extra 圖層疊圖 (0.4MB)
+* Extra Style，給 Cartograph Extra 圖層疊圖
   > [[自動分流]](https://rudymap.tw/v1/MOI_OSM_extra_style.zip)
 
 

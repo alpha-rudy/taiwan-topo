@@ -23,7 +23,6 @@ manual_orux = "https://www.facebook.com/groups/taiwan.topo/permalink/70270794988
 manual_locus = "https://www.facebook.com/groups/taiwan.topo/permalink/703483796473903"
 
 [styles]
-size = "0.4MB"
 hs = "MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip"
 locus = "MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip"
 locus_xml = "locus_style-cedric.xml"

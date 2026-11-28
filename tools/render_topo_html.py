@@ -13,8 +13,10 @@ import argparse
 import html
 import re
 import sys
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import region_doc
@@ -436,6 +438,131 @@ _PASTE_URL_RE = re.compile(r"^(.+?)\s*[:：]\s*(https?://\S+)\s*$")
 _COORD_ITEM_RE = re.compile(r"^(?:緯度範圍|經度範圍|Latitude range|Longitude range)\s*[:：]")
 _SIZE_SUFFIX_RE = re.compile(r"^(.*?)\s*\(([^()]*?(?:MB|GB|KB))\)\s*$")
 _VERSION_RE = re.compile(r"(v\d{4}\.\d{2}\.\d{2}|v__version__)")
+_LFS_HEADER = "version https://git-lfs.github.com/spec/v1"
+_LFS_SIZE_RE = re.compile(r"^size\s+(\d+)\s*$", re.MULTILINE)
+
+
+def format_file_size(num_bytes: int) -> str:
+    """Format a byte count into a compact badge string (e.g. 26KB, 5.4MB, 347MB, 1.2GB)."""
+    if num_bytes < 1024:
+        return f"{num_bytes}B"
+    kb = num_bytes / 1024
+    if round(kb) < 1024:
+        return f"{round(kb)}KB"
+    mb = kb / 1024
+    if mb < 9.95:
+        return f"{mb:.1f}MB"
+    if round(mb) < 1024:
+        return f"{round(mb)}MB"
+    return f"{mb / 1024:.1f}GB"
+
+
+def _file_byte_size(path: Path) -> int | None:
+    """Return real file size in bytes, reading ``size`` from Git LFS pointers."""
+    if not path.is_file():
+        return None
+    st_size = path.stat().st_size
+    if st_size <= 0:
+        return None
+    if st_size < 512:
+        try:
+            head = path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            return st_size
+        if head.startswith(_LFS_HEADER):
+            m = _LFS_SIZE_RE.search(head)
+            if m:
+                val = int(m.group(1))
+                return val if val > 0 else None
+    return st_size
+
+
+def _url_filename(url: str) -> str:
+    """Extract the trailing filename from an http(s) or custom-scheme download URL."""
+    cleaned = url.strip()
+    if not cleaned:
+        return ""
+    parsed = urlsplit(cleaned)
+    raw_path = parsed.path or cleaned
+    name = PurePosixPath(raw_path).name
+    if not name or "." not in name:
+        return ""
+    return name
+
+
+class FileSizeResolver:
+    """Resolve download URLs to human-readable sizes from local build/asset directories."""
+
+    def __init__(self, search_dirs: list[Path], locus_dir: Path | None = None) -> None:
+        dedup: list[Path] = []
+        seen_dirs: set[Path] = set()
+        for d in search_dirs:
+            resolved = d.resolve()
+            if resolved not in seen_dirs and resolved.is_dir():
+                seen_dirs.add(resolved)
+                dedup.append(resolved)
+        self._search_dirs = dedup
+        self._xml_index: dict[str, Path] = {}
+        if locus_dir is not None and locus_dir.is_dir():
+            for xml_path in sorted(locus_dir.rglob("*.xml")):
+                self._xml_index.setdefault(xml_path.name, xml_path)
+        self._byte_cache: dict[str, int | None] = {}
+
+    def _find_xml(self, fname: str) -> Path | None:
+        for d in self._search_dirs:
+            cand = d / fname
+            if cand.is_file():
+                return cand
+        return self._xml_index.get(fname)
+
+    def _resolve_filename_bytes(self, fname: str, seen: frozenset[str] = frozenset()) -> int | None:
+        if fname in self._byte_cache:
+            return self._byte_cache[fname]
+        if fname in seen:
+            return None
+
+        result: int | None = None
+        if fname.lower().endswith(".xml"):
+            xml_path = self._find_xml(fname)
+            if xml_path is not None:
+                try:
+                    root = ET.parse(xml_path).getroot()
+                except (ET.ParseError, OSError):
+                    root = None
+                if root is not None:
+                    sources = [
+                        _url_filename(el.text or "")
+                        for el in root.iter("source")
+                        if el.text and el.text.strip()
+                    ]
+                    if sources:
+                        total = 0
+                        next_seen = seen | {fname}
+                        all_found = True
+                        for src_name in sources:
+                            sz = self._resolve_filename_bytes(src_name, next_seen) if src_name else None
+                            if sz is None:
+                                all_found = False
+                                break
+                            total += sz
+                        if all_found and total > 0:
+                            result = total
+        else:
+            for d in self._search_dirs:
+                sz = _file_byte_size(d / fname)
+                if sz is not None:
+                    result = sz
+                    break
+
+        self._byte_cache[fname] = result
+        return result
+
+    def resolve_url(self, url: str) -> str | None:
+        fname = _url_filename(url)
+        if not fname or fname.lower().endswith((".html", ".htm")):
+            return None
+        num_bytes = self._resolve_filename_bytes(fname)
+        return format_file_size(num_bytes) if num_bytes is not None else None
 _COPY_ICON_SVG = (
     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
     'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
@@ -504,13 +631,23 @@ def _render_generic_block(block: Block) -> str:
     return "".join(parts)
 
 
-def _render_download_row(item: ListItem, label: str, url: str, is_en: bool) -> str:
+def _render_download_row(
+    item: ListItem,
+    label: str,
+    url: str,
+    is_en: bool,
+    size_resolver: FileSizeResolver | None = None,
+) -> str:
     imgs, rest_text = extract_leading_images(item.text)
-    size_html = ""
+    static_size = ""
     m_size = _SIZE_SUFFIX_RE.match(rest_text)
     if m_size:
         rest_text = m_size.group(1).strip()
-        size_html = f'<span class="size-badge">{html.escape(m_size.group(2))}</span>'
+        static_size = m_size.group(2)
+
+    dyn_size = size_resolver.resolve_url(url) if size_resolver is not None else None
+    badge_size = dyn_size if dyn_size is not None else static_size
+    size_html = f'<span class="size-badge">{html.escape(badge_size)}</span>' if badge_size else ""
 
     icons_html = f'<span class="dl-icons">{"".join(imgs)}</span>' if imgs else ""
     esc_url = html.escape(url, quote=True)
@@ -547,14 +684,27 @@ def _flush_rows(parts: list[str], row_buf: list[str]) -> None:
         row_buf.clear()
 
 
-def _render_paste_url_row(label: str, url: str, is_en: bool) -> str:
+def _render_paste_url_row(
+    label: str,
+    url: str,
+    is_en: bool,
+    size_resolver: FileSizeResolver | None = None,
+) -> str:
     esc_url = html.escape(url, quote=True)
     copy_title = "Copy link" if is_en else "複製連結"
     copied_msg = "Link copied" if is_en else "已複製下載連結"
+    static_size = ""
+    m_size = _SIZE_SUFFIX_RE.match(label)
+    if m_size:
+        label = m_size.group(1).strip()
+        static_size = m_size.group(2)
+    dyn_size = size_resolver.resolve_url(url) if size_resolver is not None else None
+    badge_size = dyn_size if dyn_size is not None else static_size
+    size_html = f'<span class="size-badge">{html.escape(badge_size)}</span>' if badge_size else ""
     return (
         '<div class="dl-row">'
         '<div class="dl-info"><div class="dl-text">'
-        f"{render_inline(label)}"
+        f"{render_inline(label)}{size_html}"
         f'<div class="dl-desc"><a href="{esc_url}" target="_blank" rel="noopener">{html.escape(url)}</a></div>'
         "</div></div>"
         '<div class="dl-actions">'
@@ -586,7 +736,11 @@ def _has_card_special_items(block: BulletList) -> bool:
     return False
 
 
-def _render_card_body(blocks: list[Block], is_en: bool) -> str:
+def _render_card_body(
+    blocks: list[Block],
+    is_en: bool,
+    size_resolver: FileSizeResolver | None = None,
+) -> str:
     """Render content inside a download card (tips, grouped download rows, plain items)."""
     parts: list[str] = []
     for block in blocks:
@@ -603,13 +757,15 @@ def _render_card_body(blocks: list[Block], is_en: bool) -> str:
         for item in block.items:
             dl = _extract_download_link(item.children)
             if dl is not None:
-                row_buf.append(_render_download_row(item, dl[0], dl[1], is_en))
+                row_buf.append(_render_download_row(item, dl[0], dl[1], is_en, size_resolver))
                 continue
 
             if not item.children:
                 pm = _PASTE_URL_RE.match(item.text.strip())
                 if pm:
-                    row_buf.append(_render_paste_url_row(pm.group(1).strip(), pm.group(2).strip(), is_en))
+                    row_buf.append(
+                        _render_paste_url_row(pm.group(1).strip(), pm.group(2).strip(), is_en, size_resolver)
+                    )
                     continue
 
             # Sub-group containing download items (e.g., 傳統版 / 輕量版 / 疊圖專用 Styles)
@@ -619,7 +775,7 @@ def _render_card_body(blocks: list[Block], is_en: bool) -> str:
                 and _has_download_items(item.children[0])
             ):
                 _flush_rows(parts, row_buf)
-                group_body = _render_card_body([item.children[0]], is_en)
+                group_body = _render_card_body([item.children[0]], is_en, size_resolver)
                 parts.append(
                     '<div class="dl-group">'
                     f'<div class="dl-group-title">{render_inline(item.text)}</div>'
@@ -859,7 +1015,11 @@ def _render_copyright_collapsible(title: str, blocks: list[Block], section_id: s
     )
 
 
-def _render_card_section(blocks: list[Block], is_en: bool) -> str:
+def _render_card_section(
+    blocks: list[Block],
+    is_en: bool,
+    size_resolver: FileSizeResolver | None = None,
+) -> str:
     """Render an H2 section containing H3 cards and optional intro notice."""
     intro_blocks: list[Block] = []
     cards: list[tuple[Heading, list[Block]]] = []
@@ -911,7 +1071,7 @@ def _render_card_section(blocks: list[Block], is_en: bool) -> str:
         out.append(
             '<article class="card">'
             f'<h3 class="card-title">{render_inline(h3.raw)}</h3>'
-            f"{_render_card_body(body_blocks, is_en)}"
+            f"{_render_card_body(body_blocks, is_en, size_resolver)}"
             "</article>"
         )
     out.append("</div>")
@@ -959,6 +1119,7 @@ def render_document(
     lang: str,
     alt_lang_href: str,
     alt_lang_label: str,
+    size_resolver: FileSizeResolver | None = None,
 ) -> str:
     """Convert Markdown text into the complete self-contained HTML page."""
     is_en = lang.lower().startswith("en")
@@ -1064,9 +1225,9 @@ def render_document(
         elif "修改歷程" in plain_title or "revision history" in lower_title:
             body_html = _render_changelog_section(sec_blocks, is_en)
         elif has_h3:
-            body_html = _render_card_section(sec_blocks, is_en)
+            body_html = _render_card_section(sec_blocks, is_en, size_resolver)
         elif has_dl:
-            body_html = f'<div class="card">{_render_card_body(sec_blocks, is_en)}</div>'
+            body_html = f'<div class="card">{_render_card_body(sec_blocks, is_en, size_resolver)}</div>'
         else:
             body_html = f'<div class="prose-card">{"".join(_render_generic_block(b) for b in sec_blocks)}</div>'
 
@@ -1128,6 +1289,19 @@ def main() -> None:
     parser.add_argument("--alt-lang-href", default="", help="Alternate language page href")
     parser.add_argument("--alt-lang-label", default="", help="Alternate language toggle label")
     parser.add_argument(
+        "--size-dir",
+        action="append",
+        type=Path,
+        default=[],
+        help="Directory to scan for built/asset files when computing dynamic download sizes (repeatable)",
+    )
+    parser.add_argument(
+        "--locus-dir",
+        type=Path,
+        default=None,
+        help="Root auto-install/locus directory for summing Locus XML download sizes (auto-detected if omitted)",
+    )
+    parser.add_argument(
         "--dump-md",
         action="store_true",
         help="Print assembled/expanded Markdown to stdout instead of rendering HTML",
@@ -1155,6 +1329,15 @@ def main() -> None:
     if not args.template or not args.output:
         parser.error("--template and --output are required unless --dump-md is specified")
 
+    size_resolver: FileSizeResolver | None = None
+    if args.size_dir:
+        locus_dir = args.locus_dir
+        if locus_dir is None:
+            candidate_locus = docs_dir.resolve().parent / "auto-install" / "locus"
+            if candidate_locus.is_dir():
+                locus_dir = candidate_locus
+        size_resolver = FileSizeResolver(args.size_dir, locus_dir=locus_dir)
+
     template_html = template_assets.expand_template_assets(
         args.template.read_text(encoding="utf-8"),
         docs_dir,
@@ -1166,6 +1349,7 @@ def main() -> None:
         lang=args.lang,
         alt_lang_href=args.alt_lang_href,
         alt_lang_label=args.alt_lang_label,
+        size_resolver=size_resolver,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(rendered, encoding="utf-8")

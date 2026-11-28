@@ -23,22 +23,22 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 * Tap a link below to start installation, or download directly within the app
   > Installation demo video: https://youtu.be/g8b15RPZ7nA
 * Classic version (10m contours, recommended)
-  * All-in-one (345MB)
+  * All-in-one
     > [[Auto-mirror]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
-  * Offline map (298MB)
+  * Offline map
     > [[Auto-mirror]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * Style theme (0.4MB)
+  * Style theme
     > [[Auto-mirror]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * Elevation (DEM) file (46MB)
+  * Elevation (DEM) file
     > [[Auto-mirror]](wadi-hgt://rudymap.tw/v1/hgtmix.zip)
 * Lite version (20m contours, smaller size)
-  * All-in-one (174MB)
+  * All-in-one
     > [[Auto-mirror]](wadi-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
-  * Offline map (168MB)
+  * Offline map
     > [[Auto-mirror]](wadi-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
-  * Style theme (0.4MB)
+  * Style theme
     > [[Auto-mirror]](wadi-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
-  * Elevation (DEM) file (6MB)
+  * Elevation (DEM) file
     > [[Auto-mirror]](wadi-hgt://rudymap.tw/v1/hgt90.zip)
 
 ### ![GTS](images/GTS.png =36x) GTS — Green Wild Trails (Android)
@@ -46,22 +46,22 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 * Tap a link below to install
   > Installation demo video: https://youtu.be/JsvP61CErYY
 * Classic version (10m contours, recommended)
-  * All-in-one (345MB)
+  * All-in-one
     > [[Auto-mirror]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.zip)
-  * Offline map (298MB)
+  * Offline map
     > [[Auto-mirror]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-  * Style theme (0.4MB)
+  * Style theme
     > [[Auto-mirror]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-  * Elevation (DEM) file (46MB)
+  * Elevation (DEM) file
     > [[Auto-mirror]](gts-hgt://rudymap.tw/v1/hgtmix.zip)
 * Lite version (20m contours, smaller size)
-  * All-in-one (174MB)
+  * All-in-one
     > [[Auto-mirror]](gts-all://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.zip)
-  * Offline map (168MB)
+  * Offline map
     > [[Auto-mirror]](gts-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite.map.zip)
-  * Style theme (0.4MB)
+  * Style theme
     > [[Auto-mirror]](gts-mapthemes://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Lite_style.zip)
-  * Elevation (DEM) file (6MB)
+  * Elevation (DEM) file
     > [[Auto-mirror]](gts-hgt://rudymap.tw/v1/hgt90.zip)
 
 ### ![OruxMaps](images/OruxMaps.jpeg =36x) OruxMaps (Android)
@@ -69,11 +69,11 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 * Tap a link below to install
   > Android 11+ demo video: https://youtu.be/8hwJr4jMsE0 <br />
   > Legacy Android (10 and earlier) demo video: https://youtu.be/GbBaePfk4cE
-* ![Map](images/OruxMaps_map.jpeg =36x) Map (298MB)
+* ![Map](images/OruxMaps_map.jpeg =36x) Map
   > [[Auto-mirror]](orux-map://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-* ![Style](images/OruxMaps_style.jpeg =36x) Style (0.4MB)
+* ![Style](images/OruxMaps_style.jpeg =36x) Style
   > [[Auto-mirror]](orux-mf-theme://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-* ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026 (download and install manually) (46MB)
+* ![DEM](images/OruxMaps_dem.jpeg =36x) DEM mix, v2026 (download and install manually)
   > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip)
 
 ### ![Locus Map](images/Locus.jpeg =36x) Locus Map (Android)
@@ -81,17 +81,17 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 * Tap a link below to install
   > Installation demo video: https://youtu.be/rb1Hb6dkGkw
 * All-in-one (recommended for first-time setup)
-  * ![Map](images/Locus.jpeg =36x) First-time install (345MB)
+  * ![Map](images/Locus.jpeg =36x) First-time install
     > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_all-cedric.xml)
 * Map data update
-  * ![Map](images/Locus.jpeg =36x) Update (298MB)
+  * ![Map](images/Locus.jpeg =36x) Update
     > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_upgrade-cedric.xml)
 * Install separately
-  * ![Map](images/Locus_map.jpeg =36x) Map (298MB)
+  * ![Map](images/Locus_map.jpeg =36x) Map
     > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_map-cedric.xml)
-  * ![Style](images/Locus_style.jpeg =36x) Style (0.4MB)
+  * ![Style](images/Locus_style.jpeg =36x) Style
     > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_style-cedric.xml)
-  * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026 (46MB)
+  * ![DEM](images/Locus_dem.jpeg =36x) DEM mix, v2026
     > [[Auto-mirror]](locus-actions://https/rudymap.tw/locus_dem-cedric.xml)
 
 ### ![Cartograph](images/Cartograph.png =36x) Cartograph Maps (iOS / Android)
@@ -99,17 +99,17 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 * Tap a link below to install
   > Installation demo video: https://youtu.be/FDa2Qb9wxUY
 * All-in-one (recommended for first-time setup)
-  * ![Map](images/Cartograph.png =36x) First-time install (345MB)
+  * ![Map](images/Cartograph.png =36x) First-time install
     > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_all.cpkg)
 * Map data update
-  * ![Map](images/Cartograph.png =36x) Update (320MB)
+  * ![Map](images/Cartograph.png =36x) Update
     > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_upgrade.cpkg)
 * Install separately
-  * ![Map](images/Cartograph_map.png =36x) Map (298MB)
+  * ![Map](images/Cartograph_map.png =36x) Map
     > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_map.cpkg)
-  * ![Style](images/Cartograph_style.png =36x) Style (0.4MB)
+  * ![Style](images/Cartograph_style.png =36x) Style
     > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_style.cpkg)
-  * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2026 (46MB)
+  * ![DEM](images/Cartograph_dem.png =36x) DEM mix, v2026
     > [[Auto-mirror]](cartograph-map://rudymap.tw/v1/carto_dem.cpkg)
 
 
@@ -123,44 +123,44 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 
 ### MOI.OSM.bw / bw3D (smaller screens & watches)
 
-* ![Map](images/Garmin_small.jpeg =36x) bw (2D, handheld / watch) (210MB)
+* ![Map](images/Garmin_small.jpeg =36x) bw (2D, handheld / watch)
   > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw.img.zip)
-* ![Map](images/Garmin_small.jpeg =36x) bw3D (3D DEM, handheld / watch) (211MB)
+* ![Map](images/Garmin_small.jpeg =36x) bw3D (3D DEM, handheld / watch)
   > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_bw3D.img.zip)
 
 ### MOI.OSM.odc / odc3D (larger screens)
 
-* ![Map](images/Garmin_large.jpeg =36x) odc (2D, handheld) (210MB)
+* ![Map](images/Garmin_large.jpeg =36x) odc (2D, handheld)
   > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc.img.zip)
-* ![Map](images/Garmin_large.jpeg =36x) odc3D (3D DEM, handheld) (211MB)
+* ![Map](images/Garmin_large.jpeg =36x) odc3D (3D DEM, handheld)
   > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_odc3D.img.zip)
-* ![Map](images/Windows.png =36x) odc3D (Windows BaseCamp) (227MB)
+* ![Map](images/Windows.png =36x) odc3D (Windows BaseCamp)
   > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_odc3D.exe)
-* ![Map](images/macOS.png =36x) odc3D (macOS BaseCamp) (227MB)
+* ![Map](images/macOS.png =36x) odc3D (macOS BaseCamp)
   > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_odc3D.gmap.zip)
 
 ### MOI.OSM.camp / camp3D (PC / Mac BaseCamp planning)
 
 * 2D version (camp)
-  * ![Map](images/Windows.png =36x) camp (Windows BaseCamp) (210MB)
+  * ![Map](images/Windows.png =36x) camp (Windows BaseCamp)
     > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp.exe)
-  * ![Map](images/macOS.png =36x) camp (macOS BaseCamp) (210MB)
+  * ![Map](images/macOS.png =36x) camp (macOS BaseCamp)
     > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_camp.gmap.zip)
 * 3D version (camp3D, with DEM)
-  * ![Map](images/Garmin_large.jpeg =36x) camp3D (larger handheld) (211MB)
+  * ![Map](images/Garmin_large.jpeg =36x) camp3D (larger handheld)
     > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_zh_camp3D.img.zip)
-  * ![Map](images/Windows.png =36x) camp3D (Windows BaseCamp) (227MB)
+  * ![Map](images/Windows.png =36x) camp3D (Windows BaseCamp)
     > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D.exe)
-  * ![Map](images/macOS.png =36x) camp3D (macOS BaseCamp) (227MB)
+  * ![Map](images/macOS.png =36x) camp3D (macOS BaseCamp)
     > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_zh_camp3D.gmap.zip)
 
 ### Garmin English Maps - Taiwan TOPO
 
-* ![Map](images/Garmin_small.jpeg =36x) en_bw (smaller handheld / watch) (211MB)
+* ![Map](images/Garmin_small.jpeg =36x) en_bw (smaller handheld / watch)
   > [[Auto-mirror]](https://rudymap.tw/v1/gmapsupp_Taiwan_moi_en_bw.img.zip)
-* ![Map](images/Windows.png =36x) en_camp3D (Windows BaseCamp) (227MB)
+* ![Map](images/Windows.png =36x) en_camp3D (Windows BaseCamp)
   > [[Auto-mirror]](https://rudymap.tw/v1/Install_MOI_Taiwan_TOPO_camp3D_en.exe)
-* ![Map](images/macOS.png =36x) en_camp3D (macOS BaseCamp) (227MB)
+* ![Map](images/macOS.png =36x) en_camp3D (macOS BaseCamp)
   > [[Auto-mirror]](https://rudymap.tw/v1/Taiwan_moi_en_camp3D.gmap.zip)
 
 
@@ -172,40 +172,40 @@ Free, open-source offline topo map of Taiwan for hiking and geocaching on Garmin
 
 ### Map & Elevation (Map & DEM)
 
-* ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Taiwan Offline Map (298MB)
+* ![Map](images/Android.png =36x) ![iOS](images/macOS.png =36x) Taiwan Offline Map
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.map.zip)
-* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026 (30m main island, 90m outlying islands, recommended) (46MB)
+* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM mix, v2026 (30m main island, 90m outlying islands, recommended)
   > [[Auto-mirror]](https://rudymap.tw/v1/hgtmix.zip)
-* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026 (90m throughout, smallest size) (6MB)
+* ![DEM](images/Android.png =36x)![iOS](images/macOS.png =36x) DEM 90m, v2026 (90m throughout, smallest size)
   > [[Auto-mirror]](https://rudymap.tw/v1/hgt90.zip)
 
 ### Offline Search POI
 
-* ![POIv3](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal POIv3 (55MB)
+* ![POIv3](images/Android.png =36x) OruxMaps / GTS / Wadi / HikingJournal POIv3
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.poi.zip)
-* ![POIv2](images/Android.png =36x) Cartograph POIv2 (45MB)
+* ![POIv2](images/Android.png =36x) Cartograph POIv2
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_v2.poi.zip)
-* ![LOCUS_POI](images/Android.png =36x) Locus Map POI (25MB)
+* ![LOCUS_POI](images/Android.png =36x) Locus Map POI
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy.db.zip)
 
 ### Standard Style Themes
 
-* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) OruxMaps / GTS / Wadi / HikingJournal / Cartograph Style (0.4MB)
+* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) OruxMaps / GTS / Wadi / HikingJournal / Cartograph Style
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_hs_style.zip)
-* ![Style](images/Android.png =36x) Locus Map Style (0.4MB)
+* ![Style](images/Android.png =36x) Locus Map Style
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_Taiwan_TOPO_Rudy_locus_style.zip)
-* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) TWMAP Style (paper map theme) (0.4MB)
+* ![Style](images/Android.png =36x)![iOS](images/macOS.png =36x) TWMAP Style (paper map theme)
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_twmap_style.zip)
 
 ### Overlay-only Styles
 
-* BN Style, for dark-base map overlays (e.g. satellite imagery) (0.4MB)
+* BN Style, for dark-base map overlays (e.g. satellite imagery)
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_bn_style.zip)
-* DN Style, for light-base map overlays (e.g. general digital maps) (0.4MB)
+* DN Style, for light-base map overlays (e.g. general digital maps)
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_dn_style.zip)
-* TN Style, for elevation/relief map overlays (0.4MB)
+* TN Style, for elevation/relief map overlays
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_tn_style.zip)
-* Extra Style, for Cartograph Extra layer overlays (0.4MB)
+* Extra Style, for Cartograph Extra layer overlays
   > [[Auto-mirror]](https://rudymap.tw/v1/MOI_OSM_extra_style.zip)
 
 
