@@ -202,3 +202,7 @@ with open(path, "w") as f:
     json.dump(header, f)
 PY
 "$GOPMTILES_CMD" edit --quiet "$OUTPUT_PMTILES" --metadata="$METADATA_JSON" --header-json="$HEADER_JSON"
+
+# 6. Verify archive structure (header, directories, offsets, clustering) so a
+#    corrupt archive from merging or metadata edits is caught before publishing.
+"$GOPMTILES_CMD" verify "$OUTPUT_PMTILES" || { rm -f "$OUTPUT_PMTILES"; exit 1; }
