@@ -146,6 +146,10 @@ endef
 # $7 = extra dependencies (e.g., $(GMAPDEM) or empty)
 # $8 = optional "handheld" mode (skips global index/TDB/overview rebuilt by gmapsupp)
 #
+# Set USE_GMAP_TILE_CACHE=0 to disable reusing compiled Garmin .img tiles across
+# sibling variants that differ only in TYP / MAPID.
+USE_GMAP_TILE_CACHE ?= 1
+
 define MAP_BUILD
 .PHONY: $1
 $1: $2
@@ -168,32 +172,53 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 			--product-id=1 \
 			--family-id=$$(MAPID) \
 			$$(TYP).txt && \
-		rm -f osmmap.img osmmap.tdb
-	cd $3 && \
-		cp $$(TYP).typ $$(MAPID).TYP && \
-		mkdir $3/style && \
-		cp -a $4 $3/style/$5 && \
-		cp $$(ROOT_DIR)/styles/style-translations $3/ && \
-		cat $$(ROOT_DIR)/mkgmaps/mkgmap.cfg | $$(SED_CMD) \
-			-e "s|__root_dir__|$$(ROOT_DIR)|g" \
-			-e "s|__map_dir__|$3|g" \
-			-e "s|__version__|$$(VERSION)|g" \
-			-e "s|__style__|$5|g" \
-			-e "s|__name_tag_list__|$$(NTL)|g" \
-			-e "s|__code_page__|$$(CODE_PAGE)|g" \
-			-e "s|__name_long__|$$(NAME_LONG)|g" \
-			-e "s|__name_short__|$$(NAME_SHORT)|g" \
-			-e "s|__name_word__|$$(NAME_WORD)|g" \
-			-e "s|__mapid__|$$(MAPID)|g" > mkgmap.cfg && \
-		$(if $(filter handheld,$8),$$(SED_CMD) -e '/^index$$$$/d' -e '/^tdbfile$$$$/d' -e '/^improve-overview$$$$/d' -e '/^overview-mapname=/d' -e '/^overview-mapnumber=/d' -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg &&) \
-		cat $$(TILES_DIR)/template.args | $$(SED_CMD) \
-			-e "s|input-file: \(.*\)|input-file: $$(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
-		$(if $6,ln -s $$(GMAPDEM) ./moi-hgt.zip && $$(SED_CMD) "/__dem_section__/ r $$(ROOT_DIR)/mkgmaps/$6" -i mkgmap.cfg &&) \
-		java $$(JAVACMD_OPTIONS) -jar $$(MKGMAP_JAR) \
-			--code-page=$$(CODE_PAGE) \
-			--max-jobs=$$(MKGMAP_JOBS) \
-			-c mkgmap.cfg \
-			--check-styles
+		rm -f osmmap.img osmmap.tdb && \
+		cp $$(TYP).typ $$(MAPID).TYP
+	@set -e; \
+	cache_dir="$$(BUILD_DIR)/$$(REGION)/gmap_tile_cache"; \
+	cache_key="$$$$(printf '%s\n' "$$(ELEVATION_FILE)" "$$(GMAPDEM)" "$5" "$6" "$$(CODE_PAGE)" "$$(NTL)" "$$(BOUNDING_BOX)" "$$(POLY_FILE)" "$$(LEFT)" "$$(BOTTOM)" "$$(RIGHT)" "$$(TOP)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-16)"; \
+	cache_meta="$$$$cache_dir/$$$$cache_key.env"; \
+	cloned=0; \
+	if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ] && [ "$8" = "handheld" ] && [ -f "$$$$cache_meta" ]; then \
+		src_dir=""; src_mapid=""; src_done=""; \
+		. "$$$$cache_meta"; \
+		if [ -n "$$$$src_dir" ] && [ -d "$$$$src_dir" ] && [ -f "$$$$src_done" ] && [ ! "$$(COMMON_TILES)" -nt "$$$$src_done" ]; then \
+			echo "MAP_BUILD ($1): cloning compiled tiles from $$$$src_mapid -> $$(MAPID)"; \
+			python3 $$(TOOLS_DIR)/gmap-clone-tiles.py "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
+			cloned=1; \
+		fi; \
+	fi; \
+	if [ "$$$$cloned" -eq 0 ]; then \
+		cd $3 && \
+			mkdir -p $3/style && \
+			cp -a $4 $3/style/$5 && \
+			cp $$(ROOT_DIR)/styles/style-translations $3/ && \
+			cat $$(ROOT_DIR)/mkgmaps/mkgmap.cfg | $$(SED_CMD) \
+				-e "s|__root_dir__|$$(ROOT_DIR)|g" \
+				-e "s|__map_dir__|$3|g" \
+				-e "s|__version__|$$(VERSION)|g" \
+				-e "s|__style__|$5|g" \
+				-e "s|__name_tag_list__|$$(NTL)|g" \
+				-e "s|__code_page__|$$(CODE_PAGE)|g" \
+				-e "s|__name_long__|$$(NAME_LONG)|g" \
+				-e "s|__name_short__|$$(NAME_SHORT)|g" \
+				-e "s|__name_word__|$$(NAME_WORD)|g" \
+				-e "s|__mapid__|$$(MAPID)|g" > mkgmap.cfg && \
+			$(if $(filter handheld,$8),$$(SED_CMD) -e '/^index$$$$/d' -e '/^tdbfile$$$$/d' -e '/^improve-overview$$$$/d' -e '/^overview-mapname=/d' -e '/^overview-mapnumber=/d' -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg &&) \
+			cat $$(TILES_DIR)/template.args | $$(SED_CMD) \
+				-e "s|input-file: \(.*\)|input-file: $$(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
+			$(if $6,ln -s $$(GMAPDEM) ./moi-hgt.zip && $$(SED_CMD) "/__dem_section__/ r $$(ROOT_DIR)/mkgmaps/$6" -i mkgmap.cfg &&) \
+			java $$(JAVACMD_OPTIONS) -jar $$(MKGMAP_JAR) \
+				--code-page=$$(CODE_PAGE) \
+				--max-jobs=$$(MKGMAP_JOBS) \
+				-c mkgmap.cfg \
+				--check-styles; \
+		if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ]; then \
+			mkdir -p "$$$$cache_dir"; \
+			printf 'src_dir=%q\nsrc_mapid=%q\nsrc_done=%q\n' "$3" "$$(MAPID)" "$2" > "$$$$cache_meta.tmp"; \
+			mv "$$$$cache_meta.tmp" "$$$$cache_meta"; \
+		fi; \
+	fi
 	touch $2
 endef
 
