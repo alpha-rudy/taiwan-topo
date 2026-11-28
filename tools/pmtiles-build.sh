@@ -62,6 +62,12 @@
 #   PMTILES_SCHEMA       "taiwan-topo:schema", the code an archive and the shared
 #                        style both carry while each can draw the other (see the
 #                        Makefile and tools/pmtiles-schema-check.py).
+#
+# The header's centre is set to the middle of its bounds, keeping the centre
+# zoom: tilemaker 3.1 adds the bounds' longitudes as 32-bit integers, so a
+# region spanning more than 214.7483648 degrees of summed longitude (Taiwan:
+# 118 + 123.0348) gets a centre on the other side of the world (-94.23, in the
+# Gulf of Mexico). A page that opens on the header's centre would open there.
 
 set -e
 
@@ -95,7 +101,8 @@ RENUMBERED_PBF="${OUTPUT_PMTILES%.pmtiles}.renum.tmp.pbf"
 SPLIT_PBF="${OUTPUT_PMTILES%.pmtiles}.split.tmp.pbf"
 ROUTE_LABELS="$(cd "$(dirname "$OUTPUT_PMTILES")" && pwd)/$(basename "${OUTPUT_PMTILES%.pmtiles}").route-labels.tmp.geojson"
 METADATA_JSON="${OUTPUT_PMTILES%.pmtiles}.metadata.tmp.json"
-cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS" "$METADATA_JSON"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
+HEADER_JSON="${OUTPUT_PMTILES%.pmtiles}.header.tmp.json"
+cleanup() { rm -f "$SORTED_PBF" "$RENUMBERED_PBF" "$SPLIT_PBF" "$ROUTE_LABELS" "$METADATA_JSON" "$HEADER_JSON"; [ "$CONFIG_RUNTIME" != "$CONFIG_JSON" ] && rm -f "$CONFIG_RUNTIME"; }
 trap cleanup EXIT
 
 # tilemaker reads several config strings (name/version/description) without
@@ -144,8 +151,8 @@ rm -f "$OUTPUT_PMTILES"
 
 test -s "$OUTPUT_PMTILES" || { echo "ERROR: tilemaker produced no output ($OUTPUT_PMTILES)" >&2; exit 1; }
 
-# 5. The build version, attribution and DEM version in the archive's metadata
-#    (see the notes above).
+# 5. The build version, attribution and DEM version in the archive's metadata,
+#    and the header's centre (see the notes above).
 "$GOPMTILES_CMD" show --metadata "$OUTPUT_PMTILES" > "$METADATA_JSON"
 python3 - "$METADATA_JSON" "${VERSION:-dev}" <<'PY'
 import hashlib, json, os, sys
@@ -169,4 +176,15 @@ if dem:
 with open(path, "w") as f:
     json.dump(meta, f, ensure_ascii=False)
 PY
-"$GOPMTILES_CMD" edit --quiet "$OUTPUT_PMTILES" --metadata="$METADATA_JSON"
+"$GOPMTILES_CMD" show --header-json "$OUTPUT_PMTILES" > "$HEADER_JSON"
+python3 - "$HEADER_JSON" <<'PY'
+import json, sys
+path = sys.argv[1]
+with open(path) as f:
+    header = json.load(f)
+west, south, east, north = header["bounds"]
+header["center"] = [round((west + east) / 2, 7), round((south + north) / 2, 7), header["center"][2]]
+with open(path, "w") as f:
+    json.dump(header, f)
+PY
+"$GOPMTILES_CMD" edit --quiet "$OUTPUT_PMTILES" --metadata="$METADATA_JSON" --header-json="$HEADER_JSON"
