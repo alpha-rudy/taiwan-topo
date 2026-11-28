@@ -13,13 +13,18 @@
 SHELL := /usr/bin/env bash
 
 # suggestion: no more than CPU*2
-MAPWRITER_THREADS = 8
+MAPWRITER_THREADS ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 8)
 # suggestion: doesn't matter
-SPLITTER_THREADS = 8
-# suggestion: CPU*1
-MKGMAP_JOBS = 8
-# finetune options
-JAVACMD_OPTIONS ?= -Xmx68G -server -Dfile.encoding=UTF-8
+SPLITTER_THREADS ?= 8
+# suggestion: 8 balances CPU vs ~21 GiB JVM memory (with -Xmx24G below)
+MKGMAP_JOBS ?= 8
+# finetune options: stay under the 32 GiB HotSpot Compressed OOPs threshold
+# (~21 GiB peak RSS on mkgmap instead of ~53 GiB, and ~5% faster)
+JAVACMD_OPTIONS ?= -Xmx24G -server -Dfile.encoding=UTF-8
+# gmapsupp only builds the MDR index and packs precompiled .img tiles
+# (~1.4 GiB peak RSS on full Taiwan); cap heap at 4G so background gmapsupp
+# jobs do not contend with a foreground mkgmap MAP_BUILD (-Xmx24G).
+GMAPSUPP_JAVACMD_OPTIONS ?= -Xmx4G -server -Dfile.encoding=UTF-8
 
 # directory variables
 ROOT_DIR := $(shell pwd)
@@ -223,6 +228,12 @@ DEM_MIN_ZOOM ?= 6
 # by MapLibre looked the same as z13 tiles or slightly smoother, at under half
 # the size.
 DEM_MAX_ZOOM ?= 12
+# Built DEMs are kept here, outside BUILD_DIR (which every build wipes), keyed by
+# the content of their inputs, so a build only re-runs the ~50 min DEM pipeline
+# when the HGT, the DEM tools or the zoom range changed. Reusing the same file
+# also keeps its dem_version, so apps don't re-download an unchanged DEM.
+# Empty disables the cache.
+DEM_CACHE_DIR ?= $(DOWNLOAD_DIR)/dem-cache
 ADS_OSM := $(ROOT_DIR)/precompiled/NPA_Taiwan_ADShelter-ren.pbf
 LICENSE := $(BUILD_DIR)/taiwan_topo.html
 
@@ -280,7 +291,42 @@ comma := ,
 MAP_FRAME_WORDS = $(subst $(comma), ,$(MAP_FRAME))
 MAP_FRAME_LATLON = $(word 2,$(MAP_FRAME_WORDS)),$(word 1,$(MAP_FRAME_WORDS)),$(word 4,$(MAP_FRAME_WORDS)),$(word 3,$(MAP_FRAME_WORDS))
 
+# Set PARALLEL_PMTILES=0 to disable running pmtiles in parallel with the rest
+# of the suite's low-memory targets (poi, locus_poi, styles, packaging).
+PARALLEL_PMTILES ?= 1
+HAS_PMTILES := $(if $(filter pmtiles,$(TARGETS)),1,)
+
+.PHONY: all all_pmtiles_prereqs all_no_pmtiles
+all_pmtiles_prereqs: $(REGION_EXTRACT)-sed.osm.pbf $(META) $(if $(HGT),$(DEM_PMTILES)) $(if $(filter mapsforge mapsforge_zip gts_all carto_all locus_map,$(TARGETS)),$(MAPSFORGE))
+all_no_pmtiles: $(filter-out pmtiles,$(TARGETS))
+
+ifeq ($(and $(filter 1,$(PARALLEL_PMTILES)),$(HAS_PMTILES)),1)
+all: all_pmtiles_prereqs
+	@set -e; \
+	kill_tree() { local pid="$$1" children child; children="$$(pgrep -P "$$pid" 2>/dev/null || true)"; kill "$$pid" 2>/dev/null || true; for child in $$children; do kill_tree "$$child"; done; }; \
+	pm_pid=""; \
+	trap '[ -n "$$pm_pid" ] && { kill_tree "$$pm_pid"; wait "$$pm_pid" 2>/dev/null || true; }' EXIT; \
+	$(MAKE) --no-print-directory pmtiles & \
+	pm_pid=$$!; \
+	$(MAKE) --no-print-directory all_no_pmtiles; \
+	wait "$$pm_pid"; \
+	trap - EXIT
+else
 all: $(TARGETS)
+endif
+
+# Helper targets used by SUITE_BUILD (macros.mk) to overlap single-threaded,
+# low-memory packaging (gmapsupp + zip ~1.4 GiB, NSIS ~750 MiB) with subsequent
+# MAP_BUILD targets while keeping heavy mkgmap tile compilations serialized.
+.PHONY: map_hand all_no_nsis all_no_gmapsupp all_no_bg print_has_nsis print_has_gmapsupp_zip
+map_hand: $(MAP_HAND)
+all_no_nsis: $(filter-out nsis,$(TARGETS)) $(if $(filter nsis,$(TARGETS)),$(MAP_PC))
+all_no_gmapsupp: $(filter-out gmapsupp_zip,$(TARGETS))
+all_no_bg: $(filter-out nsis gmapsupp_zip,$(TARGETS)) $(if $(filter nsis,$(TARGETS)),$(MAP_PC))
+print_has_nsis:
+	@echo $(if $(filter nsis,$(TARGETS)),yes,no)
+print_has_gmapsupp_zip:
+	@echo $(if $(filter gmapsupp_zip,$(TARGETS)),yes,no)
 
 clean:
 	date +'DS: %H:%M:%S $(shell basename $@)'
@@ -398,11 +444,12 @@ legend_check:
 # rudymap_pmtiles_style/ is the PMTiles style zip's files, unpacked, for web
 # pages: a browser cannot read a zip, so a page loads style.json and its
 # sprites from there through the balancer, the way it reads the archives,
-# instead of hosting them. rudymap_regions.json lists every region's files and
-# the shared themes and styles (tools/generate_regions.py, read from the suites),
-# published with Taiwan's release, the one that builds the PMTiles style (only
-# its build has the style zip); there a list that cannot be written fails the
-# release.
+# instead of hosting them. Its glyphs/ also gets the ranges a browser does not
+# draw with its own font (PMTILES_WEB_GLYPH_RANGES); the zip keeps Latin only.
+# rudymap_regions.json lists every region's files and the shared themes and
+# styles (tools/generate_regions.py, read from the suites), published with
+# Taiwan's release, the one that builds the PMTiles style (only its build has
+# the style zip); there a list that cannot be written fails the release.
 install:
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(INSTALL_DIR)" ] && [ -d "$(BUILD_DIR)" ] && [ -n "$(REGION)" ] && [ -n "$(SUITE)" ] && [ -n "$(VERSION)" ]
@@ -451,7 +498,8 @@ install:
 	-cp -r $(BUILD_DIR)/*.cpkg $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/dem/*.pmtiles $(INSTALL_DIR)
-	-[ -f $(PMTILES_STYLE_ZIP) ] && cp -r $(BUILD_DIR)/pmtiles_style $(INSTALL_DIR)/rudymap_pmtiles_style
+	-[ -f $(PMTILES_STYLE_ZIP) ] && cp -r $(BUILD_DIR)/pmtiles_style $(INSTALL_DIR)/rudymap_pmtiles_style && \
+		python3 $(TOOLS_DIR)/pmtiles-web-glyphs.py $(INSTALL_DIR)/rudymap_pmtiles_style/glyphs $(GLYPHS_DIR) $(PMTILES_WEB_GLYPH_RANGES)
 	if [ -f $(PMTILES_STYLE_ZIP) ]; then python3 $(TOOLS_DIR)/generate_regions.py -o $(INSTALL_DIR)/rudymap_regions.json; fi
 	-cp $(BUILD_DIR)/legend.html $(BUILD_DIR)/legend_detail.pdf $(BUILD_DIR)/legend_compact.pdf $(BUILD_DIR)/legend_onepage.pdf $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/legend_samples $(INSTALL_DIR)
@@ -580,13 +628,14 @@ $(TN_STYLE):
 
 .PHONY: gts_all
 gts_all: $(GTS_ALL).zip
-$(GTS_ALL).zip: $(MAPSFORGE_ZIP) $(GTS_STYLE) $(HGT)
+$(GTS_ALL).zip: $(MAPSFORGE) $(POI) $(GTS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(GTS_ALL)" ]
 	rm -rf $(GTS_ALL) $(GTS_ALL).zip
-	mkdir -p $(GTS_ALL)
+	mkdir -p $(GTS_ALL)/map
+	ln -f $(MAPSFORGE) $(GTS_ALL)/map/$(notdir $(MAPSFORGE)) 2>/dev/null || cp $(MAPSFORGE) $(GTS_ALL)/map/$(notdir $(MAPSFORGE))
+	ln -f $(POI) $(GTS_ALL)/map/$(notdir $(POI)) 2>/dev/null || cp $(POI) $(GTS_ALL)/map/$(notdir $(POI))
 	cd $(GTS_ALL) && \
-		$(UNZIP_CMD) $(MAPSFORGE_ZIP) -d map && \
 		$(UNZIP_CMD) $(GTS_STYLE) -d mapthemes && \
 		$(UNZIP_CMD) $(HGT) -d hgt && \
 		$(ZIP_CMD) $(GTS_ALL).zip map/ mapthemes/ hgt/
@@ -597,19 +646,30 @@ carto_all: $(CARTO_ALL).zip
 $(CARTO_ALL).zip: $(MAPSFORGE) $(POI_V2) $(POI) $(HS_STYLE) $(HGT)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(CARTO_ALL)" ]
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
-	mkdir -p $(BUILD_DIR)/.poi_v2_stage
-	cp $(POI_V2) $(BUILD_DIR)/.poi_v2_stage/$(shell basename $(POI))
-	$(UNZIP_CMD) $(HGT) -d $(BUILD_DIR)
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_map.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_map.cpkg $(shell basename $(POI))
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_style.cpkg mapdetails.json $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt && rm -f mapdetails.json
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(shell basename $(MAPSFORGE)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_upgrade.cpkg $(shell basename $(POI))
-	cd $(BUILD_DIR) && cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json && $(ZIP_CMD) ./$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt $(shell basename $(MAPSFORGE)) $(shell basename $(HS_STYLE)) && rm -f mapdetails.json
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) ../$(NAME_CARTO)_all.cpkg $(shell basename $(POI))
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
+	set -e; \
+	stage=$(BUILD_DIR)/.carto_stage.$$$$; \
+	trap 'rm -rf "$$stage"' EXIT; \
+	mkdir -p "$$stage"; \
+	rm -f $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg $(BUILD_DIR)/$(NAME_CARTO)_style.cpkg \
+		$(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg \
+		$(BUILD_DIR)/$(NAME_CARTO)_all.cpkg; \
+	ln -f $(MAPSFORGE) "$$stage/$(notdir $(MAPSFORGE))" 2>/dev/null || cp $(MAPSFORGE) "$$stage/$(notdir $(MAPSFORGE))"; \
+	ln -f $(POI_V2) "$$stage/$(notdir $(POI))" 2>/dev/null || cp $(POI_V2) "$$stage/$(notdir $(POI))"; \
+	ln -f $(HS_STYLE) "$$stage/$(notdir $(HS_STYLE))" 2>/dev/null || cp $(HS_STYLE) "$$stage/$(notdir $(HS_STYLE))"; \
+	$(UNZIP_CMD) $(HGT) -d "$$stage"; \
+	cd "$$stage"; \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/map.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg mapdetails.json $(notdir $(MAPSFORGE)) $(notdir $(POI)); \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/style.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_style.cpkg mapdetails.json $(notdir $(HS_STYLE)); \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/dem.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_dem.cpkg mapdetails.json N*.hgt; \
+	cp $(BUILD_DIR)/$(NAME_CARTO)_map.cpkg $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg; \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/upgrade.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg mapdetails.json $(notdir $(HS_STYLE)); \
+	cp $(BUILD_DIR)/$(NAME_CARTO)_upgrade.cpkg $(BUILD_DIR)/$(NAME_CARTO)_all.cpkg; \
+	cp $(ROOT_DIR)/auto-install/carto/$(REGION)/all.json mapdetails.json; \
+	$(ZIP_CMD) $(BUILD_DIR)/$(NAME_CARTO)_all.cpkg mapdetails.json N*.hgt
 
 .PHONY: locus_map
 locus_map: $(LOCUS_MAP).zip
@@ -693,7 +753,7 @@ $(GMAPSUPP): $(MAP_HAND)
 	-rm -rf $@
 	mkdir -p $(BUILD_DIR)
 	cd $(MAP_HAND_DIR) && \
-		java $(JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
+		java $(GMAPSUPP_JAVACMD_OPTIONS) -jar $(MKGMAP_JAR) \
 			--code-page=$(CODE_PAGE) \
 			--license-file=$(ROOT_DIR)/docs/license.txt \
 			--index \
@@ -722,16 +782,16 @@ endif
 # Parameters: target_name, done_file, output_dir, style_dir, style_name, dem_config, extra_deps
 
 # map_hidem: High-resolution map with DEM (camping config)
-$(eval $(call MAP_BUILD,map_hidem,$(MAP_HIDEM),$(MAP_HIDEM_DIR),$(HR_STYLE_DIR),$(HR_STYLE),gmapdem_camp.cfg,$(GMAPDEM)))
+$(eval $(call MAP_BUILD,map_hidem,$(MAP_HIDEM),$(MAP_HIDEM_DIR),$(HR_STYLE_DIR),$(HR_STYLE),gmapdem_camp.cfg,$(GMAPDEM),pc))
 
 # map_lodem: Low-resolution map with DEM (standard config)
-$(eval $(call MAP_BUILD,map_lodem,$(MAP_LODEM),$(MAP_LODEM_DIR),$(LR_STYLE_DIR),$(LR_STYLE),gmapdem.cfg,$(GMAPDEM)))
+$(eval $(call MAP_BUILD,map_lodem,$(MAP_LODEM),$(MAP_LODEM_DIR),$(LR_STYLE_DIR),$(LR_STYLE),gmapdem.cfg,$(GMAPDEM),handheld))
 
 # map_nodem_hr: High-resolution map without DEM
-$(eval $(call MAP_BUILD,map_nodem_hr,$(MAP_NODEM_HR),$(MAP_NODEM_HR_DIR),$(HR_STYLE_DIR),$(HR_STYLE),,))
+$(eval $(call MAP_BUILD,map_nodem_hr,$(MAP_NODEM_HR),$(MAP_NODEM_HR_DIR),$(HR_STYLE_DIR),$(HR_STYLE),,,pc))
 
 # map_nodem_lr: Low-resolution map without DEM
-$(eval $(call MAP_BUILD,map_nodem_lr,$(MAP_NODEM_LR),$(MAP_NODEM_LR_DIR),$(LR_STYLE_DIR),$(LR_STYLE),,))
+$(eval $(call MAP_BUILD,map_nodem_lr,$(MAP_NODEM_LR),$(MAP_NODEM_LR_DIR),$(LR_STYLE_DIR),$(LR_STYLE),,,handheld))
 
 .DELETE_ON_ERROR: $(BOUNDS_ZIP)
 $(BOUNDS_ZIP):
@@ -967,11 +1027,12 @@ $(POI_V2_ZIP): $(POI_V2) $(POI)
 	[ -f "$(POI)" ]
 	[ -f "$(POI_V2)" ]
 	-rm -rf $@
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
-	mkdir -p $(BUILD_DIR)/.poi_v2_stage
-	cp $(POI_V2) $(BUILD_DIR)/.poi_v2_stage/$(shell basename $(POI))
-	cd $(BUILD_DIR)/.poi_v2_stage && $(ZIP_CMD) $@ $(shell basename $(POI))
-	rm -rf $(BUILD_DIR)/.poi_v2_stage
+	set -e; \
+	stage=$(BUILD_DIR)/.poi_v2_zip_stage.$$$$; \
+	trap 'rm -rf "$$stage"' EXIT; \
+	mkdir -p "$$stage"; \
+	ln -f $(POI_V2) "$$stage/$(notdir $(POI))" 2>/dev/null || cp $(POI_V2) "$$stage/$(notdir $(POI))"; \
+	cd "$$stage" && $(ZIP_CMD) $@ $(notdir $(POI))
 
 
 GPX_OSM ?= $(BUILD_DIR)/Happyman-gpx.osm
@@ -1056,8 +1117,87 @@ $(GPX_MAPSFORGE): $(BUILD_DIR)/track.pbf $(BUILD_DIR)/waypoint.pbf
 			"$(VERSION) / (c) Map: Happyman" \
 			""
 
+MFTOOL_CMD ?= $(shell command -v mftool 2>/dev/null)
+USE_MFTOOL ?= 1
+MAPSFORGE_USE_MFTOOL := $(if $(and $(filter 1,$(USE_MFTOOL)),$(MFTOOL_CMD),$(MAPSFORGE_MIX)),1,)
+MAPSFORGE_COMMENT = $(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))
+MAPSFORGE_EXTRA_OPTS = polylabel=false simplification-factor=2.5 simplification-max-zoom=12$(if $(MAP_FRAME), bbox=$(MAP_FRAME_LATLON))
+
 .PHONY: mapsforge
 mapsforge: $(MAPSFORGE)
+ifeq ($(MAPSFORGE_USE_MFTOOL),1)
+# Static elevation/landsea/frame layer cached under $(ELEVATIONS_DIR)/mapsforge_cache/
+# so it survives `make clean` and `distclean-extracts` (discarded by
+# `distclean-elevations` and `distclean`). The filename hashes bounding, frame,
+# languages and tag-mapping path so config changes invalidate cleanly, while
+# $(MAPSFORGE_MIX) and $(TAG_MAPPING) prerequisites catch file updates.
+MAPSFORGE_MIX_CACHE_DIR := $(ELEVATIONS_DIR)/mapsforge_cache
+MAPSFORGE_MIX_HASH := $(shell printf '%s\n' "$(MAPSFORGE_MIX)" "$(MAP_FRAME)" "$(OSMCONVERT_BOUNDING)" "$(OSMOSIS_BOUNDING)" "$(MAPSFORGE_NTL)" "$(TAG_MAPPING)" "$(MAPSFORGE_EXTRA_OPTS)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
+MAPSFORGE_MIX_MAP := $(MAPSFORGE_MIX_CACHE_DIR)/$(REGION)_$(basename $(notdir $(MAPSFORGE_MIX)))_$(MAPSFORGE_MIX_HASH).map
+MAPSFORGE_OSM_HASH := $(shell printf '%s\n' "$(MAP_FRAME)" "$(OSMCONVERT_BOUNDING)" "$(OSMOSIS_BOUNDING)" "$(MAPSFORGE_NTL)" "$(TAG_MAPPING)" "$(MAPSFORGE_EXTRA_OPTS)" "$(MAPSFORGE_COMMENT)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-12)
+MAPSFORGE_OSM_PBF := $(BUILD_DIR)/$(REGION)_osm_$(MAPSFORGE_OSM_HASH).osm.pbf
+MAPSFORGE_OSM_MAP := $(BUILD_DIR)/$(REGION)_osm_$(MAPSFORGE_OSM_HASH).map
+
+$(MAPSFORGE_MIX_MAP): $(MAPSFORGE_MIX) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-layer-pbf.sh $(TOOLS_DIR)/mapsforge-build.sh $(TOOLS_DIR)/frame-landsea.py
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
+	mkdir -p $(MAPSFORGE_MIX_CACHE_DIR) $(BUILD_DIR)
+	set -e; \
+	mix_pbf=$(BUILD_DIR)/$(REGION)_mix.$$$$.osm.pbf; \
+	mix_map=$@.$$$$.tmp; \
+	trap 'rm -f "$$mix_pbf" "$$mix_map"' EXIT; \
+	$(TOOLS_DIR)/mapsforge-layer-pbf.sh mix \
+		"$(MAPSFORGE_MIX)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$$mix_pbf" "$(MAP_FRAME)"; \
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
+		$(TOOLS_DIR)/mapsforge-build.sh \
+			"$$mix_pbf" \
+			"$$mix_map" \
+			"$(OSMOSIS_CMD)" \
+			"$(if $(MAP_FRAME),,$(OSMOSIS_BOUNDING))" \
+			"$(MAPWRITER_THREADS)" \
+			"$(MAPSFORGE_NTL)" \
+			"$(TAG_MAPPING)" \
+			"$(MAPSFORGE_COMMENT)" \
+			"$(MAPSFORGE_EXTRA_OPTS)"; \
+	mv "$$mix_map" "$@"; \
+	for old in $(MAPSFORGE_MIX_CACHE_DIR)/$(REGION)_$(basename $(notdir $(MAPSFORGE_MIX)))_*.map; do \
+		[ "$$old" = "$@" ] || rm -f "$$old"; \
+	done
+
+$(MAPSFORGE_OSM_PBF): $(REGION_EXTRACT)-sed.osm.pbf $(META) $(TOOLS_DIR)/mapsforge-layer-pbf.sh
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	mkdir -p $(BUILD_DIR)
+	$(TOOLS_DIR)/mapsforge-layer-pbf.sh osm \
+		"$<" "$(META)" "$(OSMCONVERT_CMD)" "$(OSMCONVERT_BOUNDING)" "$@" "$(MAP_FRAME)"
+
+$(MAPSFORGE_OSM_MAP): $(MAPSFORGE_OSM_PBF) $(TAG_MAPPING) $(TOOLS_DIR)/mapsforge-build.sh
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	[ -n "$(REGION)" ]
+	[ -n "$(OSMOSIS_BOUNDING)" ]
+	mkdir -p $(BUILD_DIR)
+	export JAVACMD_OPTIONS="$(JAVACMD_OPTIONS)" && \
+		$(TOOLS_DIR)/mapsforge-build.sh \
+			"$<" \
+			"$@" \
+			"$(OSMOSIS_CMD)" \
+			"$(if $(MAP_FRAME),,$(OSMOSIS_BOUNDING))" \
+			"$(MAPWRITER_THREADS)" \
+			"$(MAPSFORGE_NTL)" \
+			"$(TAG_MAPPING)" \
+			"$(MAPSFORGE_COMMENT)" \
+			"$(MAPSFORGE_EXTRA_OPTS)"
+
+$(MAPSFORGE): $(MAPSFORGE_OSM_MAP) $(MAPSFORGE_MIX_MAP)
+	date +'DS: %H:%M:%S $(shell basename $@)'
+	mkdir -p $(BUILD_DIR)
+	set -e; \
+	merged=$@.$$$$.tmp; \
+	trap 'rm -f "$$merged"' EXIT; \
+	$(MFTOOL_CMD) merge -f -o "$$merged" "$(MAPSFORGE_OSM_MAP)" "$(MAPSFORGE_MIX_MAP)"; \
+	mv "$$merged" "$@"
+else
 $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
@@ -1072,8 +1212,9 @@ $(MAPSFORGE): $(MAPSFORGE_PBF) $(TAG_MAPPING)
 			"$(MAPWRITER_THREADS)" \
 			"$(MAPSFORGE_NTL)" \
 			"$(TAG_MAPPING)" \
-			"$(VERSION)  /  (c) Map: Rudy; Map data: OSM contributors$(if $(DEM_NAME),; DEM data: $(DEM_NAME))" \
-			"polylabel=false simplification-factor=2.5 simplification-max-zoom=12$(if $(MAP_FRAME), bbox=$(MAP_FRAME_LATLON))"
+			"$(MAPSFORGE_COMMENT)" \
+			"$(MAPSFORGE_EXTRA_OPTS)"
+endif
 
 .PHONY: pmtiles
 pmtiles: $(PMTILES)
@@ -1086,12 +1227,38 @@ pmtiles: $(PMTILES)
 # without the region's DEM builds it first.
 PMTILES_DEM := $(if $(HGT),$(DEM_PMTILES))
 PMTILES_ATTRIBUTION := <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors$(if $(DEM_NAME),; DEM: $(DEM_NAME))
-$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM)
+# The schema code the archives and the shared style carry as "taiwan-topo:schema".
+# An app or a page pairs an archive with a style of another week while the codes
+# match, so raise it with any change after which one cannot draw the other: a
+# layer or a field the styles read renamed or removed, or a value they match
+# changed. Additions need no change. Raising it is not free: every region's
+# archive built with the old code stops pairing with the new style until that
+# region is rebuilt. tools/pmtiles-schema-check.py fails the archive's build when
+# it no longer has what last release's styles read and the code is unchanged. A
+# field gone only because no feature had it this time is let through by naming
+# it in PMTILES_SCHEMA_ALLOW (e.g. make ... PMTILES_SCHEMA_ALLOW='poi.climbing'),
+# after checking that is all it is. PMTILES_LAST_RELEASE is where last release
+# is read: the balancer's root, which reaches every region's files (its /v1/
+# lists Taiwan's only); empty skips that comparison (an offline build). The
+# stamp makes a changed code rebuild the archive and the style zip. A failed
+# check removes the archive, so the next make checks it again.
+PMTILES_SCHEMA := 1
+PMTILES_SCHEMA_ALLOW ?=
+PMTILES_LAST_RELEASE ?= https://rudymap.tw/
+PMTILES_SCHEMA_STAMP := $(BUILD_DIR)/.pmtiles-schema-$(PMTILES_SCHEMA)
+$(PMTILES_SCHEMA_STAMP):
+	mkdir -p $(BUILD_DIR)
+	rm -f $(BUILD_DIR)/.pmtiles-schema-*
+	touch $@
+# The check reads the styles but is not a prerequisite: a style change alone does
+# not rebuild the archive.
+$(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING) $(TOOLS_DIR)/route-labels.py $(PMTILES_DEM) \
+		$(PMTILES_SCHEMA_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	mkdir -p $(BUILD_DIR)
 	GOPMTILES_CMD="$(GOPMTILES_CMD)" PMTILES_DEM="$(PMTILES_DEM)" \
-	PMTILES_ATTRIBUTION='$(PMTILES_ATTRIBUTION)' \
+	PMTILES_ATTRIBUTION='$(PMTILES_ATTRIBUTION)' PMTILES_SCHEMA='$(PMTILES_SCHEMA)' \
 	$(TOOLS_DIR)/pmtiles-build.sh \
 		"$(MAPSFORGE_PBF)" \
 		"$@" \
@@ -1100,6 +1267,9 @@ $(PMTILES): $(MAPSFORGE_PBF) $(PMTILES_CONFIG) $(PMTILES_PROCESS) $(TAG_MAPPING)
 		"$(PMTILES_PROCESS)" \
 		"$(VERSION)" \
 		"$(MAP_FRAME)"
+	PMTILES_SCHEMA_ALLOW='$(PMTILES_SCHEMA_ALLOW)' \
+	python3 $(TOOLS_DIR)/pmtiles-schema-check.py "$@" "$(PMTILES_SCHEMA)" "$(PMTILES_LAST_RELEASE)" \
+		$(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) || { rm -f "$@"; exit 1; }
 
 .PHONY: glyphs
 glyphs: $(GLYPHS)
@@ -1142,17 +1312,18 @@ $(SPRITE): $(PMTILES_STYLE) $(wildcard $(ROOT_DIR)/styles/mapsforge_style/moiosm
 # version stamp rebuilds the zip once a day, as it does the map data.
 PMTILES_STYLE_ZIP := $(BUILD_DIR)/rudymap_pmtiles_style.zip
 PMTILES_STYLE_GLYPH_RANGES := 0-255
+PMTILES_WEB_GLYPH_RANGES := $(ROOT_DIR)/styles/pmtiles_style/web-glyph-ranges.txt
 .PHONY: pmtiles_style_zip
 pmtiles_style_zip: $(PMTILES_STYLE_ZIP)
 $(PMTILES_STYLE_ZIP): $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE) $(SPRITE) $(SPRITE_PAPER) $(GLYPHS) \
 		styles/mapsforge_style/License.txt styles/pmtiles_style/glyphs-LICENSE.txt \
-		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP)
+		$(TOOLS_DIR)/pmtiles-style-pack.py $(VERSION_STAMP) $(PMTILES_SCHEMA_STAMP)
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	-rm -f $@
 	rm -rf $(BUILD_DIR)/pmtiles_style
 	mkdir -p $(BUILD_DIR)/pmtiles_style
 	cp -a styles/mapsforge_style/License.txt $(SPRITE_DIR) $(SPRITE_PAPER_DIR) $(BUILD_DIR)/pmtiles_style/
-	python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
+	PMTILES_SCHEMA='$(PMTILES_SCHEMA)' python3 $(TOOLS_DIR)/pmtiles-style-pack.py $(BUILD_DIR)/pmtiles_style "$(VERSION)" $(GLYPHS_DIR) \
 		$(PMTILES_STYLE_GLYPH_RANGES) $(PMTILES_STYLE) $(PMTILES_PAPER_STYLE)
 	cp styles/pmtiles_style/glyphs-LICENSE.txt $(BUILD_DIR)/pmtiles_style/glyphs/LICENSE.txt
 	cd $(BUILD_DIR)/pmtiles_style && $(ZIP_CMD) $@ *
@@ -1186,12 +1357,23 @@ $(DEM_PMTILES): $(HGT) $(TOOLS_DIR)/dem-build.sh $(TOOLS_DIR)/dem-terrarium.py
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(REGION)" ]
 	[ -n "$(HGT)" ]
-	$(TOOLS_DIR)/dem-build.sh \
-		"$(HGT)" \
-		"$@" \
-		"$(GOPMTILES_CMD)" \
-		"$(DEM_MIN_ZOOM)" \
-		"$(DEM_MAX_ZOOM)"
+	key=$$( { sha256sum "$(HGT)" $(TOOLS_DIR)/dem-build.sh $(TOOLS_DIR)/dem-terrarium.py | cut -d' ' -f1; \
+		echo "$(DEM_MIN_ZOOM) $(DEM_MAX_ZOOM)"; } | sha256sum | cut -c1-16 ) && \
+	cached="$(DEM_CACHE_DIR)/$(basename $(notdir $@))-$$key.pmtiles" && \
+	if [ -n "$(DEM_CACHE_DIR)" ] && [ -s "$$cached" ]; then \
+		echo "DEM: reusing $$cached"; \
+		mkdir -p $(dir $@) && cp "$$cached" "$@.tmp" && mv "$@.tmp" "$@"; \
+	else \
+		$(TOOLS_DIR)/dem-build.sh \
+			"$(HGT)" \
+			"$@" \
+			"$(GOPMTILES_CMD)" \
+			"$(DEM_MIN_ZOOM)" \
+			"$(DEM_MAX_ZOOM)" && \
+		if [ -n "$(DEM_CACHE_DIR)" ]; then \
+			mkdir -p "$(DEM_CACHE_DIR)" && cp "$@" "$$cached.tmp" && mv "$$cached.tmp" "$$cached"; \
+		fi; \
+	fi
 
 # Generate polygon file from bounding box for splitter
 # Only created when BOUNDING_BOX is set (not POLY_FILE)
@@ -1210,6 +1392,11 @@ $(BBOX_POLY_FILE):
 	@echo "END" >> $@
 endif
 
+# splitter's default --search-limit is 200000; 500000 (2.5x) reliably finds a
+# "nice" tile layout across Taiwan and overseas regions in ~1-1.5s, whereas
+# 1000000000 spends ~98s backtracking on Taiwan without improving the split.
+SPLITTER_SEARCH_LIMIT ?= 500000
+
 $(COMMON_TILES): $(GMAP_INPUT) $(SEA_ZIP) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE))
 	date +'DS: %H:%M:%S $(shell basename $@)'
 	[ -n "$(MAPID)" ]
@@ -1225,7 +1412,7 @@ $(COMMON_TILES): $(GMAP_INPUT) $(SEA_ZIP) $(if $(BOUNDING_BOX),$(BBOX_POLY_FILE)
 			--mapid=$(DUMMYID)0001 \
 			--max-areas=4096 \
 			--max-nodes=800000 \
-			--search-limit=1000000000 \
+			--search-limit=$(SPLITTER_SEARCH_LIMIT) \
 			--output=o5m \
 			--output-dir=$(COMMON_TILES_DIR) \
 			$(GMAP_INPUT)

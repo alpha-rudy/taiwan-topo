@@ -144,7 +144,12 @@ endef
 # $5 = style name variable (e.g., HR_STYLE)
 # $6 = DEM config file (e.g., gmapdem_camp.cfg, gmapdem.cfg, or empty for no DEM)
 # $7 = extra dependencies (e.g., $(GMAPDEM) or empty)
+# $8 = optional "handheld" mode (skips global index/TDB/overview rebuilt by gmapsupp)
 #
+# Set USE_GMAP_TILE_CACHE=0 to disable reusing compiled Garmin .img tiles across
+# sibling variants that differ only in TYP / MAPID.
+USE_GMAP_TILE_CACHE ?= 1
+
 define MAP_BUILD
 .PHONY: $1
 $1: $2
@@ -167,31 +172,99 @@ $2: $$(TILES) $$(TYP_FILE) $4 $7 $$(BOUNDS_ZIP) $$(SEA_ZIP)
 			--product-id=1 \
 			--family-id=$$(MAPID) \
 			$$(TYP).txt && \
-		rm -f osmmap.img osmmap.tdb
-	cd $3 && \
-		cp $$(TYP).typ $$(MAPID).TYP && \
-		mkdir $3/style && \
-		cp -a $4 $3/style/$5 && \
-		cp $$(ROOT_DIR)/styles/style-translations $3/ && \
-		cat $$(ROOT_DIR)/mkgmaps/mkgmap.cfg | $$(SED_CMD) \
-			-e "s|__root_dir__|$$(ROOT_DIR)|g" \
-			-e "s|__map_dir__|$3|g" \
-			-e "s|__version__|$$(VERSION)|g" \
-			-e "s|__style__|$5|g" \
-			-e "s|__name_tag_list__|$$(NTL)|g" \
-			-e "s|__code_page__|$$(CODE_PAGE)|g" \
-			-e "s|__name_long__|$$(NAME_LONG)|g" \
-			-e "s|__name_short__|$$(NAME_SHORT)|g" \
-			-e "s|__name_word__|$$(NAME_WORD)|g" \
-			-e "s|__mapid__|$$(MAPID)|g" > mkgmap.cfg && \
-		cat $$(TILES_DIR)/template.args | $$(SED_CMD) \
-			-e "s|input-file: \(.*\)|input-file: $$(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
-		$(if $6,ln -s $$(GMAPDEM) ./moi-hgt.zip && $$(SED_CMD) "/__dem_section__/ r $$(ROOT_DIR)/mkgmaps/$6" -i mkgmap.cfg &&) \
-		java $$(JAVACMD_OPTIONS) -jar $$(MKGMAP_JAR) \
-			--code-page=$$(CODE_PAGE) \
-			--max-jobs=$$(MKGMAP_JOBS) \
-			-c mkgmap.cfg \
-			--check-styles
+		rm -f osmmap.img osmmap.tdb && \
+		cp $$(TYP).typ $$(MAPID).TYP
+	@set -e; \
+	cache_dir="$$(BUILD_DIR)/$$(REGION)/gmap_tile_cache"; \
+	cache_key="$$$$(printf '%s\n' "$$(ELEVATION_FILE)" "$$(GMAPDEM)" "$5" "$6" "$$(CODE_PAGE)" "$$(NTL)" "$$(BOUNDING_BOX)" "$$(POLY_FILE)" "$$(LEFT)" "$$(BOTTOM)" "$$(RIGHT)" "$$(TOP)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-16)"; \
+	nodem_key="$$$$(printf '%s\n' "$$(ELEVATION_FILE)" "$5" "$$(CODE_PAGE)" "$$(NTL)" "$$(BOUNDING_BOX)" "$$(POLY_FILE)" "$$(LEFT)" "$$(BOTTOM)" "$$(RIGHT)" "$$(TOP)" | (sha256sum 2>/dev/null || shasum -a 256) | cut -c1-16)"; \
+	cache_meta="$$$$cache_dir/$$$$cache_key.env"; \
+	nodem_meta="$$$$cache_dir/nodem_$$$$nodem_key.env"; \
+	cloned=0; \
+	if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ] && [ "$8" = "handheld" ] && [ -f "$$$$cache_meta" ]; then \
+		src_dir=""; src_mapid=""; src_done=""; src_ovm=""; \
+		. "$$$$cache_meta"; \
+		if [ -n "$$$$src_dir" ] && [ -d "$$$$src_dir" ] && [ -f "$$$$src_done" ] && [ ! "$$(COMMON_TILES)" -nt "$$$$src_done" ]; then \
+			echo "MAP_BUILD ($1): cloning compiled tiles from $$$$src_mapid -> $$(MAPID)"; \
+			python3 $$(TOOLS_DIR)/gmap-clone-tiles.py "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
+			cloned=1; \
+		fi; \
+	fi; \
+	if [ "$$$$cloned" -eq 0 ] && [ "$$(USE_GMAP_TILE_CACHE)" = "1" ] && [ -z "$6" ] && [ -f "$$$$nodem_meta" ]; then \
+		src_dir=""; src_mapid=""; src_done=""; src_ovm=""; \
+		. "$$$$nodem_meta"; \
+		if [ -n "$$$$src_dir" ] && [ -d "$$$$src_dir" ] && [ -f "$$$$src_done" ] && [ ! "$$(COMMON_TILES)" -nt "$$$$src_done" ]; then \
+			if [ "$8" = "handheld" ]; then \
+				echo "MAP_BUILD ($1): cloning compiled tiles (strip-dem) from $$$$src_mapid -> $$(MAPID)"; \
+				python3 $$(TOOLS_DIR)/gmap-clone-tiles.py --strip-dem "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
+				cloned=1; \
+			elif [ "$8" = "pc" ] && [ -n "$$$$src_ovm" ] && [ -d "$$$$src_ovm" ]; then \
+				echo "MAP_BUILD ($1): cloning PC tiles (strip-dem + ovm) from $$$$src_mapid -> $$(MAPID)"; \
+				python3 $$(TOOLS_DIR)/gmap-clone-tiles.py --strip-dem --ovm-dir "$$$$src_ovm" "$$$$src_dir" "$$$$src_mapid" "$3" "$$(MAPID)"; \
+				cd $3 && \
+				java $$(JAVACMD_OPTIONS) -jar $$(MKGMAP_JAR) \
+					--code-page=$$(CODE_PAGE) \
+					--license-file="$$(ROOT_DIR)/docs/license.txt" \
+					--index \
+					--tdbfile \
+					--improve-overview \
+					--remove-ovm-work-files \
+					--show-profiles=1 \
+					--product-id=1 \
+					--family-id=$$(MAPID) \
+					--family-name="$$(NAME_SHORT)" \
+					--series-name="$$(NAME_SHORT)" \
+					--description="$$(NAME_LONG)" \
+					--overview-mapname="$$(NAME_WORD)" \
+					--overview-mapnumber=$$(MAPID)0000 \
+					--product-version="$$(VERSION)" \
+					$$(MAPID)*.img; \
+				cloned=1; \
+			fi; \
+		fi; \
+	fi; \
+	if [ "$$$$cloned" -eq 0 ]; then \
+		cd $3 && \
+			mkdir -p $3/style && \
+			cp -a $4 $3/style/$5 && \
+			cp $$(ROOT_DIR)/styles/style-translations $3/ && \
+			cat $$(ROOT_DIR)/mkgmaps/mkgmap.cfg | $$(SED_CMD) \
+				-e "s|__root_dir__|$$(ROOT_DIR)|g" \
+				-e "s|__map_dir__|$3|g" \
+				-e "s|__version__|$$(VERSION)|g" \
+				-e "s|__style__|$5|g" \
+				-e "s|__name_tag_list__|$$(NTL)|g" \
+				-e "s|__code_page__|$$(CODE_PAGE)|g" \
+				-e "s|__name_long__|$$(NAME_LONG)|g" \
+				-e "s|__name_short__|$$(NAME_SHORT)|g" \
+				-e "s|__name_word__|$$(NAME_WORD)|g" \
+				-e "s|__mapid__|$$(MAPID)|g" > mkgmap.cfg && \
+			$(if $(filter handheld,$8),$$(SED_CMD) -e '/^index$$$$/d' -e '/^tdbfile$$$$/d' -e '/^improve-overview$$$$/d' -e '/^overview-mapname=/d' -e '/^overview-mapnumber=/d' -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg &&) \
+			$(if $(and $(filter pc,$8),$6),if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ]; then $$(SED_CMD) -e '/^remove-ovm-work-files$$$$/d' -i mkgmap.cfg; fi &&) \
+			cat $$(TILES_DIR)/template.args | $$(SED_CMD) \
+				-e "s|input-file: \(.*\)|input-file: $$(TILES_DIR)/\\1|g" >> mkgmap.cfg && \
+			$(if $6,ln -s $$(GMAPDEM) ./moi-hgt.zip && $$(SED_CMD) "/__dem_section__/ r $$(ROOT_DIR)/mkgmaps/$6" -i mkgmap.cfg &&) \
+			java $$(JAVACMD_OPTIONS) -jar $$(MKGMAP_JAR) \
+				--code-page=$$(CODE_PAGE) \
+				--max-jobs=$$(MKGMAP_JOBS) \
+				-c mkgmap.cfg \
+				--check-styles; \
+		if [ "$$(USE_GMAP_TILE_CACHE)" = "1" ]; then \
+			mkdir -p "$$$$cache_dir"; \
+			ovm_store=""; \
+			if [ "$8" = "pc" ] && [ -n "$6" ]; then \
+				ovm_store="$$$$cache_dir/ovm_$$$$nodem_key"; \
+				rm -rf "$$$$ovm_store" && mkdir -p "$$$$ovm_store"; \
+				mv $3/ovm_$$(MAPID)*.img "$$$$ovm_store/" 2>/dev/null || true; \
+			fi; \
+			printf 'src_dir=%q\nsrc_mapid=%q\nsrc_done=%q\nsrc_ovm=%q\n' "$3" "$$(MAPID)" "$2" "$$$$ovm_store" > "$$$$cache_meta.tmp"; \
+			mv "$$$$cache_meta.tmp" "$$$$cache_meta"; \
+			if [ -n "$6" ]; then \
+				cp "$$$$cache_meta" "$$$$nodem_meta.tmp"; \
+				mv "$$$$nodem_meta.tmp" "$$$$nodem_meta"; \
+			fi; \
+		fi; \
+	fi
 	touch $2
 endef
 
@@ -263,9 +336,47 @@ endef
 #   2: suite list variable name (e.g., FUJISAN_SUITES)
 #   3: install directory path
 #   4: suite name for install target (usually same as region, e.g., fujisan)
+# Set PARALLEL_NSIS=0 / PARALLEL_GMAPSUPP=0 to disable overlapping background
+# NSIS / gmapsupp_zip packaging with subsequent MAP_BUILD targets.
+PARALLEL_NSIS ?= 1
+PARALLEL_GMAPSUPP ?= 1
+
 define SUITE_BUILD
 .PHONY: $(1)_suites
 $(1)_suites:
-	set -e; $$(foreach suite,$$($(2)),$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$(suite) all;)
+	@set -e; \
+	kill_tree() { local pid="$$$$1" children child; children="$$$$(pgrep -P "$$$$pid" 2>/dev/null || true)"; kill "$$$$pid" 2>/dev/null || true; for child in $$$$children; do kill_tree "$$$$child"; done; }; \
+	bg_pids=""; \
+	trap 'for p in $$$$bg_pids; do kill_tree "$$$$p"; done; wait 2>/dev/null || true' EXIT; \
+	for suite in $$($(2)); do \
+		do_gmapsupp=no; do_nsis=no; \
+		if [ "$$(PARALLEL_GMAPSUPP)" = "1" ] && [ "$$$$($$(MAKE) --no-print-directory BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite print_has_gmapsupp_zip)" = "yes" ]; then \
+			do_gmapsupp=yes; \
+		fi; \
+		if [ "$$(PARALLEL_NSIS)" = "1" ] && [ "$$$$($$(MAKE) --no-print-directory BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite print_has_nsis)" = "yes" ]; then \
+			do_nsis=yes; \
+		fi; \
+		if [ "$$$$do_gmapsupp" = "yes" ] && [ "$$$$do_nsis" = "yes" ]; then \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite map_hand; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite gmapsupp_zip & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all_no_bg; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite nsis & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+		elif [ "$$$$do_gmapsupp" = "yes" ]; then \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite map_hand; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite gmapsupp_zip & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all_no_gmapsupp; \
+		elif [ "$$$$do_nsis" = "yes" ]; then \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all_no_nsis; \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite nsis & \
+			bg_pids="$$$$bg_pids $$$$!"; \
+		else \
+			$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) SUITE=$$$$suite all; \
+		fi; \
+	done; \
+	for p in $$$$bg_pids; do wait "$$$$p"; done; \
+	trap - EXIT
 	$$(MAKE) BUILD_DIR=$$(ROOT_DIR)/build-$(1) INSTALL_DIR=$(3) SUITE=$(4) install
 endef

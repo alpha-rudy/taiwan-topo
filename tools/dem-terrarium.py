@@ -16,6 +16,8 @@ so the PMTiles header says where the elevations are.
 Usage: dem-terrarium.py <tiles.mbtiles> <source.vrt>
 """
 import io
+import multiprocessing
+import os
 import sqlite3
 import sys
 
@@ -24,35 +26,57 @@ import rasterio
 from PIL import Image
 
 
+def _reencode_tile(row):
+    z, x, y, data = row
+    rgb = np.asarray(Image.open(io.BytesIO(data)).convert("RGB")).astype(np.int64)
+    tenths = rgb[..., 0] * 65536 + rgb[..., 1] * 256 + rgb[..., 2]   # (h + 10000) * 10
+    if np.any(tenths % 10):
+        raise ValueError(f"tile {z}/{x}/{y} has elevations that are not whole metres")
+    v = tenths // 10 - 10000 + 32768
+    out = np.stack([v >> 8, v & 255, np.zeros_like(v)], -1).astype(np.uint8)
+    buf = io.BytesIO()
+    Image.fromarray(out, "RGB").save(buf, "WEBP", lossless=True, quality=100, method=6)
+    return buf.getvalue(), z, x, y
+
+
 def main():
     db = sqlite3.connect(sys.argv[1])
     rows = db.execute("SELECT zoom_level, tile_column, tile_row, tile_data FROM tiles").fetchall()
-    for z, x, y, data in rows:
-        rgb = np.asarray(Image.open(io.BytesIO(data)).convert("RGB")).astype(np.int64)
-        tenths = rgb[..., 0] * 65536 + rgb[..., 1] * 256 + rgb[..., 2]   # (h + 10000) * 10
-        if np.any(tenths % 10):
-            sys.exit("tile %d/%d/%d has elevations that are not whole metres" % (z, x, y))
-        v = tenths // 10 - 10000 + 32768
-        out = np.stack([v >> 8, v & 255, np.zeros_like(v)], -1).astype(np.uint8)
-        buf = io.BytesIO()
-        Image.fromarray(out, "RGB").save(buf, "WEBP", lossless=True, quality=100, method=6)
-        db.execute("UPDATE tiles SET tile_data = ? WHERE zoom_level = ? AND tile_column = ? AND tile_row = ?",
-                   (buf.getvalue(), z, x, y))
+    workers = max(1, int(os.environ.get("DEM_WORKERS") or os.cpu_count() or 1))
+    workers = min(workers, len(rows)) if rows else 1
+    try:
+        if workers > 1:
+            with multiprocessing.Pool(processes=workers) as pool:
+                for tile_data, z, x, y in pool.imap(_reencode_tile, rows, chunksize=4):
+                    db.execute(
+                        "UPDATE tiles SET tile_data = ? WHERE zoom_level = ? AND tile_column = ? AND tile_row = ?",
+                        (tile_data, z, x, y),
+                    )
+        else:
+            for row in rows:
+                tile_data, z, x, y = _reencode_tile(row)
+                db.execute(
+                    "UPDATE tiles SET tile_data = ? WHERE zoom_level = ? AND tile_column = ? AND tile_row = ?",
+                    (tile_data, z, x, y),
+                )
+    except ValueError as err:
+        db.close()
+        sys.exit(str(err))
     db.execute("UPDATE metadata SET value = 'webp' WHERE name = 'format'")
     with rasterio.open(sys.argv[2]) as src:
         if src.crs is None or not src.crs.is_geographic:
-            sys.exit("%s is not in geographic coordinates" % sys.argv[2])
+            sys.exit(f"{sys.argv[2]} is not in geographic coordinates")
         w, s, e, n = src.bounds
     min_z = db.execute("SELECT MIN(zoom_level) FROM tiles").fetchone()[0]
     db.execute("DELETE FROM metadata WHERE name IN ('bounds', 'center')")
     db.executemany("INSERT INTO metadata (name, value) VALUES (?, ?)", [
-        ("bounds", "%.6f,%.6f,%.6f,%.6f" % (w, s, e, n)),
-        ("center", "%.6f,%.6f,%d" % ((w + e) / 2, (s + n) / 2, min_z)),
+        ("bounds", f"{w:.6f},{s:.6f},{e:.6f},{n:.6f}"),
+        ("center", f"{(w + e) / 2:.6f},{(s + n) / 2:.6f},{min_z}"),
     ])
     db.commit()
     db.execute("VACUUM")
     db.close()
-    print("DEM: %d tiles re-encoded as Terrarium WebP" % len(rows))
+    print(f"DEM: {len(rows)} tiles re-encoded as Terrarium WebP")
 
 
 if __name__ == "__main__":
