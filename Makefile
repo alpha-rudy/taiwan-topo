@@ -446,6 +446,8 @@ legend_check:
 # sprites from there through the balancer, the way it reads the archives,
 # instead of hosting them. Its glyphs/ also gets the ranges a browser does not
 # draw with its own font (PMTILES_WEB_GLYPH_RANGES); the zip keeps Latin only.
+# Its files.json lists every file in it with size and MD5 (tools/folder-files.py),
+# for mirrors, which cannot list a directory on the sites they copy from.
 # rudymap_regions.json lists every region's files and the shared themes and
 # styles (tools/generate_regions.py, read from the suites), published with
 # Taiwan's release, the one that builds the PMTiles style (only its build has
@@ -499,7 +501,8 @@ install:
 	-cp $(BUILD_DIR)/*.pmtiles $(INSTALL_DIR)
 	-cp $(BUILD_DIR)/dem/*.pmtiles $(INSTALL_DIR)
 	-[ -f $(PMTILES_STYLE_ZIP) ] && cp -r $(BUILD_DIR)/pmtiles_style $(INSTALL_DIR)/rudymap_pmtiles_style && \
-		python3 $(TOOLS_DIR)/pmtiles-web-glyphs.py $(INSTALL_DIR)/rudymap_pmtiles_style/glyphs $(GLYPHS_DIR) $(PMTILES_WEB_GLYPH_RANGES)
+		python3 $(TOOLS_DIR)/pmtiles-web-glyphs.py $(INSTALL_DIR)/rudymap_pmtiles_style/glyphs $(GLYPHS_DIR) $(PMTILES_WEB_GLYPH_RANGES) && \
+		python3 $(TOOLS_DIR)/folder-files.py $(INSTALL_DIR)/rudymap_pmtiles_style
 	if [ -f $(PMTILES_STYLE_ZIP) ]; then python3 $(TOOLS_DIR)/generate_regions.py -o $(INSTALL_DIR)/rudymap_regions.json; fi
 	-cp $(BUILD_DIR)/legend.html $(BUILD_DIR)/legend_detail.pdf $(BUILD_DIR)/legend_compact.pdf $(BUILD_DIR)/legend_onepage.pdf $(INSTALL_DIR)
 	-cp -r $(BUILD_DIR)/legend_samples $(INSTALL_DIR)
